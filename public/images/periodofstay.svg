@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="51.58" height="51.58" viewBox="0 0 51.58 51.58">
+  <g id="periodofstay" transform="translate(-67 -1670.327)">
+    <circle id="Ellipse_1" data-name="Ellipse 1" cx="25.79" cy="25.79" r="25.79" transform="translate(67 1670.327)" fill="#12bce8"/>
+    <g id="Vector_Smart_Object" data-name="Vector Smart Object" transform="translate(-1162.166 34.162)">
+      <g id="Vector_Smart_Object-2" data-name="Vector Smart Object" transform="translate(753.968 1378.691)">
+        <g id="Group_25" data-name="Group 25">
+          <path id="Path_75" data-name="Path 75" d="M510.261,274.44h-.751a.46.46,0,0,0-.184.039v-2.5a1.512,1.512,0,0,0-3.024,0v2.471a.5.5,0,0,0-.084-.009H495.846a.432.432,0,0,0-.114.016v-2.479a1.512,1.512,0,0,0-3.024,0v2.491a.441.441,0,0,0-.153-.029H491.8a2.6,2.6,0,0,0-2.605,2.594v16.518a2.6,2.6,0,0,0,2.605,2.593h18.458a2.6,2.6,0,0,0,2.606-2.593V277.033A2.6,2.6,0,0,0,510.261,274.44Zm-3.111-2.462a.665.665,0,0,1,1.329,0v4.528a.665.665,0,0,1-1.329,0Zm-13.595,0a.665.665,0,0,1,1.329,0v4.528a.665.665,0,0,1-1.329,0Zm18.393,21.574a1.685,1.685,0,0,1-1.687,1.678H491.8a1.684,1.684,0,0,1-1.686-1.678V277.033a1.685,1.685,0,0,1,1.686-1.679h.292v.9a2.1,2.1,0,0,0,4.209,0v-.9h9.455v.9a2.1,2.1,0,0,0,4.21,0v-.9h.292a1.685,1.685,0,0,1,1.687,1.679Z" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="0.331"/>
+          <path id="Path_76" data-name="Path 76" d="M510.611,281.024h-19.08a.458.458,0,0,0-.46.457V292.7a1.58,1.58,0,0,0,1.582,1.573H509.49a1.579,1.579,0,0,0,1.58-1.573V281.481A.458.458,0,0,0,510.611,281.024Zm-.46,11.679a.66.66,0,0,1-.661.658H492.653a.661.661,0,0,1-.663-.658V281.939h18.161Z" fill="#fff" stroke="#fff" stroke-miterlimit="10" stroke-width="0.331"/>
+        </g>
+        <rect id="Rectangle_2" data-name="Rectangle 2" width="4.254" height="1.512" transform="translate(493.636 290.388)" fill="#fff"/>
+        <rect id="Rectangle_3" data-name="Rectangle 3" width="4.254" height="1.512" transform="translate(493.824 283.638)" fill="#fff"/>
+        <rect id="Rectangle_4" data-name="Rectangle 4" width="4.254" height="1.512" transform="translate(494.012 287.013)" fill="#fff"/>
+        <rect id="Rectangle_5" data-name="Rectangle 5" width="4.254" height="1.512" transform="translate(500.638 283.716)" fill="#fff"/>
+        <rect id="Rectangle_6" data-name="Rectangle 6" width="4.254" height="1.512" transform="translate(500.638 290.31)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
