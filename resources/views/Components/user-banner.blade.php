@@ -1,7 +1,7 @@
 @auth
        <div class="bg-slate-300 flex p-4 items-end justify-end">
             <div class="py-2 px-4 rounded text-sm bg-green-500 ">
-                <a href="" class="">Manage Site</a>
+                <a href="/admin" class="">Manage Site</a>
             </div>
             <div class=" relative self-center group mx-2">
                 <button class=""><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-8 h-8 self-center">

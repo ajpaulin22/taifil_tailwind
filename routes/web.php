@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ManagementRegistrationController;
+use App\Http\Controllers\MasterMaintenance\JobInformationController;
+use App\Http\Controllers\MasterMaintenance\UserInformationController;
+use App\Http\Controllers\MasterMaintenanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +28,11 @@ Route::get('/', function () {
 
 Route::get('/admin', function(){
     if(Auth::check()){
-        return redirect('/');
+        return redirect('/admin/ManagementRegistration');
     }else{
         return redirect('/auth/login');
     }
-});
+})->name("admin");
 
 
 Route::group(['middleware' => 'guest','prefix'=>'auth'],function(){
@@ -40,3 +44,20 @@ Route::group(['middleware' => 'guest','prefix'=>'auth'],function(){
 });
 
 Route::get('/logout',[AuthController::class,'logout'])->middleware('auth');
+
+
+Route::group(["middleware" => "auth","prefix" => "admin"],function(){
+    Route::group(["prefix" => "ManagementRegistration"],function(){
+        Route::get("/",[ManagementRegistrationController::class,'view']);
+    });
+
+    Route::group(["prefix" => "MasterMaintenance"],function(){
+        Route::group(["prefix" => "JobInformation"],function(){
+            Route::get("/",[JobInformationController::class,"view"]);
+        });
+
+        Route::group(["prefix" => "UserInformation"],function(){
+            Route::get("/",[UserInformationController::class,"view"]);
+        });
+    });
+});
