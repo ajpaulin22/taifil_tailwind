@@ -22,7 +22,7 @@
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
-                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/Biodata?data=TITP">Qualifications</a>
+                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/qualification?data=TITP">Qualifications</a>
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
@@ -42,7 +42,7 @@
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
-                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/Biodata?data=TITP">Qualifications</a>
+                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/qualification?data=SSW">Qualifications</a>
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
@@ -63,7 +63,7 @@
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
-                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/Biodata?data=TITP">Qualifications</a>
+                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/qualification?data=Direct">Qualifications</a>
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">

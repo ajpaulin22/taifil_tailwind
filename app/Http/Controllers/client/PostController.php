@@ -2,22 +2,50 @@
 
 namespace App\Http\Controllers\client;
 
-use App\Http\Controllers\Controller;
-use App\Models\image;
+
+use Carbon\Carbon;
 use App\Models\post;
+use App\Models\image;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Date;
 
 class PostController extends Controller
 {
-    public function view(){
+    public function view(Request $request){
         try {
-            $posts = post::select()->get()->toArray();
-            $images = image::select()->get()->toArray();
+            if(isset($request->cat)){
+                $posts = post::select()->where("category",$request->cat)->where("isdeleted",0)->get();
+                $data = $posts->map(function($post,$key){
+                    return [
+                        "id" => $post->id,
+                        "title" => $post->title,
+                        "content" => $post->content,
+                        "category" => $post->category,
+                        "date" => date('m/d/Y' ,strtotime($post->created_at)),
+                        "time" => Carbon::parse($post->created_at)->format('g:i a'),
+                        "images" => image::select()->where("post_id",$post->id)->get()->toArray()
+                    ];
+                });
+            }else{
+                $posts = post::select()->where("isdeleted",0)->get();
+                $data = $posts->map(function($post,$key){
+                    return [
+                        "id" => $post->id,
+                        "title" => $post->title,
+                        "content" => $post->content,
+                        "category" => $post->category,
+                        "date" => date('m/d/Y' ,strtotime($post->created_at)),
+                        "time" => Carbon::parse($post->created_at)->format('g:i a'),
+                        "images" => image::select()->where("post_id",$post->id)->get()->toArray()
+                    ];
+                });
+            }
 
+            
         $dat = "";
-        return view("pages.gallery",["posts" => $posts,"images" => $images]);
+        return view("pages.gallery",["posts" => $data->toArray()]);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -35,24 +63,53 @@ class PostController extends Controller
             "title" => $request->title,
             "content" =>$request->content,
             "category" =>$request->category,
-            "created_at" => date('Y-m-d H:i:s'),
-            "updated_at" => date('Y-m-d H:i:s')
+            "created_at" => Carbon::now('Asia/Hong_Kong'),
+            "updated_at" => Carbon::now('Asia/Hong_Kong')
         ]);
 
-
-        foreach($request->file("pictures") as $picture){
-            image::create([
-            "post_id" => $id,
-            "path" => $picture->store($request->title . date('Y-m-d H:i:s'),"public"),
-            ]);
+        if($request->hasFile("pictures")){
+            foreach($request->file("pictures") as $picture){
+                image::create([
+                "post_id" => $id,
+                "path" => $picture->store($request->title . date('Y-m-d'),"public"),
+                ]);
+            }
         }
         
+        
+          
          DB::commit();
+         return redirect("/client/gallery");
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollBack();
+            return redirect("/client/gallery")->with('message',$th->getMessage());
         }
 
         
+    }
+
+    public function post(Request $request){
+        try {
+            $nextid = (int)$request->id+1;
+            $previd = (int)$request->id-1;
+            $post = post::select()->where("id",$request->id)->where("isdeleted",0)->get();
+            $nextpost = post::select("id")->where("id",$nextid)->where("isdeleted",0)->get()->toArray();
+            $prevpost = post::select("id")->where("id",$previd)->where("isdeleted",0)->get()->toArray();
+        $data = $post->map(function($post,$key){
+            return [
+                "id" => $post->id,
+                "title" => $post->title,
+                "content" => $post->content,
+                "category" => $post->category,
+                "date" => date('m/d/Y' ,strtotime($post->created_at)),
+                "time" => Carbon::parse($post->created_at)->format('g:i a'),
+                "images" => image::select()->where("post_id",$post->id)->get()->toArray()
+            ];
+        });
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        return view("pages.post",["data"=>$data->toArray(),"next"=>$nextpost,"prev"=>$prevpost]);
     }
 }

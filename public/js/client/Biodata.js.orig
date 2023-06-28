@@ -1544,10 +1544,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 <<<<<<< HEAD
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   A11y: () => (/* reexport safe */ _modules_a11y_a11y_js__WEBPACK_IMPORTED_MODULE_10__[\"default\"]),\n/* harmony export */   Autoplay: () => (/* reexport safe */ _modules_autoplay_autoplay_js__WEBPACK_IMPORTED_MODULE_13__[\"default\"]),\n/* harmony export */   Controller: () => (/* reexport safe */ _modules_controller_controller_js__WEBPACK_IMPORTED_MODULE_9__[\"default\"]),\n/* harmony export */   EffectCards: () => (/* reexport safe */ _modules_effect_cards_effect_cards_js__WEBPACK_IMPORTED_MODULE_23__[\"default\"]),\n/* harmony export */   EffectCoverflow: () => (/* reexport safe */ _modules_effect_coverflow_effect_coverflow_js__WEBPACK_IMPORTED_MODULE_21__[\"default\"]),\n/* harmony export */   EffectCreative: () => (/* reexport safe */ _modules_effect_creative_effect_creative_js__WEBPACK_IMPORTED_MODULE_22__[\"default\"]),\n/* harmony export */   EffectCube: () => (/* reexport safe */ _modules_effect_cube_effect_cube_js__WEBPACK_IMPORTED_MODULE_19__[\"default\"]),\n/* harmony export */   EffectFade: () => (/* reexport safe */ _modules_effect_fade_effect_fade_js__WEBPACK_IMPORTED_MODULE_18__[\"default\"]),\n/* harmony export */   EffectFlip: () => (/* reexport safe */ _modules_effect_flip_effect_flip_js__WEBPACK_IMPORTED_MODULE_20__[\"default\"]),\n/* harmony export */   FreeMode: () => (/* reexport safe */ _modules_free_mode_free_mode_js__WEBPACK_IMPORTED_MODULE_15__[\"default\"]),\n/* harmony export */   Grid: () => (/* reexport safe */ _modules_grid_grid_js__WEBPACK_IMPORTED_MODULE_16__[\"default\"]),\n/* harmony export */   HashNavigation: () => (/* reexport safe */ _modules_hash_navigation_hash_navigation_js__WEBPACK_IMPORTED_MODULE_12__[\"default\"]),\n/* harmony export */   History: () => (/* reexport safe */ _modules_history_history_js__WEBPACK_IMPORTED_MODULE_11__[\"default\"]),\n/* harmony export */   Keyboard: () => (/* reexport safe */ _modules_keyboard_keyboard_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"]),\n/* harmony export */   Manipulation: () => (/* reexport safe */ _modules_manipulation_manipulation_js__WEBPACK_IMPORTED_MODULE_17__[\"default\"]),\n/* harmony export */   Mousewheel: () => (/* reexport safe */ _modules_mousewheel_mousewheel_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"]),\n/* harmony export */   Navigation: () => (/* reexport safe */ _modules_navigation_navigation_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"]),\n/* harmony export */   Pagination: () => (/* reexport safe */ _modules_pagination_pagination_js__WEBPACK_IMPORTED_MODULE_5__[\"default\"]),\n/* harmony export */   Parallax: () => (/* reexport safe */ _modules_parallax_parallax_js__WEBPACK_IMPORTED_MODULE_7__[\"default\"]),\n/* harmony export */   Scrollbar: () => (/* reexport safe */ _modules_scrollbar_scrollbar_js__WEBPACK_IMPORTED_MODULE_6__[\"default\"]),\n/* harmony export */   Swiper: () => (/* reexport safe */ _core_core_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]),\n/* harmony export */   Thumbs: () => (/* reexport safe */ _modules_thumbs_thumbs_js__WEBPACK_IMPORTED_MODULE_14__[\"default\"]),\n/* harmony export */   Virtual: () => (/* reexport safe */ _modules_virtual_virtual_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]),\n/* harmony export */   Zoom: () => (/* reexport safe */ _modules_zoom_zoom_js__WEBPACK_IMPORTED_MODULE_8__[\"default\"]),\n/* harmony export */   \"default\": () => (/* reexport safe */ _core_core_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])\n/* harmony export */ });\n/* harmony import */ var _core_core_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core/core.js */ \"./node_modules/swiper/core/core.js\");\n/* harmony import */ var _modules_virtual_virtual_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/virtual/virtual.js */ \"./node_modules/swiper/modules/virtual/virtual.js\");\n/* harmony import */ var _modules_keyboard_keyboard_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/keyboard/keyboard.js */ \"./node_modules/swiper/modules/keyboard/keyboard.js\");\n/* harmony import */ var _modules_mousewheel_mousewheel_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/mousewheel/mousewheel.js */ \"./node_modules/swiper/modules/mousewheel/mousewheel.js\");\n/* harmony import */ var _modules_navigation_navigation_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/navigation/navigation.js */ \"./node_modules/swiper/modules/navigation/navigation.js\");\n/* harmony import */ var _modules_pagination_pagination_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/pagination/pagination.js */ \"./node_modules/swiper/modules/pagination/pagination.js\");\n/* harmony import */ var _modules_scrollbar_scrollbar_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/scrollbar/scrollbar.js */ \"./node_modules/swiper/modules/scrollbar/scrollbar.js\");\n/* harmony import */ var _modules_parallax_parallax_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/parallax/parallax.js */ \"./node_modules/swiper/modules/parallax/parallax.js\");\n/* harmony import */ var _modules_zoom_zoom_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/zoom/zoom.js */ \"./node_modules/swiper/modules/zoom/zoom.js\");\n/* harmony import */ var _modules_controller_controller_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/controller/controller.js */ \"./node_modules/swiper/modules/controller/controller.js\");\n/* harmony import */ var _modules_a11y_a11y_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/a11y/a11y.js */ \"./node_modules/swiper/modules/a11y/a11y.js\");\n/* harmony import */ var _modules_history_history_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/history/history.js */ \"./node_modules/swiper/modules/history/history.js\");\n/* harmony import */ var _modules_hash_navigation_hash_navigation_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/hash-navigation/hash-navigation.js */ \"./node_modules/swiper/modules/hash-navigation/hash-navigation.js\");\n/* harmony import */ var _modules_autoplay_autoplay_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modules/autoplay/autoplay.js */ \"./node_modules/swiper/modules/autoplay/autoplay.js\");\n/* harmony import */ var _modules_thumbs_thumbs_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./modules/thumbs/thumbs.js */ \"./node_modules/swiper/modules/thumbs/thumbs.js\");\n/* harmony import */ var _modules_free_mode_free_mode_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./modules/free-mode/free-mode.js */ \"./node_modules/swiper/modules/free-mode/free-mode.js\");\n/* harmony import */ var _modules_grid_grid_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./modules/grid/grid.js */ \"./node_modules/swiper/modules/grid/grid.js\");\n/* harmony import */ var _modules_manipulation_manipulation_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./modules/manipulation/manipulation.js */ \"./node_modules/swiper/modules/manipulation/manipulation.js\");\n/* harmony import */ var _modules_effect_fade_effect_fade_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./modules/effect-fade/effect-fade.js */ \"./node_modules/swiper/modules/effect-fade/effect-fade.js\");\n/* harmony import */ var _modules_effect_cube_effect_cube_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./modules/effect-cube/effect-cube.js */ \"./node_modules/swiper/modules/effect-cube/effect-cube.js\");\n/* harmony import */ var _modules_effect_flip_effect_flip_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./modules/effect-flip/effect-flip.js */ \"./node_modules/swiper/modules/effect-flip/effect-flip.js\");\n/* harmony import */ var _modules_effect_coverflow_effect_coverflow_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./modules/effect-coverflow/effect-coverflow.js */ \"./node_modules/swiper/modules/effect-coverflow/effect-coverflow.js\");\n/* harmony import */ var _modules_effect_creative_effect_creative_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./modules/effect-creative/effect-creative.js */ \"./node_modules/swiper/modules/effect-creative/effect-creative.js\");\n/* harmony import */ var _modules_effect_cards_effect_cards_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./modules/effect-cards/effect-cards.js */ \"./node_modules/swiper/modules/effect-cards/effect-cards.js\");\n/**\n * Swiper 9.3.2\n * Most modern mobile touch slider and framework with hardware accelerated transitions\n * https://swiperjs.com\n *\n * Copyright 2014-2023 Vladimir Kharlampidi\n *\n * Released under the MIT License\n *\n * Released on: May 15, 2023\n */\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvc3dpcGVyL3N3aXBlci5lc20uanMuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7O0FBRTREO0FBQ007QUFDRztBQUNNO0FBQ0E7QUFDQTtBQUNIO0FBQ0g7QUFDWjtBQUNrQjtBQUNsQjtBQUNTO0FBQ3VCO0FBQ3BCO0FBQ047QUFDUTtBQUNkO0FBQ3dCO0FBQ0o7QUFDQTtBQUNBO0FBQ2U7QUFDSCIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL25vZGVfbW9kdWxlcy9zd2lwZXIvc3dpcGVyLmVzbS5qcz9jYzliIl0sInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogU3dpcGVyIDkuMy4yXG4gKiBNb3N0IG1vZGVybiBtb2JpbGUgdG91Y2ggc2xpZGVyIGFuZCBmcmFtZXdvcmsgd2l0aCBoYXJkd2FyZSBhY2NlbGVyYXRlZCB0cmFuc2l0aW9uc1xuICogaHR0cHM6Ly9zd2lwZXJqcy5jb21cbiAqXG4gKiBDb3B5cmlnaHQgMjAxNC0yMDIzIFZsYWRpbWlyIEtoYXJsYW1waWRpXG4gKlxuICogUmVsZWFzZWQgdW5kZXIgdGhlIE1JVCBMaWNlbnNlXG4gKlxuICogUmVsZWFzZWQgb246IE1heSAxNSwgMjAyM1xuICovXG5cbmV4cG9ydCB7IGRlZmF1bHQgYXMgU3dpcGVyLCBkZWZhdWx0IH0gZnJvbSAnLi9jb3JlL2NvcmUuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBWaXJ0dWFsIH0gZnJvbSAnLi9tb2R1bGVzL3ZpcnR1YWwvdmlydHVhbC5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEtleWJvYXJkIH0gZnJvbSAnLi9tb2R1bGVzL2tleWJvYXJkL2tleWJvYXJkLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgTW91c2V3aGVlbCB9IGZyb20gJy4vbW9kdWxlcy9tb3VzZXdoZWVsL21vdXNld2hlZWwuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBOYXZpZ2F0aW9uIH0gZnJvbSAnLi9tb2R1bGVzL25hdmlnYXRpb24vbmF2aWdhdGlvbi5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIFBhZ2luYXRpb24gfSBmcm9tICcuL21vZHVsZXMvcGFnaW5hdGlvbi9wYWdpbmF0aW9uLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgU2Nyb2xsYmFyIH0gZnJvbSAnLi9tb2R1bGVzL3Njcm9sbGJhci9zY3JvbGxiYXIuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBQYXJhbGxheCB9IGZyb20gJy4vbW9kdWxlcy9wYXJhbGxheC9wYXJhbGxheC5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIFpvb20gfSBmcm9tICcuL21vZHVsZXMvem9vbS96b29tLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgQ29udHJvbGxlciB9IGZyb20gJy4vbW9kdWxlcy9jb250cm9sbGVyL2NvbnRyb2xsZXIuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBBMTF5IH0gZnJvbSAnLi9tb2R1bGVzL2ExMXkvYTExeS5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEhpc3RvcnkgfSBmcm9tICcuL21vZHVsZXMvaGlzdG9yeS9oaXN0b3J5LmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgSGFzaE5hdmlnYXRpb24gfSBmcm9tICcuL21vZHVsZXMvaGFzaC1uYXZpZ2F0aW9uL2hhc2gtbmF2aWdhdGlvbi5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEF1dG9wbGF5IH0gZnJvbSAnLi9tb2R1bGVzL2F1dG9wbGF5L2F1dG9wbGF5LmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgVGh1bWJzIH0gZnJvbSAnLi9tb2R1bGVzL3RodW1icy90aHVtYnMuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBGcmVlTW9kZSB9IGZyb20gJy4vbW9kdWxlcy9mcmVlLW1vZGUvZnJlZS1tb2RlLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgR3JpZCB9IGZyb20gJy4vbW9kdWxlcy9ncmlkL2dyaWQuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBNYW5pcHVsYXRpb24gfSBmcm9tICcuL21vZHVsZXMvbWFuaXB1bGF0aW9uL21hbmlwdWxhdGlvbi5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEVmZmVjdEZhZGUgfSBmcm9tICcuL21vZHVsZXMvZWZmZWN0LWZhZGUvZWZmZWN0LWZhZGUuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBFZmZlY3RDdWJlIH0gZnJvbSAnLi9tb2R1bGVzL2VmZmVjdC1jdWJlL2VmZmVjdC1jdWJlLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgRWZmZWN0RmxpcCB9IGZyb20gJy4vbW9kdWxlcy9lZmZlY3QtZmxpcC9lZmZlY3QtZmxpcC5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEVmZmVjdENvdmVyZmxvdyB9IGZyb20gJy4vbW9kdWxlcy9lZmZlY3QtY292ZXJmbG93L2VmZmVjdC1jb3ZlcmZsb3cuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBFZmZlY3RDcmVhdGl2ZSB9IGZyb20gJy4vbW9kdWxlcy9lZmZlY3QtY3JlYXRpdmUvZWZmZWN0LWNyZWF0aXZlLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgRWZmZWN0Q2FyZHMgfSBmcm9tICcuL21vZHVsZXMvZWZmZWN0LWNhcmRzL2VmZmVjdC1jYXJkcy5qcyc7Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/swiper/swiper.esm.js\n");
+=======
+<<<<<<< HEAD
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Swiper: () => (/* reexport safe */ _core_core_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]),\n/* harmony export */   \"default\": () => (/* reexport safe */ _core_core_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])\n/* harmony export */ });\n/* harmony import */ var _core_core_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core/core.js */ \"./node_modules/swiper/core/core.js\");\n/* harmony import */ var _modules_virtual_virtual_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/virtual/virtual.js */ \"./node_modules/swiper/modules/virtual/virtual.js\");\n/* harmony import */ var _modules_keyboard_keyboard_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/keyboard/keyboard.js */ \"./node_modules/swiper/modules/keyboard/keyboard.js\");\n/* harmony import */ var _modules_mousewheel_mousewheel_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/mousewheel/mousewheel.js */ \"./node_modules/swiper/modules/mousewheel/mousewheel.js\");\n/* harmony import */ var _modules_navigation_navigation_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/navigation/navigation.js */ \"./node_modules/swiper/modules/navigation/navigation.js\");\n/* harmony import */ var _modules_pagination_pagination_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/pagination/pagination.js */ \"./node_modules/swiper/modules/pagination/pagination.js\");\n/* harmony import */ var _modules_scrollbar_scrollbar_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/scrollbar/scrollbar.js */ \"./node_modules/swiper/modules/scrollbar/scrollbar.js\");\n/* harmony import */ var _modules_parallax_parallax_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/parallax/parallax.js */ \"./node_modules/swiper/modules/parallax/parallax.js\");\n/* harmony import */ var _modules_zoom_zoom_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/zoom/zoom.js */ \"./node_modules/swiper/modules/zoom/zoom.js\");\n/* harmony import */ var _modules_controller_controller_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/controller/controller.js */ \"./node_modules/swiper/modules/controller/controller.js\");\n/* harmony import */ var _modules_a11y_a11y_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/a11y/a11y.js */ \"./node_modules/swiper/modules/a11y/a11y.js\");\n/* harmony import */ var _modules_history_history_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/history/history.js */ \"./node_modules/swiper/modules/history/history.js\");\n/* harmony import */ var _modules_hash_navigation_hash_navigation_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/hash-navigation/hash-navigation.js */ \"./node_modules/swiper/modules/hash-navigation/hash-navigation.js\");\n/* harmony import */ var _modules_autoplay_autoplay_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modules/autoplay/autoplay.js */ \"./node_modules/swiper/modules/autoplay/autoplay.js\");\n/* harmony import */ var _modules_thumbs_thumbs_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./modules/thumbs/thumbs.js */ \"./node_modules/swiper/modules/thumbs/thumbs.js\");\n/* harmony import */ var _modules_free_mode_free_mode_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./modules/free-mode/free-mode.js */ \"./node_modules/swiper/modules/free-mode/free-mode.js\");\n/* harmony import */ var _modules_grid_grid_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./modules/grid/grid.js */ \"./node_modules/swiper/modules/grid/grid.js\");\n/* harmony import */ var _modules_manipulation_manipulation_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./modules/manipulation/manipulation.js */ \"./node_modules/swiper/modules/manipulation/manipulation.js\");\n/* harmony import */ var _modules_effect_fade_effect_fade_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./modules/effect-fade/effect-fade.js */ \"./node_modules/swiper/modules/effect-fade/effect-fade.js\");\n/* harmony import */ var _modules_effect_cube_effect_cube_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./modules/effect-cube/effect-cube.js */ \"./node_modules/swiper/modules/effect-cube/effect-cube.js\");\n/* harmony import */ var _modules_effect_flip_effect_flip_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./modules/effect-flip/effect-flip.js */ \"./node_modules/swiper/modules/effect-flip/effect-flip.js\");\n/* harmony import */ var _modules_effect_coverflow_effect_coverflow_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./modules/effect-coverflow/effect-coverflow.js */ \"./node_modules/swiper/modules/effect-coverflow/effect-coverflow.js\");\n/* harmony import */ var _modules_effect_creative_effect_creative_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./modules/effect-creative/effect-creative.js */ \"./node_modules/swiper/modules/effect-creative/effect-creative.js\");\n/* harmony import */ var _modules_effect_cards_effect_cards_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./modules/effect-cards/effect-cards.js */ \"./node_modules/swiper/modules/effect-cards/effect-cards.js\");\n/**\n * Swiper 9.3.2\n * Most modern mobile touch slider and framework with hardware accelerated transitions\n * https://swiperjs.com\n *\n * Copyright 2014-2023 Vladimir Kharlampidi\n *\n * Released under the MIT License\n *\n * Released on: May 15, 2023\n */\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n// Swiper Class\nconst modules = [_modules_virtual_virtual_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"], _modules_keyboard_keyboard_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"], _modules_mousewheel_mousewheel_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"], _modules_navigation_navigation_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"], _modules_pagination_pagination_js__WEBPACK_IMPORTED_MODULE_5__[\"default\"], _modules_scrollbar_scrollbar_js__WEBPACK_IMPORTED_MODULE_6__[\"default\"], _modules_parallax_parallax_js__WEBPACK_IMPORTED_MODULE_7__[\"default\"], _modules_zoom_zoom_js__WEBPACK_IMPORTED_MODULE_8__[\"default\"], _modules_controller_controller_js__WEBPACK_IMPORTED_MODULE_9__[\"default\"], _modules_a11y_a11y_js__WEBPACK_IMPORTED_MODULE_10__[\"default\"], _modules_history_history_js__WEBPACK_IMPORTED_MODULE_11__[\"default\"], _modules_hash_navigation_hash_navigation_js__WEBPACK_IMPORTED_MODULE_12__[\"default\"], _modules_autoplay_autoplay_js__WEBPACK_IMPORTED_MODULE_13__[\"default\"], _modules_thumbs_thumbs_js__WEBPACK_IMPORTED_MODULE_14__[\"default\"], _modules_free_mode_free_mode_js__WEBPACK_IMPORTED_MODULE_15__[\"default\"], _modules_grid_grid_js__WEBPACK_IMPORTED_MODULE_16__[\"default\"], _modules_manipulation_manipulation_js__WEBPACK_IMPORTED_MODULE_17__[\"default\"], _modules_effect_fade_effect_fade_js__WEBPACK_IMPORTED_MODULE_18__[\"default\"], _modules_effect_cube_effect_cube_js__WEBPACK_IMPORTED_MODULE_19__[\"default\"], _modules_effect_flip_effect_flip_js__WEBPACK_IMPORTED_MODULE_20__[\"default\"], _modules_effect_coverflow_effect_coverflow_js__WEBPACK_IMPORTED_MODULE_21__[\"default\"], _modules_effect_creative_effect_creative_js__WEBPACK_IMPORTED_MODULE_22__[\"default\"], _modules_effect_cards_effect_cards_js__WEBPACK_IMPORTED_MODULE_23__[\"default\"]];\n_core_core_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(modules);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvc3dpcGVyL3N3aXBlci1idW5kbGUuZXNtLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFFb0M7QUFDd0I7QUFDVDtBQUNHO0FBQ007QUFDQTtBQUNBO0FBQ0g7QUFDSDtBQUNaO0FBQ2tCO0FBQ2xCO0FBQ1M7QUFDdUI7QUFDcEI7QUFDTjtBQUNRO0FBQ2Q7QUFDd0I7QUFDSjtBQUNBO0FBQ0E7QUFDZTtBQUNIO0FBQ1Q7O0FBRWpFO0FBQ0EsaUJBQWlCLG1FQUFPLEVBQUUscUVBQVEsRUFBRSx5RUFBVSxFQUFFLHlFQUFVLEVBQUUseUVBQVUsRUFBRSx1RUFBUyxFQUFFLHFFQUFRLEVBQUUsNkRBQUksRUFBRSx5RUFBVSxFQUFFLDhEQUFJLEVBQUUsb0VBQU8sRUFBRSxvRkFBYyxFQUFFLHNFQUFRLEVBQUUsa0VBQU0sRUFBRSx3RUFBUSxFQUFFLDhEQUFJLEVBQUUsOEVBQVksRUFBRSw0RUFBVSxFQUFFLDRFQUFVLEVBQUUsNEVBQVUsRUFBRSxzRkFBZSxFQUFFLG9GQUFjLEVBQUUsOEVBQVc7QUFDOVEscURBQU0iLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9ub2RlX21vZHVsZXMvc3dpcGVyL3N3aXBlci1idW5kbGUuZXNtLmpzPzQ0OTYiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBTd2lwZXIgOS4zLjJcbiAqIE1vc3QgbW9kZXJuIG1vYmlsZSB0b3VjaCBzbGlkZXIgYW5kIGZyYW1ld29yayB3aXRoIGhhcmR3YXJlIGFjY2VsZXJhdGVkIHRyYW5zaXRpb25zXG4gKiBodHRwczovL3N3aXBlcmpzLmNvbVxuICpcbiAqIENvcHlyaWdodCAyMDE0LTIwMjMgVmxhZGltaXIgS2hhcmxhbXBpZGlcbiAqXG4gKiBSZWxlYXNlZCB1bmRlciB0aGUgTUlUIExpY2Vuc2VcbiAqXG4gKiBSZWxlYXNlZCBvbjogTWF5IDE1LCAyMDIzXG4gKi9cblxuaW1wb3J0IFN3aXBlciBmcm9tICcuL2NvcmUvY29yZS5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIFN3aXBlciwgZGVmYXVsdCB9IGZyb20gJy4vY29yZS9jb3JlLmpzJztcbmltcG9ydCBWaXJ0dWFsIGZyb20gJy4vbW9kdWxlcy92aXJ0dWFsL3ZpcnR1YWwuanMnO1xuaW1wb3J0IEtleWJvYXJkIGZyb20gJy4vbW9kdWxlcy9rZXlib2FyZC9rZXlib2FyZC5qcyc7XG5pbXBvcnQgTW91c2V3aGVlbCBmcm9tICcuL21vZHVsZXMvbW91c2V3aGVlbC9tb3VzZXdoZWVsLmpzJztcbmltcG9ydCBOYXZpZ2F0aW9uIGZyb20gJy4vbW9kdWxlcy9uYXZpZ2F0aW9uL25hdmlnYXRpb24uanMnO1xuaW1wb3J0IFBhZ2luYXRpb24gZnJvbSAnLi9tb2R1bGVzL3BhZ2luYXRpb24vcGFnaW5hdGlvbi5qcyc7XG5pbXBvcnQgU2Nyb2xsYmFyIGZyb20gJy4vbW9kdWxlcy9zY3JvbGxiYXIvc2Nyb2xsYmFyLmpzJztcbmltcG9ydCBQYXJhbGxheCBmcm9tICcuL21vZHVsZXMvcGFyYWxsYXgvcGFyYWxsYXguanMnO1xuaW1wb3J0IFpvb20gZnJvbSAnLi9tb2R1bGVzL3pvb20vem9vbS5qcyc7XG5pbXBvcnQgQ29udHJvbGxlciBmcm9tICcuL21vZHVsZXMvY29udHJvbGxlci9jb250cm9sbGVyLmpzJztcbmltcG9ydCBBMTF5IGZyb20gJy4vbW9kdWxlcy9hMTF5L2ExMXkuanMnO1xuaW1wb3J0IEhpc3RvcnkgZnJvbSAnLi9tb2R1bGVzL2hpc3RvcnkvaGlzdG9yeS5qcyc7XG5pbXBvcnQgSGFzaE5hdmlnYXRpb24gZnJvbSAnLi9tb2R1bGVzL2hhc2gtbmF2aWdhdGlvbi9oYXNoLW5hdmlnYXRpb24uanMnO1xuaW1wb3J0IEF1dG9wbGF5IGZyb20gJy4vbW9kdWxlcy9hdXRvcGxheS9hdXRvcGxheS5qcyc7XG5pbXBvcnQgVGh1bWJzIGZyb20gJy4vbW9kdWxlcy90aHVtYnMvdGh1bWJzLmpzJztcbmltcG9ydCBGcmVlTW9kZSBmcm9tICcuL21vZHVsZXMvZnJlZS1tb2RlL2ZyZWUtbW9kZS5qcyc7XG5pbXBvcnQgR3JpZCBmcm9tICcuL21vZHVsZXMvZ3JpZC9ncmlkLmpzJztcbmltcG9ydCBNYW5pcHVsYXRpb24gZnJvbSAnLi9tb2R1bGVzL21hbmlwdWxhdGlvbi9tYW5pcHVsYXRpb24uanMnO1xuaW1wb3J0IEVmZmVjdEZhZGUgZnJvbSAnLi9tb2R1bGVzL2VmZmVjdC1mYWRlL2VmZmVjdC1mYWRlLmpzJztcbmltcG9ydCBFZmZlY3RDdWJlIGZyb20gJy4vbW9kdWxlcy9lZmZlY3QtY3ViZS9lZmZlY3QtY3ViZS5qcyc7XG5pbXBvcnQgRWZmZWN0RmxpcCBmcm9tICcuL21vZHVsZXMvZWZmZWN0LWZsaXAvZWZmZWN0LWZsaXAuanMnO1xuaW1wb3J0IEVmZmVjdENvdmVyZmxvdyBmcm9tICcuL21vZHVsZXMvZWZmZWN0LWNvdmVyZmxvdy9lZmZlY3QtY292ZXJmbG93LmpzJztcbmltcG9ydCBFZmZlY3RDcmVhdGl2ZSBmcm9tICcuL21vZHVsZXMvZWZmZWN0LWNyZWF0aXZlL2VmZmVjdC1jcmVhdGl2ZS5qcyc7XG5pbXBvcnQgRWZmZWN0Q2FyZHMgZnJvbSAnLi9tb2R1bGVzL2VmZmVjdC1jYXJkcy9lZmZlY3QtY2FyZHMuanMnO1xuXG4vLyBTd2lwZXIgQ2xhc3NcbmNvbnN0IG1vZHVsZXMgPSBbVmlydHVhbCwgS2V5Ym9hcmQsIE1vdXNld2hlZWwsIE5hdmlnYXRpb24sIFBhZ2luYXRpb24sIFNjcm9sbGJhciwgUGFyYWxsYXgsIFpvb20sIENvbnRyb2xsZXIsIEExMXksIEhpc3RvcnksIEhhc2hOYXZpZ2F0aW9uLCBBdXRvcGxheSwgVGh1bWJzLCBGcmVlTW9kZSwgR3JpZCwgTWFuaXB1bGF0aW9uLCBFZmZlY3RGYWRlLCBFZmZlY3RDdWJlLCBFZmZlY3RGbGlwLCBFZmZlY3RDb3ZlcmZsb3csIEVmZmVjdENyZWF0aXZlLCBFZmZlY3RDYXJkc107XG5Td2lwZXIudXNlKG1vZHVsZXMpO1xuIl0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/swiper/swiper-bundle.esm.js\n");
 =======
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   A11y: () => (/* reexport safe */ _modules_a11y_a11y_js__WEBPACK_IMPORTED_MODULE_10__[\"default\"]),\n/* harmony export */   Autoplay: () => (/* reexport safe */ _modules_autoplay_autoplay_js__WEBPACK_IMPORTED_MODULE_13__[\"default\"]),\n/* harmony export */   Controller: () => (/* reexport safe */ _modules_controller_controller_js__WEBPACK_IMPORTED_MODULE_9__[\"default\"]),\n/* harmony export */   EffectCards: () => (/* reexport safe */ _modules_effect_cards_effect_cards_js__WEBPACK_IMPORTED_MODULE_23__[\"default\"]),\n/* harmony export */   EffectCoverflow: () => (/* reexport safe */ _modules_effect_coverflow_effect_coverflow_js__WEBPACK_IMPORTED_MODULE_21__[\"default\"]),\n/* harmony export */   EffectCreative: () => (/* reexport safe */ _modules_effect_creative_effect_creative_js__WEBPACK_IMPORTED_MODULE_22__[\"default\"]),\n/* harmony export */   EffectCube: () => (/* reexport safe */ _modules_effect_cube_effect_cube_js__WEBPACK_IMPORTED_MODULE_19__[\"default\"]),\n/* harmony export */   EffectFade: () => (/* reexport safe */ _modules_effect_fade_effect_fade_js__WEBPACK_IMPORTED_MODULE_18__[\"default\"]),\n/* harmony export */   EffectFlip: () => (/* reexport safe */ _modules_effect_flip_effect_flip_js__WEBPACK_IMPORTED_MODULE_20__[\"default\"]),\n/* harmony export */   FreeMode: () => (/* reexport safe */ _modules_free_mode_free_mode_js__WEBPACK_IMPORTED_MODULE_15__[\"default\"]),\n/* harmony export */   Grid: () => (/* reexport safe */ _modules_grid_grid_js__WEBPACK_IMPORTED_MODULE_16__[\"default\"]),\n/* harmony export */   HashNavigation: () => (/* reexport safe */ _modules_hash_navigation_hash_navigation_js__WEBPACK_IMPORTED_MODULE_12__[\"default\"]),\n/* harmony export */   History: () => (/* reexport safe */ _modules_history_history_js__WEBPACK_IMPORTED_MODULE_11__[\"default\"]),\n/* harmony export */   Keyboard: () => (/* reexport safe */ _modules_keyboard_keyboard_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"]),\n/* harmony export */   Manipulation: () => (/* reexport safe */ _modules_manipulation_manipulation_js__WEBPACK_IMPORTED_MODULE_17__[\"default\"]),\n/* harmony export */   Mousewheel: () => (/* reexport safe */ _modules_mousewheel_mousewheel_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"]),\n/* harmony export */   Navigation: () => (/* reexport safe */ _modules_navigation_navigation_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"]),\n/* harmony export */   Pagination: () => (/* reexport safe */ _modules_pagination_pagination_js__WEBPACK_IMPORTED_MODULE_5__[\"default\"]),\n/* harmony export */   Parallax: () => (/* reexport safe */ _modules_parallax_parallax_js__WEBPACK_IMPORTED_MODULE_7__[\"default\"]),\n/* harmony export */   Scrollbar: () => (/* reexport safe */ _modules_scrollbar_scrollbar_js__WEBPACK_IMPORTED_MODULE_6__[\"default\"]),\n/* harmony export */   Swiper: () => (/* reexport safe */ _core_core_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]),\n/* harmony export */   Thumbs: () => (/* reexport safe */ _modules_thumbs_thumbs_js__WEBPACK_IMPORTED_MODULE_14__[\"default\"]),\n/* harmony export */   Virtual: () => (/* reexport safe */ _modules_virtual_virtual_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]),\n/* harmony export */   Zoom: () => (/* reexport safe */ _modules_zoom_zoom_js__WEBPACK_IMPORTED_MODULE_8__[\"default\"]),\n/* harmony export */   \"default\": () => (/* reexport safe */ _core_core_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])\n/* harmony export */ });\n/* harmony import */ var _core_core_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core/core.js */ \"./node_modules/swiper/core/core.js\");\n/* harmony import */ var _modules_virtual_virtual_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/virtual/virtual.js */ \"./node_modules/swiper/modules/virtual/virtual.js\");\n/* harmony import */ var _modules_keyboard_keyboard_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/keyboard/keyboard.js */ \"./node_modules/swiper/modules/keyboard/keyboard.js\");\n/* harmony import */ var _modules_mousewheel_mousewheel_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/mousewheel/mousewheel.js */ \"./node_modules/swiper/modules/mousewheel/mousewheel.js\");\n/* harmony import */ var _modules_navigation_navigation_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/navigation/navigation.js */ \"./node_modules/swiper/modules/navigation/navigation.js\");\n/* harmony import */ var _modules_pagination_pagination_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/pagination/pagination.js */ \"./node_modules/swiper/modules/pagination/pagination.js\");\n/* harmony import */ var _modules_scrollbar_scrollbar_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/scrollbar/scrollbar.js */ \"./node_modules/swiper/modules/scrollbar/scrollbar.js\");\n/* harmony import */ var _modules_parallax_parallax_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/parallax/parallax.js */ \"./node_modules/swiper/modules/parallax/parallax.js\");\n/* harmony import */ var _modules_zoom_zoom_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/zoom/zoom.js */ \"./node_modules/swiper/modules/zoom/zoom.js\");\n/* harmony import */ var _modules_controller_controller_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/controller/controller.js */ \"./node_modules/swiper/modules/controller/controller.js\");\n/* harmony import */ var _modules_a11y_a11y_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/a11y/a11y.js */ \"./node_modules/swiper/modules/a11y/a11y.js\");\n/* harmony import */ var _modules_history_history_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/history/history.js */ \"./node_modules/swiper/modules/history/history.js\");\n/* harmony import */ var _modules_hash_navigation_hash_navigation_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/hash-navigation/hash-navigation.js */ \"./node_modules/swiper/modules/hash-navigation/hash-navigation.js\");\n/* harmony import */ var _modules_autoplay_autoplay_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modules/autoplay/autoplay.js */ \"./node_modules/swiper/modules/autoplay/autoplay.js\");\n/* harmony import */ var _modules_thumbs_thumbs_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./modules/thumbs/thumbs.js */ \"./node_modules/swiper/modules/thumbs/thumbs.js\");\n/* harmony import */ var _modules_free_mode_free_mode_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./modules/free-mode/free-mode.js */ \"./node_modules/swiper/modules/free-mode/free-mode.js\");\n/* harmony import */ var _modules_grid_grid_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./modules/grid/grid.js */ \"./node_modules/swiper/modules/grid/grid.js\");\n/* harmony import */ var _modules_manipulation_manipulation_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./modules/manipulation/manipulation.js */ \"./node_modules/swiper/modules/manipulation/manipulation.js\");\n/* harmony import */ var _modules_effect_fade_effect_fade_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./modules/effect-fade/effect-fade.js */ \"./node_modules/swiper/modules/effect-fade/effect-fade.js\");\n/* harmony import */ var _modules_effect_cube_effect_cube_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./modules/effect-cube/effect-cube.js */ \"./node_modules/swiper/modules/effect-cube/effect-cube.js\");\n/* harmony import */ var _modules_effect_flip_effect_flip_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./modules/effect-flip/effect-flip.js */ \"./node_modules/swiper/modules/effect-flip/effect-flip.js\");\n/* harmony import */ var _modules_effect_coverflow_effect_coverflow_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./modules/effect-coverflow/effect-coverflow.js */ \"./node_modules/swiper/modules/effect-coverflow/effect-coverflow.js\");\n/* harmony import */ var _modules_effect_creative_effect_creative_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./modules/effect-creative/effect-creative.js */ \"./node_modules/swiper/modules/effect-creative/effect-creative.js\");\n/* harmony import */ var _modules_effect_cards_effect_cards_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./modules/effect-cards/effect-cards.js */ \"./node_modules/swiper/modules/effect-cards/effect-cards.js\");\n/**\n * Swiper 9.3.2\n * Most modern mobile touch slider and framework with hardware accelerated transitions\n * https://swiperjs.com\n *\n * Copyright 2014-2023 Vladimir Kharlampidi\n *\n * Released under the MIT License\n *\n * Released on: May 15, 2023\n */\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvc3dpcGVyL3N3aXBlci5lc20uanMuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7O0FBRTREO0FBQ007QUFDRztBQUNNO0FBQ0E7QUFDQTtBQUNIO0FBQ0g7QUFDWjtBQUNrQjtBQUNsQjtBQUNTO0FBQ3VCO0FBQ3BCO0FBQ047QUFDUTtBQUNkO0FBQ3dCO0FBQ0o7QUFDQTtBQUNBO0FBQ2U7QUFDSCIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL25vZGVfbW9kdWxlcy9zd2lwZXIvc3dpcGVyLmVzbS5qcz9jYzliIl0sInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogU3dpcGVyIDkuMy4yXG4gKiBNb3N0IG1vZGVybiBtb2JpbGUgdG91Y2ggc2xpZGVyIGFuZCBmcmFtZXdvcmsgd2l0aCBoYXJkd2FyZSBhY2NlbGVyYXRlZCB0cmFuc2l0aW9uc1xuICogaHR0cHM6Ly9zd2lwZXJqcy5jb21cbiAqXG4gKiBDb3B5cmlnaHQgMjAxNC0yMDIzIFZsYWRpbWlyIEtoYXJsYW1waWRpXG4gKlxuICogUmVsZWFzZWQgdW5kZXIgdGhlIE1JVCBMaWNlbnNlXG4gKlxuICogUmVsZWFzZWQgb246IE1heSAxNSwgMjAyM1xuICovXG5cbmV4cG9ydCB7IGRlZmF1bHQgYXMgU3dpcGVyLCBkZWZhdWx0IH0gZnJvbSAnLi9jb3JlL2NvcmUuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBWaXJ0dWFsIH0gZnJvbSAnLi9tb2R1bGVzL3ZpcnR1YWwvdmlydHVhbC5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEtleWJvYXJkIH0gZnJvbSAnLi9tb2R1bGVzL2tleWJvYXJkL2tleWJvYXJkLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgTW91c2V3aGVlbCB9IGZyb20gJy4vbW9kdWxlcy9tb3VzZXdoZWVsL21vdXNld2hlZWwuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBOYXZpZ2F0aW9uIH0gZnJvbSAnLi9tb2R1bGVzL25hdmlnYXRpb24vbmF2aWdhdGlvbi5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIFBhZ2luYXRpb24gfSBmcm9tICcuL21vZHVsZXMvcGFnaW5hdGlvbi9wYWdpbmF0aW9uLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgU2Nyb2xsYmFyIH0gZnJvbSAnLi9tb2R1bGVzL3Njcm9sbGJhci9zY3JvbGxiYXIuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBQYXJhbGxheCB9IGZyb20gJy4vbW9kdWxlcy9wYXJhbGxheC9wYXJhbGxheC5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIFpvb20gfSBmcm9tICcuL21vZHVsZXMvem9vbS96b29tLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgQ29udHJvbGxlciB9IGZyb20gJy4vbW9kdWxlcy9jb250cm9sbGVyL2NvbnRyb2xsZXIuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBBMTF5IH0gZnJvbSAnLi9tb2R1bGVzL2ExMXkvYTExeS5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEhpc3RvcnkgfSBmcm9tICcuL21vZHVsZXMvaGlzdG9yeS9oaXN0b3J5LmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgSGFzaE5hdmlnYXRpb24gfSBmcm9tICcuL21vZHVsZXMvaGFzaC1uYXZpZ2F0aW9uL2hhc2gtbmF2aWdhdGlvbi5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEF1dG9wbGF5IH0gZnJvbSAnLi9tb2R1bGVzL2F1dG9wbGF5L2F1dG9wbGF5LmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgVGh1bWJzIH0gZnJvbSAnLi9tb2R1bGVzL3RodW1icy90aHVtYnMuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBGcmVlTW9kZSB9IGZyb20gJy4vbW9kdWxlcy9mcmVlLW1vZGUvZnJlZS1tb2RlLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgR3JpZCB9IGZyb20gJy4vbW9kdWxlcy9ncmlkL2dyaWQuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBNYW5pcHVsYXRpb24gfSBmcm9tICcuL21vZHVsZXMvbWFuaXB1bGF0aW9uL21hbmlwdWxhdGlvbi5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEVmZmVjdEZhZGUgfSBmcm9tICcuL21vZHVsZXMvZWZmZWN0LWZhZGUvZWZmZWN0LWZhZGUuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBFZmZlY3RDdWJlIH0gZnJvbSAnLi9tb2R1bGVzL2VmZmVjdC1jdWJlL2VmZmVjdC1jdWJlLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgRWZmZWN0RmxpcCB9IGZyb20gJy4vbW9kdWxlcy9lZmZlY3QtZmxpcC9lZmZlY3QtZmxpcC5qcyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEVmZmVjdENvdmVyZmxvdyB9IGZyb20gJy4vbW9kdWxlcy9lZmZlY3QtY292ZXJmbG93L2VmZmVjdC1jb3ZlcmZsb3cuanMnO1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBFZmZlY3RDcmVhdGl2ZSB9IGZyb20gJy4vbW9kdWxlcy9lZmZlY3QtY3JlYXRpdmUvZWZmZWN0LWNyZWF0aXZlLmpzJztcbmV4cG9ydCB7IGRlZmF1bHQgYXMgRWZmZWN0Q2FyZHMgfSBmcm9tICcuL21vZHVsZXMvZWZmZWN0LWNhcmRzL2VmZmVjdC1jYXJkcy5qcyc7Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/swiper/swiper.esm.js\n");
 >>>>>>> 45f1d834cb8ba25ffc80b14b402e0216263b401a
+>>>>>>> a502af129ff2653520d9c0e8624de7103b78dcbb
 
 /***/ })
 
@@ -1617,75 +1621,164 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	
 /******/ })()
 ;
-"use strict";
+
 
 (function() {
-    const Auth = function() {
-        return new Auth.init();
+    
+    const Biodata = function() {
+        return new Biodata.init();
     }
-    Auth.init = function() {
+    Biodata.init = function() {
         this.id = 0;
         this.token = $("meta[name=csrf-token]").attr("content");
+        this.biodata_type = $("meta[name=biodata_type]").attr("content");
+        this.local_company = 0;
+        this.abroad_company =0;
+        this.vocational = 0;
+        this.sibling = 0;
+        this.children = 0;
+        this.relatives = 0;
+        this.prometric =0;
+        this.jpl = 0;
+        this.personalData;
+        this.educationalData;
+        this.vocationalData;
+        this.siblingData;
+        this.childrenData;
+        this.relativeData;
+        this.local_empData;
+        this.abroad_empData;
+        this.certificateData;
+        this.familyData;
+        this.uploadData;
+        this.prometricData;
+        this.jplData;
+        this.upload;
     }
-    Auth.prototype = {
+    Biodata.prototype = {
         
-        validateRegister: function(){
+        validatePersonal: function(){
             const self = this;
-            $("#register").validate({
-                rules: {
-                    firstname: {
+            $("#personal_form").validate({
+                rules:{
+                    code:{
                         required: true,
-                        maxlength: 20,
                     },
-                    lastname: {
+                    job_cat:{
                         required: true,
-                        maxlength: 20,
                     },
-                    username: {
+                    operations:{
                         required: true,
-                        maxlength: 20,
-                        minlength: 6
                     },
-                    email: {
+                    lastname:{
                         required: true,
-                        email: true,
-                        maxlength: 50
                     },
-                    password: {
+                    firstname:{
                         required: true,
-                        minlength: 5
                     },
-                    confirm_password: {
+                    middlename:{
                         required: true,
-                        equalTo: "#password"
+                    },
+                    nickname:{
+                        required: true,
+                    },
+                    address:{
+                        required: true,
+                    },
+                    birthday:{
+                        required: true,
+                    },
+                    birth_place:{
+                        required: true,
+                    },
+                    gender:{
+                        required: true,
+                    },
+                    citizenship:{
+                        required: true,
+                    },
+                    age:{
+                        required: true,
+                    },
+                    blood_type:{
+                        required: true,
+                    },
+                    civil_status:{
+                        required: true,
+                    },
+                    contact:{
+                        required: true,
+                    },
+                    height:{
+                        required: true,
+                    },
+                    religion:{
+                        required: true,
+                    },
+                    facebook:{
+                        required: true,
+                    },
+                    religion:{
+                        required: true,
+                    },
+                    smoking:{
+                        required: true,
+                    },
+                    weight:{
+                        required: true,
+                    },
+                    jp_reading:{
+                        required: true
+                    },
+                    shoe_size:{
+                        required: true
+                    },
+                    hobbies:{
+                        required: true
+                    },
+                    person_to_notify:{
+                        required: true
+                    },
+                    relation:{
+                        required: true
+                    },
+                    person_address:{
+                        required: true
+                    },
+                    person_contact:{
+                        required: true
+                    },
+                    passport:{
+                        required: true
+                    },
+                    issue_date:{
+                        required: true
+                    },
+                    expiry_date:{
+                        required: true
+                    },
+                    issue_place:{
+                        required: true
+                    },
+                    jp_reading:{
+                        required: true
+                    },
+                    allergy:{
+                        required: true
+                    },
+                    tattoo:{
+                        required: true
+                    },
+                    food_allergy:{
+                        required: true
                     },
                 },
-                messages: {
-                    firstname: {
-                        required: "First Name is required",
-                        maxlength: "First Name cannot be more than 20 characters"
+                messages:{
+                    code:{
+                        required: "Code is required",
                     },
-                    lastname: {
+                    lastname:{
                         required: "Last Name is required",
-                        maxlength: "Last Name cannot be more than 20 characters"
-                    },
-                    username: {
-                        required: "User Name is required",
-                        maxlength: "User Name cannot be more than 20 characters",
-                        minlength: "User Name must be atleast 6 characters"
-                    },
-                    email: {
-                        required: "Email is required",
-                        email: "Email must be a valid email address",
-                        maxlength: "Email cannot be more than 50 characters",
-                    },
-                    password: {
-                        required: "Password is required",
-                        minlength: "Password must be at least 5 characters"
-                    },
-                    confirm_password: {
-                        required:  "Confirm password is required",
-                        equalTo: "Password and confirm password should same"
                     }
                 },
                 errorElement: 'span',
@@ -1694,91 +1787,1096 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                     element.closest('.form-group').append(error);
                 },
                 highlight: function (element, errorClass, validClass) {
-                    $(element).addClass('ring-red-600');
+                    $(element).addClass('border-red-600');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    $(element).removeClass('ring-red-600');
+                    $(element).removeClass('border-red-600');
                 },
                 submitHandler: function(form) {
-                    form.submit();
-                    // try {
-                    //     var object = $(form).serializeArray();
-                    //     var param = object.reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {});
-                    //     $.ajax({
-                    //          url:"/auth/create_user",
-                    //          type:"POST",
-                    //          data:{_token:self.token,data:param},
-                    //          dataType:"JSON",
-                    //          success:function(){
-                    //              console.log("yeahh")
-                    //          }
-                    //     });
-                    // } catch (error) {
-                    //     console.log(error)
-                    // }
+                    self.personalData =  $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
+                    self.personalData.age = parseInt(self.personalData.age)
+                    self.personalData.contact = parseInt(self.personalData.contact)
+                    self.personalData.height = parseInt(self.personalData.height)
+                    self.personalData.weight = parseInt(self.personalData.weight)
+                    self.personalData.shoe_size = parseInt(self.personalData.shoe_size)
+                    self.personalData.person_contact = parseInt(self.personalData.person_contact)
+
+
+
+
+                     if($("#seminar_tab").length == 1) {
+                        $("#seminar_tab").removeClass('pointer-events-none')
+                         $("#seminar_tab").trigger('click');
+                     }else{
+                        $("#education_tab").removeClass('pointer-events-none')
+                         $("#education_tab").trigger('click');
+                     }
                   }
             });
         },
-        validateLogin: function(){
-            $("#login").validate({
-                rules:{
-                    username: {
-                        required:true,
-                        minlength:6
-                    },
-                    password:{
-                        required:true,
-                        minlength:6
-                    }
+        uploadData:function(){
+            let self = this;
+           try {
+            $.ajax({
+                url:"/client/Biodata/uploadData",
+                type:"POST",
+                data:{
+                    _token:self.token,
+                    prometric:self.prometricData,
+                    jpl:self.jplData,
+                    family:self.familyData,
+                    sibling:self.siblingData,
+                    relative:self.relativeData,
+                    children:self.childrenData,
+                    local_emp:self.local_empData,
+                    abroad_emp:self.abroad_empData,
+                    educational:self.educationalData,
+                    vocational:self.vocationalData,
+                    personal:self.personalData
                 },
-                messages:{
-                    username: {
-                        required: "User Name is required",
-                        minlength: "User Name must be atleast 6 characters"
-                    },
-                    password:{
-                        required:"Password is required",
-                        minlength: "Password must be at least 5 characters"
-                    }
+                dataType:"JSON",
+                success:function(promise){
+                      console.log(promise)
+                      self.saveid(promise.id);
+                }
+
+            })
+           } catch (error) {
+            console.log(error)
+           }
+        },
+        getCode:function(){
+            $.ajax({
+                url:"/client/Biodata/get-code",
+                type:"GET",
+                data:{_token:self.token},
+                dataType:"JSON",
+                success:function(promise){
+                    console.log(promise)
+                    promise.forEach(data=>{
+                        let option = `<option value="${data.ID}">${data.Code}</option>`;
+                        $("#jobcodes").append(option)
+                    })
+                }
+            })
+        },
+        getCategories:function(id){
+            $.ajax({
+                url:"/client/Biodata/get-categories",
+                type:"GET",
+                data:{
+                    _token:self.token,
+                    ID:id
                 },
-                errorElement: 'span',
-                errorPlacement: function (error, element) {
-                    error.addClass('text-red-500 text-sm');
-                    element.closest('.form-group').append(error);
+                dataType:"JSON",
+                success:function(promise){
+                    $('#jobcategories')
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option value="" selected disabled value>Choose....</option>')
+                    promise.forEach(data=>{
+                        let option = `<option value="${data.ID}">${data.Category}</option>`;
+                        $("#jobcategories").append(option)
+                    })
+                }
+            })
+        },
+        getOperations:function(id){
+            $.ajax({
+                url:"/client/Biodata/get-operations",
+                type:"GET",
+                data:{
+                    _token:self.token,
+                    ID:id
                 },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).addClass('ring-red-600');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).removeClass('ring-red-600');
-                },
-                submitHandler: function(form) {
-                    console.log($(form).serializeArray())
-                  }
+                dataType:"JSON",
+                success:function(promise){
+                    $('#joboperations')
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option value="" selected disabled value>Choose....</option>')
+                    promise.forEach(data=>{
+                        let option = `<option value="${data.ID}">${data.Operation}</option>`;
+                        $("#joboperations").append(option)
+                    })
+                }
+            })
+        },
+        saveid:function(id){
+            let self = this;
+            self.upload.append("id", id);
+            $.ajax({
+                url:"/client/Biodata/upload-image",
+                type:"POST",
+                data:self.upload,
+                cache: false,
+                contentType:false,
+                processData:false,
+                success:function(promise){
+    
+                }
             })
         }
+        
     }
-    Auth.init.prototype = Auth.prototype;
+    Biodata.init.prototype = Biodata.prototype;
 
-    var auth = Auth();
+   
+
+    var biodata = Biodata();
    $(document).ready(function() {
+    biodata.getCode();
+
+    //EVENTS 
+    $("#jobcodes").on("change",function(){
+        biodata.getCategories($(this).val());
+    })
+    $("#jobcategories").on("change",function(){
+        biodata.getOperations($(this).val());
+    })
+    
+    
+
+    //tabs Event Listener
+    $("[data-tab-target]").toArray().forEach(tab => {
+        $(tab).on("click",function(){
+           const target = $(tab)[0].dataset.tabTarget
+            $("[data-tab-content]").toArray().forEach((content)=>{
+                $(content).addClass("hidden")
+            })
+            $("[data-tab-target]").toArray().forEach((content)=>{
+                $(content).removeClass("bg-green-800")
+                $(content).addClass("bg-green-500")
+            })
+
+            $(tab).addClass('bg-green-800')
+           $(target).removeClass("hidden");
+        });
+    });
+
+    //PERSONAL TAB ============================================EVENT LISTENER
+    $("#personalBtn").on("click",function(e){
+        biodata.validatePersonal();
+
+        //to trigger the next tab-------------
         
+        // if($("#seminar_tab").length == 1) {
+        //     $("#seminar_tab").trigger('click');
+        // }else{
+        //     $("#education_tab").trigger('click');
+        // }
+    })
 
-        // $('#btnCreate').on('click',function(e){
-        //     auth.validateRegister();
+    $("#birthday").on("focusout",function(){
+        const getAge = Math.floor((new Date() - new Date($(this).val()).getTime()) / 3.15576e+10)
+        console.log(getAge)
+        $("#age").val(getAge)
+    });
 
-        //     // var object = arr.reduce((obj, item) => Object.assign(obj, { [item.key]: item.value }), {});
+    $("input[name='allergy']").on("click",function(){
+        if($(this).val() == 1){
+            $("#allergy").show()
+            $("input[name='food_allergy']").attr("disabled",false)
+        }else{
+            $("#allergy").hide() 
+            $("input[name='food_allergy']").attr("disabled",true)
+        }
+    })
+    $("input[name='licensed']").on("click",function(){
+        if($(this).val() == 1){
+            $(".licensed").show()
+        }else{
+            $(".licensed").hide() 
+        }
+    })
+
+    //CERTIFICATE TAB ==========================================EVENT LISTENER
+    $("#certificate_form").validate({
+               
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('text-red-500 text-sm');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('border-red-600');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('border-red-600');
+        },
+        submitHandler: function(form) {
+            biodata.educationalData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
+            biodata.prometricData = [];
+            biodata.jplData = []
+            for (let i = 0; $(form).find('input[name="name_prometric_' + i + '"]').val() != null ; i++){
+                biodata.prometricData.push({
+                    name:$('input[name="name_prometric_' + i + '"]').val(),
+                    address:$('input[name="add_prometric_' + i + '"]').val(),
+                    from:$('input[name="date_from_prometric_' + i + '"]').val(),
+                    until:$('input[name="date_until_prometric_' + i + '"]').val(),
+                    certificate:$('input[name="certificate_prometric_' + i + '"]').val(),
+                    certificate_until:$('input[name="date_until_cert_prometric_' + i + '"]').val(),
+                })
+            }
+
+            for (let i = 0; $(form).find('input[name="name_jpl_' + i + '"]').val() != null ; i++){
+                biodata.jplData.push({
+                    name:$('input[name="name_jpl_' + i + '"]').val(),
+                    address:$('input[name="add_jpl_' + i + '"]').val(),
+                    from:$('input[name="date_from_jpl_' + i + '"]').val(),
+                    until:$('input[name="date_until_jpl_' + i + '"]').val(),
+                    certificate:$('input[name="certificate_jpl_' + i + '"]').val(),
+                    certificate_until:$('input[name="date_until_cert_jpl_' + i + '"]').val(),
+                })
+            }
+
+            $("#educational_tab").removeClass('pointer-events-none')
+            $("#educational_tab").trigger("click")
             
-        // });
+          }
+    });
 
-        // $("#btnLogin").on("click",function(){
-        //     auth.validateLogin();
-        // });
+    $("#add_prometric").on("click",function(e){
+        e.preventDefault();
+        let id = biodata.prometric;
+        let form = `<div class="prometric_content w-full md:grid grid-cols-7 gap-4 mt-2">
+        <div class="mt-2 md:mt-0 form-group col-span-6">
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <button id="del_certificate_btn" class="prometric_del py-2 px-4 bg-red-600 rounded w-full self-end text-sm text-white">remove</button>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-3">
+            <input name="name_prometric_${id+1}" autocomplete="off" type="text" class="form-control" placeholder="Name of School" required>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-2">
+            <input name="add_prometric_${id+1}" autocomplete="off" type="text" class="form-control" placeholder="School Address" required>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <div class="relative max-w-sm">
+                <x-picker_logo/>
+                <input datepicker name="date_from_prometric_${id+1}" autocomplete="off" value="" type="text" class="date_picker" placeholder="Date From" required>
+            </div>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <div class="relative max-w-sm">
+                <x-picker_logo/>
+                <input datepicker name="date_until_prometric_${id+1}" autocomplete="off" value="" type="text" class="date_picker" placeholder="Date Until" required>
+            </div>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-5">
+            <input name="certificate_prometric_${id+1}" autocomplete="off" type="text" class="form-control" placeholder="Certificate Holder" required>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-2">
+            <div class="relative max-w-sm">
+                <x-picker_logo/>
+                <input datepicker name="date_until_cert_prometric_${id+1}" autocomplete="off" value="" type="text" class="date_picker" placeholder="Date Until" required>
+            </div>
+        </div>
+    </div>`;
+
+       $("#prometric_div").append(form);
+       Datepicker.initDatepickers();
+       $(".prometric_del").on("click",function(e){
+           e.preventDefault();
+           $(this).closest('.prometric_content').remove();
+           biodata.prometric--
+       })
+       biodata.prometric++
+    })
+
+    $("#add_japlang_btn").on("click",function(e){
+        e.preventDefault();
+        let id = biodata.jpl;
+        let form = `<div class="jpl_content w-full md:grid grid-cols-7 gap-4 mt-4">
+        <div class="mt-2 md:mt-0 form-group col-span-6">
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <button  class="jpl_del py-2 px-4 bg-red-600 rounded w-full self-end text-sm text-white">remove</button>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-3">
+            <input name="name_jpl_${id+1}" autocomplete="off" type="text" class="form-control" placeholder="Name of School" required>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-2">
+            <input name="add_jpl_${id+1}" autocomplete="off" type="text" class="form-control" placeholder="School Address" required>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <div class="relative max-w-sm">
+                <x-picker_logo/>
+                <input datepicker name="date_from_jpl_${id+1}" autocomplete="off" value="" type="text" class="date_picker" placeholder="Date From" required>
+            </div>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <div class="relative max-w-sm">
+                <x-picker_logo/>
+                <input datepicker name="date_until_jpl_${id+1}" autocomplete="off" value="" type="text" class="date_picker" placeholder="Date Until" required>
+            </div>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-5">
+            <input name="certificate_jpl_${id+1}" autocomplete="off" type="text" class="form-control" placeholder="Certificate Holder" required>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-2">
+            <div class="relative max-w-sm">
+                <x-picker_logo/>
+                <input datepicker name="date_until_cert_jpl_${id+1}" autocomplete="off" value="" type="text" class="date_picker" placeholder="Date Until" required>
+            </div>
+        </div>
+    </div>`;
+
+       $("#jpl_div").append(form);
+       Datepicker.initDatepickers();
+       $(".jpl_del").on("click",function(e){
+           e.preventDefault();
+           $(this).closest('.jpl_content').remove();
+           biodata.jpl--
+       })
+       biodata.jpl++
+    })
+
+    $("#certificate_form").on("submit",function(){
+        $("#certificate_form").valid();
+    })
+
+    $("#certificateBtn_Prev").on("click",function(e){
+        e.preventDefault()
+        $("#personal_tab").trigger('click');
+    })
 
 
+    //EDUCATIONAL TAB===========================================EVENT LISTENER
+    $("#educational_form").validate({
+               
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('text-red-500 text-sm');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('border-red-600');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('border-red-600');
+        },
+        submitHandler: function(form) {
+            biodata.educationalData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
+            biodata.vocationalData = [];
+            for (let i = 0; $(form).find('input[name="name_vocational_' + i + '"]').val() != null ; i++){
+                if($('input[name="name_vocational_' + i + '"]').val() != ''){
+                    biodata.vocationalData.push({
+                        name:$('input[name="name_vocational_' + i + '"]').val(),
+                        address:$('input[name="add_vocational_' + i + '"]').val(),
+                        from:$('input[name="date_from_vocational_' + i + '"]').val(),
+                        until:$('input[name="date_until_vocational_' + i + '"]').val(),
+                        course:$('input[name="course_vocational_' + i + '"]').val(),
+                        certificate:$('input[name="certificate_vocational_' + i + '"]').val(),
+                        certificate_until:$('input[name="date_until_cert_vocational_' + i + '"]').val(),
+                    })
+                }
+            }
 
 
+            $("#job_local_tab").removeClass('pointer-events-none')
+            $("#job_local_tab").trigger("click")
+            
+          }
+    });
+
+
+    $("#add_vocational_btn").on("click",function(e){
+        e.preventDefault();
+        let id = biodata.vocational;
+        let form = `<div id="" class="vocational_content md:grid grid-cols-7 gap-4 col-span-7 mt-2">
+        <div class="mt-2 md:mt-0 form-group col-span-6">
+            
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <button id="" class="delete_vocational py-2 px-4 bg-red-600 rounded w-full self-end text-sm text-white">Delete Record</button>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-3">
+            <input name="name_vocational_${id+1}" autocomplete="off" type="text" class="form-control" placeholder="Name of School" required>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-2">
+            <input name="add_vocational_${id+1}" autocomplete="off" type="text" class="form-control" placeholder="School Address" required>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <div class="relative max-w-sm">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+        </div>
+                <input datepicker name="date_from_vocational_${id+1}" id="birthday" autocomplete="off" value="" type="text" class="date_picker" placeholder="Date From" required>
+            </div>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <div class="relative max-w-sm">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+        </div>
+                <input datepicker name="date_until_vocational_${id+1}" id="birthday" autocomplete="off" value="" type="text" class="date_picker" placeholder="Date Until" required>
+            </div>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-4">
+            <input name="course_vocational_${id+1}" autocomplete="off" type="text" class="form-control" placeholder="Course/Major" required>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-2">
+            <input name="certificate_vocational_${id+1}" autocomplete="off" type="text" class="form-control" placeholder="Certificate Holder" required>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <div class="relative max-w-sm">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+        </div>
+                <input datepicker name="date_until_cert_vocational_${id+1}" id="birthday" autocomplete="off" value="" type="text" class="date_picker" placeholder="Date Until" required>
+            </div>
+        </div>
+    </div>`;
+
+       $("#vocational").append(form);
+       Datepicker.initDatepickers();
+       $(".delete_vocational").on("click",function(e){
+           e.preventDefault();
+           $(this).closest('.vocational_content').remove();
+           biodata.vocational--
+       })
+       biodata.vocational++
+    })
+
+    $("#educational_form").on("submit",function(){
+        $("#educational_form").valid();
+    })
+
+    $("#educationalBtn_Prev").on("click",function(e){
+        e.preventDefault()
+        if($("#seminar_tab").length == 1) {
+            $("#seminar_tab").trigger('click');
+        }else{
+            $("#personal_tab").trigger('click');
+        }
+    })
+
+    //LOCAL EMP TAB ===========================================EVENT LISTENER
+    $("#empLocal_form").validate({
+               
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('text-red-500 text-sm');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('border-red-600');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('border-red-600');
+        },
+        submitHandler: function(form) {
+            // console.log($(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {}))
+            biodata.local_empData = [];
+            for (let i = 0; $(form).find('input[name="name_local_' + i + '"]').val() != null ; i++){
+                if($('input[name="name_local_' + i + '"]').val() != ''){
+                    biodata.local_empData.push({
+                        company:$('input[name="name_local_' + i + '"]').val(),
+                        position:$('input[name="position_local_' + i + '"]').val(),
+                        address:$('input[name="address_local_' + i + '"]').val(),
+                        from:$('input[name="date_from_local_' + i + '"]').val(),
+                        until:$('input[name="date_until_local_' + i + '"]').val(),
+                    })
+                }
+            }
+
+            
+            $("#job_abroad_tab").removeClass('pointer-events-none')
+            $("#job_abroad_tab").trigger('click');
+            
+          }
+    });
+
+    $("#add_local_btn").on("click",function(e){
+        e.preventDefault();
+        let id = biodata.local_company;
+        let forms = `<div class='companylocal md:grid grid-cols-9 gap-4' id='company_${id+1}'>
+        <div class='mt-2 md:mt-0 form-group col-span-9'>
+            <label class='text-xl font-bold'>Company ${id+1}<span style='color:red'>*</span>:</label>
+        </div>
+        <div class='mt-2 md:mt-0 form-group col-span-1'>
+            <button id='delete_btn' class='btnDelLocal py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>Delete Record</button>
+        </div>
+        <div class='col-span-8 md:grid grid-cols-4 gap-4'>
+            <div class='mt-2 md:mt-0 form-group col-span-2'>
+                <input name='name_local_${id+1}' autocomplete='off' type='text' class='name_local form-control disabled:bg-slate-200' placeholder='Name of Company' required>
+            </div>
+        <div class='mt-2 md:mt-0 form-group col-span-2'>
+            <input name='position_local_${id+1}' autocomplete='off' type='text' class='position_local form-control disabled:bg-slate-200' placeholder='Position' required>
+        </div>
+        <div class='mt-2 md:mt-0 form-group col-span-2'>
+            <input name='address_local_${id+1}' autocomplete='off' type='text' class='address_local form-control disabled:bg-slate-200' placeholder='Company Address' required>
+        </div>
+        <div class='mt-2 md:mt-0 form-group col-span-1'>
+            <div class='relative max-w-sm'>
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+          </div>
+                <input datepicker name='date_from_local_${id+1}' autocomplete='off' type='text' class='date_from_local form-control date_picker disabled:bg-slate-200' placeholder='Date From' required>
+            </div>
+        </div>
+        <div class='mt-2 md:mt-0 form-group col-span-1'>
+            <div class='relative max-w-sm'>
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+          </div>
+                <input datepicker name='date_until_local_${id+1}' autocomplete='off' type='text' class='date_until_local form-control date_picker disabled:bg-slate-200' placeholder='Date Until' required>
+            </div>
+        </div>
+        </div>
+        </div>`;
+
+        $("#local_companys").append(forms)
+
+        $(".btnDelLocal").on("click",function(e){
+            e.preventDefault();
+            $(this).closest('.companylocal').remove();
+            biodata.local_company --
+        })
+        biodata.local_company ++
+
+        // $('[datepicker]').each(function (datepickerEl) {
+        //     Datepicker(datepickerEl);
+        //   });
+
+        // $("#personal_form").removeData('validator');
+        // $("#personal_form").removeData('unobtrusiveValidation');
+        // $.validator.unobtrusive.parse("#personal_form");
         
+            // $('#empLocal_form :input.form-control').each(function() {
+            //     console.log($(this)[0])
+
+            //     $(this).rules("add", 
+            //         {
+            //             required: true
+            //         })
+            // })
+        
+
+        Datepicker.initDatepickers();
+    });
+
+    $("#local_applicable").on("click",function(e){
+        if(this.checked){
+            $("#add_local_btn").attr("disabled", true)
+            $("#local_companys :input").attr("disabled", true);
+        }else{
+            $("#local_companys :input").attr("disabled", false);
+            $("#add_local_btn").attr("disabled", false)
+        }
+       
+    })
+
+    $("#empLocal_form").on("submit",function(e){
+        //biodata.validateLocalEmp()
+
+        // $("#empLocal_form").validate()
+        $("#empLocal_form").valid();
+        
+    });
+
+    $("#empLocalBtn_Prev").on("click",function(e){
+        e.preventDefault()
+        $("#education_tab").trigger('click');
+
+    })
+
+
+    //ABROAD EMP TAB ===========================================EVENT LISTENER
+    $("#empAbroad_form").validate({
+               
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('text-red-500 text-sm');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('border-red-600');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('border-red-600');
+        },
+        submitHandler: function(form) {
+            // console.log($(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {}))
+            biodata.abroad_empData = [];
+            for (let i = 0; $(form).find('input[name="name_abroad_' + i + '"]').val() != null ; i++){
+                if($('input[name="name_abroad_' + i + '"]').val() != ''){
+                    biodata.abroad_empData.push({
+                        company:$('input[name="name_abroad_' + i + '"]').val(),
+                        position:$('input[name="position_abroad_' + i + '"]').val(),
+                        address:$('input[name="address_abroad_' + i + '"]').val(),
+                        from:$('input[name="date_from_abroad_' + i + '"]').val(),
+                        until:$('input[name="date_until_abroad_' + i + '"]').val(),
+                    })
+                }
+            }
+
+
+            $("#family_tab").removeClass('pointer-events-none')
+            $("#family_tab").trigger('click')
+          }
+    });
+
+
+    $("#add_abroad_btn").on("click",function(e){
+        e.preventDefault();
+        let id = biodata.abroad_company;
+        let forms = `<div class='companyabroad md:grid grid-cols-9 gap-4' id='company_${id+1}'>
+        <div class='mt-2 md:mt-0 form-group col-span-9'>
+            <label class='text-xl font-bold'>Company ${id+1}<span style='color:red'>*</span>:</label>
+        </div>
+        <div class='mt-2 md:mt-0 form-group col-span-1'>
+            <button id='delete_btn' class='btnDelabroad py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>Delete Record</button>
+        </div>
+        <div class='col-span-8 md:grid grid-cols-4 gap-4'>
+            <div class='mt-2 md:mt-0 form-group col-span-2'>
+                <input name='name_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Name of Company' required>
+            </div>
+        <div class='mt-2 md:mt-0 form-group col-span-2'>
+            <input name='position_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Position' required>
+        </div>
+        <div class='mt-2 md:mt-0 form-group col-span-2'>
+            <input name='address_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Company Address' required>
+        </div>
+        <div class='mt-2 md:mt-0 form-group col-span-1'>
+            <div class='relative max-w-sm'>
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+          </div>
+                <input datepicker name='date_from_abroad_${id+1}' autocomplete='off' type='text' class='form-control date_picker disabled:bg-slate-200' placeholder='Date From' required>
+            </div>
+        </div>
+        <div class='mt-2 md:mt-0 form-group col-span-1'>
+            <div class='relative max-w-sm'>
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+          </div>
+                <input datepicker name='date_until_abroad_${id+1}' autocomplete='off' type='text' class='form-control date_picker disabled:bg-slate-200' placeholder='Date Until' required>
+            </div>
+        </div>
+        </div>
+        </div>`;
+
+        $("#abroad_companys").append(forms)
+
+        $(".btnDelabroad").on("click",function(e){
+            e.preventDefault();
+            $(this).closest('.companyabroad').remove();
+            biodata.abroad_company --
+        })
+        biodata.abroad_company ++
+
+        // $('[datepicker]').each(function (datepickerEl) {
+        //     Datepicker(datepickerEl);
+        //   });
+
+        // $("#personal_form").removeData('validator');
+        // $("#personal_form").removeData('unobtrusiveValidation');
+        // $.validator.unobtrusive.parse("#personal_form");
+        
+            // $('#empabroad_form :input.form-control').each(function() {
+            //     console.log($(this)[0])
+
+            //     $(this).rules("add", 
+            //         {
+            //             required: true
+            //         })
+            // })
+        
+
+        Datepicker.initDatepickers();
+    });
+
+    $("#abroad_applicable").on("click",function(e){
+        if(this.checked){
+            $("#add_abroad_btn").attr("disabled", true)
+            $("#abroad_companys :input").attr("disabled", true);
+        }else{
+            $("#abroad_companys :input").attr("disabled", false);
+            $("#add_abroad_btn").attr("disabled", false)
+        }
+       
+    })
+
+    $("#empAbroad_form").on("submit",function(e){
+        //biodata.validateLocalEmp()
+
+        // $("#empLocal_form").validate()
+        $("#empAbroad_form").valid();
+        
+    });
+
+    $("#empAbroadBtn_Prev").on("click",function(e){
+        e.preventDefault()
+        $("#job_local_tab").trigger('click')
+    })
+    
+
+    //FAMILY TAB =========================================EVENT LISTENER
+    $("#family_form").validate({
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('text-red-500 text-sm');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('border-red-600');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('border-red-600');
+        },
+        submitHandler: function(form) {
+            biodata.familyData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
+            biodata.siblingData =[]
+            biodata.childrenData = []
+            biodata.relativeData = []
+            for (let i = 0; $(form).find('input[name="sibling_' + i + '"]').val() != null ; i++){
+                if($('input[name="sibling_' + i + '"]').val() != ''){
+                    biodata.siblingData.push({
+                        name:$('input[name="sibling_' + i + '"]').val(),
+                        birhtday:$('input[name="sibling_birthday_' + i + '"]').val(),
+                        occupation:$('input[name="sibling_occupation_' + i + '"]').val(),
+                        cp:$('input[name="sibling_cp_' + i + '"]').val(),
+                        address:$('input[name="sibling_address_' + i + '"]').val(),
+                    })
+                }
+            }
+
+            for (let i = 0; $(form).find('input[name="child_' + i + '"]').val() != null ; i++){
+                if($('input[name="child_' + i + '"]').val() != ''){
+                    biodata.childrenData.push({
+                        name:$('input[name="child_' + i + '"]').val(),
+                        birthday:$('input[name="child_birthday_' + i + '"]').val(),
+                    })
+                }
+            }
+
+            for (let i = 0; $(form).find('input[name="name_relative_' + i + '"]').val() != null ; i++){
+                if($('input[name="name_relative_' + i + '"]').val() != ''){
+                    biodata.relativeData.push({
+                        name:$('input[name="name_relative_' + i + '"]').val(),
+                        relation:$('input[name="relation_relative_' + i + '"]').val(),
+                        contact:$('input[name="contact_relative_' + i + '"]').val(),
+                        address:$('input[name="address_relative_' + i + '"]').val(),
+                    })
+                }
+            }
+
+            $("#upload_tab").removeClass('pointer-events-none')
+            $("#upload_tab").trigger('click')
+          }
+    });
+
+     $("#add_sibling").on("click",function(e){
+        e.preventDefault();
+        let id = biodata.sibling
+        let form = `<div class="sibling_item col-span-13 md:grid grid-col-13 gap-4">
+        <div class="md:mt-0 mt-2 form-group col-span-1 flex items-center">
+         <button class='btnDelsibling py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>Delete Record</button>
+        </div>
+        <div class="form-group col-span-3">
+            <label for="" class="form-label">Name<span style="color:red">*</span>:</label>
+            <input name="sibling_${id+1}" autocomplete="off" type="text" class="sibling form-control disabled:bg-slate-200" required>
+        </div>
+        <div class="form-group col-span-3">
+            <label for="sibling_birthday" class="form-label">Birth Date<span style="color:red">*</span>:</label>
+            <div class="relative max-w-sm">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+        </div>
+                <input datepicker name="sibling_birthday_${id+1}" autocomplete="off" type="text" class="sibling form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
+            </div>
+        </div>
+        <div class="form-group col-span-3">
+            <label for="lastname" class="form-label">Occupation<span style="color:red">*</span>:</label>
+            <input name="sibling_occupation_${id+1}" autocomplete="off" type="text" class="sibling form-control disabled:bg-slate-200" required>
+        </div>
+        <div class="form-group col-span-3">
+            <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
+            <input name="sibling_cp_${id+1}" autocomplete="off" type="text" class="sibling form-control disabled:bg-slate-200" required>
+        </div>
+        <div class="form-group col-start-2 col-span-12">
+            <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
+            <input name="sibling_address_${id+1}" autocomplete="off" type="text" class="sibling form-control disabled:bg-slate-200" required>
+        </div>
+    </div>`
+
+    $("#siblings_nav").append(form)
+
+           $(".btnDelsibling").on("click",function(e){
+               e.preventDefault();
+               $(this).closest('.sibling_item').remove();
+               biodata.sibling --
+           })
+           biodata.sibling ++
+           Datepicker.initDatepickers();
+     })
+
+     $("#add_children").on("click",function(e){
+       e.preventDefault();
+       let id = biodata.children
+       let form = `<div class="children_content w-full md:grid grid-col-13 gap-4 grid-flow-col">
+       <div class="md:mt-0 mt-2 form-group col-span-1 flex items-center">
+           <button  class='btnDelchildren py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>Delete Record</button>
+       </div>
+       <div class="form-group col-span-8">
+           <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
+           <input name="child_${id+1}" autocomplete="off" type="text" class="children form-control disabled:bg-slate-200" required>
+       </div>
+       <div class="form-group col-span-4">
+           <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
+           <div class="relative w-full">
+           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+           <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+       </div>
+               <input datepicker name="child_birthday_${id+1}" autocomplete="off" type="text" class="children form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
+           </div>
+       </div>
+   </div>`
+
+      $("#children").append(form);
+
+      $(".btnDelchildren").on("click",function(e){
+       e.preventDefault()
+       $(this).closest('.children_content').remove();
+               biodata.children --
+      })
+      biodata.children ++
+      Datepicker.initDatepickers();
+     })
+
+     $("#children_applicable").on("click",function(){
+        if(this.checked){
+            $(".btnDelchildren").attr("disabled",true)
+            $(".children").attr("disabled",true)
+            $("#add_children").attr("disabled",true)
+        }else{
+            $(".children").attr("disabled",false)
+            $(".btnDelchildren").attr("disabled",false)
+            $("#add_children").attr("disabled",false)
+        }
+     })
+
+     $("#sibling_applicable").on("click",function(){
+        if(this.checked){
+            $(".btnDelsibling").attr("disabled",true)
+            $(".sibling").attr("disabled",true)
+            $("#add_sibling").attr("disabled",true)
+        }else{
+            $(".sibling").attr("disabled",false)
+            $(".btnDelsibling").attr("disabled",false)
+            $("#add_sibling").attr("disabled",false)
+        }
+     })
+        
+     $("select[name='civil_status']").on("change",function(){
+        if($(this).val() == "Married"){
+            $(".spouse").attr("disabled",false)
+        }else{
+            $(".spouse").attr("disabled",true)
+        }
+     })
+
+     $("#partner_applicable").on("click",function(){
+        if(this.checked){
+            $(".partner").attr("disabled",false)
+            $(".partner_hidden").attr("hidden",false)
+        }else{
+            $(".partner").attr("disabled",true)
+            $(".partner_hidden").attr("hidden",true)
+        }
+     })
+     
+     $("input[name='went_japan']").on("click",function(){
+        if($(this).val() == 1){
+             $(".japan_group").show()
+            $(".japan").attr("disabled",false)
+        }else{
+            $(".japan_group").hide()
+            $(".japan").attr("disabled",true)
+        }
+    })
+
+     $("input[name='overstay']").on("click",function(){
+        if($(this).val() == 1){
+            $(".overstay_group").show()
+            $(".overstay").attr("disabled",false)
+        }else{
+            $(".overstay_group").hide()
+            $(".overstay").attr("disabled",true)
+        }
+    })
+
+    $("input[name='fakeidentity']").on("click",function(){
+        if($(this).val() == 1){
+            $(".fakeidentity_group").show()
+            $(".fakeidentity").attr("disabled",false)
+        }else{
+            $(".fakeidentity_group").hide()
+            $(".fakeidentity").attr("disabled",true)
+        }
+    })
+    $("input[name='visa']").on("click",function(){
+        if($(this).val() == 1){
+            $(".visa_group").show()
+            $(".visa").attr("disabled",false)
+        }else{
+            $(".visa_group").hide()
+            $(".visa").attr("disabled",true)
+        }
+    })
+
+    $("#add_relatives").on("click",function(e){
+        e.preventDefault();
+        let id = biodata.relatives
+        let form = `<div class="relative_content w-full md:grid grid-cols-13 grid-flow-col gap-4 mt-2">
+        <div class="form-group col-span-1 flex items-center">
+            <button  class='btnDelrelatives py-2 px-1 bg-red-700 rounded w-full self-end text-sm font-extrabold text-white disabled:bg-red-900'>X</button>
+        </div>
+        <div class="form-group col-span-4 mt-2 md:mt-0">
+            <input name="name_relative_${id+1}" autocomplete="off" type="text" class="sibling form-control disabled:bg-slate-200" required placeholder="Name">
+        </div>
+        <div class="form-group col-span-4 mt-2 md:mt-0">
+            <input name="relation_relative_${id+1}" autocomplete="off" type="text" class="sibling form-control disabled:bg-slate-200" required placeholder="Relation">
+        </div>
+        <div class="form-group col-span-4 mt-2 md:mt-0">
+            <input name="contact_relative_${id+1}" autocomplete="off" type="number" class="sibling form-control disabled:bg-slate-200" required placeholder="Contact">
+        </div>
+        <div class="form-group col-span-4 mt-2 md:mt-0">
+            <input name="address_relative_${id+1}" autocomplete="off" type="text" class="sibling form-control disabled:bg-slate-200" required placeholder="Address">
+        </div>
+    </div>`
+    $("#relatives").append(form)
+    $(".btnDelrelatives").on("click",function(){
+        e.preventDefault()
+       $(this).closest('.relative_content').remove();
+               biodata.relatives --
+    })
+    biodata.relatives ++
+    })
+
+    $("#relatives_applicable").on("click",function(e){
+        if(this.checked){
+            $("#relatives :input").attr("disabled",true)
+        }else{
+            $("#relatives :input").attr("disabled",false)
+        }
+    })
+
+    $("input[name='father_deceased']").on("click",function(){
+        if($(this).val() == 1){
+            $(".father_deceased").attr("disabled",true)
+            $(".father_na").attr("disabled",false)
+        }else{
+            $(".father_deceased").attr("disabled",true)
+            $(".father_na").attr("disabled",true)
+        }
+    })
+
+    $("input[name='mother_deceased']").on("click",function(){
+        if($(this).val() == 1){
+            $(".mother_deceased").attr("disabled",true)
+            $(".mother_na").attr("disabled",false)
+        }else{
+            $(".mother_deceased").attr("disabled",true)
+            $(".mother_na").attr("disabled",true)
+        }
+    })
+
+     $("#family_form").on("submit",function(e){
+        $("#family_form").valid();
+     })
+
+     $("#familyBtn_Prev").on("click",function(e){
+        e.preventDefault()
+        $("#job_abroad_tab").trigger("click");
+     })
+     
+     //UPLOAD TAB =======================================================EVENT LISTENER
+
+     $.validator.addMethod( "maxsize", function( value, element, param ) {
+        if ( this.optional( element ) ) {
+            return true;
+        }
+    
+        if ( $( element ).attr( "type" ) === "file" ) {
+            if ( element.files && element.files.length ) {
+                for ( var i = 0; i < element.files.length; i++ ) {
+                    if ( element.files[ i ].size > param ) {
+                        return false;
+                    }
+                }
+            }
+        }
+    
+        return true;
+    }, $.validator.format( "File size must not exceed {0} bytes each." ) );
+
+     $.validator.addMethod( "extension", function( value, element, param ) {
+        param = typeof param === "string" ? param.replace( /,/g, "|" ) : "png|jpe?g|gif";
+        return this.optional( element ) || value.match( new RegExp( "\\.(" + param + ")$", "i" ) );
+    }, $.validator.format( "Please enter a value with a valid extension." ) );
+
+     $("#upload_form").validate({
+        rules: {
+            picture: {
+                required: true,
+                extension: "png|jpeg|jpg",
+                maxsize: 1932979, 
+            },
+            gov_id: {
+                required: true, 
+                extension: "png|jpeg|jpg",
+                maxsize: 1932979,   
+            },
+            passport_id: {
+                required: true, 
+                extension: "png|jpeg|jpg",
+                maxsize: 1932979,   
+            }
+        },
+        messages:{
+            picture: {
+                maxsize: "File size must not exceed 2MB each", 
+            },
+            gov_id: {
+                maxsize: "File size must not exceed 2MB each",   
+            },
+            passport_id: {
+                maxsize: "File size must not exceed 2MB each",   
+            }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('text-red-500 text-sm');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('border-red-600');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('border-red-600');
+        },
+        submitHandler: function(form) {
+            biodata.uploadData();
+          }
+    });
+
+
+     $("#upload_form").on("submit",function(e){
+        e.preventDefault();
+        $("#upload_form").valid();
+        biodata.upload = new FormData(this)
+     })
+
+     $("#uploadBtn_Prev").on("click",function(e){
+        e.preventDefault();
+        $("#family_tab").trigger("click");
+     })
+
     });
 })();
 

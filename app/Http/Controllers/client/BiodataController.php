@@ -356,5 +356,13 @@ class BiodataController extends Controller
         return $data;
     }
 
+    public function get_operations(Request $request){
+        $data = DB::table('m_joboperations')
+        ->where("JobCategoriesID",$request->ID)
+        ->where("IsDeleted",0)
+        ->select()->Get();
+        return $data;
+    }
+
     
 }

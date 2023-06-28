@@ -1,29 +1,35 @@
-<div class="p-5 bg-white border-green-700 border-2 rounded shadow-md my-5">
+
+{{-- {{'storage/'.$image}} --}}
+<div class="p-5 bg-white border-green-700 border-2 rounded shadow-md my-5 h-80 overflow-hidden">
     <div class="title flex justify-between">
-        <h1 class="text-3xl font-bold uppercase">YEAR OF ThE MONTH</h1>
+        <h1 class="text-3xl font-bold uppercase">{{$title}}</h1>
         <button class="delete_post text-red-600 font-bold">x</button>
     </div>
-    <hr class="bg-cyan-800">
-    <div class="tab_details flex gap-5 text-sm font-bold text-gray-400 my-3">
-        <div class="date cursor-none">10/20/2023</div>
-        <div class="time cursor-none">
-            10:30 am
+    
+    <div class="tab_details flex gap-5 text-sm font-thin text-gray-400 my-3">
+        <div class="date cursor-default">{{$date}}</div>
+        <div class="time cursor-default">
+            {{$time}}
         </div>
         <div>
-            <a href="" class="hover:text-black">Events</a>
+            <a href="{{'/client/gallery?cat='.$cat}}" class="hover:text-black">{{$cat}}</a>
         </div>
     </div>
-    <div class="card_content md:grid grid-flow-col grid-cols-3 gap-5">
-        <div class="content_img w-full h-10 rounded-md overflow-hidden col-span-1">
-            <img src="{{url("images/machinery.jpg")}}" class="w-full h-auto" alt="">
+    <hr class="bg-cyan-800">
+    <div class="card_content md:grid grid-flow-col grid-cols-3 gap-5 mt-5">
+        @if($image != '')
+        <div class="content_img w-full h-40 rounded-md overflow-hidden col-span-1">
+            <img src="{{url('storage/'.$image)}}" class="w-full h-auto" alt="">
         </div>
+        @endif
+        
         <div class="content_details w-auto col-span-2">
-            <div class="details">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint aut soluta rerum aspernatur voluptas expedita incidunt hic sit nulla, itaque distinctio id nam cupiditate assumenda vel sunt voluptates quis quasi.
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus sed, officia distinctio, nihil porro vero pariatur earum totam necessitatibus fugiat fugit rem veritatis similique architecto, quidem odio laboriosam. Tenetur, iusto?
+            <div class="details whitespace-pre-line text-ellipsis max-h-36 overflow-hidden text-gray-600 text-sm font-sans">
+                {{$content}}
             </div>
+            <hr>
             <div class="mt-3">
-                <a href="" class="hover:text-green-500">Read more...</a>
+                <a href="/client/gallery/post?id={{$id}}" class="hover:text-green-500 italic">Read more...</a>
             </div>
         </div>
     </div>

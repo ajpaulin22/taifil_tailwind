@@ -11,9 +11,9 @@
                 <div class="footer-pad text-white">  
                   <h4 class="text-gray-200 text-lg md:text-2xl font-bold">Contacts</h4>  
                   <ul class="list-unstyled">  
-                    <li class="py-2 text-gray-200"><i class="fa fa-phone"></i> Phone:<a href="Tel:+" class="text-white">5117381</a> </li> 
+                    <li class="py-2 text-gray-200"><i class="fa fa-phone"></i> Phone:<a href="Tel:+02-8511-7381" class="text-white"> 02-8511-7381</a> </li> 
                     <hr>
-                    <li class="py-2 text-gray-200"><i class="fa fa-envelope"></i> Email:<a href="mailto:" class="text-white"><br> taifilmanpower.application.sc@gmail.com</a> </li>  
+                    <li class="py-2 text-gray-200"><i class="fa fa-envelope"></i> Email:<a href="mailto:taifilmanpower.application.sc@gmail.com" class="text-white"><br> taifilmanpower.application.sc@gmail.com</a> </li>  
                   </ul>  
                 </div>  
               </div>
@@ -38,7 +38,7 @@
                 <ul class="list-group list-group-horizontal">
                   <li class="list-group-item">
                     <a href="https://www.facebook.com/profile.php?id=100072207240998">
-                      <i class="fab fa-facebook-f fa-lg"></i>
+                      <i class="icon-inline icon-chevron-right"></i>
                     </a>
                   </li>
                   <li class="list-group-item">

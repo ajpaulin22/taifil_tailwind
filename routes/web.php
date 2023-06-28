@@ -1,14 +1,16 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Auth\RequestGuard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\client\BiodataController;
 use App\Http\Controllers\client\PostController;
+use App\Http\Controllers\client\BiodataController;
+use App\Http\Controllers\MasterMaintenanceController;
 use App\Http\Controllers\ManagementRegistrationController;
 use App\Http\Controllers\MasterMaintenance\JobInformationController;
 use App\Http\Controllers\MasterMaintenance\UserInformationController;
-use App\Http\Controllers\MasterMaintenanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +50,7 @@ Route::group(["prefix"=>"client"],function(){
         Route::post("/uploadData",[BiodataController::class,"uploadData"]);
         Route::get("/get-code",[BiodataController::class,"get_code"]);
         Route::get("/get-categories",[BiodataController::class,"get_categories"]);
+        Route::get("/get-operations",[BiodataController::class,"get_operations"]);
         Route::post("/upload-image",[BiodataController::class,"upload_image"])->name('client.biodata.upload-image');
     });
 
@@ -55,6 +58,13 @@ Route::group(["prefix"=>"client"],function(){
         Route::get("/",[PostController::class,"view"]);
         Route::get("/create-post",[PostController::class,"create_post"]);
         Route::post("/create",[PostController::class,"create"]);
+        Route::get("/post",[PostController::class,"post"]);
+    });
+
+    Route::group(["prefix" => "qualification"],function(){
+        Route::get("/",function(Request $request){
+            return view('pages.qualification',["id"=>$request->data]);
+        });
     });
 });
 
