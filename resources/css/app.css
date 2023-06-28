@@ -2,4 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'swiper/css';
+
+
+
+@layer components {
+.form-control{
+        @apply block w-full p-2 text-sm border border-[#ced4da] rounded;
+    }
+.form-label{
+        @apply mb-2 inline-block text-sky-950;
+    }
+.form-select{
+        @apply block w-full p-2 text-sm font-normal border border-[#ced4da] rounded
+    }
+.date_picker{
+    @apply border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2
+}
+input.error{
+    @apply border-red-600
+}
+.error{
+    @apply text-red-600 text-sm
+}
+[datepicker] label.error{
+    @apply hidden
+}
+input[type='number']::-webkit-outer-spin-button,
+        input[type='number']::-webkit-inner-spin-button,
+        input[type='number'] {
+          -webkit-appearance: none;
+          margin: 0;
+          -moz-appearance: textfield !important;
+        }
+}
+
+@layer utilities {
+    @variants responsive {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+      }
+    }
+  }

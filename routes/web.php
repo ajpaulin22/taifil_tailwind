@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\client\BiodataController;
+use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\ManagementRegistrationController;
 use App\Http\Controllers\MasterMaintenance\JobInformationController;
 use App\Http\Controllers\MasterMaintenance\UserInformationController;
@@ -20,7 +22,6 @@ use App\Http\Controllers\MasterMaintenanceController;
 */
 
 Route::get('/', function () {
-    
      return view('welcome');
 });
 
@@ -41,6 +42,21 @@ Route::group(['middleware' => 'guest','prefix'=>'auth'],function(){
 });
 
 Route::get('/logout',[AuthController::class,'logout'])->middleware('auth');
+Route::group(["prefix"=>"client"],function(){
+    Route::group(["prefix"=>"Biodata"],function(){
+        Route::get("/",[BiodataController::class,"view"]);
+        Route::post("/uploadData",[BiodataController::class,"uploadData"]);
+        Route::get("/get-code",[BiodataController::class,"get_code"]);
+        Route::get("/get-categories",[BiodataController::class,"get_categories"]);
+        Route::post("/upload-image",[BiodataController::class,"upload_image"])->name('client.biodata.upload-image');
+    });
+
+    Route::group(["prefix" => "gallery"],function(){
+        Route::get("/",[PostController::class,"view"]);
+        Route::get("/create-post",[PostController::class,"create_post"]);
+        Route::post("/create",[PostController::class,"create"]);
+    });
+});
 
 Route::group(["middleware" => "auth","prefix" => "admin"],function(){
     Route::group(["prefix" => "ManagementRegistration"],function(){

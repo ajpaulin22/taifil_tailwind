@@ -15,7 +15,7 @@
   \*****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("window.$ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\nwindow.$ = __webpack_require__(/*! jquery-validation */ \"./node_modules/jquery-validation/dist/jquery.validate.js\");\nwindow.Swiper = (__webpack_require__(/*! swiper */ \"./node_modules/swiper/swiper.esm.js\")[\"default\"]);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvYXBwLmpzLmpzIiwibWFwcGluZ3MiOiJBQUFBQSxNQUFNLENBQUNDLENBQUMsR0FBR0MsbUJBQU8sQ0FBQyxvREFBUSxDQUFDO0FBQzVCRixNQUFNLENBQUNDLENBQUMsR0FBR0MsbUJBQU8sQ0FBQyxtRkFBbUIsQ0FBQztBQUN2Q0YsTUFBTSxDQUFDRyxNQUFNLEdBQUdELHFGQUF5QiIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9qcy9hcHAuanM/Y2VkNiJdLCJzb3VyY2VzQ29udGVudCI6WyJ3aW5kb3cuJCA9IHJlcXVpcmUoJ2pxdWVyeScpO1xyXG53aW5kb3cuJCA9IHJlcXVpcmUoXCJqcXVlcnktdmFsaWRhdGlvblwiKTtcclxud2luZG93LlN3aXBlciA9IHJlcXVpcmUoJ3N3aXBlcicpLmRlZmF1bHQ7Il0sIm5hbWVzIjpbIndpbmRvdyIsIiQiLCJyZXF1aXJlIiwiU3dpcGVyIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
+eval("window.$ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\nwindow.$ = __webpack_require__(/*! jquery-validation */ \"./node_modules/jquery-validation/dist/jquery.validate.js\");\nwindow.Swiper = __webpack_require__(/*! swiper */ \"./node_modules/swiper/swiper.esm.js\");\nwindow.flowbite = __webpack_require__(Object(function webpackMissingModule() { var e = new Error(\"Cannot find module 'flowbite'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));\nDatepicker = __webpack_require__(Object(function webpackMissingModule() { var e = new Error(\"Cannot find module 'flowbite/dist/datepicker'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvYXBwLmpzLmpzIiwibWFwcGluZ3MiOiJBQUFBQSxNQUFNLENBQUNDLENBQUMsR0FBR0MsbUJBQU8sQ0FBQyxvREFBUSxDQUFDO0FBQzVCRixNQUFNLENBQUNDLENBQUMsR0FBR0MsbUJBQU8sQ0FBQyxtRkFBbUIsQ0FBQztBQUN2Q0YsTUFBTSxDQUFDRyxNQUFNLEdBQUdELG1CQUFPLENBQUMsbURBQVEsQ0FBQztBQUNqQ0YsTUFBTSxDQUFDSSxRQUFRLEdBQUdGLG1CQUFPLENBQUMsdUlBQVUsQ0FBQztBQUNyQ0csVUFBVSxHQUFHSCxtQkFBTyxDQUFDLHVKQUEwQixDQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vcmVzb3VyY2VzL2pzL2FwcC5qcz9jZWQ2Il0sInNvdXJjZXNDb250ZW50IjpbIndpbmRvdy4kID0gcmVxdWlyZSgnanF1ZXJ5Jyk7XHJcbndpbmRvdy4kID0gcmVxdWlyZShcImpxdWVyeS12YWxpZGF0aW9uXCIpO1xyXG53aW5kb3cuU3dpcGVyID0gcmVxdWlyZSgnc3dpcGVyJyk7XHJcbndpbmRvdy5mbG93Yml0ZSA9IHJlcXVpcmUoXCJmbG93Yml0ZVwiKTtcclxuRGF0ZXBpY2tlciA9IHJlcXVpcmUoXCJmbG93Yml0ZS9kaXN0L2RhdGVwaWNrZXJcIik7XHJcblxyXG5cclxuXHJcblxyXG4iXSwibmFtZXMiOlsid2luZG93IiwiJCIsInJlcXVpcmUiLCJTd2lwZXIiLCJmbG93Yml0ZSIsIkRhdGVwaWNrZXIiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
 
 /***/ }),
 
@@ -43,10 +43,9 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
   \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9hcHAuc2Nzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9hcHAuc2Nzcz9hODBiIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/sass/app.scss\n");
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nError: Can't resolve 'animate.css' in 'C:\\xampp\\htdocs\\taifil_tailwind\\resources\\sass'\n    at finishWithoutResolve (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\Resolver.js:369:18)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\Resolver.js:461:15\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\Resolver.js:519:5\n    at eval (eval at create (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:16:1)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\Resolver.js:519:5\n    at eval (eval at create (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:27:1)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\DescriptionFilePlugin.js:89:43\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\Resolver.js:519:5\n    at eval (eval at create (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\Resolver.js:519:5\n    at eval (eval at create (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:16:1)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\Resolver.js:519:5\n    at eval (eval at create (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:57:1)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\ConditionalPlugin.js:53:42\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\Resolver.js:519:5\n    at eval (eval at create (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:16:1)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\forEachBail.js:39:13\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\enhanced-resolve\\lib\\ModulesInHierarchicalDirectoriesPlugin.js:79:16\n    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)\n    at processResult (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\webpack\\lib\\NormalModule.js:764:19)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\webpack\\lib\\NormalModule.js:866:5\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at Object.loader (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\css-loader\\dist\\index.js:155:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)");
 
 /***/ }),
 
@@ -54,10 +53,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
   \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL2FwcC5jc3MuanMiLCJtYXBwaW5ncyI6IjtBQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vcmVzb3VyY2VzL2Nzcy9hcHAuY3NzPzllY2YiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/css/app.css\n");
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nError: Cannot find module 'flowbite/plugin'\nRequire stack:\n- C:\\xampp\\htdocs\\taifil_tailwind\\tailwind.config.js\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1070:15)\n    at Function.resolve (node:internal/modules/helpers:127:19)\n    at _resolve (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\jiti\\dist\\jiti.js:1:241025)\n    at jiti (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\jiti\\dist\\jiti.js:1:243309)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\tailwind.config.js:18:5\n    at jiti (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\jiti\\dist\\jiti.js:1:245784)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tailwindcss\\lib\\lib\\load-config.js:37:30\n    at loadConfig (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tailwindcss\\lib\\lib\\load-config.js:39:6)\n    at getTailwindConfig (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tailwindcss\\lib\\lib\\setupTrackingContext.js:71:116)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tailwindcss\\lib\\lib\\setupTrackingContext.js:99:92\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tailwindcss\\lib\\processTailwindFeatures.js:48:11\n    at plugins (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\tailwindcss\\lib\\plugin.js:38:63)\n    at LazyResult.runOnRoot (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\postcss\\lib\\lazy-result.js:339:16)\n    at LazyResult.runAsync (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\postcss\\lib\\lazy-result.js:393:26)\n    at LazyResult.async (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\postcss\\lib\\lazy-result.js:221:30)\n    at LazyResult.then (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\postcss\\lib\\lazy-result.js:206:17)\n    at processResult (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\webpack\\lib\\NormalModule.js:764:19)\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\webpack\\lib\\NormalModule.js:866:5\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at Object.loader (C:\\xampp\\htdocs\\taifil_tailwind\\node_modules\\postcss-loader\\dist\\index.js:142:7)");
 
 /***/ }),
 
@@ -1165,42 +1163,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/chunk loaded */
-/******/ 	(() => {
-/******/ 		var deferred = [];
-/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
-/******/ 			if(chunkIds) {
-/******/ 				priority = priority || 0;
-/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
-/******/ 				deferred[i] = [chunkIds, fn, priority];
-/******/ 				return;
-/******/ 			}
-/******/ 			var notFulfilled = Infinity;
-/******/ 			for (var i = 0; i < deferred.length; i++) {
-/******/ 				var [chunkIds, fn, priority] = deferred[i];
-/******/ 				var fulfilled = true;
-/******/ 				for (var j = 0; j < chunkIds.length; j++) {
-/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
-/******/ 						chunkIds.splice(j--, 1);
-/******/ 					} else {
-/******/ 						fulfilled = false;
-/******/ 						if(priority < notFulfilled) notFulfilled = priority;
-/******/ 					}
-/******/ 				}
-/******/ 				if(fulfilled) {
-/******/ 					deferred.splice(i--, 1)
-/******/ 					var r = fn();
-/******/ 					if (r !== undefined) result = r;
-/******/ 				}
-/******/ 			}
-/******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -1229,69 +1192,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"/js/app": 0,
-/******/ 			"css/app": 0
-/******/ 		};
-/******/ 		
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
-/******/ 		// install a JSONP callback for chunk loading
-/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
-/******/ 			var [chunkIds, moreModules, runtime] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
-/******/ 			var moduleId, chunkId, i = 0;
-/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
-/******/ 				for(moduleId in moreModules) {
-/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 					}
-/******/ 				}
-/******/ 				if(runtime) var result = runtime(__webpack_require__);
-/******/ 			}
-/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
-/******/ 			for(;i < chunkIds.length; i++) {
-/******/ 				chunkId = chunkIds[i];
-/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
-/******/ 					installedChunks[chunkId][0]();
-/******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
-/******/ 			}
-/******/ 			return __webpack_require__.O(result);
-/******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
-/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
-/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
-/******/ 	})();
-/******/ 	
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
-/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
+/******/ 	__webpack_require__("./resources/js/app.js");
+/******/ 	__webpack_require__("./resources/sass/app.scss");
+/******/ 	var __webpack_exports__ = __webpack_require__("./resources/css/app.css");
 /******/ 	
 /******/ })()
 ;

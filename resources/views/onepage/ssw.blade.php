@@ -1,4 +1,4 @@
-<section id="ssw" class="mt-5  bg-slate-50">
+<section id="ssw" class="mt-5">
     <div class="min-h-screen max-w-7xl md:mx-auto mx-5">
         <div>
             <h1 class="text-center text-4xl md:text-7xl my-9 font-semibold text-sky-800">SSW<hr class="border-b-2 border-green-500"></h1>

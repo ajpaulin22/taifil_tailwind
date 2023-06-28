@@ -7,6 +7,7 @@
     <meta content="dGl0aSBrbyBtYWxha2kK" name="author" />
 
     <!-- CSRF Token -->
+    @stack('meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title') | Taifil</title>
@@ -15,15 +16,14 @@
     <link rel="stylesheet" href="{{asset("css/app.css")}}">
     @stack('styles')
 </head>
-<body class="min-h-full flex flex-col overflow-x-hidden">
+<body class="min-h-full flex flex-col overflow-x-hidden no-scrollbar">
     <x-user-banner/>
     @include('navFoot.client_nav')
-    <main >
+    <main class="min-h-screen">
         @yield('content')
     </main>
 
     @include('navFoot.client_foot')
-
     <script src="{{asset("js/app.js")}}"></script>
     @stack('scripts')
 </body>
