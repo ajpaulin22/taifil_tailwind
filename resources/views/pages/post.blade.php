@@ -35,7 +35,7 @@
 </nav>
 <section class="mt-5 mb-5 ">
     <div class="min-h-screen max-w-7xl md:mx-auto mx-5  p-2 overflow-x-hidden md:grid grid-cols-5 grid-flow-col gap-5">
-        <div class=" text-black p-4 rounded col-span-1">
+        <div class=" text-black p-4 rounded col-span-1 ">
             <div class="text-2xl font-bold mb-2">
                 CATEGORIES
             </div>
