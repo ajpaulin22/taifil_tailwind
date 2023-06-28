@@ -70,8 +70,6 @@ const TrxCSS = [
     "resources/css/custom.css"
 ];
 
-
-
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require("tailwindcss"),
@@ -86,6 +84,8 @@ mix.js('resources/js/app.js', 'public/js')
     .scripts(['public/js/app.js','resources/js/auth/auth.js'],'public/js/auth/auth.js')
 
     .scripts(['public/js/app.js','resources/js/onepage.js'],'public/js/onepage.js')
+
+    .scripts(['public/js/app.js','resources/js/client/Biodata.js'],"public/js/client/Biodata.js")
 
     .scripts([
         "public/js/theme.js",
@@ -105,4 +105,6 @@ mix.js('resources/js/app.js', 'public/js')
     .styles([
         "public/css/theme.css",
         "public/css/trx.css",
-    ], "public/css/admin/MasterMaintenance/JobInformation.css");
+    ], "public/css/admin/MasterMaintenance/JobInformation.css")
+    
+    .scripts(['public/js/app.js','resources/js/client/gallery.js'],"public/js/client/gallery.js");
