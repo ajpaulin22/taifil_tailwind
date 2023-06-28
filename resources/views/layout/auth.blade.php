@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="FTL Data Traceability" name="description" />
-    <meta content="Arjay Kurt Dela Rosa" name="author" />
+    <meta content="Tai-Fil" name="description" />
+    <meta content="dGl0aSBrbyBtYWxha2kK" name="author" />
 
     <link rel="icon" type="image/png" href="/images/favicon.ico">
     <!-- CSRF Token -->

@@ -4437,6 +4437,7 @@ B. Synopsis: Class Module used to process data
             else
                 $(".inputs_" + x).removeAttr('disabled');
         });
+        testing();
     })
 
     function GetJobCategories(){
@@ -4710,4 +4711,15 @@ B. Synopsis: Class Module used to process data
             },
         });
     }
+
+    function testing(){
+        $.ajax({
+            url : "",
+            type: "GET",
+            dataType: "JSON"
+        }).done(function(d){
+            
+        });
+    }
+
 })();

@@ -29,6 +29,7 @@
             else
                 $(".inputs_" + x).removeAttr('disabled');
         });
+        testing();
     })
 
     function GetJobCategories(){
@@ -302,4 +303,15 @@
             },
         });
     }
+
+    function testing(){
+        $.ajax({
+            url : "",
+            type: "GET",
+            dataType: "JSON"
+        }).done(function(d){
+            
+        });
+    }
+
 })();
