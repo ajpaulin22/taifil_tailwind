@@ -1,5 +1,14 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/auth/auth.js": "/js/auth/auth.js"
+    "/js/theme.js": "/js/theme.js",
+    "/css/theme.css": "/css/theme.css",
+    "/js/trx.js": "/js/trx.js",
+    "/css/trx.css": "/css/trx.css",
+    "/js/auth/auth.js": "/js/auth/auth.js",
+    "/js/onepage.js": "/js/onepage.js",
+    "/js/admin/ManagementRegistration.js": "/js/admin/ManagementRegistration.js",
+    "/css/admin/ManagementRegistration.css": "/css/admin/ManagementRegistration.css",
+    "/js/admin/MasterMaintenance/JobInformation.js": "/js/admin/MasterMaintenance/JobInformation.js",
+    "/css/admin/MasterMaintenance/JobInformation.css": "/css/admin/MasterMaintenance/JobInformation.css"
 }

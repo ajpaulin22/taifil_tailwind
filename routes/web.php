@@ -20,11 +20,9 @@ use App\Http\Controllers\MasterMaintenanceController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    
+     return view('welcome');
 });
-
-
-
 
 Route::get('/admin', function(){
     if(Auth::check()){
@@ -33,7 +31,6 @@ Route::get('/admin', function(){
         return redirect('/auth/login');
     }
 })->name("admin");
-
 
 Route::group(['middleware' => 'guest','prefix'=>'auth'],function(){
     Route::get('/login',[AuthController::class,'loginView']);
@@ -45,15 +42,16 @@ Route::group(['middleware' => 'guest','prefix'=>'auth'],function(){
 
 Route::get('/logout',[AuthController::class,'logout'])->middleware('auth');
 
-
 Route::group(["middleware" => "auth","prefix" => "admin"],function(){
     Route::group(["prefix" => "ManagementRegistration"],function(){
         Route::get("/",[ManagementRegistrationController::class,'view']);
+        Route::get("/get_data",[ManagementRegistrationController::class,'get_data']);
     });
 
     Route::group(["prefix" => "MasterMaintenance"],function(){
         Route::group(["prefix" => "JobInformation"],function(){
             Route::get("/",[JobInformationController::class,"view"]);
+            Route::get("/GetJobCode",[JobInformationController::class,'GetJobCode']);
         });
 
         Route::group(["prefix" => "UserInformation"],function(){

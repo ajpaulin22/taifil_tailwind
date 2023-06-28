@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
  const layoutCSS = [
     "resources/css/default/app.min.css",
+    "resources/css/green.css",
     "resources/plugins/gritter/css/jquery.gritter.css",
     "resources/plugins/DataTables/DataTables-1.12.1/css/dataTables.bootstrap4.min.css",
     "resources/plugins/DataTables/Select-1.4.0/css/select.bootstrap4.min.css",

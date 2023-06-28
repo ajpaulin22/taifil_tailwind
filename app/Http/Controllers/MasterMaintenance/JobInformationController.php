@@ -10,4 +10,8 @@ class JobInformationController extends Controller
     public function view(){
         return view("/admin/MasterMaintenance/JobInformation");
     }
+
+    public function GetJobCode(Request $request){
+
+    }
 }

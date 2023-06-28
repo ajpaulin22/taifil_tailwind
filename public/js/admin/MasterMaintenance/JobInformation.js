@@ -4410,11 +4410,11 @@ B. Synopsis: Class Module used to process data
     var tblCodes = "";
     var tblJobCategories = "";
     var tblOperations = "";
-    var dataCodes = [
-        {IDcheckbox: 1, IDrow: 1, Code: "Agriculture"},
-        {IDcheckbox: 2, IDrow: 2, Code: "Fishery"},
-        {IDcheckbox: 3, IDrow: 3, Code: "Construction"}
-    ]
+    // var dataCodes = [
+    //     {IDcheckbox: 1, IDrow: 1, Code: "Agriculture"},
+    //     {IDcheckbox: 2, IDrow: 2, Code: "Fishery"},
+    //     {IDcheckbox: 3, IDrow: 3, Code: "Construction"}
+    // ]
     var dataJobCategories = [];
     var dataOperations = [];
 
@@ -4674,11 +4674,27 @@ B. Synopsis: Class Module used to process data
     });
 
     function drawCodesTable(){
+        
         if (!$.fn.DataTable.isDataTable("#tblCodes"))
         {
             tblCodes = $("#tblCodes").DataTable({
+                processing: true,
+                serverSide: true,
+                "order": [[0, "asc"]],
+                "pageLength": 25,
+                "ajax": {
+                    "url": "/admin/MasterMaintenance/JobInformation/GetJobCode",
+                    "type": "POST",
+                    "datatype": "json",
+                    data: function (d) {
 
-                data: dataCodes,
+                        $('#tblCodes thead #trSearch th').each(function () {
+                            var field = $(this).data("field");
+                            d[field] = encodeURI($(this).find('input').val()).replace(/%20/g, " ");
+                        });
+                    }
+                },
+                dataSrc: "data",
                 columns: [
                     {
                         title: "<input type='checkbox' id='CheckAllitem' />",
@@ -4690,7 +4706,21 @@ B. Synopsis: Class Module used to process data
                     { title: 'ID', data: "IDrow", width: "4%", className: "dt-center"},
                     { title: 'Code', data: "Code", width: "18%"},
                 ],
-                order: [[1, "asc"]],
+                responsive: true,
+                "initComplete": function () {
+                    // $('#tblKWH tbody').on('click', 'tr', function () {
+                    //     if (!$(this).hasClass('selected')) {
+                    //         $('tr.selected').removeClass('selected');
+                    //         $(this).addClass('selected');
+                    //         $(".btnEdit").attr('disabled', 'disabled');
+                    //         $(".btnDelete").attr('disabled', 'disabled');
+                    //         $("#btnDeleteKWH").removeAttr("disabled");
+                    //         $("#btnEditKWH").removeAttr("disabled");
+                    //         dataKWH = tblKWH.row($(this)).data();
+                    //     }
+                    // });
+                }
+
             })
         }
     }
