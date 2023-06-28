@@ -63,35 +63,26 @@
             <p class="col-span-4 text-center text-red-600 h-5 text-lg" ><b><u>STRICTLY NO TATTOO</u></b></p>
         </div>
         <div class="col-span-2 p-5 border-2 border-green-500 rounded shadow-lg">
-            <p>Please bring <b class="bg-yellow-300" ><u>Original</u></b>  documents and <b class="bg-yellow-300"><u>Photocopy</u></b> of these requirements below .</p>
-            
-            <ul class="ml-5 my-5">
-                <li>✅Updated Resume (with picture)
-                </li>
-                <li>✅PSA Birth Certificate
-                </li>
-                <li>✅Valid Passport 
-                </li>
-                <li>✅Baptismal Certificate
-                </li>
-                <li>✅PEOS Certificate  (<a href="https://www.dmw.gov.ph/" class="text-blue-500 hover:text-blue-800">https://www.dmw.gov.ph/</a>)
-                </li>
-                <li>✅E-Registration Resume (<a href="https://www.dmw.gov.ph/" class="text-blue-500 hover:text-blue-800">https://www.dmw.gov.ph/</a>)
-                </li>
-                <li>✅Long Brown Envelope
-                </li>
-                <li>✅1x1 picture (White Background)</li>
-            </ul>
-            <p><b>FOR EX-TRAINEES of JAPAN </b>, below are the <b><u>Additional requirements</u></b>  needed:</p>
-            <ul class="ml-5 my-5">
-                <li>✅JITCO Certificate
-                </li>
-                <li>✅JITCO Form 10-2 (Curriculum Vitae)
-                </li>
-                <li>✅JITCO Form 10-25 (Dispatch Notice) 
-                </li>
-            </ul>
-            <p class="col-span-4 text-center text-red-600 h-5 text-lg" ><b><u>STRICTLY NO TATTOO</u></b></p>
+            <p class="text-lg font-bold underline">HOW TO APPLY?
+            </p>
+            <p class="font-bold mt-10">ALL APPLICANTS MUST ACCOMPLISH THE BIODATA FOUND IN THE TITP/ SSW/ DIRECT TAB
+            </p>
+            <div class="flex flex-col justify-center items-center">
+                <p>WALK-IN APPLICANTS:
+                </p>
+                <p>Monday to Fridays
+                </p>
+                <p> -07:00 am First Batch
+                </p>
+                <p>-12:00 pm Second Batch
+                </p>
+                <p class="mt-5"> Saturdays
+                </p>
+                <p>-07:00 am ONLY
+                </p>
+            </div>
+            <p class="col-span-4 text-center text-red-600 h-5 text-2xl mt-5" ><b>We do not entertain late comers and incomplete requirements.
+            </b></p>
         </div>
     </div>
 </section>
