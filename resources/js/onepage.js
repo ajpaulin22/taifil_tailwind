@@ -23,37 +23,22 @@
       direction: 'horizontal',
       loop: true,
       autoplay: {
-        delay: 1000,
+        delay: 3000,
+        disableOnInteraction:false
       },
+      effect: 'fade',
+         fadeEffect: {
+           crossFade: true
+         },
+         navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      
     
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-      },
-    
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-        enabled:true,
-      },
-      autoplay: {
-        delay: 5000,
-      },
-    
-      scrollbar: {
-        el: '.swiper-scrollbar',
-      },
     });
 
-     console.log(Swiper)
-    // swiper.autoplay.start();
-
-    $(".swiper-button-next").on("click",function(){
-      swiper.slideNext();
-    })
-    $(".swiper-button-prev").on("click",function(){
-      swiper.slidePrev();
-    })
+   
 
   });
 

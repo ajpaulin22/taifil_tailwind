@@ -199,25 +199,22 @@
                 type:"POST",
                 data:{
                     _token:self.token,
-                     upload: this.upload
-                    // prometric:self.prometricData,
-                    // jpl:self.jplData,
-                    // family:self.familyData,
-                    // sibling:self.siblingData,
-                    // relative:self.relativeData,
-                    // children:self.childrenData,
-                    // local_emp:self.local_empData,
-                    // abroad_emp:self.abroad_empData,
-                    // educational:self.educationalData,
-                    // vocational:self.vocationalData,
-                    // personal:self.personalData
+                    prometric:self.prometricData,
+                    jpl:self.jplData,
+                    family:self.familyData,
+                    sibling:self.siblingData,
+                    relative:self.relativeData,
+                    children:self.childrenData,
+                    local_emp:self.local_empData,
+                    abroad_emp:self.abroad_empData,
+                    educational:self.educationalData,
+                    vocational:self.vocationalData,
+                    personal:self.personalData
                 },
                 dataType:"JSON",
-                contentType: false,
-                processData: false,
-                enctype: 'multipart/form-data',
                 success:function(promise){
-                      
+                      console.log(promise)
+                      self.saveid(promise.id);
                 }
 
             })
@@ -262,9 +259,31 @@
                 }
             })
         },
+        getOperations:function(id){
+            $.ajax({
+                url:"/client/Biodata/get-operations",
+                type:"GET",
+                data:{
+                    _token:self.token,
+                    ID:id
+                },
+                dataType:"JSON",
+                success:function(promise){
+                    $('#joboperations')
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option value="" selected disabled value>Choose....</option>')
+                    promise.forEach(data=>{
+                        let option = `<option value="${data.ID}">${data.Operation}</option>`;
+                        $("#joboperations").append(option)
+                    })
+                }
+            })
+        },
         saveid:function(id){
             let self = this;
-            self.upload.append("id", "1");
+            self.upload.append("id", id);
             $.ajax({
                 url:"/client/Biodata/upload-image",
                 type:"POST",
@@ -285,11 +304,14 @@
 
     var biodata = Biodata();
    $(document).ready(function() {
-    // biodata.getCode();
+    biodata.getCode();
 
     //EVENTS 
     $("#jobcodes").on("change",function(){
         biodata.getCategories($(this).val());
+    })
+    $("#jobcategories").on("change",function(){
+        biodata.getOperations($(this).val());
     })
     
     
@@ -920,7 +942,6 @@
                 }
             }
 
-            biodata.uploadData();
             $("#upload_tab").removeClass('pointer-events-none')
             $("#upload_tab").trigger('click')
           }
@@ -1217,7 +1238,7 @@
             $(element).removeClass('border-red-600');
         },
         submitHandler: function(form) {
-
+            biodata.uploadData();
           }
     });
 
@@ -1226,7 +1247,6 @@
         e.preventDefault();
         $("#upload_form").valid();
         biodata.upload = new FormData(this)
-        biodata.saveid("1");
      })
 
      $("#uploadBtn_Prev").on("click",function(e){
