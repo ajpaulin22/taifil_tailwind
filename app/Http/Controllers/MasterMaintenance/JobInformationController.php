@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\MasterMaintenance;
 
-use App\Http\Controllers\Controller;
+use App\Models\m_jobcategories;
+use App\Models\m_jobcodes;
+use App\Models\m_joboperations;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Yajra\DataTables\DataTables;
 
 class JobInformationController extends Controller
 {
@@ -12,25 +17,38 @@ class JobInformationController extends Controller
     }
 
     public function GetJobCode(Request $request){
-        // GET CONNECTION ERRORS
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
+        if($request["search"]["value"] == null){
+            $condition = ["IsDeleted" => 0];
+            $data = m_jobcodes::where($condition)->select("ID","Code")->get();
         }
-        
-        // SQL QUERY
-        $query = "SELECT Roll_No, Name FROM `Student Details`;";
-        // FETCHING DATA FROM DATABASE
-        $result = mysqli_query($conn, $query);
-        
-        if (mysqli_num_rows($result) > 0) {
-            // OUTPUT DATA OF EACH ROW
-            while($row = mysqli_fetch_assoc($result)) {
-                echo "Roll No: " . $row["Roll_No"]
-                . " - Name: " . $row["Name"]. "<br>";
-            }
-        } else {
-            echo "0 results";
+        else{
+            $condition = ["IsDeleted" => 0, "Code" => $request["search"]["value"]];
+            $data = m_jobcodes::where($condition)->select("ID","Code")->get();
         }
-        $conn->close();
+        return DataTables::of($data)->addIndexColumn()->make(true);
+    }
+
+    public function GetJobCategory(Request $request){
+        if($request["search"]["value"] == null){
+            $condition = ["IsDeleted" => 0, "JobCodesID" => $request["ID"]];
+            $data = m_jobcategories::where($condition)->select("ID","Category")->get();
+        }
+        else{
+            $condition = ["IsDeleted" => 0, "JobCodesID" => $request["ID"], "Category" => $request["search"]["value"]];
+            $data = m_jobcategories::where($condition)->select("ID","Category")->get();
+        }
+        return DataTables::of($data)->addIndexColumn()->make(true);
+    }
+
+    public function GetJobOperation(Request $request){
+        if($request["search"]["value"] == null){
+            $condition = ["IsDeleted" => 0, "JobCategoriesID" => $request["ID"]];
+            $data = m_joboperations::where($condition)->select("ID","Operation")->get();
+        }
+        else{
+            $condition = ["IsDeleted" => 0, "JobCategoriesID" => $request["ID"], "Operation" => $request["search"]["value"]];
+            $data = m_joboperations::where($condition)->select("ID","Operation")->get();
+        }
+        return DataTables::of($data)->addIndexColumn()->make(true);
     }
 }

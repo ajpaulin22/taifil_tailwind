@@ -1,21 +1,17 @@
 (function(){
     var tblCodes = "";
-    var tblJobCategories = "";
+    var tblCategories = "";
     var tblOperations = "";
-    // var dataCodes = [
-    //     {IDcheckbox: 1, IDrow: 1, Code: "Agriculture"},
-    //     {IDcheckbox: 2, IDrow: 2, Code: "Fishery"},
-    //     {IDcheckbox: 3, IDrow: 3, Code: "Construction"}
-    // ]
-    var dataJobCategories = [];
-    var dataOperations = [];
+    var dataJobCode = "";
+    var dataJobCategory = "";
 
     $(document).ready(function(){
         drawCodesTable();
         drawJobCategoriesTable();
         drawOperationsTable();
+
         $('#tblCodes tbody').on('click', 'tr', function(e){
-            var data = tblCodes.row($(this)).data();
+            dataJobCode = tblCodes.row($(this)).data();
             switch (e.target.localName) {
                 case "button":
                     break;
@@ -30,66 +26,19 @@
                 case "input":
                     break;
                 default:
-                    if ($.trim(data) != "") {
+                    if ($.trim(dataJobCode) != "") {
                         if ($(this).hasClass('selected')) {
-                            data = "";
+                            dataJobCode = "";
                             tblCodes.$('tr.selected').removeClass('selected');
+                            tblCategories.clear();
+                            tblCategories.draw();
+                            tblOperations.clear();
+                            tblOperations.draw();
                         }
                         else {
                             tblCodes.$('tr.selected').removeClass('selected');
                             $(this).addClass('selected');
-                            if (data.Code == "Agriculture")
-                            {
-                                dataJobCategories = [];
-                                dataJobCategories = [
-                                    {IDcheckbox: 1, IDrow: 1, Code: "Cultivation Agriculture"},
-                                    {IDcheckbox: 2, IDrow: 2, Code: "Livestock Agriculture"},
-                                ]
-                                tblJobCategories.clear().draw();
-                                tblJobCategories.rows.add(dataJobCategories);
-                                tblJobCategories.draw();
-                            }
-                            else if (data.Code == "Fishery")
-                            {
-                                dataJobCategories = [];
-                                dataJobCategories = [
-                                    {IDcheckbox: 1, IDrow: 1, Code: "Fishing Boat Fisheries"},
-                                    {IDcheckbox: 2, IDrow: 2, Code: "Aquaculture"},
-                                ]
-                                tblJobCategories.clear().draw();
-                                tblJobCategories.rows.add(dataJobCategories);
-                                tblJobCategories.draw();
-                            }
-                            else{
-                                dataJobCategories = [];
-                                dataJobCategories = [
-                                    {IDcheckbox: 1, IDrow: 1, Code: "Well Drilling"},
-                                    {IDcheckbox: 2, IDrow: 2, Code: "Building Sheet Metal Work"},
-                                    {IDcheckbox: 3, IDrow: 3, Code: "Freezing And Air Conditioning Apparatus Installing"},
-                                    {IDcheckbox: 4, IDrow: 4, Code: "Fixture Making"},
-                                    {IDcheckbox: 5, IDrow: 5, Code: "Carpentry"},
-                                    {IDcheckbox: 6, IDrow: 6, Code: "Frame Working"},
-                                    {IDcheckbox: 7, IDrow: 7, Code: "Reinforcing Bar Construction"},
-                                    {IDcheckbox: 8, IDrow: 8, Code: "Scaffolding"},
-                                    {IDcheckbox: 9, IDrow: 9, Code: "Building Stone Construction"},
-                                    {IDcheckbox: 10, IDrow: 10, Code: "Tiling"},
-                                    {IDcheckbox: 11, IDrow: 11, Code: "Tile Roofing"},
-                                    {IDcheckbox: 12, IDrow: 12, Code: "Plastering"},
-                                    {IDcheckbox: 13, IDrow: 13, Code: "Plumbing"},
-                                    {IDcheckbox: 14, IDrow: 14, Code: "Heat Insulation"},
-                                    {IDcheckbox: 15, IDrow: 15, Code: "Interior Finishing"},
-                                    {IDcheckbox: 16, IDrow: 16, Code: "Sash Setting"},
-                                    {IDcheckbox: 17, IDrow: 17, Code: "Waterproofing"},
-                                    {IDcheckbox: 18, IDrow: 18, Code: "Concrete Pressure Feeding"},
-                                    {IDcheckbox: 19, IDrow: 19, Code: "Well Point Construction"},
-                                    {IDcheckbox: 20, IDrow: 20, Code: "Paper Hanging"},
-                                    {IDcheckbox: 21, IDrow: 21, Code: "Application of Construction Equipment"},
-                                    {IDcheckbox: 22, IDrow: 22, Code: "Furnace Installation"}
-                                ]
-                                tblJobCategories.clear();
-                                tblJobCategories.rows.add(dataJobCategories);
-                                tblJobCategories.draw();
-                            }
+                            tblCategories.ajax.reload(null,false);
                             tblOperations.clear();
                             tblOperations.draw();
                         }
@@ -99,7 +48,7 @@
         });
     
         $('#tblJobCategories tbody').on('click', 'tr', function(e){
-            var data = tblJobCategories.row($(this)).data();
+            dataJobCategory = tblCategories.row($(this)).data();
             switch (e.target.localName) {
                 case "button":
                     break;
@@ -114,120 +63,15 @@
                 case "input":
                     break;
                 default:
-                    if ($.trim(data) != "") {
+                    if ($.trim(dataJobCategory) != "") {
                         if ($(this).hasClass('selected')) {
-                            data = "";
-                            tblJobCategories.$('tr.selected').removeClass('selected');
+                            dataJobCategory = "";
+                            tblCategories.$('tr.selected').removeClass('selected');
                         }
                         else {
-                            tblJobCategories.$('tr.selected').removeClass('selected');
+                            tblCategories.$('tr.selected').removeClass('selected');
                             $(this).addClass('selected');
-                            if (data.Code == "Cultivation Agriculture"){
-                                dataOperations = [];
-                                dataOperations.push('Facility Horticulture', 'Upland Field Cropping / Vegetable Growing', 'Fruit Growing');
-                            }
-                            else if (data.Code == "Livestock Agriculture"){
-                                dataOperations = [];
-                                dataOperations.push('Hog Raising', 'Poultry Farming (Collecting Chicken Eggs)', 'Dairy');
-                            }
-                            else if (data.Code == "Fishing Boat Fisheries"){
-                                dataOperations = [];
-                                dataOperations.push('Skipjack Pole And Line Fishery', 'Long-line Fishery, Squid Jigging, Purse Seine Fishery', 'Trawl And Seine Net Fishery', 'Gill Net Fishery', 'Set Net Fishery', 'Crab And Shrimp Basket Fishery', 'Stick-held-dipnet Fishery');
-                            }
-                            else if (data.Code == "Aquaculture"){
-                                dataOperations = [];
-                                dataOperations.push('Scallop and Oyster Farming');
-                            }
-                            else if (data.Code == "Well Drilling"){
-                                dataOperations = [];
-                                dataOperations.push('Percussion Type Well Drilling Operation', 'Rotary Type Well Drilling Operation');
-                            }
-                            else if (data.Code == "Building Sheet Metal Work"){
-                                dataOperations = [];
-                                dataOperations.push('Duct Sheet Metal Operation', 'Interior And Exterior Sheet Metal Operation');
-                            }
-                            else if (data.Code == "Freezing And Air Conditioning Apparatus Installing"){
-                                dataOperations = [];
-                                dataOperations.push('Freezing And Air Harmonizing Equipment Installation Work');
-                            }
-                            else if (data.Code == "Fixture Making"){
-                                dataOperations = [];
-                                dataOperations.push('Hand Processing Work Of Wooden Fixture');
-                            }
-                            else if (data.Code == "Carpentry"){
-                                dataOperations = [];
-                                dataOperations.push('Carpentry Contruction Work');
-                            }
-                            else if (data.Code == "Frame Working"){
-                                dataOperations = [];
-                                dataOperations.push('Framing Contruction Work');
-                            }
-                            else if (data.Code == "Reinforcing Bar Construction"){
-                                dataOperations = [];
-                                dataOperations.push('Assembling Reinforced Rod Bar Work');
-                            }
-                            else if (data.Code == "Scaffolding"){
-                                dataOperations = [];
-                                dataOperations.push('Scaffolding Building Work');
-                            }
-                            else if (data.Code == "Building Stone Construction"){
-                                dataOperations = [];
-                                dataOperations.push('Stone Processing Work', 'Work Of Putting Out Stones');
-                            }
-                            else if (data.Code == "Tiling"){
-                                dataOperations = [];
-                                dataOperations.push('Tiling Work');
-                            }
-                            else if (data.Code == "Tile Roofing"){
-                                dataOperations = [];
-                                dataOperations.push('Tile-roofing Work');
-                            }
-                            else if (data.Code == "Plastering"){
-                                dataOperations = [];
-                                dataOperations.push('Plasterers Work');
-                            }
-                            else if (data.Code == "Plumbing"){
-                                dataOperations = [];
-                                dataOperations.push('Construction Piping Work', 'Plant Piping Work');
-                            }
-                            else if (data.Code == "Heat Insulation"){
-                                dataOperations = [];
-                                dataOperations.push('Heat-retention and Cool-retention Construction Work');
-                            }
-                            else if (data.Code == "Interior Finishing"){
-                                dataOperations = [];
-                                dataOperations.push('Plastic-material Floor Finishing Construction Work', 'Carpeting Floor Finishing Construction Work', 'Metal-made foundation Construction Work', 'Board Finishing Construction Work', 'Curtain Installation Work');
-                            }
-                            else if (data.Code == "Sash Setting"){
-                                dataOperations = [];
-                                dataOperations.push('Building Sash Installation Work');
-                            }
-                            else if (data.Code == "Waterproofing"){
-                                dataOperations = [];
-                                dataOperations.push('Sealing Water-proof Construction Work');
-                            }
-                            else if (data.Code == "Concrete Pressure Feeding"){
-                                dataOperations = [];
-                                dataOperations.push('Concrete Pressure Transfer Construction Work');
-                            }
-                            else if (data.Code == "Well Point Construction"){
-                                dataOperations = [];
-                                dataOperations.push('Well-point Construction Work');
-                            }
-                            else if (data.Code == "Paper Hanging"){
-                                dataOperations = [];
-                                dataOperations.push('Painting Work');
-                            }
-                            else if (data.Code == "Application of Construction Equipment"){
-                                dataOperations = [];
-                                dataOperations.push('Dozing Work', 'Loading Work', 'Excavating Work', 'Road Rolling Work');
-                            }
-                            else{
-                                dataOperations = [];
-                                dataOperations.push('Furnace Installation Work');
-                            }
-
-                            OperationsData(dataOperations);
+                            tblOperations.ajax.reload(null,false)
                         }
                     }
                     break;
@@ -266,74 +110,52 @@
     });
 
     function drawCodesTable(){
-        
-        if (!$.fn.DataTable.isDataTable("#tblCodes"))
-        {
+        if (!$.fn.DataTable.isDataTable("#tblJobCategories"))
+        { 
             tblCodes = $("#tblCodes").DataTable({
                 processing: true,
                 serverSide: true,
-                "order": [[0, "asc"]],
-                "pageLength": 25,
                 "ajax": {
                     "url": "/admin/MasterMaintenance/JobInformation/GetJobCode",
-                    "type": "POST",
-                    "datatype": "json",
-                    data: function (d) {
-
-                        $('#tblCodes thead #trSearch th').each(function () {
-                            var field = $(this).data("field");
-                            d[field] = encodeURI($(this).find('input').val()).replace(/%20/g, " ");
-                        });
-                    }
+                    "type": "GET"
                 },
-                dataSrc: "data",
                 columns: [
                     {
                         title: "<input type='checkbox' id='CheckAllitem' />",
                         render: function (data, row, meta){
-                            return "<input type='checkbox' class='CheckItem text-center' value='" + meta.IDcheckbox + "'>";
+                            return "<input type='checkbox' class='CheckItem text-center' value='" + meta.ID + "'>";
                         },
                         width: "2%", orderable: false
                     },
-                    { title: 'ID', data: "IDrow", width: "4%", className: "dt-center"},
-                    { title: 'Code', data: "Code", width: "18%"},
+                    { data: 'Code', name: "Code", title: "Code"},
                 ],
-                responsive: true,
-                "initComplete": function () {
-                    // $('#tblKWH tbody').on('click', 'tr', function () {
-                    //     if (!$(this).hasClass('selected')) {
-                    //         $('tr.selected').removeClass('selected');
-                    //         $(this).addClass('selected');
-                    //         $(".btnEdit").attr('disabled', 'disabled');
-                    //         $(".btnDelete").attr('disabled', 'disabled');
-                    //         $("#btnDeleteKWH").removeAttr("disabled");
-                    //         $("#btnEditKWH").removeAttr("disabled");
-                    //         dataKWH = tblKWH.row($(this)).data();
-                    //     }
-                    // });
-                }
-
-            })
+            });
         }
     }
 
     function drawJobCategoriesTable(){
         if (!$.fn.DataTable.isDataTable("#tblJobCategories"))
         {
-            tblJobCategories = $("#tblJobCategories").DataTable({
-                data: dataJobCategories,
+            tblCategories = $("#tblJobCategories").DataTable({
+                processing: true,
+                serverSide: true,
+                "ajax": {
+                    "url": "/admin/MasterMaintenance/JobInformation/GetJobCategory",
+                    "type": "GET",
+                    "data": function (d) {
+                        d["ID"] = dataJobCode == "" ? 0 : dataJobCode.ID;
+                    }
+                },
                 columns: [
                     {
                         title: "<input type='checkbox' id='CheckAllitem' />",
                         render: function (data, row, meta){
-                            return "<input type='checkbox' class='CheckItem text-center' value='" + meta.IDcheckbox + "'>";
+                            return "<input type='checkbox' class='CheckItem text-center' value='" + meta.ID + "'>";
                         },
                         width: "2%", orderable: false
                     },
-                    { title: 'ID', data: "IDrow", width: "4%", className: "dt-center"},
-                    { title: 'Code', data: "Code", width: "18%"},
+                    { data: 'Category', name: "Category", title: "Category"},
                 ],
-                order: [[1, "asc"]],
             })
         }
     }
@@ -342,29 +164,27 @@
         if (!$.fn.DataTable.isDataTable("#tblOperations"))
         {
             tblOperations = $("#tblOperations").DataTable({
-                data: dataOperations,
+                processing: true,
+                serverSide: true,
+                "ajax": {
+                    "url": "/admin/MasterMaintenance/JobInformation/GetJobOperation",
+                    "type": "GET",
+                    "data": function (d) {
+                        d["ID"] = dataJobCategory == "" ? 0 : dataJobCategory.ID;
+                    }
+                },
                 columns: [
                     {
                         title: "<input type='checkbox' id='CheckAllitem' />",
                         render: function (data, row, meta){
-                            return "<input type='checkbox' class='CheckItem text-center' value='" + meta.IDcheckbox + "'>";
+                            return "<input type='checkbox' class='CheckItem text-center' value='" + meta.ID + "'>";
                         },
                         width: "2%", orderable: false
                     },
-                    { title: 'ID', data: "IDrow", width: "4%", className: "dt-center"},
-                    { title: 'Code', data: "Code", width: "18%"},
+                    { data: 'Operation', name: "Operation", title: "Operation"},
                 ],
-                order: [[1, "asc"]],
             })
         }
     }
 
-    function OperationsData(JobCategoriesValue){
-        for (var i = 0; i < JobCategoriesValue.length; i++){
-            dataOperations[i] = {IDcheckbox: i + 1, IDrow: i + 1, Code: JobCategoriesValue[i]};
-        }
-        tblOperations.clear().draw();
-        tblOperations.rows.add(dataOperations);
-        tblOperations.draw();
-    }
 })();
