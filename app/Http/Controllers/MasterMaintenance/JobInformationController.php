@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\MasterMaintenance;
 
-use App\Models\m_jobcategories;
 use App\Models\m_jobcodes;
-use App\Models\m_joboperations;
 use Illuminate\Http\Request;
+use App\Models\m_jobcategories;
+use App\Models\m_joboperations;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Yajra\DataTables\DataTables;
 
 class JobInformationController extends Controller
 {

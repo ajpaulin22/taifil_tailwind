@@ -2396,9 +2396,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                     age:{
                         required: true,
                     },
-                    blood_type:{
-                        required: true,
-                    },
                     civil_status:{
                         required: true,
                     },

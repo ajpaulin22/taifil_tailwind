@@ -59,6 +59,7 @@ class personal_data extends Model
         "gov_id_picture",
         "passport_id_picture",
         "is_deleted",
-        "to_abroad"
+        "to_abroad",
+        "job_type"
     ];
 }

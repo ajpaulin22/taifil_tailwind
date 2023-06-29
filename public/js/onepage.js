@@ -2357,7 +2357,25 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
     
     });
 
-   
+    const swiper_departure = new Swiper.Swiper('.departure',{
+      direction: 'horizontal',
+      loop: true,
+      slidesPerView: 3,
+      centeredSlides: true,
+      spaceBetween: 30,
+      grabCursor: true,
+      pagination: {
+          el: '.departure-pagi',
+          type: "progressbar",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.departure-next',
+          prevEl: '.departure-prev',
+        },
+        
+
+  });
 
   });
 

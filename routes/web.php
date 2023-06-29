@@ -81,6 +81,12 @@ Route::group(["prefix"=>"client"],function(){
             return view('pages.qualification',["id"=>$request->data]);
         });
     });
+
+    Route::group(["prefix" => "jobcategory"],function(){
+        Route::get("/",function(Request $request){
+            return view('pages.jobcategory',["id"=>$request->data]);
+        });
+    });
 });
 
 Route::group(["middleware" => "auth","prefix" => "admin"],function(){

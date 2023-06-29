@@ -18,7 +18,7 @@
                 </div>
                 <div class="p-5">
                     <div class="banner shadow-5xl">
-                        <a href="{{'/client/gallery?cat='.$data[0]['content']}}" class="py-1 px-4 bg-sky-400 rounded-full text-slate-700 hover:scale(200) hover:text-white hover:ring-2 hover:ring-sky-800 ">{{$data[0]['category']}}</a>
+                        <a href="{{'/client/gallery?cat='.$data[0]['category']}}" class="py-1 px-4 bg-sky-400 rounded-full text-slate-700 hover:scale(200) hover:text-white hover:ring-2 hover:ring-sky-800 ">{{$data[0]['category']}}</a>
                     </div>
                     <div class="title my-5">
                         <h1 class="text-2xl font-semibold ">{{$data[0]['title']}}</h1>

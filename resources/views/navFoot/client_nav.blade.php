@@ -26,7 +26,7 @@
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
-                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/Biodata?data=TITP">Job Category</a>
+                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/jobcategory?data=TITP">Job Category</a>
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
@@ -46,7 +46,7 @@
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
-                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/Biodata?data=TITP">Job Category</a>
+                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/jobcategory?data=SSW">Job Category</a>
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
@@ -67,7 +67,7 @@
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
-                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/Biodata?data=TITP">Job Category</a>
+                        <a class="w-full h-full block py-4 px-4 text-sm" href="/client/jobcategory?data=Direct">Job Category</a>
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">

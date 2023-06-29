@@ -2433,19 +2433,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
     })
 
     const swiper = new Swiper.Swiper('.swiper',{
-        direction: 'horizontal',
         loop: true,
         pagination: {
             el: '.swiper-pagination',
+            type: "progressbar",
           },
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           },
-          effect: 'fade',
-         fadeEffect: {
-           crossFade: true
-         },
+          
 
     });
     console.log(swiper)
