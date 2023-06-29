@@ -79,7 +79,7 @@ class PostController extends Controller
         
           
          DB::commit();
-         return redirect("/client/gallery");
+         return redirect()->route('gallery');
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollBack();

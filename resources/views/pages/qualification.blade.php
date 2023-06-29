@@ -50,6 +50,11 @@
                 <li>✅Long Brown Envelope
                 </li>
                 <li>✅1x1 picture (White Background)</li>
+                @if($id == "SSW")
+                <li>✅Prometric Test Result
+                </li>
+                <li>✅JLPT N4 or JFT Certificate</li>
+                @endif
             </ul>
             <p><b>FOR EX-TRAINEES of JAPAN </b>, below are the <b><u>Additional requirements</u></b>  needed:</p>
             <ul class="ml-5 my-5">

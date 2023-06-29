@@ -13,17 +13,17 @@
                     <img src="{{url("images/target-segment.svg")}}" alt="">
                     <span class="font-semibold text-xl self-center">Target Segment</span>
                 </div>
-                <p class="text-sm my-2">Accepts foreign nationals (18 years old or above) with considerable degree of knowledge or experience belonging to a specific sector. For more information on How to work as SSW</p>
+                <p class="text-sm my-2">Accepts foreign nationals (18 years old or above) with considerable degree of knowledge or experience belonging to a specific sector.</p>
                 <div class="flex gap-5 border-b-4 border-sky-800 pb-2">
                     <img src="{{url("images/jap-lang.svg")}}" alt="">
                     <span class="font-semibold text-xl self-center">Japanese language level required</span>
                 </div>
-                <p class="text-sm my-2">Proficiency in Japanese language required in daily life and at the workplace needs to be confirmed by Japanese language exams. Those who have completed three years in Technical Intern Training are exempted from the exams. For more information</p>
+                <p class="text-sm my-2">have the necessary occupational skills and Japanese language ability to work immediately without receiving any particular training. Skills and Japanese proficiency will be confirmed by a unified test conducted by Japan</p>
                 <div class="flex gap-5 border-b-4 border-sky-800 pb-2">
                     <img src="{{url("images/periodofstay.svg")}}" alt="">
                     <span class="font-semibold text-xl self-center">Period of stay</span>
                 </div>
-                <p class="text-sm my-2">No duration restrictions. You can bring your family to Japan.</p>
+                <p class="text-sm my-2">you can work for up to 5 years in total, but you cannot bring your family. In addition, the major difference from other status of residence to work in Japan is a support system. You can receive a wide range of support for life and work from your employer while you are in Japan, from the time you arrive to leave for your home country</p>
             </div>
             <div class="hidden md:block">
                 <img src="{{url("images/Checklist.jpg")}}" alt="">
@@ -38,8 +38,11 @@
                     <img src="{{url("images/skill.svg")}}" alt="">
                     <span class="font-semibold text-xl self-center">Skill standards required</span>
                 </div>
-                <p class="text-sm my-2">The skill level is confirmed by sector-specific skill exams. Those who have completed three years in Technical Intern Training in the same sector are exempted from exams. For more information,</p>
+                <p class="text-sm my-2">Those who have satisfactory completed Technical Intern Training are able to switch their status of residence to SSW in the same field without taking occupational skill exams and Japanese proficiency tests,</p>
+                <p class="text-end italic">source: <a href="https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/" class="text-blue-500 underline">https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/</a> 
+                </p>
             </div>
+            
 
         </div>
     </div>

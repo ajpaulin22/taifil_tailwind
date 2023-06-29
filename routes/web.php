@@ -1,5 +1,8 @@
 <?php
 
+use Carbon\Carbon;
+use App\Models\post;
+use App\Models\image;
 use Illuminate\Http\Request;
 use Illuminate\Auth\RequestGuard;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +27,19 @@ use App\Http\Controllers\MasterMaintenance\UserInformationController;
 */
 
 Route::get('/', function () {
-     return view('welcome');
+    $posts = post::select()->where("isdeleted",0)->orderby('id','desc')->limit(3)->get();
+                $data = $posts->map(function($post,$key){
+                    return [
+                        "id" => $post->id,
+                        "title" => $post->title,
+                        "content" => $post->content,
+                        "category" => $post->category,
+                        "date" => date('m/d/Y' ,strtotime($post->created_at)),
+                        "time" => Carbon::parse($post->created_at)->format('g:i a'),
+                        "images" => image::select('path')->where("post_id",$post->id)->limit(1)->get()->toArray()
+                    ];
+                });
+     return view('welcome',['data'=>$data]);
 });
 
 Route::get('/admin', function(){
@@ -55,7 +70,7 @@ Route::group(["prefix"=>"client"],function(){
     });
 
     Route::group(["prefix" => "gallery"],function(){
-        Route::get("/",[PostController::class,"view"]);
+        Route::get("/",[PostController::class,"view"])->name('gallery');
         Route::get("/create-post",[PostController::class,"create_post"]);
         Route::post("/create",[PostController::class,"create"]);
         Route::get("/post",[PostController::class,"post"]);

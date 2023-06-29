@@ -73,7 +73,7 @@
                 <input name="age" autocomplete="off" type="number" class="form-control" id="age">
             </div>
             <div class="form-group col-span-1">
-                <label for="personal_lastname" class="form-label">Blood Type<span style="color:red">*</span>:</label>
+                <label for="personal_lastname" class="form-label">Blood Type:</label>
                 <select name="blood_type" class="form-select">
                     <option value="" selected disabled value>Choose....</option>
                     <option value="AB+">AB+</option>
@@ -84,6 +84,7 @@
                     <option value="B-">B-</option>
                     <option value="O+">O+</option>
                     <option value="O-">O-</option>
+                    <option value="O-">N/A</option>
                 </select>
             </div>
             <div class="form-group col-span-1">
