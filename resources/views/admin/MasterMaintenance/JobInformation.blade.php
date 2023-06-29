@@ -21,7 +21,7 @@ Job Information
                 </div>
             </div>
             <div class="panel-body">
-                <div class="row">
+                <div class="row mb-2" >
                     <div class="col-sm-4">
                         <button type="button" id="btnAddCodes" class="btn btn-sm btn-info btn-block" style="width: 90%; margin: auto;"><span class="fa fa-plus"></span><span class="btnLabel">Add</span></button>
                     </div>

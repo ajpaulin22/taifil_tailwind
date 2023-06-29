@@ -93,6 +93,8 @@ Route::group(["middleware" => "auth","prefix" => "admin"],function(){
         Route::group(["prefix" => "JobInformation"],function(){
             Route::get("/",[JobInformationController::class,"view"]);
             Route::get("/GetJobCode",[JobInformationController::class,'GetJobCode']);
+            Route::get("/GetJobCategory",[JobInformationController::class,'GetJobCategory']);
+            Route::get("/GetJobOperation",[JobInformationController::class,'GetJobOperation']);
         });
 
         Route::group(["prefix" => "UserInformation"],function(){
