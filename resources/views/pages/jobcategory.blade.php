@@ -1,3 +1,7 @@
+
+@section('title')
+    Job Category
+@endsection
 @extends('layout.client')
 @section('content')
 <nav class="py-2 px-1 md:px-10 md:py-5 bg-green-500 " aria-label="Breadcrumb">

@@ -39,8 +39,24 @@ Route::get('/', function () {
                         "images" => image::select('path')->where("post_id",$post->id)->limit(1)->get()->toArray()
                     ];
                 });
-     return view('welcome',['data'=>$data]);
-});
+
+     $departure = [
+        "january" => 21,
+        "february" => 12,
+        "march" => 23,
+        "april" => 10,
+        "may" => 14,
+        "june" => 16,
+        "july" => 1,
+        "august" => 0,
+        "september" => 0,
+        "october" => 0,
+        "november" => 0,
+        "december" => 0,
+
+     ];
+     return view('welcome',['data'=>$data, "departure" => $departure]);
+})->name('home');
 
 Route::get('/admin', function(){
     if(Auth::check()){
@@ -48,7 +64,7 @@ Route::get('/admin', function(){
     }else{
         return redirect('/auth/login');
     }
-})->name("admin");
+})->name('admin');
 
 Route::group(['middleware' => 'guest','prefix'=>'auth'],function(){
     Route::get('/login',[AuthController::class,'loginView']);
@@ -71,9 +87,10 @@ Route::group(["prefix"=>"client"],function(){
 
     Route::group(["prefix" => "gallery"],function(){
         Route::get("/",[PostController::class,"view"])->name('gallery');
-        Route::get("/create-post",[PostController::class,"create_post"]);
-        Route::post("/create",[PostController::class,"create"]);
+        Route::get("/create-post",[PostController::class,"create_post"])->middleware("auth");
+        Route::post("/create",[PostController::class,"create"])->middleware("auth");
         Route::get("/post",[PostController::class,"post"]);
+        Route::get("/delete",[PostController::class,"delete"])->middleware("auth");
     });
 
     Route::group(["prefix" => "qualification"],function(){
@@ -95,7 +112,7 @@ Route::group(["middleware" => "auth","prefix" => "admin"],function(){
         Route::get("/get_data",[ManagementRegistrationController::class,'get_data']);
     });
 
-    Route::group(["prefix" => "MasterMaintenance"],function(){
+    Route::group(["middleware" => "auth","prefix" => "MasterMaintenance"],function(){
         Route::group(["prefix" => "JobInformation"],function(){
             Route::get("/",[JobInformationController::class,"view"]);
             Route::get("/GetJobCode",[JobInformationController::class,'GetJobCode']);
@@ -103,7 +120,7 @@ Route::group(["middleware" => "auth","prefix" => "admin"],function(){
             Route::get("/GetJobOperation",[JobInformationController::class,'GetJobOperation']);
         });
 
-        Route::group(["prefix" => "UserInformation"],function(){
+        Route::group(["middleware" => "auth","prefix" => "UserInformation"],function(){
             Route::get("/",[UserInformationController::class,"view"]);
         });
     });

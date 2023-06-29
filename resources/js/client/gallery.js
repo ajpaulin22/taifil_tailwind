@@ -89,14 +89,7 @@
           }
     });
     $("#create_form").on("submit",function(e){
-        e.preventDefault();
         let formData = new FormData(this);
-        // let TotalFiles = $('#pictures')[0].files.length; //Total files
-        // let files = $('#pictures')[0];
-        // for (let i = 0; i < TotalFiles; i++) {
-        // formData.append('files' + i, files.files[i]);
-        // }
-        // formData.append('TotalFiles', TotalFiles);
         if($("#create_form").valid()){
             $.ajax({
                 url:"/client/gallery/create",
@@ -106,7 +99,8 @@
                 contentType:false,
                 processData:false,
                 succcess:function(promise){
-
+                    console.log(promise)
+                    window.location.href = "http://stackoverflow.com";
                 }
             })
         }
@@ -126,7 +120,8 @@
           
 
     });
-    console.log(swiper)
+
+
 
 
     });

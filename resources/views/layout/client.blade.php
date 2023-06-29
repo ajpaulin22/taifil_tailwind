@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     @stack('meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="icon" type="image/png" href="/images/favicon.ico">
     <title>@yield('title') | Taifil</title>
 
     <!-- Fonts -->
@@ -24,6 +24,7 @@
     </main>
 
     @include('navFoot.client_foot')
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="{{asset("js/app.js")}}"></script>
     @stack('scripts')
 </body>

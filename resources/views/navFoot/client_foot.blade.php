@@ -13,7 +13,7 @@
                   <ul class="list-unstyled">  
                     <li class="py-2 text-gray-200"><i class="fa fa-phone"></i> Phone:<a href="Tel:+02-8511-7381" class="text-white"> 02-8511-7381</a> </li> 
                     <hr>
-                    <li class="py-2 text-gray-200"><i class="fa fa-envelope"></i> Email:<a href="mailto:taifilmanpower.application.sc@gmail.com" class="text-white"><br> taifilmanpower.application.sc@gmail.com</a> </li>  
+                    <li class="py-2 text-gray-200"><i class="fa fa-envelope"></i> Email:<a href="mailto:taifilmanpower.application.sc@gmail.com" class="text-white text-xs"><br> taifilmanpower.application.sc@gmail.com</a> </li>  
                   </ul>  
                 </div>  
               </div>
@@ -35,22 +35,13 @@
               </div>
               <div class="col-md-3">  
                 <h4 class="text-gray-200 text-lg md:text-2xl font-bold"> Follow Us </h4>  
-                <ul class="list-group list-group-horizontal">
-                  <li class="list-group-item">
-                    <a href="https://www.facebook.com/profile.php?id=100072207240998">
-                      <i class="icon-inline icon-chevron-right"></i>
+                <ul class="list-group grid grid-cols-3 gap-5">
+                  <li class="list-group-item mt-2 col-span-1 text-center ">
+                    <a href="https://www.facebook.com/taifilmanpowerservicescorp/" class="w-14 bg-white block p-4 rounded-lg text-center ">
+                      <svg class="h-5 w-6 text-blue-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
                     </a>
                   </li>
-                  <li class="list-group-item">
-                    <a href="#">
-                      <i class="fab fa-linkedin"> </i>
-                    </a>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="">
-                      <i class="fab fa-twitter" aria-hidden="true"> </i>
-                    </a>
-                  </li>
+
                 </ul>                 
             </div>
         </div>
