@@ -31,7 +31,7 @@ class AuthController extends Controller
 
             Auth()->login($user);
 
-            return redirect("/admin");
+            return redirect("/");
         } catch (\Throwable $th) {
             throw $th;
         }

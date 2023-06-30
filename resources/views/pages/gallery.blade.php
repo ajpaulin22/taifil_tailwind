@@ -54,11 +54,11 @@
             <hr>
         </div>
         <div class="w-full">
-            @auth
+            @admin
             <div class="">
                 <a href="/client/gallery/create-post" class="py-2 px-4 border border-green-500 rounded shadow-lg hover:bg-green-500 hover:border-green-900 hover:text-white ">Create Post</a>
             </div>
-            @endauth
+            @endadmin
             @foreach ($posts as $post)
             <x-post_card id="{{$post['id']}}" title="{{$post['title']}}" content="{{$post['content']}}" cat="{{$post['category']}}" time="{{$post['time']}}" date="{{$post['date']}}" image="{{count($post['images']) > 0 ? $post['images'][0]['path'] :'' }}" />
             @endforeach

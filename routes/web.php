@@ -87,10 +87,10 @@ Route::group(["prefix"=>"client"],function(){
 
     Route::group(["prefix" => "gallery"],function(){
         Route::get("/",[PostController::class,"view"])->name('gallery');
-        Route::get("/create-post",[PostController::class,"create_post"])->middleware("auth");
-        Route::post("/create",[PostController::class,"create"])->middleware("auth");
+        Route::get("/create-post",[PostController::class,"create_post"])->middleware("admin");
+        Route::post("/create",[PostController::class,"create"])->middleware("admin");
         Route::get("/post",[PostController::class,"post"]);
-        Route::get("/delete",[PostController::class,"delete"])->middleware("auth");
+        Route::get("/delete",[PostController::class,"delete"])->middleware("admin");
     });
 
     Route::group(["prefix" => "qualification"],function(){
@@ -106,13 +106,13 @@ Route::group(["prefix"=>"client"],function(){
     });
 });
 
-Route::group(["middleware" => "auth","prefix" => "admin"],function(){
+Route::group(["middleware" => "admin","prefix" => "admin"],function(){
     Route::group(["prefix" => "ManagementRegistration"],function(){
         Route::get("/",[ManagementRegistrationController::class,'view']);
         Route::get("/get_data",[ManagementRegistrationController::class,'get_data']);
     });
 
-    Route::group(["middleware" => "auth","prefix" => "MasterMaintenance"],function(){
+    Route::group(["middleware" => "admin","prefix" => "MasterMaintenance"],function(){
         Route::group(["prefix" => "JobInformation"],function(){
             Route::get("/",[JobInformationController::class,"view"]);
             Route::get("/GetJobCode",[JobInformationController::class,'GetJobCode']);
@@ -120,7 +120,7 @@ Route::group(["middleware" => "auth","prefix" => "admin"],function(){
             Route::get("/GetJobOperation",[JobInformationController::class,'GetJobOperation']);
         });
 
-        Route::group(["middleware" => "auth","prefix" => "UserInformation"],function(){
+        Route::group(["middleware" => "admin","prefix" => "UserInformation"],function(){
             Route::get("/",[UserInformationController::class,"view"]);
         });
     });

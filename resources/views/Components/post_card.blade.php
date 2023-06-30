@@ -3,9 +3,9 @@
 <div class="p-5 bg-white border-green-700 border-2 rounded shadow-md my-5 h-80 overflow-hidden">
     <div class="title flex justify-between">
         <h1 class="text-3xl font-bold uppercase">{{$title}}</h1>
-        @auth
+        @admin
         <a href="/client/gallery/delete?id={{$id}}" class="delete_post text-red-600 font-bold">x</a>
-        @endauth
+        @endadmin
     </div>
     
     <div class="tab_details flex gap-5 text-sm font-thin text-gray-400 my-3">

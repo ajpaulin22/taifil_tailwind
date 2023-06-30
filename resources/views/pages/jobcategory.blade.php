@@ -32,7 +32,7 @@
 </nav>
     <section class="md:grid grid-cols-7 gap-4 mx-2 md:mx-auto max-w-7xl my-5">
         <div class="hidden col-span-1 md:block">
-            yeahhh
+            <button>click me</button>
         </div>
         <div class="md:grid grid-cols-3 gap-5 col-span-6">
 
@@ -60,7 +60,7 @@
 
             @if ($id == "Direct")
             <x-card_job require="FEMALE/ MALE,20-35 years old,No Tattoos,At least High School graduate or Senior High School graduate,Ex-Trainees (TITP) are welcome to apply,Physically and Mentally fit,With JLPT N2 or N1" job="translator" category="{{$id}}"/>
-            <x-card_job require="FEMALE,22-35 years old,No Tattoos,At least High School graduate or Senior High School graduate,Ex-Trainees (TITP) are welcome to apply,Physically and Mentally fit,With NCII Domestic Work is an advantage,With JLPT N4 or NAT 4Q is an advantage,Willing to undergo Japanese Language Training" job="" category="{{$id}}"/>
+            <x-card_job require="FEMALE,22-35 years old,No Tattoos,At least High School graduate or Senior High School graduate,Ex-Trainees (TITP) are welcome to apply,Physically and Mentally fit,With NCII Domestic Work is an advantage,With JLPT N4 or NAT 4Q is an advantage,Willing to undergo Japanese Language Training" job="housekeeper" category="{{$id}}"/>
             @endif
         </div>
     </section>

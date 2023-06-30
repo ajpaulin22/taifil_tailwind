@@ -21,6 +21,6 @@ class admin
         if($admin != 1){
             return redirect("/");
         }
-        return redirect($request->requestUri);
+        return $next($request);
     }
 }
