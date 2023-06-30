@@ -118,7 +118,7 @@ Job Information
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width:80px;" id="lblCode"> Code <span class="text-danger"> *</span></label>
                                 </div>
-                                <input type="text" id="CodeValue" name="CodeValue" class="form-control input Value" data-parsley-required data-parsley-maxlength="20" data-parsley-errors-container="#err-CodeValue" autocomplete="off" maxlength="20">
+                                <input type="text" id="CodeValue" name="CodeValue" class="form-control input Value" data-parsley-required data-parsley-errors-container="#err-CodeValue" autocomplete="off">
                                 <input type="hidden" id="CodeID" name="CodeID" class="form-control input ID" data-parsley-errors-container="#err-CodeID">
                             </div>
                             <div id="err-CodeValue"></div>
@@ -164,7 +164,7 @@ Job Information
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width:80px;" id="lblCode"> Category <span class="text-danger"> *</span></label>
                                 </div>
-                                <input type="text" id="CategoryValue" name="CategoryValue" class="form-control input" data-parsley-required data-parsley-maxlength="20" data-parsley-errors-container="#err-CategoryValue" autocomplete="off" maxlength="20">
+                                <input type="text" id="CategoryValue" name="CategoryValue" class="form-control input" data-parsley-required data-parsley-errors-container="#err-CategoryValue" autocomplete="off">
                                 <input type="hidden" id="CategoryID" name="CategoryID" class="form-control input ID" data-parsley-errors-container="#err-CategoryID" value="0">
                             </div>
                             <div id="err-CategoryValue"></div>
@@ -210,7 +210,7 @@ Job Information
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width:80px;" id="lblOperation"> Operation <span class="text-danger"> *</span></label>
                                 </div>
-                                <input type="text" id="OperationValue" name="OperationValue" class="form-control input" data-parsley-required data-parsley-maxlength="20" data-parsley-errors-container="#err-OperationValue" autocomplete="off" maxlength="20">
+                                <input type="text" id="OperationValue" name="OperationValue" class="form-control input" data-parsley-required data-parsley-errors-container="#err-OperationValue" autocomplete="off">
                                 <input type="hidden" id="OperationID" name="OperationID" class="form-control input ID" data-parsley-errors-container="#err-CategoryID" value="0">
                             </div>
                             <div id="err-OperationValue"></div>
