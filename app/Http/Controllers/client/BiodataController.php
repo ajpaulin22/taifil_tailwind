@@ -43,7 +43,7 @@ class BiodataController extends Controller
             "gender" => $request->personal["gender"],
             "citizenship" => $request->personal["citizenship"],
             "age" => (int) $request->personal["age"],
-            "bloodtype" => $request->personal["blood_type"],
+            "bloodtype" => isset($request->personal["blood_type"])?$request->personal["blood_type"]:'N/A',
             "civil_status" => $request->personal["civil_status"],
             "contact" => (int) $request->personal["contact"],
             "height" => (int) $request->personal["height"],
@@ -332,7 +332,7 @@ class BiodataController extends Controller
                 ];
             }
 
-            return redirect("/")->with('message', $data);
+            
             
         } catch (\Throwable $th) {
             $data = [
@@ -343,6 +343,7 @@ class BiodataController extends Controller
                 'msgTitle' => 'Error!'
             ];
         }
+        return response()->json($data);
     }
 
     public function get_code(Request $request){

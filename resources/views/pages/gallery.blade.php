@@ -40,15 +40,16 @@
             <div class="text-2xl font-bold mb-2">
                 CATEGORIES
             </div>
-            <div class="p-2">
-                <a href="/client/gallery" class="hover:text-sky-800">All</a>
+            <div class="p-2 {{(!isset($cat) ? 'bg-green-100' : '' )}}">
+                <a href="/client/gallery" class="hover:text-sky-800 ">All</a>
             </div>
+
             <hr>
-            <div class="p-2">
+            <div class="p-2 {{(($cat == 'events') ? 'bg-green-100' : '' )}}">
                 <a href="/client/gallery?cat=events" class="hover:text-sky-800">Event</a>
             </div>
             <hr>
-            <div class="p-2">
+            <div class="p-2 {{(($cat == 'departure') ? 'bg-green-100' : '' )}}">
                 <a href="/client/gallery?cat=departure" class="hover:text-sky-800">Departure</a>
             </div>
             <hr>

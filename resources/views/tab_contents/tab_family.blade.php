@@ -381,8 +381,8 @@
             </div>
         </div>
         <div class="self-end">
-            <button id="familyBtn_Prev" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white"><< Prev</button>
-            <button id="familyBtn_Next" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white">Next >></button>
+            <button id="familyBtn_Prev" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white hover:bg-green-800"><< Prev</button>
+            <button id="familyBtn_Next" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white hover:bg-green-800">Next >></button>
         </div>
        
         

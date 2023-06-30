@@ -45,7 +45,7 @@ class PostController extends Controller
 
             
         $dat = "";
-        return view("pages.gallery",["posts" => $data->toArray()]);
+        return view("pages.gallery",["posts" => $data->toArray(),"cat" => $request->cat]);
         } catch (\Throwable $th) {
             //throw $th;
         }

@@ -6,6 +6,7 @@
     @include('onepage.about')
     @include('onepage.ttip')
     @include('onepage.ssw')
+    @include('onepage.direct')
     @include('onepage.post')
     @include('onepage.inquiry')
 @endsection

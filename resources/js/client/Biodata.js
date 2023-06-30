@@ -211,7 +211,12 @@
                 dataType:"JSON",
                 success:function(promise){
                       console.log(promise)
-                      self.saveid(promise.id);
+                      if(promise.success){
+                        self.saveid(promise.id);
+                      }else{
+                        console.log(promise.msgTitle)
+                      }
+                      
                 }
 
             })
@@ -289,7 +294,12 @@
                 contentType:false,
                 processData:false,
                 success:function(promise){
-    
+                    if(promise.success){
+                        setTimeout(() => {
+                            location.replace("/")
+                        }, 5000);
+                    }
+                    console.log(promise.msgTitle)
                 }
             })
         }
@@ -319,13 +329,18 @@
            const target = $(tab)[0].dataset.tabTarget
             $("[data-tab-content]").toArray().forEach((content)=>{
                 $(content).addClass("hidden")
+                
             })
             $("[data-tab-target]").toArray().forEach((content)=>{
                 $(content).removeClass("bg-green-800")
-                $(content).addClass("bg-green-500")
+                $(content).addClass("bg-green-300")
+                $(content).removeClass("text-white")
+                $(content).addClass("text-black")
+                
             })
 
             $(tab).addClass('bg-green-800')
+            $(tab).addClass("text-white")
            $(target).removeClass("hidden");
         });
     });
@@ -1239,12 +1254,34 @@
           }
     });
 
-
-     $("#upload_form").on("submit",function(e){
+    const options = {
+        placement: 'bottom-right',
+        backdrop: 'dynamic',
+        backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+        closable: true,
+      };
+    let modal = new flowbite.Modal($("#popup-modal")[0],options);
+    
+    $(".close_send").on("click",function(e){
         e.preventDefault();
-        $("#upload_form").valid();
-        biodata.upload = new FormData(this)
-     })
+        modal.hide();
+    })
+    $("#send").on("click",function(e){
+        e.preventDefault();
+
+        $("div").append("<x-alert message='success' type='warning' />")
+        // if($("#upload_form").valid()){
+        //     modal.show();
+        //     biodata.upload = new FormData($("#upload_form")[0])
+        // }
+        
+    });
+
+    $("#upload_details").on("click",function(){
+        biodata.uploadData()
+        modal.hide();
+    })
+
 
      $("#uploadBtn_Prev").on("click",function(e){
         e.preventDefault();
