@@ -1,8 +1,12 @@
+
 <div class="">
     <div class="block my-3 md:hidden text-center border-b border-green-600">
         <label class="text-xl  font-bold pb-4">Personal Data</label>
     </div>
     <form action="" id="personal_form" class="flex flex-col">
+        <div class="form-group" hidden>
+            <input name="job_type" autocomplete="off" type="text" class="form-control" value="{{$biodata}}">
+        </div>
         <div class="md:grid grid-cols-4 gap-4">
             <div class="form-group col-span-1">
                 <label for="personal_lastname" class="form-label">Code<span style="color:red">*</span>:</label>
@@ -73,7 +77,7 @@
                 <input name="age" autocomplete="off" type="number" class="form-control" id="age">
             </div>
             <div class="form-group col-span-1">
-                <label for="personal_lastname" class="form-label">Blood Type<span style="color:red">*</span>:</label>
+                <label for="personal_lastname" class="form-label">Blood Type:</label>
                 <select name="blood_type" class="form-select">
                     <option value="" selected disabled value>Choose....</option>
                     <option value="AB+">AB+</option>
@@ -84,6 +88,7 @@
                     <option value="B-">B-</option>
                     <option value="O+">O+</option>
                     <option value="O-">O-</option>
+                    <option value="O-">N/A</option>
                 </select>
             </div>
             <div class="form-group col-span-1">

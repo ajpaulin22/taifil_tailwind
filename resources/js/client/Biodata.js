@@ -77,9 +77,6 @@
                     age:{
                         required: true,
                     },
-                    blood_type:{
-                        required: true,
-                    },
                     civil_status:{
                         required: true,
                     },

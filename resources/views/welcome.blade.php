@@ -2,6 +2,7 @@
 
 @section('content')
     @include('onepage.hero')
+    @include('onepage.departure')
     @include('onepage.about')
     @include('onepage.ttip')
     @include('onepage.ssw')

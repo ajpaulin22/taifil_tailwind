@@ -72,6 +72,7 @@ class BiodataController extends Controller
             "drivers_licensed" =>  $request->personal["licensed"] == "1" ? true : false,
             "type_licensed" => isset($request->personal["type_licensed"]) ? $request->personal["type_licensed"] : null,
             "valid_licensed" => isset($request->personal["licensed_until"]) ? date('Y-m-d H:i:s', strtotime($request->personal["licensed_until"])) : null,
+            "job_type" => $request->personal["job_type"],
             "created_at" => date('Y-m-d H:i:s'),
             "updated_at" => date('Y-m-d H:i:s')
         ]);

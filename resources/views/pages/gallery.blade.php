@@ -1,6 +1,17 @@
 
 
 
+
+
+
+<div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 2000)">
+    @if (session()->has('message'))
+        <x-success_toast message="{{ session()->get('message') }}"/>
+    @endif
+</div>
+@section('title')
+    Gallery
+@endsection
 @extends('layout.client')
 @section('content')
 <nav class="px-10 py-5 bg-green-500" aria-label="Breadcrumb">
@@ -43,10 +54,11 @@
             <hr>
         </div>
         <div class="w-full">
+            @admin
             <div class="">
                 <a href="/client/gallery/create-post" class="py-2 px-4 border border-green-500 rounded shadow-lg hover:bg-green-500 hover:border-green-900 hover:text-white ">Create Post</a>
             </div>
-    
+            @endadmin
             @foreach ($posts as $post)
             <x-post_card id="{{$post['id']}}" title="{{$post['title']}}" content="{{$post['content']}}" cat="{{$post['category']}}" time="{{$post['time']}}" date="{{$post['date']}}" image="{{count($post['images']) > 0 ? $post['images'][0]['path'] :'' }}" />
             @endforeach

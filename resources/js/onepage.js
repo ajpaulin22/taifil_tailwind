@@ -19,7 +19,7 @@
 
   var onepage = new Onepage();
   $(document).ready(function(){
-    const swiper = new Swiper.Swiper('.swiper', {
+    const swiper = new Swiper.Swiper('.hero', {
       direction: 'horizontal',
       loop: true,
       autoplay: {
@@ -31,14 +31,27 @@
            crossFade: true
          },
          navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          nextEl: '.hero-next',
+          prevEl: '.hero-prev',
         },
       
     
     });
 
-   
+    const swiper_departure = new Swiper.Swiper('.departure',{
+      direction: 'horizontal',
+       loop: true,
+       autoplay: {
+        delay: 1000,
+        disableOnInteraction:false
+      },
+       slidesPerView: 3,
+       centeredSlides: true,
+       spaceBetween: 10,
+
+        
+
+  });
 
   });
 

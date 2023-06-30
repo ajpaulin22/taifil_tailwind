@@ -6174,9 +6174,12 @@ input[type='number']::-webkit-outer-spin-button,
 .ml-2 {
   margin-left: 0.5rem;
 }
+<<<<<<< HEAD
+=======
 .ml-3 {
   margin-left: 0.75rem;
 }
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
 .ml-5 {
   margin-left: 1.25rem;
 }
@@ -7239,6 +7242,25 @@ input[type='number']::-webkit-outer-spin-button,
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
+<<<<<<< HEAD
+.icon-inline {
+  font-family: "Font Awesome 5 Free";
+  vertical-align: middle;
+}
+.icon-duotone.icon-inline,.icon-duotone::before,.icon-duotone::after {
+  font-family: "Font Awesome 5 Duotone";
+}
+.icon-brands.icon-inline,.icon-brands::before,.icon-brands::after {
+  font-family: "Font Awesome 5 Brands";
+}
+.icon-chevron-right::before {
+  content: "\f054";
+}
+.icon-chevron-right::after {
+  content: "\f054";
+}
+=======
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
 .icon-info::before {
   content: "\f129";
 }
@@ -7367,42 +7389,74 @@ input[type='number']::-webkit-outer-spin-button,
   background-color: rgb(188 240 218 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:bg-green-300:hover {
+=======
   .hover\:bg-green-300:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-bg-opacity: 1;
   background-color: rgb(132 225 188 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:bg-green-400:hover {
+=======
   .hover\:bg-green-400:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-bg-opacity: 1;
   background-color: rgb(49 196 141 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:bg-green-500:hover {
+=======
   .hover\:bg-green-500:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-bg-opacity: 1;
   background-color: rgb(14 159 110 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:bg-green-700:hover {
+=======
   .hover\:bg-green-700:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-bg-opacity: 1;
   background-color: rgb(4 108 78 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:bg-green-800:hover {
+=======
   .hover\:bg-green-800:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-bg-opacity: 1;
   background-color: rgb(3 84 63 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:bg-slate-200:hover {
+=======
   .hover\:bg-slate-200:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-bg-opacity: 1;
   background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:bg-white:hover {
+=======
   .hover\:bg-white:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:text-black:hover {
+=======
   .hover\:text-black:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
@@ -7412,42 +7466,74 @@ input[type='number']::-webkit-outer-spin-button,
   color: rgb(28 100 242 / var(--tw-text-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:text-blue-800:hover {
+=======
   .hover\:text-blue-800:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-text-opacity: 1;
   color: rgb(30 66 159 / var(--tw-text-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:text-gray-600:hover {
+=======
   .hover\:text-gray-600:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:text-gray-900:hover {
+=======
   .hover\:text-gray-900:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:text-green-500:hover {
+=======
   .hover\:text-green-500:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-text-opacity: 1;
   color: rgb(14 159 110 / var(--tw-text-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:text-green-600:hover {
+=======
   .hover\:text-green-600:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-text-opacity: 1;
   color: rgb(5 122 85 / var(--tw-text-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:text-sky-800:hover {
+=======
   .hover\:text-sky-800:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-text-opacity: 1;
   color: rgb(7 89 133 / var(--tw-text-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:text-white:hover {
+=======
   .hover\:text-white:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+<<<<<<< HEAD
+.hover\:shadow-inner:hover {
+=======
   .hover\:shadow-inner:hover {
+>>>>>>> b03095f6ed9285e266e03b2cbde5dccecaa7413b
   --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);

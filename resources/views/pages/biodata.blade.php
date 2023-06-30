@@ -1,5 +1,7 @@
 
-
+@section('title')
+    Biodata
+@endsection
 @push('meta')
     <meta content="{{$biodata}}" name="biodata_type" />
 @endpush
@@ -35,7 +37,7 @@
 </nav>
     <div class="mx-2 md:mx-auto max-w-7xl my-5">
         <ul class="tabs md:flex justify-between my-2 hidden ">
-            <li data-tab-target="#personal_content" id="personal_tab" class="p-3 bg-green-800 text-white rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700 ">
+            <li data-tab-target="#personal_content" id="personal_tab" class=" p-3 bg-green-800 text-white rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700 ">
                 Personal Data
             </li>
             @if($biodata == "SSW")
@@ -43,19 +45,19 @@
                 Seminar/Certificate
             </li>
             @endif
-            <li data-tab-target="#education_content" id="education_tab" class="p-3 bg-green-500 text-white rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
+            <li data-tab-target="#education_content" id="education_tab" class="pointer-events-none p-3 bg-green-500 text-white rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
                 Educational Background
             </li>
-            <li data-tab-target="#emp_local_content" id="job_local_tab" class="p-3 bg-green-500 text-white rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
+            <li data-tab-target="#emp_local_content" id="job_local_tab" class="pointer-events-none p-3 bg-green-500 text-white rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
                 Employment Record(local)
             </li>
-            <li data-tab-target="#emp_abroad_content" id="job_abroad_tab" class="p-3 bg-green-500 text-white rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
+            <li data-tab-target="#emp_abroad_content" id="job_abroad_tab" class="pointer-events-none p-3 bg-green-500 text-white rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
                 Employment Record(Abroad)
             </li>
-            <li data-tab-target="#family_content" id="family_tab" class="p-3 bg-green-500 text-white rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
+            <li data-tab-target="#family_content" id="family_tab" class="pointer-events-none p-3 bg-green-500 text-white rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
                 Family Information
             </li>
-            <li data-tab-target="#upload_content" id="upload_tab" class="p-3 bg-green-500 text-white rounded-md  shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
+            <li data-tab-target="#upload_content" id="upload_tab" class="pointer-events-none p-3 bg-green-500 text-white rounded-md  shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
                 Upload ID
             </li>
         </ul>

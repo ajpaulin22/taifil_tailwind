@@ -79,14 +79,14 @@ class PostController extends Controller
         
           
          DB::commit();
-         return redirect("/client/gallery");
+         
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollBack();
             return redirect("/client/gallery")->with('message',$th->getMessage());
         }
 
-        
+        return response()->json(["data"=>true]);
     }
 
     public function post(Request $request){
@@ -111,5 +111,15 @@ class PostController extends Controller
             //throw $th;
         }
         return view("pages.post",["data"=>$data->toArray(),"next"=>$nextpost,"prev"=>$prevpost]);
+    }
+
+    public function delete(Request $request){
+        $data = post::find($request->id);
+        $data->isdeleted = 1;
+        $data->update();
+        DB::table("images")->where("post_id",$request->id)->update([
+            'isdeleted' => 0
+        ]);
+        return redirect("/client/gallery")->with("message","The post has been deleted");
     }
 }

@@ -7,9 +7,26 @@
             <div class="col-span-1">
                 <img class="rounded" src="{{url("images/ttip.jpg")}}" alt="">
             </div>
-            <div class="col-span-1">
+            <div class="col-span-1 text-sm">
                 <div class="text-green-500 font-bold text-2xl md:text-5xl mb-10">What Is Technical Intern Training Program (TITP)?</div>
-                <p class="text-sm md:text-lg">TITP commenced in 1993 in Japan. The program aims to contribute to developing countries by accepting its people and transferring skills through On-the-job Training (OJT) in Japan. It promotes international cooperation through transfer of skills, techniques and knowledge gained by technical interns to the developing nations. This will not only contribute to the human resource development but will drive economic growth of the said regions.</p>
+                <p class="text-sm md:text-lg">The Technical Intern Training Program was established as a formal program in 1993 based on the high evaluations of training programs conducted by overseas local companies and others in the form of employee education starting in the late 1960s.
+                </p>
+                <p>The objectives and purpose of the Technical Intern Training Program are:
+                </p>
+                <ul class="list-item list-disc ml-5">
+                    <li>To transfer skills
+                    </li>
+                    <li>To transfer technologies
+                    </li>
+                    <li>Or to transfer knowledge (“Skills etc.”)
+                    </li>
+                </ul>
+                <p class="mt-5">accumulated in Japan to developing and other regions and to promote international cooperation by contributing to the development of human resources who can play roles in the economic development of those developing regions.
+                </p>
+                <p class="mt-5">The Technical Intern trainees can acquire, master, or enhance Skills etc. that would be difficult to acquire in their home countries. The training period is a maximum of five years, and acquisition of Skills etc. is conducted pursuant to technical intern training plans.
+                </p>
+                <p class="text-end ">source:<a href="https://www.jitco.or.jp/en/regulation/" class="text-blue-600 underline italic"> https://www.jitco.or.jp/en/regulation/
+                </a></p>
             </div>
             
         </div>

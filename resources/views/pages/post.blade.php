@@ -1,5 +1,8 @@
 
 
+@section('title')
+    Post
+@endsection
 @extends('layout.client')
 
 
@@ -56,7 +59,7 @@
             <div class="title">
                 <h1 class="text-2xl">{{$data[0]['title']}}</h1>
             </div>
-            <div class="tab_details flex gap-5 text-sm font-thin text-gray-400 my-3">
+            <div class="tab_details flex gap-5 text-sm font-normal text-gray-400 my-3">
                 <div class="date cursor-default">{{$data[0]['date']}}</div>
                 <div class="time cursor-default">
                     {{$data[0]['time']}}
