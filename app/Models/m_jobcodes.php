@@ -12,5 +12,10 @@ class m_jobcodes extends Model
     protected $fillable = [
         "ID"
         ,"Code"
+        ,"IsDeleted"
+        ,"CreateID"
+        ,"CreateDate"
+        ,"UpdateID"
+        ,"UpdateDate"
     ];
 }

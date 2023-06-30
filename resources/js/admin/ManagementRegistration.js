@@ -9,9 +9,6 @@
     
     $(document).ready(function(){
         drawDataTable();
-        $(".carousel").carousel({
-            interval: 2000
-        });
         $("#Code").change(function(){
             GetJobCategories();
             $("#Operations").html("");
@@ -209,109 +206,160 @@
 
     function drawDataTable(){
         
-        $("#tblManagementRegistration").DataTable({
-            "ajax": {
-                "url" : "../Applicants.json",
-                "type": "GET",
-                "datatype": "json",
-                "dataSrc": "data.Users"
-            },
-            searching: false,
-            columns: [
-                {
-                    title: "<input type='checkbox' id='CheckAllitem'/>",
-                    render: function (data, row, meta){
-                        return "<input type='checkbox' class='CheckItem text-center' value='" + meta.ID + "'>";
-                    },
-                    width: "2%", orderable: false
-                },
-                { title: 'ID', data: "ID", width: "4%", className: "dt-center"},
-                { title: 'Name', data: "Name", width: "18%"},
-                { title: 'JobCategories', data: "JobCategories", width: "17%"},
-                { title: 'Program', data: "Program", width: "6%", className: "dt-center"},
-                { 
-                    title: 'Show',
-                    render: function (data, row, meta, ){
-                        var isSelected = meta.Show == 0 ? 'selected' : '';
-                        var isSelected2 = meta.Show == 1 ? 'selected' : '';
-                        return "<select class='form-control show' id='show_"+ meta.IDrow +"' style='width:30%; height:12px; font-size: 11px;'>" +
-                                "<option value='0' "+ isSelected +"> No </option>" +
-                                "<option value='1' "+ isSelected2 +"> Yes </option>" +
-                                "</select>";
-                    },
-                    width: "5%", className: "dt-center"
-                },
-                { 
-                    title: 'InterviewDate', 
-                    render: function(data, row, meta){
-                        return "<input class='form-control inputs_"+ meta.IDrow +"' style='width:60%; height:12px; font-size: 11px;' type='date' value='"+ meta.InterviewDate +"'>"
-                    }, width:"5%", className: "dt-center"
-                },
-                { 
-                    title: 'Company', 
-                    render: function(data, row, meta){
-                        return "<input class='form-control inputs_"+ meta.IDrow +"' style='width:94%; height:12px; font-size: 11px;' type='text' value='"+ meta.Company +"'>"
-                    }, width:"25%"
-                },
-                { title: 'Age', data: "Age", width:"4%", className: "dt-center"},
-                { 
-                    title: 'To Abroad', 
-                    render: function (data, row, meta, ){
-                        var isSelected = meta.ToAbroad == 0 ? 'selected' : '';
-                        var isSelected2 = meta.ToAbroad == 1 ? 'selected' : '';
-                        return "<select class='form-control' style='width:30%; height:12px; font-size: 11px;'>" +
-                                "<option value='0' "+ isSelected +"> No </option>" +
-                                "<option value='1' "+ isSelected2 +"> Yes </option>" +
-                                "</select>";
-                    },
-                    width: "1%", className: "dt-center"
-                },
-            ],
-            order: [[1, "asc"]],
-            "columnDefs": [
-                {
-                    
-                    "orderDataType": "dom-text",
-                    "targets": [5,6]
-                 }
-            ],
-            "initComplete": function () {
-                $("#tblManagementRegistration thead #trSearch").remove();
-                var thead1 = "<tr id='trSearch'>";
-                $.each(this.api().column(0).context[0].aoColumns, function (k, v) {
-                    if (v.sName != "") {
-                        thead1 += "<th data-field='" + v.sName + "'>" + v.sTitle + "</th>";
+        if (!$.fn.DataTable.isDataTable('#tblManagementRegistration')) {
+            tblManagementRegistration = $('#tblManagementRegistration').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "/admin/MasterMaintenance/JobInformation/GetApplicantData",
+                    dataType: "JSON",
+                    type: "GET",
+                    data: function(d){
+                        d["Type"] = $("#Type").val();
+                        d["Code"] = $("#Code").val();
+                        d["JobCategories"] = $("#JobCategories").val();
+                        d["Operations"] = $("#Operations").val();
+                        d["AgeFrom"] = $("#AgeFrom").val();
+                        d["AgeTo"] = $("#AgeTo").val();
                     }
-                    else if (!$.trim(JSON.stringify(v.data))) {
-                        thead1 += "<th></th>";
-                    } else {
-                        thead1 += "<th data-field='" + v.data + "'>" + v.sTitle + "</th>";
+                },
+                deferRender: true,
+                pageLength: 10,
+                order: [
+                    [0, "desc"]
+                ],
+                lengthMenu: [
+                    [10, 20, 50, 100, 150, 200, 500, -1],
+                    [10, 20, 50, 100, 150, 200, 500, "All"]
+                ],
+                language: {
+                    aria: {
+                        sortAscending: ": activate to sort column ascending",
+                        sortDescending: ": activate to sort column descending"
+                    },
+                    emptyTable: "No data available in table",
+                    info: "Showing _START_ to _END_ of _TOTAL_ records",
+                    infoEmpty: "No records found",
+                    infoFiltered: "(filtered1 from _MAX_ total records)",
+                    lengthMenu: "Show _MENU_",
+                    search: "Search:",
+                    zeroRecords: "No matching records found",
+                    paginate: {
+                        "previous": "Prev",
+                        "next": "Next",
+                        "last": "Last",
+                        "first": "First"
                     }
-                });
-                thead1 += "</tr>";
-                $("#tblManagementRegistration thead").append(thead1);
-                $('#tblManagementRegistration thead #trSearch th').each(function () {
-                    var title = $(this).text();
-                    var field = $(this).data("field");
-                    if (field) {
-                        $(this).html("<input class='form-control form-control-sm text-center columnSearch' style='display: inline;width: 100%;height: 100%box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;border: none;' placeholder='" + title + "' type='text'/>");
-                        $('#tblManagementRegistration thead #trSearch th').each(function () {
-                            var field = $(this).data("field");
-                        });
-                    }
-                });
-            },
-        });
-    }
+                },
+                columns:[
+                            {
+                                title: "<input type='checkbox' id='CheckAllitem' />",
+                                render: function (data, row, meta){
+                                    return "<input type='checkbox' class='CheckItem text-center' value='" + meta.ID + "'>";
+                                },
+                                width: "2%"
+                            },
+                            { data: 'Code', name: 'Code' ,orderable: true, title: "Code"},
+                        ],
+            }).on('page.dt', function() {
+            });
+        }
+        return this;
 
-    function testing(){
-        $.ajax({
-            url : "",
-            type: "GET",
-            dataType: "JSON"
-        }).done(function(d){
+        // $("#tblManagementRegistration").DataTable({
             
-        });
+        //     processing: true,
+        //         serverSide: true,
+        //         ajax: {
+        //             url: "/admin/ManagementRegistration/getApplicantData",
+        //             dataType: "JSON",
+        //             type: "GET",
+        //         },
+        //     searching: false,
+        //     columns: [
+        //         {
+        //             title: "<input type='checkbox' id='CheckAllitem'/>",
+        //             render: function (data, row, meta){
+        //                 return "<input type='checkbox' class='CheckItem text-center' value='" + meta.ID + "'>";
+        //             },
+        //             width: "2%", orderable: false
+        //         },
+        //         { title: 'Name', data: "Name", width: "18%"},
+        //         { title: 'JobCategories', data: "JobCategories", width: "17%"},
+        //         { title: 'Program', data: "Program", width: "6%", className: "dt-center"},
+        //         { 
+        //             title: 'Show',
+        //             render: function (data, row, meta, ){
+        //                 var isSelected = meta.Show == 0 ? 'selected' : '';
+        //                 var isSelected2 = meta.Show == 1 ? 'selected' : '';
+        //                 return "<select class='form-control show' id='show_"+ meta.IDrow +"' style='width:30%; height:12px; font-size: 11px;'>" +
+        //                         "<option value='0' "+ isSelected +"> No </option>" +
+        //                         "<option value='1' "+ isSelected2 +"> Yes </option>" +
+        //                         "</select>";
+        //             },
+        //             width: "5%", className: "dt-center"
+        //         },
+        //         { 
+        //             title: 'InterviewDate', 
+        //             render: function(data, row, meta){
+        //                 return "<input class='form-control inputs_"+ meta.IDrow +"' style='width:60%; height:12px; font-size: 11px;' type='date' value='"+ meta.InterviewDate +"'>"
+        //             }, width:"5%", className: "dt-center"
+        //         },
+        //         { 
+        //             title: 'Company', 
+        //             render: function(data, row, meta){
+        //                 return "<input class='form-control inputs_"+ meta.IDrow +"' style='width:94%; height:12px; font-size: 11px;' type='text' value='"+ meta.Company +"'>"
+        //             }, width:"25%"
+        //         },
+        //         { title: 'Age', data: "Age", width:"4%", className: "dt-center"},
+        //         { 
+        //             title: 'To Abroad', 
+        //             render: function (data, row, meta, ){
+        //                 var isSelected = meta.ToAbroad == 0 ? 'selected' : '';
+        //                 var isSelected2 = meta.ToAbroad == 1 ? 'selected' : '';
+        //                 return "<select class='form-control' style='width:30%; height:12px; font-size: 11px;'>" +
+        //                         "<option value='0' "+ isSelected +"> No </option>" +
+        //                         "<option value='1' "+ isSelected2 +"> Yes </option>" +
+        //                         "</select>";
+        //             },
+        //             width: "1%", className: "dt-center"
+        //         },
+        //     ],
+        //     order: [[1, "asc"]],
+        //     "columnDefs": [
+        //         {
+                    
+        //             "orderDataType": "dom-text",
+        //             "targets": [5,6]
+        //          }
+        //     ],
+        //     "initComplete": function () {
+        //         $("#tblManagementRegistration thead #trSearch").remove();
+        //         var thead1 = "<tr id='trSearch'>";
+        //         $.each(this.api().column(0).context[0].aoColumns, function (k, v) {
+        //             if (v.sName != "") {
+        //                 thead1 += "<th data-field='" + v.sName + "'>" + v.sTitle + "</th>";
+        //             }
+        //             else if (!$.trim(JSON.stringify(v.data))) {
+        //                 thead1 += "<th></th>";
+        //             } else {
+        //                 thead1 += "<th data-field='" + v.data + "'>" + v.sTitle + "</th>";
+        //             }
+        //         });
+        //         thead1 += "</tr>";
+        //         $("#tblManagementRegistration thead").append(thead1);
+        //         $('#tblManagementRegistration thead #trSearch th').each(function () {
+        //             var title = $(this).text();
+        //             var field = $(this).data("field");
+        //             if (field) {
+        //                 $(this).html("<input class='form-control form-control-sm text-center columnSearch' style='display: inline;width: 100%;height: 100%box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;border: none;' placeholder='" + title + "' type='text'/>");
+        //                 $('#tblManagementRegistration thead #trSearch th').each(function () {
+        //                     var field = $(this).data("field");
+        //                 });
+        //             }
+        //         });
+        //     },
+        // });
     }
 
 })();

@@ -64,7 +64,7 @@ Management Registration
             <div class="col-sm-2 mb-2" style='width: 14.1%'>
                 <div class="form-group" style='width: 200px;'>
                     <label>Age:</label>
-                    <input type="text" class="form-control" style="width: 30%; text-align: center;"> - <input type="text" class="form-control" style="width: 30%; text-align: center;">
+                    <input type="text" id="AgeFrom" class="form-control" style="width: 30%; text-align: center;"> - <input type="text" id="AgeTo" class="form-control" style="width: 30%; text-align: center;">
                 </div>
             </div>
             <div class="col-sm-1 mb-2"> 
