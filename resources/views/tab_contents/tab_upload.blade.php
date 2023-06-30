@@ -27,8 +27,8 @@
 
 
         <div class="self-end">
-            <button id="uploadBtn_Prev" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white"><< Prev</button>
-            <button id="send" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white">SEND</button>
+            <button id="uploadBtn_Prev" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white hover:bg-green-800"><< Prev</button>
+            <button id="send" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white hover:bg-green-800">SEND</button>
         </div>
 
     </form>

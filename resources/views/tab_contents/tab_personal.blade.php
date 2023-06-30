@@ -271,6 +271,6 @@
                     </div>
                 </div>
         </div>
-        <button id="personalBtn" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white">Next >></button>
+        <button id="personalBtn" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white hover:bg-green-800">Next >></button>
     </form>
 </div>
