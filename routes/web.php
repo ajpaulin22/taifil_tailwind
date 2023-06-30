@@ -109,7 +109,7 @@ Route::group(["prefix"=>"client"],function(){
 Route::group(["middleware" => "admin","prefix" => "admin"],function(){
     Route::group(["prefix" => "ManagementRegistration"],function(){
         Route::get("/",[ManagementRegistrationController::class,'view']);
-        Route::get("/get_data",[ManagementRegistrationController::class,'get_data']);
+        Route::get("/GetApplicantData",[ManagementRegistrationController::class,'GetApplicantData']);
     });
 
     Route::group(["middleware" => "admin","prefix" => "MasterMaintenance"],function(){
@@ -118,6 +118,12 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
             Route::get("/GetJobCode",[JobInformationController::class,'GetJobCode']);
             Route::get("/GetJobCategory",[JobInformationController::class,'GetJobCategory']);
             Route::get("/GetJobOperation",[JobInformationController::class,'GetJobOperation']);
+            Route::post("/SaveCode",[JobInformationController::class,'SaveCode']);
+            Route::post("/DeleteJobCode",[JobInformationController::class,'DeleteJobCode']);
+            Route::post("/SaveCategory",[JobInformationController::class,'SaveCategory']);
+            Route::post("/DeleteJobCategory",[JobInformationController::class,'DeleteJobCategory']);
+            Route::post("/SaveOperation",[JobInformationController::class,'SaveOperation']);
+            Route::post("/DeleteJobOperation",[JobInformationController::class,'DeleteJobOperation']);
         });
 
         Route::group(["middleware" => "admin","prefix" => "UserInformation"],function(){

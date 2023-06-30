@@ -10,6 +10,12 @@ class m_joboperations extends Model
     use HasFactory;
     protected $fillable = [
         "ID"
+        ,"JobCategoriesID"
         ,"Operation"
+        ,"IsDeleted"
+        ,"CreateID"
+        ,"UpdateID"
+        ,"updated_at"
+        ,"created_at"
     ];
 }
