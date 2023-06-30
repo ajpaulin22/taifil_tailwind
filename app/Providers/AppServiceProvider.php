@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -28,7 +29,9 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Blade::if('admin', function () {
-            return auth()->user()->id == 1;
+            if(Auth::check()){
+                return auth()->user()->id == 1;
+            }
         });
     }
 
