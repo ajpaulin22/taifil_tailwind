@@ -1,6 +1,6 @@
 <footer class="mainfooter p-5 bg-sky-800 mt-auto" role="contentinfo">  
     <div class="max-w-7xl mx-auto">
-        <div class="grid gap-4 md:grid-cols-4">
+        <div class="grid gap-4 md:grid-cols-3">
             <div class="grid">  
                 <div class="footer-pad text-white">  
                   <h4 class="text-gray-200 text-lg md:text-2xl font-bold">Address</h4>  
@@ -17,7 +17,7 @@
                   </ul>  
                 </div>  
               </div>
-              <div class="col-md-3 col-sm-6">  
+              {{-- <div class="col-md-3 col-sm-6">  
                 <div class="footer-pad text-white">  
                   <h4 class="text-gray-200 text-lg md:text-2xl font-bold"> Partners</h4>  
                   <ul class="list-unstyled">  
@@ -32,7 +32,7 @@
                     <li class="py-2"> <a href="#" class="text-gray-200 hover:text-green-500 transition-all ease-in-out duration-300"> Mayor and City Council </a> </li>  
                   </ul>  
                 </div>  
-              </div>
+              </div> --}}
               <div class="col-md-3">  
                 <h4 class="text-gray-200 text-lg md:text-2xl font-bold"> Follow Us </h4>  
                 <ul class="list-group grid grid-cols-3 gap-5">
