@@ -11,7 +11,7 @@
             <div class="form-group col-span-1">
                 <label for="personal_lastname" class="form-label">Code<span style="color:red">*</span>:</label>
                 <select name="code" class="form-select" id="jobcodes">
-                    <input name="PersonalInfoID" autocomplete="off" type="text" class="form-control" id="PersonalInfoID">
+                    <input name="PersonalInfoID" autocomplete="off" type="hidden" class="form-control" id="PersonalInfoID">
                     <option value="" selected disabled value>Choose....</option>
                 </select>
             </div>

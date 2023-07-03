@@ -241,10 +241,44 @@
                 success:function(promise){
                     JobCategoryID = promise[0].job_cat;
                     JobOperationID = promise[0].operation;
-                    $("#jobcodes").trigger('change');
-                    $("#jobcategories").trigger('change');
-                    // $("#jobcategories").val(promise[0].job_cat).trigger('change');
-                    // $("#joboperations").val(promise[0].operation).trigger('change');
+                    $("#jobcodes").val(promise[0].code).trigger('change');
+                    $("#lastname").val(promise[0].lastname);
+                    $("#firstname").val(promise[0].first_name);
+                    $("#middlename").val(promise[0].middle_name);
+                    $("#nickanme").val(promise[0].nickname);
+                    $("#address").val(promise[0].address);
+                    $("#birthday").val(promise[0].date_birth);
+                    $("#birth_place").val(promise[0].place_birth);
+                    $("input[name='gender'][value='" + promise[0].gender + "']").prop("checked", true);
+                    $("select[name='citizenship']").val(promise[0].citizenship).trigger('change');
+                    $("#age").val(promise[0].age);
+                    $("select[name='blood_type']").val(promise[0].bloodtype).trigger('change');
+                    $("select[name='civil_status']").val(promise[0].civil_status).trigger('change');
+                    $("#contact").val(promise[0].contact);
+                    $("input[name='height']").val(promise[0].height);
+                    $("select[name='religion']").val(promise[0].religion).trigger('change');
+                    $("input[name='facebook']").val(promise[0].facebook);
+                    $("input[name='smoking'][value='" + promise[0].smoking + "']").prop("checked", true);
+                    $("input[name='weight']").val(promise[0].weight);
+                    $("input[name='jp_reading']").prop('checked', promise[0].jap_reading == 1 ? true : false);
+                    $("input[name='jp_writing']").prop('checked', promise[0].jap_writing == 1 ? true : false);
+                    $("input[name='jp_Speaking']").prop('checked', promise[0].jap_speaking == 1 ? true : false);
+                    $("input[name='jp_Listening']").prop('checked', promise[0].jap_listening == 1 ? true : false);
+                    $("input[name='weight']").val(promise[0].weight);
+                    $("input[name='other_lang']").val(promise[0].other_lang == null ? "" : promise[0].other_lang);
+                    $("input[name='shoe_size']").val(promise[0].shoe_size);
+                    $("input[name='hobbies']").val(promise[0].hobbies);
+                    $("input[name='person_to_notify']").val(promise[0].person_to_notify);
+                    $("input[name='relation']").val(promise[0].person_relation);
+                    $("input[name='person_address']").val(promise[0].person_address);
+                    $("input[name='person_contact']").val(promise[0].person_contact);
+                    $("input[name='passport']").val(promise[0].passport_no);
+                    $("input[name='issue_date']").val(promise[0].issue_date);
+                    $("input[name='expiry_date']").val(promise[0].expiry_date);
+                    $("input[name='issue_place']").val(promise[0].issue_place);
+                    $("input[name='allergy'][value='" + promise[0].allergy + "']").prop("checked", true);
+                    $("input[name='tattoo'][value='" + promise[0].tattoo + "']").prop("checked", true);
+                    $("input[name='licensed'][value='" + promise[0].drivers_licensed + "']").prop("checked", true);
                 },
             })
         },
@@ -290,6 +324,9 @@
                         let option = `<option value="${data.ID}">${data.Category}</option>`;
                         $("#jobcategories").append(option)
                     })
+                    if(JobCategoryID != 0){
+                        $("#jobcategories").val(JobCategoryID).trigger('change');
+                    }
                 }
             })
         },
@@ -312,6 +349,9 @@
                         let option = `<option value="${data.ID}">${data.Operation}</option>`;
                         $("#joboperations").append(option)
                     })
+                    if(JobOperationID != 0 || JobOperationID != ""){
+                        $("#joboperations").val(JobOperationID).trigger('change');
+                    }
                 }
             })
         },
@@ -341,27 +381,20 @@
 
     var biodata = Biodata();
    $(document).ready(function() {
-    
+
     biodata.getCode();
     biodata.getData();
-    //EVENTS 
+    //EVENTS
     $("#jobcodes").on("change",function(){
         biodata.getCategories($(this).val());
-        if(JobCategoryID != 0){
-            biodata.ddlSelectValue("#jobcategories", JobCategoryID, JobCategoryID)
-            // $("#jobcategories").val(JobCategoryID).trigger('change');
-        }
     })
     $("#jobcategories").on("change",function(){
         biodata.getOperations($(this).val());
-        if(JobOperationID != 0){
-            $("#joboperations").val(JobOperationID).trigger('change');
-        }
     })
     //tabs Event Listener
     $("[data-tab-target]").toArray().forEach(tab => {
         $(tab).on("click",function(){
-           const target = $(tab)[0].dataset.tabTarget
+            const target = $(tab)[0].dataset.tabTarget
             $("[data-tab-content]").toArray().forEach((content)=>{
                 $(content).addClass("hidden")
             })
@@ -373,7 +406,7 @@
             })
             $(tab).addClass('bg-green-800')
             $(tab).addClass("text-white")
-           $(target).removeClass("hidden");
+            $(target).removeClass("hidden");
         });
     });
 
