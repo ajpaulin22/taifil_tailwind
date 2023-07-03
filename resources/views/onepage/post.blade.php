@@ -10,17 +10,17 @@
         <div class=" md:grid md:grid-col-3 gap-5 md:grid-flow-col text-white">
             @foreach($data as $d)
             <div class="bg-green-500 rounded-md overflow-hidden h-2/3 col-span-1 shadow-2xl mb-5 md:mb-0">
-                <div class="overflow-hidden h-56 md:h-1/2">
+                <div class="overflow-hidden w-full h-56 md:h-1/2">
                     @if(count($d['images']) != 0)
                     
-                    <img src="{{url('storage/'.$d['images'][0]['path'])}}" alt="" class="object-cover hover:scale-150 transition-transform ease-in duration-300">
+                    <img src="{{url('storage/'.$d['images'][0]['path'])}}" alt="" class="object-cover h-auto w-auto objec hover:scale-150 transition-transform ease-in duration-300">
                     @else
                     <img src="{{url('images/default_item.png')}}" alt="" class="object-cover hover:scale-150 transition-transform ease-in duration-300">
                     @endif
                 </div>
                 <div class="p-5">
                     <div class="banner shadow-5xl">
-                        <a href="{{'/client/gallery?cat='.$d['category']}}" class="py-1 px-4 bg-sky-400 rounded-full text-slate-700 hover:scale(200) hover:text-white hover:ring-2 hover:ring-sky-800 ">{{$data[0]['category']}}</a>
+                        <a href="{{'/client/gallery?cat='.$d['category']}}" class="py-1 px-4 bg-sky-800 rounded-full text-white hover:scale(200) hover:text-white hover:ring-2 hover:ring-white ">{{$data[0]['category']}}</a>
                     </div>
                     <div class="title my-5">
                         <h1 class="text-2xl font-semibold ">{{$d['title']}}</h1>

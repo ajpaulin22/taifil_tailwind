@@ -1,5 +1,5 @@
 <section>
-    <div class="swiper hero w-screen h-[90vh]">
+    <div class="swiper hero w-screen h-screen">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
           <!-- Slides -->
