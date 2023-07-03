@@ -89,8 +89,11 @@
           }
     });
     $("#create_form").on("submit",function(e){
+        e.preventDefault();
+        
         let formData = new FormData(this);
         if($("#create_form").valid()){
+            // $("#create_form")[0].reset();
             $.ajax({
                 url:"/client/gallery/create",
                 type:"POST",
@@ -98,9 +101,33 @@
                 cache: false,
                 contentType:false,
                 processData:false,
-                succcess:function(promise){
-                    console.log(promise)
-                    window.location.href = "http://stackoverflow.com";
+                success:function(promise){
+                    console.log(promise.success);
+                    if(promise.success){
+                        iziToast.success({
+                            class:'rounded-lg overflow-hidden',
+                            title: 'OK',
+                            message: 'Successfully inserted record!',
+                            position:'topRight'
+                        });
+                        iziToast.show({
+                            class:'rounded-lg overflow-hidden',
+                            title: 'Redirecting',
+                            message: 'Redirecting to Mainpage',
+                            position:'topRight'
+                        });
+                        setTimeout(()=>{
+                            location.replace("/");
+                        },5000)
+                    }else{
+                        iziToast.error({
+                            class:'rounded-lg overflow-hidden',
+                            title: 'Error',
+                            message: 'Illegal operation',
+                            position:'topRight'
+                        });
+                    }
+                    
                 }
             })
         }

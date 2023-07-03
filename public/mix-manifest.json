@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/iziToast.min.css": "/css/iziToast.min.css",
     "/js/theme.js": "/js/theme.js",
     "/css/theme.css": "/css/theme.css",
     "/js/trx.js": "/js/trx.js",

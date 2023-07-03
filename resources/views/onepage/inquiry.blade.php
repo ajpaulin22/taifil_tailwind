@@ -1,4 +1,5 @@
 <section id="inquiry" class="mt-5 scroll-mt-20">
+    
     <div class="min-h-screen max-w-7xl md:mx-auto mx-5">
         <div>
             <h1 class="text-center text-4xl md:text-7xl my-9 font-semibold text-sky-800">INQUIRY<hr class="border-b-2 border-green-500"></h1>  
@@ -6,27 +7,28 @@
         <div class="md:grid grid-cols-3 mx-5 gap-5 p-5 border-2 border-green-600 rounded shadow-lg">
             <div class="col-span-2">
                 <p class="text-sm">Drop us a line or just say Hello!</p>
-                <form action="">
+                <form action="" id="contact-form">
+                    @csrf
                     <div class="md:flex gap-5">
-                        <div class="py-2 w-full">
+                        <div class="py-2 w-full form-group">
                             <label for="fullname">Full Name</label>
-                            <input type="text" name="fullname" id="" class="border-2 w-full border-sky-800 rounded p-2">
+                            <input type="text" autocomplete="off" name="fullname" id="" class="border-2 w-full border-sky-800 rounded p-2" required>
                         </div>
-                        <div class="py-2 w-full">
+                        <div class="py-2 w-full form-group">
                             <label for="email">Email</label>
-                            <input type="email" name="email" id="" class="border-2 w-full border-sky-800 rounded p-2">
+                            <input type="email" name="email" id="" class="border-2 w-full border-sky-800 rounded p-2" required>
                         </div>
                     </div>
-                    <div class="py-2">
+                    <div class="py-2 form-group">
                         <label for="subject">Subject</label>
-                        <input type="text" name="subject" id="" class="border-2 w-full border-sky-800 rounded p-2">
+                        <input type="text" autocomplete="off" name="subject" id="" class="border-2 w-full border-sky-800 rounded p-2" required>
                     </div>
-                    <div class="py-2 grid w-full">
+                    <div class="py-2 grid w-full form-group">
                         <div>
                             <label for="message">Message</label>
                         </div>
                         <div>
-                            <textarea name="message" id="" cols="102" rows="10" class="resize-none border-2 border-sky-800 p-2 rounded w-full"></textarea>
+                            <textarea name="message" autocomplete="off" id="" cols="102" rows="10" class="resize-none border-2 border-sky-800 p-2 rounded w-full" required></textarea>
                         </div>
                     </div>
                     <button class="py-2 text-white px-10 bg-green-500 rounded hover:bg-green-300 hover:text-black border border-green-800">Send</button>

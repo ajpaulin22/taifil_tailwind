@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->integer('update_user')->default(0);
             $table->index(['id', 'create_user']);
             $table->timestamps();
-            $table->integer('admin')->default(1)->length(0);
+            $table->integer('admin')->default(0)->length(0);
         });
     }
 

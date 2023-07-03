@@ -71,10 +71,11 @@ const TrxCSS = [
     "resources/css/custom.css"
 ];
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js(['resources/js/app.js','resources/js/iziToast/dist/js/iziToast.min.js'], 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require("tailwindcss"),
     ])
+    .styles("resources/js/iziToast/dist/css/iziToast.min.css","public/css/iziToast.min.css")
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps()
     .scripts(layoutJS, "public/js/theme.js")

@@ -39,7 +39,7 @@
                     <span class="font-semibold text-xl self-center">Skill standards required</span>
                 </div>
                 <p class="text-sm my-2">Those who have satisfactory completed Technical Intern Training are able to switch their status of residence to SSW in the same field without taking occupational skill exams and Japanese proficiency tests,</p>
-                <p class="text-end italic">source: <a href="https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/" class="text-blue-500 underline">https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/</a> 
+                <p class="text-end italic">source: <a href="https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/" class="text-blue-500 underline text-xs">https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/</a> 
                 </p>
             </div>
             

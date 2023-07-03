@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\client\BiodataController;
+use App\Http\Controllers\client\OnepageController;
 use App\Http\Controllers\MasterMaintenanceController;
 use App\Http\Controllers\ManagementRegistrationController;
 use App\Http\Controllers\MasterMaintenance\JobInformationController;
@@ -26,37 +27,7 @@ use App\Http\Controllers\MasterMaintenance\UserInformationController;
 |
 */
 
-Route::get('/', function () {
-    $posts = post::select()->where("isdeleted",0)->orderby('id','desc')->limit(3)->get();
-                $data = $posts->map(function($post,$key){
-                    return [
-                        "id" => $post->id,
-                        "title" => $post->title,
-                        "content" => $post->content,
-                        "category" => $post->category,
-                        "date" => date('m/d/Y' ,strtotime($post->created_at)),
-                        "time" => Carbon::parse($post->created_at)->format('g:i a'),
-                        "images" => image::select('path')->where("post_id",$post->id)->limit(1)->get()->toArray()
-                    ];
-                });
-
-     $departure = [
-        "january" => 21,
-        "february" => 12,
-        "march" => 23,
-        "april" => 10,
-        "may" => 14,
-        "june" => 16,
-        "july" => 1,
-        "august" => 0,
-        "september" => 0,
-        "october" => 0,
-        "november" => 0,
-        "december" => 0,
-
-     ];
-     return view('welcome',['data'=>$data, "departure" => $departure]);
-})->name('home');
+Route::get('/',[OnepageController::class,"view"])->name('home');
 
 Route::get('/admin', function(){
     if(Auth::check()){
@@ -76,6 +47,8 @@ Route::group(['middleware' => 'guest','prefix'=>'auth'],function(){
 
 Route::get('/logout',[AuthController::class,'logout'])->middleware('auth');
 Route::group(["prefix"=>"client"],function(){
+    Route::post("/contact-form",[OnepageController::class,"contact_form"]);
+
     Route::group(["prefix"=>"Biodata"],function(){
         Route::get("/",[BiodataController::class,"view"]);
         Route::post("/uploadData",[BiodataController::class,"uploadData"]);
