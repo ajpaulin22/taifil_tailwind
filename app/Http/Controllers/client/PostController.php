@@ -15,37 +15,46 @@ class PostController extends Controller
 {
     public function view(Request $request){
         try {
+
+           
             if(isset($request->cat)){
-                $posts = post::select()->where("category",$request->cat)->where("isdeleted",0)->get();
-                $data = $posts->map(function($post,$key){
-                    return [
-                        "id" => $post->id,
-                        "title" => $post->title,
-                        "content" => $post->content,
-                        "category" => $post->category,
-                        "date" => date('m/d/Y' ,strtotime($post->created_at)),
-                        "time" => Carbon::parse($post->created_at)->format('g:i a'),
-                        "images" => image::select()->where("post_id",$post->id)->get()->toArray()
-                    ];
-                });
+                $query = DB::table('posts as p')
+                ->select([
+                    DB::raw("p.id"),
+                    DB::raw("p.title"),
+                    DB::raw("p.content"),
+                    DB::raw("p.category"),
+                    DB::raw("cast(p.created_at as date) as `date`"),
+                    DB::raw("date_format(p.created_at,'%r') as time"),
+                    DB::raw("i.path")
+                ])
+                ->join(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
+                    $join->on('p.id','=',"i.post_id");
+                })
+                ->where("category",$request->cat)
+                ->where("isdeleted",0)
+                ->paginate(5);
             }else{
-                $posts = post::select()->where("isdeleted",0)->get();
-                $data = $posts->map(function($post,$key){
-                    return [
-                        "id" => $post->id,
-                        "title" => $post->title,
-                        "content" => $post->content,
-                        "category" => $post->category,
-                        "date" => date('m/d/Y' ,strtotime($post->created_at)),
-                        "time" => Carbon::parse($post->created_at)->format('g:i a'),
-                        "images" => image::select()->where("post_id",$post->id)->get()->toArray()
-                    ];
-                });
+                $query = DB::table('posts as p')
+                ->select([
+                    DB::raw("p.id"),
+                    DB::raw("p.title"),
+                    DB::raw("p.content"),
+                    DB::raw("p.category"),
+                    DB::raw("cast(p.created_at as date) as `date`"),
+                    DB::raw("date_format(p.created_at,'%r') as time"),
+                    DB::raw("i.path")
+                ])
+                ->join(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
+                    $join->on('p.id','=',"i.post_id");
+                })
+                ->where("isdeleted",0)
+                ->paginate(5);
             }
 
             
         $dat = "";
-        return view("pages.gallery",["posts" => $data->toArray(),"cat" => $request->cat]);
+        return view("pages.gallery",["posts" => $query,"cat" => $request->cat]);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -83,10 +92,10 @@ class PostController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollBack();
-            return redirect("/client/gallery")->with('message',$th->getMessage());
+            return response()->json(["success"=>false]);
         }
 
-        return response()->json(["data"=>true]);
+        return response()->json(["success"=>true]);
     }
 
     public function post(Request $request){

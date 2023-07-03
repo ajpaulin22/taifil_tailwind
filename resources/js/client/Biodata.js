@@ -1268,12 +1268,10 @@
     })
     $("#send").on("click",function(e){
         e.preventDefault();
-
-        $("div").append("<x-alert message='success' type='warning' />")
-        // if($("#upload_form").valid()){
-        //     modal.show();
-        //     biodata.upload = new FormData($("#upload_form")[0])
-        // }
+        if($("#upload_form").valid()){
+            modal.show();
+            biodata.upload = new FormData($("#upload_form")[0])
+        }
         
     });
 

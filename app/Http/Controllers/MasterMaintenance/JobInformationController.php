@@ -1,10 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\MasterMaintenance;
-<<<<<<< HEAD
-
-=======
->>>>>>> 5c5aec31533ccd76f2e02d37fc88811e6ff0eb79
 use App\Models\m_jobcodes;
 use Illuminate\Http\Request;
 use App\Models\m_jobcategories;
@@ -12,10 +8,7 @@ use App\Models\m_joboperations;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Auth;
->>>>>>> 5c5aec31533ccd76f2e02d37fc88811e6ff0eb79
 
 class JobInformationController extends Controller
 {

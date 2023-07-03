@@ -1,6 +1,7 @@
 @extends('layout.client')
 
 @section('content')
+    <x-loader message="PLease wait while sending....."/>
     @include('onepage.hero')
     @include('onepage.departure')
     @include('onepage.about')

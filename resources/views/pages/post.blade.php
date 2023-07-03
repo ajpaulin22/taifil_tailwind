@@ -7,6 +7,7 @@
 
 
 @section('content')
+
 <nav class="px-10 py-5 bg-green-500" aria-label="Breadcrumb">
     <div class="max-w-7xl flex justify-between mx-auto px-10">
         <div class="text-2xl text-white">Post</div>
@@ -36,6 +37,7 @@
     </div>
     
 </nav>
+
 <section class="mt-5 mb-5 ">
     <div class="min-h-screen max-w-7xl md:mx-auto mx-5  p-2 overflow-x-hidden md:grid grid-cols-5 grid-flow-col gap-5">
         <div class=" text-black p-4 rounded col-span-1 ">
