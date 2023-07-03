@@ -128,6 +128,7 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
 
         Route::group(["middleware" => "admin","prefix" => "UserInformation"],function(){
             Route::get("/",[UserInformationController::class,"view"]);
+            Route::get("/GetUserData",[UserInformationController::class,"GetUserData"]);
         });
     });
 });

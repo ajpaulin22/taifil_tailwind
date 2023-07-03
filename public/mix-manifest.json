@@ -12,5 +12,7 @@
     "/css/admin/ManagementRegistration.css": "/css/admin/ManagementRegistration.css",
     "/js/admin/MasterMaintenance/JobInformation.js": "/js/admin/MasterMaintenance/JobInformation.js",
     "/css/admin/MasterMaintenance/JobInformation.css": "/css/admin/MasterMaintenance/JobInformation.css",
+    "/js/admin/MasterMaintenance/UserInformation.js": "/js/admin/MasterMaintenance/UserInformation.js",
+    "/css/admin/MasterMaintenance/UserInformation.css": "/css/admin/MasterMaintenance/UserInformation.css",
     "/js/client/gallery.js": "/js/client/gallery.js"
 }

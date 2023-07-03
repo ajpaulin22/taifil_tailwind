@@ -121,7 +121,6 @@
                     success:function(promise){
                         tblCodes.ajax.reload(null, false);
                         showMessage("Success", "Job category was deleted successfully", "success", "green");
-
                     }
                 })
             }
