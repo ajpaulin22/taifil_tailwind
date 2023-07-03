@@ -4929,6 +4929,7 @@ B. Synopsis: Class Module used to process data
         ajax.clearFromData("frmCode");
         ajax.clearFromData("frmCategory");
         ajax.clearFromData("frmOperation");
+        
     }
     
     function showMessage(title, msg, backgroundColor, color){

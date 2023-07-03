@@ -366,5 +366,11 @@ class BiodataController extends Controller
         return $data;
     }
 
-    
+    public function GetPersonalData(Request $request){
+        $data = DB::table('personal_datas')
+        ->where("id",$request->PersonalInfoID)
+        ->where("IsDeleted",0)
+        ->select()->Get();
+        return $data;
+    }
 }

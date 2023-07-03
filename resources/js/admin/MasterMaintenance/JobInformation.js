@@ -521,6 +521,7 @@
         ajax.clearFromData("frmCode");
         ajax.clearFromData("frmCategory");
         ajax.clearFromData("frmOperation");
+        
     }
     
     function showMessage(title, msg, backgroundColor, color){
