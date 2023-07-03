@@ -16560,9 +16560,6 @@ input[type='number']::-webkit-outer-spin-button,
 .hidden {
   display: none;
 }
-.h-0 {
-  height: 0px;
-}
 .h-1 {
   height: 0.25rem;
 }
@@ -16577,6 +16574,9 @@ input[type='number']::-webkit-outer-spin-button,
 }
 .h-2\/3 {
   height: 66.666667%;
+}
+.h-20 {
+  height: 5rem;
 }
 .h-24 {
   height: 6rem;
@@ -16620,9 +16620,6 @@ input[type='number']::-webkit-outer-spin-button,
 .h-screen {
   height: 100vh;
 }
-.h-20 {
-  height: 5rem;
-}
 .max-h-36 {
   max-height: 9rem;
 }
@@ -16643,9 +16640,6 @@ input[type='number']::-webkit-outer-spin-button,
 }
 .w-14 {
   width: 3.5rem;
-}
-.w-36 {
-  width: 9rem;
 }
 .w-4 {
   width: 1rem;
@@ -16725,22 +16719,6 @@ input[type='number']::-webkit-outer-spin-button,
 }
 .translate-y-full {
   --tw-translate-y: 100%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.translate-x-10 {
-  --tw-translate-x: 2.5rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.translate-y-10 {
-  --tw-translate-y: 2.5rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.translate-y-\[-100\] {
-  --tw-translate-y: -100;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.translate-y-\[-100rem\] {
-  --tw-translate-y: -100rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .rotate-180 {
@@ -18201,10 +18179,6 @@ input[type='number']::-webkit-outer-spin-button,
     position: absolute;
   }
 
-  .md\:relative {
-    position: relative;
-  }
-
   .md\:inset-0 {
     inset: 0px;
   }
@@ -18259,12 +18233,12 @@ input[type='number']::-webkit-outer-spin-button,
     height: auto;
   }
 
-  .md\:w-52 {
-    width: 13rem;
-  }
-
   .md\:w-36 {
     width: 9rem;
+  }
+
+  .md\:w-52 {
+    width: 13rem;
   }
 
   .md\:grid-flow-col {
@@ -18291,10 +18265,6 @@ input[type='number']::-webkit-outer-spin-button,
     --tw-space-x-reverse: 0;
     margin-right: calc(0.75rem * var(--tw-space-x-reverse));
     margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
-  .md\:overflow-auto {
-    overflow: auto;
   }
 
   .md\:overflow-visible {

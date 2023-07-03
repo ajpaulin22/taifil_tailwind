@@ -45,6 +45,7 @@ class OnepageController extends Controller
 
     public function contact_form(Request $request){
         $data = [];
+        
        try {
         Mail::send("Mail",array(
             'fullname'=>$request->fullname,
