@@ -4529,7 +4529,6 @@ B. Synopsis: Class Module used to process data
                     success:function(promise){
                         tblCodes.ajax.reload(null, false);
                         showMessage("Success", "Job category was deleted successfully", "success", "green");
-
                     }
                 })
             }
@@ -4930,6 +4929,7 @@ B. Synopsis: Class Module used to process data
         ajax.clearFromData("frmCode");
         ajax.clearFromData("frmCategory");
         ajax.clearFromData("frmOperation");
+        
     }
     
     function showMessage(title, msg, backgroundColor, color){

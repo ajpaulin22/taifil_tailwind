@@ -56,6 +56,7 @@ Route::group(["prefix"=>"client"],function(){
         Route::get("/get-categories",[BiodataController::class,"get_categories"]);
         Route::get("/get-operations",[BiodataController::class,"get_operations"]);
         Route::post("/upload-image",[BiodataController::class,"upload_image"])->name('client.biodata.upload-image');
+        Route::get("/GetPersonalData",[BiodataController::class,"GetPersonalData"]);
     });
 
     Route::group(["prefix" => "gallery"],function(){
@@ -101,6 +102,7 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
 
         Route::group(["middleware" => "admin","prefix" => "UserInformation"],function(){
             Route::get("/",[UserInformationController::class,"view"]);
+            Route::get("/GetUserData",[UserInformationController::class,"GetUserData"]);
         });
     });
 });

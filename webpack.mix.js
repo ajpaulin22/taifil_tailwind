@@ -108,5 +108,15 @@ mix.js(['resources/js/app.js','resources/js/iziToast/dist/js/iziToast.min.js'], 
         "public/css/theme.css",
         "public/css/trx.css",
     ], "public/css/admin/MasterMaintenance/JobInformation.css")
+
+    .scripts([
+        "public/js/theme.js",
+        "public/js/trx.js",
+        "resources/js/admin/MasterMaintenance/UserInformation.js"
+    ], "public/js/admin/MasterMaintenance/UserInformation.js")
+    .styles([
+        "public/css/theme.css",
+        "public/css/trx.css",
+    ], "public/css/admin/MasterMaintenance/UserInformation.css")
     
     .scripts(['public/js/app.js','resources/js/client/gallery.js'],"public/js/client/gallery.js");

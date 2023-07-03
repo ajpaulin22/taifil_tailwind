@@ -1,7 +1,8 @@
 
 
 (function() {
-    
+    var JobCategoryID = 0;
+    var JobOperationID = 0;
     const Biodata = function() {
         return new Biodata.init();
     }
@@ -224,6 +225,36 @@
             console.log(error)
            }
         },
+
+        getData:function(){
+            var strx = location.search.substring(1).split('&');
+            var PersonalInfoID = strx[1].substring(strx[1].indexOf("=") + 1);
+            $("#PersonalInfoID").val(PersonalInfoID);
+            $.ajax({
+                url:"/client/Biodata/GetPersonalData",
+                type:"GET",
+                data:{
+                    _token:self.token,
+                    PersonalInfoID: PersonalInfoID
+                },
+                dataType:"JSON",
+                success:function(promise){
+                    JobCategoryID = promise[0].job_cat;
+                    JobOperationID = promise[0].operation;
+                    $("#jobcodes").trigger('change');
+                    $("#jobcategories").trigger('change');
+                    // $("#jobcategories").val(promise[0].job_cat).trigger('change');
+                    // $("#joboperations").val(promise[0].operation).trigger('change');
+                },
+            })
+        },
+
+        ddlSelectValue: function (id, text, value) {
+            $(id).html("");
+            var Options = new Option(text, value, true, true);
+            $(id).append(Options).trigger('change');
+        },
+
         getCode:function(){
             $.ajax({
                 url:"/client/Biodata/get-code",
@@ -239,6 +270,7 @@
                 }
             })
         },
+
         getCategories:function(id){
             $.ajax({
                 url:"/client/Biodata/get-categories",
@@ -307,38 +339,38 @@
     }
     Biodata.init.prototype = Biodata.prototype;
 
-   
-
     var biodata = Biodata();
    $(document).ready(function() {
+    
     biodata.getCode();
-
+    biodata.getData();
     //EVENTS 
     $("#jobcodes").on("change",function(){
         biodata.getCategories($(this).val());
+        if(JobCategoryID != 0){
+            biodata.ddlSelectValue("#jobcategories", JobCategoryID, JobCategoryID)
+            // $("#jobcategories").val(JobCategoryID).trigger('change');
+        }
     })
     $("#jobcategories").on("change",function(){
         biodata.getOperations($(this).val());
+        if(JobOperationID != 0){
+            $("#joboperations").val(JobOperationID).trigger('change');
+        }
     })
-    
-    
-
     //tabs Event Listener
     $("[data-tab-target]").toArray().forEach(tab => {
         $(tab).on("click",function(){
            const target = $(tab)[0].dataset.tabTarget
             $("[data-tab-content]").toArray().forEach((content)=>{
                 $(content).addClass("hidden")
-                
             })
             $("[data-tab-target]").toArray().forEach((content)=>{
                 $(content).removeClass("bg-green-800")
                 $(content).addClass("bg-green-300")
                 $(content).removeClass("text-white")
                 $(content).addClass("text-black")
-                
             })
-
             $(tab).addClass('bg-green-800')
             $(tab).addClass("text-white")
            $(target).removeClass("hidden");
@@ -383,7 +415,6 @@
 
     //CERTIFICATE TAB ==========================================EVENT LISTENER
     $("#certificate_form").validate({
-               
         errorElement: 'span',
         errorPlacement: function (error, element) {
             error.addClass('text-red-500 text-sm');

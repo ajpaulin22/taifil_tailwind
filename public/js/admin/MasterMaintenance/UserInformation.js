@@ -4406,169 +4406,32 @@ B. Synopsis: Class Module used to process data
     DataClass.init.prototype = DataClass.prototype;
     return window.DataClass = window.$D = DataClass;
 }());
-
 (function(){
-    var tblManagementRegistration = "";
-    var dataApplicant = "";
+    var tblUserInformation = "";
     token = $("meta[name=csrf-token]").attr("content");
-    var data = [
-        {IDcheckbox: 1, IDrow: 1, Name: "Jenefer", JobCategories: "Livestock Agriculture", Program: "SSW", Show: 2, InterviewDate: "2023-01-01", Company: "Seiko IT Solutions Philippines Inc.", Age: 23, ToAbroad: 1},
-        {IDcheckbox: 2, IDrow: 2, Name: "Lenard", JobCategories: "Cultivate Agriculture", Program: "TITP", Show: 1, InterviewDate: "2023-01-02", Company: "Umbrella Corporation", Age: 25, ToAbroad: 0},
-        {IDcheckbox: 3, IDrow: 3, Name: "Alphy", JobCategories: "Livestock Agriculture", Program: "Direct", Show: 2, InterviewDate: "2023-01-03", Company: "Seiko", Age: 26, ToAbroad: 1},
-    ];
-    
     $(document).ready(function(){
-        drawDataTable();
-        GetCodes();
-        $("#Code").change(function(){
-            GetJobCategories($(this).val());
-        });
-        $("#JobCategories").change(function(){
-            GetOperations($(this).val());
-        })
+        drawUserTable();
 
-        $(".show").change(function(){
-            var x = $(this).attr('id').split('_')[1];
-            if ($(this).val() == 0){
-                $(".inputs_" + x).attr('disabled', true);
-                $(".inputs_" + x).val("");
-            }
-            else
-                $(".inputs_" + x).removeAttr('disabled');
-        });
+    });
 
-        $("#btnAdd").click(function(){
-            $("#mdlApplicant").modal('show');
-        });
-
-        $("#btnCreateApplicant").click(function(){
-            location.href = "/client/Biodata?data=" + $("#JobType").val();
-        });
-
-        $("#btnEdit").click(function(){
-            location.href = "/client/Biodata?data=" + $("#JobType").val() + "&PersonalInfo=" + dataApplicant.ID;
-        });
-
-        $('#tblManagementRegistration tbody').on('click', 'tr', function(e){
-            dataApplicant = tblManagementRegistration.row($(this)).data();
-            switch (e.target.localName) {
-                case "button":
-                    break;
-                case "span":
-                    break;
-                case "checkbox":
-                    break;
-                case "i":
-                    break;
-                case "textbox":
-                    break;
-                case "input":
-                    break;
-                default:
-                    if ($.trim(dataApplicant) != "") {
-                        if ($(this).hasClass('selected')) {
-                            dataApplicant = "";
-                            $("#btnEdit").attr('disabled', true);
-                            tblManagementRegistration.$('tr.selected').removeClass('selected');
-                        }
-                        else {
-                            tblManagementRegistration.$('tr.selected').removeClass('selected');
-                            $("#btnEdit").removeAttr('disabled');
-                            $(this).addClass('selected');
-                        }
-                    }
-                    break;
-            }
-        });
-    })
-
-    function GetJobCategories(id){
-        $.ajax({
-            url:"/client/Biodata/get-categories",
-            type:"GET",
-            data:{
-                _token:self.token,
-                ID:id
-            },
-            dataType:"JSON",
-            success:function(promise){
-                $('#JobCategories')
-                .find('option')
-                .remove()
-                .end()
-                let option = `<option value=""></option>`;
-                promise.forEach(data=>{
-                    option += `<option value="${data.ID}">${data.Category}</option>`;
-                })
-                $("#JobCategories").append(option)
-            }
-        })
-    }
-
-    function GetOperations(id){
-        $.ajax({
-            url:"/client/Biodata/get-operations",
-            type:"GET",
-            data:{
-                _token:self.token,
-                ID:id
-            },
-            dataType:"JSON",
-            success:function(promise){
-                $('#Operations')
-                .find('option')
-                .remove()
-                .end()
-                let option = `<option value=""></option>`;
-                promise.forEach(data=>{
-                    option += `<option value="${data.ID}">${data.Operation}</option>`;
-                })
-                $("#Operations").append(option)
-            }
-        })
-    }
-
-    function GetCodes(){
-        $.ajax({
-            url:"/client/Biodata/get-code",
-            type:"GET",
-            data:{_token:self.token},
-            dataType:"JSON",
-            success:function(promise){
-                console.log(promise)
-                let option = `<option value=""></option>`;
-                promise.forEach(data=>{
-                    option += `<option value="${data.ID}">${data.Code}</option>`;
-                    
-                })
-                $("#Code").append(option)
-            }
-        })
-    }
-
-    function drawDataTable(){
-        if (!$.fn.DataTable.isDataTable('#tblManagementRegistration')) {
-            tblManagementRegistration = $('#tblManagementRegistration').DataTable({
+    function drawUserTable(){
+    
+        if (!$.fn.DataTable.isDataTable('#tblUserInformation')) {
+            tblUserInformation = $('#tblUserInformation').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "/admin/ManagementRegistration/GetApplicantData",
+                    url: "/admin/MasterMaintenance/UserInformation/GetUserData",
                     dataType: "JSON",
                     type: "GET",
                     data: function(d){
-                        _token = token,
-                        d["Type"] = $("#Type").val(),
-                        d["Code"] = $("#Code").val(),
-                        d["JobCategories"] = $("#JobCategories").val(),
-                        d["Operations"] = $("#Operations").val(),
-                        d["AgeFrom"] = $("#AgeFrom").val(),
-                        d["AgeTo"] = $("#AgeTo").val()
+                        _token = token
                     }
                 },
                 deferRender: true,
                 pageLength: 10,
                 order: [
-                    [0, "desc"]
+                    [0, "asc"]
                 ],
                 lengthMenu: [
                     [10, 20, 50, 100, 150, 200, 500, -1],
@@ -4601,21 +4464,16 @@ B. Synopsis: Class Module used to process data
                         },
                         width: "2%", orderable: false
                     },
-                    { title: 'Name', data: "Name", width: "18%"},
-                    { title: 'Category', data: "Category", width: "17%"},
-                    { title: 'JobType', data: "JobType", width: "6%", className: "dt-center"},
-                    { title: 'AttendInterview', data: "AttendInterview", width: "6%", className: "dt-center"},
-                    { title: 'InterviewDate', data: "InterviewDate", width: "6%", className: "dt-center"},
-                    { title: 'InterviewCount', data: "InterviewCount", width: "6%", className: "dt-center"},
-                    { title: 'Company', data: "Company", width:"4%", className: "dt-center"},
-                    { title: 'Age', data: "Age", width:"4%", className: "dt-center"},
-                    { title: 'ToAbroad', data: "ToAbroad", width:"4%", className: "dt-center"},
-                    { title: 'AbroadDate', data: "AbroadDate", width:"4%", className: "dt-center"},
+                    { title: 'Position', data: "Position", width: "18%"},
+                    { title: 'UserName', data: "UserName", width: "18%"},
+                    { title: 'FirstName', data: "FirstName", width: "18%"},
+                    { title: 'LastName', data: "LastName", width: "18%"},
+
                 ],
             }).on('page.dt', function() {
             });
         }
         return this;
     }
-
+    
 })();
