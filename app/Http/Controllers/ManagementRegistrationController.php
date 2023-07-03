@@ -20,19 +20,22 @@ class ManagementRegistrationController extends Controller
     
         
         $order = "id";
-        $query_1 = "SELECT 
-        ID,
-        CONCAT(first_name, ' ', middle_name, ' ', last_name) as Name,
-        
-        Code
-         FROM m_jobcodes WHERE IsDeleted = 0 ";
+        // $query_1 = "SELECT 
+        // ID,
+        // CONCAT(first_name, ' ', middle_name, ' ', last_name) as Name,
+
+        // Code
+        //  FROM m_jobcodes WHERE IsDeleted = 0 ";
     
-        $query_1 .= " 
-        AND  (
-        CAST(id as char(200)) LIKE '%".$search."%'
-        OR  Code LIKE '%".$search."%')";
+        // $query_1 .= " 
+        // AND  (
+        // CAST(id as char(200)) LIKE '%".$search."%'
+        // OR  Code LIKE '%".$search."%')";
     
-        $query_1 .= " limit ".$limit." offset ".$start;
+
+        $sql = "call spWarehouse_getPallets()";
+        $data = collect(DB::select(DB::raw($sql)))-
+        // $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
         $total_result = (count($data) > 0 ? count($data): 0);
         $totalFiltered = (count($data) > 0 ? count($data): 0);
