@@ -5,7 +5,7 @@
         </div>
         <div class="md:grid md:grid-col-3 gap-5 md:grid-flow-col">
             <div class="col-span-1">
-                <img class="rounded" src="{{url("images/ttip.jpg")}}" alt="">
+                <img class="rounded" src="{{url("images/ttip.png")}}" alt="">
             </div>
             <div class="col-span-1 text-sm">
                 <div class="text-green-500 font-bold text-2xl md:text-5xl mb-10">What Is Technical Intern Training Program (TITP)?</div>
