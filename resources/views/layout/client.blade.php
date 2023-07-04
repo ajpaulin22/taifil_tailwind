@@ -5,6 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="Tai-Fil" name="description" />
     <meta content="dGl0aSBrbyBtYWxha2kK" name="author" />
+    <meta name="language" lang="en" />
 
     <!-- CSRF Token -->
     @stack('meta')
@@ -28,6 +29,13 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script defer src=""></script>
     <script src="{{asset("js/app.js")}}"></script>
+    <script>
+        $("#page_lang").on("change",function(){
+            console.log($(this).val())
+            $("meta[name='language']").attr('lang', $(this).val());
+        })
+    
+       </script>
     @stack('scripts')
 </body>
 </html>

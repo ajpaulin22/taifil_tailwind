@@ -7,7 +7,7 @@
         <div>
             <p class="text-sm text-green-600">Specified Skilled Worker is a status of residence created to give foreign nationals more opportunities to work in Japan. There are two types of Specified Skilled Worker status of residence: type (i) and type (ii). The type (ii) status of residence requires more specialized skills than type (i). Source - www.ssw.go.jp</p>
         </div>
-        <div class="md:grid md:grid-cols-3 mt-5">
+        <div class="md:grid md:grid-cols-3 gap-5 mt-5">
             <div>
                 <div class="flex gap-5 border-b-4 border-sky-800 pb-2">
                     <img src="{{url("images/target-segment.svg")}}" alt="">
@@ -25,8 +25,8 @@
                 </div>
                 <p class="text-sm my-2">you can work for up to 5 years in total, but you cannot bring your family. In addition, the major difference from other status of residence to work in Japan is a support system. You can receive a wide range of support for life and work from your employer while you are in Japan, from the time you arrive to leave for your home country</p>
             </div>
-            <div class="hidden md:block">
-                <img src="{{url("images/Checklist.jpg")}}" alt="">
+            <div class="hidden md:block rounded overflow-hidden">
+                <img src="{{url("images/ssw.png")}}" alt="">
             </div>
             <div>
                 <div class="flex gap-5 border-b-4 border-sky-800 pb-2">

@@ -24,7 +24,8 @@
             <li class="p-3 px-5 text-lg font-bold text-sky-800 hover:text-green-600"><a class="hover:border-b-2 hover:border-b-green-600 transition ease-out duration-300 block md:inline-block" href="/#">Home</a></li>
             <li class="p-3 px-5 text-lg font-bold text-sky-800 hover:text-green-600"><a class="hover:border-b-2 hover:border-b-green-600 block md:inline-block" href="/#about">About</a></li>
             <li class="group p-3 px-5 text-lg font-bold text-sky-800 md:relative">
-                <button id="ttip_btn" class="group-hover:text-green-600 block md:inline-block">TTIP <i class="fa-solid fa-angle-down"></i></button>
+                <button class="group-hover:text-green-600 hidden md:inline-block">TTIP <i class="fa-solid fa-angle-down"></i></button>
+                <button id="ttip_btn" class="md:pointer-events-none md:hidden group-hover:text-green-600 block">TTIP <i class="fa-solid fa-angle-down"></i></button>
                 <div id="ttip_nav" class="hidden md:absolute md:bg-white md:shadow-lg md:w-52 group-hover:block md:rounded transition-all ease-linear mt-3">
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
                         <a class="w-full block py-4 px-4 text-sm" href="/#ttip">About</a>
@@ -44,7 +45,8 @@
                 </div>
             </li>
             <li class="group p-3 px-5 text-lg font-bold text-sky-800 md:relative">
-                <button id="ssw_btn" class="group-hover:text-green-600 block md:inline-block">SSW <i class="fa-solid fa-angle-down"></i></button>
+                <button class="group-hover:text-green-600 hidden md:inline-block">SSW <i class="fa-solid fa-angle-down"></i></button>
+                <button id="ssw_btn" class="md:pointer-events-none md:hidden group-hover:text-green-600 block">SSW <i class="fa-solid fa-angle-down"></i></button>
                 <div id="ssw_nav" class="hidden md:absolute md:bg-white md:shadow-lg md:w-52 group-hover:block md:rounded transition-all ease-linear mt-3 ">
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
                         <a class="w-full block py-4 px-4 text-sm" href="/#ssw">About</a>
@@ -65,7 +67,8 @@
                 
             </li>
             <li class="group p-3 px-5 text-lg font-bold text-sky-800 md:relative">
-                <button id="direct_btn" class="group-hover:text-green-600 block md:inline-block">Direct <i class="fa-solid fa-angle-down"></i></button>
+                <button class="group-hover:text-green-600 hidden md:inline-block">Direct <i class="fa-solid fa-angle-down"></i></button>
+                <button id="direct_btn" class="md:pointer-events-none group-hover:text-green-600 block md:hidden">Direct <i class="fa-solid fa-angle-down"></i></button>
                 <div id="direct_nav" class="hidden md:absolute md:bg-white md:shadow-lg md:w-52 group-hover:block md:rounded transition-all ease-linear mt-3">
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
                         <a class="w-full block py-4 px-4 text-sm" href="/#direct">About</a>
@@ -102,8 +105,8 @@
         <div class="px-5">
             <label for="" class="inline a-solid fa-solid fa-earth-americas "></label>
             <select name="language" id="page_lang" class="border-none bg-inherit focus:ring-0 focus:border-inherit focus:ring-inherit text-sm pl-0">
-                <option lang="eng" value="english" class="p-5">English</option>
-                <option lang="jap" value="japanese" class="p-5">日本語</option>
+                <option lang="eng" value="eng" class="p-5">English</option>
+                <option lang="jap" value="jap" class="p-5">日本語</option>
             </select>
         </div>
        
@@ -130,6 +133,11 @@
 
     $("#ssw_btn").on("click",function(){
         $("#ssw_nav").toggleClass("hidden");
+    })
+
+    $("#page_lang").on("change",function(){
+        console.log($(this).val())
+        $("meta[name='language']").attr('lang', $(this).val());
     })
 
    </script>

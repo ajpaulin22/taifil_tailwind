@@ -5,7 +5,11 @@
             <h1 class="text-center text-4xl md:text-3xl my-9 font-semibold text-sky-800">POST<hr class="border-b-2 border-green-500"></h1>
         </div>
         <div>
+            @if(count($data) == 0)
+            <h1 class="text-center text-4xl md:text-5xl my-9 font-semibold text-sky-800">No event posted...</h1>
+            @else
             <h1 class="text-center text-4xl md:text-5xl my-9 font-semibold text-sky-800">Latest event posted...</h1>
+            @endif
         </div>
         <div class=" md:grid md:grid-col-3 gap-5 md:grid-flow-col text-white">
             @foreach($data as $d)
