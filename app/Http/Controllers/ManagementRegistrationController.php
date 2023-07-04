@@ -26,4 +26,14 @@ class ManagementRegistrationController extends Controller
         // dd($data);
         return json_encode($json_data);
     }
+
+    public function GetPersonalData(Request $request){
+        $data = DB::table('personal_datas')
+        ->where("id",$request->PersonalInfoID)
+        ->where("IsDeleted",0)
+        ->select()->Get();
+
+        session(['personaldata' => $data]);
+        return $data;
+    }
 }

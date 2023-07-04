@@ -4446,7 +4446,18 @@ B. Synopsis: Class Module used to process data
         });
 
         $("#btnEdit").click(function(){
-            location.href = "/client/Biodata?data=" + $("#JobType").val() + "&PersonalInfo=" + dataApplicant.ID;
+            $.ajax({
+                url:"/admin/ManagementRegistration/GetPersonalData",
+                type:"GET",
+                data:{
+                    _token: self.token,
+                    PersonalInfoID: dataApplicant.ID
+                },
+                dataType:"JSON",
+                success:function(promise){
+                    location.href = "/client/Biodata?data=" + $("#JobType").val() + "&type=mod";
+                }
+            });
         });
 
         $('#tblManagementRegistration tbody').on('click', 'tr', function(e){
@@ -4479,6 +4490,10 @@ B. Synopsis: Class Module used to process data
                     }
                     break;
             }
+        });
+
+        $("#btnUpdateInterview").click(function(){
+            $("#mdlInterview").modal('show');
         });
     })
 

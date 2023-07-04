@@ -107,7 +107,6 @@ Job Information
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header bg-blue-madison">
-                <button type="button" class="close" aria-hidden="true"></button>
                 <h4 class="modal-title" id="mdlCodeTitle"> Create Code</h4>
             </div>
             <div class="modal-body">
@@ -141,7 +140,6 @@ Job Information
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header bg-blue-madison">
-                <button type="button" class="close" aria-hidden="true"></button>
                 <h4 class="modal-title" id="mdlCategoryTitle"> Create Category</h4>
             </div>
             <div class="modal-body">
@@ -187,7 +185,6 @@ Job Information
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header bg-blue-madison">
-                <button type="button" class="close" aria-hidden="true"></button>
                 <h4 class="modal-title" id="mdlOperationTitle"> Create Operation</h4>
             </div>
             <div class="modal-body">

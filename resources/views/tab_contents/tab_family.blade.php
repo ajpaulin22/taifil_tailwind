@@ -10,11 +10,15 @@
             <div class="form-group col-span-1">
                 <div class="flex">
                     <div class="flex items-center mr-4">
-                        <input type="radio" value="1" name="father_deceased" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                        <input type="radio" value="1" name="father_deceased" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " checked>
+                        <label for="inline-radio" class="ml-2 text-lg text-gray-900">Available</label>
+                    </div>
+                    <div class="flex items-center mr-4">
+                        <input type="radio" value="2" name="father_deceased" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                         <label for="inline-radio" class="ml-2 text-lg text-gray-900">Deceased</label>
                     </div>
                     <div class="flex items-center mr-4">
-                        <input type="radio" value="0" name="father_deceased" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                        <input type="radio" value="3" name="father_deceased" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                         <label for="inline-2-radio" class="ml-2 text-lg text-gray-900">N/A</label>
                     </div>
                 </div>
@@ -50,11 +54,15 @@
             <div class="form-group col-span-1">
                 <div class="flex">
                     <div class="flex items-center mr-4">
-                        <input type="radio" value="1" name="mother_deceased" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                        <input type="radio" value="1" name="mother_deceased" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " checked>
+                        <label for="inline-radio" class="ml-2 text-lg text-gray-900">Available</label>
+                    </div>
+                    <div class="flex items-center mr-4">
+                        <input type="radio" value="2" name="mother_deceased" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                         <label for="inline-radio" class="ml-2 text-lg text-gray-900">Deceased</label>
                     </div>
                     <div class="flex items-center mr-4">
-                        <input type="radio" value="0" name="mother_deceased" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                        <input type="radio" value="3" name="mother_deceased" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                         <label for="inline-2-radio" class="ml-2 text-lg text-gray-900">N/A</label>
                     </div>
                 </div>

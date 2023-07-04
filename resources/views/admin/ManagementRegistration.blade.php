@@ -81,13 +81,13 @@ Management Registration
                 <button type="button" id="btnDelete" class="btn btn-sm btn-danger btn-block"><span class="fa fa-trash"></span><span class="btnLabel">Delete</span></button>
             </div>
             <div class="col-sm-2 offset-6 mb-2" style='text-align: right;'>
-                <button type="button" id="btnSave" class="btn btn-sm btn-primary btn-block"><span class="fa fa-save"></span><span class="btnLabel">Update Interview History</span></button>
+                <button type="button" id="btnUpdateInterview" class="btn btn-sm btn-primary btn-block"><span class="fa fa-save"></span><span class="btnLabel">Update Interview History</span></button>
             </div>
             <div class="col-sm-1 mb-2">
                 <button type="button" id="btnDownloadExcel" class="btn btn-sm btn-success btn-block"><span class="fa fa-file-excel-o"></span><span class="btnLabel">Generate Excel</span></button>
             </div>
         </div>
-        <div class="table-responsive xs " style='overflow-x: visible !important'>
+        <div class="table-responsive xs ">
             <table class="table table-striped table-bordered tbl-100p display" style='width: 100%;' data-adjust="-30" id="tblManagementRegistration">
                 <thead style='border: 1px solid black;'>
                     <tr>
@@ -165,6 +165,62 @@ Management Registration
     </div>
 </div>
 
+<div class="modal fade" id="mdlInterview" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-blue-madison">
+                <h4 class="modal-title" id="mdlInterviewTitle"> Create Interview</h4>
+            </div>
+            <div class="modal-body">
+                <form id="frmInterview" data-parsley-validate>
+                    <div class="row ">
+                        <div class="col-sm-6">
+                            <div class="input-group input-group-sm m-b-5">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" id="lblAttendInterview"> Attended Interview <span class="text-danger"> *</span></label>
+                                </div>
+                                <select class="form-control" id="AttendInterview_0">
+                                    <option value=""></option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">No</option>
+                                </select>
+                            </div>
+                            <div id="err-AttendInterview"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group input-group-sm m-b-5">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" id="lblInterviewDate"> InterviewDate Date <span class="text-danger"> *</span></label>
+                                </div>
+                                <input type="text" id="InterviewDate_0" name="InterviewDate" class="form-control input " data-parsley-required data-parsley-errors-container="#err-InterviewDate" autocomplete="off">
+                            </div>
+                            <div id="err-InterviewDate"></div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-6">
+                            <div class="input-group input-group-sm m-b-5">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" id="lblCompany"> Company <span class="text-danger"> *</span></label>
+                                </div>
+                                <input type="text" id="Company_0" name="Company" class="form-control input " data-parsley-required data-parsley-errors-container="#err-Company" autocomplete="off">
+                            </div>
+                            <div id="err-Company"></div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="mb-1 col-sm-6">
+                            <button type="button" id="btnSaveInterview" class="btn btn-sm btn-block btn-primary"><span class="fa fa-save"></span> <span class="btn-label">Save </span></button>
+                        </div>
+                        <div class="mb-1 col-sm-6">
+                            <button type="button" id="btnCancelInterview" class="btn btn-sm btn-block red" data-dismiss="modal"><span class="fa fa-times"></span> Close</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts')

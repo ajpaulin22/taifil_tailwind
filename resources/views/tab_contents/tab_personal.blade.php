@@ -9,9 +9,10 @@
         </div>
         <div class="md:grid grid-cols-4 gap-4">
             <div class="form-group col-span-1">
+                <input name="PersonalInfoID" autocomplete="off" type="hidden" class="form-control" id="PersonalInfoID">
                 <label for="personal_lastname" class="form-label">Code<span style="color:red">*</span>:</label>
                 <select name="code" class="form-select" id="jobcodes">
-                    <input name="PersonalInfoID" autocomplete="off" type="hidden" class="form-control" id="PersonalInfoID">
+                    
                     <option value="" selected disabled value>Choose....</option>
                 </select>
             </div>

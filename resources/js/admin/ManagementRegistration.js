@@ -38,7 +38,18 @@
         });
 
         $("#btnEdit").click(function(){
-            location.href = "/client/Biodata?data=" + $("#JobType").val() + "&PersonalInfo=" + dataApplicant.ID;
+            $.ajax({
+                url:"/admin/ManagementRegistration/GetPersonalData",
+                type:"GET",
+                data:{
+                    _token: self.token,
+                    PersonalInfoID: dataApplicant.ID
+                },
+                dataType:"JSON",
+                success:function(promise){
+                    location.href = "/client/Biodata?data=" + $("#JobType").val() + "&type=mod";
+                }
+            });
         });
 
         $('#tblManagementRegistration tbody').on('click', 'tr', function(e){
@@ -71,6 +82,10 @@
                     }
                     break;
             }
+        });
+
+        $("#btnUpdateInterview").click(function(){
+            $("#mdlInterview").modal('show');
         });
     })
 

@@ -176,9 +176,6 @@
                     self.personalData.shoe_size = parseInt(self.personalData.shoe_size)
                     self.personalData.person_contact = parseInt(self.personalData.person_contact)
 
-
-
-
                      if($("#seminar_tab").length == 1) {
                         $("#seminar_tab").removeClass('pointer-events-none')
                          $("#seminar_tab").trigger('click');
@@ -207,7 +204,8 @@
                     abroad_emp:self.abroad_empData,
                     educational:self.educationalData,
                     vocational:self.vocationalData,
-                    personal:self.personalData
+                    personal:self.personalData,
+                    personalid: $("#PersonalInfoID").val()
                 },
                 dataType:"JSON",
                 success:function(promise){
@@ -228,59 +226,259 @@
 
         getData:function(){
             var strx = location.search.substring(1).split('&');
-            var PersonalInfoID = strx[1].substring(strx[1].indexOf("=") + 1);
-            $("#PersonalInfoID").val(PersonalInfoID);
-            $.ajax({
-                url:"/client/Biodata/GetPersonalData",
-                type:"GET",
-                data:{
-                    _token:self.token,
-                    PersonalInfoID: PersonalInfoID
-                },
-                dataType:"JSON",
-                success:function(promise){
-                    JobCategoryID = promise[0].job_cat;
-                    JobOperationID = promise[0].operation;
-                    $("#jobcodes").val(promise[0].code).trigger('change');
-                    $("#lastname").val(promise[0].lastname);
-                    $("#firstname").val(promise[0].first_name);
-                    $("#middlename").val(promise[0].middle_name);
-                    $("#nickanme").val(promise[0].nickname);
-                    $("#address").val(promise[0].address);
-                    $("#birthday").val(promise[0].date_birth);
-                    $("#birth_place").val(promise[0].place_birth);
-                    $("input[name='gender'][value='" + promise[0].gender + "']").prop("checked", true);
-                    $("select[name='citizenship']").val(promise[0].citizenship).trigger('change');
-                    $("#age").val(promise[0].age);
-                    $("select[name='blood_type']").val(promise[0].bloodtype).trigger('change');
-                    $("select[name='civil_status']").val(promise[0].civil_status).trigger('change');
-                    $("#contact").val(promise[0].contact);
-                    $("input[name='height']").val(promise[0].height);
-                    $("select[name='religion']").val(promise[0].religion).trigger('change');
-                    $("input[name='facebook']").val(promise[0].facebook);
-                    $("input[name='smoking'][value='" + promise[0].smoking + "']").prop("checked", true);
-                    $("input[name='weight']").val(promise[0].weight);
-                    $("input[name='jp_reading']").prop('checked', promise[0].jap_reading == 1 ? true : false);
-                    $("input[name='jp_writing']").prop('checked', promise[0].jap_writing == 1 ? true : false);
-                    $("input[name='jp_Speaking']").prop('checked', promise[0].jap_speaking == 1 ? true : false);
-                    $("input[name='jp_Listening']").prop('checked', promise[0].jap_listening == 1 ? true : false);
-                    $("input[name='weight']").val(promise[0].weight);
-                    $("input[name='other_lang']").val(promise[0].other_lang == null ? "" : promise[0].other_lang);
-                    $("input[name='shoe_size']").val(promise[0].shoe_size);
-                    $("input[name='hobbies']").val(promise[0].hobbies);
-                    $("input[name='person_to_notify']").val(promise[0].person_to_notify);
-                    $("input[name='relation']").val(promise[0].person_relation);
-                    $("input[name='person_address']").val(promise[0].person_address);
-                    $("input[name='person_contact']").val(promise[0].person_contact);
-                    $("input[name='passport']").val(promise[0].passport_no);
-                    $("input[name='issue_date']").val(promise[0].issue_date);
-                    $("input[name='expiry_date']").val(promise[0].expiry_date);
-                    $("input[name='issue_place']").val(promise[0].issue_place);
-                    $("input[name='allergy'][value='" + promise[0].allergy + "']").prop("checked", true);
-                    $("input[name='tattoo'][value='" + promise[0].tattoo + "']").prop("checked", true);
-                    $("input[name='licensed'][value='" + promise[0].drivers_licensed + "']").prop("checked", true);
-                },
-            })
+            var type = strx[1].substring(strx[1].indexOf("=") + 1);
+            if (type == "mod"){
+                $.ajax({
+                    url:"/client/Biodata/GetPersonalData",
+                    type:"GET",
+                    data:{
+                        _token:self.token,
+                        // PersonalInfoID: PersonalInfoID
+                    },
+                    dataType:"JSON",
+                    success:function(promise){
+                        JobCategoryID = promise.personaldata[0].job_cat;
+                        JobOperationID = promise.personaldata[0].operation;
+                        //personal
+                        $("#PersonalInfoID").val(promise.personaldata[0].id);
+                        $("#jobcodes").val(promise.personaldata[0].code).trigger('change');
+                        $("#lastname").val(promise.personaldata[0].lastname);
+                        $("#firstname").val(promise.personaldata[0].first_name);
+                        $("#middlename").val(promise.personaldata[0].middle_name);
+                        $("#nickanme").val(promise.personaldata[0].nickname);
+                        $("#address").val(promise.personaldata[0].address);
+                        $("#birthday").val(promise.personaldata[0].date_birth);
+                        $("#birth_place").val(promise.personaldata[0].place_birth);
+                        $("input[name='gender'][value='" + promise.personaldata[0].gender + "']").prop("checked", true);
+                        $("select[name='citizenship']").val(promise.personaldata[0].citizenship).trigger('change');
+                        $("#age").val(promise.personaldata[0].age);
+                        $("select[name='blood_type']").val(promise.personaldata[0].bloodtype).trigger('change');
+                        $("select[name='civil_status']").val(promise.personaldata[0].civil_status).trigger('change');
+                        $("#contact").val(promise.personaldata[0].contact);
+                        $("input[name='height']").val(promise.personaldata[0].height);
+                        $("select[name='religion']").val(promise.personaldata[0].religion).trigger('change');
+                        $("input[name='facebook']").val(promise.personaldata[0].facebook);
+                        $("input[name='smoking'][value='" + promise.personaldata[0].smoking + "']").prop("checked", true);
+                        $("input[name='weight']").val(promise.personaldata[0].weight);
+                        $("input[name='jp_reading']").prop('checked', promise.personaldata[0].jap_reading == 1 ? true : false);
+                        $("input[name='jp_writing']").prop('checked', promise.personaldata[0].jap_writing == 1 ? true : false);
+                        $("input[name='jp_Speaking']").prop('checked', promise.personaldata[0].jap_speaking == 1 ? true : false);
+                        $("input[name='jp_Listening']").prop('checked', promise.personaldata[0].jap_listening == 1 ? true : false);
+                        $("input[name='weight']").val(promise.personaldata[0].weight);
+                        $("input[name='other_lang']").val(promise.personaldata[0].other_lang == null ? "" : promise.personaldata[0].other_lang);
+                        $("input[name='shoe_size']").val(promise.personaldata[0].shoe_size);
+                        $("input[name='hobbies']").val(promise.personaldata[0].hobbies);
+                        $("input[name='person_to_notify']").val(promise.personaldata[0].person_to_notify);
+                        $("input[name='relation']").val(promise.personaldata[0].person_relation);
+                        $("input[name='person_address']").val(promise.personaldata[0].person_address);
+                        $("input[name='person_contact']").val(promise.personaldata[0].person_contact);
+                        $("input[name='passport']").val(promise.personaldata[0].passport_no);
+                        $("input[name='issue_date']").val(promise.personaldata[0].issue_date);
+                        $("input[name='expiry_date']").val(promise.personaldata[0].expiry_date);
+                        $("input[name='issue_place']").val(promise.personaldata[0].issue_place);
+                        $("input[name='allergy'][value='" + promise.personaldata[0].allergy + "']").prop("checked", true);
+                        $("input[name='tattoo'][value='" + promise.personaldata[0].tattoo + "']").prop("checked", true);
+                        $("input[name='licensed'][value='" + promise.personaldata[0].drivers_licensed + "']").prop("checked", true);
+
+                        //educational
+                        $("input[name='name_elem']").val(promise.educationaldata[0].name_elem);
+                        $("input[name='add_elem']").val(promise.educationaldata[0].address_elem);
+                        $("input[name='date_from_elem']").val(promise.educationaldata[0].from_elem);
+                        $("input[name='date_until_elem']").val(promise.educationaldata[0].until_elem);
+                        $("input[name='name_highschool']").val(promise.educationaldata[0].name_highschool);
+                        $("input[name='add_highschool']").val(promise.educationaldata[0].address_highschool);
+                        $("input[name='date_from_highschool']").val(promise.educationaldata[0].from_highschool);
+                        $("input[name='date_until_highschool']").val(promise.educationaldata[0].until_highschool);
+                        $("input[name='name_jpl']").val(promise.educationaldata[0].name_jp_lang);
+                        $("input[name='add_jpl']").val(promise.educationaldata[0].address_jp_lang);
+                        $("input[name='date_from_jpl']").val(promise.educationaldata[0].from_jp_lang);
+                        $("input[name='date_until_jpl']").val(promise.educationaldata[0].until_jp_lang);
+                        $("input[name='certificate_jpl']").val(promise.educationaldata[0].certificate_jp_lang);
+                        $("input[name='date_until_cert_jpl']").val(promise.educationaldata[0].certificate_until_jp_lang);
+                        $("input[name='name_college']").val(promise.educationaldata[0].name_college);
+                        $("input[name='add_college']").val(promise.educationaldata[0].address_college);
+                        $("input[name='date_from_college']").val(promise.educationaldata[0].from_college);
+                        $("input[name='date_until_college']").val(promise.educationaldata[0].until_college);
+                        $("input[name='course_college']").val(promise.educationaldata[0].course_college);
+                        $("input[name='certificate_college']").val(promise.educationaldata[0].certificate_college);
+                        $("input[name='date_until_cert_college']").val(promise.educationaldata[0].certificate_until_college);
+                        for (var i = 0; i < promise.vocationaldata.length; i++){
+                            if(i != 0)
+                                $("#add_vocational_btn").trigger('click');
+                            $("input[name='name_vocational_"+ i +"']").val(promise.vocationaldata[i].name);
+                            $("input[name='add_vocational_"+ i +"']").val(promise.vocationaldata[i].address);
+                            $("input[name='date_from_vocational_"+ i +"']").val(promise.vocationaldata[i].from);
+                            $("input[name='date_until_vocational_"+ i +"']").val(promise.vocationaldata[i].until);
+                            $("input[name='course_vocational_"+ i +"']").val(promise.vocationaldata[i].course);
+                            $("input[name='certificate_vocational_"+ i +"']").val(promise.vocationaldata[i].certificate);
+                            $("input[name='date_until_cert_vocational_"+ i +"']").val(promise.vocationaldata[i].certificate_until);
+                        }
+
+                        //localemployment
+                        if (promise.employmentlocaldata.length == 0){
+                            $("#local_applicable").trigger('click');                        
+                        }
+                        else{
+                            for (var i = 0; i < promise.employmentlocaldata.length; i++){
+                                if(i != 0)
+                                    $("#add_local_btn").trigger('click');
+                                $("input[name='name_local_"+ i +"']").val(promise.employmentlocaldata[i].company_name);
+                                $("input[name='position_local_"+ i +"']").val(promise.employmentlocaldata[i].position);
+                                $("input[name='address_local_"+ i +"']").val(promise.employmentlocaldata[i].company_address);
+                                $("input[name='date_from_local_"+ i +"']").val(promise.employmentlocaldata[i].from);
+                                $("input[name='date_until_local_"+ i +"']").val(promise.employmentlocaldata[i].until);
+                            }
+                        }
+
+                        //abroademployment
+                        if (promise.employmentabroaddata.length == 0){
+                            $("#abroad_applicable").trigger('click');                        
+                        }
+                        else{
+                            for (var i = 0; i < promise.employmentabroaddata.length; i++){
+                                if(i != 0)
+                                    $("#add_abroad_btn").trigger('click');
+                                $("input[name='name_abroad_"+ i +"']").val(promise.employmentabroaddata[i].company_name);
+                                $("input[name='position_abroad_"+ i +"']").val(promise.employmentabroaddata[i].position);
+                                $("input[name='address_abroad_"+ i +"']").val(promise.employmentabroaddata[i].company_address);
+                                $("input[name='date_from_abroad_"+ i +"']").val(promise.employmentabroaddata[i].from);
+                                $("input[name='date_until_abroad_"+ i +"']").val(promise.employmentabroaddata[i].until);
+                            }
+                        }
+
+                        //family
+                        if (promise.familydata[0].father_name == null && promise.familydata[0].father_birth == null){
+                            $("input[name='father_deceased'][value='3']").trigger('click');
+                            $("input[name='father']").val(promise.familydata[0].father_name);
+                        }
+                        else if(promise.familydata[0].father_name != null && promise.familydata[0].father_birth == null){
+                            $("input[name='father_deceased'][value='2']").trigger('click');
+                            $("input[name='father']").val(promise.familydata[0].father_name);
+                            $("input[name='father_birthday']").val(promise.familydata[0].father_birth);
+                        }
+                        else{
+                            $("input[name='father']").val(promise.familydata[0].father_name);
+                            $("input[name='father_birthday']").val(promise.familydata[0].father_birth);
+                            $("input[name='father_occupation']").val(promise.familydata[0].father_occupation);
+                            $("input[name='father_cp']").val(promise.familydata[0].father_cp);
+                            $("input[name='father_address']").val(promise.familydata[0].father_address);
+                        }
+
+                        if (promise.familydata[0].mother_name == null && promise.familydata[0].mother_birth == null){
+                            $("input[name='mother_deceased'][value='3']").trigger('click');
+                            $("input[name='mother']").val(promise.familydata[0].mother_name);
+                        }
+                        else if(promise.familydata[0].mother_name != null && promise.familydata[0].mother_birth == null){
+                            $("input[name='mother_deceased'][value='2']").trigger('click');
+                            $("input[name='mother']").val(promise.familydata[0].mother_name);
+                            $("input[name='mother_birthday']").val(promise.familydata[0].mother_birth);
+                        }
+                        else{
+                            $("input[name='mother']").val(promise.familydata[0].mother_name);
+                            $("input[name='mother_birthday']").val(promise.familydata[0].mother_birth);
+                            $("input[name='mother_occupation']").val(promise.familydata[0].mother_occupation);
+                            $("input[name='mother_cp']").val(promise.familydata[0].mother_cp);
+                            $("input[name='mother_address']").val(promise.familydata[0].mother_address);
+                        }
+
+                        if($("select[name='civil_status']").val() == 'Married'){
+                            $("input[name='spouse']").val(promise.familydata[0].spouse_name);
+                            $("input[name='spouse_birthday']").val(promise.familydata[0].spouse_birth);
+                            $("input[name='spouse_occupation']").val(promise.familydata[0].spouse_occupation);
+                            $("input[name='spouse_cp']").val(promise.familydata[0].spouse_cp);
+                            $("input[name='spouse_address']").val(promise.familydata[0].spouse_address);
+                        }
+                        
+                        if(promise.familydata[0].partner_name == null){
+                            $("#partner_applicable").trigger('click');
+                            $("input[name='partner']").val(promise.familydata[0].partner_name);
+                            $("input[name='partner_birthday']").val(promise.familydata[0].partner_birth);
+                            $("input[name='partner_occupation']").val(promise.familydata[0].partner_occupation);
+                            $("input[name='partner_cp']").val(promise.familydata[0].partner_cp);
+                            $("input[name='partner_address']").val(promise.familydata[0].partner_address);
+                        }
+
+                        if(promise.familydata[0].went_japan == 0){
+                            $("input[name='went_japan'][value='"+ promise.familydata[0].went_japan +"']").trigger('click');
+                        }
+                        else{
+                            $("input[name='went_japan'][value='"+ promise.familydata[0].went_japan +"']").trigger('click');
+                            $("input[name='japan_times']").val(promise.familydata[0].how_many_japan);
+                            $("input[name='japan_when']").val(promise.familydata[0].when_japan);
+                            $("input[name='japan_where']").val(promise.familydata[0].where_japan);
+                            $("input[name='japan_where']").val(promise.familydata[0].where_japan);
+
+                            if(promise.familydata[0].overstay_japan == 0){
+                                $("input[name='went_japan'][value='"+ promise.familydata[0].overstay_japan +"']").trigger('click');
+                            }
+                            else{
+                                $("input[name='overstay'][value='"+ promise.familydata[0].overstay_japan +"']").trigger('click');
+                                $("input[name='overstay_howlong']").val(promise.familydata[0].how_long_overstay);
+                            }
+
+                            if(promise.familydata[0].fake_identity_japan == 0){
+                                $("input[name='fakeidentity'][value='"+ promise.familydata[0].fake_identity_japan +"']").trigger('click');
+                            }
+                            else{
+                                $("input[name='fakeidentity'][value='"+ promise.familydata[0].fake_identity_japan +"']").trigger('click');
+                                $("input[name='fakeidentity_purpose']").val(promise.familydata[0].fake_identity_purpose);
+                                $("input[name='fakeidentity_purpose'][value='"+ promise.familydata[0].fake_identity_surrender +"']").trigger('click');
+                            }
+                        }
+
+                        if(promise.familydata[0].applied_visa == 0){
+                            $("input[name='visa'][value='"+ promise.familydata[0].applied_visa +"']").trigger('click');
+                        }
+                        else{
+                            $("input[name='visa'][value='"+ promise.familydata[0].applied_visa +"']").trigger('click');
+                            $("select[name='visa_type']").val(promise.familydata[0].type_visa).trigger('change');
+                            $("input[name='visa_when']").val(promise.familydata[0].when_applied_visa);
+                            $("select[name='visa_approved']").val(promise.familydata[0].approved).trigger('change');
+                        }
+
+                        if (promise.siblingdata.length == 0){
+                            $("#sibling_applicable").trigger('click');                        
+                        }
+                        else{
+                            for (var i = 0; i < promise.siblingdata.length; i++){
+                                if(i != 0)
+                                    $("#add_sibling").trigger('click');
+                                $("input[name='sibling_"+ i +"']").val(promise.siblingdata[i].sibling_name);
+                                $("input[name='sibling_birthday_"+ i +"']").val(promise.siblingdata[i].sibling_birth);
+                                $("input[name='sibling_occupation_"+ i +"']").val(promise.siblingdata[i].sibling_occupation);
+                                $("input[name='sibling_cp_"+ i +"']").val(promise.siblingdata[i].sibling_cp);
+                                $("input[name='sibling_address_"+ i +"']").val(promise.siblingdata[i].sibling_address);
+                            }
+                        }
+
+                        if (promise.childrendata.length == 0){
+                            $("#children_applicable").trigger('click');                        
+                        }
+                        else{
+                            for (var i = 0; i < promise.childrendata.length; i++){
+                                if(i != 0)
+                                    $("#add_children").trigger('click');
+                                $("input[name='child_"+ i +"']").val(promise.childrendata[i].name);
+                                $("input[name='child_birthday_"+ i +"']").val(promise.childrendata[i].birthday);
+                            }
+                        }
+
+                        if (promise.relativedata.length == 0){
+                            $("#relatives_applicable").trigger('click');                        
+                        }
+                        else{
+                            for (var i = 0; i < promise.relativedata.length; i++){
+                                if(i != 0)
+                                    $("#add_relatives").trigger('click');
+                                $("input[name='name_relative_"+ i +"']").val(promise.relativedata[i].name);
+                                $("input[name='relation_relative_"+ i +"']").val(promise.relativedata[i].relation);
+                                $("input[name='contact_relative_"+ i +"']").val(promise.relativedata[i].cp);
+                                $("input[name='address_relative_"+ i +"']").val(promise.relativedata[i].address);
+                            }
+                        }
+                    },
+                })
+            }
         },
 
         ddlSelectValue: function (id, text, value) {
@@ -1221,6 +1419,10 @@
 
     $("input[name='father_deceased']").on("click",function(){
         if($(this).val() == 1){
+            $(".father_deceased").attr("disabled",false)
+            $(".father_na").attr("disabled",false)
+        }
+        else if($(this).val() == 2){
             $(".father_deceased").attr("disabled",true)
             $(".father_na").attr("disabled",false)
         }else{
@@ -1231,6 +1433,10 @@
 
     $("input[name='mother_deceased']").on("click",function(){
         if($(this).val() == 1){
+            $(".mother_deceased").attr("disabled",false)
+            $(".mother_na").attr("disabled",false)
+        }
+        else if($(this).val() == 2){
             $(".mother_deceased").attr("disabled",true)
             $(".mother_na").attr("disabled",false)
         }else{
