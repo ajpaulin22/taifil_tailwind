@@ -18206,6 +18206,10 @@ input[type='number']::-webkit-outer-spin-button,
 
   @media (min-width: 768px) {
 
+  .md\:pointer-events-none {
+    pointer-events: none;
+  }
+
   .md\:absolute {
     position: absolute;
   }
