@@ -4442,7 +4442,7 @@ B. Synopsis: Class Module used to process data
         });
 
         $("#btnCreateApplicant").click(function(){
-            location.href = "/client/Biodata?data=" + $("#JobType").val();
+            location.href = "/client/Biodata?data=" + $("#JobType").val() +"&type=fresh";
         });
 
         $("#btnEdit").click(function(){
