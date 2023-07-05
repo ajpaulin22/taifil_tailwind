@@ -17,13 +17,11 @@ class JobInformationController extends Controller
     }
 
     public function GetJobCode(Request $request){
-
         $limit = $request->length;
         $start = $request->start;
         $order111 = $request->input('order.0.column');
         $dir = $request->input('order.0.dir');
         $search = $request->input('search.value');
-    
         
         $order = "id";
         $query_1 = "SELECT 
@@ -35,7 +33,7 @@ class JobInformationController extends Controller
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
         OR  Code LIKE '%".$search."%')";
-    
+
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
         $total_result = (count($data) > 0 ? count($data): 0);

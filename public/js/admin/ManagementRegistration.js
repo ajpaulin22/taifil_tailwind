@@ -4409,7 +4409,10 @@ B. Synopsis: Class Module used to process data
 
 (function(){
     var tblManagementRegistration = "";
+    var tblInterview = "";
     var dataApplicant = "";
+    var applicantID = 0;
+    var interviewIndex = 0;
     token = $("meta[name=csrf-token]").attr("content");
     var data = [
         {IDcheckbox: 1, IDrow: 1, Name: "Jenefer", JobCategories: "Livestock Agriculture", Program: "SSW", Show: 2, InterviewDate: "2023-01-01", Company: "Seiko IT Solutions Philippines Inc.", Age: 23, ToAbroad: 1},
@@ -4419,6 +4422,7 @@ B. Synopsis: Class Module used to process data
     
     $(document).ready(function(){
         drawDataTable();
+        drawInterviewTable();
         GetCodes();
         $("#Code").change(function(){
             GetJobCategories($(this).val());
@@ -4442,11 +4446,22 @@ B. Synopsis: Class Module used to process data
         });
 
         $("#btnCreateApplicant").click(function(){
-            location.href = "/client/Biodata?data=" + $("#JobType").val();
+            location.href = "/client/Biodata?data=" + $("#JobType").val() +"&type=fresh";
         });
 
         $("#btnEdit").click(function(){
-            location.href = "/client/Biodata?data=" + $("#JobType").val() + "&PersonalInfo=" + dataApplicant.ID;
+            $.ajax({
+                url:"/admin/ManagementRegistration/GetPersonalData",
+                type:"GET",
+                data:{
+                    _token: self.token,
+                    PersonalInfoID: dataApplicant.ID
+                },
+                dataType:"JSON",
+                success:function(promise){
+                    location.href = "/client/Biodata?data=" + $("#JobType").val() + "&type=mod";
+                }
+            });
         });
 
         $('#tblManagementRegistration tbody').on('click', 'tr', function(e){
@@ -4469,23 +4484,68 @@ B. Synopsis: Class Module used to process data
                         if ($(this).hasClass('selected')) {
                             dataApplicant = "";
                             $("#btnEdit").attr('disabled', true);
+                            $("#btnUpdateInterview").attr('disabled', true);
                             tblManagementRegistration.$('tr.selected').removeClass('selected');
                         }
                         else {
                             tblManagementRegistration.$('tr.selected').removeClass('selected');
                             $("#btnEdit").removeAttr('disabled');
+                            $("#btnUpdateInterview").removeAttr('disabled');
                             $(this).addClass('selected');
                         }
                     }
                     break;
             }
         });
+
+        $("#btnUpdateInterview").click(function(){
+            $("#ApplicantName").text(dataApplicant.Name);
+            applicantID = dataApplicant.ID;
+            tblInterview.ajax.reload(null, false);
+            $("#mdlInterview").modal('show');
+        });
+
+        $("#btnAddInterview").click(function(){
+            $("#AddApplicantName").text(dataApplicant.Name);
+            $("#mdlInterview").modal('hide');
+            $("#mdlAddInterview").modal('show');
+        });
+
+        $("#btnCancelAddInterview").click(function(){
+            $("#mdlAddInterview").modal('hide');
+            $("#mdlInterview").modal('show');
+        });
+
+        $("#btnSaveInterview").click(function(){
+            $.ajax({
+                url:"/admin/ManagementRegistration/SaveInterview",
+                type:"POST",
+                data:{
+                    _token: token,
+                    AttendInterview: $("#AttendInterview").val(),
+                    InterviewDate: $("#InterviewDate").val(),
+                    Company: $("#Company").val(),
+                    PersonalID: dataApplicant.ID
+                },
+                dataType:"JSON",
+                beforeSend: function(){
+                    $("#loading_modal").show();
+                },
+                success:function(promise){
+                    $("#loading_modal").hide();
+                    tblInterview.ajax.reload(null, false);
+                    $("#mdlAddInterview").modal('hide');
+                    $("#mdlInterview").modal('show');
+                    showMessage("Success!", "Interview Information Was Saved Successfully", "success", "green");
+                }
+            });
+        });
     })
 
     function GetJobCategories(id){
         $.ajax({
-            url:"/client/Biodata/get-categories",
-            type:"GET",
+            url:'/client/Biodata/get-categories',
+            type:'GET',
             data:{
                 _token:self.token,
                 ID:id
@@ -4535,7 +4595,6 @@ B. Synopsis: Class Module used to process data
             data:{_token:self.token},
             dataType:"JSON",
             success:function(promise){
-                console.log(promise)
                 let option = `<option value=""></option>`;
                 promise.forEach(data=>{
                     option += `<option value="${data.ID}">${data.Code}</option>`;
@@ -4556,13 +4615,7 @@ B. Synopsis: Class Module used to process data
                     dataType: "JSON",
                     type: "GET",
                     data: function(d){
-                        _token = token,
-                        d["Type"] = $("#Type").val(),
-                        d["Code"] = $("#Code").val(),
-                        d["JobCategories"] = $("#JobCategories").val(),
-                        d["Operations"] = $("#Operations").val(),
-                        d["AgeFrom"] = $("#AgeFrom").val(),
-                        d["AgeTo"] = $("#AgeTo").val()
+                        _token = token
                     }
                 },
                 deferRender: true,
@@ -4616,6 +4669,71 @@ B. Synopsis: Class Module used to process data
             });
         }
         return this;
+    }
+
+    function drawInterviewTable(){
+        if (!$.fn.DataTable.isDataTable('#tblInterview')) {
+            tblInterview = $('#tblInterview').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "/admin/ManagementRegistration/GetInterviewHistory",
+                    dataType: "JSON",
+                    type: "GET",
+                    data: function(d){
+                        _token = token,
+                        d["applicantID"] = applicantID
+                    }
+                },
+                deferRender: true,
+                pageLength: 10,
+                order: [
+                    [0, "desc"]
+                ],
+                lengthMenu: [
+                    [10, 20, 50, 100, 150, 200, 500, -1],
+                    [10, 20, 50, 100, 150, 200, 500, "All"]
+                ],
+                language: {
+                    aria: {
+                        sortAscending: ": activate to sort column ascending",
+                        sortDescending: ": activate to sort column descending"
+                    },
+                    emptyTable: "No data available in table",
+                    info: "Showing _START_ to _END_ of _TOTAL_ records",
+                    infoEmpty: "No records found",
+                    infoFiltered: "(filtered1 from _MAX_ total records)",
+                    lengthMenu: "Show _MENU_",
+                    search: "Search:",
+                    zeroRecords: "No matching records found",
+                    paginate: {
+                        "previous": "Prev",
+                        "next": "Next",
+                        "last": "Last",
+                        "first": "First"
+                    }
+                },
+                columns:[
+                    { title: 'AttendInterview', data: "AttendInterview", width: "7%", className: "dt-center"},
+                    { title: 'InterviewDate', data: "InterviewDate", width: "28%", className: "dt-center"},
+                    { title: 'Company', data: "Company", width: "65%", className: "dt-center"},
+                ],
+            }).on('page.dt', function() {
+            });
+        }
+        return this;
+    }
+
+    function showMessage(title, msg, backgroundColor, color){
+        iziToast.show({
+            title: title,
+            message: msg,
+            position: 'topRight',
+            backgroundColor: backgroundColor,
+            theme: 'light', // dark
+            color: color, // blue, red, green, yellow
+            timeout: 5000,
+        });
     }
 
 })();

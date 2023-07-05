@@ -224,6 +224,7 @@
            }
         },
 
+<<<<<<< HEAD
         getData:function(){
             var strx = location.search.substring(1).split('&');
             var type = strx[1].substring(strx[1].indexOf("=") + 1);
@@ -480,6 +481,64 @@
                 })
             }
         },
+=======
+        // getData:function(){
+        //     var strx = location.search.substring(1).split('&');
+        //     var PersonalInfoID = strx[1].substring(strx[1].indexOf("=") + 1);
+        //     $("#PersonalInfoID").val(PersonalInfoID);
+        //     $.ajax({
+        //         url:"/client/Biodata/GetPersonalData",
+        //         type:"GET",
+        //         data:{
+        //             _token:self.token,
+        //             PersonalInfoID: PersonalInfoID
+        //         },
+        //         dataType:"JSON",
+        //         success:function(promise){
+        //             JobCategoryID = promise[0].job_cat;
+        //             JobOperationID = promise[0].operation;
+        //             $("#jobcodes").val(promise[0].code).trigger('change');
+        //             $("#lastname").val(promise[0].lastname);
+        //             $("#firstname").val(promise[0].first_name);
+        //             $("#middlename").val(promise[0].middle_name);
+        //             $("#nickanme").val(promise[0].nickname);
+        //             $("#address").val(promise[0].address);
+        //             $("#birthday").val(promise[0].date_birth);
+        //             $("#birth_place").val(promise[0].place_birth);
+        //             $("input[name='gender'][value='" + promise[0].gender + "']").prop("checked", true);
+        //             $("select[name='citizenship']").val(promise[0].citizenship).trigger('change');
+        //             $("#age").val(promise[0].age);
+        //             $("select[name='blood_type']").val(promise[0].bloodtype).trigger('change');
+        //             $("select[name='civil_status']").val(promise[0].civil_status).trigger('change');
+        //             $("#contact").val(promise[0].contact);
+        //             $("input[name='height']").val(promise[0].height);
+        //             $("select[name='religion']").val(promise[0].religion).trigger('change');
+        //             $("input[name='facebook']").val(promise[0].facebook);
+        //             $("input[name='smoking'][value='" + promise[0].smoking + "']").prop("checked", true);
+        //             $("input[name='weight']").val(promise[0].weight);
+        //             $("input[name='jp_reading']").prop('checked', promise[0].jap_reading == 1 ? true : false);
+        //             $("input[name='jp_writing']").prop('checked', promise[0].jap_writing == 1 ? true : false);
+        //             $("input[name='jp_Speaking']").prop('checked', promise[0].jap_speaking == 1 ? true : false);
+        //             $("input[name='jp_Listening']").prop('checked', promise[0].jap_listening == 1 ? true : false);
+        //             $("input[name='weight']").val(promise[0].weight);
+        //             $("input[name='other_lang']").val(promise[0].other_lang == null ? "" : promise[0].other_lang);
+        //             $("input[name='shoe_size']").val(promise[0].shoe_size);
+        //             $("input[name='hobbies']").val(promise[0].hobbies);
+        //             $("input[name='person_to_notify']").val(promise[0].person_to_notify);
+        //             $("input[name='relation']").val(promise[0].person_relation);
+        //             $("input[name='person_address']").val(promise[0].person_address);
+        //             $("input[name='person_contact']").val(promise[0].person_contact);
+        //             $("input[name='passport']").val(promise[0].passport_no);
+        //             $("input[name='issue_date']").val(promise[0].issue_date);
+        //             $("input[name='expiry_date']").val(promise[0].expiry_date);
+        //             $("input[name='issue_place']").val(promise[0].issue_place);
+        //             $("input[name='allergy'][value='" + promise[0].allergy + "']").prop("checked", true);
+        //             $("input[name='tattoo'][value='" + promise[0].tattoo + "']").prop("checked", true);
+        //             $("input[name='licensed'][value='" + promise[0].drivers_licensed + "']").prop("checked", true);
+        //         },
+        //     })
+        // },
+>>>>>>> 0458fb7fc3388e0141c3599f8650f45f79abe71e
 
         ddlSelectValue: function (id, text, value) {
             $(id).html("");
@@ -581,7 +640,7 @@
    $(document).ready(function() {
 
     biodata.getCode();
-    biodata.getData();
+    // biodata.getData();
     //EVENTS
     $("#jobcodes").on("change",function(){
         biodata.getCategories($(this).val());
