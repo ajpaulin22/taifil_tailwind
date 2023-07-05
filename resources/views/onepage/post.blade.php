@@ -24,7 +24,7 @@
                 </div>
                 <div class="p-5">
                     <div class="banner shadow-5xl">
-                        <a href="{{'/client/gallery?cat='.$d['category']}}" class="py-1 px-4 bg-sky-800 rounded-full text-white hover:scale(200) hover:text-white hover:ring-2 hover:ring-white ">{{$data[0]['category']}}</a>
+                        <a href="{{'/client/gallery?cat='.$d['category']}}" class="py-1 px-4 bg-sky-800 rounded-full text-white hover:scale(200) hover:text-white hover:ring-2 hover:ring-white ">{{$d['category']}}</a>
                     </div>
                     <div class="title my-5">
                         <h1 class="text-2xl font-semibold ">{{$d['title']}}</h1>

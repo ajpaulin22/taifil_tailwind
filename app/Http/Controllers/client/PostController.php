@@ -33,6 +33,7 @@ class PostController extends Controller
                 })
                 ->where("category",$request->cat)
                 ->where("isdeleted",0)
+                ->orderByDesc("p.id")
                 ->paginate(5);
             }else{
                 $query = DB::table('posts as p')
@@ -49,6 +50,7 @@ class PostController extends Controller
                     $join->on('p.id','=',"i.post_id");
                 })
                 ->where("isdeleted",0)
+                ->orderByDesc("p.id")
                 ->paginate(5);
             }
 

@@ -2575,7 +2575,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                       if(promise.success){
                         self.saveid(promise.id);
                       }else{
-                        console.log(promise.msgTitle)
+                        iziToast.error({
+                            class:'rounded-lg overflow-hidden',
+                            title: 'Error',
+                            message: 'promise.msgTitle',
+                            position:'topRight'
+                        });
                       }
                       
                 }
@@ -2927,8 +2932,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 processData:false,
                 success:function(promise){
                     if(promise.success){
+                        iziToast.success({
+                            class:'rounded-lg overflow-hidden',
+                            title: promise.msgTitle,
+                            message: promise.msg,
+                            position:'topRight'
+                        });
                         setTimeout(() => {
-                            location.replace("/")
+                            location.replace((location.pathname.includes("/jp")? "/jp/":"/"));
                         }, 5000);
                     }
                     console.log(promise.msgTitle)

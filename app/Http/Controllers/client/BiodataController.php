@@ -324,7 +324,7 @@ class BiodataController extends Controller
             
             if($data->update()){
                 $data = [
-                    'msg' => 'Shipment Transaction was successfully completed.',
+                    'msg' => 'The Biodata has been uploaded',
                     'data' => [],
                     'success' => true,
                     'msgType' => 'success',
