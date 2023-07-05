@@ -17,7 +17,6 @@ class JobInformationController extends Controller
     }
 
     public function GetJobCode(Request $request){
-
         $limit = $request->length;
         $start = $request->start;
         $order111 = $request->input('order.0.column');

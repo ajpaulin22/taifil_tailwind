@@ -85,6 +85,8 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
         Route::get("/",[ManagementRegistrationController::class,'view']);
         Route::get("/GetApplicantData",[ManagementRegistrationController::class,'GetApplicantData']);
         Route::get("/GetPersonalData",[ManagementRegistrationController::class,"GetPersonalData"]);
+        Route::post("/SaveInterview",[ManagementRegistrationController::class,"SaveInterview"]);
+        Route::get("/GetInterviewHistory",[ManagementRegistrationController::class,"GetInterviewHistory"]);
     });
 
     Route::group(["middleware" => "admin","prefix" => "MasterMaintenance"],function(){
