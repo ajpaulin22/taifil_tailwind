@@ -16,5 +16,5 @@
         </li>
         @endforeach
     </ul>
-    <a href="/client/Biodata?data={{$category}}" class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Apply now</a>
+    <a href="/client/Biodata?data={{$category}}&type=new" class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Apply now</a>
 </div>

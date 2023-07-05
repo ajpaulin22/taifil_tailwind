@@ -40,7 +40,7 @@
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
-                        <a class="w-full block py-4 px-4 text-sm" href="/client/Biodata?data=TITP">Apply now</a>  
+                        <a class="w-full block py-4 px-4 text-sm" href="/client/Biodata?data=TITP&type=new">Apply now</a>  
                     </div>
                 </div>
             </li>
@@ -61,7 +61,7 @@
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
-                        <a class="w-full block py-4 px-4 text-sm" href="/client/Biodata?data=SSW">Apply now</a>  
+                        <a class="w-full block py-4 px-4 text-sm" href="/client/Biodata?data=SSW&type=new">Apply now</a>  
                     </div>
                 </div>
                 
@@ -83,7 +83,7 @@
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
-                        <a class="w-full block py-4 px-4 text-sm" href="/client/Biodata?data=Direct">Apply now</a>
+                        <a class="w-full block py-4 px-4 text-sm" href="/client/Biodata?data=Direct&type=new">Apply now</a>
                     </div>
                 </div>
             </li>
