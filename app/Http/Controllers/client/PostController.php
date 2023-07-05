@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -46,7 +47,7 @@ class PostController extends Controller
                     DB::raw("date_format(p.created_at,'%r') as time"),
                     DB::raw("i.path")
                 ])
-                ->join(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
+                ->leftjoin(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
                     $join->on('p.id','=',"i.post_id");
                 })
                 ->where("isdeleted",0)
@@ -125,15 +126,15 @@ class PostController extends Controller
             "title" => $request->title,
             "content" =>$request->content,
             "category" =>$request->category,
-            "created_at" => Carbon::now()->setTimezone('Asia/Manila'),
-            "updated_at" => Carbon::now()->setTimezone('Asia/Manila')
+            "created_at" => Carbon::now()->setTimezone('UTC'),
+            "updated_at" => Carbon::now()->setTimezone('UTC')
         ]);
 
         if($request->hasFile("pictures")){
             foreach($request->file("pictures") as $picture){
                 image::create([
                 "post_id" => $id,
-                "path" => $picture->store($request->title . date('Y-m-d'),"public"),
+                "path" => $picture->store($request->title ."_". date('Y-m-d'),"public"),
                 ]);
             }
         }
@@ -195,9 +196,12 @@ class PostController extends Controller
         $host = $request->server('HTTP_REFERER');
         $data->isdeleted = 1;
         $data->update();
+        $pics = image::select()->where("post_id",$request->id)->toArray();
         DB::table("images")->where("post_id",$request->id)->update([
             'isdeleted' => 0
         ]);
+        // DB::table
+        // Storage::disk('public')->delete($filename);
         return redirect($host)->with("message","The post has been deleted");
     }
 }
