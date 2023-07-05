@@ -21,6 +21,9 @@ class BiodataController extends Controller
     public function view(Request $request){
         return view("/pages/biodata",['biodata'=>$request->data]);
     }
+    public function view_jp(Request $request){
+        return view("jp/pages/biodata",['biodata'=>$request->data]);
+    }
 
     public function uploadData(Request $request)
     {

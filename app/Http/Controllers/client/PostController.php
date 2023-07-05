@@ -60,9 +60,60 @@ class PostController extends Controller
         }
     }
 
+    public function view_jp(Request $request){
+        try {
+
+           
+            if(isset($request->cat)){
+                $query = DB::table('posts as p')
+                ->select([
+                    DB::raw("p.id"),
+                    DB::raw("p.title"),
+                    DB::raw("p.content"),
+                    DB::raw("p.category"),
+                    DB::raw("cast(p.created_at as date) as `date`"),
+                    DB::raw("date_format(p.created_at,'%r') as time"),
+                    DB::raw("i.path")
+                ])
+                ->join(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
+                    $join->on('p.id','=',"i.post_id");
+                })
+                ->where("category",$request->cat)
+                ->where("isdeleted",0)
+                ->paginate(5);
+            }else{
+                $query = DB::table('posts as p')
+                ->select([
+                    DB::raw("p.id"),
+                    DB::raw("p.title"),
+                    DB::raw("p.content"),
+                    DB::raw("p.category"),
+                    DB::raw("cast(p.created_at as date) as `date`"),
+                    DB::raw("date_format(p.created_at,'%r') as time"),
+                    DB::raw("i.path")
+                ])
+                ->join(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
+                    $join->on('p.id','=',"i.post_id");
+                })
+                ->where("isdeleted",0)
+                ->paginate(5);
+            }
+
+            
+        $dat = "";
+        return view("jp.pages.gallery",["posts" => $query,"cat" => $request->cat]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
     public function create_post(){
         
         return view("pages.create-post",);
+    }
+    public function create_post_jp(){
+        
+        return view("jp.pages.create-post",);
     }
 
     public function create(Request $request){
@@ -123,12 +174,14 @@ class PostController extends Controller
     }
 
     public function delete(Request $request){
+
         $data = post::find($request->id);
+        $host = $request->server('HTTP_REFERER');
         $data->isdeleted = 1;
         $data->update();
         DB::table("images")->where("post_id",$request->id)->update([
             'isdeleted' => 0
         ]);
-        return redirect("/client/gallery")->with("message","The post has been deleted");
+        return redirect($host)->with("message","The post has been deleted");
     }
 }

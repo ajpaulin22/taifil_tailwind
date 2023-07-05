@@ -1,5 +1,5 @@
 <section class="mt-10">
-    <div class="min-h-screen max-w-7xl md:mx-auto mx-5">
+    <div data-aos="flip-down" class="min-h-screen max-w-7xl md:mx-auto mx-5">
         <div>
             <h1 class="text-center text-4xl md:text-5xl mt-9 font-bold bg-green-500 p-5 rounded-t-lg text-white">Departures 2023</h1>  
         </div>
@@ -19,7 +19,7 @@
         @php
          $year = date("Y");   
         @endphp
-        <div class="total my-5">
+        <div data-aos="flip-up" class="total my-5">
             <div class="">
                 <h1 class="text-center text-4xl md:text-5xl mt-9 font-bold bg-green-500 p-5 rounded-t-lg text-white">Total Departures</h1>  
             </div>

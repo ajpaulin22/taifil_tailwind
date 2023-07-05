@@ -44,9 +44,9 @@
           <button id="btnLogin" class="flex w-full justify-center rounded-md bg-green-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log in</button>
         </div>
       </form>
-      <div class="flex items-baseline justify-center">
+      {{-- <div class="flex items-baseline justify-center">
         <a href="/auth/register" class="hover:border-b-2 hover:border-b-green-600">Create Account</a>
-      </div>
+      </div> --}}
     
     </div>
 </div>

@@ -43,6 +43,38 @@ class OnepageController extends Controller
      return view('welcome',['data'=>$data, "departure" => $departure]);
     }
 
+    public function view_jp(){
+        $posts = post::select()->where("isdeleted",0)->orderby('id','desc')->limit(3)->get();
+                $data = $posts->map(function($post,$key){
+                    return [
+                        "id" => $post->id,
+                        "title" => $post->title,
+                        "content" => $post->content,
+                        "category" => $post->category,
+                        "date" => date('m/d/Y' ,strtotime($post->created_at)),
+                        "time" => Carbon::parse($post->created_at)->format('g:i a'),
+                        "images" => image::select('path')->where("post_id",$post->id)->limit(1)->get()->toArray()
+                    ];
+                });
+
+     $departure = [
+        "一月" => 21,
+        "二月" => 12,
+        "三月" => 23,
+        "四月" => 10,
+        "五月" => 14,
+        "六月" => 16,
+        "七月" => 1,
+        "八月" => 0,
+        "九月" => 0,
+        "十月" => 0,
+        "十一月" => 0,
+        "十二月" => 0,
+
+     ];
+     return view('jp.welcome',['data'=>$data, "departure" => $departure]);
+    }
+
     public function contact_form(Request $request){
         $data = [];
         

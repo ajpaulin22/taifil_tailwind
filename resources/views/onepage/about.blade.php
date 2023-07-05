@@ -1,12 +1,12 @@
 <section id="about" class="mt-5 scroll-mt-20">
     <div class="min-h-screen max-w-7xl md:mx-auto mx-5">
-        <div>
+        <div data-aos="zoom-in">
             <h1 class="text-center text-4xl md:text-7xl my-9 font-semibold text-sky-800">ABOUT<hr class="border-b-2 border-green-500"></h1>
             
         </div>
         <div class="flex gap-5 flex-col-reverse md:flex md:flex-row mx-5">
-            <div class="">
-                 <strong class="text-green-500">Tai-Fil Manpower Services Corporation</strong>  is a land-based recruitment agency duly licensed by the Philippine Overseas Employment Administration (POEA) and Department of Labor and Employment (DOLE). The company was incorporated and established in the year 2000 to engage in the business of career placement of Filipino professionals, skilled and unskilled workers for overseas employment and to act as agents of individuals or firms in the supply of manpower
+            <div data-aos="fade-right" class="">
+                 <strong data-aos="fade-right" class="text-green-500">Tai-Fil Manpower Services Corporation</strong>  is a land-based recruitment agency duly licensed by the Philippine Overseas Employment Administration (POEA) and Department of Labor and Employment (DOLE). The company was incorporated and established in the year 2000 to engage in the business of career placement of Filipino professionals, skilled and unskilled workers for overseas employment and to act as agents of individuals or firms in the supply of manpower
 
                 <div class=" gap-4 mt-5">
                     <div class="bg-green-400 p-5 rounded shadow-xl mt-4 md:mt-0">
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="">
+            <div data-aos="fade-left" class="">
                 <img src="{{url('images/japan.jpg')}}" alt="" class="h-full w-auto object-cover">
             </div>
         </div>

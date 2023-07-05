@@ -117,7 +117,7 @@
                             position:'topRight'
                         });
                         setTimeout(()=>{
-                            location.replace("/");
+                            location.replace((location.pathname.includes("/jp")? "/jp/client/gallery":"/client/gallery"));
                         },5000)
                     }else{
                         iziToast.error({

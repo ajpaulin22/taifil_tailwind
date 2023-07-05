@@ -90,25 +90,26 @@
             <li class="p-3 px-5 text-lg font-bold text-sky-800 hover:text-green-600"><a class="hover:border-b-2 hover:border-b-green-600 block md:inline-block" href="/client/gallery">Gallery</a></li>
             <li class="p-3 px-5 text-lg font-bold text-sky-800 hover:text-green-600"><a class="hover:border-b-2 hover:border-b-green-600 block md:inline-block" href="/#inquiry">Inquiry</a></li>
         </ul>
-        {{-- <div class="ml-5 md:mr-2 md:relative">
-            <button id="btnLang" class="block md:inline-block w-full md:w-10 h-10 p-3 md:bg-green-400 rounded-xl transition-colors ease-in-out md:hover:border md:hover:border-green-800 fa-solid fa-earth-americas text-sky-800 md:text-black text-left">          
+        <div class="m-5 md:mr-2 md:relative">
+            <button id="btnLang" class="block fa-solid fa-earth-americas text-sky-800 text-xs hover:text-green-500 w-full">    
+                English <i class="fa-solid fa-angle-down"></i>
             </button>
             <div id="lang_nav" class="md:absolute md:bg-white md:shadow-xl md:rounded md:w-36 text-sky-800 mt-2 hidden">
                 <div class="hover:bg-gray-300 hover:text-green-600">
-                    <button class="p-4 text-sm w-full flex gap-2"><img src="{{url("images/japanese.svg")}}" alt="" class="h-5">Japanese</button>
+                    <button id="jap_btn"  class="p-4 text-sm w-full flex gap-2"><img src="{{url("images/japanese.svg")}}" alt="" class="h-5">日本語</button>
                 </div>
                 <div class="hover:bg-gray-300 hover:text-green-600">
-                    <button class="p-4 text-sm flex w-full gap-2"><img src="{{url("images/english.svg")}}" alt="" class="h-5">English</button>
+                    <button id="eng_btn" class="p-4 text-sm flex w-full gap-2"><img src="{{url("images/english.svg")}}" alt="" class="h-5">English</button>
                 </div>
             </div>
-        </div> --}}
-        <div class="px-5">
+        </div>
+        {{-- <div class="px-5">
             <label for="" class="inline a-solid fa-solid fa-earth-americas "></label>
             <select name="language" id="page_lang" class="border-none bg-inherit focus:ring-0 focus:border-inherit focus:ring-inherit text-sm pl-0">
                 <option lang="eng" value="eng" class="p-5">English</option>
                 <option lang="jap" value="jap" class="p-5">日本語</option>
             </select>
-        </div>
+        </div> --}}
        
     </nav>
 
@@ -135,9 +136,12 @@
         $("#ssw_nav").toggleClass("hidden");
     })
 
-    $("#page_lang").on("change",function(){
-        console.log($(this).val())
-        $("meta[name='language']").attr('lang', $(this).val());
+
+    $("#jap_btn").on("click",function(){
+        location.replace(`/jp${location.pathname}${location.hash}${location.search}`);
+    })
+    $("#eng_btn").on("click",function(){
+        location.replace(`/${location.pathname}${location.hash}${location.search}`);
     })
 
    </script>
