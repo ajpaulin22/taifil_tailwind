@@ -29,7 +29,7 @@ class PostController extends Controller
                     DB::raw("date_format(p.created_at,'%r') as time"),
                     DB::raw("i.path")
                 ])
-                ->join(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
+                ->leftjoin(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
                     $join->on('p.id','=',"i.post_id");
                 })
                 ->where("category",$request->cat)
