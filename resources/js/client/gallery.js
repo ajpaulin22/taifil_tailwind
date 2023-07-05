@@ -123,7 +123,7 @@
                         iziToast.error({
                             class:'rounded-lg overflow-hidden',
                             title: 'Error',
-                            message: 'Illegal operation',
+                            message: promise.msg,
                             position:'topRight'
                         });
                     }

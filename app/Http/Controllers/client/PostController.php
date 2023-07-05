@@ -137,6 +137,13 @@ class PostController extends Controller
                 ]);
             }
         }
+        $data = [
+            'msg' => 'The post has been uploaded',
+            'data' => [],
+            'success' => true,
+            'msgType' => 'success',
+            'msgTitle' => 'Success!'
+        ];
         
         
           
@@ -145,7 +152,14 @@ class PostController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollBack();
-            return response()->json(["success"=>false]);
+            $message = [
+                'msg' => $th->getMessage(),
+                'data' => [],
+                'success' => false,
+                'msgType' => 'error',
+                'msgTitle' => 'Error!'
+            ];
+            return response()->json($message);
         }
 
         return response()->json(["success"=>true]);
