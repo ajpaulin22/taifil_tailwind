@@ -122,6 +122,11 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
         Route::get("/GetPersonalData",[ManagementRegistrationController::class,"GetPersonalData"]);
         Route::post("/SaveInterview",[ManagementRegistrationController::class,"SaveInterview"]);
         Route::get("/GetInterviewHistory",[ManagementRegistrationController::class,"GetInterviewHistory"]);
+        Route::post("/DeleteApplicant",[ManagementRegistrationController::class,"DeleteApplicant"]);
+        Route::get("/get_code",[ManagementRegistrationController::class,"get_code"]);
+        Route::get("/get_categories",[ManagementRegistrationController::class,"get_categories"]);
+        Route::get("/get_operations",[ManagementRegistrationController::class,"get_operations"]);
+        Route::get('/ExportApplicants',[ManagementRegistrationController::class,'ExportApplicants']);
     });
 
     Route::group(["middleware" => "admin","prefix" => "MasterMaintenance"],function(){
@@ -141,6 +146,9 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
         Route::group(["middleware" => "admin","prefix" => "UserInformation"],function(){
             Route::get("/",[UserInformationController::class,"view"]);
             Route::get("/GetUserData",[UserInformationController::class,"GetUserData"]);
+            Route::post("/SaveUserData",[UserInformationController::class,"SaveUserData"]);
+            Route::get("/GetUserInformation",[UserInformationController::class,"GetUserInformation"]);
+            Route::get("/DeleteUser",[UserInformationController::class,"DeleteUser"]);
         });
     });
 });

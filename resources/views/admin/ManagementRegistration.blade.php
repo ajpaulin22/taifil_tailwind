@@ -16,6 +16,9 @@ Management Registration
     body table.dataTable tbody tr.selected td{
         font-weight: 500;
     }
+    .select2{
+        width: 100% !important;
+    }
 </style>
 <div class="panel panel-inverse">
 	<div class="panel-heading">
@@ -32,9 +35,9 @@ Management Registration
                     <label>Type:</label>
                     <select class="form-control" id="Type">
                         <option value=""></option>
-                        <option value="1">TITP</option>
-                        <option value="2">SSW</option>
-                        <option value="3">Direct</option>
+                        <option value="TITP">TITP</option>
+                        <option value="SSW">SSW</option>
+                        <option value="Direct">Direct</option>
                     </select>
                 </div>
             </div>
@@ -66,7 +69,7 @@ Management Registration
                 </div>
             </div>
             <div class="col-sm-1 mb-2"> 
-                <button type="button" id="btnFilter" class="btn btn-sm btn-info btn-block" style="margin-top:4px;"><span class="fa fa-filter"></span><span class="btnLabel">Filter</span></button>
+                <button type="button" id="btnFilter" class="btn btn-sm btn-info btn-block select2" style="margin-top:4px;"><span class="fa fa-filter"></span><span class="btnLabel">Filter</span></button>
             </div>
         </div>
         <br>
@@ -203,7 +206,7 @@ Management Registration
                 <h4 class="modal-title" id="mdlInterviewTitle"> Add Interview Information</h4>
             </div>
             <div class="modal-body">
-                <form id="frmOperation" data-parsley-validate>
+                <form id="frmInterview" data-parsley-validate>
                     <div class="row col-sm-12">
                         <div class="col-sm-10 mb-2">
                             <h4 id="AddApplicantName"></h4>
@@ -215,7 +218,7 @@ Management Registration
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width:127px;" id="lblAttendInterview"> Attended Interview <span class="text-danger"> *</span></label>
                                 </div>
-                                <select class="form-control" id="AttendInterview">
+                                <select class="form-control" id="AttendInterview" required>
                                     <option value=""></option>
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
@@ -239,14 +242,14 @@ Management Registration
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width:127px;" id="lblCompany"> Company <span class="text-danger"> *</span></label>
                                 </div>
-                                <input type="text" id="Company" name="Company" class="form-control input" data-parsley-required data-parsley-errors-container="#err-Company" autocomplete="off">
+                                <input type="text" id="Company" name="Company" class="form-control input" required data-parsley-required data-parsley-errors-container="#err-Company" autocomplete="off">
                             </div>
                             <div id="err-Company"></div>
                         </div>
                     </div>
                     <div class="row" style="margin-top: 10px;">
                         <div class="mb-1 col-sm-3 offset-6">
-                            <button type="button" id="btnSaveInterview" class="btn btn-sm btn-block btn-primary"><span class="fa fa-save"></span> <span class="btn-label">Save </span></button>
+                            <button type="submit" id="btnSaveInterview" class="btn btn-sm btn-block btn-primary"><span class="fa fa-save"></span> <span class="btn-label">Save </span></button>
                         </div>
                         <div class="mb-1 col-sm-3">
                             <button type="button" id="btnCancelAddInterview" class="btn btn-sm btn-block btn-danger"><span class="fa fa-times"></span> Close</button>

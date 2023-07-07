@@ -10,6 +10,12 @@ User Information
 
 @section('content')
 
+<style>
+    .input-group-text{
+        text-align: right !important;
+        display: block !important;
+    }
+</style>
 <div class="panel panel-inverse">
 	<div class="panel-heading">
 		<h4 class="panel-title">User Information</h4>
@@ -28,7 +34,7 @@ User Information
 							<button type="button" id="btnAdd" class="btn btn-sm btn-info btn-block" style="width: 90%; margin: auto;"><span class="fa fa-plus"></span><span class="btnLabel">Add</span></button>
 						</div>
 						<div class="col-sm-2">
-							<button type="button" id="btnEdit" class="btn btn-sm btn-success btn-block" style="width: 90%; margin: auto;"><span class="fa fa-edit"></span><span class="btnLabel">Edit</span></button>
+							<button type="button" id="btnEdit" class="btn btn-sm btn-success btn-block" style="width: 90%; margin: auto;" disabled><span class="fa fa-edit"></span><span class="btnLabel">Edit</span></button>
 						</div>
 						<div class="col-sm-2">
 							<button type="button" id="btnDelete" class="btn btn-sm btn-danger btn-block" style="width: 90%; margin: auto;"><span class="fa fa-trash"></span><span class="btnLabel">Delete</span></button>
@@ -41,54 +47,117 @@ User Information
 						</table>
 					</div>
 				</div>
-				
 			</div>
 		</div>
-		
 	</div>
 </div>
-<div class="modal fade" id="mdlUser" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-sm">
+
+<div class="modal fade" id="mdlAddUser" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-blue-madison">
-                <button type="button" class="close" aria-hidden="true"></button>
                 <h4 class="modal-title" id="mdlUserTitle"> Create User</h4>
             </div>
             <div class="modal-body">
-                <form id="frmUser" data-parsley-validate>
-                    <div class="row" id="divCategory">
-                        <div class="col-sm-12">
-                            <div class="input-group input-group-sm m-b-5">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" style="width:80px;" id="lblCategoryParent"> Category <span class="text-danger"> *</span></label>
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Job Codes</h4>
+                    </div>
+                    <div class="panel-body" style="background-color: rgb(241, 238, 238)">
+                        <form id="frmUser" data-parsley-validate>
+                            <div class="row col-sm-12">
+                                <div class="input-group m-b-5">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" id="lblPosition" style="width: 140px;"> Position <span class="text-danger"> *</span></label>
+                                    </div>
+                                    <select class="form-control" id="Position" name="Position" placeholder="Please Select Position" required>
+                                        <option id=""></option>
+                                        <option value="1">Admin</option>
+                                        <option value="0">Staff</option>
+                                    </select>
                                 </div>
-                                <input type="hidden" id="ValueCategory" name="ValueCategory" class="form-control input" autocomplete="off" readonly>
-                                <input type="text" id="TextCategory" name="TextCategory" class="form-control input" autocomplete="off" readonly>
+                                <div id="err-Position"></div>
                             </div>
-                            <div id="err-Type"></div>
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-sm-12">
-                            <div class="input-group input-group-sm m-b-5">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" style="width:80px;" id="lblUser"> User <span class="text-danger"> *</span></label>
+                            <div class="row col-sm-12">
+                                <div class="input-group m-b-5">
+                                    <div class="input-group-prepend" style="text-align:right;">
+                                        <label class="input-group-text" id="lblFirstName" style="width: 140px;"> First Name <span class="text-danger"> *</span></label>
+                                    </div>
+                                    <input type="hidden" id="UserID" name="UserID" class="form-control input" autocomplete="off" value=0>
+                                    <input type="text" id="FirstName" name="FirstName" class="form-control input" autocomplete="off" required>
                                 </div>
-                                <input type="text" id="OperationValue" name="OperationValue" class="form-control input" data-parsley-required data-parsley-errors-container="#err-OperationValue" autocomplete="off">
-                                <input type="hidden" id="OperationID" name="OperationID" class="form-control input ID" data-parsley-errors-container="#err-CategoryID" value="0">
+                                <div id="err-FirstName"></div>
                             </div>
-                            <div id="err-OperationValue"></div>
-                        </div>
+                            <div class="row col-sm-12">
+                                <div class="input-group m-b-5">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" id="lblLastName" style="width: 140px;"> Last Name <span class="text-danger"> *</span></label>
+                                    </div>
+                                    <input type="text" id="LastName" name="LastName" class="form-control input" autocomplete="off" required>
+                                </div>
+                                <div id="err-LastName"></div>
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="input-group m-b-5">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" id="lblUserName" style="width: 140px;"> User Name <span class="text-danger"> *</span></label>
+                                    </div>
+                                    <input type="text" id="UserName" name="UserName" class="form-control input" autocomplete="off" required>
+                                </div>
+                                <div id="err-UserName"></div>
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="input-group m-b-5">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" id="lblEmailAddress" style="width: 140px;"> Email Address <span class="text-danger"> *</span></label>
+                                    </div>
+                                    <input type="text" id="EmailAddress" name="EmailAddress" class="form-control input" autocomplete="off" required>
+                                </div>
+                                <div id="err-EmailAddress"></div>
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="input-group m-b-5">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" id="lblPassword" style="width: 140px;"> Password <span class="text-danger"> *</span></label>
+                                    </div>
+                                    <input type="password" id="Password" name="Password" class="form-control input" autocomplete="off" required>
+                                </div>
+                                <div id="err-Password"></div>
+                            </div>
+                            <div class="row col-sm-12">
+                                <div class="input-group m-b-5">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" id="lblConfirmPassword" style="width: 140px;"> Confirm Password <span class="text-danger"> *</span></label>
+                                    </div>
+                                    <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control input" autocomplete="off" required>
+                                </div>
+                                <div id="err-ConfirmPassword"></div>
+                            </div>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="mb-1 offset-6 col-sm-3">
+                                    <button type="submit" id="btnSaveUser" class="btn btn-sm btn-block btn-primary"><span class="fa fa-save"></span> <span class="btn-label">Save </span></button>
+                                </div>
+                                <div class="mb-1 col-sm-3">
+                                    <button type="button" id="btnCancelUser" class="btn btn-sm btn-block btn-danger"><span class="fa fa-times"></span> Close</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="row" style="margin-top: 10px;">
-                        <div class="mb-1 col-sm-6">
-                            <button type="button" id="btnSaveOperation" class="btn btn-sm btn-block btn-primary"><span class="fa fa-save"></span> <span class="btn-label">Save </span></button>
-                        </div>
-                        <div class="mb-1 col-sm-6">
-                            <button type="button" id="btnCancelOperation" class="btn btn-sm btn-block red" data-dismiss="modal"><span class="fa fa-times"></span> Close</button>
-                        </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div id="loading_modal" class="modal loading_modal" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img src="/images/ajax-loader.gif" height="100" class="block-centered">
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
