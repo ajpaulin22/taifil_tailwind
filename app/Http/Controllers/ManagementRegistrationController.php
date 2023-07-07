@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Exports\ExportUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -131,6 +132,8 @@ class ManagementRegistrationController extends Controller
      }
 
      public function ExportApplicants(Request $request){
-        return Excel::download(new ExportUser, 'users.xlsx');
+        $date = Carbon::now();
+        echo $date->toDateTimeString();
+        return Excel::download(new ExportUser, 'users-'. $date .'.xlsx');
      }
 }

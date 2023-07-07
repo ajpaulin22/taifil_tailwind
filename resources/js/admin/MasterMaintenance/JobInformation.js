@@ -2,18 +2,22 @@
     var tblCodes = "";
     var tblCategories = "";
     var tblOperations = "";
+    var tblQualifications = "";
     var dataJobCode = "";
     var dataJobCategory = "";
     var dataJobOperation = "";
+    var dataJobQualification = "";
     var JobCodeChkData = [];
     var JobCategoryChkData = [];
     var JobOperationChkData = [];
+    var JobQualificationChkData = [];
     var ajax = $D();
     token = $("meta[name=csrf-token]").attr("content");
     $(document).ready(function(){
         drawCodesTable();
         drawJobCategoriesTable();
         drawOperationsTable();
+        drawQualificationsTable();
         //Job Code Events
         $("#btnAddCodes").click(function(){
             $("#mdlCode").modal("show");
@@ -236,6 +240,61 @@
             cancelform();
         });
 
+        //Job Qualifications Events
+
+        $("#btnAddQualifications").click(function(){
+            $("#mdlQualification").modal("show");
+        });
+
+        $("#btnSaveQualification").click(function(){
+            $.ajax({
+                url:"/admin/MasterMaintenance/JobInformation/SaveQualification",
+                type:"POST",
+                data:{
+                    _token: token,
+                    CategoryID: $("#ValueCategoryQualification").val(),
+                    QualificationID: $("#QualificationID").val(),
+                    QualificationValue: $("#QualificationValue").val()
+                },
+                dataType:"JSON",
+                beforeSend: function(){
+                    $("#loading_modal").show();
+                },
+                success:function(promise){
+                    $("#loading_modal").hide();
+                    tblQualifications.ajax.reload(null, false);
+                    $("#mdlQualification").modal("hide");
+                    cancelform();
+                    showMessage("Success", "Job qualification was saved successfully", "success", "green");
+                }
+            })
+        });
+
+        $("#btnEditQualifications").click(function(){
+            $("#ValueCategoryQualification").val(dataJobCategory.ID);
+            $("#TextCategoryQualification").val(dataJobCategory.Category);
+            $("#QualificationValue").val(dataJobQualification.Qualification);
+            $("#QualificationID").val(dataJobQualification.ID);
+            $("#mdlQualification").modal("show");
+        });
+
+        $("#btnCancelQualification").click(function(){
+            cancelform();
+        });
+
+        $("#tblCodes").on("change", ".CheckItem", function () {
+            var trData = tblCodes.row($(this).parents('tr')).data();
+            if ($(this).is(":checked")) {
+                JobCodeChkData.push({ ID: trData.ID});
+            } else {
+                JobCodeChkData = JobCodeChkData.filter(function (obj) {
+                    return obj.ID !== trData.ID;
+                });
+            }
+        });
+
+        //////////////////////////////////////////////////////////////
+
         $("#tblOperations").on("change", ".CheckItem", function () {
             var trData = tblOperations.row($(this).parents('tr')).data();
             if ($(this).is(":checked")) {
@@ -263,25 +322,28 @@
                 case "input":
                     break;
                 default:
-                    if ($.trim(dataJobCode) != "") {
+                    if($.trim(dataJobCode) != ""){
                         if ($(this).hasClass('selected')) {
                             dataJobCode = "";
                             $("#btnEditCodes").attr('disabled', true);
+                            $("#btnAddJobCategories").attr('disabled', true);
                             tblCodes.$('tr.selected').removeClass('selected');
-                            tblCategories.clear();
-                            tblCategories.draw();
-                            tblOperations.clear();
-                            tblOperations.draw();
                         }
                         else {
-                            tblCodes.$('tr.selected').removeClass('selected');
                             $("#btnEditCodes").removeAttr('disabled');
+                            $("#btnAddJobCategories").removeAttr('disabled');
+                            tblCodes.$('tr.selected').removeClass('selected');
                             $(this).addClass('selected');
-                            tblCategories.ajax.reload(null,false);
-                            tblOperations.clear();
-                            tblOperations.draw();
                         }
                     }
+                    JobCategoryChkData, JobOperationChkData, JobQualificationChkData = [];
+                    $(".CodeDisable").attr('disabled', true);
+                    dataJobCategory = "";
+                    dataJobOperation = "";
+                    dataQualification = "";
+                    tblCategories.ajax.reload(null, false);
+                    tblOperations.ajax.reload(null, false);
+                    tblQualifications.ajax.reload(null, false);
                     break;
             }
         });
@@ -302,20 +364,29 @@
                 case "input":
                     break;
                 default:
-                    if ($.trim(dataJobCategory) != "") {
+                    if ($.trim(dataJobCategory) != ""){
                         if ($(this).hasClass('selected')) {
                             $("#btnEditJobCategories").attr('disabled', true);
+                            $("#btnAddOperations").attr('disabled', true);
+                            $("#btnAddQualifications").attr('disabled', true);
                             dataJobCategory = "";
                             tblCategories.$('tr.selected').removeClass('selected');
                         }
                         else {
                             $("#btnEditJobCategories").removeAttr('disabled');
+                            $("#btnAddOperations").removeAttr('disabled', true);
+                            $("#btnAddQualifications").removeAttr('disabled');
                             tblCategories.$('tr.selected').removeClass('selected');
                             $(this).addClass('selected');
-                            tblOperations.ajax.reload(null,false)
                         }
+                        $(".CategoryDisable").attr('disabled', true);
+                        JobOperationChkData, JobQualificationChkData = [];
+                        dataJobOperation = "";
+                        dataQualification = "";
+                        tblOperations.ajax.reload(null, false);
+                        tblQualifications.ajax.reload(null, false);
+                        break;
                     }
-                    break;
             }
         });
 
@@ -335,7 +406,7 @@
                 case "input":
                     break;
                 default:
-                    if ($.trim(dataJobOperation) != "") {
+                    if ($.trim(dataJobOperation) != ""){
                         if ($(this).hasClass('selected')) {
                             $("#btnEditOperations").attr('disabled', true);
                             dataJobOperation = "";
@@ -346,8 +417,40 @@
                             tblOperations.$('tr.selected').removeClass('selected');
                             $(this).addClass('selected');
                         }
+                        break;
                     }
+            }
+        });
+
+        $('#tblQualifications tbody').on('click', 'tr', function(e){
+            dataJobQualification = tblQualifications.row($(this)).data();
+            switch (e.target.localName) {
+                case "button":
                     break;
+                case "span":
+                    break;
+                case "checkbox":
+                    break;
+                case "i":
+                    break;
+                case "textbox":
+                    break;
+                case "input":
+                    break;
+                default:
+                    if ($.trim(dataJobQualification) != ""){
+                        if ($(this).hasClass('selected')) {
+                            $("#btnEditQualifications").attr('disabled', true);
+                            dataJobQualification = "";
+                            tblQualifications.$('tr.selected').removeClass('selected');
+                        }
+                        else {
+                            $("#btnEditQualifications").removeAttr('disabled');
+                            tblQualifications.$('tr.selected').removeClass('selected');
+                            $(this).addClass('selected');
+                        }
+                        break;
+                    }
             }
         });
     });
@@ -357,6 +460,9 @@
             tblCodes = $('#tblCodes').DataTable({
                 processing: true,
                 serverSide: true,
+                "order": [
+                    [1, "asc"]
+                ],
                 ajax: {
                     url: "/admin/MasterMaintenance/JobInformation/GetJobCode",
                     dataType: "JSON",
@@ -364,9 +470,6 @@
                 },
                 deferRender: true,
                 pageLength: 10,
-                order: [
-                    [0, "desc"]
-                ],
                 lengthMenu: [
                     [10, 20, 50, 100, 150, 200, 500, -1],
                     [10, 20, 50, 100, 150, 200, 500, "All"]
@@ -398,7 +501,7 @@
                                 },
                                 width: "2%"
                             },
-                            { data: 'Code', name: 'Code' ,orderable: true, title: "Code"},
+                            { data: 'Code', name: 'Code', title: "Code"},
                         ],
             }).on('page.dt', function() {
             });
@@ -520,11 +623,68 @@
         return this;
     }
 
+    function drawQualificationsTable(){
+        if (!$.fn.DataTable.isDataTable('#tblQualifications')) {
+            tblQualifications = $('#tblQualifications').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "/admin/MasterMaintenance/JobInformation/GetQualification",
+                    dataType: "JSON",
+                    type: "GET",
+                    data: function(d){
+                        d["ID"] = dataJobOperation == "" ? 0 : dataJobOperation.ID
+                    }
+                },
+                deferRender: true,
+                pageLength: 10,
+                order: [
+                    [0, "desc"]
+                ],
+                lengthMenu: [
+                    [10, 20, 50, 100, 150, 200, 500, -1],
+                    [10, 20, 50, 100, 150, 200, 500, "All"]
+                ],
+                language: {
+                    aria: {
+                        sortAscending: ": activate to sort column ascending",
+                        sortDescending: ": activate to sort column descending"
+                    },
+                    emptyTable: "No data available in table",
+                    info: "Showing _START_ to _END_ of _TOTAL_ records",
+                    infoEmpty: "No records found",
+                    infoFiltered: "(filtered1 from _MAX_ total records)",
+                    lengthMenu: "Show _MENU_",
+                    search: "Search:",
+                    zeroRecords: "No matching records found",
+                    paginate: {
+                        "previous": "Prev",
+                        "next": "Next",
+                        "last": "Last",
+                        "first": "First"
+                    }
+                },
+                columns:[
+                            {
+                                title: "<input type='checkbox' id='CheckAllitem' />",
+                                render: function (data, row, meta){
+                                    return "<input type='checkbox' class='CheckItem text-center' value='" + meta.ID + "'>";
+                                },
+                                width: "2%"
+                            },
+                            { data: 'Operation', name: 'Operation' ,orderable: true, title: "Operation"},
+                        ],
+            }).on('page.dt', function() {
+            });
+        }
+        return this;
+    }
+
     function cancelform(){
         ajax.clearFromData("frmCode");
         ajax.clearFromData("frmCategory");
         ajax.clearFromData("frmOperation");
-        
+        ajax.clearFromData("frmQualification");
     }
     
     function showMessage(title, msg, backgroundColor, color){

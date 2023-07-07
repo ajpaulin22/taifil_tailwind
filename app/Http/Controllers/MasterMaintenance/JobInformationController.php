@@ -5,6 +5,7 @@ use App\Models\m_jobcodes;
 use Illuminate\Http\Request;
 use App\Models\m_jobcategories;
 use App\Models\m_joboperations;
+use App\Models\m_jobqualifications;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -20,20 +21,19 @@ class JobInformationController extends Controller
         $limit = $request->length;
         $start = $request->start;
         $order111 = $request->input('order.0.column');
+        // dd($request);
         $dir = $request->input('order.0.dir');
         $search = $request->input('search.value');
-        
         $order = "id";
-        $query_1 = "SELECT 
+        $query_1 = "SELECT
         ID,
         Code
          FROM m_jobcodes WHERE IsDeleted = 0 ";
-    
-        $query_1 .= " 
+
+        $query_1 .= "
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
-        OR  Code LIKE '%".$search."%') order by Code asc";
-
+        OR  Code LIKE '%".$search."%') order by Code " .$dir;
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
         $total_result = (count($data) > 0 ? count($data): 0);
@@ -50,10 +50,8 @@ class JobInformationController extends Controller
     public function GetJobCategory(Request $request){
         $limit = $request->length;
         $start = $request->start;
-        $order111 = $request->input('order.0.column');
         $dir = $request->input('order.0.dir');
         $search = $request->input('search.value');
-        $order = "id";
         $query_1 = "SELECT
         ID,
         Category
@@ -61,7 +59,7 @@ class JobInformationController extends Controller
         $query_1 .= " 
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
-        OR  Category LIKE '%".$search."%') order by Category asc";
+        OR  Category LIKE '%".$search."%') order by Category " . $dir;
     
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
@@ -79,10 +77,8 @@ class JobInformationController extends Controller
     public function GetJobOperation(Request $request){
         $limit = $request->length;
         $start = $request->start;
-        $order111 = $request->input('order.0.column');
         $dir = $request->input('order.0.dir');
         $search = $request->input('search.value');
-        $order = "id";
         $query_1 = "SELECT
         ID,
         Operation
@@ -90,8 +86,35 @@ class JobInformationController extends Controller
         $query_1 .= " 
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
-        OR  Operation LIKE '%".$search."%') order by Operation asc";
+        OR  Operation LIKE '%".$search."%') order by Operation " .$dir;
     
+        $query_1 .= " limit ".$limit." offset ".$start;
+        $data = DB::select($query_1);
+        $total_result = (count($data) > 0 ? count($data): 0);
+        $totalFiltered = (count($data) > 0 ? count($data): 0);
+        $json_data = [
+            'draw' => intval($request->draw),
+            'recordsTotal' => $total_result,
+            'recordsFiltered' => $totalFiltered,
+            'data' => $data
+        ];
+        return json_encode($json_data);
+    }
+
+    public function GetQualification(Request $request){
+        $limit = $request->length;
+        $start = $request->start;
+        $dir = $request->input('order.0.dir');
+        $search = $request->input('search.value');
+        $query_1 = "SELECT
+        ID,
+        Qualification
+         FROM m_jobqualifications WHERE IsDeleted = 0 AND JobOperationsID = ".$request->ID;
+        $query_1 .= " 
+        AND  (
+        CAST(id as char(200)) LIKE '%".$search."%'
+        OR  Qualification LIKE '%".$search."%') order by Qualification " .$dir;
+        
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
         $total_result = (count($data) > 0 ? count($data): 0);
@@ -260,4 +283,56 @@ class JobInformationController extends Controller
             ];
             return response()->json($data);
     }
+
+    public function SaveQualification(Request $request){
+    
+        $msg = "";
+        
+        if($request["QualificationID"] == 0){
+            m_jobqualifications::create([
+                "JobCategoriesID" => $request["CategoryID"],
+                "Qualification" => $request["QualificationValue"],
+                "IsDeleted" => 0,
+                "CreateID" => "admin",
+                "UpdateID" => "admin"
+            ]);
+            $msg = 'Job Operation Saved Successfully';
+        }
+        else{
+            DB::table('m_jobqualifications')
+            ->where('id', $request["QualificationID"])
+            ->update(['Qualification' => $request["QualificationValue"]]);
+            $msg = 'Job Qualification Updated Successfully';
+        }
+        $data = [
+            'msg' =>  $msg,
+            'data' => [],
+            'success' => true,
+            'msgType' => 'success',
+            'msgTitle' => 'Success!'
+        ];
+        return response()->json($data);
+    }
+
+    public function DeleteJobQualification(Request $request){
+        $IDs = [];
+        for ($i = 0; $i < count($request["ID"]); $i++){
+            array_push($IDs,$request["ID"][$i]["ID"]);
+
+        }
+
+        DB::table('m_jobqualifications')
+            ->whereIN('ID', $IDs)
+            ->update(['IsDeleted' => 1]);
+
+            $data = [
+                'msg' =>  "Job Qualification Deleted Successfully",
+                'data' => [],
+                'success' => true,
+                'msgType' => 'success',
+                'msgTitle' => 'Success!'
+            ];
+            return response()->json($data);
+    }
+
 }

@@ -143,7 +143,7 @@
 
         $("#btnDelete").click(function(){
             if (tableData.length == 0){
-                showMessage("Error", "Please check a row in the table", "error", "red");
+                showMessage("Error!", "Please check a row in the table", "error", "red");
             }
             else{
                 $.ajax({
@@ -173,20 +173,6 @@
 
         $("#btnDownloadExcel").click(function(){
             window.location = '/admin/ManagementRegistration/ExportApplicants';
-            // $.ajax({
-            //     url:"/admin/ManagementRegistration/ExportApplicants",
-            //         type:"GET",
-            //         data:{
-            //             _token: token
-            //         },
-            //         dataType:"JSON",
-            //         beforeSend: function(){
-            //             $("#loading_modal").show();
-            //         },
-            //         success:function(promise){
-            //             $("#loading_modal").hide();
-            //     }
-            // })
         });
         
     })
