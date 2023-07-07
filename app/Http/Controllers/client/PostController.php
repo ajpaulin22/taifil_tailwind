@@ -192,14 +192,17 @@ class PostController extends Controller
 
     public function delete(Request $request){
 
-        $data = post::find($request->id);
+         $data = post::find($request->id);
         $host = $request->server('HTTP_REFERER');
-        $data->isdeleted = 1;
-        $data->update();
-        $pics = image::select()->where("post_id",$request->id)->toArray();
-        DB::table("images")->where("post_id",$request->id)->update([
-            'isdeleted' => 0
-        ]);
+         $data->isdeleted = 1;
+         $data->update();
+        $pics = image::where("post_id",$request->id)->first();
+        if($pics != null){
+            DB::table("images")->where("post_id",$request->id)->update([
+                'isdeleted' => 0
+            ]);
+        }
+       
         // DB::table
         // Storage::disk('public')->delete($filename);
         return redirect($host)->with("message","The post has been deleted");
