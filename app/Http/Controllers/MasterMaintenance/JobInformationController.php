@@ -32,7 +32,7 @@ class JobInformationController extends Controller
         $query_1 .= " 
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
-        OR  Code LIKE '%".$search."%')";
+        OR  Code LIKE '%".$search."%') order by Code asc";
 
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
@@ -61,7 +61,7 @@ class JobInformationController extends Controller
         $query_1 .= " 
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
-        OR  Category LIKE '%".$search."%')";
+        OR  Category LIKE '%".$search."%') order by Category asc";
     
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
@@ -90,7 +90,7 @@ class JobInformationController extends Controller
         $query_1 .= " 
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
-        OR  Operation LIKE '%".$search."%')";
+        OR  Operation LIKE '%".$search."%') order by Operation asc";
     
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);

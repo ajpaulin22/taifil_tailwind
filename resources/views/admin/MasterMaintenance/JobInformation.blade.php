@@ -53,10 +53,10 @@ Job Information
             <div class="panel-body">
                 <div class="row mb-2">
                     <div class="col-sm-4">
-                        <button type="button" id="btnAddJobCategories" class="btn btn-sm btn-info btn-block" style="width: 90%; margin: auto;"><span class="fa fa-plus"></span><span class="btnLabel">Add</span></button>
+                        <button type="button" id="btnAddJobCategories" class="btn btn-sm btn-info btn-block" style="width: 90%; margin: auto;" disabled><span class="fa fa-plus"></span><span class="btnLabel">Add</span></button>
                     </div>
                     <div class="col-sm-4">
-                        <button type="button" id="btnEditJobCategories" class="btn btn-sm btn-success btn-block" style="width: 90%; margin: auto;"><span class="fa fa-edit"></span><span class="btnLabel">Edit</span></button>
+                        <button type="button" id="btnEditJobCategories" class="btn btn-sm btn-success btn-block" style="width: 90%; margin: auto;" disabled><span class="fa fa-edit"></span><span class="btnLabel">Edit</span></button>
                     </div>
                     <div class="col-sm-4">
                         <button type="button" id="btnDeleteJobCategories" class="btn btn-sm btn-danger btn-block Delete" style="width: 90%; margin: auto;" TableName="m_jobcategories"><span class="fa fa-trash"></span><span class="btnLabel">Delete</span></button>
@@ -84,7 +84,7 @@ Job Information
             <div class="panel-body">
             <div class="row mb-2">
                     <div class="col-sm-4">
-                        <button type="button" id="btnAddOperations" class="btn btn-sm btn-info btn-block" style="width: 90%; margin: auto;"><span class="fa fa-plus"></span><span class="btnLabel">Add</span></button>
+                        <button type="button" id="btnAddOperations" class="btn btn-sm btn-info btn-block" style="width: 90%; margin: auto;" disabled><span class="fa fa-plus"></span><span class="btnLabel">Add</span></button>
                     </div>
                     <div class="col-sm-4">
                         <button type="button" id="btnEditOperations" class="btn btn-sm btn-success btn-block" style="width: 90%; margin: auto;" disabled><span class="fa fa-edit"></span><span class="btnLabel">Edit</span></button>
@@ -222,6 +222,19 @@ Job Information
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="loading_modal" class="modal loading_modal" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img src="/images/ajax-loader.gif" height="100" class="block-centered">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -56,6 +56,7 @@ const TrxJS = [
     "resources/plugins/Parsleyjs/dist/parsley.min.js",
     "resources/plugins/gritter/js/jquery.gritter.js",
     "resources/plugins/sweetalert2/dist/sweetalert2.all.min.js",
+    "resources/plugins/select2/dist/js/select2.full.min.js",
     "resources/js/classes/Message.js",
     "resources/js/classes/Formatter.js",
     "resources/js/classes/CustomUI.js",
@@ -68,6 +69,8 @@ const TrxCSS = [
     "resources/plugins/Parsleyjs/src/parsley.min.css",
     "resources/plugins/gritter/css/jquery.gritter.css",
     "resources/plugins/sweetalert2/dist/sweetalert2.min.css",
+    "resources/plugins/select2/dist/css/select2.min.css",
+    "resources/plugins/select2/dist/css/select2-bootstrap4.css",
     "resources/css/custom.css"
 ];
 

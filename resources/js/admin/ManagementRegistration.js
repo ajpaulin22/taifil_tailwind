@@ -4,7 +4,7 @@
     var tblInterview = "";
     var dataApplicant = "";
     var applicantID = 0;
-    var interviewIndex = 0;
+    var tableData = [];
     token = $("meta[name=csrf-token]").attr("content");
     var data = [
         {IDcheckbox: 1, IDrow: 1, Name: "Jenefer", JobCategories: "Livestock Agriculture", Program: "SSW", Show: 2, InterviewDate: "2023-01-01", Company: "Seiko IT Solutions Philippines Inc.", Age: 23, ToAbroad: 1},
@@ -16,12 +16,8 @@
         drawDataTable();
         drawInterviewTable();
         GetCodes();
-        $("#Code").change(function(){
-            GetJobCategories($(this).val());
-        });
-        $("#JobCategories").change(function(){
-            GetOperations($(this).val());
-        })
+        GetJobCategories();
+        GetOperations();
 
         $(".show").change(function(){
             var x = $(this).attr('id').split('_')[1];
@@ -108,7 +104,8 @@
             $("#mdlInterview").modal('show');
         });
 
-        $("#btnSaveInterview").click(function(){
+        $("#frmInterview").submit(function(e){
+            e.preventDefault();
             $.ajax({
                 url:"/admin/ManagementRegistration/SaveInterview",
                 type:"POST",
@@ -132,15 +129,74 @@
                 }
             });
         });
+
+        $("#tblManagementRegistration").on("change", ".CheckItem", function () {
+            var trData = tblManagementRegistration.row($(this).parents('tr')).data();
+            if ($(this).is(":checked")) {
+                tableData.push({ ID: trData.ID});
+            } else {
+                tableData = tableData.filter(function (obj) {
+                    return obj.ID !== trData.ID;
+                });
+            }
+        });
+
+        $("#btnDelete").click(function(){
+            if (tableData.length == 0){
+                showMessage("Error", "Please check a row in the table", "error", "red");
+            }
+            else{
+                $.ajax({
+                    url:"/admin/ManagementRegistration/DeleteApplicant",
+                    type:"POST",
+                    data:{
+                        _token: token,
+                        ID: tableData,
+                    },
+                    dataType:"JSON",
+                    beforeSend: function(){
+                        $("#loading_modal").show();
+                    },
+                    success:function(promise){
+                        $("#loading_modal").hide();
+                        showMessage("Success", "Applicant information was deleted successfully", "success", "green");
+                        tblManagementRegistration.ajax.reload(null, false);
+                    }
+                })
+            }
+        });
+
+        $("#Type").select2({
+            placeholder: 'Select a type',
+            allowClear: true
+        })
+
+        $("#btnDownloadExcel").click(function(){
+            window.location = '/admin/ManagementRegistration/ExportApplicants';
+            // $.ajax({
+            //     url:"/admin/ManagementRegistration/ExportApplicants",
+            //         type:"GET",
+            //         data:{
+            //             _token: token
+            //         },
+            //         dataType:"JSON",
+            //         beforeSend: function(){
+            //             $("#loading_modal").show();
+            //         },
+            //         success:function(promise){
+            //             $("#loading_modal").hide();
+            //     }
+            // })
+        });
+        
     })
 
-    function GetJobCategories(id){
+    function GetJobCategories(){
         $.ajax({
-            url:'/client/Biodata/get-categories',
+            url:'/admin/ManagementRegistration/get_categories',
             type:'GET',
             data:{
                 _token:self.token,
-                ID:id
             },
             dataType:"JSON",
             success:function(promise){
@@ -152,18 +208,21 @@
                 promise.forEach(data=>{
                     option += `<option value="${data.ID}">${data.Category}</option>`;
                 })
-                $("#JobCategories").append(option)
+                $("#JobCategories").append(option);
+                $("#JobCategories").select2({
+                    placeholder: 'Select a category',
+                    allowClear: true
+                });
             }
         })
     }
 
-    function GetOperations(id){
+    function GetOperations(){
         $.ajax({
-            url:"/client/Biodata/get-operations",
+            url:"/admin/ManagementRegistration/get_operations",
             type:"GET",
             data:{
                 _token:self.token,
-                ID:id
             },
             dataType:"JSON",
             success:function(promise){
@@ -176,13 +235,17 @@
                     option += `<option value="${data.ID}">${data.Operation}</option>`;
                 })
                 $("#Operations").append(option)
+                $("#Operations").select2({
+                    placeholder: 'Select an operation',
+                    allowClear: true
+                })
             }
         })
     }
 
     function GetCodes(){
         $.ajax({
-            url:"/client/Biodata/get-code",
+            url:"/admin/ManagementRegistration/get_code",
             type:"GET",
             data:{_token:self.token},
             dataType:"JSON",
@@ -193,11 +256,21 @@
                     
                 })
                 $("#Code").append(option)
+                $("#Code").select2({
+                    placeholder: 'Select a code',
+                    allowClear: true
+                })
             }
         })
     }
 
     function drawDataTable(){
+        var Type = $("#Type").val();
+        var Code = $("#Code").val();
+        var JobCategories = $("#JobCategories").val();
+        var Operations = $("#Operations").val();
+        var AgeFrom = $("#AgeFrom").val();
+        var AgeTo = $("#AgeTo").val();
         if (!$.fn.DataTable.isDataTable('#tblManagementRegistration')) {
             tblManagementRegistration = $('#tblManagementRegistration').DataTable({
                 processing: true,
@@ -207,7 +280,13 @@
                     dataType: "JSON",
                     type: "GET",
                     data: function(d){
-                        _token = token
+                        _token = token,
+                        d["Type"] = Type,
+                        d["Code"] = Code,
+                        d["Category"] = JobCategories,
+                        d["Operations"] = Operations,
+                        d["AgeFrom"] = AgeFrom,
+                        d["AgeTo"] = AgeTo
                     }
                 },
                 deferRender: true,

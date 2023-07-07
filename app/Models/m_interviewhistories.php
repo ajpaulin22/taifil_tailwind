@@ -10,14 +10,14 @@ class m_interviewhistories extends Model
     use HasFactory;
     protected $fillable = [
         "ID"
-    ,"PersonalInfoID"
-    ,"AttendInterview"
-    ,"InterviewDate"
-    ,"Company"
-    ,"IsDeleted"
-    ,"createID"
-    ,"updateID"
-    ,"updated_at"
-    ,"created_at"
+        ,"PersonalInfoID"
+        ,"AttendInterview"
+        ,"InterviewDate"
+        ,"Company"
+        ,"IsDeleted"
+        ,"createID"
+        ,"updateID"
+        ,"updated_at"
+        ,"created_at"
     ];
 }

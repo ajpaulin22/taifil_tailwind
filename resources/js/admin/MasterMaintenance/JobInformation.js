@@ -16,7 +16,6 @@
         drawOperationsTable();
         //Job Code Events
         $("#btnAddCodes").click(function(){
-
             $("#mdlCode").modal("show");
         });
 
@@ -30,29 +29,15 @@
                     Code: $("#CodeValue").val(),
                 },
                 dataType:"JSON",
+                beforeSend: function(){
+                    $("#loading_modal").show();
+                },
                 success:function(promise){
+                    $("#loading_modal").hide();
                     tblCodes.ajax.reload(null, false);
                     $("#mdlCode").modal("hide");
                     cancelform();
                     showMessage("Success", "Job code was saved successfully", "success", "green");
-                }
-
-            })
-        });
-
-        $("#btnDeleteCodes").click(function(){
-            var data = {_token: token, ID: JobCodeChkData}
-            $.ajax({
-                url:"/admin/MasterMaintenance/JobInformation/DeleteJobCode",
-                type:"POST",
-                data:{
-                    _token: token,
-                    ID: JobCodeChkData,
-                },
-                dataType:"JSON",
-                success:function(promise){
-                    tblCodes.ajax.reload(null, false);
-                    showMessage("Success", "Job code was deleted successfully", "success", "green");
                 }
             })
         });
@@ -96,7 +81,11 @@
                     CategoryValue: $("#CategoryValue").val()
                 },
                 dataType:"JSON",
+                beforeSend: function(){
+                    $("#loading_modal").show();
+                },
                 success:function(promise){
+                    $("#loading_modal").hide();
                     tblCategories.ajax.reload(null, false);
                     $("#mdlCategory").modal("hide");
                     cancelform();
@@ -118,13 +107,16 @@
                         ID: JobCodeChkData,
                     },
                     dataType:"JSON",
+                    beforeSend: function(){
+                        $("#loading_modal").show();
+                    },
                     success:function(promise){
+                        $("#loading_modal").hide();
                         tblCodes.ajax.reload(null, false);
                         showMessage("Success", "Job category was deleted successfully", "success", "green");
                     }
                 })
             }
-            
         });
 
         $("#btnEditJobCategories").click(function(){
@@ -152,13 +144,16 @@
                         ID: JobCategoryChkData,
                     },
                     dataType:"JSON",
+                    beforeSend: function(){
+                        $("#loading_modal").show();
+                    },
                     success:function(promise){
+                        $("#loading_modal").hide();
                         tblCategories.ajax.reload(null, false);
                         showMessage("Success!", "Job category was deleted successfully", "success", "green");
                     }
                 })
             }
-            
         });
 
         $("#tblJobCategories").on("change", ".CheckItem", function () {
@@ -191,7 +186,11 @@
                     OperationValue: $("#OperationValue").val()
                 },
                 dataType:"JSON",
+                beforeSend: function(){
+                    $("#loading_modal").show();
+                },
                 success:function(promise){
+                    $("#loading_modal").hide();
                     tblOperations.ajax.reload(null, false);
                     $("#mdlOperation").modal("hide");
                     cancelform();
@@ -213,7 +212,11 @@
                         ID: JobOperationChkData,
                     },
                     dataType:"JSON",
+                    beforeSend: function(){
+                        $("#loading_modal").show();
+                    },
                     success:function(promise){
+                        $("#loading_modal").hide();
                         tblOperations.ajax.reload(null, false);
                         showMessage("Success", "Job operation was deleted successfully", "success", "green");
                     }
