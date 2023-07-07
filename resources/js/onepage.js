@@ -64,6 +64,11 @@
 
      });
 
+     AOS.init({
+      duration: 700, // values from 0 to 3000, with step 50ms
+      easing: 'ease-in-sine',
+      once: true,
+     });
 
     let validator = $("#contact-form").validate({
 

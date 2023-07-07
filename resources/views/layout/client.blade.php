@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="Tai-Fil" name="description" />
-    <meta content="dGl0aSBrbyBtYWxha2kK" name="author" />
-    <meta name="language" lang="en" />
+    <meta content="Tai-Fil Manpower Services Corp" name="description" />
+    <meta content="Alphy Jay Paulin & Lenard Robenta" name="author" />
+    <meta name="language" lang="jp" />
 
     <!-- CSRF Token -->
     @stack('meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="/images/tf logo.png">
-    <title>@yield('title') | Taifil</title>
+    <title>@yield('title') | Tai-Fil Manpower Services Corp</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="{{asset("css/iziToast.min.css")}}">

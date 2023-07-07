@@ -21,6 +21,9 @@ class BiodataController extends Controller
     public function view(Request $request){
         return view("/pages/biodata",['biodata'=>$request->data]);
     }
+    public function view_jp(Request $request){
+        return view("jp/pages/biodata",['biodata'=>$request->data]);
+    }
 
     public function uploadData(Request $request)
     {
@@ -321,7 +324,7 @@ class BiodataController extends Controller
             
             if($data->update()){
                 $data = [
-                    'msg' => 'Shipment Transaction was successfully completed.',
+                    'msg' => 'The Biodata has been uploaded',
                     'data' => [],
                     'success' => true,
                     'msgType' => 'success',

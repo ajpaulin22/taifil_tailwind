@@ -10,10 +10,60 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
     public function view(Request $request){
+        try {
+
+           
+            if(isset($request->cat)){
+                $query = DB::table('posts as p')
+                ->select([
+                    DB::raw("p.id"),
+                    DB::raw("p.title"),
+                    DB::raw("p.content"),
+                    DB::raw("p.category"),
+                    DB::raw("cast(p.created_at as date) as `date`"),
+                    DB::raw("date_format(p.created_at,'%r') as time"),
+                    DB::raw("i.path")
+                ])
+                ->leftjoin(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
+                    $join->on('p.id','=',"i.post_id");
+                })
+                ->where("category",$request->cat)
+                ->where("isdeleted",0)
+                ->orderByDesc("p.id")
+                ->paginate(5);
+            }else{
+                $query = DB::table('posts as p')
+                ->select([
+                    DB::raw("p.id"),
+                    DB::raw("p.title"),
+                    DB::raw("p.content"),
+                    DB::raw("p.category"),
+                    DB::raw("cast(p.created_at as date) as `date`"),
+                    DB::raw("date_format(p.created_at,'%r') as time"),
+                    DB::raw("i.path")
+                ])
+                ->leftjoin(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
+                    $join->on('p.id','=',"i.post_id");
+                })
+                ->where("isdeleted",0)
+                ->orderByDesc("p.id")
+                ->paginate(5);
+            }
+
+            
+        $dat = "";
+        return view("pages.gallery",["posts" => $query,"cat" => $request->cat]);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    public function view_jp(Request $request){
         try {
 
            
@@ -54,7 +104,7 @@ class PostController extends Controller
 
             
         $dat = "";
-        return view("pages.gallery",["posts" => $query,"cat" => $request->cat]);
+        return view("jp.pages.gallery",["posts" => $query,"cat" => $request->cat]);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -64,6 +114,10 @@ class PostController extends Controller
         
         return view("pages.create-post",);
     }
+    public function create_post_jp(){
+        
+        return view("jp.pages.create-post",);
+    }
 
     public function create(Request $request){
         try {
@@ -72,18 +126,25 @@ class PostController extends Controller
             "title" => $request->title,
             "content" =>$request->content,
             "category" =>$request->category,
-            "created_at" => Carbon::now('Asia/Hong_Kong'),
-            "updated_at" => Carbon::now('Asia/Hong_Kong')
+            "created_at" => Carbon::now()->setTimezone('UTC'),
+            "updated_at" => Carbon::now()->setTimezone('UTC')
         ]);
 
         if($request->hasFile("pictures")){
             foreach($request->file("pictures") as $picture){
                 image::create([
                 "post_id" => $id,
-                "path" => $picture->store($request->title . date('Y-m-d'),"public"),
+                "path" => $picture->store($request->title ."_". date('Y-m-d'),"public"),
                 ]);
             }
         }
+        $data = [
+            'msg' => 'The post has been uploaded',
+            'data' => [],
+            'success' => true,
+            'msgType' => 'success',
+            'msgTitle' => 'Success!'
+        ];
         
         
           
@@ -92,7 +153,14 @@ class PostController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollBack();
-            return response()->json(["success"=>false]);
+            $message = [
+                'msg' => $th->getMessage(),
+                'data' => [],
+                'success' => false,
+                'msgType' => 'error',
+                'msgTitle' => 'Error!'
+            ];
+            return response()->json($message);
         }
 
         return response()->json(["success"=>true]);
@@ -123,12 +191,17 @@ class PostController extends Controller
     }
 
     public function delete(Request $request){
+
         $data = post::find($request->id);
+        $host = $request->server('HTTP_REFERER');
         $data->isdeleted = 1;
         $data->update();
+        $pics = image::select()->where("post_id",$request->id)->toArray();
         DB::table("images")->where("post_id",$request->id)->update([
             'isdeleted' => 0
         ]);
-        return redirect("/client/gallery")->with("message","The post has been deleted");
+        // DB::table
+        // Storage::disk('public')->delete($filename);
+        return redirect($host)->with("message","The post has been deleted");
     }
 }

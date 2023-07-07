@@ -13,7 +13,7 @@
                   <ul class="absolute z-20 w-48 bg-white right-0 rounded-lg overflow-hidden hidden group-hover:block shadow-lg before:absolute before:top-full before:left-1/2 before:border-solid before:border-2 before:before-green-500">
                     <li class="text-lg font-semibold p-5">Hello {{Auth::user()->username}}</li>
                     <hr>
-                    <li class="mt-5 hover:bg-green-400 py-2 px-5 hover:text-white"><a href="/logout">Log out</a></li>
+                    <li class="mt-5 hover:bg-green-400 hover:text-white"><a href="/logout" class="block py-2 px-5">Log out</a></li>
                     
                   </ul>
             </div>

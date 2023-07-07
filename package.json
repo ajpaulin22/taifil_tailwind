@@ -30,6 +30,7 @@
     "dependencies": {
         "@brenoroosevelt/toast": "^2.0.3",
         "animate.css": "^4.1.1",
+        "aos": "^2.3.4",
         "flowbite-datepicker": "^1.2.2",
         "izitoast": "^1.4.0",
         "tailwind-fontawesome": "^0.5.0"

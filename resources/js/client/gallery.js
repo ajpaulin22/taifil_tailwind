@@ -117,13 +117,13 @@
                             position:'topRight'
                         });
                         setTimeout(()=>{
-                            location.replace("/");
+                            location.replace((location.pathname.includes("/jp")? "/jp/client/gallery":"/client/gallery"));
                         },5000)
                     }else{
                         iziToast.error({
                             class:'rounded-lg overflow-hidden',
                             title: 'Error',
-                            message: 'Illegal operation',
+                            message: promise.msg,
                             position:'topRight'
                         });
                     }
