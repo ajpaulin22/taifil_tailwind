@@ -24,7 +24,7 @@
             <li class="p-3 px-5 text-lg font-bold text-sky-800 hover:text-green-600"><a class="hover:border-b-2 hover:border-b-green-600 transition ease-out duration-300 block md:inline-block" href="/#">Home</a></li>
             <li class="p-3 px-5 text-lg font-bold text-sky-800 hover:text-green-600"><a class="hover:border-b-2 hover:border-b-green-600 block md:inline-block" href="/#about">About</a></li>
             <li class="group p-3 px-5 text-lg font-bold text-sky-800 md:relative">
-                <button class="group-hover:text-green-600 hidden md:inline-block">TTIP <i class="fa-solid fa-angle-down"></i></button>
+                <button class="group-hover:text-green-600 hidden md:inline-block">TITP <i class="fa-solid fa-angle-down"></i></button>
                 <button id="ttip_btn" class="md:pointer-events-none md:hidden group-hover:text-green-600 block">TTIP <i class="fa-solid fa-angle-down"></i></button>
                 <div id="ttip_nav" class="hidden md:absolute md:bg-white md:shadow-lg md:w-52 group-hover:block md:rounded transition-all ease-linear mt-3">
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
