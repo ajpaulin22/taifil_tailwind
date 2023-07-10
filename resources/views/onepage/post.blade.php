@@ -17,7 +17,7 @@
                 <div class="overflow-hidden w-full h-56 md:h-1/2">
                     @if(count($d['images']) != 0)
                     
-                    <img src="{{url('storage/'.$d['images'][0]['path'])}}" alt="" class="object-cover h-auto w-auto objec hover:scale-150 transition-transform ease-in duration-300">
+                    <img src="{{url('storage/'.$d['images'][0]['path'])}}" alt="" class="object-cover h-auto w-full objec hover:scale-150 transition-transform ease-in duration-300">
                     @else
                     <img src="{{url('images/default_item.png')}}" alt="" class="object-cover hover:scale-150 transition-transform ease-in duration-300">
                     @endif

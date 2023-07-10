@@ -2433,13 +2433,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         delay: 3000,
         disableOnInteraction:false
       },
-      pagination: {
-        el: '.ttip-pagi',
-        type: "progressbar",
+      navigation: {
+        nextEl: '.ttip-next',
+        prevEl: '.ttip-prev',
       },
        slidesPerView: 1,
        centeredSlides: true,
-       spaceBetween: 10,
+       spaceBetween: 5,
        breakpoints: {
         640: {
           slidesPerView: 2,
