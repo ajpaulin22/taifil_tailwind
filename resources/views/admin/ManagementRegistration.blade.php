@@ -81,10 +81,10 @@ Management Registration
                 <button type="button" id="btnDelete" class="btn btn-sm btn-danger btn-block"><span class="fa fa-trash"></span><span class="btnLabel">Delete</span></button>
             </div>
             <div class="col-sm-2 offset-6 mb-2" style='text-align: right;'>
-                <button type="button" id="btnUpdateInterview" class="btn btn-sm btn-primary btn-block" disabled><span class="fa fa-save"></span><span class="btnLabel">Update Interview History</span></button>
+                <button type="button" id="btnUpdateInterview" class="btn btn-sm btn-primary btn-block"><span class="fa fa-save"></span><span class="btnLabel">Update Interview History</span></button>
             </div>
             <div class="col-sm-1 mb-2">
-                <button type="button" id="btnDownloadExcel" class="btn btn-sm btn-success btn-block"><span class="fa fa-file-excel-o"></span><span class="btnLabel">Generate Excel</span></button>
+                <button type="button" id="btnSaveAbroad" class="btn btn-sm btn-warning btn-block" style="padding-left: 0px; padding-right: 0px;"><span class="fa fa-plus"></span><span class="btnLabel">Save Abroad</span></button>
             </div>
         </div>
         <div class="table-responsive xs ">
@@ -123,6 +123,11 @@ Management Registration
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 mb-2" style='padding-right:0px;'>
+                <button type="button" id="btnDownloadExcel" class="btn btn-sm btn-success btn-block"><span class="fa fa-file-excel-o"></span><span class="btnLabel">Generate Excel</span></button>
+            </div>
         </div>
 	</div>
 </div>
@@ -173,10 +178,7 @@ Management Registration
             </div>
             <div class="modal-body">
                 <div class="row col-sm-12 mb-2">
-                    <div class="col-sm-10 mb-2">
-                        <h4 id="ApplicantName"></h4>
-                    </div>
-                    <div class="col-sm-2 mb-2">
+                    <div class="col-sm-2 offset-10 mb-2">
                         <button type="button" id="btnAddInterview" class="btn btn-sm btn-block btn-primary"><span class="fa fa-plus"></span> <span class="btn-label">Add Interview</span></button>
                     </div>
                 </div>
@@ -204,11 +206,6 @@ Management Registration
             </div>
             <div class="modal-body">
                 <form id="frmInterview" data-parsley-validate>
-                    <div class="row col-sm-12">
-                        <div class="col-sm-10 mb-2">
-                            <h4 id="AddApplicantName"></h4>
-                        </div>
-                    </div>
                     <div class="row col-sm-12">
                         <div class="col-sm-5">
                             <div class="input-group input-group-sm m-b-5">

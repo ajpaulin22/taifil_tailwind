@@ -42,15 +42,18 @@ class ManagementRegistrationController extends Controller
     }
 
     public function SaveInterview(Request $request){
-        m_interviewhistories::create([
-            "PersonalInfoID" => $request["PersonalID"],
-            "AttendInterview" => $request["AttendInterview"],
-            "InterviewDate" => $request["InterviewDate"],
-            "Company" => $request["Company"],
-            "IsDeleted" => 0,
-            "CreateID" => "admin",
-            "UpdateID" => "admin"
-        ]);
+        for ($i = 0; $i < COUNT($request["PersonalID"]); $i++){
+            m_interviewhistories::create([
+                "PersonalInfoID" => $request["PersonalID"][$i]["ID"],
+                "AttendInterview" => $request["AttendInterview"],
+                "InterviewDate" => $request["InterviewDate"],
+                "Company" => $request["Company"],
+                "IsDeleted" => 0,
+                "CreateID" => "admin",
+                "UpdateID" => "admin"
+            ]);
+        }
+        
 
         $data = [
             'msg' =>  'Interview Saved Successfully',
@@ -63,6 +66,16 @@ class ManagementRegistrationController extends Controller
     }
 
     public function GetInterviewHistory(Request $request){
+        $IDs = "0";
+        if($request["applicantID"] != 0){
+            $IDs = "";
+            for($i = 0; $i < COUNT($request["applicantID"]); $i++){
+                $IDs = $IDs . "," . $request["applicantID"][$i]["ID"];
+            }
+            $IDs = ltrim($IDs, ',');
+        }
+        
+        
         $applicantID = $request["applicantID"];
         $limit = $request->length;
         $start = $request->start;
@@ -71,14 +84,13 @@ class ManagementRegistrationController extends Controller
         $search = $request->input('search.value');
         
         $order = "id";
-        $query_1 = "SELECT *
-         FROM m_interviewhistories WHERE IsDeleted = 0 AND PersonalInfoID = " .$applicantID;
-    
+        $query_1 = "SELECT p.ID, CONCAT(first_name, ' ', last_name) as Name, m.AttendInterview, m.InterviewDate, m.Company
+                FROM personal_datas p
+                JOIN m_interviewhistories m ON p.ID = m.PersonalInfoID WHERE m.IsDeleted = 0 AND p.isdeleted = 0 AND p.ID IN (" . $IDs . ")";
         $query_1 .= " 
         AND  (
-        CAST(id as char(200)) LIKE '%".$search."%'
-        AND Company LIKE '%".$search."%')";
-
+        CAST(m.id as char(200)) LIKE '%".$search."%'
+        AND Company LIKE '%".$search."%') order by Name asc";
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
         $total_result = (count($data) > 0 ? count($data): 0);
@@ -135,6 +147,28 @@ class ManagementRegistrationController extends Controller
      public function ExportApplicants(Request $request){
         $date = Carbon::now();
         $date->toDateTimeString();
-        return Excel::download(new ExportUser, 'users'. $date .'.xlsx');
+        return Excel::download(new ExportUser($request), 'users'. $date .'.xlsx');
+     }
+     public function SaveAbroad(Request $request){
+        $date = Carbon::now();
+        $date->toDateTimeString();
+        $IDs = [];
+        for ($i = 0; $i < count($request["PersonalID"]); $i++){
+            array_push($IDs,$request["PersonalID"][$i]["ID"]);
+        }
+        DB::table('personal_datas')
+            ->whereIN('id', $IDs)
+            ->update([
+                'to_abroad' => 1
+                ,'abroad_date' => $date
+            ]);
+        $data = [
+            'msg' =>  "Job Code Deleted Successfully",
+            'data' => [],
+            'success' => true,
+            'msgType' => 'success',
+            'msgTitle' => 'Success!'
+        ];
+        return response()->json($data);
      }
 }
