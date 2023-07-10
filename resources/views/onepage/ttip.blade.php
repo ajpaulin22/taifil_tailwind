@@ -1,7 +1,7 @@
 <section id="ttip" class="mt-5 px-5 scroll-mt-20">
     <div class="md:mx-auto mx-5 max-w-7xl min-h-screen">
         <div data-aos="zoom-in">
-            <h1 class="text-center text-4xl md:text-7xl my-9 font-semibold text-sky-800">TTIP<hr class="border-b-2 border-green-500"></h1>
+            <h1 class="text-center text-4xl md:text-7xl my-9 font-semibold text-sky-800">TITP<hr class="border-b-2 border-green-500"></h1>
         </div>
         <div class="md:grid md:grid-col-3 gap-5 md:grid-flow-col">
             <div data-aos="fade-right" class="col-span-1">
@@ -109,6 +109,8 @@
 
              
             </div>
+            <div class="swiper-button-prev ttip-prev"></div>
+            <div class="swiper-button-next ttip-next"></div>
             <!-- If we need pagination -->
             <div class="swiper-pagination ttip-pagi"></div>
         </div>

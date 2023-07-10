@@ -31,7 +31,7 @@
             <div class="col-span-1"></div>
             <div class="form-group col-span-1">
                 <label for="lastname" class="form-label">Last Name<span style="color:red">*</span>:</label>
-                <input name="lastname" autocomplete="off" type="text" class="form-control" id="lastname">
+                <input name="lastname" autocomplete="off" type="text" class="form-control" id="lastname" >
             </div>
             <div class="form-group col-span-1">
                 <label for="firstname" class="form-label">First Name<span style="color:red">*</span>:</label>
@@ -76,7 +76,7 @@
             <x-citizenship/>
             <div class="form-group col-span-1">
                 <label for="age" class="form-label">Age<span style="color:red">*</span>:</label>
-                <input name="age" autocomplete="off" type="number" class="form-control" id="age">
+                <input name="age" autocomplete="off" type="number" class="form-control" id="age" onKeyPress="if(this.value.length==4) return false;">
             </div>
             <div class="form-group col-span-1">
                 <label for="personal_lastname" class="form-label">Blood Type:</label>
@@ -109,7 +109,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Height<span style="color:red">*</span>:</label>
-                <input name="height" autocomplete="off" type="number" class="form-control">
+                <input name="height" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;">
             </div>
             <div class="form-group col-span-1">
                 <label for="personal_lastname" class="form-label">Religion<span style="color:red">*</span>:</label>
@@ -140,7 +140,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Weight(KG)<span style="color:red">*</span>:</label>
-                <input name="weight" autocomplete="off" type="number" class="form-control">
+                <input name="weight" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;">
             </div>
             <div class="form-group col-span-2">
                 <label for="height" class="form-label">Japanese Language<span style="color:red">*</span>:</label>
@@ -169,7 +169,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Shoe Size<span style="color:red">*</span>:</label>
-                <input name="shoe_size" autocomplete="off" type="number" class="form-control">
+                <input name="shoe_size" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Hobbies<span style="color:red">*</span>:</label>

@@ -27,6 +27,13 @@ class BiodataController extends Controller
 
     public function uploadData(Request $request)
     {
+
+        $data = [
+            'id' => "",
+            'success' => false,
+            'msgType' => 'error',
+            'msgTitle' => 'error!'
+        ];
        try {
         DB::beginTransaction();
         $id = DB::table("personal_datas")->insertGetID([
@@ -290,19 +297,19 @@ class BiodataController extends Controller
             'msgType' => 'success',
             'msgTitle' => 'Success!'
         ];
-        return response()->json($data);
+        
 
         
        } catch (\Throwable $th) {
         DB::rollBack();
         $data = [
-            'id' => $id,
+            'id' => "",
             'success' => false,
             'msgType' => 'error',
-            'msgTitle' => 'error!'
+            'msgTitle' => $th->getMessage()
         ];
-        return response()->json($data);
        }
+       return response()->json($data);
     }
 
     public function upload_image(Request $request){
