@@ -109,7 +109,7 @@ class JobInformationController extends Controller
         $query_1 = "SELECT
         ID,
         Qualification
-         FROM m_jobqualifications WHERE IsDeleted = 0 AND JobOperationsID = ".$request->ID;
+         FROM m_jobqualifications WHERE IsDeleted = 0 AND JobCategoriesID = ".$request->ID;
         $query_1 .= " 
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
@@ -287,7 +287,6 @@ class JobInformationController extends Controller
     public function SaveQualification(Request $request){
     
         $msg = "";
-        
         if($request["QualificationID"] == 0){
             m_jobqualifications::create([
                 "JobCategoriesID" => $request["CategoryID"],

@@ -174,6 +174,10 @@
         $("#btnDownloadExcel").click(function(){
             window.location = '/admin/ManagementRegistration/ExportApplicants';
         });
+
+        $("#btnFilter").click(function(){
+            tblManagementRegistration.ajax.reload(null, false);
+        });
         
     })
 

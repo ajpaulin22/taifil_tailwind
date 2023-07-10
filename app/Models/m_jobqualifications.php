@@ -11,7 +11,7 @@ class m_jobqualifications extends Model
     protected $fillable = [
         "ID"
         ,"JobCategoriesID"
-        ,"Operation"
+        ,"Qualification"
         ,"IsDeleted"
         ,"CreateID"
         ,"UpdateID"

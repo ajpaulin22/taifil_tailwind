@@ -53,7 +53,7 @@
         });
 
         $("#btnCancelCode").click(function(){
-            cancelform();
+            $(".input").val("");
         });
 
         $("#tblCodes").on("change", ".CheckItem", function () {
@@ -132,7 +132,7 @@
         });
 
         $("#btnCancelCategory").click(function(){
-            cancelform();
+            $(".input").val("");
         });
 
         $("#btnDeleteJobCategories").click(function(){
@@ -169,6 +169,11 @@
                     return obj.ID !== trData.ID;
                 });
             }
+        });
+
+        $("#btnViewQualification").click(function(){
+                tblQualifications.ajax.reload(null, false);
+                $("#mdlQualificationTable").modal('show');
         });
 
         //Job Operations Events
@@ -237,16 +242,20 @@
         });
 
         $("#btnCancelOperation").click(function(){
-            cancelform();
+            $(".input").val("");
         });
 
         //Job Qualifications Events
 
         $("#btnAddQualifications").click(function(){
+            $("#ValueCategoryQualification").val(dataJobCategory.ID);
+            $("#TextCategoryQualification").val(dataJobCategory.Category);
+            $("#mdlQualificationTable").modal("hide");
             $("#mdlQualification").modal("show");
         });
 
-        $("#btnSaveQualification").click(function(){
+        $("#frmQualification").submit(function(e){
+            e.preventDefault();
             $.ajax({
                 url:"/admin/MasterMaintenance/JobInformation/SaveQualification",
                 type:"POST",
@@ -275,11 +284,14 @@
             $("#TextCategoryQualification").val(dataJobCategory.Category);
             $("#QualificationValue").val(dataJobQualification.Qualification);
             $("#QualificationID").val(dataJobQualification.ID);
+            $("#mdlQualificationTable").modal("hide");
             $("#mdlQualification").modal("show");
         });
 
         $("#btnCancelQualification").click(function(){
-            cancelform();
+            $("#mdlQualification").modal("hide");
+            $("#mdlQualificationTable").modal("show");
+            $(".input").val("");
         });
 
         $("#tblCodes").on("change", ".CheckItem", function () {
@@ -368,14 +380,14 @@
                         if ($(this).hasClass('selected')) {
                             $("#btnEditJobCategories").attr('disabled', true);
                             $("#btnAddOperations").attr('disabled', true);
-                            $("#btnAddQualifications").attr('disabled', true);
+                            $("#btnViewQualification").attr('disabled', true);
                             dataJobCategory = "";
                             tblCategories.$('tr.selected').removeClass('selected');
                         }
                         else {
                             $("#btnEditJobCategories").removeAttr('disabled');
                             $("#btnAddOperations").removeAttr('disabled', true);
-                            $("#btnAddQualifications").removeAttr('disabled');
+                            $("#btnViewQualification").removeAttr('disabled');
                             tblCategories.$('tr.selected').removeClass('selected');
                             $(this).addClass('selected');
                         }
@@ -633,7 +645,7 @@
                     dataType: "JSON",
                     type: "GET",
                     data: function(d){
-                        d["ID"] = dataJobOperation == "" ? 0 : dataJobOperation.ID
+                        d["ID"] = dataJobCategory == "" ? 0 : dataJobCategory.ID
                     }
                 },
                 deferRender: true,
@@ -672,7 +684,7 @@
                                 },
                                 width: "2%"
                             },
-                            { data: 'Operation', name: 'Operation' ,orderable: true, title: "Operation"},
+                            { data: 'Qualification', name: 'Qualification' ,orderable: true, title: "Qualification"},
                         ],
             }).on('page.dt', function() {
             });
