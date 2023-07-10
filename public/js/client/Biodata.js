@@ -2575,6 +2575,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                       if(promise.success){
                         self.saveid(promise.id);
                       }else{
+                        $("#loader").hide();
                         iziToast.error({
                             class:'rounded-lg overflow-hidden',
                             title: 'Error',
@@ -2932,6 +2933,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 processData:false,
                 success:function(promise){
                     if(promise.success){
+                        $("#loader").hide();
                         iziToast.success({
                             class:'rounded-lg overflow-hidden',
                             title: promise.msgTitle,
@@ -2940,7 +2942,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         });
                         setTimeout(() => {
                             location.replace((location.pathname.includes("/jp")? "/jp/":"/"));
-                        }, 5000);
+                        }, 3000);
                     }
                     console.log(promise.msgTitle)
                 }
@@ -3056,8 +3058,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 })
             }
 
-            $("#educational_tab").removeClass('pointer-events-none')
-            $("#educational_tab").trigger("click")
+            $("#education_tab").removeClass('pointer-events-none')
+            $("#education_tab").trigger("click")
             
           }
     });
@@ -3921,6 +3923,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
     $("#upload_details").on("click",function(){
         biodata.uploadData()
         modal.hide();
+        $("#loader").show();
     })
 
 

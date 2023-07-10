@@ -213,6 +213,7 @@
                       if(promise.success){
                         self.saveid(promise.id);
                       }else{
+                        $("#loader").hide();
                         iziToast.error({
                             class:'rounded-lg overflow-hidden',
                             title: 'Error',
@@ -570,6 +571,7 @@
                 processData:false,
                 success:function(promise){
                     if(promise.success){
+                        $("#loader").hide();
                         iziToast.success({
                             class:'rounded-lg overflow-hidden',
                             title: promise.msgTitle,
@@ -578,7 +580,7 @@
                         });
                         setTimeout(() => {
                             location.replace((location.pathname.includes("/jp")? "/jp/":"/"));
-                        }, 5000);
+                        }, 3000);
                     }
                     console.log(promise.msgTitle)
                 }
@@ -694,8 +696,8 @@
                 })
             }
 
-            $("#educational_tab").removeClass('pointer-events-none')
-            $("#educational_tab").trigger("click")
+            $("#education_tab").removeClass('pointer-events-none')
+            $("#education_tab").trigger("click")
             
           }
     });
@@ -1559,6 +1561,7 @@
     $("#upload_details").on("click",function(){
         biodata.uploadData()
         modal.hide();
+        $("#loader").show();
     })
 
 

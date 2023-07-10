@@ -2,7 +2,7 @@
     <form action="" id="certificate_form" class="flex flex-col">
         <div class="md:grid grid-cols-7 gap-4">
             <div class="mt-2 md:mt-0 form-group col-span-6">
-                <label class="text-xl font-bold">Prometricsdasd<span style="color:red">*</span>:</label>
+                <label class="text-xl font-bold">Prometrics<span style="color:red">*</span>:</label>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
                 <button id="add_prometric" class="py-2 px-4 bg-green-400 rounded w-full self-end text-sm text-white">Add Record</button>

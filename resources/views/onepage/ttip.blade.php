@@ -28,7 +28,89 @@
                 <p class="text-end ">source:<a href="https://www.jitco.or.jp/en/regulation/" class="text-blue-600 underline italic"> https://www.jitco.or.jp/en/regulation/
                 </a></p>
             </div>
-            
+        </div>
+        <div class="swiper ttip w-auto md:h-60 my-5 p-5">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper ">
+              <!-- Slides -->
+              <div class="swiper-slide md:grid grid-flow-col grid-cols-2 gap-2 border border-green-500 justify-center items-center rounded px-2">
+                <div class="col-span-1">
+                    <img class="h-auto" src="{{url('images/1.png')}}" alt="">
+                </div>
+                <div class="col-span-1 text-green-500 text-sm">
+                    Applicants will go through in-house IQ and EQ, psychological, and math tests. Initial screening of documents and interviews will be conducted as part of the application process.
+                </div>
+              </div>
+              <div class="swiper-slide md:grid grid-flow-col grid-cols-2 gap-2 border border-green-500 justify-center items-center rounded px-2">
+                <div class="col-span-1">
+                    <img class="h-auto" src="{{url('images/2.png')}}" alt="">
+                </div>
+                <div class="col-span-1 text-green-500 text-sm">
+                    There will be a session conducted for program and employer orientation.
+                </div>
+              </div>
+              <div class="swiper-slide md:grid grid-flow-col grid-cols-2 gap-2 border border-green-500 justify-center items-center rounded px-2">
+                <div class="col-span-1">
+                    <img class="h-auto" src="{{url('images/3.png')}}" alt="">
+                </div>
+                <div class="col-span-1 text-green-500 text-sm">
+                    Applicants will be chosen for the interview based on the qualifications set by the employer, which can be conducted either online or in-person.
+                </div>
+              </div>
+              <div class="swiper-slide md:grid grid-flow-col grid-cols-2 gap-2 border border-green-500 justify-center items-center rounded px-2">
+                <div class="col-span-1">
+                    <img class="h-auto" src="{{url('images/4.png')}}" alt="">
+                </div>
+                <div class="col-span-1 text-green-500 text-sm">
+                    Successful applicants are required to undergo a medical examination before proceeding with the pre-Japanese training.
+                </div>
+              </div>
+              <div class="swiper-slide md:grid grid-flow-col grid-cols-2 gap-2 border border-green-500 justify-center items-center rounded px-2">
+                <div class="col-span-1">
+                    <img class="h-auto" src="{{url('images/5.png')}}" alt="">
+                </div>
+                <div class="col-span-1 text-green-500 text-sm">
+                    Once the medical examination is successfully passed, the preparation of documents for the certificate of eligibility will commence.
+                </div>
+              </div>
+              <div class="swiper-slide md:grid grid-flow-col grid-cols-2 gap-2 border border-green-500 justify-center items-center rounded px-2">
+                <div class="col-span-1">
+                    <img class="h-auto" src="{{url('images/6.png')}}" alt="">
+                </div>
+                <div class="col-span-1 text-green-500 text-sm">
+                    Pre-Nihongo Training and Japan Culture and Etiquettes will be conducted for 4-6 months.
+                </div>
+              </div>
+              <div class="swiper-slide md:grid grid-flow-col grid-cols-2 gap-2 border border-green-500 justify-center items-center rounded px-2">
+                <div class="col-span-1">
+                    <img class="h-auto" src="{{url('images/7.png')}}" alt="">
+                </div>
+                <div class="col-span-1 text-green-500 text-sm">
+                    Obtaining of Certificate of Eligibility (COE) to be used for the Visa Application.
+                </div>
+              </div>
+              <div class="swiper-slide md:grid grid-flow-col grid-cols-2 gap-2 border border-green-500 justify-center items-center rounded px-2">
+                <div class="col-span-1">
+                    <img class="h-auto" src="{{url('images/8.png')}}" alt="">
+                </div>
+                <div class="col-span-1 text-green-500 text-sm">
+                    Processing of Visa application and all DMW certification and seminars need before leaving the country. Pre-departure orientation also be conducted.
+                </div>
+              </div>
+              <div class="swiper-slide md:grid grid-flow-col grid-cols-2 gap-2 border border-green-500 justify-center items-center rounded px-2">
+                <div class="col-span-1">
+                    <img class="h-auto" src="{{url('images/9.png')}}" alt="">
+                </div>
+                <div class="col-span-1 text-green-500 text-sm">
+                    At the airport, all trainees will be assembled to receive the essential documents and information required for entry into Japan.
+                </div>
+              </div>
+              
+
+             
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination ttip-pagi"></div>
         </div>
     </div>
 </section>

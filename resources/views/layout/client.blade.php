@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{asset("css/app.css")}}">
     @stack('styles')
 </head>
-<body class="min-h-full flex flex-col overflow-x-hidden no-scrollbar">
+<body class="min-h-full flex flex-col overflow-x-hidden">
     <x-user-banner/>
     @include('navFoot.client_nav')
     <main class="min-h-screen">

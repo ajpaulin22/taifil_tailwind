@@ -2426,6 +2426,35 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
      });
 
+     const swiper_ttip = new Swiper.Swiper('.ttip',{
+      direction: 'horizontal',
+       loop: true,
+       autoplay: {
+        delay: 3000,
+        disableOnInteraction:false
+      },
+      pagination: {
+        el: '.ttip-pagi',
+        type: "progressbar",
+      },
+       slidesPerView: 1,
+       centeredSlides: true,
+       spaceBetween: 10,
+       breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 50,
+        },
+      },
+
+        
+
+     });
+
      AOS.init({
       duration: 700, // values from 0 to 3000, with step 50ms
       easing: 'ease-in-sine',

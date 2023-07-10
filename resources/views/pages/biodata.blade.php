@@ -116,6 +116,8 @@
             </div>
         </div>
     </div>
+    <x-loader message="Please wait....." />
+    
 @endsection
 
 @push('scripts')
