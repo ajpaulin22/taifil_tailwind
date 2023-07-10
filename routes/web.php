@@ -87,10 +87,8 @@ Route::group(["prefix"=>"client"],function(){
 
 
 Route::group(["prefix" => "jp"],function(){
-    Route::get('/',[OnepageController::class,"view_jp"])->name('home');
+    Route::get('/',[OnepageController::class,"view_jp"])->name('jphome');
     Route::group(["prefix"=>"client"],function(){
-
-    
         Route::group(["prefix"=>"Biodata"],function(){
             Route::get("/",[BiodataController::class,"view_jp"]);
             Route::get("/get-code",[BiodataController::class,"get_code"]);
@@ -100,7 +98,7 @@ Route::group(["prefix" => "jp"],function(){
         });
     
         Route::group(["prefix" => "gallery"],function(){
-            Route::get("/",[PostController::class,"view_jp"])->name('gallery');
+            Route::get("/",[PostController::class,"view_jp"])->name('jpgallery');
             Route::get("/create-post",[PostController::class,"create_post_jp"])->middleware("admin");
             Route::get("/post",[PostController::class,"post"]);
             Route::get("/delete",[PostController::class,"delete"])->middleware("admin");
@@ -146,12 +144,15 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
             Route::get("/GetJobCode",[JobInformationController::class,'GetJobCode']);
             Route::get("/GetJobCategory",[JobInformationController::class,'GetJobCategory']);
             Route::get("/GetJobOperation",[JobInformationController::class,'GetJobOperation']);
+            Route::get("/GetQualification",[JobInformationController::class,'GetQualification']);
             Route::post("/SaveCode",[JobInformationController::class,'SaveCode']);
             Route::post("/DeleteJobCode",[JobInformationController::class,'DeleteJobCode']);
             Route::post("/SaveCategory",[JobInformationController::class,'SaveCategory']);
             Route::post("/DeleteJobCategory",[JobInformationController::class,'DeleteJobCategory']);
             Route::post("/SaveOperation",[JobInformationController::class,'SaveOperation']);
             Route::post("/DeleteJobOperation",[JobInformationController::class,'DeleteJobOperation']);
+            Route::post("/SaveQualification",[JobInformationController::class,'SaveQualification']);
+            Route::post("/DeleteJobQualification",[JobInformationController::class,'DeleteJobQualification']);
         });
 
         Route::group(["middleware" => "admin","prefix" => "UserInformation"],function(){
