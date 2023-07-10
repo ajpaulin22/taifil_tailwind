@@ -17,6 +17,7 @@ class ManagementRegistrationController extends Controller
 
     public function GetApplicantData(Request $request){
         $sql = "call biodata_getdata('".($request['Type'] == null ? '' : $request['Type']) . "', '".($request['Code'] == null ? '' : $request['Code']) . "', '". ($request['Category'] == null ? '' : $request['Category']). "', '". ($request['Operations'] == null ? '' : $request['Operations']). "', ". ($request['AgeFrom'] == null ? 0 : $request['AgeFrom']). ", ". ($request['AgeTo'] == null ? 0 : $request["AgeTo"]) .")";
+        // dd($request);
         $data = collect(DB::select(DB::raw($sql))); 
         $total_result = (count($data) > 0 ? count($data): 0);
         $totalFiltered = (count($data) > 0 ? count($data): 0);
@@ -133,7 +134,7 @@ class ManagementRegistrationController extends Controller
 
      public function ExportApplicants(Request $request){
         $date = Carbon::now();
-        echo $date->toDateTimeString();
-        return Excel::download(new ExportUser, 'users-'. $date .'.xlsx');
+        $date->toDateTimeString();
+        return Excel::download(new ExportUser, 'users'. $date .'.xlsx');
      }
 }

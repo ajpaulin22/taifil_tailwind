@@ -33,7 +33,7 @@ Management Registration
             <div class="col-sm-2 mb-2">
                 <div class="form-group">
                     <label>Type:</label>
-                    <select class="form-control" id="Type">
+                    <select class="form-control filter" id="Type">
                         <option value=""></option>
                         <option value="TITP">TITP</option>
                         <option value="SSW">SSW</option>
@@ -44,32 +44,29 @@ Management Registration
             <div class="col-sm-2 mb-2" >
                 <div class="form-group">
                     <label>Code:</label>
-                    <select class="form-control" id="Code" >
+                    <select class="form-control filter" id="Code" >
                     </select>
                 </div>
             </div>
             <div class="col-sm-2 mb-2">
                 <div class="form-group">
                     <label>Job Categories:</label>
-                    <select class="form-control" id="JobCategories" >
+                    <select class="form-control filter" id="JobCategories" >
                     </select>
                 </div>
             </div>
             <div class="col-sm-3 mb-2">
                 <div class="form-group">
                     <label>Operations:</label>
-                    <select class="form-control" id="Operations" >
+                    <select class="form-control filter" id="Operations" >
                     </select>
                 </div>
             </div>
             <div class="col-sm-2 mb-2" >
                 <div class="form-group" >
                     <label style="margin-right:150px;">Age:</label>
-                    <input type="text" id="AgeFrom" class="form-control" style="width: 30%; text-align: center;"> - <input type="text" id="AgeTo" class="form-control" style="width: 30%; text-align: center;">
+                    <input type="text" id="AgeFrom" class="form-control filter" style="width: 30%; text-align: center;" > - <input type="text" id="AgeTo" class="form-control filter" style="width: 30%; text-align: center;">
                 </div>
-            </div>
-            <div class="col-sm-1 mb-2"> 
-                <button type="button" id="btnFilter" class="btn btn-sm btn-info btn-block select2" style="margin-top:4px;"><span class="fa fa-filter"></span><span class="btnLabel">Filter</span></button>
             </div>
         </div>
         <br>

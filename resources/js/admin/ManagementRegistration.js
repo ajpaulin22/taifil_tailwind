@@ -175,7 +175,7 @@
             window.location = '/admin/ManagementRegistration/ExportApplicants';
         });
 
-        $("#btnFilter").click(function(){
+        $(".filter").change(function(){
             tblManagementRegistration.ajax.reload(null, false);
         });
         
@@ -255,12 +255,6 @@
     }
 
     function drawDataTable(){
-        var Type = $("#Type").val();
-        var Code = $("#Code").val();
-        var JobCategories = $("#JobCategories").val();
-        var Operations = $("#Operations").val();
-        var AgeFrom = $("#AgeFrom").val();
-        var AgeTo = $("#AgeTo").val();
         if (!$.fn.DataTable.isDataTable('#tblManagementRegistration')) {
             tblManagementRegistration = $('#tblManagementRegistration').DataTable({
                 processing: true,
@@ -271,12 +265,12 @@
                     type: "GET",
                     data: function(d){
                         _token = token,
-                        d["Type"] = Type,
-                        d["Code"] = Code,
-                        d["Category"] = JobCategories,
-                        d["Operations"] = Operations,
-                        d["AgeFrom"] = AgeFrom,
-                        d["AgeTo"] = AgeTo
+                        d["Type"] = $("#Type").val(),
+                        d["Code"] = $("#Code").val(),
+                        d["Category"] = $("#JobCategories").val(),
+                        d["Operations"] = $("#Operations").val(),
+                        d["AgeFrom"] = $("#AgeFrom").val(),
+                        d["AgeTo"] = $("#AgeTo").val()
                     }
                 },
                 deferRender: true,
