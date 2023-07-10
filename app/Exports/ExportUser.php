@@ -38,15 +38,6 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
         ];
     }
 
-    public function registerEvents(): array
-    {
-        return [
-            AfterSheet::class    => function(AfterSheet $event) {
-                $event->sheet->getDelegate()->getColumnDimension()->setAutoSize(true);
-            },
-        ];
-    }
-
     public function columnWidths(): array
     {
         return [
@@ -60,9 +51,7 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
             'H',
             'I',
             'J',
-            'K',
-
-                        
+            'K'
         ];
     }
 }
