@@ -4,10 +4,12 @@ namespace App\Exports;
 
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ExportUser implements FromCollection, WithHeadings
+class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -33,6 +35,23 @@ class ExportUser implements FromCollection, WithHeadings
             'Age',
             'To Abroad',
             'Abroad Date'
+        ];
+    }
+
+    public function columnWidths(): array
+    {
+        return [
+            'A',
+            'B',
+            'C',
+            'D',
+            'E',
+            'F',
+            'G',
+            'H',
+            'I',
+            'J',
+            'K'
         ];
     }
 }
