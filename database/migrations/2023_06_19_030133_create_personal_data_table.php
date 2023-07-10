@@ -31,7 +31,7 @@ class CreatePersonalDataTable extends Migration
             $table->integer("age");
             $table->string("bloodtype");
             $table->string("civil_status");
-            $table->integer("contact");
+            $table->string("contact");
             $table->integer("height");
             $table->string("religion");
             $table->text("facebook");
@@ -47,7 +47,7 @@ class CreatePersonalDataTable extends Migration
             $table->string("person_to_notify");
             $table->string("person_relation");
             $table->string("person_address");
-            $table->integer("person_contact");
+            $table->string("person_contact");
             $table->string("passport_no");
             $table->dateTime("issue_date")->nullable();
             $table->dateTime("expiry_date")->nullable();

@@ -187,6 +187,7 @@
             });
         },
         uploadData:function(){
+            $("#loader").show()
             let self = this;
            try {
             $.ajax({
@@ -217,7 +218,7 @@
                         iziToast.error({
                             class:'rounded-lg overflow-hidden',
                             title: 'Error',
-                            message: 'promise.msgTitle',
+                            message: promise.msgTitle,
                             position:'topRight'
                         });
                       }
@@ -1561,7 +1562,6 @@
     $("#upload_details").on("click",function(){
         biodata.uploadData()
         modal.hide();
-        $("#loader").show();
     })
 
 
