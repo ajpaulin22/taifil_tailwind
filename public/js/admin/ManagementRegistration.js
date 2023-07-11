@@ -4412,9 +4412,9 @@ B. Synopsis: Class Module used to process data
 (function(){
     var tblManagementRegistration = "";
     var tblInterview = "";
-    var dataApplicant = "";
     var applicantID = 0;
     var tableData = [];
+    var AbroadData = [];
     token = $("meta[name=csrf-token]").attr("content");
     var data = [
         {IDcheckbox: 1, IDrow: 1, Name: "Jenefer", JobCategories: "Livestock Agriculture", Program: "SSW", Show: 2, InterviewDate: "2023-01-01", Company: "Seiko IT Solutions Philippines Inc.", Age: 23, ToAbroad: 1},
@@ -4448,63 +4448,65 @@ B. Synopsis: Class Module used to process data
         });
 
         $("#btnEdit").click(function(){
-            $.ajax({
-                url:"/admin/ManagementRegistration/GetPersonalData",
-                type:"GET",
-                data:{
-                    _token: self.token,
-                    PersonalInfoID: dataApplicant.ID
-                },
-                dataType:"JSON",
-                success:function(promise){
-                    location.href = "/client/Biodata?data=" + $("#JobType").val() + "&type=mod";
-                }
-            });
-        });
-
-        $('#tblManagementRegistration tbody').on('click', 'tr', function(e){
-            dataApplicant = tblManagementRegistration.row($(this)).data();
-            switch (e.target.localName) {
-                case "button":
-                    break;
-                case "span":
-                    break;
-                case "checkbox":
-                    break;
-                case "i":
-                    break;
-                case "textbox":
-                    break;
-                case "input":
-                    break;
-                default:
-                    if ($.trim(dataApplicant) != "") {
-                        if ($(this).hasClass('selected')) {
-                            dataApplicant = "";
-                            $("#btnEdit").attr('disabled', true);
-                            $("#btnUpdateInterview").attr('disabled', true);
-                            tblManagementRegistration.$('tr.selected').removeClass('selected');
-                        }
-                        else {
-                            tblManagementRegistration.$('tr.selected').removeClass('selected');
-                            $("#btnEdit").removeAttr('disabled');
-                            $("#btnUpdateInterview").removeAttr('disabled');
-                            $(this).addClass('selected');
-                        }
+            if(tableData.length == 0){
+                showMessage("Error!", "Please check a row in the table", "error", "red");
+            }
+            else if (tableData.length != 1){
+                showMessage("Error!", "Can not select more than 1", "error", "red");
+            }
+            else{
+                $.ajax({
+                    url:"/admin/ManagementRegistration/GetPersonalData",
+                    type:"GET",
+                    data:{
+                        _token: self.token,
+                        PersonalInfoID: tableData[0].ID
+                    },
+                    dataType:"JSON",
+                    success:function(promise){
+                        location.href = "/client/Biodata?data=" + $("#JobType").val() + "&type=mod";
                     }
-                    break;
+                });
             }
         });
 
         $("#btnUpdateInterview").click(function(){
-            $("#ApplicantName").text(dataApplicant.Name);
-            applicantID = dataApplicant.ID;
-            tblInterview.ajax.reload(null, false);
-            $("#mdlInterview").modal('show');
+
+            if(tableData.length == 0){
+                showMessage("Error!", "Please check a row in the table", "error", "red");
+            }
+            else{
+                tblInterview.ajax.reload(null, false);
+                $("#mdlInterview").modal('show');
+            }
+        });
+
+        $("#btnSaveAbroad").click(function(){
+            if(AbroadData.length == 0){
+                showMessage("Error!", "Please check a row in To Abroad Column", "error", "red");
+            }
+            else{
+                $.ajax({
+                    url:"/admin/ManagementRegistration/SaveAbroad",
+                    type:"POST",
+                    data:{
+                        _token: token,
+                        PersonalID: AbroadData
+                    },
+                    dataType:"JSON",
+                    beforeSend: function(){
+                        $("#loading_modal").show();
+                    },
+                    success:function(promise){
+                        $("#loading_modal").hide();
+                        tblManagementRegistration.ajax.reload(null, false);
+                        showMessage("Success!", "Abroad Information Was Saved Successfully", "success", "green");
+                    }
+                });
+            }
         });
 
         $("#btnAddInterview").click(function(){
-            $("#AddApplicantName").text(dataApplicant.Name);
             $("#mdlInterview").modal('hide');
             $("#mdlAddInterview").modal('show');
         });
@@ -4524,7 +4526,7 @@ B. Synopsis: Class Module used to process data
                     AttendInterview: $("#AttendInterview").val(),
                     InterviewDate: $("#InterviewDate").val(),
                     Company: $("#Company").val(),
-                    PersonalID: dataApplicant.ID
+                    PersonalID: tableData
                 },
                 dataType:"JSON",
                 beforeSend: function(){
@@ -4533,11 +4535,16 @@ B. Synopsis: Class Module used to process data
                 success:function(promise){
                     $("#loading_modal").hide();
                     tblInterview.ajax.reload(null, false);
+                    tblManagementRegistration.ajax.reload(null, false);
                     $("#mdlAddInterview").modal('hide');
                     $("#mdlInterview").modal('show');
                     showMessage("Success!", "Interview Information Was Saved Successfully", "success", "green");
                 }
             });
+        });
+
+        $("#btnCancelAddInterview").click(function(){
+            $(".input").val("");
         });
 
         $("#tblManagementRegistration").on("change", ".CheckItem", function () {
@@ -4582,13 +4589,39 @@ B. Synopsis: Class Module used to process data
         })
 
         $("#btnDownloadExcel").click(function(){
-            window.location = '/admin/ManagementRegistration/ExportApplicants';
+
+            if(tableData.length != 0){
+                var IDs = "";
+                for (var i = 0; i < tableData.length; i++){
+                    IDs = IDs + "," + tableData[i].ID;
+                }
+                IDs = IDs.replace(/^,|,$/g, '');
+                window.location = '/admin/ManagementRegistration/ExportApplicants?IDs=' + IDs;
+            }
+            else{
+                showMessage("Error!", "Please check a row in the table", "error", "red");
+            }
+
         });
 
         $(".filter").change(function(){
             tblManagementRegistration.ajax.reload(null, false);
         });
         
+        $("#btnSaveAbroad").click(function(){
+
+        });
+
+        $("#tblManagementRegistration").on("change", ".CheckAbroad", function () {
+            var trData = tblManagementRegistration.row($(this).parents('tr')).data();
+            if ($(this).is(":checked")) {
+                AbroadData.push({ ID: trData.ID});
+            } else {
+                AbroadData = AbroadData.filter(function (obj) {
+                    return obj.ID !== trData.ID;
+                });
+            }
+        });
     })
 
     function GetJobCategories(){
@@ -4727,7 +4760,13 @@ B. Synopsis: Class Module used to process data
                     { title: 'InterviewCount', data: "InterviewCount", width: "6%", className: "dt-center"},
                     { title: 'Company', data: "Company", width:"4%", className: "dt-center"},
                     { title: 'Age', data: "Age", width:"4%", className: "dt-center"},
-                    { title: 'ToAbroad', data: "ToAbroad", width:"4%", className: "dt-center"},
+                    {
+                        title: 'To Abroad',
+                        render: function (data, row, meta){
+                            return "<input type='checkbox' class='CheckAbroad text-center' value='" + meta.ID + "' " + (meta.ToAbroad == 1 ? 'checked' : '' ) + ">";
+                        },
+                        width: "2%", orderable: false, className: "dt-center"
+                    },
                     { title: 'AbroadDate', data: "AbroadDate", width:"4%", className: "dt-center"},
                 ],
             }).on('page.dt', function() {
@@ -4747,7 +4786,7 @@ B. Synopsis: Class Module used to process data
                     type: "GET",
                     data: function(d){
                         _token = token,
-                        d["applicantID"] = applicantID
+                        d["applicantID"] = tableData.length == 0 ? 0 : tableData
                     }
                 },
                 deferRender: true,
@@ -4779,6 +4818,7 @@ B. Synopsis: Class Module used to process data
                     }
                 },
                 columns:[
+                    { title: 'Name', data: "Name", width: "7%", className: "dt-center"},
                     { title: 'AttendInterview', data: "AttendInterview", width: "7%", className: "dt-center"},
                     { title: 'InterviewDate', data: "InterviewDate", width: "28%", className: "dt-center"},
                     { title: 'Company', data: "Company", width: "65%", className: "dt-center"},

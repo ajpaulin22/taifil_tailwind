@@ -11,13 +11,19 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
 {
+
+    protected $id;
+    function __construct($id) {
+        $this->id = explode(',', $id["IDs"]);
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
         $sql = "call biodata_getdata('','','','',0,0)";
-        $data = collect(DB::select(DB::raw($sql)));
+        $data = collect(DB::select(DB::raw($sql)))->whereIN("ID", $this->id);
         return $data;
     }
 

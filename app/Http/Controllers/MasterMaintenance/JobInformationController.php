@@ -317,7 +317,6 @@ class JobInformationController extends Controller
         $IDs = [];
         for ($i = 0; $i < count($request["ID"]); $i++){
             array_push($IDs,$request["ID"][$i]["ID"]);
-
         }
 
         DB::table('m_jobqualifications')
