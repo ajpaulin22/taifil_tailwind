@@ -171,8 +171,8 @@ class PostController extends Controller
             $nextid = (int)$request->id+1;
             $previd = (int)$request->id-1;
             $post = post::select()->where("id",$request->id)->where("isdeleted",0)->get();
-            $nextpost = post::select("id")->where("id",$nextid)->where("isdeleted",0)->get()->toArray();
-            $prevpost = post::select("id")->where("id",$previd)->where("isdeleted",0)->get()->toArray();
+            $nextpost = post::select("id")->where("id",">",$request->id)->where("isdeleted",0)->orderBy('id','asc')->first();
+            $prevpost = post::select("id")->where("id","<",$request->id)->where("isdeleted",0)->orderBy('id','desc')->first();
         $data = $post->map(function($post,$key){
             return [
                 "id" => $post->id,
@@ -187,7 +187,7 @@ class PostController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
         }
-        return view("pages.post",["data"=>$data->toArray(),"next"=>$nextpost,"prev"=>$prevpost]);
+        return view("pages.post",["data"=>$data->toArray(),"next"=>isset($nextpost)?$nextpost->toArray():"","prev"=>isset($prevpost)?$prevpost->toArray():""]);
     }
 
     public function delete(Request $request){

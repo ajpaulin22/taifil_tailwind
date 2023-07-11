@@ -109,8 +109,6 @@
 
              
             </div>
-            <div class="swiper-button-prev ttip-prev"></div>
-            <div class="swiper-button-next ttip-next"></div>
             <!-- If we need pagination -->
             <div class="swiper-pagination ttip-pagi"></div>
         </div>

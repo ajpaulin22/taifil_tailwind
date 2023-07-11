@@ -2433,10 +2433,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         delay: 3000,
         disableOnInteraction:false
       },
-      navigation: {
-        nextEl: '.ttip-next',
-        prevEl: '.ttip-prev',
-      },
+      grabCursor: true,
        slidesPerView: 1,
        centeredSlides: true,
        spaceBetween: 5,
