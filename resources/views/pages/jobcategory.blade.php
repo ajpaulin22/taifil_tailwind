@@ -35,6 +35,22 @@
           {{-- <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
             Toggle modal
           </button> --}}
+          <div class="text-2xl font-bold mb-2">
+            CATEGORIES
+          </div>
+          <div class="p-2">
+              <a href="/client/jobcategory?data={{$id}}" class="hover:text-sky-800 ">All</a>
+          </div>
+          <hr>
+           @foreach($cat as $c)
+           <div class="p-2 {{(($category == $c->Category) ? 'bg-green-100' : '' )}}">
+            <a href="/client/jobcategory?data={{$id}}&category={{$c->Category}}" class="hover:text-sky-800">{{$c->Category}}</a>
+          </div>
+        <hr>
+           @endforeach
+           
+
+          </div>
         </div>
         <div class="md:grid grid-cols-3 gap-5 col-span-6">
 
@@ -125,3 +141,7 @@
     </div>  --}}
     
 @endsection     
+
+@push('scripts')
+    <script src="{{asset("js/client/jobcategory.js")}}"></script>
+@endpush

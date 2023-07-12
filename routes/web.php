@@ -12,6 +12,7 @@ use App\Http\Controllers\client\PostController;
 use App\Http\Controllers\client\BiodataController;
 use App\Http\Controllers\client\OnepageController;
 use App\Http\Controllers\MasterMaintenanceController;
+use App\Http\Controllers\client\JobCategoryController;
 use App\Http\Controllers\ManagementRegistrationController;
 use App\Http\Controllers\MasterMaintenance\JobInformationController;
 use App\Http\Controllers\MasterMaintenance\UserInformationController;
@@ -74,9 +75,7 @@ Route::group(["prefix"=>"client"],function(){
     });
 
     Route::group(["prefix" => "jobcategory"],function(){
-        Route::get("/",function(Request $request){
-            return view('pages.jobcategory',["id"=>$request->data]);
-        });
+        Route::get("/",[JobCategoryController::class,'view']);
     });
     Route::group(["prefix" => "contact-us-location"],function(){
         Route::get("/",function(Request $request){

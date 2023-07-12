@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\post;
 use App\Models\image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
@@ -25,22 +26,49 @@ class OnepageController extends Controller
                     ];
                 });
 
-     $departure = [
-        "january" => 21,
-        "february" => 12,
-        "march" => 23,
-        "april" => 10,
-        "may" => 14,
-        "june" => 16,
-        "july" => 1,
-        "august" => 0,
-        "september" => 0,
-        "october" => 0,
-        "november" => 0,
-        "december" => 0,
 
-     ];
-     return view('welcome',['data'=>$data, "departure" => $departure]);
+                $query = DB::select("SELECT m.month,ifnull(d.depart,0) as 'person'
+                FROM (
+                SELECT 'January' AS
+                MONTH
+                UNION SELECT 'February' AS
+                MONTH
+                UNION SELECT 'March' AS
+                MONTH
+                UNION SELECT 'April' AS
+                MONTH
+                UNION SELECT 'May' AS
+                MONTH
+                UNION SELECT 'June' AS
+                MONTH
+                UNION SELECT 'July' AS
+                MONTH
+                UNION SELECT 'August' AS
+                MONTH
+                UNION SELECT 'September' AS
+                MONTH
+                UNION SELECT 'October' AS
+                MONTH
+                UNION SELECT 'November' AS
+                MONTH
+                UNION SELECT 'December' AS
+                MONTH
+                ) AS m
+                left JOIN (Select monthname(abroad_date) as `month`, count(monthname(abroad_date)) as 'depart'
+                from taifil.personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate())
+                group by monthname(abroad_date)) as d on m.month = d.month");
+
+
+                $year = DB::SELECT("SELECT y.Year,ifnull(d.depart,0) as 'person' from(
+                    select year(curdate())-1 AS YEAR
+                    UNION SELECT year(curdate()) as YEAR
+                    UNION SELECT year(curdate())+1 as YEAR
+                    ) as y
+                    left JOIN (SELECT year(abroad_date) as YEAR,count(year(abroad_date)) as 'depart' from taifil.personal_datas
+                    where to_abroad <> 0
+                    group by year(abroad_date)) as d on y.Year = d.Year");
+
+     return view('welcome',['data'=>$data, "departure" => $query,"year_departure" => $year]);
     }
 
     public function view_jp(){
@@ -57,22 +85,91 @@ class OnepageController extends Controller
                     ];
                 });
 
-     $departure = [
-        "一月" => 21,
-        "二月" => 12,
-        "三月" => 23,
-        "四月" => 10,
-        "五月" => 14,
-        "六月" => 16,
-        "七月" => 1,
-        "八月" => 0,
-        "九月" => 0,
-        "十月" => 0,
-        "十一月" => 0,
-        "十二月" => 0,
+                $query = DB::select("SELECT m.month,ifnull(d.depart,0) as 'person'
+                FROM (
+                SELECT 'January' AS
+                MONTH
+                UNION SELECT 'February' AS
+                MONTH
+                UNION SELECT 'March' AS
+                MONTH
+                UNION SELECT 'April' AS
+                MONTH
+                UNION SELECT 'May' AS
+                MONTH
+                UNION SELECT 'June' AS
+                MONTH
+                UNION SELECT 'July' AS
+                MONTH
+                UNION SELECT 'August' AS
+                MONTH
+                UNION SELECT 'September' AS
+                MONTH
+                UNION SELECT 'October' AS
+                MONTH
+                UNION SELECT 'November' AS
+                MONTH
+                UNION SELECT 'December' AS
+                MONTH
+                ) AS m
+                left JOIN (Select monthname(abroad_date) as `month`, count(monthname(abroad_date)) as 'depart'
+                from taifil.personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate())
+                group by monthname(abroad_date)) as d on m.month = d.month");
 
-     ];
-     return view('jp.welcome',['data'=>$data, "departure" => $departure]);
+                foreach($query as $month){
+                    switch($month->month){
+                        case "January":
+                            $month->month = '一月';
+                            break;
+                        case "February":
+                            $month->month = '二月';
+                            break;
+                        case "March":
+                            $month->month = '三月';
+                            break;
+                        case "April":
+                            $month->month = '四月';
+                            break;
+                        case "May":
+                            $month->month = '五月';
+                            break;
+                        case "June":
+                            $month->month = '六月';
+                            break;
+                        case "July":
+                            $month->month = '七月';
+                            break;
+                        case "August":
+                            $month->month = '八月';
+                            break;
+                        case "September":
+                            $month->month = '九月';
+                            break;
+                        case "October":
+                            $month->month = '十月';
+                            break;
+                        case "November":
+                            $month->month = '十一月';
+                            break;
+                        case "December":
+                            $month->month = '十二月';
+                            break;                                                                                                                                                                                                    
+                        default:
+                            "";
+                        break;
+                    }
+                }
+
+                $year = DB::SELECT("SELECT y.Year,ifnull(d.depart,0) as 'person' from(
+                    select year(curdate())-1 AS YEAR
+                    UNION SELECT year(curdate()) as YEAR
+                    UNION SELECT year(curdate())+1 as YEAR
+                    ) as y
+                    left JOIN (SELECT year(abroad_date) as YEAR,count(year(abroad_date)) as 'depart' from taifil.personal_datas
+                    where to_abroad <> 0
+                    group by year(abroad_date)) as d on y.Year = d.Year");
+
+     return view('jp.welcome',['data'=>$data, "departure" => $query,"year_departure" => $year]);
     }
 
     public function contact_form(Request $request){

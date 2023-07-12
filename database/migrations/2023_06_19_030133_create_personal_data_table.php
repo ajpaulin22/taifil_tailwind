@@ -15,7 +15,7 @@ class CreatePersonalDataTable extends Migration
     {
         Schema::create('personal_datas', function (Blueprint $table) {
             $table->id();
-            $table->string("code");
+            // $table->string("code");
             $table->string("job_cat");
             $table->string("operation");
             $table->string("last_name");
