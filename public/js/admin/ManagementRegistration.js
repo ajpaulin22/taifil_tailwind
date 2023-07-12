@@ -4469,7 +4469,7 @@ B. Synopsis: Class Module used to process data
         });
 
         $("#btnUpdateInterview").click(function(){
-
+            collectCheckBoxID();
             if(tableData.length == 0){
                 showMessage("Error!", "Please check a row in the table", "error", "red");
             }
@@ -4761,7 +4761,6 @@ B. Synopsis: Class Module used to process data
     }
 
     function drawInterviewTable(){
-        collectCheckBoxID();
         if (!$.fn.DataTable.isDataTable('#tblInterview')) {
             tblInterview = $('#tblInterview').DataTable({
                 processing: true,
@@ -4778,31 +4777,8 @@ B. Synopsis: Class Module used to process data
                 deferRender: true,
                 pageLength: 10,
                 order: [
-                    [0, "desc"]
+                    [1, "asc"]
                 ],
-                lengthMenu: [
-                    [10, 20, 50, 100, 150, 200, 500, -1],
-                    [10, 20, 50, 100, 150, 200, 500, "All"]
-                ],
-                language: {
-                    aria: {
-                        sortAscending: ": activate to sort column ascending",
-                        sortDescending: ": activate to sort column descending"
-                    },
-                    emptyTable: "No data available in table",
-                    info: "Showing _START_ to _END_ of _TOTAL_ records",
-                    infoEmpty: "No records found",
-                    infoFiltered: "(filtered1 from _MAX_ total records)",
-                    lengthMenu: "Show _MENU_",
-                    search: "Search:",
-                    zeroRecords: "No matching records found",
-                    paginate: {
-                        "previous": "Prev",
-                        "next": "Next",
-                        "last": "Last",
-                        "first": "First"
-                    }
-                },
                 columns:[
                     { title: 'Name', data: "Name", width: "7%", className: "dt-center"},
                     { title: 'AttendInterview', data: "AttendInterview", width: "7%", className: "dt-center"},

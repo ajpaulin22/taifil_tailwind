@@ -99,7 +99,7 @@ class ManagementRegistrationController extends Controller
             $IDs = ltrim($IDs, ',');
         }
         
-        
+        $sorCol = $request['columns'][$request['order.0.column']]['data'];
         $applicantID = $request["applicantID"];
         $limit = $request->length;
         $start = $request->start;
@@ -112,13 +112,15 @@ class ManagementRegistrationController extends Controller
                 FROM personal_datas p
                 JOIN m_interviewhistories m ON p.ID = m.PersonalInfoID WHERE m.IsDeleted = 0 AND p.isdeleted = 0 AND p.ID IN (" . $IDs . ")";
         $query_1 .= " 
-        AND  (
-        CAST(m.id as char(200)) LIKE '%".$search."%'
-        AND Company LIKE '%".$search."%') ";
+        AND  (Company LIKE '%".$search."%'
+            OR first_name LIKE '%".$search."%'
+            OR last_name LIKE '%".$search."%'
+            OR InterviewDate LIKE '%".$search."%') order by ". $sorCol . " " . $dir;
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
-        $total_result = (count($data) > 0 ? count($data): 0);
-        $totalFiltered = (count($data) > 0 ? count($data): 0);
+        $data2 = DB::select($query_1);
+        $total_result = (count($data2) > 0 ? count($data2): 0);
+        $totalFiltered = (count($data2) > 0 ? count($data2): 0);
         $json_data = [
             'draw' => intval($request->draw),
             'recordsTotal' => $total_result,
