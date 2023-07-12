@@ -15,13 +15,14 @@ class CreateMJoboperationsTable extends Migration
     {
         Schema::create('m_joboperations', function (Blueprint $table) {
             $table->id("ID");
-            $table->integer("JobCategoriesID")->nullable();
-            $table->string("Operation")->nullable();
+            $table->integer("JobCategoriesID");
+            $table->string("Operation");
+            $table->integer("Hiring")->default(0)->length(1);
             $table->integer("IsDeleted")->default(0)->length(1);
-            $table->string("CreateID")->nullable();
-            $table->datetime("CreateDate")->nullable();
-            $table->string("UpdateID")->nullable();
-            $table->datetime("UpdateDate")->nullable();
+            $table->string("CreateID");
+            $table->datetime("CreateDate");
+            $table->string("UpdateID");
+            $table->datetime("UpdateDate");
             $table->timestamps();
         });
     }

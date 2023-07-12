@@ -23,7 +23,6 @@ class ManagementRegistrationController extends Controller
         $start = $request["start"];
         $length = $request["length"];
         $search = $request["search.value"];
-        // dd($request['Category']);
         $sql = "call biodata_getdata('".($request['Type'] == null ? '' : $request['Type']) . "', '". ($request['Category'] == null ? '' : $request['Category']). "', '". ($request['Operations'] == null ? '' : $request['Operations']). "', ". ($request['AgeFrom'] == null ? 0 : $request['AgeFrom']). ", ". ($request['AgeTo'] == null ? 0 : $request['AgeTo']) .", '" . $sorCol."', '" . $sorDir."', " . $start.", " . $length. ", '". $search ."')";
         $data = collect(DB::select(DB::raw($sql)));
         $totalRowCount = DB::table('personal_datas')

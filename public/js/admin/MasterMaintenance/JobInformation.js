@@ -4489,6 +4489,7 @@ B. Synopsis: Class Module used to process data
                 type:"POST",
                 data:{
                     _token: token,
+                    JobType: $("#JobType").val(),
                     CategoryID: $("#CategoryID").val(),
                     CategoryValue: $("#CategoryValue").val()
                 },
@@ -4533,10 +4534,10 @@ B. Synopsis: Class Module used to process data
         // });
 
         $("#btnEditJobCategories").click(function(){
-            $("#ValueCode").val(dataJobCode.ID);
-            $("#TextCode").val(dataJobCode.Code);
+
             $("#CategoryValue").val(dataJobCategory.Category);
             $("#CategoryID").val(dataJobCategory.ID);
+            $("#JobType").val(dataJobCategory.JobType);
             $("#mdlCategory").modal("show");
         });
 
@@ -4672,8 +4673,8 @@ B. Synopsis: Class Module used to process data
         //Job Qualifications Events
 
         $("#btnAddQualifications").click(function(){
-            $("#ValueCategoryQualification").val(dataJobCategory.ID);
-            $("#TextCategoryQualification").val(dataJobCategory.Category);
+            $("#ValueCategoryQualification").val(dataJobOperation.ID);
+            $("#TextCategoryQualification").val(dataJobOperation.Operation);
             $("#mdlQualificationTable").modal("hide");
             $("#mdlQualification").modal("show");
         });
@@ -4685,7 +4686,7 @@ B. Synopsis: Class Module used to process data
                 type:"POST",
                 data:{
                     _token: token,
-                    CategoryID: $("#ValueCategoryQualification").val(),
+                    OperationID: $("#ValueCategoryQualification").val(),
                     QualificationID: $("#QualificationID").val(),
                     QualificationValue: $("#QualificationValue").val()
                 },
@@ -4697,6 +4698,8 @@ B. Synopsis: Class Module used to process data
                     $("#loading_modal").hide();
                     tblQualifications.ajax.reload(null, false);
                     $("#mdlQualification").modal("hide");
+                    $("#mdlQualificationTable").modal("show");
+
                     cancelform();
                     showMessage("Success", "Job qualification was saved successfully", "success", "green");
                 }
@@ -4704,8 +4707,8 @@ B. Synopsis: Class Module used to process data
         });
 
         $("#btnEditQualifications").click(function(){
-            $("#ValueCategoryQualification").val(dataJobCategory.ID);
-            $("#TextCategoryQualification").val(dataJobCategory.Category);
+            $("#ValueCategoryQualification").val(dataJobOperation.ID);
+            $("#TextCategoryQualification").val(dataJobOperation.Operation);
             $("#QualificationValue").val(dataJobQualification.Qualification);
             $("#QualificationID").val(dataJobQualification.ID);
             $("#mdlQualificationTable").modal("hide");
@@ -4805,14 +4808,12 @@ B. Synopsis: Class Module used to process data
                         if ($(this).hasClass('selected')) {
                             $("#btnEditJobCategories").attr('disabled', true);
                             $("#btnAddOperations").attr('disabled', true);
-                            $("#btnViewQualification").attr('disabled', true);
                             dataJobCategory = "";
                             tblCategories.$('tr.selected').removeClass('selected');
                         }
                         else {
                             $("#btnEditJobCategories").removeAttr('disabled');
                             $("#btnAddOperations").removeAttr('disabled', true);
-                            $("#btnViewQualification").removeAttr('disabled');
                             tblCategories.$('tr.selected').removeClass('selected');
                             $(this).addClass('selected');
                         }
@@ -4820,7 +4821,6 @@ B. Synopsis: Class Module used to process data
                         dataJobOperation = "";
                         dataQualification = "";
                         tblOperations.ajax.reload(null, false);
-                        tblQualifications.ajax.reload(null, false);
                         break;
                     }
             }
@@ -4845,11 +4845,13 @@ B. Synopsis: Class Module used to process data
                     if ($.trim(dataJobOperation) != ""){
                         if ($(this).hasClass('selected')) {
                             $("#btnEditOperations").attr('disabled', true);
+                            $("#btnViewQualification").attr('disabled', true);
                             dataJobOperation = "";
                             tblOperations.$('tr.selected').removeClass('selected');
                         }
                         else {
                             $("#btnEditOperations").removeAttr('disabled');
+                            $("#btnViewQualification").removeAttr('disabled');
                             tblOperations.$('tr.selected').removeClass('selected');
                             $(this).addClass('selected');
                         }
@@ -5028,6 +5030,13 @@ B. Synopsis: Class Module used to process data
                                 width: "2%", orderable: false
                             },
                             { data: 'Operation', name: 'Operation' ,orderable: true, title: "Operation"},
+                            {
+                                title: "Hiring",
+                                render: function (data, row, meta){
+                                    return "<input type='checkbox' class='CheckHiring text-center' " + (meta.Hiring == 1 ? 'checked' : '' ) +">";
+                                },
+                                width: "2%", orderable: false
+                            },
                         ],
             }).on('page.dt', function() {
             });
@@ -5045,7 +5054,7 @@ B. Synopsis: Class Module used to process data
                     dataType: "JSON",
                     type: "GET",
                     data: function(d){
-                        d["ID"] = dataJobCategory == "" ? 0 : dataJobCategory.ID
+                        d["ID"] = dataJobOperation == "" ? 0 : dataJobOperation.ID
                     }
                 },
                 deferRender: true,
