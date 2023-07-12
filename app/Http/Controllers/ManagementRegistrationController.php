@@ -23,6 +23,7 @@ class ManagementRegistrationController extends Controller
         $start = $request["start"];
         $length = $request["length"];
         $search = $request["search.value"];
+        // dd($request['Category']);
         $sql = "call biodata_getdata('".($request['Type'] == null ? '' : $request['Type']) . "', '". ($request['Category'] == null ? '' : $request['Category']). "', '". ($request['Operations'] == null ? '' : $request['Operations']). "', ". ($request['AgeFrom'] == null ? 0 : $request['AgeFrom']). ", ". ($request['AgeTo'] == null ? 0 : $request['AgeTo']) .", '" . $sorCol."', '" . $sorDir."', " . $start.", " . $length. ", '". $search ."')";
         $data = collect(DB::select(DB::raw($sql)));
         $totalRowCount = DB::table('personal_datas')
@@ -170,18 +171,32 @@ class ManagementRegistrationController extends Controller
      public function SaveAbroad(Request $request){
         $date = Carbon::now();
         $date->toDateTimeString();
-        $IDs = [];
+        $IDInsertAbroad = [];
+        $IDRemoveAbroad = [];
         for ($i = 0; $i < count($request["PersonalID"]); $i++){
-            array_push($IDs,$request["PersonalID"][$i]["ID"]);
-        }
-        DB::table('personal_datas')
-            ->whereIN('id', $IDs)
+            if($request["PersonalID"][$i]["Value"] == 1){
+                array_push($IDInsertAbroad, $request["PersonalID"][$i]["ID"]);
+            }
+            DB::table('personal_datas')
+            ->whereIN('id', $IDInsertAbroad)
             ->update([
                 'to_abroad' => 1
                 ,'abroad_date' => $date
             ]);
+        }
+        for ($i = 0; $i < count($request["PersonalID"]); $i++){
+            if($request["PersonalID"][$i]["Value"] == 0){
+                array_push($IDRemoveAbroad, $request["PersonalID"][$i]["ID"]);
+            }
+            DB::table('personal_datas')
+            ->whereIN('id', $IDRemoveAbroad)
+            ->update([
+                'to_abroad' => 0
+                ,'abroad_date' => null
+            ]);
+        }
         $data = [
-            'msg' =>  "Job Code Deleted Successfully",
+            'msg' =>  "Abroad Information Updated Successfully",
             'data' => [],
             'success' => true,
             'msgType' => 'success',

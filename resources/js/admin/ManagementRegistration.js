@@ -3,14 +3,10 @@
     var tblManagementRegistration = "";
     var tblInterview = "";
     var applicantID = 0;
-    var tableData = [];
     var AbroadData = [];
+    var tableData = [];
+
     token = $("meta[name=csrf-token]").attr("content");
-    var data = [
-        {IDcheckbox: 1, IDrow: 1, Name: "Jenefer", JobCategories: "Livestock Agriculture", Program: "SSW", Show: 2, InterviewDate: "2023-01-01", Company: "Seiko IT Solutions Philippines Inc.", Age: 23, ToAbroad: 1},
-        {IDcheckbox: 2, IDrow: 2, Name: "Lenard", JobCategories: "Cultivate Agriculture", Program: "TITP", Show: 1, InterviewDate: "2023-01-02", Company: "Umbrella Corporation", Age: 25, ToAbroad: 0},
-        {IDcheckbox: 3, IDrow: 3, Name: "Alphy", JobCategories: "Livestock Agriculture", Program: "Direct", Show: 2, InterviewDate: "2023-01-03", Company: "Seiko", Age: 26, ToAbroad: 1},
-    ];
     
     $(document).ready(function(){
         drawDataTable();
@@ -39,6 +35,7 @@
 
 
         $("#btnEdit").click(function(){
+            collectCheckBoxID();
             if(tableData.length == 0){
                 showMessage("Error!", "Please check a row in the table", "error", "red");
             }
@@ -73,6 +70,20 @@
         });
 
         $("#btnSaveAbroad").click(function(){
+            $(".CheckAbroad").each(function(){
+                if($(this).is(":checked")){
+                    AbroadData.push({
+                        ID: $(this).val(),
+                        Value: 1
+                    });
+                }
+                else{
+                    AbroadData.push({
+                        ID: $(this).val(),
+                        Value: 0
+                    });
+                }
+            });
             if(AbroadData.length == 0){
                 showMessage("Error!", "Please check a row in To Abroad Column", "error", "red");
             }
@@ -139,17 +150,19 @@
         });
 
         $("#tblManagementRegistration").on("change", ".CheckItem", function () {
-            var trData = tblManagementRegistration.row($(this).parents('tr')).data();
-            if ($(this).is(":checked")) {
-                tableData.push({ ID: trData.ID});
-            } else {
-                tableData = tableData.filter(function (obj) {
-                    return obj.ID !== trData.ID;
-                });
-            }
+            $(".CheckItem").each(function () {
+                if ($(this).is(":checked")) {
+                    $("#CheckAllitem").prop('checked', true);
+                }
+                else {
+                    $("#CheckAllitem").prop('checked', false);
+                    return false;
+                }
+            });
         });
 
         $("#btnDelete").click(function(){
+            collectCheckBoxID();
             if (tableData.length == 0){
                 showMessage("Error!", "Please check a row in the table", "error", "red");
             }
@@ -180,7 +193,7 @@
         })
 
         $("#btnDownloadExcel").click(function(){
-
+            collectCheckBoxID();
             if(tableData.length != 0){
                 var IDs = "";
                 for (var i = 0; i < tableData.length; i++){
@@ -211,26 +224,20 @@
         $(".filter").change(function(){
             tblManagementRegistration.ajax.reload(null, false);
         });
-        
-        $("#btnSaveAbroad").click(function(){
-
-        });
-
-        $("#tblManagementRegistration").on("change", ".CheckAbroad", function () {
-            var trData = tblManagementRegistration.row($(this).parents('tr')).data();
-            if ($(this).is(":checked")) {
-                AbroadData.push({ ID: trData.ID});
-            } else {
-                AbroadData = AbroadData.filter(function (obj) {
-                    return obj.ID !== trData.ID;
-                });
-            }
-        });
 
         $(".Number-Only").on("input change paste", function () {
             var newVal = $(this).val().replace(/[^0-9\.-]/g, '');
             $(this).val(newVal.replace(/,/g, ''));
         });
+
+        $("#CheckAllitem").click(function () {
+            if ($(this).is(":checked")) {
+                $(".CheckItem").prop('checked', true);
+            }
+            else {
+                $(".CheckItem").prop('checked', false);
+            }
+        })
     })
 
     function GetJobCategories(){
@@ -299,7 +306,6 @@
                     data: function(d){
                         _token = token,
                         d["Type"] = $("#Type").val(),
-                        d["Code"] = $("#Code").val(),
                         d["Category"] = $("#JobCategories").val(),
                         d["Operations"] = $("#Operations").val(),
                         d["AgeFrom"] = $("#AgeFrom").val(),
@@ -345,6 +351,7 @@
     }
 
     function drawInterviewTable(){
+        collectCheckBoxID();
         if (!$.fn.DataTable.isDataTable('#tblInterview')) {
             tblInterview = $('#tblInterview').DataTable({
                 processing: true,
@@ -408,6 +415,17 @@
             color: color, // blue, red, green, yellow
             timeout: 5000,
         });
+    }
+
+    function collectCheckBoxID(){
+        tableData = [];
+            $(".CheckItem").each(function(){
+                if($(this).is(":checked")){
+                    tableData.push({
+                        ID: $(this).val()
+                    });
+                }
+            });
     }
 
 })();
