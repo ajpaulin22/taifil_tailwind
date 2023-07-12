@@ -4440,6 +4440,7 @@ B. Synopsis: Class Module used to process data
                     $("#LastName").val(promise[0].lastname);
                     $("#UserName").val(promise[0].username);
                     $("#EmailAddress").val(promise[0].email);
+                    $("#UserID").val(promise[0].id);
                     $("#mdlAddUser").modal('show');
                 }
             });
@@ -4473,7 +4474,8 @@ B. Synopsis: Class Module used to process data
                             tblUserInformation.ajax.reload(null, false);
                             $("#mdlAddUser").modal('hide');
                             ajax.clearFromData("frmUser")
-
+                            $("#Password").val("");
+                            $("#ConfirmPassword").val("");
                         }
                     },
                 });
@@ -4551,6 +4553,8 @@ B. Synopsis: Class Module used to process data
         $("#btnCancelUser").click(function(){
             $("#mdlAddUser").modal('hide');
             ajax.clearFromData("frmUser");
+            $("#Password").val("");
+            $("#ConfirmPassword").val("");
         });
 
     });
