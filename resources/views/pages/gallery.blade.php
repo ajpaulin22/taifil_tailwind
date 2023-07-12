@@ -65,7 +65,7 @@
             @endforeach
 
             <div>
-                {{$posts->render("")}}
+                {{$posts->links()}}
             </div>
         </div>
     </div>

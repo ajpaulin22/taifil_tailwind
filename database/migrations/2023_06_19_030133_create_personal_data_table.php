@@ -63,6 +63,7 @@ class CreatePersonalDataTable extends Migration
             $table->text("passport_id_picture")->nullable();
             $table->integer("isdeleted")->default(0)->length(1);
             $table->integer("to_abroad")->default(0)->length(1);
+            $table->datetime("abroad_date")->nullable();
             $table->string("job_type");
             $table->timestamps();
         });

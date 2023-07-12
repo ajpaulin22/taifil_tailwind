@@ -106,11 +106,11 @@
             <hr class=" mt-10">
             <div class="flex justify-between py-5">
                 
-                @if(isset($prev[0]))
-                <a href="/client/gallery/post?id={{$prev[0]['id']}}" class="p-2 bg-green-500 text-white rounded-lg hover:bg-green-200 hover:text-black border border-green-800"><< Prev Post</a>
+                @if(isset($next['id']))
+                <a href="/client/gallery/post?id={{$next['id']}}" class="p-2 bg-green-500 text-white rounded-lg hover:bg-green-200 hover:text-black border border-green-800"><< Prev Post</a>
                 @endif
-                @if(isset($next[0]))
-                <a href="/client/gallery/post?id={{$next[0]['id']}}" class="p-2 bg-green-500 text-white rounded-lg hover:bg-green-200 hover:text-black border border-green-800">Next post >></a>
+                @if(isset($prev['id']))
+                <a href="/client/gallery/post?id={{$prev['id']}}" class="p-2 bg-green-500 text-white rounded-lg hover:bg-green-200 hover:text-black border border-green-800">Next post >></a>
                 @endif
                 
                 

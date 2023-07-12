@@ -526,7 +526,7 @@
                     .end()
                     .append('<option value="" selected disabled value>Choose....</option>')
                     promise.forEach(data=>{
-                        let option = `<option value="${data.ID}">${data.Category}</option>`;
+                        let option = `<option value="${data.ID}" select>${data.Category}</option>`;
                         $("#jobcategories").append(option)
                     })
                     if(JobCategoryID != 0){
