@@ -8,14 +8,7 @@
             <input name="job_type" autocomplete="off" type="text" class="form-control" value="{{$biodata}}">
         </div>
         <div class="md:grid grid-cols-4 gap-4">
-            <div class="form-group col-span-1">
-                <input name="PersonalInfoID" autocomplete="off" type="hidden" class="form-control" id="PersonalInfoID">
-                <label for="personal_lastname" class="form-label">Code<span style="color:red">*</span>:</label>
-                <select name="code" class="form-select" id="jobcodes">
-                    
-                    <option value="" selected disabled value>Choose....</option>
-                </select>
-            </div>
+            
             <div class="form-group col-span-1">
                 <label for="personal_lastname" class="form-label">Job Categories<span style="color:red">*</span>:</label>
                 <select name="job_cat" class="form-select" id="jobcategories">
@@ -27,6 +20,14 @@
                 <select name="operations" class="form-select" id="joboperations">
                     <option value="" selected disabled value>Choose....</option>
                 </select>
+            </div>
+            <div class="form-group col-span-1">
+                {{-- <input name="PersonalInfoID" autocomplete="off" type="hidden" class="form-control" id="PersonalInfoID">
+                <label for="personal_lastname" class="form-label">Code<span style="color:red">*</span>:</label>
+                <select name="code" class="form-select" id="jobcodes">
+                    
+                    <option value="" selected disabled value>Choose....</option>
+                </select> --}}
             </div>
             <div class="col-span-1"></div>
             <div class="form-group col-span-1">

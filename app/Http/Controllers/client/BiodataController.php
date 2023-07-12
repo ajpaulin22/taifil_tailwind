@@ -37,7 +37,7 @@ class BiodataController extends Controller
        try {
         DB::beginTransaction();
         $id = DB::table("personal_datas")->insertGetID([
-            "code" => $request->personal["code"],
+            // "code" => $request->personal["code"],
             "job_cat" => $request->personal["job_cat"],
             "operation" => $request->personal["operations"],
             "last_name" => $request->personal["lastname"],
@@ -358,8 +358,9 @@ class BiodataController extends Controller
        return $data;
     }
     public function get_categories(Request $request){
+        $type = strtoupper($request->type);
         $data = DB::table('m_jobcategories')
-        ->where("JobCodesID",$request->ID)
+        ->where("JobType",$type)
         ->where("IsDeleted",0)
         ->select()->Get();
         return $data;

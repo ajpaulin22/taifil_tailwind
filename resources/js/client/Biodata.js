@@ -510,13 +510,14 @@
             })
         },
 
-        getCategories:function(id){
+        getCategories:function(){
+            let self = this;
             $.ajax({
                 url:"/client/Biodata/get-categories",
                 type:"GET",
                 data:{
                     _token:self.token,
-                    ID:id
+                    type:self.biodata_type
                 },
                 dataType:"JSON",
                 success:function(promise){
@@ -526,7 +527,7 @@
                     .end()
                     .append('<option value="" selected disabled value>Choose....</option>')
                     promise.forEach(data=>{
-                        let option = `<option value="${data.ID}" select>${data.Category}</option>`;
+                        let option = `<option value="${data.ID}" >${data.Category}</option>`;
                         $("#jobcategories").append(option)
                     })
                     if(JobCategoryID != 0){
@@ -594,12 +595,13 @@
     var biodata = Biodata();
    $(document).ready(function() {
 
-    biodata.getCode();
+    // biodata.getCode();
+    biodata.getCategories()
     biodata.getData();
     //EVENTS
-    $("#jobcodes").on("change",function(){
-        biodata.getCategories($(this).val());
-    })
+    // $("#jobcodes").on("change",function(){
+    //     biodata.getCategories($(this).val());
+    // })
     $("#jobcategories").on("change",function(){
         biodata.getOperations($(this).val());
     })

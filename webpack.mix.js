@@ -91,6 +91,7 @@ mix.js(['resources/js/app.js','resources/js/iziToast/dist/js/iziToast.min.js'], 
     .scripts(['public/js/app.js','resources/js/onepage.js'],'public/js/onepage.js')
 
     .scripts(['public/js/app.js','resources/js/client/Biodata.js'],"public/js/client/Biodata.js")
+    .scripts(['public/js/app.js','resources/js/client/jobcategory.js'],"public/js/client/jobcategory.js")
 
     .scripts([
         "public/js/theme.js",
