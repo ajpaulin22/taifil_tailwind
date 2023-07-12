@@ -41,31 +41,25 @@ Management Registration
                     </select>
                 </div>
             </div>
-            <div class="col-sm-2 mb-2" >
-                <div class="form-group">
-                    <label>Code:</label>
-                    <select class="form-control filter" id="Code" >
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm-2 mb-2">
+            <div class="col-sm-4 mb-2">
                 <div class="form-group">
                     <label>Job Categories:</label>
                     <select class="form-control filter" id="JobCategories" >
                     </select>
                 </div>
             </div>
-            <div class="col-sm-3 mb-2">
+            <div class="col-sm-4 mb-2">
                 <div class="form-group">
                     <label>Operations:</label>
                     <select class="form-control filter" id="Operations" >
                     </select>
                 </div>
             </div>
+            
             <div class="col-sm-2 mb-2" >
                 <div class="form-group" >
                     <label style="margin-right:150px;">Age:</label>
-                    <input type="text" id="AgeFrom" class="form-control filter" style="width: 30%; text-align: center;" > - <input type="text" id="AgeTo" class="form-control filter" style="width: 30%; text-align: center;">
+                    <input type="text" id="AgeFrom" class="form-control filter Number-Only" style="width: 30%; text-align: center;" > - <input type="text" id="AgeTo" class="form-control filter Number-Only" style="width: 30%; text-align: center;">
                 </div>
             </div>
         </div>
@@ -126,7 +120,10 @@ Management Registration
         </div>
         <div class="row">
             <div class="col-sm-2 mb-2" style='padding-right:0px;'>
-                <button type="button" id="btnDownloadExcel" class="btn btn-sm btn-success btn-block"><span class="fa fa-file-excel-o"></span><span class="btnLabel">Generate Excel</span></button>
+                <button type="button" id="btnDownloadExcel" class="btn btn-sm btn-success btn-block"><span class="fa fa-file-excel"></span><span class="btnLabel">Generate Excel</span></button>
+            </div>
+            <div class="col-sm-2 mb-2" style='padding-right:0px;'>
+                <button type="button" id="btnDownloadBiodata" class="btn btn-sm btn-info btn-block"><span class="fa fa-address-card"></span><span class="btnLabel">Download Biodata</span></button>
             </div>
         </div>
 	</div>

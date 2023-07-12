@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Exports\ExportUser;
 use Illuminate\Http\Request;
+use App\Exports\ExportBiodata;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Models\m_interviewhistories;
 use Maatwebsite\Excel\Facades\Excel;
@@ -16,19 +18,41 @@ class ManagementRegistrationController extends Controller
     }
 
     public function GetApplicantData(Request $request){
-        $sql = "call biodata_getdata('".($request['Type'] == null ? '' : $request['Type']) . "', '".($request['Code'] == null ? '' : $request['Code']) . "', '". ($request['Category'] == null ? '' : $request['Category']). "', '". ($request['Operations'] == null ? '' : $request['Operations']). "', ". ($request['AgeFrom'] == null ? 0 : $request['AgeFrom']). ", ". ($request['AgeTo'] == null ? 0 : $request["AgeTo"]) .")";
-        // dd($request);
-        $data = collect(DB::select(DB::raw($sql))); 
-        $total_result = (count($data) > 0 ? count($data): 0);
-        $totalFiltered = (count($data) > 0 ? count($data): 0);
+        $sorCol = $request['columns'][$request['order.0.column']]['data'];
+        $sorDir = $request["order.0.dir"];
+        $start = $request["start"];
+        $length = $request["length"];
+        $search = $request["search.value"];
+        $sql = "call biodata_getdata('".($request['Type'] == null ? '' : $request['Type']) . "', '". ($request['Category'] == null ? '' : $request['Category']). "', '". ($request['Operations'] == null ? '' : $request['Operations']). "', ". ($request['AgeFrom'] == null ? 0 : $request['AgeFrom']). ", ". ($request['AgeTo'] == null ? 0 : $request['AgeTo']) .", '" . $sorCol."', '" . $sorDir."', " . $start.", " . $length. ", '". $search ."')";
+        $data = collect(DB::select(DB::raw($sql)));
+        $totalRowCount = DB::table('personal_datas')
+                        ->where("IsDeleted",0)
+                        ->select()->Get();
+        $totalRowCount = (count($totalRowCount) > 0 ? count($totalRowCount): 0);
         $json_data = [
             'draw' => intval($request->draw),
-            'recordsTotal' => $total_result,
-            'recordsFiltered' => $totalFiltered,
+            'recordsTotal' => $totalRowCount,
+            'recordsFiltered' => $totalRowCount,
             'data' => $data
         ];
         return json_encode($json_data);
     }
+    // function get_multi_result_set($conn, $statement)
+    // {
+    //     $results = [];
+    //     $pdo = DB::connection($conn)->getPdo();
+    //     $result = $pdo->prepare($statement);
+    //     $result->execute();
+    //     do {
+    //         $resultSet = [];
+    //         foreach ($result->fetchall(PDO::FETCH_ASSOC) as $res) {
+    //             array_push($resultSet, $res);
+    //         }
+    //         array_push($results, $resultSet);
+    //     } while ($result->nextRowset());
+
+    //     return $results;
+    // }
 
     public function GetPersonalData(Request $request){
         $data = DB::table('personal_datas')
@@ -53,7 +77,6 @@ class ManagementRegistrationController extends Controller
                 "UpdateID" => "admin"
             ]);
         }
-        
 
         $data = [
             'msg' =>  'Interview Saved Successfully',
@@ -90,7 +113,7 @@ class ManagementRegistrationController extends Controller
         $query_1 .= " 
         AND  (
         CAST(m.id as char(200)) LIKE '%".$search."%'
-        AND Company LIKE '%".$search."%') order by Name asc";
+        AND Company LIKE '%".$search."%') ";
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
         $total_result = (count($data) > 0 ? count($data): 0);
@@ -123,11 +146,6 @@ class ManagementRegistrationController extends Controller
             ];
             return response()->json($data);
     }
-
-    public function get_code(Request $request){
-        $data = DB::table("m_jobcodes")->where('IsDeleted',0)->orderby('Code', 'asc')->select()->get();
-        return $data;
-     }
      public function get_categories(Request $request){
          $data = DB::table('m_jobcategories')
          ->where("IsDeleted",0)
@@ -170,5 +188,29 @@ class ManagementRegistrationController extends Controller
             'msgTitle' => 'Success!'
         ];
         return response()->json($data);
+     }
+
+    //  public function ExportBiodata(Request $request){
+    //     $date = Carbon::now();
+    //     $date->toDateTimeString();
+    //     return Excel::download(new ExportBiodata($request), 'Biodata'. $date .'.xlsx');
+    //  }
+
+     public function ExportBiodata(Request $req){
+        // try {
+        //     $data = DB::table('shipments')->where('id',$req->id)->select()->get()->toArray();
+        //     $pdf = Pdf::loadView('export', $data);
+        //     return $pdf->stream($control.'_system_report.pdf');
+        // } catch (\Throwable $th) {
+        //  $data = [
+        //      'msg' => $th->getMessage(),
+        //      'data' => [],
+        //      'success' => false,
+        //      'msgType' => 'error',
+        //      'msgTitle' => 'Error!'
+        //  ];
+        //  return response()->json($data);
+        // }
+ 
      }
 }
