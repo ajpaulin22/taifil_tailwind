@@ -4424,7 +4424,7 @@ B. Synopsis: Class Module used to process data
     var ajax = $D();
     token = $("meta[name=csrf-token]").attr("content");
     $(document).ready(function(){
-        drawCodesTable();
+        // drawCodesTable();
         drawJobCategoriesTable();
         drawOperationsTable();
         drawQualificationsTable();
@@ -4941,13 +4941,12 @@ B. Synopsis: Class Module used to process data
                     dataType: "JSON",
                     type: "GET",
                     data: function(d){
-                        d["ID"] = dataJobCode == "" ? 0 : dataJobCode.ID
                     }
                 },
                 deferRender: true,
                 pageLength: 10,
                 order: [
-                    [0, "desc"]
+                    [0, "asc"]
                 ],
                 lengthMenu: [
                     [10, 20, 50, 100, 150, 200, 500, -1],
@@ -4980,6 +4979,7 @@ B. Synopsis: Class Module used to process data
                                 },
                                 width: "2%"
                             },
+                            { data: 'JobType', name: 'JobType' ,orderable: true, title: "Job Type"},
                             { data: 'Category', name: 'Category' ,orderable: true, title: "Category"},
                         ],
             }).on('page.dt', function() {

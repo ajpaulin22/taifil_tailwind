@@ -136,6 +136,7 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
         Route::get("/get_categories",[ManagementRegistrationController::class,"get_categories"]);
         Route::get("/get_operations",[ManagementRegistrationController::class,"get_operations"]);
         Route::get('/ExportApplicants',[ManagementRegistrationController::class,'ExportApplicants']);
+        Route::get('/ExportBiodata',[ManagementRegistrationController::class,'ExportBiodata']);
         Route::post('/SaveAbroad',[ManagementRegistrationController::class,'SaveAbroad']);
     });
 

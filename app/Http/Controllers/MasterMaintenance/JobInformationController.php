@@ -17,35 +17,35 @@ class JobInformationController extends Controller
         return view("/admin/MasterMaintenance/JobInformation");
     }
 
-    public function GetJobCode(Request $request){
-        $limit = $request->length;
-        $start = $request->start;
-        $order111 = $request->input('order.0.column');
-        // dd($request);
-        $dir = $request->input('order.0.dir');
-        $search = $request->input('search.value');
-        $order = "id";
-        $query_1 = "SELECT
-        ID,
-        Code
-         FROM m_jobcodes WHERE IsDeleted = 0 ";
+    // public function GetJobCode(Request $request){
+    //     $limit = $request->length;
+    //     $start = $request->start;
+    //     $order111 = $request->input('order.0.column');
+    //     // dd($request);
+    //     $dir = $request->input('order.0.dir');
+    //     $search = $request->input('search.value');
+    //     $order = "id";
+    //     $query_1 = "SELECT
+    //     ID,
+    //     Code
+    //      FROM m_jobcodes WHERE IsDeleted = 0 ";
 
-        $query_1 .= "
-        AND  (
-        CAST(id as char(200)) LIKE '%".$search."%'
-        OR  Code LIKE '%".$search."%') order by Code " .$dir;
-        $query_1 .= " limit ".$limit." offset ".$start;
-        $data = DB::select($query_1);
-        $total_result = (count($data) > 0 ? count($data): 0);
-        $totalFiltered = (count($data) > 0 ? count($data): 0);
-        $json_data = [
-            'draw' => intval($request->draw),
-            'recordsTotal' => $total_result,
-            'recordsFiltered' => $totalFiltered,
-            'data' => $data
-        ];
-        return json_encode($json_data);
-    }
+    //     $query_1 .= "
+    //     AND  (
+    //     CAST(id as char(200)) LIKE '%".$search."%'
+    //     OR  Code LIKE '%".$search."%') order by Code " .$dir;
+    //     $query_1 .= " limit ".$limit." offset ".$start;
+    //     $data = DB::select($query_1);
+    //     $total_result = (count($data) > 0 ? count($data): 0);
+    //     $totalFiltered = (count($data) > 0 ? count($data): 0);
+    //     $json_data = [
+    //         'draw' => intval($request->draw),
+    //         'recordsTotal' => $total_result,
+    //         'recordsFiltered' => $totalFiltered,
+    //         'data' => $data
+    //     ];
+    //     return json_encode($json_data);
+    // }
 
     public function GetJobCategory(Request $request){
         $limit = $request->length;
@@ -54,8 +54,9 @@ class JobInformationController extends Controller
         $search = $request->input('search.value');
         $query_1 = "SELECT
         ID,
+        JobType,
         Category
-         FROM m_jobcategories WHERE IsDeleted = 0 AND JobCodesID = ".$request->ID;
+         FROM m_jobcategories WHERE IsDeleted = 0";
         $query_1 .= " 
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'

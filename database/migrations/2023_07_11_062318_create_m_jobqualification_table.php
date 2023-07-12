@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMJoboperationsTable extends Migration
+class CreateMJobqualificationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateMJoboperationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_joboperations', function (Blueprint $table) {
+        Schema::create('m_jobqualifications', function (Blueprint $table) {
             $table->id("ID");
-            $table->integer("JobCategoriesID")->nullable();
-            $table->string("Operation")->nullable();
+            $table->integer("JobQualificationsID");
+            $table->string("Qualification");
             $table->integer("IsDeleted")->default(0)->length(1);
             $table->string("CreateID")->nullable();
-            $table->datetime("CreateDate")->nullable();
             $table->string("UpdateID")->nullable();
-            $table->datetime("UpdateDate")->nullable();
-            $table->timestamps();
+            $table->datetime("created_at")->nullable();
+            $table->datetime("updated_at")->nullable();
         });
     }
 
@@ -33,6 +32,6 @@ class CreateMJoboperationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_joboperations');
+        Schema::dropIfExists('m_jobqualification');
     }
 }

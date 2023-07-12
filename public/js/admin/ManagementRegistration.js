@@ -4425,7 +4425,6 @@ B. Synopsis: Class Module used to process data
     $(document).ready(function(){
         drawDataTable();
         drawInterviewTable();
-        GetCodes();
         GetJobCategories();
         GetOperations();
 
@@ -4446,6 +4445,8 @@ B. Synopsis: Class Module used to process data
         $("#btnCreateApplicant").click(function(){
             location.href = "/client/Biodata?data=" + $("#JobType").val() +"&type=fresh";
         });
+
+
 
         $("#btnEdit").click(function(){
             if(tableData.length == 0){
@@ -4601,8 +4602,21 @@ B. Synopsis: Class Module used to process data
             else{
                 showMessage("Error!", "Please check a row in the table", "error", "red");
             }
-
         });
+
+        $("#btnDownloadBiodata").click(function(){
+            if(tableData.length != 0){
+                var IDs = "";
+                for (var i = 0; i < tableData.length; i++){
+                    IDs = IDs + "," + tableData[i].ID;
+                }
+                IDs = IDs.replace(/^,|,$/g, '');
+                window.location = '/admin/ManagementRegistration/ExportBiodata?IDs=' + IDs;
+            }
+            else{
+                showMessage("Error!", "Please check a row in the table", "error", "red");
+            }
+        })
 
         $(".filter").change(function(){
             tblManagementRegistration.ajax.reload(null, false);
@@ -4621,6 +4635,11 @@ B. Synopsis: Class Module used to process data
                     return obj.ID !== trData.ID;
                 });
             }
+        });
+
+        $(".Number-Only").on("input change paste", function () {
+            var newVal = $(this).val().replace(/[^0-9\.-]/g, '');
+            $(this).val(newVal.replace(/,/g, ''));
         });
     })
 
@@ -4676,26 +4695,7 @@ B. Synopsis: Class Module used to process data
         })
     }
 
-    function GetCodes(){
-        $.ajax({
-            url:"/admin/ManagementRegistration/get_code",
-            type:"GET",
-            data:{_token:self.token},
-            dataType:"JSON",
-            success:function(promise){
-                let option = `<option value=""></option>`;
-                promise.forEach(data=>{
-                    option += `<option value="${data.ID}">${data.Code}</option>`;
-                    
-                })
-                $("#Code").append(option)
-                $("#Code").select2({
-                    placeholder: 'Select a code',
-                    allowClear: true
-                })
-            }
-        })
-    }
+    
 
     function drawDataTable(){
         if (!$.fn.DataTable.isDataTable('#tblManagementRegistration')) {
@@ -4716,34 +4716,13 @@ B. Synopsis: Class Module used to process data
                         d["AgeTo"] = $("#AgeTo").val()
                     }
                 },
-                deferRender: true,
+                // deferRender: true,
                 pageLength: 10,
                 order: [
-                    [0, "desc"]
+                    [1, "asc"]
                 ],
-                lengthMenu: [
-                    [10, 20, 50, 100, 150, 200, 500, -1],
-                    [10, 20, 50, 100, 150, 200, 500, "All"]
-                ],
-                language: {
-                    aria: {
-                        sortAscending: ": activate to sort column ascending",
-                        sortDescending: ": activate to sort column descending"
-                    },
-                    emptyTable: "No data available in table",
-                    info: "Showing _START_ to _END_ of _TOTAL_ records",
-                    infoEmpty: "No records found",
-                    infoFiltered: "(filtered1 from _MAX_ total records)",
-                    lengthMenu: "Show _MENU_",
-                    search: "Search:",
-                    zeroRecords: "No matching records found",
-                    paginate: {
-                        "previous": "Prev",
-                        "next": "Next",
-                        "last": "Last",
-                        "first": "First"
-                    }
-                },
+                paging: true,
+                dataSrc:"data",
                 columns:[           
                     {
                         title: "<input type='checkbox' id='CheckAllitem'/>",
