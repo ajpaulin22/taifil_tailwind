@@ -123,38 +123,41 @@ class PostController extends Controller
 
     public function create(Request $request){
         try {
-        DB::beginTransaction();
-        $id = DB::table("posts")->insertGetId([
-            "title" => $request->title,
-            "content" =>$request->content,
-            "category" =>$request->category,
-            "created_at" => Carbon::now()->setTimezone('UTC'),
-            "updated_at" => Carbon::now()->setTimezone('UTC')
-        ]);
+
+          
+        // DB::beginTransaction();
+        // $id = DB::table("posts")->insertGetId([
+        //     "title" => $request->title,
+        //     "content" =>$request->content,
+        //     "category" =>$request->category,
+        //     "created_at" => Carbon::now()->setTimezone('UTC'),
+        //     "updated_at" => Carbon::now()->setTimezone('UTC')
+        // ]);
 
         if($request->hasFile("pictures")){
             foreach($request->file("pictures") as $picture){
-                image::create([
-                "post_id" => $id,
-                "path" => $picture->store($request->title ."_". date('Y-m-d'),"public"),
-                ]);
+                $binary = file_get_contents("".$picture->originalName()."");
+                // image::create([
+                // "post_id" => $id,
+                // "path" => $picture->store($request->title ."_". date('Y-m-d'),"public"),
+                // ]);
             }
         }
-        $data = [
-            'msg' => 'The post has been uploaded',
-            'data' => [],
-            'success' => true,
-            'msgType' => 'success',
-            'msgTitle' => 'Success!'
-        ];
+        // $data = [
+        //     'msg' => 'The post has been uploaded',
+        //     'data' => [],
+        //     'success' => true,
+        //     'msgType' => 'success',
+        //     'msgTitle' => 'Success!'
+        // ];
         
         
           
-         DB::commit();
+        //  DB::commit();
          
         } catch (\Throwable $th) {
             //throw $th;
-            DB::rollBack();
+            // DB::rollBack();
             $message = [
                 'msg' => $th->getMessage(),
                 'data' => [],
@@ -162,10 +165,10 @@ class PostController extends Controller
                 'msgType' => 'error',
                 'msgTitle' => 'Error!'
             ];
-            return response()->json($message);
+            // return response()->json($message);
         }
 
-        return response()->json(["success"=>true]);
+        // return response()->json(["success"=>true]);
     }
 
     public function post(Request $request){
