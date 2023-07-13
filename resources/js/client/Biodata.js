@@ -533,6 +533,12 @@
                     if(JobCategoryID != 0){
                         $("#jobcategories").val(JobCategoryID).trigger('change');
                     }
+                    let params = new URLSearchParams(window.location.search)
+                    for (let p of params) {
+                        if(p[0] == "cat"){
+                            $("#jobcategories").val(p[1]).trigger('change');
+                        }
+                    }
                 }
             })
         },
@@ -557,6 +563,12 @@
                     })
                     if(JobOperationID != 0 || JobOperationID != ""){
                         $("#joboperations").val(JobOperationID).trigger('change');
+                    }
+                    let params = new URLSearchParams(window.location.search)
+                    for (let p of params) {
+                        if(p[0] == "op"){
+                            $("#joboperations").val(p[1]).trigger('change');
+                        }
                     }
                 }
             })

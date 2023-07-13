@@ -15,9 +15,7 @@
 
     var jobcategory = JobCategory();
    $(document).ready(function() {
-  
-
-
+        
     });
 })();
 

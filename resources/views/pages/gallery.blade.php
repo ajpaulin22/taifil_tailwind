@@ -50,7 +50,7 @@
                 <a href="/client/gallery?cat=departure" class="hover:text-sky-800">Departure</a>
             </div>
             <hr>
-        </div>
+            </div>
         <div class="w-full">
             @admin
             <div class="mt-5">

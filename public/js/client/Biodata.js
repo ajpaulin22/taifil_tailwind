@@ -2895,6 +2895,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                     if(JobCategoryID != 0){
                         $("#jobcategories").val(JobCategoryID).trigger('change');
                     }
+                    let params = new URLSearchParams(window.location.search)
+                    for (let p of params) {
+                        if(p[0] == "cat"){
+                            $("#jobcategories").val(p[1]).trigger('change');
+                        }
+                    }
                 }
             })
         },
@@ -2919,6 +2925,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                     })
                     if(JobOperationID != 0 || JobOperationID != ""){
                         $("#joboperations").val(JobOperationID).trigger('change');
+                    }
+                    let params = new URLSearchParams(window.location.search)
+                    for (let p of params) {
+                        if(p[0] == "op"){
+                            $("#joboperations").val(p[1]).trigger('change');
+                        }
                     }
                 }
             })
