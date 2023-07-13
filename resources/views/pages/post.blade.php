@@ -7,7 +7,7 @@
 
 
 @section('content')
-
+<x-opening_spin/>
 <nav class="px-10 py-5 bg-green-500" aria-label="Breadcrumb">
     <div class="max-w-7xl flex justify-between mx-auto px-10">
         <div class="text-2xl text-white">Post</div>

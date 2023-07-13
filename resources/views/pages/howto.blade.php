@@ -4,6 +4,7 @@
 @endsection
 @extends('layout.client')
 @section('content')
+<x-opening_spin/>
 <nav class="py-2 px-1 md:px-10 md:py-5 bg-green-500 " aria-label="Breadcrumb">
   <div class="max-w-7xl text-center md:flex justify-between mx-auto px-10">
       <div class="text-sm md:text-2xl text-white">Tai-Fil Manpower Services Corp.</div>
@@ -124,4 +125,9 @@
         
     </div>
 </section>
+<script>
+   setTimeout(() => {
+        $("#opening").hide();
+    }, 1000);
+</script>
 @endsection

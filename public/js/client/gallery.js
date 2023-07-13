@@ -2379,6 +2379,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
     var biodata = Gallery();
    $(document).ready(function() {
+    setTimeout(() => {
+        $("#opening").hide();
+    }, 1000);
     $.validator.addMethod( "maxsizetotal", function( value, element, param ) {
         // if ( this.optional( element ) ) {
         //     return true;

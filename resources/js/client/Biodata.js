@@ -607,6 +607,9 @@
     var biodata = Biodata();
    $(document).ready(function() {
 
+    setTimeout(() => {
+        $("#opening").hide();
+    }, 1000);
     // biodata.getCode();
     biodata.getCategories()
     biodata.getData();

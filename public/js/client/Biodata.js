@@ -2969,6 +2969,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
     var biodata = Biodata();
    $(document).ready(function() {
 
+    setTimeout(() => {
+        $("#opening").hide();
+    }, 1000);
     // biodata.getCode();
     biodata.getCategories()
     biodata.getData();
