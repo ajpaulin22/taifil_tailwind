@@ -15,8 +15,8 @@ class CreateMJobcategoriesTable extends Migration
     {
         Schema::create('m_jobcategories', function (Blueprint $table) {
             $table->id("ID");
-            $table->integer("JobCodeID")->nullable();
-            $table->string("Category")->nullable();
+            $table->integer("JobType");
+            $table->string("Category");
             $table->integer("IsDeleted")->default(0)->length(1);
             $table->string("CreateID")->nullable();
             $table->datetime("CreateDate")->nullable();

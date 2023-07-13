@@ -50,6 +50,7 @@ class JobInformationController extends Controller
     public function GetJobCategory(Request $request){
         $limit = $request->length;
         $start = $request->start;
+        $col = $request["columns"][$request["order.0.column"]]["data"];
         $dir = $request->input('order.0.dir');
         $search = $request->input('search.value');
         $query_1 = "SELECT
@@ -60,12 +61,16 @@ class JobInformationController extends Controller
         $query_1 .= " 
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
-        OR  Category LIKE '%".$search."%') order by Category " . $dir;
+        OR  Category LIKE '%".$search."%'
+        OR  JobType LIKE '%".$search."%') order by ". $col . " " . $dir;
     
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
-        $total_result = (count($data) > 0 ? count($data): 0);
-        $totalFiltered = (count($data) > 0 ? count($data): 0);
+        $query_2 = "SELECT * FROM m_jobcategories where IsDeleted = 0";
+        $data2 = DB::select($query_2);
+
+        $total_result = (count($data2) > 0 ? count($data2): 0);
+        $totalFiltered = (count($data2) > 0 ? count($data2): 0);
         $json_data = [
             'draw' => intval($request->draw),
             'recordsTotal' => $total_result,
@@ -78,21 +83,25 @@ class JobInformationController extends Controller
     public function GetJobOperation(Request $request){
         $limit = $request->length;
         $start = $request->start;
+        $col = $request["columns"][$request["order.0.column"]]["data"];
         $dir = $request->input('order.0.dir');
         $search = $request->input('search.value');
         $query_1 = "SELECT
         ID,
-        Operation
+        Operation,
+        Hiring
          FROM m_joboperations WHERE IsDeleted = 0 AND JobCategoriesID = ".$request->ID;
         $query_1 .= " 
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
-        OR  Operation LIKE '%".$search."%') order by Operation " .$dir;
+        OR  Operation LIKE '%".$search."%') order by " .$col . " " .$dir;
     
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
-        $total_result = (count($data) > 0 ? count($data): 0);
-        $totalFiltered = (count($data) > 0 ? count($data): 0);
+        $query_2 = "SELECT * FROM m_joboperations where IsDeleted = 0 AND JobCategoriesID = ".$request->ID;
+        $data2 = DB::select($query_2);
+        $total_result = (count($data2) > 0 ? count($data2): 0);
+        $totalFiltered = (count($data2) > 0 ? count($data2): 0);
         $json_data = [
             'draw' => intval($request->draw),
             'recordsTotal' => $total_result,
@@ -105,21 +114,24 @@ class JobInformationController extends Controller
     public function GetQualification(Request $request){
         $limit = $request->length;
         $start = $request->start;
+        $col = $request["columns"][$request["order.0.column"]]["data"];
         $dir = $request->input('order.0.dir');
         $search = $request->input('search.value');
         $query_1 = "SELECT
         ID,
         Qualification
-         FROM m_jobqualifications WHERE IsDeleted = 0 AND JobCategoriesID = ".$request->ID;
+         FROM m_jobqualifications WHERE IsDeleted = 0 AND JobOperationsID = ".$request->ID;
         $query_1 .= " 
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
-        OR  Qualification LIKE '%".$search."%') order by Qualification " .$dir;
+        OR  Qualification LIKE '%".$search."%') order by " . $col . " " .$dir;
         
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
-        $total_result = (count($data) > 0 ? count($data): 0);
-        $totalFiltered = (count($data) > 0 ? count($data): 0);
+        $query_2 = "SELECT * FROM m_jobqualifications where IsDeleted = 0 AND JobOperationsID = " .$request->ID;
+        $data2 = DB::select($query_2);
+        $total_result = (count($data2) > 0 ? count($data2): 0);
+        $totalFiltered = (count($data2) > 0 ? count($data2): 0);
         $json_data = [
             'draw' => intval($request->draw),
             'recordsTotal' => $total_result,
@@ -189,7 +201,7 @@ class JobInformationController extends Controller
         // dd($request["CodeID"]);
         if($request["CategoryID"] == 0){
             m_jobcategories::create([
-                "JobCodesID" => $request["CodeID"],
+                "JobType" => $request["JobType"],
                 "Category" => $request["CategoryValue"],
                 "IsDeleted" => 0,
                 "CreateID" => "admin",
@@ -200,7 +212,9 @@ class JobInformationController extends Controller
         else{
             DB::table('m_jobcategories')
             ->where('id', $request["CategoryID"])
-            ->update(['Category' => $request["CategoryValue"]]);
+            ->update(['Category' => $request["CategoryValue"]
+                    ,'JobType' => $request["JobType"]
+            ]);
             $msg = 'Job Category Updated Successfully';
         }
         $data = [
@@ -290,7 +304,7 @@ class JobInformationController extends Controller
         $msg = "";
         if($request["QualificationID"] == 0){
             m_jobqualifications::create([
-                "JobCategoriesID" => $request["CategoryID"],
+                "JobOperationsID" => $request["OperationID"],
                 "Qualification" => $request["QualificationValue"],
                 "IsDeleted" => 0,
                 "CreateID" => "admin",

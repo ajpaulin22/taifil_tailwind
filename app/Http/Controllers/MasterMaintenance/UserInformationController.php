@@ -55,34 +55,38 @@ class UserInformationController extends Controller
         $msgType = "success";
         $msgTitle = "Success!";
         $success = true;
-        $encryptedPassword = bcrypt($request['data'][5]["value"]);
-        if (DB::table("users")->where('username', $request["data"][4]["value"])->where('is_deleted', 0)->select()->count() != 0){
-            $msg = 'Username already exists';
-            $msgType = "error";
-            $msgTitle = "Error!";
-            $success = false;
-        }
-
-        else if (DB::table("users")->where('username', $request["data"][4]["value"])->where('is_deleted', 1)->select()->count() != 0){
-            DB::table('users')
-                ->where('username', $request["data"][4]["value"])
-                ->update([
-                    'firstname' => $request["data"][2]["value"]
-                    ,'lastname' => $request["data"][3]["value"]
-                    ,'username' => $request["data"][4]["value"]
-                    ,'email' => $request["data"][5]["value"]
-                    ,'password' => $encryptedPassword
-                    ,'create_user' => 'admin'
-                    ,'update_user' => 'admin'
-                    ,'admin' => $request["data"][0]["value"]
-                    ,'is_deleted' => 0
-                ]);
-                
-                $msg =  'User Information Saved Successfully';
-        }
-        else{
-            $encryptedPassword = bcrypt($request['data'][5]["value"]);
-            if($request["UserID"] == 0){
+        // dd($request);
+        $encryptedPassword = bcrypt($request['data'][6]["value"]);
+        if($request['data'][1]["value"] == 0){
+            if (DB::table("users")->where('username', $request["data"][4]["value"])->where('is_deleted', 0)->select()->count() != 0){
+                $msg = 'Username already exists';
+                $msgType = "error";
+                $msgTitle = "Error!";
+                $success = false;
+            }
+            else if (DB::table("users")->where('email', $request["data"][5]["value"])->where('is_deleted', 0)->select()->count() != 0){
+                $msg = 'Email already exists';
+                $msgType = "error";
+                $msgTitle = "Error!";
+                $success = false;
+            }
+            else if (DB::table("users")->where('username', $request["data"][4]["value"])->where('is_deleted', 1)->select()->count() != 0){
+                DB::table('users')
+                    ->where('username', $request["data"][4]["value"])
+                    ->update([
+                        'firstname' => $request["data"][2]["value"]
+                        ,'lastname' => $request["data"][3]["value"]
+                        ,'username' => $request["data"][4]["value"]
+                        ,'email' => $request["data"][5]["value"]
+                        ,'password' => $encryptedPassword
+                        ,'create_user' => 'admin'
+                        ,'update_user' => 'admin'
+                        ,'admin' => $request["data"][0]["value"]
+                        ,'is_deleted' => 0
+                    ]);
+                    $msg =  'User Information Saved Successfully';
+            }
+            else{
                 User::create([
                     'firstname' => $request["data"][2]["value"]
                     ,'lastname' => $request["data"][3]["value"]
@@ -95,6 +99,22 @@ class UserInformationController extends Controller
                     ,'admin' => $request["data"][0]["value"]
                 ]);
                 $msg = "User Information Saved Successfully";
+            }
+        }
+        
+        
+        else{
+            if (DB::table("users")->where('username', $request["data"][4]["value"])->where('is_deleted', 0)->where('id', '!=', $request['data'][1]["value"])->select()->count() != 0){
+                $msg = 'Username already exists';
+                $msgType = "error";
+                $msgTitle = "Error!";
+                $success = false;
+            }
+            else if (DB::table("users")->where('email', $request["data"][5]["value"])->where('is_deleted', 0)->where('id', '!=', $request['data'][1]["value"])->select()->count() != 0){
+                $msg = 'Email already exists';
+                $msgType = "error";
+                $msgTitle = "Error!";
+                $success = false;
             }
             else{
                 DB::table('users')
@@ -111,6 +131,7 @@ class UserInformationController extends Controller
                 ]);
                 $msg = 'User Information Updated Successfully';
             }
+            
         }
         $data = [
             'msg' =>  $msg,

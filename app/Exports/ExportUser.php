@@ -22,7 +22,7 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
     */
     public function collection()
     {
-        $sql = "call biodata_getdata('','','','',0,0)";
+        $sql = "call biodata_getdata('','','',0,0,'Name','asc',0,100,'')";
         $data = collect(DB::select(DB::raw($sql)))->whereIN("ID", $this->id);
         return $data;
     }

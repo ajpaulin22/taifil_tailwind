@@ -37,7 +37,7 @@ Job Information
             </div>
         </div>
     </div> --}}
-    <div class="col-sm-4 offset-2">
+    <div class="col-sm-6">
         <div class="panel panel-inverse">
             <div class="panel-heading">
                 <h4 class="panel-title">Job Category</h4>
@@ -63,7 +63,7 @@ Job Information
             </div>
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-6">
         <div class="panel panel-inverse">
             <div class="panel-heading">
                 <h4 class="panel-title">Job Operation</h4>

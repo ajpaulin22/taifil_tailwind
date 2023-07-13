@@ -30,6 +30,7 @@
                     $("#LastName").val(promise[0].lastname);
                     $("#UserName").val(promise[0].username);
                     $("#EmailAddress").val(promise[0].email);
+                    $("#UserID").val(promise[0].id);
                     $("#mdlAddUser").modal('show');
                 }
             });
@@ -63,7 +64,8 @@
                             tblUserInformation.ajax.reload(null, false);
                             $("#mdlAddUser").modal('hide');
                             ajax.clearFromData("frmUser")
-
+                            $("#Password").val("");
+                            $("#ConfirmPassword").val("");
                         }
                     },
                 });
@@ -141,6 +143,8 @@
         $("#btnCancelUser").click(function(){
             $("#mdlAddUser").modal('hide');
             ajax.clearFromData("frmUser");
+            $("#Password").val("");
+            $("#ConfirmPassword").val("");
         });
 
     });
