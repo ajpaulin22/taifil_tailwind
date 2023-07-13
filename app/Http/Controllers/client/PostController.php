@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+
+
     public function view(Request $request){
         try {
 

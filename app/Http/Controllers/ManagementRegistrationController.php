@@ -13,6 +13,12 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ManagementRegistrationController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function view(){
         return view("/admin/ManagementRegistration");
     }

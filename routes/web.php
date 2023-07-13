@@ -139,7 +139,7 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
         Route::post('/SaveAbroad',[ManagementRegistrationController::class,'SaveAbroad']);
     });
 
-    Route::group(["middleware" => "admin","prefix" => "MasterMaintenance"],function(){
+    Route::group(["prefix" => "MasterMaintenance"],function(){
         Route::group(["prefix" => "JobInformation"],function(){
             Route::get("/",[JobInformationController::class,"view"]);
             Route::get("/GetJobCode",[JobInformationController::class,'GetJobCode']);
@@ -156,7 +156,7 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
             Route::post("/DeleteJobQualification",[JobInformationController::class,'DeleteJobQualification']);
         });
 
-        Route::group(["middleware" => "admin","prefix" => "UserInformation"],function(){
+        Route::group(["prefix" => "UserInformation"],function(){
             Route::get("/",[UserInformationController::class,"view"]);
             Route::get("/GetUserData",[UserInformationController::class,"GetUserData"]);
             Route::post("/SaveUserData",[UserInformationController::class,"SaveUserData"]);

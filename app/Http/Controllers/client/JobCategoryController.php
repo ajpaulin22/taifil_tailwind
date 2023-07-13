@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 class JobCategoryController extends Controller
 {
+
+
     public function view(Request $request){
         $type = strtoupper($request->data);
         $category = isset($request->category) ? $request->category : "";
