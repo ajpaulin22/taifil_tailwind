@@ -130,7 +130,7 @@
                             position:'topRight'
                         });
                     }
-                    
+                    // $("#sample").attr("src",promise.data);
                 }
             })
         }
