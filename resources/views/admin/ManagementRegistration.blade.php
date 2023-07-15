@@ -88,6 +88,7 @@ Management Registration
                         <th rowspan="2" class='HeaderTable' style='padding-bottom:25px; '></th>
                         <th rowspan="2" class='HeaderTable'>Name</th>
                         <th rowspan="2" class='HeaderTable'>Job Categories</th>
+                        <th rowspan="2" class='HeaderTable'>Job Operations</th>
                         <th rowspan="2" class='HeaderTable'>Program</th>
                         <th colspan="4" style='text-align: center; border-bottom: 1px solid white !important;'>Interview History</th>
                         <th rowspan="2" class='HeaderTable'>Age</th>

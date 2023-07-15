@@ -352,5 +352,37 @@ class JobInformationController extends Controller
             ];
             return response()->json($data);
     }
-
+    
+    public function SaveHiring(Request $request){
+        $IDInsertHiring = [];
+        $IDRemoveHiring = [];
+        for ($i = 0; $i < count($request["PersonalID"]); $i++){
+            if($request["PersonalID"][$i]["Value"] == 1){
+                array_push($IDInsertHiring, $request["PersonalID"][$i]["ID"]);
+            }
+            DB::table('m_joboperations')
+            ->whereIN('id', $IDInsertHiring)
+            ->update([
+                'Hiring' => 1
+            ]);
+        }
+        for ($i = 0; $i < count($request["PersonalID"]); $i++){
+            if($request["PersonalID"][$i]["Value"] == 0){
+                array_push($IDRemoveHiring, $request["PersonalID"][$i]["ID"]);
+            }
+            DB::table('m_joboperations')
+            ->whereIN('id', $IDRemoveHiring)
+            ->update([
+                'Hiring' => 0
+            ]);
+        }
+        $data = [
+            'msg' =>  "Abroad Information Updated Successfully",
+            'data' => [],
+            'success' => true,
+            'msgType' => 'success',
+            'msgTitle' => 'Success!'
+        ];
+        return response()->json($data);
+    }
 }

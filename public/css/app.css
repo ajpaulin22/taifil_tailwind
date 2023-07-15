@@ -16395,6 +16395,9 @@ input[type='number']::-webkit-outer-spin-button,
 .row-span-3 {
   grid-row: span 3 / span 3;
 }
+.row-span-4 {
+  grid-row: span 4 / span 4;
+}
 .m-1 {
   margin: 0.25rem;
 }
@@ -16606,6 +16609,9 @@ input[type='number']::-webkit-outer-spin-button,
 .h-40 {
   height: 10rem;
 }
+.h-48 {
+  height: 12rem;
+}
 .h-5 {
   height: 1.25rem;
 }
@@ -16636,20 +16642,11 @@ input[type='number']::-webkit-outer-spin-button,
 .h-screen {
   height: 100vh;
 }
-.h-48 {
-  height: 12rem;
-}
 .max-h-36 {
   max-height: 9rem;
 }
 .max-h-full {
   max-height: 100%;
-}
-.max-h-3 {
-  max-height: 0.75rem;
-}
-.max-h-3\.5 {
-  max-height: 0.875rem;
 }
 .min-h-full {
   min-height: 100%;
@@ -16773,15 +16770,6 @@ input[type='number']::-webkit-outer-spin-button,
 .transform-none {
   transform: none;
 }
-@keyframes spin {
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
 @keyframes bounce {
 
   0%, 100% {
@@ -16796,6 +16784,15 @@ input[type='number']::-webkit-outer-spin-button,
 }
 .animate-bounce {
   animation: bounce 1s infinite;
+}
+@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
 .cursor-default {
   cursor: default;
@@ -17209,14 +17206,6 @@ input[type='number']::-webkit-outer-spin-button,
   --tw-bg-opacity: 1;
   background-color: rgb(253 253 234 / var(--tw-bg-opacity));
 }
-.bg-green-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(188 240 218 / var(--tw-bg-opacity));
-}
-.bg-slate-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
-}
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
@@ -17592,9 +17581,6 @@ input[type='number']::-webkit-outer-spin-button,
 .opacity-90 {
   opacity: 0.9;
 }
-.opacity-80 {
-  opacity: 0.8;
-}
 .bg-blend-darken {
   background-blend-mode: darken;
 }
@@ -17918,6 +17904,11 @@ input[type='number']::-webkit-outer-spin-button,
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+  .hover\:text-blue-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(63 131 248 / var(--tw-text-opacity));
+}
+
   .hover\:text-blue-600:hover {
   --tw-text-opacity: 1;
   color: rgb(28 100 242 / var(--tw-text-opacity));
@@ -17966,11 +17957,6 @@ input[type='number']::-webkit-outer-spin-button,
   .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-  .hover\:text-blue-500:hover {
-  --tw-text-opacity: 1;
-  color: rgb(63 131 248 / var(--tw-text-opacity));
 }
 
   .hover\:underline:hover {

@@ -84,6 +84,9 @@ Job Information
                     <div class="col-sm-5">
                         <button type="button" id="btnViewQualification" class="btn btn-sm btn-danger btn-block" style="width: 90%; margin: auto;" disabled><span class="fa fa-eye"></span><span class="btnLabel">View Qualifications</span></button>
                     </div>
+                    <div class="col-sm-3">
+                        <button type="button" id="btnSaveHiring" class="btn btn-sm btn-warning btn-block" style="width: 100%; margin: auto;"><span class="fa fa-save"></span><span class="btnLabel">Save Hiring Status</span></button>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="table-responsive xs">

@@ -71,19 +71,12 @@
 
         $("#btnSaveAbroad").click(function(){
             $(".CheckAbroad").each(function(){
-                if($(this).is(":checked")){
-                    AbroadData.push({
-                        ID: $(this).val(),
-                        Value: 1
-                    });
-                }
-                else{
-                    AbroadData.push({
-                        ID: $(this).val(),
-                        Value: 0
-                    });
-                }
+                AbroadData.push({
+                    ID: $(this).val(),
+                    Value: $(this).is(":checked") ? 1 : 0
+                });
             });
+            
             if(AbroadData.length == 0){
                 showMessage("Error!", "Please check a row in To Abroad Column", "error", "red");
             }
@@ -330,6 +323,7 @@
                     },
                     { title: 'Name', data: "Name", width: "18%"},
                     { title: 'Category', data: "Category", width: "17%"},
+                    { title: 'Operation', data: "Operation", width: "17%", className: "dt-center"},
                     { title: 'JobType', data: "JobType", width: "6%", className: "dt-center"},
                     { title: 'AttendInterview', data: "AttendInterview", width: "6%", className: "dt-center"},
                     { title: 'InterviewDate', data: "InterviewDate", width: "6%", className: "dt-center"},

@@ -212,10 +212,18 @@ class ManagementRegistrationController extends Controller
         return response()->json($data);
      }
 
-     public function ExportBiodata(Request $req){
+     public function ExportBiodata(Request $request){
         $date = Carbon::now();
         $date->toDateTimeString();
-        $data = DB::table('personal_datas')->where('id',1)->select()->get()->toArray();
+        $query = "Select *, c.Category, o.Operation from personal_datas p"
+                ." LEFT JOIN m_jobcategories c ON p.job_cat = c.ID"
+                ." LEFT JOIN m_joboperations o ON p.operation = o.ID"
+                ." WHERE p.ID = 22";
+        $data = DB::select($query);
+        // dd($data);
+        $data = [
+            'data' => $data[0]
+        ];
         $pdf = Pdf::loadView('exportbiodata', $data);
         return $pdf->stream("biodata".$date.'.pdf');
      }

@@ -16,6 +16,7 @@ use App\Http\Controllers\client\JobCategoryController;
 use App\Http\Controllers\ManagementRegistrationController;
 use App\Http\Controllers\MasterMaintenance\JobInformationController;
 use App\Http\Controllers\MasterMaintenance\UserInformationController;
+use App\Http\Controllers\exportbiodataview;
 
 /*
 |--------------------------------------------------------------------------
@@ -139,7 +140,7 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
         Route::post('/SaveAbroad',[ManagementRegistrationController::class,'SaveAbroad']);
     });
 
-    Route::group(["prefix" => "MasterMaintenance"],function(){
+    Route::group(["middleware" => "admin","prefix" => "MasterMaintenance"],function(){
         Route::group(["prefix" => "JobInformation"],function(){
             Route::get("/",[JobInformationController::class,"view"]);
             Route::get("/GetJobCode",[JobInformationController::class,'GetJobCode']);
@@ -154,9 +155,10 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
             Route::post("/DeleteJobOperation",[JobInformationController::class,'DeleteJobOperation']);
             Route::post("/SaveQualification",[JobInformationController::class,'SaveQualification']);
             Route::post("/DeleteJobQualification",[JobInformationController::class,'DeleteJobQualification']);
+            Route::post("/SaveHiring",[JobInformationController::class,'SaveHiring']);
         });
 
-        Route::group(["prefix" => "UserInformation"],function(){
+        Route::group(["middleware" => "admin","prefix" => "UserInformation"],function(){
             Route::get("/",[UserInformationController::class,"view"]);
             Route::get("/GetUserData",[UserInformationController::class,"GetUserData"]);
             Route::post("/SaveUserData",[UserInformationController::class,"SaveUserData"]);
@@ -165,3 +167,8 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
         });
     });
 });
+
+Route::group(["prefix" => "export"],function(){
+    Route::get('/',[exportbiodataview::class,"view"]);
+});
+
