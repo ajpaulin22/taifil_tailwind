@@ -11,6 +11,7 @@
 @endsection
 @extends('layout.client')
 @section('content')
+<x-opening_spin/>
 <nav class="py-2 px-1 md:px-10 md:py-5 bg-green-500 " aria-label="Breadcrumb">
     <div class="max-w-7xl text-center md:flex justify-between mx-auto px-10">
         <div class="text-sm md:text-2xl text-white">Gallery</div>
@@ -50,7 +51,7 @@
                 <a href="/client/gallery?cat=departure" class="hover:text-sky-800">Departure</a>
             </div>
             <hr>
-        </div>
+            </div>
         <div class="w-full">
             @admin
             <div class="mt-5">

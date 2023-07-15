@@ -16636,11 +16636,20 @@ input[type='number']::-webkit-outer-spin-button,
 .h-screen {
   height: 100vh;
 }
+.h-48 {
+  height: 12rem;
+}
 .max-h-36 {
   max-height: 9rem;
 }
 .max-h-full {
   max-height: 100%;
+}
+.max-h-3 {
+  max-height: 0.75rem;
+}
+.max-h-3\.5 {
+  max-height: 0.875rem;
 }
 .min-h-full {
   min-height: 100%;
@@ -16763,6 +16772,30 @@ input[type='number']::-webkit-outer-spin-button,
 }
 .transform-none {
   transform: none;
+}
+@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes bounce {
+
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+.animate-bounce {
+  animation: bounce 1s infinite;
 }
 .cursor-default {
   cursor: default;
@@ -17176,6 +17209,14 @@ input[type='number']::-webkit-outer-spin-button,
   --tw-bg-opacity: 1;
   background-color: rgb(253 253 234 / var(--tw-bg-opacity));
 }
+.bg-green-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(188 240 218 / var(--tw-bg-opacity));
+}
+.bg-slate-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
@@ -17184,6 +17225,9 @@ input[type='number']::-webkit-outer-spin-button,
 }
 .bg-opacity-80 {
   --tw-bg-opacity: 0.8;
+}
+.bg-opacity-95 {
+  --tw-bg-opacity: 0.95;
 }
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
@@ -17199,6 +17243,9 @@ input[type='number']::-webkit-outer-spin-button,
 }
 .to-green-200 {
   --tw-gradient-to: #BCF0DA var(--tw-gradient-to-position);
+}
+.fill-green-500 {
+  fill: #0E9F6E;
 }
 .object-contain {
   -o-object-fit: contain;
@@ -17544,6 +17591,9 @@ input[type='number']::-webkit-outer-spin-button,
 }
 .opacity-90 {
   opacity: 0.9;
+}
+.opacity-80 {
+  opacity: 0.8;
 }
 .bg-blend-darken {
   background-blend-mode: darken;
@@ -17916,6 +17966,16 @@ input[type='number']::-webkit-outer-spin-button,
   .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+  .hover\:text-blue-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(63 131 248 / var(--tw-text-opacity));
+}
+
+  .hover\:underline:hover {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
   .hover\:shadow-inner:hover {

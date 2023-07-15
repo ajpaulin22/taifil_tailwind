@@ -4,6 +4,7 @@
 @endsection
 @extends('layout.client')
 @section('content')
+<x-opening_spin/>
 <nav class="py-2 px-1 md:px-10 md:py-5 bg-green-500 " aria-label="Breadcrumb">
     <div class="max-w-7xl text-center md:flex justify-between mx-auto px-10">
         <div class="text-sm md:text-2xl text-white">Job Category</div>
@@ -53,32 +54,15 @@
           </div>
         </div>
         <div class="md:grid grid-cols-3 gap-5 col-span-6">
-
-            @if($id == 'TITP')
-            <x-card_job require="MALE,18-35 years old,With welding experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,Willing to undergo Japanese Language Training,Not an ex-trainee" job="welder" category="{{$id}}"/>
-            <x-card_job require="FEMALE,18-35 years old,With or Without experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,Willing to undergo Japanese Language Training,Not an ex-trainee" job="building cleaner" category="{{$id}}"/>
-            <x-card_job require="FEMALE,18-35 years old,With welding experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,Willing to undergo Japanese Language Training,Not an ex-trainee" job="kitchen staff" category="{{$id}}"/>
-            <x-card_job require="FEMALE,23-35 years old,With or Without experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,With JLPT N4 or NAT 4Q is an advantage,With NCII Caregiving is an advantage,Willing to undergo Japanese Language Training,Not an ex-trainee" job="careworker" category="{{$id}}"/>
-            <x-card_job require="FEMALE/ MALE,18-35 years old,With welding experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,Willing to undergo Japanese Language Training,Not an ex-trainee" job="print wiring board" category="{{$id}}"/>
-            <x-card_job require="FEMALE,18-35 years old,With or Without experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,Willing to undergo Japanese Language Training,Not an ex-trainee" job="inspector" category="{{$id}}"/>
-            <x-card_job require="MALE,18-35 years old,With welding experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,Willing to undergo Japanese Language Training,Not an ex-trainee" job="construction" category="{{$id}}"/>
-            <x-card_job require="MALE,18-35 years old,With or Without experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,Willing to undergo Japanese Language Training,Not an ex-trainee" job="finishing" category="{{$id}}"/>
-            <x-card_job require="MALE,18-35 years old,With welding experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,Willing to undergo Japanese Language Training,Not an ex-trainee" job="machinist" category="{{$id}}"/>
-            <x-card_job require="FEMALE,18-35 years old,With or Without experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,Willing to undergo Japanese Language Training,Not an ex-trainee" job="electric equipment assembling" category="{{$id}}"/>
-            <x-card_job require="MALE,18-33 years old,With welding experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,Willing to undergo Japanese Language Training,Not an ex-trainee" job="seafood processing" category="{{$id}}"/>
-            <x-card_job require="FEMALE,18-35 years old,With or Without experience,No Tattoos,At least High School graduate or Senior High School graduate,Physically and Mentally fit,Willing to undergo Japanese Language Training,Not an ex-trainee" job="Painting" category="{{$id}}"/>
-            @endif
-
-            @if ($id == "SSW")
-            <x-card_job require="FEMALE/ MALE,20-35 years old,No Tattoos,At least High School graduate or Senior High School graduate,Ex-Trainees (TITP) are welcome to apply,Physically and Mentally fit,With Prometric Test (Nursing Care Skills Test and Nursing Care Japanese Language Evaluation Test),With JLPT N4 or JFT " job="careworker" category="{{$id}}"/>
-            <x-card_job require="FEMALE/ MALE,20-35 years old,No Tattoos,At least High School graduate or Senior High School graduate,Ex-Trainees (TITP) are welcome to apply with the same category,Physically and Mentally fit,With Prometric Test (Food Service Industry),With JLPT N4 or JFT " job="kitchen staff" category="{{$id}}"/>
-            <x-card_job require="MALE,20-35 years old,No Tattoos,At least High School graduate or Senior High School graduate,Ex-Trainees (TITP) are welcome to apply with the same category,Physically and Mentally fit,With Prometric Test (Manufacture of Food and Beverages Test),With JLPT N4 or JFT" job="meat processing" category="{{$id}}"/>
-            <x-card_job require="MALE,20-35 years old,No Tattoos,At least High School graduate or Senior High School graduate,Ex-Trainees (TITP) are welcome to apply with the same category,Physically and Mentally fit,With Prometric Test,With JLPT N4 or JFT" job="print wiring board manufacturing" category="{{$id}}"/>
-            @endif
-
-            @if ($id == "Direct")
-            <x-card_job require="FEMALE/ MALE,20-35 years old,No Tattoos,At least High School graduate or Senior High School graduate,Ex-Trainees (TITP) are welcome to apply,Physically and Mentally fit,With JLPT N2 or N1" job="translator" category="{{$id}}"/>
-            <x-card_job require="FEMALE,22-35 years old,No Tattoos,At least High School graduate or Senior High School graduate,Ex-Trainees (TITP) are welcome to apply,Physically and Mentally fit,With NCII Domestic Work is an advantage,With JLPT N4 or NAT 4Q is an advantage,Willing to undergo Japanese Language Training" job="housekeeper" category="{{$id}}"/>
+            @if(Count($cards) > 0)
+            @foreach ($cards as $card)
+            @php
+                $quali = $card->Qualifications==null ? "Still Updating..." : $card->Qualifications;
+            @endphp
+            <x-card_job require="{{$quali}}" job="{{$card->Operation}}" type="{{$id}}" cat="{{$card->CategoryID}}" op="{{$card->OperationID}}"/>
+            @endforeach
+            @else
+            <h1 class="text-center col-span-3 text-lg mt-10">No Job Listing posted...</h1>
             @endif
         </div>
     </section>

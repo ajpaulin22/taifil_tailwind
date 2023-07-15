@@ -18,6 +18,8 @@ use App\Models\vocational_data;
 
 class BiodataController extends Controller
 {
+
+
     public function view(Request $request){
         return view("/pages/biodata",['biodata'=>$request->data]);
     }

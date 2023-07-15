@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class UserInformationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function view(){
         return view("/admin/MasterMaintenance/UserInformation");
     }

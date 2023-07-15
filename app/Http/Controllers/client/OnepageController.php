@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Mail;
 
 class OnepageController extends Controller
 {
+
+
+
     public function view(){
         $posts = post::select()->where("isdeleted",0)->orderby('id','desc')->limit(3)->get();
                 $data = $posts->map(function($post,$key){

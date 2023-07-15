@@ -17,6 +17,9 @@
 
     var biodata = Gallery();
    $(document).ready(function() {
+    setTimeout(() => {
+        $("#opening").hide();
+    }, 1000);
     $.validator.addMethod( "maxsizetotal", function( value, element, param ) {
         // if ( this.optional( element ) ) {
         //     return true;
@@ -127,7 +130,7 @@
                             position:'topRight'
                         });
                     }
-                    
+                    // $("#sample").attr("src",promise.data);
                 }
             })
         }

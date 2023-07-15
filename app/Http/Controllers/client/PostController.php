@@ -6,6 +6,7 @@ namespace App\Http\Controllers\client;
 use Carbon\Carbon;
 use App\Models\post;
 use App\Models\image;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+
+
     public function view(Request $request){
         try {
 
@@ -120,7 +123,16 @@ class PostController extends Controller
     }
 
     public function create(Request $request){
+        $message = [
+            'msg' => "Error",
+            'data' => [],
+            'success' => false,
+            'msgType' => 'error',
+            'msgTitle' => 'Error!'
+        ];
         try {
+
+          
         DB::beginTransaction();
         $id = DB::table("posts")->insertGetId([
             "title" => $request->title,
@@ -131,14 +143,22 @@ class PostController extends Controller
         ]);
 
         if($request->hasFile("pictures")){
+            $image ="";
             foreach($request->file("pictures") as $picture){
+                $image = "data:image/png;base64,".base64_encode(file_get_contents($picture->getPathname()));
                 image::create([
-                "post_id" => $id,
-                "path" => $picture->store($request->title ."_". date('Y-m-d'),"public"),
-                ]);
+                    "post_id" => $id,
+                    "path" => file_get_contents($picture->getPathname()),
+                    ]);
+                // image::create([
+                // "post_id" => $id,
+                // "path" => $picture->store($request->title ."_". date('Y-m-d'),"public"),
+                // ]);
             }
         }
-        $data = [
+
+       
+        $message = [
             'msg' => 'The post has been uploaded',
             'data' => [],
             'success' => true,
@@ -160,10 +180,9 @@ class PostController extends Controller
                 'msgType' => 'error',
                 'msgTitle' => 'Error!'
             ];
-            return response()->json($message);
         }
 
-        return response()->json(["success"=>true]);
+        return response()->json($message);
     }
 
     public function post(Request $request){

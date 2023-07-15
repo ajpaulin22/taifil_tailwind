@@ -40,7 +40,6 @@
             <p class="mt-1 text-xs text-gray-500 dark:text-gray-300" id="file_input_help">Compatible file type: PNG, JPG.</p>
           </div>
 
-  
         <div>
           <button id="" class="flex w-full justify-center rounded-md bg-green-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create</button>
         </div>
@@ -48,7 +47,7 @@
     
     </div>
 </div>
-
+<img id="sample" src="" alt="">
 @push('scripts')
     <script src="{{asset("js/client/gallery.js")}}"></script>
 @endpush
