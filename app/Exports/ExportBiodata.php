@@ -17,9 +17,11 @@ class ExportBiodata implements WithEvents, WithDrawings
     protected $data;
     function __construct($id) {
         
-        $this->id = $id["IDs"];
-        $sql = "call biodata_getdata('','','','',0,0)";
-        $this->data = collect(DB::select(DB::raw($sql)))->where("ID", $this->id);
+        
+        // $this->id = $id["IDs"];
+        // dd($this->id);
+        // $sql = "call biodata_getdata('','','','',0,0)";
+        // $this->data = collect(DB::select(DB::raw($sql)))->where("ID", $this->id);
         // dd($data[0]->ID);
     }
 
@@ -36,7 +38,6 @@ class ExportBiodata implements WithEvents, WithDrawings
                 $sheet = $event->writer->getSheetByIndex(0);
 
                 $this->populateSheet($sheet);
-                // $this->drawing($sheet);
                 
                 $event->writer->getSheetByIndex(0)->export($event->getConcernable()); // call the export on the first sheet
                 return $event->getWriter()->getSheetByIndex(0);

@@ -16392,6 +16392,9 @@ input[type='number']::-webkit-outer-spin-button,
 .col-start-2 {
   grid-column-start: 2;
 }
+.row-span-3 {
+  grid-row: span 3 / span 3;
+}
 .m-1 {
   margin: 0.25rem;
 }

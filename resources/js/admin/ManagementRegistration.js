@@ -208,6 +208,7 @@
         });
 
         $("#btnDownloadBiodata").click(function(){
+            collectCheckBoxID();
             if(tableData.length != 0){
                 var IDs = "";
                 for (var i = 0; i < tableData.length; i++){

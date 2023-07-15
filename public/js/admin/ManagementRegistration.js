@@ -4618,6 +4618,7 @@ B. Synopsis: Class Module used to process data
         });
 
         $("#btnDownloadBiodata").click(function(){
+            collectCheckBoxID();
             if(tableData.length != 0){
                 var IDs = "";
                 for (var i = 0; i < tableData.length; i++){

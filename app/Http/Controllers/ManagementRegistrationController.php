@@ -206,27 +206,11 @@ class ManagementRegistrationController extends Controller
         return response()->json($data);
      }
 
-    //  public function ExportBiodata(Request $request){
-    //     $date = Carbon::now();
-    //     $date->toDateTimeString();
-    //     return Excel::download(new ExportBiodata($request), 'Biodata'. $date .'.xlsx');
-    //  }
-
      public function ExportBiodata(Request $req){
-        // try {
-        //     $data = DB::table('shipments')->where('id',$req->id)->select()->get()->toArray();
-        //     $pdf = Pdf::loadView('export', $data);
-        //     return $pdf->stream($control.'_system_report.pdf');
-        // } catch (\Throwable $th) {
-        //  $data = [
-        //      'msg' => $th->getMessage(),
-        //      'data' => [],
-        //      'success' => false,
-        //      'msgType' => 'error',
-        //      'msgTitle' => 'Error!'
-        //  ];
-        //  return response()->json($data);
-        // }
- 
+        $date = Carbon::now();
+        $date->toDateTimeString();
+        $data = DB::table('personal_datas')->where('id',1)->select()->get()->toArray();
+        $pdf = Pdf::loadView('exportbiodata', $data);
+        return $pdf->stream("biodata".$date.'.pdf');
      }
 }
