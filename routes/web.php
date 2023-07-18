@@ -73,6 +73,7 @@ Route::group(["prefix"=>"client"],function(){
     Route::group(["prefix" => "qualification"],function(){
         Route::get("/",[QualificationController::class,'view']);
         Route::post("/post-qualification",[QualificationController::class,'post_qualification']);
+        Route::get("/get-data",[QualificationController::class,'get_data']);
     });
 
     Route::group(["prefix" => "jobcategory"],function(){

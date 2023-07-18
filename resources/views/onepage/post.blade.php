@@ -13,11 +13,12 @@
         </div>
         <div class=" md:grid md:grid-col-3 gap-5 md:grid-flow-col text-white">
             @foreach($data as $d)
-            <div data-aos="flip-down" class="bg-green-500 rounded-md overflow-hidden h-2/3 col-span-1 shadow-2xl mb-5 md:mb-0">
+            <div data-aos="flip-down" class="bg-green-500 rounded-md overflow-hidden h-auto col-span-1 shadow-2xl mb-5 md:mb-0">
                 <div class="overflow-hidden w-full h-56 md:h-1/2">
                     @if(count($d['images']) != 0)
                     
-                    <img src="{{url('storage/'.$d['images'][0]['path'])}}" alt="" class="object-cover h-auto w-full objec hover:scale-150 transition-transform ease-in duration-300">
+                    {{-- <img src="{{url('storage/'.$d['images'][0]['path'])}}" alt="" class="object-cover h-auto w-full objec hover:scale-150 transition-transform ease-in duration-300"> --}}
+                    <img src="data:image/png;base64,{{base64_encode($d['images'][0]['path'])}}" alt="" class="object-cover h-auto w-full objec hover:scale-150 transition-transform ease-in duration-300">
                     @else
                     <img src="{{url('images/default_item.png')}}" alt="" class="object-cover hover:scale-150 transition-transform ease-in duration-300">
                     @endif
@@ -29,7 +30,10 @@
                     <div class="title my-5">
                         <h1 class="text-2xl font-semibold ">{{$d['title']}}</h1>
                         <hr class="text-sky-800">
-                        <p class="text-sm py-4 whitespace-pre-line h-24 overflow-hidden">{{$d['content']}}</p>
+                        {{-- <p class="text-sm py-4 whitespace-pre-line h-24 overflow-hidden">{{$d['content']}}</p> --}}
+                        <div class="text-sm py-4 whitespace-pre-line h-24 overflow-hidden">
+                            {!! html_entity_decode($d['content']) !!}
+                        </div>    
                     </div>
                     <a href="/client/gallery/post?id={{$d['id']}}" class="mt-4 hover:text-white"> Read more...</a>
                 </div>
