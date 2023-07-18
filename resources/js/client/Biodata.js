@@ -268,7 +268,7 @@
                         JobOperationID = promise.personaldata[0].operation;
                         //personal
                         $("#PersonalInfoID").val(promise.personaldata[0].id);
-                        $("#jobcodes").val(promise.personaldata[0].code).trigger('change');
+                        $("#jobcategories").val(promise.personaldata[0].job_cat).trigger('change');
                         $("#lastname").val(promise.personaldata[0].lastname);
                         $("#firstname").val(promise.personaldata[0].first_name);
                         $("#middlename").val(promise.personaldata[0].middle_name);
