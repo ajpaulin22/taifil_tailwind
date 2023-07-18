@@ -1046,11 +1046,9 @@
             biodata.local_company --
         })
         biodata.local_company ++
-
         // $('[datepicker]').each(function (datepickerEl) {
         //     Datepicker(datepickerEl);
         //   });
-
         // $("#personal_form").removeData('validator');
         // $("#personal_form").removeData('unobtrusiveValidation');
         // $.validator.unobtrusive.parse("#personal_form");
@@ -1063,8 +1061,6 @@
             //             required: true
             //         })
             // })
-        
-
         Datepicker.initDatepickers();
     });
 
@@ -1076,7 +1072,6 @@
             $("#local_companys :input").attr("disabled", false);
             $("#add_local_btn").attr("disabled", false)
         }
-       
     })
 
     $("#empLocal_form").on("submit",function(e){

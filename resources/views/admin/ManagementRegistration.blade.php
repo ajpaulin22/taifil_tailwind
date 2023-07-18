@@ -223,7 +223,7 @@ Management Registration
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width:127px;" id="lblInterviewDate"> Interview Date <span class="text-danger"> *</span></label>
                                 </div>
-                                <input type="text" id="InterviewDate" name="InterviewDate" class="form-control input" data-parsley-required data-parsley-errors-container="#err-InterviewDate" autocomplete="off">
+                                <input type="date" id="InterviewDate" name="InterviewDate" class="form-control" data-parsley-required data-parsley-errors-container="#err-InterviewDate" autocomplete="off" placeholder="MM/DD/YYYY"> 
                             </div>
                             <div id="err-AttendInterview"></div>
                         </div>
