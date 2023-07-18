@@ -598,9 +598,13 @@ class BiodataController extends Controller
 
         try {
             $data = personal_data::find($request->id);
-            $data->gov_id_picture = $request->file('gov_id')->store('gov_id_pictures',"public");
-            $data->passport_id_picture =$request->file('passport_id')->store('passport_id_pictures',"public");
-            $data->id_picture=$request->file('picture')->store('1x1_pictures',"public");
+            // $data->gov_id_picture = $request->file('gov_id')->store('gov_id_pictures',"public");
+            // $data->passport_id_picture =$request->file('passport_id')->store('passport_id_pictures',"public");
+            // $data->id_picture=$request->file('picture')->store('1x1_pictures',"public");
+             $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
+             $data->passport_id_picture = file_get_contents($request->file('passport_id')->getPathname());
+             $data->id_picture= file_get_contents($request->file('picture')->getPathname());
+
             
             
             if($data->update()){
