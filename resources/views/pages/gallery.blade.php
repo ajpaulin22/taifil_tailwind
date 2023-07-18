@@ -62,7 +62,7 @@
              <div class="mt-5 text-center">No Post Available....</div>
             @endif
             @foreach ($posts as $post)
-            <x-post_card id="{{$post->id}}" title="{{$post->title}}" content="{{$post->content}}" cat="{{$post->category}}" time="{{$post->time}}" date="{{$post->date}}" image="{{$post->path}}" />
+            <x-post_card id="{{$post->id}}" title="{{$post->title}}" content="{{$post->content}}" cat="{{$post->category}}" time="{{$post->time}}" date="{{$post->date}}" image="{{base64_encode($post->path)}}" />
             @endforeach
 
             <div>

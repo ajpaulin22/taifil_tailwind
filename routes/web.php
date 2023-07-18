@@ -13,6 +13,7 @@ use App\Http\Controllers\client\BiodataController;
 use App\Http\Controllers\client\OnepageController;
 use App\Http\Controllers\MasterMaintenanceController;
 use App\Http\Controllers\client\JobCategoryController;
+use App\Http\Controllers\client\QualificationController;
 use App\Http\Controllers\ManagementRegistrationController;
 use App\Http\Controllers\MasterMaintenance\JobInformationController;
 use App\Http\Controllers\MasterMaintenance\UserInformationController;
@@ -69,9 +70,8 @@ Route::group(["prefix"=>"client"],function(){
     });
 
     Route::group(["prefix" => "qualification"],function(){
-        Route::get("/",function(Request $request){
-            return view('pages.qualification',["id"=>$request->data]);
-        });
+        Route::get("/",[QualificationController::class,'view']);
+        Route::post("/post-qualification",[QualificationController::class,'post_qualification']);
     });
 
     Route::group(["prefix" => "jobcategory"],function(){

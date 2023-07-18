@@ -32,7 +32,58 @@
   
         <div class="form-group">
             <label  class="block text-sm font-medium leading-6 text-gray-900">Content<span style="color:red">*</span>:</label>
-            <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="Whats on your mind...." required></textarea>
+            {{-- <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="Whats on your mind...." required></textarea> --}}
+            {{-- <input type="hidden" name="content"> --}}
+            <div id="scrolling-container-create" class="col-span-4">
+              <div id="toolbar-container-create" class="bg-white">
+                <span class="ql-formats">
+                  <select class="ql-font"></select>
+                  <select class="ql-size"></select>
+                </span>
+                <span class="ql-formats">
+                  <button class="ql-bold"></button>
+                  <button class="ql-italic"></button>
+                  <button class="ql-underline"></button>
+                  <button class="ql-strike"></button>
+                </span>
+                <span class="ql-formats">
+                  <select class="ql-color"></select>
+                  <select class="ql-background"></select>
+                </span>
+                <span class="ql-formats">
+                  <button class="ql-script" value="sub"></button>
+                  <button class="ql-script" value="super"></button>
+                </span>
+                <span class="ql-formats">
+                  <button class="ql-header" value="1"></button>
+                  <button class="ql-header" value="2"></button>
+                  <button class="ql-blockquote"></button>
+                  <button class="ql-code-block"></button>
+                </span>
+                <span class="ql-formats">
+                  <button class="ql-list" value="ordered"></button>
+                  <button class="ql-list" value="bullet"></button>
+                  <button class="ql-indent" value="-1"></button>
+                  <button class="ql-indent" value="+1"></button>
+                </span>
+                <span class="ql-formats">
+                  <button class="ql-direction" value="rtl"></button>
+                  <select class="ql-align"></select>
+                </span>
+                <span class="ql-formats">
+                  <button class="ql-link"></button>
+                  {{-- <button class="ql-image"></button>
+                  <button class="ql-video"></button>
+                  <button class="ql-formula"></button> --}}
+                </span>
+                <span class="ql-formats">
+                  <button class="ql-clean"></button>
+                </span>
+              </div>
+              <div id="container-create" class="h-auto bg-white">
+    
+              </div>
+            </div>
         </div>
         <div class="form-group col-span-3">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Pictures</label>

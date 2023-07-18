@@ -80,7 +80,8 @@
                   <!-- Slides -->
                   @foreach($data[0]['images'] as $image)
                   <div class="swiper-slide flex justify-center items-center">
-                    <img src="{{url('storage/'.$image['path'])}}" class="object-contain w-auto h-full" alt="">
+                    {{-- <img src="{{url('storage/'.$image['path'])}}" class="object-contain w-auto h-full" alt=""> --}}
+                    <img src="data:image/png;base64,{{base64_encode($image['path'])}}" class="object-contain w-auto h-full" alt="">
                   </div>
                   @endforeach
                   ...
@@ -99,8 +100,12 @@
             
 
             <hr class="mt-5">
-            <div class="content whitespace-pre-line text-ellipsis overflow-hidden font-sans">
-               {{$data[0]['content']}}
+            <div class="content whitespace-pre-line text-ellipsis overflow-hidden font-sans snow">
+              <div class="ql-editor">
+                {!! html_entity_decode($data[0]['content']) !!}
+              </div>
+               {{-- {{$data[0]['content']}} --}}
+               
             </div>
 
             <hr class=" mt-10">

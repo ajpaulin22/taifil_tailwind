@@ -20,6 +20,16 @@
     setTimeout(() => {
         $("#opening").hide();
     }, 1000);
+
+    var content = new Quill('#container-create',{modules: { 
+        toolbar: '#toolbar-container-create'
+    },
+    scrollingContainer: '#scrolling-container-create', 
+    placeholder: 'Compose your Qualifications',
+    theme: 'snow'
+  });
+
+
     $.validator.addMethod( "maxsizetotal", function( value, element, param ) {
         // if ( this.optional( element ) ) {
         //     return true;
@@ -93,8 +103,9 @@
     });
     $("#create_form").on("submit",function(e){
         e.preventDefault();
-        
+        // console.log()
         let formData = new FormData(this);
+        formData.append('content',content.root.innerHTML)
         if($("#create_form").valid()){
             // $("#create_form")[0].reset();
             $.ajax({

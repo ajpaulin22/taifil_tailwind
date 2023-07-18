@@ -92,11 +92,66 @@
             </div>
             <p class="col-span-4 text-center text-red-600 text-lg md:text-2xl mt-5" ><b>We do not entertain late comers and incomplete requirements.</b></p>
         </div>
+        <div id="scrolling-container" class="col-span-4">
+          <div id="toolbar-container">
+            <span class="ql-formats">
+              <select class="ql-font"></select>
+              <select class="ql-size"></select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-bold"></button>
+              <button class="ql-italic"></button>
+              <button class="ql-underline"></button>
+              <button class="ql-strike"></button>
+            </span>
+            <span class="ql-formats">
+              <select class="ql-color"></select>
+              <select class="ql-background"></select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-script" value="sub"></button>
+              <button class="ql-script" value="super"></button>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-header" value="1"></button>
+              <button class="ql-header" value="2"></button>
+              <button class="ql-blockquote"></button>
+              <button class="ql-code-block"></button>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-list" value="ordered"></button>
+              <button class="ql-list" value="bullet"></button>
+              <button class="ql-indent" value="-1"></button>
+              <button class="ql-indent" value="+1"></button>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-direction" value="rtl"></button>
+              <select class="ql-align"></select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-link"></button>
+              {{-- <button class="ql-image"></button>
+              <button class="ql-video"></button>
+              <button class="ql-formula"></button> --}}
+            </span>
+            <span class="ql-formats">
+              <button class="ql-clean"></button>
+            </span>
+          </div>
+          <div id="content" class="h-auto">
+
+          </div>
+        </div>
+        {{-- <div class="col-span-4 ql-snow">
+          <div class="ql-editor">
+          <p>asd</p><p><span class="ql-size-huge">asd</span></p><p><strong class="ql-size-huge">asd</strong></p><p><strong class="ql-size-huge"><em>asd</em></strong></p><p><s class="ql-size-huge">sda</s></p><p><span style="color: rgb(255, 153, 0);">sadasd</span></p><p><span style="color: rgb(255, 255, 255); background-color: rgb(0, 138, 0);">sadasd</span></p><p><sub>sasd</sub></p><p><sup>sdad</sup></p><h1><sup>asd</sup></h1><h2>asdasd</h2><blockquote>asdas</blockquote><pre class="ql-syntax" spellcheck="false">asd
+          </pre><ol><li>asd</li></ol><ul><li>asdasd</li></ul><p>asdasd</p><p class="ql-indent-1">asdasd</p><p class="ql-indent-1 ql-align-right ql-direction-rtl">asdasd</p><p class="ql-indent-1 ql-align-center">center</p><p class="ql-indent-1">right</p><p class="ql-indent-1 ql-align-right">left</p><p class="ql-indent-1 ql-align-justify">formal</p><p class="ql-indent-1 ql-align-justify">a<a href="upload link" rel="noopener noreferrer" target="_blank">sd</a></p><p>asd</p>
+        </div>
+        </div> --}}
+        
     </div>
 </section>
-<script>
-  setTimeout(() => {
-        $("#opening").hide();
-    }, 1000);
-</script>
+@push('scripts')
+<script src="{{asset("js/client/qualification.js")}}"></script>
+@endpush
 @endsection

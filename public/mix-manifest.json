@@ -10,6 +10,7 @@
     "/js/onepage.js": "/js/onepage.js",
     "/js/client/Biodata.js": "/js/client/Biodata.js",
     "/js/client/jobcategory.js": "/js/client/jobcategory.js",
+    "/js/client/qualification.js": "/js/client/qualification.js",
     "/js/admin/ManagementRegistration.js": "/js/admin/ManagementRegistration.js",
     "/css/admin/ManagementRegistration.css": "/css/admin/ManagementRegistration.css",
     "/js/admin/MasterMaintenance/JobInformation.js": "/js/admin/MasterMaintenance/JobInformation.js",

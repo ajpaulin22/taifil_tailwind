@@ -21,13 +21,14 @@
     <div class="card_content md:grid grid-flow-col grid-cols-3 gap-5 mt-5">
         @if($image != '')
         <div class="content_img w-full h-40 rounded-md overflow-hidden col-span-1">
-            <img src="{{url('storage/'.$image)}}" class="w-full h-auto" alt="">
+            {{-- <img src="{{url('storage/'.$image)}}" class="w-full h-auto" alt=""> --}}
+            <img src="data:image/png;base64,{{$image}}" class="w-full h-auto" alt="">
         </div>
         @endif
         
         <div class="content_details w-auto col-span-2">
             <div class="details whitespace-pre-line text-ellipsis max-h-36 overflow-hidden text-gray-600 text-sm font-sans">
-                {{$content}}
+                    {!! html_entity_decode($content) !!}
             </div>
             <hr>
             <div class="mt-3">

@@ -5,6 +5,7 @@ window.flowbite = require("flowbite");
 Datepicker = require("flowbite/dist/datepicker");
 window.iziToast = require("izitoast");
 window.AOS = require('aos');
+window.Quill = require('quill');
 
 
 
