@@ -25,7 +25,7 @@
                 </div>
                 <div class="p-5">
                     <div class="banner shadow-5xl">
-                        <a href="{{'/client/gallery?cat='.$d['category']}}" class="py-1 px-4 bg-sky-800 rounded-full text-white hover:scale(200) hover:text-white hover:ring-2 hover:ring-white ">{{$d['category']}}</a>
+                        <a href="{{'/client/gallery?cat='.$d['category']}}" class="py-1 px-4 bg-sky-800 rounded-full text-white hover:scale(200) hover:text-white hover:ring-2 hover:ring-white transition-all ease-in-out duration-300">{{$d['category']}}</a>
                     </div>
                     <div class="title my-5">
                         <h1 class="text-2xl font-semibold ">{{$d['title']}}</h1>
@@ -35,7 +35,7 @@
                             {!! html_entity_decode($d['content']) !!}
                         </div>    
                     </div>
-                    <a href="/client/gallery/post?id={{$d['id']}}" class="mt-4 hover:text-white"> Read more...</a>
+                    <a href="/client/gallery/post?id={{$d['id']}}" class="mt-4 hover:border hover:border-white hover:px-4 hover:py-2 hover:rounded transition-all ease-in duration-300"> Read more...</a>
                 </div>
             </div>
             @endforeach

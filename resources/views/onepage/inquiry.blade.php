@@ -31,7 +31,7 @@
                             <textarea name="message" autocomplete="off" id="" cols="102" rows="10" class="resize-none border-2 border-sky-800 p-2 rounded w-full" required></textarea>
                         </div>
                     </div>
-                    <button class="py-2 text-white px-10 bg-green-500 rounded hover:bg-green-300 hover:text-black border border-green-800 mb-5">Send</button>
+                    <button class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-auto text-center">Send</button>
                 </form>
             </div>
             <div class="col-span-1">
