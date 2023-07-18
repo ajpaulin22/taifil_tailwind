@@ -40,7 +40,7 @@
                 showMessage("Error!", "Please check a row in the table", "error", "red");
             }
             else if (tableData.length != 1){
-                showMessage("Error!", "Can not select more than 1", "error", "red");
+                showMessage("Error!", "Can not select more than 1 applicant", "error", "red");
             }
             else{
                 $.ajax({
@@ -202,13 +202,13 @@
 
         $("#btnDownloadBiodata").click(function(){
             collectCheckBoxID();
-            if(tableData.length != 0){
-                var IDs = "";
+            if(tableData.length == 1){
                 for (var i = 0; i < tableData.length; i++){
-                    IDs = IDs + "," + tableData[i].ID;
+                    window.location = '/admin/ManagementRegistration/ExportBiodata?IDs=' + tableData[i].ID;
                 }
-                IDs = IDs.replace(/^,|,$/g, '');
-                window.location = '/admin/ManagementRegistration/ExportBiodata?IDs=' + IDs;
+            }
+            else if (tableData.length > 1){
+                showMessage("Error!", "Can not select more than 1 applicant", "error", "red");
             }
             else{
                 showMessage("Error!", "Please check a row in the table", "error", "red");
