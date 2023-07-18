@@ -16,6 +16,7 @@ class CreateQualificationContentsTable extends Migration
         Schema::create('qualification_contents', function (Blueprint $table) {
             $table->id();
             $table->text("content");
+            $table->string("type");
             $table->integer("isdeleted")->default(0)->length(1);
             $table->timestamps();
         });

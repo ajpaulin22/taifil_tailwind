@@ -58,9 +58,9 @@ class CreatePersonalDataTable extends Migration
             $table->boolean("drivers_licensed");
             $table->string("type_licensed")->nullable();
             $table->dateTime("valid_licensed")->nullable();
-            $table->text("id_picture")->nullable();
-            $table->text("gov_id_picture")->nullable();
-            $table->text("passport_id_picture")->nullable();
+            $table->binary("id_picture")->nullable();
+            $table->binary("gov_id_picture")->nullable();
+            $table->binary("passport_id_picture")->nullable();
             $table->integer("isdeleted")->default(0)->length(1);
             $table->integer("to_abroad")->default(0)->length(1);
             $table->datetime("abroad_date")->nullable();

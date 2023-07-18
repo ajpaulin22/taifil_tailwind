@@ -11,6 +11,7 @@ class qualification_content extends Model
 
     protected $fillable = [
         "content",
-        "isdeleted"
+        "isdeleted",
+        "type"
     ];
 }
