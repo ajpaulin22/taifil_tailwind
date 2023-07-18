@@ -22,8 +22,8 @@
                 </select>
             </div>
             <div class="form-group col-span-1">
-                {{-- <input name="PersonalInfoID" autocomplete="off" type="hidden" class="form-control" id="PersonalInfoID">
-                <label for="personal_lastname" class="form-label">Code<span style="color:red">*</span>:</label>
+                <input name="PersonalInfoID" type="hidden" class="form-control" id="PersonalInfoID">
+                {{-- <label for="personal_lastname" class="form-label">Code<span style="color:red">*</span>:</label>
                 <select name="code" class="form-select" id="jobcodes">
                     
                     <option value="" selected disabled value>Choose....</option>
@@ -77,7 +77,7 @@
             <x-citizenship/>
             <div class="form-group col-span-1">
                 <label for="age" class="form-label">Age<span style="color:red">*</span>:</label>
-                <input name="age" autocomplete="off" type="number" class="form-control" id="age" onKeyPress="if(this.value.length==4) return false;">
+                <input name="age" autocomplete="off" type="text" class="form-control Number-Only" id="age" maxlength="4">
             </div>
             <div class="form-group col-span-1">
                 <label for="personal_lastname" class="form-label">Blood Type:</label>

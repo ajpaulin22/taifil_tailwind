@@ -502,6 +502,39 @@
                 $(".CheckItemOperation").prop('checked', false);
             }
         })
+
+        $("#btnSaveHiring").click(function(){
+            var hiringData = [];
+            $(".CheckHiring").each(function(){
+                hiringData.push({
+                    ID: $(this).val(),
+                    Value: $(this).is(":checked") ? 1 : 0
+                })
+            })
+
+            if(hiringData.length == 0){
+                showMessage("Error!", "Please check a row in Hiring Column", "error", "red");
+            }
+            else{
+                $.ajax({
+                    url:"/admin/MasterMaintenance/JobInformation/SaveHiring",
+                    type:"POST",
+                    data:{
+                        _token: token,
+                        PersonalID: hiringData
+                    },
+                    dataType:"JSON",
+                    beforeSend: function(){
+                        $("#loading_modal").show();
+                    },
+                    success:function(promise){
+                        $("#loading_modal").hide();
+                        tblOperations.ajax.reload(null, false);
+                        showMessage("Success!", "Hiring Information Was Saved Successfully", "success", "green");
+                    }
+                });
+            }
+        });
     });
 
     // function drawCodesTable(){
@@ -623,7 +656,7 @@
                             {
                                 title: "Hiring",
                                 render: function (data, row, meta){
-                                    return "<input type='checkbox' class='CheckHiring text-center' " + (meta.Hiring == 1 ? 'checked' : '' ) +">";
+                                    return "<input type='checkbox' class='CheckHiring text-center' value='" + meta.ID + "' " + (meta.Hiring == 1 ? 'checked' : '' ) +">";
                                 },
                                 width: "2%", orderable: false
                             },

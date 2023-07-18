@@ -33,6 +33,7 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
             'ID',
             'Name',
             'Job Category',
+            'Job Operation',
             'Job Type',
             'Attended Interview',
             'Interview Date',
@@ -57,7 +58,8 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
             'H',
             'I',
             'J',
-            'K'
+            'K',
+            'L'
         ];
     }
 }

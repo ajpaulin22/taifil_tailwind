@@ -231,6 +231,27 @@
            }
         },
 
+        loadURLToInputField:function(url, fileName, key){
+            biodata.getImgURL(url, (imgBlob)=>{
+              // Load img blob to input
+              // WIP: UTF8 character error
+              let file = new File([imgBlob], fileName,{type:"image/jpeg", lastModified:new Date().getTime()}, 'utf-8');
+              let container = new DataTransfer();
+              container.items.add(file);
+              document.querySelector('#' + key).files = container.files;
+            })
+        },
+          // xmlHTTP return blob respond
+        getImgURL:function(url, callback){
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            callback(xhr.response);
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+        },
+
         getData:function(){
             var strx = location.search.substring(1).split('&');
             var type = strx[1].substring(strx[1].indexOf("=") + 1);
@@ -240,7 +261,6 @@
                     type:"GET",
                     data:{
                         _token:self.token,
-                        // PersonalInfoID: PersonalInfoID
                     },
                     dataType:"JSON",
                     success:function(promise){
@@ -396,7 +416,7 @@
                             $("input[name='spouse_address']").val(promise.familydata[0].spouse_address);
                         }
                         
-                        if(promise.familydata[0].partner_name == null){
+                        if(promise.familydata[0].partner_name != null){
                             $("#partner_applicable").trigger('click');
                             $("input[name='partner']").val(promise.familydata[0].partner_name);
                             $("input[name='partner_birthday']").val(promise.familydata[0].partner_birth);
@@ -483,6 +503,14 @@
                                 $("input[name='address_relative_"+ i +"']").val(promise.relativedata[i].address);
                             }
                         }
+
+                        //pictures
+                        var pictureName = promise.personaldata[0].id_picture.replace('1x1_pictures/', '')
+                        var govIDName = promise.personaldata[0].gov_id_picture.replace('gov_id_pictures/', '')
+                        var passportIDName = promise.personaldata[0].passport_id_picture.replace('passport_id_pictures/', '')
+                        biodata.loadURLToInputField('/storage/1x1_pictures/' + pictureName, pictureName, "picture");
+                        biodata.loadURLToInputField('/storage/gov_id_pictures/' + govIDName, govIDName, "gov_id");
+                        biodata.loadURLToInputField('/storage/passport_id_pictures/' + passportIDName, passportIDName, "passport_id");
                     },
                 })
             }
@@ -600,7 +628,6 @@
                 }
             })
         }
-        
     }
     Biodata.init.prototype = Biodata.prototype;
 
@@ -611,8 +638,8 @@
         $("#opening").hide();
     }, 1000);
     // biodata.getCode();
-    biodata.getCategories()
     biodata.getData();
+    biodata.getCategories()
     //EVENTS
     // $("#jobcodes").on("change",function(){
     //     biodata.getCategories($(this).val());
@@ -1484,6 +1511,11 @@
         e.preventDefault()
         $("#job_abroad_tab").trigger("click");
      })
+
+     $(".Number-Only").on("input change paste", function () {
+        var newVal = $(this).val().replace(/[^0-9\.]/g, '');
+        $(this).val(newVal.replace(/,/g, ''));
+    });
      
      //UPLOAD TAB =======================================================EVENT LISTENER
 
