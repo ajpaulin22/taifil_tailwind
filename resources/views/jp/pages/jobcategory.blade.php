@@ -59,7 +59,7 @@
             @php
                 $quali = $card->Qualifications==null ? "Still Updating..." : $card->Qualifications;
             @endphp
-            <x-card_job require="{{$quali}}" job="{{$card->Operation}}" type="{{$id}}" cat="{{$card->CategoryID}}" op="{{$card->OperationID}}"/>
+            <x-jp.card_job require="{{$quali}}" job="{{$card->Operation}}" type="{{$id}}" cat="{{$card->CategoryID}}" op="{{$card->OperationID}}"/>
             @endforeach
             @else
             <h1 class="text-center col-span-3 text-lg mt-10">求人情報は掲載されていません...</h1>
