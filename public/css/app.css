@@ -17895,6 +17895,9 @@ input[type='number']::-webkit-outer-spin-button,
 .whitespace-pre-line {
   white-space: pre-line;
 }
+.whitespace-break-spaces {
+  white-space: break-spaces;
+}
 .rounded {
   border-radius: 0.25rem;
 }
@@ -19511,6 +19514,11 @@ input[type='number']::-webkit-outer-spin-button,
 
   .md\:text-5xl {
     font-size: 3rem;
+    line-height: 1;
+  }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
     line-height: 1;
   }
 

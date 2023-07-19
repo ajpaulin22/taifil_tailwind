@@ -16,9 +16,9 @@
             <div data-aos="flip-down" class="bg-green-500 rounded-md overflow-hidden h-auto col-span-1 shadow-2xl mb-5 md:mb-0">
                 <div class="overflow-hidden w-full h-56 md:h-1/2">
                     @if(count($d['images']) != 0)
-                    
+
                     {{-- <img src="{{url('storage/'.$d['images'][0]['path'])}}" alt="" class="object-cover h-auto w-full objec hover:scale-150 transition-transform ease-in duration-300"> --}}
-                    <img src="data:image/png;base64,{{base64_encode($d['images'][0]['path'])}}" alt="" class="object-cover h-auto w-full objec hover:scale-150 transition-transform ease-in duration-300">
+                    <img src="data:image/png;base64,{{base64_encode($d['images'][0]['path'])}}" alt="" class="object-cover h-auto w-full hover:scale-150 transition-transform ease-in duration-300">
                     @else
                     <img src="{{url('images/default_item.png')}}" alt="" class="object-cover hover:scale-150 transition-transform ease-in duration-300">
                     @endif
@@ -31,9 +31,11 @@
                         <h1 class="text-2xl font-semibold ">{{$d['title']}}</h1>
                         <hr class="text-sky-800">
                         {{-- <p class="text-sm py-4 whitespace-pre-line h-24 overflow-hidden">{{$d['content']}}</p> --}}
+                        @if($d['content'] != "<p><br></p>")
                         <div class="text-sm py-4 whitespace-pre-line h-24 overflow-hidden">
                             {!! html_entity_decode($d['content']) !!}
-                        </div>    
+                        </div>   
+                        @endif 
                     </div>
                     <a href="/client/gallery/post?id={{$d['id']}}" class="mt-4 hover:border hover:border-white hover:px-4 hover:py-2 hover:rounded transition-all ease-in duration-300"> Read more...</a>
                 </div>

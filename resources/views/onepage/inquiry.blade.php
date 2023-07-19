@@ -34,7 +34,7 @@
                     <button class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-auto text-center">Send</button>
                 </form>
             </div>
-            <div class="col-span-1">
+            <div class="col-span-1 mt-5 md:mt-0">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d965.9967223635309!2d121.0235601!3d14.4279191!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1cfe9a2d6bd%3A0x1b23ce8f795da06a!2sN.T.%20center%20building!5e0!3m2!1sen!2sph!4v1687935393311!5m2!1sen!2sph" class="w-full h-5/6" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <a href="/client/contact-us-location" class="block bg-5 p-5 text-center hover:text-green-600">How To Get Here?</a>
             </div>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="text-center">
                     <h1 class="text-xl font-bold">Send Email</h1>
-                    <a href="mailto:taifilmanpower.application.sc@gmail.com" class="hover:text-green-600">taifilmanpower.application.sc@gmail.com</a>
+                    <a href="mailto:taifilmanpower.application.sc@gmail.com" class="hover:text-green-600 text-xs md:text-base">taifilmanpower.application.sc@gmail.com</a>
                 </div>
             </div>
         </div>

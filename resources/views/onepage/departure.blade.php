@@ -1,7 +1,7 @@
 <section class="mt-10">
     <div data-aos="flip-down" class="min-h-screen max-w-7xl md:mx-auto mx-5">
         <div>
-            <h1 class="text-center text-4xl md:text-5xl mt-9 font-bold bg-green-500 p-5 rounded-t-lg text-white">Departures 2023</h1>  
+            <h1 class="text-center text-2xl md:text-5xl mt-9 font-bold bg-green-500 p-5 rounded-t-lg text-white">Departures 2023</h1>  
         </div>
         <div class="swiper departure w-auto h-56 bg-gradient-to-r from-green-500 via-sky-200 to-green-200 border-y-gray-500 border-y-2">
             <!-- Additional required wrapper -->
@@ -21,7 +21,7 @@
         @endphp
         <div data-aos="flip-up" class="total my-5">
             <div class="">
-                <h1 class="text-center text-4xl md:text-5xl mt-9 font-bold bg-green-500 p-5 rounded-t-lg text-white">Total Departures</h1>  
+                <h1 class="text-center text-2xl md:text-5xl mt-9 font-bold bg-green-500 p-5 rounded-t-lg text-white">Total Departures</h1>  
             </div>
             <div class="md:grid grid-cols-3 gap-5 w-auto md:h-56 bg-gradient-to-r from-green-500 via-sky-200 to-green-200 border-y-gray-500 border-y-2">
                 
