@@ -21,11 +21,16 @@
         $("#opening").hide();
     }, 1000);
 
+    AOS.init({
+        duration: 300, // values from 0 to 3000, with step 50ms
+        easing: 'ease-in-sine',
+       });
+
     var content = new Quill('#container-create',{modules: { 
         toolbar: '#toolbar-container-create'
     },
     scrollingContainer: '#scrolling-container-create', 
-    placeholder: 'Compose your Qualifications',
+    placeholder: 'Compose your Contents....',
     theme: 'snow'
   });
 
@@ -103,7 +108,16 @@
     });
     $("#create_form").on("submit",function(e){
         e.preventDefault();
-        // console.log()
+         console.log()
+         if(content.getText().trim().length == 0 && $("#pictures").val().length == 0){
+            iziToast.error({
+                class:'rounded-lg overflow-hidden',
+                title: 'Error',
+                message: 'No Content included cannot proceed',
+                position:'topRight'
+            });
+            return;
+         }
         let formData = new FormData(this);
         formData.append('content',content.root.innerHTML)
         if($("#create_form").valid()){

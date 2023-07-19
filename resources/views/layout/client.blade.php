@@ -5,7 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="Tai-Fil Manpower Services Corp" name="description" />
     <meta content="Alphy Jay Paulin & Lenard Robenta" name="author" />
-    <meta name="language" lang="jp" />
+    <meta name="language" lang="eng" />
 
     <!-- CSRF Token -->
     @stack('meta')

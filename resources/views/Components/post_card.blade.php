@@ -1,6 +1,5 @@
 
-{{-- {{'storage/'.$image}} --}}
-<div class="p-5 bg-white border-green-700 border-2 rounded shadow-md my-5 md:h-80 overflow-hidden">
+<div data-aos="fade-left" class="p-5 bg-white border-green-700 border-2 rounded shadow-md my-5 md:h-80 overflow-hidden">
     <div class="title flex justify-between">
         <h1 class="text-lg md:text-3xl font-bold uppercase">{{$title}}</h1>
         @admin
