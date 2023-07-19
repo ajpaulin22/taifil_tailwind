@@ -202,13 +202,10 @@
 
         $("#btnDownloadBiodata").click(function(){
             collectCheckBoxID();
-            if(tableData.length == 1){
+            if(tableData.length != 0){
                 for (var i = 0; i < tableData.length; i++){
-                    window.location = '/admin/ManagementRegistration/ExportBiodata?IDs=' + tableData[i].ID;
+                    window.open('/admin/ManagementRegistration/ExportBiodata?IDs=' + tableData[i].ID, '_blank');
                 }
-            }
-            else if (tableData.length > 1){
-                showMessage("Error!", "Can not select more than 1 applicant", "error", "red");
             }
             else{
                 showMessage("Error!", "Please check a row in the table", "error", "red");

@@ -652,52 +652,72 @@ class BiodataController extends Controller
         return $data;
     }
 
-    public function GetPersonalData(Request $request){
+    public function GetPersonalData(Request $request)
+    {
         $personalid = $request->session()->get('personaldata');
         $personaldata = DB::table('personal_datas')
-        ->where("id",$personalid[0]->id)
-        ->where("IsDeleted",0)
-        ->select()->Get();
+            ->where("id", $personalid[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+
+        $personaldata[0]->date_birth = explode(" ", $personaldata[0]->date_birth)[0];
+        $personaldata[0]->issue_date = explode(" ", $personaldata[0]->issue_date)[0];
+        $personaldata[0]->expiry_date = explode(" ", $personaldata[0]->expiry_date)[0];
 
         $educationaldata = DB::table('educational_datas')
-        ->where("personal_id",$personalid[0]->id)
-        ->where("IsDeleted",0)
-        ->select()->Get();
+            ->where("personal_id", $personalid[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+
+        $educationaldata[0]->from_elem = explode(" ", $educationaldata[0]->from_elem)[0];
+        $educationaldata[0]->until_elem = explode(" ", $educationaldata[0]->until_elem)[0];
+        $educationaldata[0]->from_highschool = explode(" ", $educationaldata[0]->from_highschool)[0];
+        $educationaldata[0]->until_highschool = explode(" ", $educationaldata[0]->until_highschool)[0];
+        $educationaldata[0]->from_jp_lang = explode(" ", $educationaldata[0]->from_jp_lang)[0];
+        $educationaldata[0]->until_jp_lang = explode(" ", $educationaldata[0]->until_jp_lang)[0];
+        $educationaldata[0]->certificate_until_jp_lang = explode(" ", $educationaldata[0]->certificate_until_jp_lang)[0];
+        $educationaldata[0]->from_college = explode(" ", $educationaldata[0]->from_college)[0];
+        $educationaldata[0]->until_college = explode(" ", $educationaldata[0]->until_college)[0];
+        $educationaldata[0]->certificate_until_college = explode(" ", $educationaldata[0]->certificate_until_college)[0];
 
         $vocationaldata = DB::table('vocational_datas')
-        ->where("educational_id",$educationaldata[0]->id)
-        ->where("IsDeleted",0)
-        ->select()->Get();
+            ->where("educational_id", $educationaldata[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+
+        $vocationaldata[0]->certificate_until = explode(" ", $vocationaldata[0]->certificate_until)[0];
+        $vocationaldata[0]->from = explode(" ", $vocationaldata[0]->from)[0];
+        $vocationaldata[0]->until = explode(" ", $vocationaldata[0]->until)[0];
 
         $employmentlocaldata = DB::table('local_emps')
-        ->where("personal_id",$personalid[0]->id)
-        ->where("IsDeleted",0)
-        ->select()->Get();
+            ->where("personal_id", $personalid[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
 
         $employmentabroaddata = DB::table('abroad_emps')
-        ->where("personal_id",$personalid[0]->id)
-        ->where("IsDeleted",0)
-        ->select()->Get();
-        
+            ->where("personal_id", $personalid[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+
         $familydata = DB::table('family_datas')
-        ->where("personal_id",$personalid[0]->id)
-        ->where("IsDeleted",0)
-        ->select()->Get();
+            ->where("personal_id", $personalid[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
 
         $siblingdata = DB::table('sibling_datas')
-        ->where("family_id",$familydata[0]->id)
-        ->where("IsDeleted",0)
-        ->select()->Get();
-        
+            ->where("family_id", $familydata[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+
         $childrendata = DB::table('children_datas')
-        ->where("family_id",$familydata[0]->id)
-        ->where("IsDeleted",0)
-        ->select()->Get();
+            ->where("family_id", $familydata[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
 
         $relativedata = DB::table('relative_datas')
-        ->where("family_id",$familydata[0]->id)
-        ->where("IsDeleted",0)
-        ->select()->Get();
+            ->where("family_id", $familydata[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
 
         $data = [
             "personaldata" => $personaldata,

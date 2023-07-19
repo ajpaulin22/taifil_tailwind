@@ -42,7 +42,7 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                <input name="father_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="father_deceased form-control disabled:bg-slate-200" required>
+                <input name="father_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="father_deceased form-control disabled:bg-slate-200" required style="text-align:right">
             </div>
             <div class="form-group col-start-2 col-span-12">
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -87,7 +87,7 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                <input name="mother_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="mother_deceased form-control disabled:bg-slate-200" required>
+                <input name="mother_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="mother_deceased form-control disabled:bg-slate-200" required style="text-align:right">
             </div>
             <div class="form-group col-start-2 col-span-12">
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -123,7 +123,7 @@
                 </div>
                 <div class="form-group col-span-3">
                     <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                    <input name="sibling_cp_0" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required>
+                    <input name="sibling_cp_0" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required style="text-align:right">
                 </div>
                 <div class="form-group col-start-2 col-span-12">
                     <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -155,7 +155,7 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                <input name="spouse_cp" autocomplete="off" type="text" maxlength="100" class="form-control spouse disabled:bg-slate-200" required>
+                <input name="spouse_cp" autocomplete="off" type="text" maxlength="100" class="form-control spouse disabled:bg-slate-200" required style="text-align:right" style="text-align:right">
             </div>
             <div class="form-group col-start-2 col-span-12">
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -211,7 +211,7 @@
             </div>
             <div class="partner_hidden form-group col-span-3" hidden>
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                <input name="partner_cp" autocomplete="off" type="text" maxlength="100" class="form-control partner disabled:bg-slate-200" required disabled>
+                <input name="partner_cp" autocomplete="off" type="text" maxlength="100" class="form-control partner disabled:bg-slate-200" required disabled style="text-align:right">
             </div>
             <div class="partner_hidden form-group col-start-2 col-span-12" hidden>
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>

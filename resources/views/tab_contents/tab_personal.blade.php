@@ -77,7 +77,7 @@
             <x-citizenship/>
             <div class="form-group col-span-1">
                 <label for="age" class="form-label">Age<span style="color:red">*</span>:</label>
-                <input name="age" autocomplete="off" type="text" class="form-control Number-Only" id="age" maxlength="4">
+                <input name="age" autocomplete="off" type="text" class="form-control Number-Only" id="age" maxlength="2" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="personal_lastname" class="form-label">Blood Type:</label>
@@ -106,11 +106,11 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="contact" class="form-label">Contact No.<span style="color:red">*</span>:</label>
-                <input name="contact" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control" id="contact">
+                <input name="contact" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control" id="contact" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Height<span style="color:red">*</span>:</label>
-                <input name="height" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;">
+                <input name="height" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="personal_lastname" class="form-label">Religion<span style="color:red">*</span>:</label>
@@ -141,7 +141,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Weight(KG)<span style="color:red">*</span>:</label>
-                <input name="weight" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;">
+                <input name="weight" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;" style="text-align:right">
             </div>
             <div class="form-group col-span-2">
                 <label for="height" class="form-label">Japanese Language<span style="color:red">*</span>:</label>
@@ -170,7 +170,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Shoe Size<span style="color:red">*</span>:</label>
-                <input name="shoe_size" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;">
+                <input name="shoe_size" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Hobbies<span style="color:red">*</span>:</label>
@@ -190,11 +190,11 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Contact No.<span style="color:red">*</span>:</label>
-                <input name="person_contact" onKeyPress="if(this.value.length==20) return false;" autocomplete="off" type="number" class="form-control">
+                <input name="person_contact" onKeyPress="if(this.value.length==20) return false;" autocomplete="off" type="number" class="form-control" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Passport No.<span style="color:red">*</span>:</label>
-                <input name="passport" autocomplete="off" type="text" maxlength="100" class="form-control uppercase">
+                <input name="passport" autocomplete="off" type="text" maxlength="100" class="form-control uppercase" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                     <label for="height" class="form-label">Issue Date.<span style="color:red">*</span>:</label>
