@@ -17279,6 +17279,12 @@ input[type='number']::-webkit-outer-spin-button,
 .top-5 {
   top: 1.25rem;
 }
+.right-4 {
+  right: 1rem;
+}
+.top-7 {
+  top: 1.75rem;
+}
 .isolate {
   isolation: isolate;
 }
@@ -18664,6 +18670,9 @@ input[type='number']::-webkit-outer-spin-button,
 }
 .duration-300 {
   transition-duration: 300ms;
+}
+.duration-500 {
+  transition-duration: 500ms;
 }
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);

@@ -19,7 +19,7 @@
     @stack('styles')
 </head>
 <body class="min-h-full flex flex-col overflow-x-hidden">
-    <x-user-banner/>
+    <x-jp.user-banner/>
     @include('jp.navFoot.client_nav')
     <main class="min-h-screen">
         @yield('content')
