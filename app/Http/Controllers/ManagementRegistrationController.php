@@ -218,13 +218,33 @@ class ManagementRegistrationController extends Controller
         $query = "Select *, c.Category, o.Operation from personal_datas p"
                 ." LEFT JOIN m_jobcategories c ON p.job_cat = c.ID"
                 ." LEFT JOIN m_joboperations o ON p.operation = o.ID"
-                ." WHERE p.ID = 22";
-        $data = DB::select($query);
-        // dd($data);
+                ." WHERE p.ID = 22 AND p.isdeleted = 0";
+        $dataPersonal = DB::select($query);
+        $query = "Select * from educational_datas where isdeleted = 0 AND personal_id = 22";
+        $dataEducational = DB::select($query);
+        $query = "Select * from vocational_datas where isdeleted = 0 AND educational_id = 22";
+        $dataVocational = DB::select($query);
+        $query = "Select * from local_emps where isdeleted = 0 AND personal_id = 22";
+        $dataLocal = DB::select($query);
+        $query = "Select * from abroad_emps where isdeleted = 0 AND personal_id = 22";
+        $dataAbroad = DB::select($query);
+        $query = "Select * from family_datas where isdeleted = 0 AND personal_id = 22";
+        $dataFamily = DB::select($query);
+        $query = "Select * from sibling_datas where isdeleted = 0 AND family_id = 22";
+        $dataSiblings = DB::select($query);
+        $query = "Select * from children_datas where isdeleted = 0 AND family_id = 22";
+        $dataChildren = DB::select($query);
         $data = [
-            'data' => $data[0]
+            'data' => $dataPersonal[0],
+            'educational' => $dataEducational[0],
+            'vocational' => $dataVocational,
+            'local' => $dataLocal,
+            'abroad' => $dataAbroad,
+            'family' => $dataFamily[0],
+            'siblings' => $dataSiblings,
+            'children' => $dataChildren
         ];
         $pdf = Pdf::loadView('exportbiodata', $data);
-        return $pdf->stream("biodata".$date.'.pdf');
+        return $pdf->download("biodata".$date.'.pdf');
      }
 }
