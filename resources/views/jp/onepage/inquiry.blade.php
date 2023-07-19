@@ -36,7 +36,7 @@
             </div>
             <div class="col-span-1 mt-5 md:mt-0">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d965.9967223635309!2d121.0235601!3d14.4279191!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1cfe9a2d6bd%3A0x1b23ce8f795da06a!2sN.T.%20center%20building!5e0!3m2!1sen!2sph!4v1687935393311!5m2!1sen!2sph" class="w-full h-5/6" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <a href="/client/contact-us-location" class="block bg-5 p-5 text-center hover:text-green-600">アクセス方法</a>
+                    <a href="/jp/client/contact-us-location" class="block bg-5 p-5 text-center hover:text-green-600">アクセス方法</a>
             </div>
         </div>
 
