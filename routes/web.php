@@ -92,34 +92,24 @@ Route::group(["prefix" => "jp"],function(){
     Route::group(["prefix"=>"client"],function(){
         Route::group(["prefix"=>"Biodata"],function(){
             Route::get("/",[BiodataController::class,"view_jp"]);
-            Route::get("/get-code",[BiodataController::class,"get_code"]);
-            Route::get("/get-categories",[BiodataController::class,"get_categories"]);
-            Route::get("/get-operations",[BiodataController::class,"get_operations"]);
-            Route::get("/GetPersonalData",[BiodataController::class,"GetPersonalData"]);
         });
     
         Route::group(["prefix" => "gallery"],function(){
             Route::get("/",[PostController::class,"view_jp"])->name('jpgallery');
-            Route::get("/create-post",[PostController::class,"create_post_jp"])->middleware("admin");
-            Route::get("/post",[PostController::class,"post"]);
-            Route::get("/delete",[PostController::class,"delete"])->middleware("admin");
+            Route::get("/post",[PostController::class,"post_jp"]);
         });
     
         Route::group(["prefix" => "qualification"],function(){
-            Route::get("/",function(Request $request){
-                return view('jp.pages.qualification',["id"=>$request->data]);
-            });
+            Route::get("/",[QualificationController::class,'view_jp']);
         });
     
         Route::group(["prefix" => "jobcategory"],function(){
-            Route::get("/",function(Request $request){
-                return view('jp.pages.jobcategory',["id"=>$request->data]);
-            });
+            Route::get("/",[JobCategoryController::class,'view_jp']);
         });
 
         Route::group(["prefix" => "contact-us-location"],function(){
             Route::get("/",function(Request $request){
-                return view('pages.howto');
+                return view('jp.pages.howto');
             });
         });
     });

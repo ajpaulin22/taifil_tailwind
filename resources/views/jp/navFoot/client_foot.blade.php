@@ -3,17 +3,17 @@
         <div class="grid gap-4 md:grid-cols-3">
             <div class="grid">  
                 <div class="footer-pad text-white">  
-                  <h4 class="text-gray-200 text-lg md:text-2xl font-bold">住所</h4>  
+                  <h4 class="text-gray-200 text-lg md:text-2xl font-bold">所在地</h4>  
                   <address class="text-gray-200"><i class="fa fa-map-marker"></i> 4C,D&amp;E,N.T. Ctr, Alabang-Zapote, Tierra Nueva Village, Cupang, Muntinlupa City</address> 
                 </div>  
               </div>
               <div class="">  
                 <div class="footer-pad text-white">  
-                  <h4 class="text-gray-200 text-lg md:text-2xl font-bold">連絡先 </h4>  
+                  <h4 class="text-gray-200 text-lg md:text-2xl font-bold">お問い合わせ</h4>  
                   <ul class="list-unstyled">  
-                    <li class="py-2 text-gray-200"><i class="fa fa-phone"></i> 電話:<a href="Tel:+02-8511-7381" class="text-white"> 02-8511-7381</a> </li> 
+                    <li class="py-2 text-gray-200"><i class="fa fa-phone"></i> Phone:<a href="Tel:+02-8511-7381" class="text-white"> 02-8511-7381</a> </li> 
                     <hr>
-                    <li class="py-2 text-gray-200"><i class="fa fa-envelope"></i>Eメール:<a href="mailto:taifilmanpower.application.sc@gmail.com" class="text-white text-xs"><br> taifilmanpower.application.sc@gmail.com</a> </li>  
+                    <li class="py-2 text-gray-200"><i class="fa fa-envelope"></i> Email:<a href="mailto:taifilmanpower.application.sc@gmail.com" class="text-white text-xs"><br> taifilmanpower.application.sc@gmail.com</a> </li>  
                   </ul>  
                 </div>  
               </div>
@@ -34,7 +34,7 @@
                 </div>  
               </div> --}}
               <div class="col-md-3">  
-                <h4 class="text-gray-200 text-lg md:text-2xl font-bold"> フォローする </h4>  
+                <h4 class="text-gray-200 text-lg md:text-2xl font-bold"> フォロー </h4>  
                 <ul class="list-group grid grid-cols-3 gap-5">
                   <li class="list-group-item mt-2 col-span-1 text-center ">
                     <a href="https://www.facebook.com/taifilmanpowerservicescorp/" class="w-14 bg-white block p-4 rounded-lg text-center ">
@@ -47,6 +47,6 @@
         </div>
     </div>
     <div>
-        <p class="text-center my-4 text-gray-400"> © 著作権 2023 - Tai-Fil Manpower Services Corp.  全著作権所有. </p>
+        <p class="text-center my-4 text-gray-400"> © Copyright 2023 - Tai-Fil Manpower Services Corp.  All rights reserved. </p>
     </div>
 </footer>

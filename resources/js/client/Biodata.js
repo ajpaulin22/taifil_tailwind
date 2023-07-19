@@ -175,7 +175,7 @@
                     self.personalData.weight = parseInt(self.personalData.weight)
                     self.personalData.shoe_size = parseInt(self.personalData.shoe_size)
                     self.personalData.person_contact = parseInt(self.personalData.person_contact)
-
+                    $(window).scrollTop(0);
                      if($("#seminar_tab").length == 1) {
                         $("#seminar_tab").removeClass('pointer-events-none')
                          $("#seminar_tab").trigger('click');
@@ -719,6 +719,7 @@
             biodata.educationalData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
             biodata.prometricData = [];
             biodata.jplData = []
+            $(window).scrollTop(0);
             for (let i = 0; $(form).find('input[name="name_prometric_' + i + '"]').val() != null ; i++){
                 biodata.prometricData.push({
                     name:$('input[name="name_prometric_' + i + '"]').val(),
@@ -868,6 +869,7 @@
             $(element).removeClass('border-red-600');
         },
         submitHandler: function(form) {
+            $(window).scrollTop(0);
             biodata.educationalData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
             biodata.vocationalData = [];
             for (let i = 0; $(form).find('input[name="name_vocational_' + i + '"]').val() != null ; i++){
@@ -978,6 +980,7 @@
             $(element).removeClass('border-red-600');
         },
         submitHandler: function(form) {
+            $(window).scrollTop(0);
             // console.log($(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {}))
             biodata.local_empData = [];
             for (let i = 0; $(form).find('input[name="name_local_' + i + '"]').val() != null ; i++){
@@ -1104,6 +1107,7 @@
             $(element).removeClass('border-red-600');
         },
         submitHandler: function(form) {
+            $(window).scrollTop(0);
             // console.log($(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {}))
             biodata.abroad_empData = [];
             for (let i = 0; $(form).find('input[name="name_abroad_' + i + '"]').val() != null ; i++){
@@ -1233,6 +1237,7 @@
             $(element).removeClass('border-red-600');
         },
         submitHandler: function(form) {
+            $(window).scrollTop(0);
             biodata.familyData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
             biodata.siblingData =[]
             biodata.childrenData = []

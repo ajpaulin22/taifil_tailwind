@@ -39,13 +39,13 @@
           <div class="text-2xl font-bold mb-2">
             CATEGORIES
           </div>
-          <div class="p-2">
-              <a href="/client/jobcategory?data={{$id}}" class="hover:text-sky-800 ">All</a>
+          <div class="">
+              <a href="/client/jobcategory?data={{$id}}" class="hover:text-sky-800 w-full h-full inline-block p-2">All</a>
           </div>
           <hr>
            @foreach($cat as $c)
-           <div class="p-2 {{(($category == $c->Category) ? 'bg-green-100' : '' )}}">
-            <a href="/client/jobcategory?data={{$id}}&category={{$c->Category}}" class="hover:text-sky-800">{{$c->Category}}</a>
+           <div class="{{(($category == $c->Category) ? 'bg-green-100 pointer-events-none' : '' )}}">
+            <a href="/client/jobcategory?data={{$id}}&category={{$c->Category}}" class="hover:text-sky-800 w-full h-full inline-block p-2">{{$c->Category}}</a>
           </div>
         <hr>
            @endforeach

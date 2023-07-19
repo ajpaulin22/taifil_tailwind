@@ -81,11 +81,12 @@ class PostController extends Controller
                     DB::raw("date_format(p.created_at,'%r') as time"),
                     DB::raw("i.path")
                 ])
-                ->join(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
+                ->leftjoin(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
                     $join->on('p.id','=',"i.post_id");
                 })
                 ->where("category",$request->cat)
                 ->where("isdeleted",0)
+                ->orderByDesc("p.id")
                 ->paginate(5);
             }else{
                 $query = DB::table('posts as p')
@@ -98,10 +99,11 @@ class PostController extends Controller
                     DB::raw("date_format(p.created_at,'%r') as time"),
                     DB::raw("i.path")
                 ])
-                ->join(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
+                ->leftjoin(DB::raw("(SELECT post_id,path from taifil.images where id in (SELECT max(id) as id from taifil.images group by post_id)) as i"),function($join){
                     $join->on('p.id','=',"i.post_id");
                 })
                 ->where("isdeleted",0)
+                ->orderByDesc("p.id")
                 ->paginate(5);
             }
 
@@ -207,6 +209,30 @@ class PostController extends Controller
             //throw $th;
         }
         return view("pages.post",["data"=>$data->toArray(),"next"=>isset($nextpost)?$nextpost->toArray():"","prev"=>isset($prevpost)?$prevpost->toArray():""]);
+    }
+
+    public function post_jp(Request $request){
+        try {
+            $nextid = (int)$request->id+1;
+            $previd = (int)$request->id-1;
+            $post = post::select()->where("id",$request->id)->where("isdeleted",0)->get();
+            $nextpost = post::select("id")->where("id",">",$request->id)->where("isdeleted",0)->orderBy('id','asc')->first();
+            $prevpost = post::select("id")->where("id","<",$request->id)->where("isdeleted",0)->orderBy('id','desc')->first();
+        $data = $post->map(function($post,$key){
+            return [
+                "id" => $post->id,
+                "title" => $post->title,
+                "content" => $post->content,
+                "category" => $post->category,
+                "date" => date('m/d/Y' ,strtotime($post->created_at)),
+                "time" => Carbon::parse($post->created_at)->format('g:i a'),
+                "images" => image::select()->where("post_id",$post->id)->get()->toArray()
+            ];
+        });
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        return view("jp.pages.post",["data"=>$data->toArray(),"next"=>isset($nextpost)?$nextpost->toArray():"","prev"=>isset($prevpost)?$prevpost->toArray():""]);
     }
 
     public function delete(Request $request){

@@ -58,7 +58,7 @@ class OnepageController extends Controller
                 MONTH
                 ) AS m
                 left JOIN (Select monthname(abroad_date) as `month`, count(monthname(abroad_date)) as 'depart'
-                from taifil.personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate())
+                from taifil.personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate()) AND isdeleted <> 1
                 group by monthname(abroad_date)) as d on m.month = d.month");
 
 
@@ -68,7 +68,7 @@ class OnepageController extends Controller
                     UNION SELECT year(curdate())+1 as YEAR
                     ) as y
                     left JOIN (SELECT year(abroad_date) as YEAR,count(year(abroad_date)) as 'depart' from taifil.personal_datas
-                    where to_abroad <> 0
+                    where to_abroad <> 0 AND isdeleted <> 1
                     group by year(abroad_date)) as d on y.Year = d.Year");
 
      return view('welcome',['data'=>$data, "departure" => $query,"year_departure" => $year]);
@@ -116,7 +116,7 @@ class OnepageController extends Controller
                 MONTH
                 ) AS m
                 left JOIN (Select monthname(abroad_date) as `month`, count(monthname(abroad_date)) as 'depart'
-                from taifil.personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate())
+                from taifil.personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate()) AND isdeleted <> 1
                 group by monthname(abroad_date)) as d on m.month = d.month");
 
                 foreach($query as $month){
@@ -169,7 +169,7 @@ class OnepageController extends Controller
                     UNION SELECT year(curdate())+1 as YEAR
                     ) as y
                     left JOIN (SELECT year(abroad_date) as YEAR,count(year(abroad_date)) as 'depart' from taifil.personal_datas
-                    where to_abroad <> 0
+                    where to_abroad <> 0 AND isdeleted <> 1
                     group by year(abroad_date)) as d on y.Year = d.Year");
 
      return view('jp.welcome',['data'=>$data, "departure" => $query,"year_departure" => $year]);

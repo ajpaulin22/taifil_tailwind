@@ -74,7 +74,7 @@
       grabCursor: true,
        slidesPerView: 1,
        centeredSlides: true,
-       spaceBetween: 5,
+       spaceBetween: 50,
        breakpoints: {
         640: {
           slidesPerView: 2,
