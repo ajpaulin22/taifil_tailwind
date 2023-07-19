@@ -123,7 +123,7 @@
                 </div>
                 <div class="form-group col-span-3">
                     <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                    <input name="sibling_cp_0" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required style="text-align:right">
+                    <input name="sibling_cp_0" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="sibling form-control disabled:bg-slate-200" required style="text-align:right">
                 </div>
                 <div class="form-group col-start-2 col-span-12">
                     <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -155,7 +155,7 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                <input name="spouse_cp" autocomplete="off" type="text" maxlength="100" class="form-control spouse disabled:bg-slate-200" required style="text-align:right" style="text-align:right">
+                <input name="spouse_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" maxlength="100" class="form-control spouse disabled:bg-slate-200" required style="text-align:right" style="text-align:right">
             </div>
             <div class="form-group col-start-2 col-span-12">
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -199,19 +199,16 @@
                 <input name="partner" autocomplete="off" type="text" maxlength="100" class="form-control partner disabled:bg-slate-200" required disabled>
             </div>
             <div class="partner_hidden form-group col-span-3" hidden>
-                <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
-                <div class="relative max-w-sm">
-                    <x-picker_logo/>
-                    <input datepicker name="partner_birthday" autocomplete="off" type="text" maxlength="100" class="form-control partner date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required disabled>
-                </div>
-            </div>
-            <div class="partner_hidden form-group col-span-3" hidden>
-                <label for="lastname" class="form-label">Occupation<span style="color:red">*</span>:</label>
-                <input name="partner_occupation" autocomplete="off" type="text" maxlength="100" class="form-control partner disabled:bg-slate-200" required disabled>
+                <label for="lastname" class="form-label">Age<span style="color:red">*</span>:</label>
+                <input name="partner_age" autocomplete="off" type="number" onKeyPress="if(this.value.length==3) return false;" class="form-control partner disabled:bg-slate-200" required disabled style="text-align:right">
             </div>
             <div class="partner_hidden form-group col-span-3" hidden>
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                <input name="partner_cp" autocomplete="off" type="text" maxlength="100" class="form-control partner disabled:bg-slate-200" required disabled style="text-align:right">
+                <input name="partner_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control partner disabled:bg-slate-200" required disabled style="text-align:right">
+            </div>
+            <div class="partner_hidden form-group col-span-3" hidden>
+                <label for="lastname" class="form-label">How Long<span style="color:red">*</span>:</label>
+                <input name="partner_howlong" autocomplete="off" type="text" maxlength="3" class="form-control partner Number-Only disabled:bg-slate-200 text-right" required disabled>
             </div>
             <div class="partner_hidden form-group col-start-2 col-span-12" hidden>
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -233,7 +230,7 @@
             <div id="japan_hidden" class="form-group col-span-13 md:grid grid-cols-12 gap-4">
                 <div class="form-group col-span-4 japan_group" hidden>
                     <label for="lastname" class="form-label">How many times? (ilang beses?)</label>
-                    <input name="japan_times" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="japan form-control disabled:bg-slate-200" required disabled>
+                    <input name="japan_times" autocomplete="off" type="number" onKeyPress="if(this.value.length==3) return false;" class="japan text-right form-control disabled:bg-slate-200" required disabled>
                 </div>
                 <div class="form-group col-span-4 japan_group" hidden>
                     <label for="lastname" class="form-label">When (kailan?)</label>
@@ -262,7 +259,7 @@
                     </div>
                 </div>
                 <div class="form-group col-span-8 overstay_group" hidden>
-                    <input name="overstay_howlong" autocomplete="off" type="text" maxlength="100" class="overstay form-control disabled:bg-slate-200" placeholder="How Long?" required disabled>
+                    <input name="overstay_howlong" autocomplete="off" type="number" onKeyPress="if(this.value.length==3) return false;" class="overstay form-control disabled:bg-slate-200" placeholder="How Long?" required disabled>
                 </div>
                 <div class="form-group col-span-4 japan_group" hidden>
                     <div class="flex gap-4 w-full">
@@ -379,7 +376,7 @@
                         <input name="relation_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Relation">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
-                        <input name="contact_relative_0" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control disabled:bg-slate-200" required placeholder="Contact">
+                        <input name="contact_relative_0" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control text-right disabled:bg-slate-200" required placeholder="Contact">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
                         <input name="address_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Address">

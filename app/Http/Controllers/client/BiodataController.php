@@ -207,8 +207,8 @@ class BiodataController extends Controller
                 "spouse_cp" => isset( $request->family["spouse_cp"])? $request->family["spouse_cp"] :null,
                 "spouse_address" => isset($request->family["spouse_address"])?$request->family["spouse_address"] :null ,
                 "partner_name" => isset($request->family["partner"])?$request->family["partner"] :null ,
-                "partner_birth" => isset($request->family["partner_birthday"])?date('Y-m-d H:i:s' ,strtotime($request->family["partner_birthday"])) :null ,
-                "partner_occupation" => isset($request->family["partner_occupation"])?$request->family["partner_occupation"] :null ,
+                "partner_age" => isset($request->family["partner_age"])?$request->family["partner_age"] :null ,
+                "partner_howlong" => isset($request->family["partner_howlong"])?$request->family["partner_howlong"] :null ,
                 "partner_cp" => isset($request->family["partner_cp"])?$request->family["partner_cp"] :null ,
                 "partner_address" => isset($request->family["partner_address"])?$request->family["partner_address"] :null ,
                 "went_japan" => ($request->family["went_japan"] == "1")? true :false  ,
@@ -259,7 +259,7 @@ class BiodataController extends Controller
                     children_data::create([
                         "family_id" => $family_id,
                         "name" => $c["name"],
-                        "birthday" => $c["birthday"],
+                        "birthday" => date('Y-m-d H:i:s' ,strtotime($c['birthday'])),
                     ]);
                 }
             }
@@ -472,8 +472,8 @@ class BiodataController extends Controller
                 "spouse_cp" => isset( $request->family["spouse_cp"])? $request->family["spouse_cp"] :null,
                 "spouse_address" => isset($request->family["spouse_address"])?$request->family["spouse_address"] :null ,
                 "partner_name" => isset($request->family["partner"])?$request->family["partner"] :null ,
-                "partner_birth" => isset($request->family["partner_birthday"])?date('Y-m-d H:i:s' ,strtotime($request->family["partner_birthday"])) :null ,
-                "partner_occupation" => isset($request->family["partner_occupation"])?$request->family["partner_occupation"] :null ,
+                "partner_age" => isset($request->family["partner_age"])?$request->family["partner_age"] :null ,
+                "partner_howlong" => isset($request->family["partner_howlong"])?$request->family["partner_howlong"] :null ,
                 "partner_cp" => isset($request->family["partner_cp"])?$request->family["partner_cp"] :null ,
                 "partner_address" => isset($request->family["partner_address"])?$request->family["partner_address"] :null ,
                 "went_japan" => ($request->family["went_japan"] == "1")? true :false  ,
@@ -527,7 +527,7 @@ class BiodataController extends Controller
                     children_data::create([
                         "family_id" => $family_id[0]->id,
                         "name" => $c["name"],
-                        "birthday" => $c["birthday"],
+                        "birthday" => date('Y-m-d H:i:s' ,strtotime($c['birthday'])),
                     ]);
                 }
             }

@@ -32,8 +32,8 @@ class CreateFamilyDatasTable extends Migration
             $table->string("spouse_cp")->nullable();
             $table->string("spouse_address")->nullable();
             $table->string("partner_name")->nullable();
-            $table->dateTime("partner_birth")->nullable();
-            $table->string("partner_occupation")->nullable();
+            $table->string("partner_age")->nullable();
+            $table->string("partner_howlong")->nullable();
             $table->string("partner_cp")->nullable();
             $table->string("partner_address")->nullable();
             $table->boolean("went_japan");

@@ -1452,7 +1452,7 @@
             <input name="relation_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Relation">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
-            <input name="contact_relative_${id+1}" autocomplete="off" type="number" class="sibling form-control disabled:bg-slate-200" required placeholder="Contact">
+            <input name="contact_relative_${id+1}" autocomplete="off" onKeyPress="if(this.value.length==20) return false;" type="number" class="sibling form-control disabled:bg-slate-200 text-right" required placeholder="Contact">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
             <input name="address_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Address">

@@ -205,13 +205,14 @@
                     <input datepicker name="partner_birthday" autocomplete="off" type="text" maxlength="100" class="form-control partner date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required disabled>
                 </div>
             </div>
-            <div class="partner_hidden form-group col-span-3" hidden>
-                <label for="lastname" class="form-label">Occupation<span style="color:red">*</span>:</label>
-                <input name="partner_occupation" autocomplete="off" type="text" maxlength="100" class="form-control partner disabled:bg-slate-200" required disabled>
-            </div>
+           
             <div class="partner_hidden form-group col-span-3" hidden>
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
                 <input name="partner_cp" autocomplete="off" type="text" maxlength="100" class="form-control partner disabled:bg-slate-200" required disabled>
+            </div>
+            <div class="partner_hidden form-group col-span-3" hidden>
+                <label for="lastname" class="form-label">how long<span style="color:red">*</span>:</label>
+                <input name="partner_howlong" autocomplete="off" type="text" maxlength="100" class="form-control partner disabled:bg-slate-200" required disabled>
             </div>
             <div class="partner_hidden form-group col-start-2 col-span-12" hidden>
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>

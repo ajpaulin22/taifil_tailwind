@@ -122,40 +122,40 @@ class OnepageController extends Controller
                 foreach($query as $month){
                     switch($month->month){
                         case "January":
-                            $month->month = '一月';
+                            $month->month = '1月';
                             break;
                         case "February":
-                            $month->month = '二月';
+                            $month->month = '2月';
                             break;
                         case "March":
-                            $month->month = '三月';
+                            $month->month = '3月';
                             break;
                         case "April":
-                            $month->month = '四月';
+                            $month->month = '4月';
                             break;
                         case "May":
-                            $month->month = '五月';
+                            $month->month = '5月';
                             break;
                         case "June":
-                            $month->month = '六月';
+                            $month->month = '6月';
                             break;
                         case "July":
-                            $month->month = '七月';
+                            $month->month = '7月';
                             break;
                         case "August":
-                            $month->month = '八月';
+                            $month->month = '8月';
                             break;
                         case "September":
-                            $month->month = '九月';
+                            $month->month = '9月';
                             break;
                         case "October":
-                            $month->month = '十月';
+                            $month->month = '10月';
                             break;
                         case "November":
-                            $month->month = '十一月';
+                            $month->month = '11月';
                             break;
                         case "December":
-                            $month->month = '十二月';
+                            $month->month = '12月';
                             break;                                                                                                                                                                                                    
                         default:
                             "";

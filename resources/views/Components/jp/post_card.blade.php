@@ -31,7 +31,7 @@
             </div>
             <hr>
             <div class="mt-3">
-                <a href="/jp/client/gallery/post?id={{$id}}" class="text-black hover:text-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-900 font-medium rounded-lg text-sm inline-flex justify-center w-auto text-center">続きを読む...</a>
+                <a href="/jp/client/gallery/post?id={{$id}}" class="text-black hover:text-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-900 font-medium rounded-lg text-sm inline-flex justify-center w-auto text-center">See more...</a>
             </div>
         </div>
     </div>
