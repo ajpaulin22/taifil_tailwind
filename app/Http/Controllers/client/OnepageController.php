@@ -179,14 +179,24 @@ class OnepageController extends Controller
         $data = [];
         
        try {
-        Mail::send("Mail",array(
+        // Mail::send('Mail',array(
+        //     'fullname'=>$request->fullname,
+        //     'email'=>$request->email,
+        //     'subject'=>$request->subject,
+        //     'content'=>$request->message
+        // ),function($message) use ($request){
+        //     $message->from($request->email,$request->fullname);
+        //     $message->to('alphyjaypaulin22@gmail.com', 'Admin')->subject($request->subject);
+        // });
+
+        Mail::send('Mail',array(
             'fullname'=>$request->fullname,
             'email'=>$request->email,
             'subject'=>$request->subject,
             'content'=>$request->message
-        ),function($message) use ($request){
-            $message->from($request->email);
-            $message->to('alphyjaypaulin22@gmail.com', 'Admin')->subject($request->subject);
+        ), function($message) use ($request){
+            $message->to('alphyjaypaulin22@gmail.com')->subject('Simple Mail Testing');
+            $message->from($request->email, $request->fullname);
         });
 
         $data = [
