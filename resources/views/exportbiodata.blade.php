@@ -12,7 +12,7 @@
             <h1 style="margin-left:250px;">BIODATA</h1>
         </div>
         <div>
-            <img src="storage/1x1_pictures/lisa.jpg" alt="Italian Trulli" style="width:96px;height:96px; float:right">
+            <img src="data:image/png;base64,{{$data->id_picture}}" alt="Italian Trulli" style="width:96px;height:96px; float:right">
         </div>
         <div>
             <h3>Job Type: {{ $data->job_type }}</h3>
@@ -541,7 +541,7 @@
             <div style="clear:both"></div>
             @endfor
         @endif
-        <h1 class="row">Personal Data</h1>
+        <h1 class="row">Family Information</h1>
         <div class="row">
             <h5>Parents:</h5>
         </div>
@@ -733,39 +733,38 @@
             <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>N/A</label>
             </div>
-            <div style="clear:both"></div>
+            {{-- <div style="clear:both"></div>
             <div class="" style="float:left; width:8%; margin-right:10px;">
                 <h5>Address:</h5>
             </div>
             <div style="float:left; width:92%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>N/A</label>
-            </div>
+            </div> --}}
             <div style="clear:both"></div>
         @else
             @for($i = 0; $i < COUNT($children); $i++)
                 <div class="row">
-                    <h5>Spouse:</h5>
+                    <h5>Children:</h5>
                 </div>
                 <div style="float:left; width:7%; margin-right:10px;">
                     <h5>Name:</h5>
                 </div>
                 <div style="float:left; width:23%; border-bottom: 1px solid black; margin-right:10px;">
-                    <label>{{$children[$i]->spouse_name == null ? "N/A" : $children[$i]->spouse_name}}</label>
+                    <label>{{$children[$i]->name == null ? "N/A" : $children[$i]->name}}</label>
                 </div>
                 <div style="float:left; width:9%; margin-right:10px;">
                     <h5>Birthday:</h5>
                 </div>
                 <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-                    <label>{{date('m/d/Y', strtotime($children[$i]->spouse_birth)) == null ? "N/A" : date('m/d/Y', strtotime($children[$i]->spouse_birth))}}</label>
+                    <label>{{date('m/d/Y', strtotime($children[$i]->birthday)) == null ? "N/A" : date('m/d/Y', strtotime($children[$i]->birthday))}}</label>
                 </div>
-
-                <div style="clear:both"></div>
+                {{-- <div style="clear:both"></div>
                 <div class="" style="float:left; width:8%; margin-right:10px;">
                     <h5>Address:</h5>
                 </div>
                 <div style="float:left; width:92%; border-bottom: 1px solid black; margin-right:10px;">
-                    <label>{{$children[$i]->spouse_address == null ? "N/A" : $children[$i]->spouse_address}}</label>
-                </div>
+                    <label>{{$children[$i]->address == null ? "N/A" : $children[$i]->address}}</label>
+                </div> --}}
                 <div style="clear:both"></div>
             @endfor
         @endif
@@ -781,26 +780,166 @@
         <div style="float:left; width:6%; margin-right:10px;">
             <h5>Name:</h5>
         </div>
-        <div style="float:left; width:5%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>Test</label>
+        <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->partner_name == null ? "N/A" : $family->partner_name}}</label>
         </div>
         <div style="float:left; width:4%; margin-right:10px;">
             <h5>Age:</h5>
         </div>
-        <div style="float:left; width:2%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>12</label>
+        <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->partner_name == null ? "N/A" : $family->partner_age}}</label>
         </div>
-        <div style="float:left; width:13%; margin-right:10px;">
+        <div style="float:left; width:12%; margin-right:10px;">
             <h5>Contact No:</h5>
         </div>
         <div style="float:left; width:11%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>Test</label>
+            <label>{{$family->partner_name == null ? "N/A" : $family->partner_cp}}</label>
         </div>
         <div style="float:left; width:11%; margin-right:10px;">
             <h5>How Long:</h5>
         </div>
         <div style="float:left; width:8%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>Test</label>
+            <label>{{$family->partner_name == null ? "N/A" : $family->partner_howlong}}</label>
+        </div>
+        <div style="clear:both"></div>
+        <div style="float:left; width:9%; margin-right:10px;">
+            <h5>Address:</h5>
+        </div>
+        <div style="float:left; width:65%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->partner_name == null ? "N/A" : $family->partner_address}}</label>
+        </div>
+        <div style="clear:both"></div>
+        <div class="row">
+            <div style="float:left; width:18.5%; margin-right:10px;">
+                <h5>Have Been to Japan:</h5>
+            </div>
+            <div style="float:left; width:3%; border-bottom: 1px solid black; margin-right:10px;">
+                <label>{{$family->went_japan == 0 ? "No" : "Yes"}}</label>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        <div style="float:left; width:12%; margin-right:10px;">
+            <h5>Times Went:</h5>
+        </div>
+        <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->how_many_japan == null ? "N/A" : $family->how_many_japan}}</label>
+        </div>
+        <div style="float:left; width:6%; margin-right:10px;">
+            <h5>Dates:</h5>
+        </div>
+        <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->when_japan == null ? "N/A" : $family->when_japan}}</label>
+        </div>
+        <div style="float:left; width:7.5%; margin-right:10px;">
+            <h5>Places:</h5>
+        </div>
+        <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->where_japan == null ? "N/A" : $family->where_japan}}</label>
+        </div>
+        <div style="clear:both"></div>
+        <div style="float:left; width:20%; margin-right:10px;">
+            <h5>Overstayed in Japan:</h5>
+        </div>
+        <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->went_japan == 0 ? "N/A" : ($family->overstay_japan == 0 ? "No" : "Yes")}}</label>
+        </div>
+        <div style="float:left; width:11%; margin-right:10px;">
+            <h5>How Long:</h5>
+        </div>
+        <div style="float:left; width:12%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->overstay_japan == 0 ? "N/A" : $family->how_long_overstay}}</label>
+        </div>
+        <div style="clear:both"></div>
+        <div style="float:left; width:18.5%; margin-right:10px;">
+            <h5>Used Fake Identity:</h5>
+        </div>
+        <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->fake_identity_japan == 0 ? "No" : "Yes"}}</label>
+        </div>
+        <div style="float:left; width:12.5%; margin-right:10px;">
+            <h5>Surrendered:</h5>
+        </div>
+        <div style="float:left; width:12%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->fake_identity_japan == 0 ? "N/A" : ($family->fake_identity_surrender == 0 ? "No" : "Yes")}}</label>
+        </div>  
+        <div style="float:left; width:10%; margin-right:10px;">
+            <h5>Purpose:</h5>
+        </div>
+        <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->fake_identity_japan == 0 ? "N/A" : $family->fake_identity_purpose}}</label>
+        </div>  
+        <div style="clear:both"></div>
+        <div class="row" style="float:left; width:26%; margin-right:10px;">
+            <h5>Applied For Japanese Visa:</h5>
+        </div>
+        <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->applied_visa == 0 ? "No" : "Yes"}}</label>
+        </div>  
+        <div style="clear:both"></div>
+        <div style="float:left; width:13%; margin-right:10px;">
+            <h5>Type of Visa:</h5>
+        </div>
+        <div style="float:left; width:15%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->fake_identity_japan == null ? "N/A" : $family->fake_identity_purpose}}</label>
+        </div>  
+        <div style="float:left; width:7.5%; margin-right:10px;">
+            <h5>When:</h5>
+        </div>
+        <div style="float:left; width:10.5%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->when_applied_visa == null ? "N/A" : $family->when_applied_visa}}</label>
+        </div>
+        <div style="float:left; width:10.5%; margin-right:10px;">
+            <h5>Approved:</h5>
+        </div>
+        <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$family->applied_visa == 0 ? "N/A" : ($family->approved == 0 ? "No" : "Yes")}}</label>
+        </div>
+        <div style="clear:both"></div>
+        <h1 class="row" >Relatives and Acquaintances in Japan</h1>
+        <div style="float: left; width:26%; margin-left:100px">
+            <h5>Name</h5>
+        </div>
+        <div style="float: left; width:14.5%">
+            <h5>Relation</h5>
+        </div>
+        <div style="float: left; width:25%">
+            <h5>Contact No</h5>
+        </div>
+        <div style="float: left; width:15%">
+            <h5>Address</h5>
+        </div>
+        <div style="clear:both"></div>
+            @if(COUNT($relative) == 0)
+            <div style="float: left; border-bottom: 1px solid black; width:33%;; margin-right:10px;">
+                <label>N/A</label>
+            </div>
+            <div style="float: left; border-bottom: 1px solid black; width:18%; margin-right:10px;">
+                <label>N/A</label>
+            </div>
+            <div style="float: left; border-bottom: 1px solid black; width:11.5%; margin-right:10px;">
+                <label>N/A</label>
+            </div>
+            <div style="float: left; border-bottom: 1px solid black; width:34%; margin-right:10px;">
+                <label>N/A</label>
+            </div>
+            <div style="clear:both"></div>
+            @else
+                @for($i = 0; $i < COUNT($relative); $i++)
+                <div style="float: left; border-bottom: 1px solid black; width:33%;; margin-right:10px;">
+                    <label>{{$relative[$i]->name}}</label>
+                </div>
+                <div style="float: left; border-bottom: 1px solid black; width:18%; margin-right:10px;">
+                    <label>{{$relative[$i]->relation}}</label>
+                </div>
+                <div style="float: left; border-bottom: 1px solid black; width:11.5%; margin-right:10px;">
+                    <label>{{$relative[$i]->cp}}</label>
+                </div>
+                <div style="float: left; border-bottom: 1px solid black; width:34%; margin-right:10px;">
+                    <label>{{$relative[$i]->address}}</label>
+                </div>
+                <div style="clear:both"></div>
+                @endfor
+            @endif
         </div>
     </div>
 </body>

@@ -236,7 +236,7 @@ class BiodataController extends Controller
                         "relation" => $r['relation'],
                         "cp" => $r['contact'],
                         "address" => $r['address'],
-                        
+
                     ]);
                 }
             }
@@ -296,7 +296,7 @@ class BiodataController extends Controller
         else{
             DB::table("personal_datas")
             ->where('id', $request["personalid"])
-            ->update([
+            ->update([ 
                 // "code" => $request->personal["code"],
                 "job_cat" => $request->personal["job_cat"],
                 "operation" => $request->personal["operations"],
@@ -656,16 +656,21 @@ class BiodataController extends Controller
     {
         $personalid = $request->session()->get('personaldata');
         $personaldata = DB::table('personal_datas')
-            ->where("id", $personalid[0]->id)
+            ->where("id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
-
+        
         $personaldata[0]->date_birth = explode(" ", $personaldata[0]->date_birth)[0];
         $personaldata[0]->issue_date = explode(" ", $personaldata[0]->issue_date)[0];
         $personaldata[0]->expiry_date = explode(" ", $personaldata[0]->expiry_date)[0];
-
+        $personaldata[0]->id_picture = file_put_contents("test.jpg", $personaldata[0]->id_picture);
+        $personaldata[0]->gov_id_picture = file_put_contents("test.jpg", $personaldata[0]->gov_id_picture);
+        $personaldata[0]->passport_id_picture = file_put_contents("test.jpg", $personaldata[0]->passport_id_picture);
+        // $personaldata[0]->id_picture = base64_encode($personaldata[0]->id_picture);
+        // $personaldata[0]->gov_id_picture = base64_encode($personaldata[0]->gov_id_picture);
+        // $personaldata[0]->passport_id_picture = base64_encode($personaldata[0]->passport_id_picture);
         $educationaldata = DB::table('educational_datas')
-            ->where("personal_id", $personalid[0]->id)
+            ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
 
@@ -690,17 +695,17 @@ class BiodataController extends Controller
         $vocationaldata[0]->until = explode(" ", $vocationaldata[0]->until)[0];
 
         $employmentlocaldata = DB::table('local_emps')
-            ->where("personal_id", $personalid[0]->id)
+            ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
 
         $employmentabroaddata = DB::table('abroad_emps')
-            ->where("personal_id", $personalid[0]->id)
+            ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
 
         $familydata = DB::table('family_datas')
-            ->where("personal_id", $personalid[0]->id)
+            ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
 

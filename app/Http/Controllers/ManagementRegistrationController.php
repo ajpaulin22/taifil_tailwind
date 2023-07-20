@@ -64,10 +64,11 @@ class ManagementRegistrationController extends Controller
         $data = DB::table('personal_datas')
         ->where("id",$request->PersonalInfoID)
         ->where("IsDeleted",0)
-
         ->select()->Get();
-
-        session(['personaldata' => $data]);
+        session(['personaldata' => $data[0]->id]);
+        unset($data[0]->id_picture);
+        unset($data[0]->gov_id_picture);
+        unset($data[0]->passport_id_picture);
         return $data;
     }
 
@@ -218,22 +219,27 @@ class ManagementRegistrationController extends Controller
         $query = "Select *, c.Category, o.Operation from personal_datas p"
                 ." LEFT JOIN m_jobcategories c ON p.job_cat = c.ID"
                 ." LEFT JOIN m_joboperations o ON p.operation = o.ID"
-                ." WHERE p.ID = 22 AND p.isdeleted = 0";
+                ." WHERE p.ID = " . $request["IDs"] . " AND p.isdeleted = 0";
         $dataPersonal = DB::select($query);
-        $query = "Select * from educational_datas where isdeleted = 0 AND personal_id = 22";
+        $dataPersonal[0]->id_picture = base64_encode($dataPersonal[0]->id_picture);
+        $dataPersonal[0]->gov_id_picture = base64_encode($dataPersonal[0]->gov_id_picture);
+        $dataPersonal[0]->passport_id_picture = base64_encode($dataPersonal[0]->passport_id_picture);
+        $query = "Select * from educational_datas where isdeleted = 0 AND personal_id = " . $request["IDs"];
         $dataEducational = DB::select($query);
-        $query = "Select * from vocational_datas where isdeleted = 0 AND educational_id = 22";
+        $query = "Select * from vocational_datas where isdeleted = 0 AND educational_id = " . $dataEducational[0]->id;
         $dataVocational = DB::select($query);
-        $query = "Select * from local_emps where isdeleted = 0 AND personal_id = 22";
+        $query = "Select * from local_emps where isdeleted = 0 AND personal_id = " . $request["IDs"];
         $dataLocal = DB::select($query);
-        $query = "Select * from abroad_emps where isdeleted = 0 AND personal_id = 22";
+        $query = "Select * from abroad_emps where isdeleted = 0 AND personal_id = " . $request["IDs"];
         $dataAbroad = DB::select($query);
-        $query = "Select * from family_datas where isdeleted = 0 AND personal_id = 22";
+        $query = "Select * from family_datas where isdeleted = 0 AND personal_id = " . $request["IDs"];
         $dataFamily = DB::select($query);
-        $query = "Select * from sibling_datas where isdeleted = 0 AND family_id = 22";
+        $query = "Select * from sibling_datas where isdeleted = 0 AND family_id = " . $dataFamily[0]->id;
         $dataSiblings = DB::select($query);
-        $query = "Select * from children_datas where isdeleted = 0 AND family_id = 22";
+        $query = "Select * from children_datas where isdeleted = 0 AND family_id = " . $dataFamily[0]->id;
         $dataChildren = DB::select($query);
+        $query = "Select * from relative_datas where isdeleted = 0 AND family_id = " . $dataFamily[0]->id;
+        $dataRelative = DB::select($query);
         $data = [
             'data' => $dataPersonal[0],
             'educational' => $dataEducational[0],
@@ -242,7 +248,8 @@ class ManagementRegistrationController extends Controller
             'abroad' => $dataAbroad,
             'family' => $dataFamily[0],
             'siblings' => $dataSiblings,
-            'children' => $dataChildren
+            'children' => $dataChildren,
+            'relative' => $dataRelative
         ];
         $pdf = Pdf::loadView('exportbiodata', $data);
         return $pdf->download("biodata".$date.'.pdf');
