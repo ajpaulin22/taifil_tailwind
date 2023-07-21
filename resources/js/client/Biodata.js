@@ -213,7 +213,8 @@
                       console.log(promise)
                       if(promise.success){
                         self.saveid(promise.id);
-                      }else{
+                      }
+                      else{
                         $("#loader").hide();
                         iziToast.error({
                             class:'rounded-lg overflow-hidden',
