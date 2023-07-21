@@ -59,6 +59,7 @@ Management Registration
             <div class="col-sm-2 mb-2" >
                 <div class="form-group" >
                     <label style="margin-right:150px;">Age:</label>
+                    <br>
                     <input type="text" id="AgeFrom" class="form-control filter Number-Only" style="width: 30%; text-align: center;" > - <input type="text" id="AgeTo" class="form-control filter Number-Only" style="width: 30%; text-align: center;">
                 </div>
             </div>
