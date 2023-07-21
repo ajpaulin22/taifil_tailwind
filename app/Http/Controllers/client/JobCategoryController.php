@@ -16,19 +16,19 @@ class JobCategoryController extends Controller
         $category = isset($request->category) ? $request->category : "";
         $cat = DB::table('m_jobcategories')->where('isDeleted',0)->where('JobType',strtoupper($request->data))->select()->get();
 
-        $cat = DB::select("SELECT cat.Category,count(quali.ID) as 'cnt' from taifil.m_jobcategories cat
-        JOIN taifil.m_joboperations op on op.JobCategoriesID = cat.ID
-        left join taifil.m_jobqualifications quali on op.ID = quali.JobOperationsID AND quali.isDeleted <> 1
+        $cat = DB::select("SELECT cat.Category,count(quali.ID) as 'cnt' from m_jobcategories cat
+        JOIN m_joboperations op on op.JobCategoriesID = cat.ID
+        left join m_jobqualifications quali on op.ID = quali.JobOperationsID AND quali.isDeleted <> 1
         where cat.isDeleted <> 1
         AND cat.JobType = '$type'
         AND op.isDeleted <> 1
         AND op.Hiring = 1
         group by cat.Category having count(quali.ID) > 0");
 
-        $cards = DB::select("SELECT cat.ID as 'CategoryID',cat.Category,op.ID as 'OperationID',op.Operation,qua.Qualifications from taifil.m_jobcategories cat
-        JOIN taifil.m_joboperations op on op.JobCategoriesID = cat.ID
-        left join (SELECT ope.Operation,group_concat(quali.Qualification) as 'Qualifications' from taifil.m_joboperations ope
-        JOIN taifil.m_jobqualifications quali on quali.JobOperationsID = ope.ID
+        $cards = DB::select("SELECT cat.ID as 'CategoryID',cat.Category,op.ID as 'OperationID',op.Operation,qua.Qualifications from m_jobcategories cat
+        JOIN m_joboperations op on op.JobCategoriesID = cat.ID
+        left join (SELECT ope.Operation,group_concat(quali.Qualification) as 'Qualifications' from m_joboperations ope
+        JOIN m_jobqualifications quali on quali.JobOperationsID = ope.ID
         where quali.isDeleted <> 1
         group by ope.Operation) qua on qua.Operation = op.Operation
         where cat.isDeleted <> 1
@@ -46,19 +46,19 @@ class JobCategoryController extends Controller
         $category = isset($request->category) ? $request->category : "";
         $cat = DB::table('m_jobcategories')->where('isDeleted',0)->where('JobType',strtoupper($request->data))->select()->get();
 
-        $cat = DB::select("SELECT cat.Category,count(quali.ID) as 'cnt' from taifil.m_jobcategories cat
-        JOIN taifil.m_joboperations op on op.JobCategoriesID = cat.ID
-        left join taifil.m_jobqualifications quali on op.ID = quali.JobOperationsID AND quali.isDeleted <> 1
+        $cat = DB::select("SELECT cat.Category,count(quali.ID) as 'cnt' from m_jobcategories cat
+        JOIN m_joboperations op on op.JobCategoriesID = cat.ID
+        left join m_jobqualifications quali on op.ID = quali.JobOperationsID AND quali.isDeleted <> 1
         where cat.isDeleted <> 1
         AND cat.JobType = '$type'
         AND op.isDeleted <> 1
         AND op.Hiring = 1
         group by cat.Category having count(quali.ID) > 0");
 
-        $cards = DB::select("SELECT cat.ID as 'CategoryID',cat.Category,op.ID as 'OperationID',op.Operation,qua.Qualifications from taifil.m_jobcategories cat
-        JOIN taifil.m_joboperations op on op.JobCategoriesID = cat.ID
-        left join (SELECT ope.Operation,group_concat(quali.Qualification) as 'Qualifications' from taifil.m_joboperations ope
-        JOIN taifil.m_jobqualifications quali on quali.JobOperationsID = ope.ID
+        $cards = DB::select("SELECT cat.ID as 'CategoryID',cat.Category,op.ID as 'OperationID',op.Operation,qua.Qualifications from m_jobcategories cat
+        JOIN m_joboperations op on op.JobCategoriesID = cat.ID
+        left join (SELECT ope.Operation,group_concat(quali.Qualification) as 'Qualifications' from m_joboperations ope
+        JOIN m_jobqualifications quali on quali.JobOperationsID = ope.ID
         where quali.isDeleted <> 1
         group by ope.Operation) qua on qua.Operation = op.Operation
         where cat.isDeleted <> 1

@@ -14,6 +14,14 @@ class OnepageController extends Controller
 {
 
 
+    public function view_1(){
+        return view("Mail",array(
+            'fullname'=>"ALPhy ",
+            'email'=>"alphyjaypaulin@22gmail.com",
+            'subject'=>"yeahhhhh sample lang",
+            'content'=>"sana mapansin po ako dito"
+        ));
+    }
 
     public function view(){
         $posts = post::select()->where("isdeleted",0)->orderby('id','desc')->limit(3)->get();
@@ -58,7 +66,7 @@ class OnepageController extends Controller
                 MONTH
                 ) AS m
                 left JOIN (Select monthname(abroad_date) as `month`, count(monthname(abroad_date)) as 'depart'
-                from taifil.personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate()) AND isdeleted <> 1
+                from personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate()) AND isdeleted <> 1
                 group by monthname(abroad_date)) as d on m.month = d.month");
 
 
@@ -67,7 +75,7 @@ class OnepageController extends Controller
                     UNION SELECT year(curdate()) as YEAR
                     UNION SELECT year(curdate())+1 as YEAR
                     ) as y
-                    left JOIN (SELECT year(abroad_date) as YEAR,count(year(abroad_date)) as 'depart' from taifil.personal_datas
+                    left JOIN (SELECT year(abroad_date) as YEAR,count(year(abroad_date)) as 'depart' from personal_datas
                     where to_abroad <> 0 AND isdeleted <> 1
                     group by year(abroad_date)) as d on y.Year = d.Year");
 
@@ -116,7 +124,7 @@ class OnepageController extends Controller
                 MONTH
                 ) AS m
                 left JOIN (Select monthname(abroad_date) as `month`, count(monthname(abroad_date)) as 'depart'
-                from taifil.personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate()) AND isdeleted <> 1
+                from personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate()) AND isdeleted <> 1
                 group by monthname(abroad_date)) as d on m.month = d.month");
 
                 foreach($query as $month){
@@ -168,7 +176,7 @@ class OnepageController extends Controller
                     UNION SELECT year(curdate()) as YEAR
                     UNION SELECT year(curdate())+1 as YEAR
                     ) as y
-                    left JOIN (SELECT year(abroad_date) as YEAR,count(year(abroad_date)) as 'depart' from taifil.personal_datas
+                    left JOIN (SELECT year(abroad_date) as YEAR,count(year(abroad_date)) as 'depart' from personal_datas
                     where to_abroad <> 0 AND isdeleted <> 1
                     group by year(abroad_date)) as d on y.Year = d.Year");
 
@@ -179,23 +187,13 @@ class OnepageController extends Controller
         $data = [];
         
        try {
-        // Mail::send('Mail',array(
-        //     'fullname'=>$request->fullname,
-        //     'email'=>$request->email,
-        //     'subject'=>$request->subject,
-        //     'content'=>$request->message
-        // ),function($message) use ($request){
-        //     $message->from($request->email,$request->fullname);
-        //     $message->to('alphyjaypaulin22@gmail.com', 'Admin')->subject($request->subject);
-        // });
-
         Mail::send('Mail',array(
             'fullname'=>$request->fullname,
             'email'=>$request->email,
             'subject'=>$request->subject,
             'content'=>$request->message
         ), function($message) use ($request){
-            $message->to('alphyjaypaulin22@gmail.com')->subject('Simple Mail Testing');
+            $message->to('email@taifilmanpower.com.ph')->subject($request->subject);
             $message->from($request->email, $request->fullname);
         });
 

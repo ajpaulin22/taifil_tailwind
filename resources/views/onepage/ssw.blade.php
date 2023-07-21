@@ -14,7 +14,7 @@
                 </div>
                 <p class="text-sm my-2">Those who can work in Japan as a SSW must be over 18 years old in a good health, have the necessary occupational skills and Japanese language ability to work immediately without receiving any particular training. Skills and Japanese proficiency will be confirmed by a unified test conducted by Japan</p>
                 <div class="flex gap-5 border-b-4 border-sky-800 pb-2">
-                    <img src="{{url("images/jap-lang.svg")}}" alt="">
+                    <img src="{{url("images/japlang.svg")}}" alt="">
                     <span class="font-semibold text-xl self-center">Japanese language level required</span>
                 </div>
                 <p class="text-sm my-2">Proficiency in Japanese language required in daily life and at the workplace needs to be confirmed by exams, etc.</p>
