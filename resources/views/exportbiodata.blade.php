@@ -941,6 +941,16 @@
                 @endfor
             @endif
         </div>
+        <div style="clear: both;"></div>
+        <div style="page-break-after: always;"></div>
+        <h1 class="row">Government ID</h1>
+        <div style="text-align:center">
+            <img src="data:image/png;base64,{{$data->gov_id_picture}}" alt="government id" style="width:200px;height:200px;display:block:margin:auto">
+        </div>
+        <h1 class="row">Passport ID</h1>
+        <div style="text-align:center">
+            <img src="data:image/png;base64,{{$data->passport_id_picture}}" alt="passport id" style="width:200px;height:200px;display:block:margin:auto">
+        </div>
     </div>
 </body>
 </html>

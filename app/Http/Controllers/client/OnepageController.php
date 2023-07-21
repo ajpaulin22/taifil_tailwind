@@ -87,7 +87,7 @@ class OnepageController extends Controller
                         "images" => image::select('path')->where("post_id",$post->id)->limit(1)->get()->toArray()
                     ];
                 });
-
+                
                 $query = DB::select("SELECT m.month,ifnull(d.depart,0) as 'person'
                 FROM (
                 SELECT 'January' AS

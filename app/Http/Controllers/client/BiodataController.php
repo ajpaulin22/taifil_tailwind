@@ -29,6 +29,15 @@ class BiodataController extends Controller
 
     public function uploadData(Request $request)
     {
+        // $query = "Select * from personal_datas where isdeleted = 0 AND last_name = '" . $request->personal["lastname"] . 
+        //         "' AND first_name = '" . $request->personal["firstname"] . "' AND middle_name = '" .$request->personal["middlename"].
+        //         "' AND job_cat = '" . $request->personal["job_cat"]. "'";
+        // $IsExist = DB::select($query);
+        // $IsExist = DB::table("personal_datas")
+        // ->where('last_name', $request->personal["lastname"])
+        // ->where('first_name', $request->personal["firstname"])
+        // ->where('middle_name', $request->personal["middlename"])
+        // ->where('job_cat', $request->personal["job_cat"])->select()->get();
         $personalID = 0;
         $data = [
             'id' => "",
