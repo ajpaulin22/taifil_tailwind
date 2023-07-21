@@ -10,40 +10,39 @@
         <button id="add_local_btn" class="py-2 px-4 bg-sky-700 rounded w-full self-end text-sm text-white disabled:bg-sky-900">Add Record</button>
     </div>
     <form action="" id="empLocal_form" class="flex flex-col">
-            
-        <div class="" id="local_companys">
-            <div class="companylocal md:grid grid-cols-9 gap-4" id="company_0">
-                <div class="mt-2 md:mt-0 form-group col-span-9">
-                    <label class="text-xl font-bold">Company 1<span style="color:red">*</span>:</label>
+        <div class="companylocal md:grid grid-cols-9 gap-4" id="company_0">
+            <div class="mt-2 md:mt-0 form-group col-span-9">
+                <label class="text-xl font-bold">Company<span style="color:red">*</span>:</label>
+            </div>
+            <div class="mt-2 md:mt-0 form-group col-span-1">
+                
+            </div>
+            <div class="col-span-8 md:grid grid-cols-4 gap-4">
+                <div class="mt-2 md:mt-0 form-group col-span-2">
+                    <input name="name_local_0" autocomplete="off" type="text" maxlength="100" class="name_local_0 form-control disabled:bg-slate-200" placeholder="Name of Company" required>
+                </div>
+                <div class="mt-2 md:mt-0 form-group col-span-2">
+                    <input name="position_local_0" autocomplete="off" type="text" maxlength="100" class="position_local_0 form-control disabled:bg-slate-200" placeholder="Position" required>
+                </div>
+                
+                <div class="mt-2 md:mt-0 form-group col-span-2">
+                    <input name="address_local_0" autocomplete="off" type="text" maxlength="100" class="address_local_0 form-control disabled:bg-slate-200" placeholder="Company Address" required>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
-                    
+                    <div class="relative max-w-sm">
+                        <x-picker_logo/>
+                        <input datepicker name="date_from_local_0" autocomplete="off" type="text" maxlength="100" class="date_from_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date From" required>
+                    </div>
                 </div>
-                <div class="col-span-8 md:grid grid-cols-4 gap-4">
-                    <div class="mt-2 md:mt-0 form-group col-span-2">
-                        <input name="name_local_0" autocomplete="off" type="text" maxlength="100" class="name_local_0 form-control disabled:bg-slate-200" placeholder="Name of Company" required>
-                    </div>
-                    <div class="mt-2 md:mt-0 form-group col-span-2">
-                        <input name="position_local_0" autocomplete="off" type="text" maxlength="100" class="position_local_0 form-control disabled:bg-slate-200" placeholder="Position" required>
-                    </div>
-                    
-                    <div class="mt-2 md:mt-0 form-group col-span-2">
-                        <input name="address_local_0" autocomplete="off" type="text" maxlength="100" class="address_local_0 form-control disabled:bg-slate-200" placeholder="Company Address" required>
-                    </div>
-                    <div class="mt-2 md:mt-0 form-group col-span-1">
-                        <div class="relative max-w-sm">
-                            <x-picker_logo/>
-                            <input datepicker name="date_from_local_0" autocomplete="off" type="text" maxlength="100" class="date_from_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date From" required>
-                        </div>
-                    </div>
-                    <div class="mt-2 md:mt-0 form-group col-span-1">
-                        <div class="relative max-w-sm">
-                            <x-picker_logo/>
-                            <input datepicker name="date_until_local_0" autocomplete="off" type="text" maxlength="100" class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" required>
-                        </div>
+                <div class="mt-2 md:mt-0 form-group col-span-1">
+                    <div class="relative max-w-sm">
+                        <x-picker_logo/>
+                        <input datepicker name="date_until_local_0" autocomplete="off" type="text" maxlength="100" class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" required>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="" id="local_companys">
             
         </div>
         <div class="self-end">

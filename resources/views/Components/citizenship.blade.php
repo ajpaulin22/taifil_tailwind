@@ -2,7 +2,6 @@
     <label for="personal_lastname" class="form-label">Citizenship<span style="color:red">*</span>:</label>
     <select name="citizenship" class="form-select">
         <option value="" selected disabled value>Choose....</option>
-        <option value="">-- select one --</option>
 <option value="afghan">Afghan</option>
 <option value="albanian">Albanian</option>
 <option value="algerian">Algerian</option>

@@ -42,7 +42,7 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                <input name="father_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="father_deceased form-control disabled:bg-slate-200" required style="text-align:right">
+                <input name="father_cp" autocomplete="off" type="text" maxlength="20" class="Number-Only father_deceased form-control disabled:bg-slate-200" required style="text-align:right">
             </div>
             <div class="form-group col-start-2 col-span-12">
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -82,13 +82,14 @@
                 </div>
             </div>
             <div class="form-group col-span-3">
+                <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
+                <input name="mother_cp" autocomplete="off" type="text" maxlength="20" class="Number-Only mother_deceased form-control disabled:bg-slate-200" required style="text-align:right">
+            </div>
+            <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">Occupation<span style="color:red">*</span>:</label>
                 <input name="mother_occupation" autocomplete="off" type="text" maxlength="100" class="mother_deceased form-control disabled:bg-slate-200" required>
             </div>
-            <div class="form-group col-span-3">
-                <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                <input name="mother_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="mother_deceased form-control disabled:bg-slate-200" required style="text-align:right">
-            </div>
+            
             <div class="form-group col-start-2 col-span-12">
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
                 <input name="mother_address" autocomplete="off" type="text" maxlength="100" class="mother_deceased form-control disabled:bg-slate-200" required>
@@ -207,7 +208,7 @@
                 <input name="partner_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control partner disabled:bg-slate-200" required disabled style="text-align:right">
             </div>
             <div class="partner_hidden form-group col-span-3" hidden>
-                <label for="lastname" class="form-label">How Long<span style="color:red">*</span>:</label>
+                <label for="lastname" class="form-label">How Long(Months)<span style="color:red">*</span>:</label>
                 <input name="partner_howlong" autocomplete="off" type="text" maxlength="3" class="form-control partner Number-Only disabled:bg-slate-200 text-right" required disabled>
             </div>
             <div class="partner_hidden form-group col-start-2 col-span-12" hidden>
@@ -259,7 +260,7 @@
                     </div>
                 </div>
                 <div class="form-group col-span-8 overstay_group" hidden>
-                    <input name="overstay_howlong" autocomplete="off" type="number" onKeyPress="if(this.value.length==3) return false;" class="overstay form-control disabled:bg-slate-200" placeholder="How Long?" required disabled>
+                    <input name="overstay_howlong" autocomplete="off" type="text" maxlength="3" class="Number-Only overstay form-control disabled:bg-slate-200" placeholder="How Long(days)?" required disabled>
                 </div>
                 <div class="form-group col-span-4 japan_group" hidden>
                     <div class="flex gap-4 w-full">
@@ -313,10 +314,11 @@
                     <label for="personal_lastname" class="form-label">Type of Visa<span style="color:red">*</span>:</label>
                     <select name="visa_type" class="visa form-select disabled:bg-slate-200" required disabled>
                         <option value="" selected disabled value>Choose....</option>
-                        <option value="TYPE 1">TYPE 1</option>
-                        <option value="TYPE 2">TYPE 2</option>
-                        <option value="TYPE 3">TYPE 3</option>
-                        <option value="TYPE 4">TYPE 4</option>
+                        <option value="Tourist Visa">Tourist Visa</option>
+                        <option value="Business Visa">Business Visa</option>
+                        <option value="Work Visa">Work Visa</option>
+                        <option value="Transit Visa">Transit Visa</option>
+                        <option value="Student Visa">Student Visa</option>
                     </select>
                 </div>
                 <div class="form-group col-span-4 visa_group" hidden >
@@ -367,7 +369,7 @@
                 </div>
                 <div class="relative_content w-full md:grid grid-cols-13 grid-flow-col gap-4">
                     <div class="form-group col-span-1">
-     
+                        <button class='py-2 bg-white w-full self-end text-xs font-bold text-white pointer-events-none'>X</button>
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
                         <input name="name_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Name">

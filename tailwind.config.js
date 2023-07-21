@@ -5,6 +5,7 @@ module.exports = {
     "./resources/**/*.js",
     "./resources/**/*.vue",
     "./node_modules/flowbite/**/*.js",
+    "./node_modules/tw-elements/dist/js/**/*.js",
     './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
   ],
   theme: {
@@ -19,7 +20,8 @@ module.exports = {
   },
   plugins: [
     require('flowbite/plugin'),
-    require('tailwind-fontawesome')
+    require('tailwind-fontawesome'),
+    require("tw-elements/dist/plugin.cjs")
   ],
 
 }

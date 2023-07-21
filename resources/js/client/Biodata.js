@@ -614,6 +614,15 @@
                 processData:false,
                 success:function(promise){
                     if(promise.success){
+                        $("#upload_details").prop('disabled', true);
+                        $("#send").prop('disabled', true);
+                        $("#personal_form").trigger("reset");
+                        $("#certificate_form").trigger("reset");
+                        $("#empLocal_form").trigger("reset");
+                        $("#personal_form").trigger("reset");
+                        $("#empAbroad_form").trigger("reset");
+                        $("#family_form").trigger("reset");
+                        $("#upload_form").trigger("reset");
                         $("#loader").hide();
                         iziToast.success({
                             class:'rounded-lg overflow-hidden',
@@ -623,7 +632,7 @@
                         });
                         setTimeout(() => {
                             location.replace((location.pathname.includes("/jp")? "/jp/":"/"));
-                        }, 3000);
+                        }, 2000);
                     }
                     console.log(promise.msgTitle)
                 }
@@ -967,7 +976,7 @@
     })
 
     //LOCAL EMP TAB ===========================================EVENT LISTENER
-    $("#empLocal_form").validate({
+    let emplocalValid = $("#empLocal_form").validate({
                
         errorElement: 'span',
         errorPlacement: function (error, element) {
@@ -1008,7 +1017,7 @@
         let id = biodata.local_company;
         let forms = `<div class='companylocal md:grid grid-cols-9 gap-4' id='company_${id+1}'>
         <div class='mt-2 md:mt-0 form-group col-span-9'>
-            <label class='text-xl font-bold'>Company ${id+1}<span style='color:red'>*</span>:</label>
+            <label class='text-xl font-bold'>Company <span style='color:red'>*</span>:</label>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
             <button id='delete_btn' class='btnDelLocal py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>Delete Record</button>
@@ -1070,10 +1079,15 @@
 
     $("#local_applicable").on("click",function(e){
         if(this.checked){
+            emplocalValid.resetForm();
+            $("#local_companys").html("");
             $("#add_local_btn").attr("disabled", true)
-            $("#local_companys :input").attr("disabled", true);
+            // $("#local_companys :input").val("");
+            // $("#local_companys :input").removeClass("border-red-600");
+            $(".companylocal :input").attr("disabled", true);
+            
         }else{
-            $("#local_companys :input").attr("disabled", false);
+            $(".companylocal :input").attr("disabled", false);
             $("#add_local_btn").attr("disabled", false)
         }
     })
@@ -1094,7 +1108,7 @@
 
 
     //ABROAD EMP TAB ===========================================EVENT LISTENER
-    $("#empAbroad_form").validate({
+    let empAbroadValid = $("#empAbroad_form").validate({
                
         errorElement: 'span',
         errorPlacement: function (error, element) {
@@ -1135,7 +1149,7 @@
         let id = biodata.abroad_company;
         let forms = `<div class='companyabroad md:grid grid-cols-9 gap-4' id='company_${id+1}'>
         <div class='mt-2 md:mt-0 form-group col-span-9'>
-            <label class='text-xl font-bold'>Company ${id+1}<span style='color:red'>*</span>:</label>
+            <label class='text-xl font-bold'>Company<span style='color:red'>*</span>:</label>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
             <button id='delete_btn' class='btnDelabroad py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>Delete Record</button>
@@ -1201,10 +1215,12 @@
 
     $("#abroad_applicable").on("click",function(e){
         if(this.checked){
+            empAbroadValid.resetForm();
+            $("#abroad_companys").html("");
             $("#add_abroad_btn").attr("disabled", true)
-            $("#abroad_companys :input").attr("disabled", true);
+            $(".companyabroad :input").attr("disabled", true);
         }else{
-            $("#abroad_companys :input").attr("disabled", false);
+            $(".companyabroad :input").attr("disabled", false);
             $("#add_abroad_btn").attr("disabled", false)
         }
        
@@ -1442,9 +1458,9 @@
     $("#add_relatives").on("click",function(e){
         e.preventDefault();
         let id = biodata.relatives
-        let form = `<div class="relative_content w-full md:grid grid-cols-13 grid-flow-col gap-4 mt-2">
+        let form = `<div class="relative_content relative_content_dynamic w-full md:grid grid-cols-13 grid-flow-col gap-4 mt-2">
         <div class="form-group col-span-1 flex items-center">
-            <button  class='btnDelrelatives py-2 px-1 bg-red-700 rounded w-full self-end text-sm font-extrabold text-white disabled:bg-red-900'>X</button>
+            <button  class='btnDelrelatives py-2 bg-red-700 rounded w-full self-end text-xs font-bold text-white disabled:bg-red-900'>X</button>
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
             <input name="name_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Name">
@@ -1470,7 +1486,9 @@
 
     $("#relatives_applicable").on("click",function(e){
         if(this.checked){
+            $(".relative_content_dynamic").remove();
             $("#relatives :input").attr("disabled",true)
+            $("#relatives :input").val("");
         }else{
             $("#relatives :input").attr("disabled",false)
         }
@@ -1610,6 +1628,7 @@
     });
 
     $("#upload_details").on("click",function(){
+        
         biodata.uploadData()
         modal.hide();
     })
