@@ -250,6 +250,6 @@ class PostController extends Controller
        
         // DB::table
         // Storage::disk('public')->delete($filename);
-        return redirect($host)->with("message","The post has been deleted");
+        return redirect('/client/gallery')->with("message","The post has been deleted");
     }
 }
