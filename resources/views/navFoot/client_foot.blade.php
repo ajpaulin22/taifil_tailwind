@@ -11,7 +11,7 @@
                 <div class="footer-pad text-white">  
                   <h4 class="text-gray-200 text-lg md:text-2xl font-bold">Contacts</h4>  
                   <ul class="list-unstyled">  
-                    <li class="py-2 text-gray-200"><i class="fa fa-phone"></i> Phone:<a href="Tel:+02-8511-7381" class="text-white"> 02-8511-7381</a> </li> 
+                    <li class="py-2 text-gray-200"><i class="fa fa-phone"></i> Phone:<a class="text-white cursor-default"> 02-8511-7381</a> </li> 
                     <hr>
                     <li class="py-2 text-gray-200"><i class="fa fa-envelope"></i> Email:<a href="mailto:taifilmanpower.application.sc@gmail.com" class="text-white text-xs"><br> taifilmanpower.application.sc@gmail.com</a> </li>  
                   </ul>  

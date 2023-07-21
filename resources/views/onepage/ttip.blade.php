@@ -25,7 +25,7 @@
                 </p>
                 <p class="mt-5">The Technical Intern trainees can acquire, master, or enhance Skills etc. that would be difficult to acquire in their home countries. The training period is a maximum of five years, and acquisition of Skills etc. is conducted pursuant to technical intern training plans.
                 </p>
-                <p class="text-end ">source:<a href="https://www.jitco.or.jp/en/regulation/" class="text-blue-600 underline italic"> https://www.jitco.or.jp/en/regulation/
+                <p class="text-end ">source:<a href="https://www.jitco.or.jp/en/regulation/" target="_blank" class="text-blue-600 underline italic"> https://www.jitco.or.jp/en/regulation/
                 </a></p>
             </div>
         </div>

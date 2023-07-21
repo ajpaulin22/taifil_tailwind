@@ -99,7 +99,7 @@
                     <button id="eng_btn" class="p-4 text-sm flex w-full gap-2"><img src="{{url("images/english.svg")}}" alt="" class="h-5">English</button>
                 </div>
                 <div class="hover:bg-gray-300 hover:text-green-600">
-                    <button id="jap_btn"  class="p-4 text-sm w-full flex gap-2"><img src="{{url("images/japanese.svg")}}" alt="" class="h-5">日本語</button>
+                    <button id=""  class="p-4 text-sm w-full flex gap-2"><img src="{{url("images/japanese.svg")}}" alt="" class="h-5">日本語</button>
                 </div>
 
             </div>
