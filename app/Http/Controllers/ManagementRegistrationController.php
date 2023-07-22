@@ -24,6 +24,7 @@ class ManagementRegistrationController extends Controller
     }
 
     public function GetApplicantData(Request $request){
+        // dd($request);
         $sorCol = $request['columns'][$request['order.0.column']]['data'];
         $sorDir = $request["order.0.dir"];
         $start = $request["start"];
@@ -119,6 +120,7 @@ class ManagementRegistrationController extends Controller
                 JOIN m_interviewhistories m ON p.ID = m.PersonalInfoID WHERE m.IsDeleted = 0 AND p.isdeleted = 0 AND p.ID IN (" . $IDs . ")";
         $query_1 .= " 
         AND  (Company LIKE '%".$search."%'
+            OR AttendInterview LIKE '%".$search."%'
             OR first_name LIKE '%".$search."%'
             OR last_name LIKE '%".$search."%'
             OR InterviewDate LIKE '%".$search."%') order by ". $sorCol . " " . $dir;

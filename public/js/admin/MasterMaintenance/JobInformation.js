@@ -4504,11 +4504,17 @@ B. Synopsis: Class Module used to process data
                     $("#loading_modal").show();
                 },
                 success:function(promise){
-                    $("#loading_modal").hide();
-                    tblCategories.ajax.reload(null, false);
-                    $("#mdlCategory").modal("hide");
-                    cancelform();
-                    showMessage("Success", "Job category was saved successfully", "success", "green");
+                    if(promise.success){
+                        $("#loading_modal").hide();
+                        tblCategories.ajax.reload(null, false);
+                        $("#mdlCategory").modal("hide");
+                        cancelform();
+                        showMessage("Success", "Job category was saved successfully", "success", "green");
+                    }
+                    else{
+                        $("#loading_modal").hide();
+                        showMessage("Error!", "Job category already exists", "error", "red");
+                    }
                 }
             })
         });
@@ -4610,7 +4616,8 @@ B. Synopsis: Class Module used to process data
             $("#mdlOperation").modal("show");
         });
 
-        $("#frmOperation").submit(function(){
+        $("#frmOperation").submit(function(e){
+            e.preventDefault();
             $.ajax({
                 url:"/admin/MasterMaintenance/JobInformation/SaveOperation",
                 type:"POST",
@@ -4618,18 +4625,25 @@ B. Synopsis: Class Module used to process data
                     _token: token,
                     CategoryID: $("#ValueCategory").val(),
                     OperationID: $("#OperationID").val(),
-                    OperationValue: $("#OperationValue").val()
+                    Operation: $("#OperationValue").val()
                 },
                 dataType:"JSON",
                 beforeSend: function(){
                     $("#loading_modal").show();
                 },
                 success:function(promise){
-                    $("#loading_modal").hide();
-                    tblOperations.ajax.reload(null, false);
-                    $("#mdlOperation").modal("hide");
-                    cancelform();
-                    showMessage("Success", "Job operation was saved successfully", "success", "green");
+                    if(promise.success){
+                        $("#loading_modal").hide();
+                        tblOperations.ajax.reload(null, false);
+                        $("#mdlOperation").modal("hide");
+                        cancelform();
+                        showMessage("Success", "Job operation was saved successfully", "success", "green");
+                    }
+                    else{
+                        $("#loading_modal").hide();
+                        showMessage("Error!", "Job operation already exists", "error", "red");
+                    }
+                    
                 }
             })
         });
@@ -4707,13 +4721,19 @@ B. Synopsis: Class Module used to process data
                     $("#loading_modal").show();
                 },
                 success:function(promise){
-                    $("#loading_modal").hide();
-                    tblQualifications.ajax.reload(null, false);
-                    $("#mdlQualification").modal("hide");
-                    $("#mdlQualificationTable").modal("show");
-
-                    cancelform();
-                    showMessage("Success", "Job qualification was saved successfully", "success", "green");
+                    if(promise.success){
+                        $("#loading_modal").hide();
+                        tblQualifications.ajax.reload(null, false);
+                        $("#mdlQualification").modal("hide");
+                        $("#mdlQualificationTable").modal("show");
+                        cancelform();
+                        showMessage("Success", "Job qualification was saved successfully", "success", "green");
+                    }
+                    else{
+                        $("#loading_modal").hide();
+                        showMessage("Error!", "Job qualification already exists", "error", "red");
+                    }
+                    
                 }
             })
         });

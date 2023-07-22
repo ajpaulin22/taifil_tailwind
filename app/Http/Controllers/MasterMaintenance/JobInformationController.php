@@ -202,20 +202,22 @@ class JobInformationController extends Controller
     public function SaveCategory(Request $request){
         $msg = "";
         try{
+            $validated = $request->validate([
+                'JobType' => 'required|max:20',
+                'Category' => 'required|unique:m_jobcategories,Category,' .$request["CategoryID"],',ID,IsDeleted,0',
+            ]);
+            $validated["IsDeleted"] = 0;
+            $validated["CreateID"] = 'admin';
+            $validated["UpdateID"] = 'admin';
             if($request["CategoryID"] == 0){
-                $validated = $request->validate([
-                    'JobType' => 'required|max:20',
-                    'Category' => 'required|unique:m_jobcategories',
-                    
-                ]);
-                dd($validated);
+                
                 m_jobcategories::create($validated);
                 $msg = 'Job Category Saved Successfully';
             }
             else{
                 DB::table('m_jobcategories')
                 ->where('id', $request["CategoryID"])
-                ->update(['Category' => $request["CategoryValue"]
+                ->update(['Category' => $request["Category"]
                         ,'JobType' => $request["JobType"]
                 ]);
                 $msg = 'Job Category Updated Successfully';
@@ -230,21 +232,15 @@ class JobInformationController extends Controller
             return response()->json($data);
         }
         catch (\Throwable $th) {
-            
-
-            
             $data = [
-                'msg' =>  $th->getMessage(),
+                'msg' =>  'Job Category Already Exists',
                 'data' => [],
                 'success' => false,
                 'msgType' => 'error',
                 'msgTitle' => 'Error!'
             ];
-            dd($data);
             return response()->json($data);
         }
-        
-        
     }
 
     public function DeleteJobCategory(Request $request){
@@ -271,31 +267,47 @@ class JobInformationController extends Controller
     public function SaveOperation(Request $request){
     
         $msg = "";
-        
-        if($request["OperationID"] == 0){
-            m_joboperations::create([
-                "JobCategoriesID" => $request["CategoryID"],
-                "Operation" => $request["OperationValue"],
-                "IsDeleted" => 0,
-                "CreateID" => "admin",
-                "UpdateID" => "admin"
+        try{
+            $validated = $request->validate([
+                'Operation' => 'required|unique:m_joboperations,Operation,' .$request["OperationID"]
             ]);
-            $msg = 'Job Operation Saved Successfully';
+            $validated["JobCategoriesID"] = $request["CategoryID"];
+            $validated["IsDeleted"] = 0;
+            $validated["CreateID"] = 'admin';
+            $validated["UpdateID"] = 'admin';
+
+            if($request["OperationID"] == 0){
+                m_joboperations::create($validated);
+                $msg = 'Job Operation Saved Successfully';
+            }
+            else{
+                DB::table('m_joboperations')
+                ->where('id', $request["OperationID"])
+                ->update(['Operation' => $request["Operation"],
+                        'updated_at' => date('Y-m-d G:i:s')
+                ]);
+                $msg = 'Job Operation Updated Successfully';
+            }
+            $data = [
+                'msg' =>  $msg,
+                'data' => [],
+                'success' => true,
+                'msgType' => 'success',
+                'msgTitle' => 'Success!'
+            ];
+            return response()->json($data);
         }
-        else{
-            DB::table('m_joboperations')
-            ->where('id', $request["OperationID"])
-            ->update(['Operation' => $request["OperationValue"]]);
-            $msg = 'Job Operation Updated Successfully';
+        catch (\Throwable $th) {
+            $data = [
+                'msg' =>  'Job Operation Already Exists',
+                'data' => [],
+                'success' => false,
+                'msgType' => 'error',
+                'msgTitle' => 'Error!'
+            ];
+            return response()->json($data);
         }
-        $data = [
-            'msg' =>  $msg,
-            'data' => [],
-            'success' => true,
-            'msgType' => 'success',
-            'msgTitle' => 'Success!'
-        ];
-        return response()->json($data);
+        
     }
     
     public function DeleteJobOperation(Request $request){

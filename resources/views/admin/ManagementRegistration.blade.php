@@ -212,7 +212,6 @@ Management Registration
                                     <label class="input-group-text" style="width:127px;" id="lblAttendInterview"> Attended Interview <span class="text-danger"> *</span></label>
                                 </div>
                                 <select class="form-control" id="AttendInterview" required>
-                                    <option value=""></option>
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                                 </select>
@@ -224,7 +223,7 @@ Management Registration
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width:127px;" id="lblInterviewDate"> Interview Date <span class="text-danger"> *</span></label>
                                 </div>
-                                <input type="date" id="InterviewDate" name="InterviewDate" class="form-control" data-parsley-required data-parsley-errors-container="#err-InterviewDate" autocomplete="off" placeholder="MM/DD/YYYY"> 
+                                <input type="date" id="InterviewDate" name="InterviewDate" class="form-control" data-parsley-required data-parsley-errors-container="#err-InterviewDate" autocomplete="off" onkeydown="return false" placeholder="MM/DD/YYYY"> 
                             </div>
                             <div id="err-AttendInterview"></div>
                         </div>
@@ -235,7 +234,7 @@ Management Registration
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width:127px;" id="lblCompany"> Company <span class="text-danger"> *</span></label>
                                 </div>
-                                <input type="text" id="Company" name="Company" class="form-control input" required data-parsley-required data-parsley-errors-container="#err-Company" autocomplete="off">
+                                <input type="text" id="Company" name="Company" class="form-control input" required data-parsley-required data-parsley-errors-container="#err-Company" maxlength="100" autocomplete="off">
                             </div>
                             <div id="err-Company"></div>
                         </div>
