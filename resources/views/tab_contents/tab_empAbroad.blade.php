@@ -10,41 +10,40 @@
         <button id="add_abroad_btn" class="py-2 px-4 bg-sky-700 rounded w-full self-end text-sm text-white disabled:bg-sky-900">Add Record</button>
     </div>
     <form action="" id="empAbroad_form" class="flex flex-col">
-            
-        <div class="" id="abroad_companys">
-            <div class="companyabroad md:grid grid-cols-9 gap-4" id="company_0">
-                <div class="mt-2 md:mt-0 form-group col-span-9">
-                    <label class="text-xl font-bold">Company 1<span style="color:red">*</span>:</label>
+        
+        <div class="companyabroad md:grid grid-cols-9 gap-4" id="company_0">
+            <div class="mt-2 md:mt-0 form-group col-span-9">
+                <label class="text-xl font-bold">Company <span style="color:red">*</span>:</label>
+            </div>
+            <div class="mt-2 md:mt-0 form-group col-span-1">
+                
+            </div>
+            <div class="col-span-8 md:grid grid-cols-4 gap-4">
+                <div class="mt-2 md:mt-0 form-group col-span-2">
+                    <input name="name_abroad_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" placeholder="Name of Company" required>
+                </div>
+                <div class="mt-2 md:mt-0 form-group col-span-2">
+                    <input name="position_abroad_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" placeholder="Position" required>
+                </div>
+                
+                <div class="mt-2 md:mt-0 form-group col-span-2">
+                    <input name="address_abroad_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" placeholder="Company Address" required>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
-                    
+                    <div class="relative max-w-sm">
+                        <x-picker_logo/>
+                        <input datepicker name="date_from_abroad_0" autocomplete="off" type="text" maxlength="100" class="form-control date_picker disabled:bg-slate-200" placeholder="Date From" required>
+                    </div>
                 </div>
-                <div class="col-span-8 md:grid grid-cols-4 gap-4">
-                    <div class="mt-2 md:mt-0 form-group col-span-2">
-                        <input name="name_abroad_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" placeholder="Name of Company" required>
-                    </div>
-                    <div class="mt-2 md:mt-0 form-group col-span-2">
-                        <input name="position_abroad_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" placeholder="Position" required>
-                    </div>
-                    
-                    <div class="mt-2 md:mt-0 form-group col-span-2">
-                        <input name="address_abroad_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" placeholder="Company Address" required>
-                    </div>
-                    <div class="mt-2 md:mt-0 form-group col-span-1">
-                        <div class="relative max-w-sm">
-                            <x-picker_logo/>
-                            <input datepicker name="date_from_abroad_0" autocomplete="off" type="text" maxlength="100" class="form-control date_picker disabled:bg-slate-200" placeholder="Date From" required>
-                        </div>
-                    </div>
-                    <div class="mt-2 md:mt-0 form-group col-span-1">
-                        <div class="relative max-w-sm">
-                            <x-picker_logo/>
-                            <input datepicker name="date_until_abroad_0" autocomplete="off" type="text" maxlength="100" class="form-control date_picker disabled:bg-slate-200" placeholder="Date Until" required>
-                        </div>
+                <div class="mt-2 md:mt-0 form-group col-span-1">
+                    <div class="relative max-w-sm">
+                        <x-picker_logo/>
+                        <input datepicker name="date_until_abroad_0" autocomplete="off" type="text" maxlength="100" class="form-control date_picker disabled:bg-slate-200" placeholder="Date Until" required>
                     </div>
                 </div>
             </div>
-            
+        </div>
+        <div class="" id="abroad_companys">
         </div>
         <div class="self-end">
             <button id="empAbroadBtn_Prev" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white hover:bg-green-800"><< Prev</button>

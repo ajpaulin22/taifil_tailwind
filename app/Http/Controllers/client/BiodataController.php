@@ -653,7 +653,9 @@ class BiodataController extends Controller
         $data = DB::table('m_jobcategories')
         ->where("JobType",$type)
         ->where("IsDeleted",0)
-        ->select()->Get();
+        ->orderby("Category","asc")
+        ->select()
+        ->Get();
         return $data;
     }
 
@@ -661,6 +663,7 @@ class BiodataController extends Controller
         $data = DB::table('m_joboperations')
         ->where("JobCategoriesID",$request->ID)
         ->where("IsDeleted",0)
+        ->orderby("Operation","asc")
         ->select()->Get();
         return $data;
     }

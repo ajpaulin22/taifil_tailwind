@@ -38,7 +38,7 @@
                     <span class="font-semibold text-xl self-center">Skill standards required</span>
                 </div>
                 <p class="text-sm my-2">Confirmed by exams, etc. (those who have completed Technical Intern Training (ii) are exempted from exams, etc.)</p>
-                <p class="text-end italic">source: <a href="https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/" class="text-blue-500 underline text-xs">https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/</a> 
+                <p class="text-end italic">source: <a href="https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/" target="_blank" class="text-blue-500 underline text-xs">https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/</a> 
                 </p>
             </div>
             

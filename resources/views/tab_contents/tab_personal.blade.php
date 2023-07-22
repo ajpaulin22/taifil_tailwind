@@ -48,7 +48,7 @@
             </div>
             <div class="form-group col-span-4">
                 <label for="address" class="form-label">Present Address<span style="color:red">*</span>:</label>
-                <input name="address" autocomplete="off" type="text" class="form-control" id="address">
+                <input name="address" autocomplete="off" type="text" maxlength="100" class="form-control" id="address">
             </div>
             <div class="form-group col-span-1">
                 <label for="address" class="form-label">Date of Birth<span style="color:red">*</span>:</label>
@@ -77,7 +77,7 @@
             <x-citizenship/>
             <div class="form-group col-span-1">
                 <label for="age" class="form-label">Age<span style="color:red">*</span>:</label>
-                <input name="age" autocomplete="off" type="text" class="form-control Number-Only" id="age" maxlength="2" style="text-align:right">
+                <input name="age" autocomplete="off" type="text" class="form-control focus:ring-0 Number-Only bg-gray-100" id="age" maxlength="2" style="text-align:right" readonly>
             </div>
             <div class="form-group col-span-1">
                 <label for="personal_lastname" class="form-label">Blood Type:</label>
@@ -109,8 +109,8 @@
                 <input name="contact" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control" id="contact" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
-                <label for="height" class="form-label">Height<span style="color:red">*</span>:</label>
-                <input name="height" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;" style="text-align:right">
+                <label for="height" class="form-label">Height(cm)<span style="color:red">*</span>:</label>
+                <input name="height" autocomplete="off" type="text" maxlength="3" class="form-control Number-Only" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="personal_lastname" class="form-label">Religion<span style="color:red">*</span>:</label>
@@ -124,7 +124,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Facebook Account<span style="color:red">*</span>:</label>
-                <input name="facebook" autocomplete="off" type="text" maxlength="100" class="form-control">
+                <input name="facebook" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="https://www.facebook.com/sample">
             </div>
             <div class="form-group col-span-1">
                 <label for="address" class="form-label">Are you Smoking?<span style="color:red">*</span>:</label>
@@ -141,7 +141,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Weight(KG)<span style="color:red">*</span>:</label>
-                <input name="weight" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;" style="text-align:right">
+                <input name="weight" autocomplete="off" type="text" maxlength="3" class="form-control Number-Only" style="text-align:right">
             </div>
             <div class="form-group col-span-2">
                 <label for="height" class="form-label">Japanese Language<span style="color:red">*</span>:</label>
@@ -169,8 +169,8 @@
                 <input name="other_lang" autocomplete="off" type="text" maxlength="100" class="form-control">
             </div>
             <div class="form-group col-span-1">
-                <label for="height" class="form-label">Shoe Size<span style="color:red">*</span>:</label>
-                <input name="shoe_size" autocomplete="off" type="number" class="form-control" onKeyPress="if(this.value.length==4) return false;" style="text-align:right">
+                <label for="height" class="form-label">Shoe Size(cm)<span style="color:red">*</span>:</label>
+                <input name="shoe_size" autocomplete="off" type="text" maxlength="3" class="form-control Number-Only" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Hobbies<span style="color:red">*</span>:</label>
@@ -182,7 +182,14 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Relation<span style="color:red">*</span>:</label>
-                <input name="relation" autocomplete="off" type="text" maxlength="100" class="form-control">
+                {{-- <input name="relation" autocomplete="off" type="text" maxlength="100" class="form-control"> --}}
+                <select name="relation" class="form-select">
+                    <option value="" selected disabled value>Choose....</option>
+                    <option value="Mother">Mother</option>
+                    <option value="Father">Father</option>
+                    <option value="Sibling">Sibling</option>
+                    <option value="Relative">Relative</option>
+                </select>
             </div>
             <div class="form-group col-span-2">
                 <label for="height" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -194,7 +201,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Passport No.<span style="color:red">*</span>:</label>
-                <input name="passport" autocomplete="off" type="text" maxlength="100" class="form-control uppercase" style="text-align:right">
+                <input name="passport" autocomplete="off" type="text" maxlength="20" class="form-control uppercase" style="">
             </div>
             <div class="form-group col-span-1">
                     <label for="height" class="form-label">Issue Date.<span style="color:red">*</span>:</label>
@@ -270,7 +277,7 @@
                     <label for="height" class="form-label">Valid Until<span style="color:red">*</span>:</label>
                     <div class="relative max-w-sm">
                         <x-picker_logo/>
-                        <input datepicker name="licensed_until" type="text" maxlength="100" class="date_picker" placeholder="MM/DD/YYYY">
+                        <input datepicker autocomplete="off" name="licensed_until" type="text" maxlength="100" class="date_picker" placeholder="MM/DD/YYYY">
                     </div>
                 </div>
         </div>

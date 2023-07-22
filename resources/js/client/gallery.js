@@ -73,6 +73,20 @@
         return true;
     }, $.validator.format( "File size must not exceed {0} bytes each." ) );
 
+    $.validator.addMethod( "maxfiles", function( value, element, param ) {
+        if ( this.optional( element ) ) {
+            return true;
+        }
+    
+        if ( $( element ).attr( "type" ) === "file" ) {
+            if ( element.files && element.files.length > param ) {
+                return false;
+            }
+        }
+    
+        return true;
+    }, $.validator.format( "Please select no more than {0} files." ) );
+
      $.validator.addMethod( "extension", function( value, element, param ) {
         param = typeof param === "string" ? param.replace( /,/g, "|" ) : "png|jpe?g|gif";
         return this.optional( element ) || value.match( new RegExp( "\\.(" + param + ")$", "i" ) );
@@ -83,7 +97,8 @@
             pictures: {
                 extension: "png|jpeg|jpg",
                 maxsize: 1932979,
-                maxsizetotal:1932979,
+                maxsizetotal:10932979,
+                maxfiles:10
             },
         },
         messages:{
