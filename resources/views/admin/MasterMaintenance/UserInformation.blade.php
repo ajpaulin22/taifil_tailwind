@@ -60,9 +60,6 @@ User Information
             </div>
             <div class="modal-body">
                 <div class="panel panel-inverse">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">Job Codes</h4>
-                    </div>
                     <div class="panel-body" style="background-color: rgb(241, 238, 238)">
                         <form id="frmUser" data-parsley-validate>
                             <div class="row col-sm-12">
@@ -84,7 +81,7 @@ User Information
                                         <label class="input-group-text" id="lblFirstName" style="width: 140px;"> First Name <span class="text-danger"> *</span></label>
                                     </div>
                                     <input type="hidden" id="UserID" name="UserID" class="form-control input" autocomplete="off" value=0>
-                                    <input type="text" id="FirstName" name="FirstName" class="form-control input" autocomplete="off" required>
+                                    <input type="text" id="FirstName" name="FirstName" class="form-control input" autocomplete="off" maxlength="50" required>
                                 </div>
                                 <div id="err-FirstName"></div>
                             </div>
@@ -93,7 +90,7 @@ User Information
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" id="lblLastName" style="width: 140px;"> Last Name <span class="text-danger"> *</span></label>
                                     </div>
-                                    <input type="text" id="LastName" name="LastName" class="form-control input" autocomplete="off" required>
+                                    <input type="text" id="LastName" name="LastName" class="form-control input" autocomplete="off" maxlength="50" required>
                                 </div>
                                 <div id="err-LastName"></div>
                             </div>
@@ -102,7 +99,7 @@ User Information
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" id="lblUserName" style="width: 140px;"> User Name <span class="text-danger"> *</span></label>
                                     </div>
-                                    <input type="text" id="UserName" name="UserName" class="form-control input" autocomplete="off" required>
+                                    <input type="text" id="UserName" name="UserName" class="form-control input" autocomplete="off" maxlength="50" maxlength="50" required>
                                 </div>
                                 <div id="err-UserName"></div>
                             </div>
@@ -111,14 +108,14 @@ User Information
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" id="lblEmailAddress" style="width: 140px;"> Email Address <span class="text-danger"> *</span></label>
                                     </div>
-                                    <input type="text" id="EmailAddress" name="EmailAddress" class="form-control input" autocomplete="off" required>
+                                    <input type="text" id="EmailAddress" name="EmailAddress" class="form-control input" autocomplete="off" maxlength="50" required>
                                 </div>
                                 <div id="err-EmailAddress"></div>
                             </div>
                             <div class="row col-sm-12">
                                 <div class="input-group m-b-5">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" id="lblPassword" style="width: 140px;"> Password <span class="text-danger"> *</span></label>
+                                        <label class="input-group-text" id="lblPassword" style="width: 140px;"> Password <span class="text-danger PasswordRequired"> *</span></label>
                                     </div>
                                     <input type="password" id="Password" name="Password" class="form-control input" autocomplete="off" required>
                                 </div>
@@ -127,7 +124,7 @@ User Information
                             <div class="row col-sm-12">
                                 <div class="input-group m-b-5">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" id="lblConfirmPassword" style="width: 140px;"> Confirm Password <span class="text-danger"> *</span></label>
+                                        <label class="input-group-text" id="lblConfirmPassword" style="width: 140px;"> Confirm Password <span class="text-danger PasswordRequired"> *</span></label>
                                     </div>
                                     <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control input" autocomplete="off" required>
                                 </div>

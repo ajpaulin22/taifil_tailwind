@@ -185,7 +185,7 @@ Job Information
                     </div>
                     <div class="row" style="margin-top: 10px;">
                         <div class="mb-1 col-sm-6">
-                            <button type="button" id="btnSaveCategory" class="btn btn-sm btn-block btn-primary"><span class="fa fa-save"></span> <span class="btn-label">Save </span></button>
+                            <button type="submit" id="btnSaveCategory" class="btn btn-sm btn-block btn-primary"><span class="fa fa-save"></span> <span class="btn-label">Save </span></button>
                         </div>
                         <div class="mb-1 col-sm-6">
                             <button type="button" id="btnCancelCategory" class="btn btn-sm btn-block red" data-dismiss="modal"><span class="fa fa-times"></span> Close</button>
@@ -230,7 +230,7 @@ Job Information
                     </div>
                     <div class="row" style="margin-top: 10px;">
                         <div class="mb-1 col-sm-6">
-                            <button type="button" id="btnSaveOperation" class="btn btn-sm btn-block btn-primary"><span class="fa fa-save"></span> <span class="btn-label">Save </span></button>
+                            <button type="submit" id="btnSaveOperation" class="btn btn-sm btn-block btn-primary"><span class="fa fa-save"></span> <span class="btn-label">Save </span></button>
                         </div>
                         <div class="mb-1 col-sm-6">
                             <button type="button" id="btnCancelOperation" class="btn btn-sm btn-block red" data-dismiss="modal"><span class="fa fa-times"></span> Close</button>

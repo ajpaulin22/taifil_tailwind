@@ -18,7 +18,7 @@
 
 			<li class="">
 				<a href="/admin/ManagementRegistration#">
-					<i class="fas fa-home"></i>
+					<i class="fas fa-user-circle"></i>
 					<span>ManagementRegistration</span>
 				</a>
 			</li>
@@ -26,7 +26,7 @@
             <li class='has-sub " + mainActive + "'>
                 <a href="#">
                     <b class='caret'></b>
-                    <i class="fas fa-home"></i>
+                    <i class="fas fa-cogs"></i>
                     <span>Master Maintenance</span>
                 </a>
                 <ul class='sub-menu'>

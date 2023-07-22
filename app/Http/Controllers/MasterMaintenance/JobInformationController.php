@@ -75,11 +75,10 @@ class JobInformationController extends Controller
         $data2 = DB::select($query_2);
 
         $total_result = (count($data2) > 0 ? count($data2): 0);
-        $totalFiltered = (count($data2) > 0 ? count($data2): 0);
         $json_data = [
             'draw' => intval($request->draw),
             'recordsTotal' => $total_result,
-            'recordsFiltered' => $totalFiltered,
+            'recordsFiltered' => $total_result,
             'data' => $data
         ];
         return json_encode($json_data);
@@ -201,35 +200,51 @@ class JobInformationController extends Controller
     }
     
     public function SaveCategory(Request $request){
-    
         $msg = "";
-        // dd($request["CodeID"]);
-        if($request["CategoryID"] == 0){
-            m_jobcategories::create([
-                "JobType" => $request["JobType"],
-                "Category" => $request["CategoryValue"],
-                "IsDeleted" => 0,
-                "CreateID" => "admin",
-                "UpdateID" => "admin"
-            ]);
-            $msg = 'Job Category Saved Successfully';
+        try{
+            if($request["CategoryID"] == 0){
+                $validated = $request->validate([
+                    'JobType' => 'required|max:20',
+                    'Category' => 'required|unique:m_jobcategories',
+                    
+                ]);
+                dd($validated);
+                m_jobcategories::create($validated);
+                $msg = 'Job Category Saved Successfully';
+            }
+            else{
+                DB::table('m_jobcategories')
+                ->where('id', $request["CategoryID"])
+                ->update(['Category' => $request["CategoryValue"]
+                        ,'JobType' => $request["JobType"]
+                ]);
+                $msg = 'Job Category Updated Successfully';
+            }
+            $data = [
+                'msg' =>  $msg,
+                'data' => [],
+                'success' => true,
+                'msgType' => 'success',
+                'msgTitle' => 'Success!'
+            ];
+            return response()->json($data);
         }
-        else{
-            DB::table('m_jobcategories')
-            ->where('id', $request["CategoryID"])
-            ->update(['Category' => $request["CategoryValue"]
-                    ,'JobType' => $request["JobType"]
-            ]);
-            $msg = 'Job Category Updated Successfully';
+        catch (\Throwable $th) {
+            
+
+            
+            $data = [
+                'msg' =>  $th->getMessage(),
+                'data' => [],
+                'success' => false,
+                'msgType' => 'error',
+                'msgTitle' => 'Error!'
+            ];
+            dd($data);
+            return response()->json($data);
         }
-        $data = [
-            'msg' =>  $msg,
-            'data' => [],
-            'success' => true,
-            'msgType' => 'success',
-            'msgTitle' => 'Success!'
-        ];
-        return response()->json($data);
+        
+        
     }
 
     public function DeleteJobCategory(Request $request){

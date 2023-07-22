@@ -24,13 +24,16 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
     {
         $sql = "call biodata_getdata('','','',0,0,'Name','asc',0,100,'')";
         $data = collect(DB::select(DB::raw($sql)))->whereIN("ID", $this->id);
+        $data->transform(function($i) {
+            unset($i->ID);
+            return $i;
+        });
         return $data;
     }
 
     public function headings(): array
     {
         return[
-            'ID',
             'Name',
             'Job Category',
             'Job Operation',
@@ -58,8 +61,7 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
             'H',
             'I',
             'J',
-            'K',
-            'L'
+            'K'
         ];
     }
 }

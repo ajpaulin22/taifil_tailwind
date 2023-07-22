@@ -11,6 +11,10 @@
     var JobCategoryChkData = [];
     var JobOperationChkData = [];
     var JobQualificationChkData = [];
+
+    var jobCatCheck = [];
+    var jobOperationCheck = [];
+    var jobQualificationCheck = [];
     var ajax = $D();
     token = $("meta[name=csrf-token]").attr("content");
     // $.fn.DataTable.ext.pager.numbers_length = 4;
@@ -70,10 +74,12 @@
         //Job Categories Events
 
         $("#btnAddJobCategories").click(function(){
+            $("#mdlCategoryTitle").text("Create Category");
             $("#mdlCategory").modal("show");
         });
 
-        $("#btnSaveCategory").click(function(){
+        $("#frmCategory").submit(function(e){
+            e.preventDefault();
             $.ajax({
                 url:"/admin/MasterMaintenance/JobInformation/SaveCategory",
                 type:"POST",
@@ -81,7 +87,7 @@
                     _token: token,
                     JobType: $("#JobType").val(),
                     CategoryID: $("#CategoryID").val(),
-                    CategoryValue: $("#CategoryValue").val()
+                    Category: $("#CategoryValue").val()
                 },
                 dataType:"JSON",
                 beforeSend: function(){
@@ -124,7 +130,7 @@
         // });
 
         $("#btnEditJobCategories").click(function(){
-
+            $("#mdlCategoryTitle").text("Update Category");
             $("#CategoryValue").val(dataJobCategory.Category);
             $("#CategoryID").val(dataJobCategory.ID);
             $("#JobType").val(dataJobCategory.JobType);
@@ -132,7 +138,7 @@
         });
 
         $("#btnCancelCategory").click(function(){
-            $(".input").val("");
+            ajax.clearFromData("frmCategory");
         });
 
         $("#btnDeleteJobCategories").click(function(){
@@ -187,12 +193,14 @@
         //Job Operations Events
 
         $("#btnAddOperations").click(function(){
+            $("#TextCategory").attr('readonly', true);
             $("#ValueCategory").val(dataJobCategory.ID);
             $("#TextCategory").val(dataJobCategory.Category);
+            $("#mdlOperationTitle").text("Create Operation");
             $("#mdlOperation").modal("show");
         });
 
-        $("#btnSaveOperation").click(function(){
+        $("#frmOperation").submit(function(){
             $.ajax({
                 url:"/admin/MasterMaintenance/JobInformation/SaveOperation",
                 type:"POST",
@@ -249,20 +257,24 @@
         });
 
         $("#btnEditOperations").click(function(){
+            $("#TextCategory").attr('readonly', true);
             $("#ValueCategory").val(dataJobCategory.ID);
             $("#TextCategory").val(dataJobCategory.Category);
             $("#OperationValue").val(dataJobOperation.Operation);
             $("#OperationID").val(dataJobOperation.ID);
+            $("#mdlOperationTitle").text("Update Operation");
             $("#mdlOperation").modal("show");
         });
 
         $("#btnCancelOperation").click(function(){
-            $(".input").val("");
+            ajax.clearFromData("frmOperation");
         });
 
         //Job Qualifications Events
 
         $("#btnAddQualifications").click(function(){
+            $("#TextCategoryQualification").attr('readonly', true);
+            $("#mdlQualificationTitle").text("Add Qualification");
             $("#ValueCategoryQualification").val(dataJobOperation.ID);
             $("#TextCategoryQualification").val(dataJobOperation.Operation);
             $("#mdlQualificationTable").modal("hide");
@@ -297,18 +309,20 @@
         });
 
         $("#btnEditQualifications").click(function(){
+            $("#TextCategoryQualification").attr('readonly', true);
+            $("#mdlQualificationTitle").text("Update Qualification");
             $("#ValueCategoryQualification").val(dataJobOperation.ID);
             $("#TextCategoryQualification").val(dataJobOperation.Operation);
             $("#QualificationValue").val(dataJobQualification.Qualification);
             $("#QualificationID").val(dataJobQualification.ID);
             $("#mdlQualificationTable").modal("hide");
-            $("#mdlQualification").modal("show");
+            $("#mdlQualification").modal("show");   
         });
 
         $("#btnCancelQualification").click(function(){
             $("#mdlQualification").modal("hide");
             $("#mdlQualificationTable").modal("show");
-            $(".input").val("");
+            ajax.clearFromData("frmQualification");
         });
 
         // $("#tblCodes").on("change", ".CheckItem", function () {
@@ -380,6 +394,7 @@
     
         $('#tblJobCategories tbody').on('click', 'tr', function(e){
             dataJobCategory = tblCategories.row($(this)).data();
+            jobOperationCheck = [];
             switch (e.target.localName) {
                 case "button":
                     break;
@@ -484,25 +499,6 @@
 
         //END OF EVENTS
 
-        
-        $("#CheckAllitemCategory").click(function () {
-            if ($(this).is(":checked")) {
-                $(".CheckItemCategory").prop('checked', true);
-            }
-            else {
-                $(".CheckItemCategory").prop('checked', false);
-            }
-        })
-
-        $("#CheckAllitemOperation").click(function () {
-            if ($(this).is(":checked")) {
-                $(".CheckItemOperation").prop('checked', true);
-            }
-            else {
-                $(".CheckItemOperation").prop('checked', false);
-            }
-        })
-
         $("#btnSaveHiring").click(function(){
             var hiringData = [];
             $(".CheckHiring").each(function(){
@@ -532,6 +528,138 @@
                         tblOperations.ajax.reload(null, false);
                         showMessage("Success!", "Hiring Information Was Saved Successfully", "success", "green");
                     }
+                });
+            }
+        });
+
+        $("#tblJobCategories").on("change", ".CheckItemCategory", function () {
+            var id = $(this).val()
+            if ($(this).is(":checked")) {
+                jobCatCheck.push({
+                    ID: $(this).val()
+                });
+            } else {
+                jobCatCheck = jobCatCheck.filter(function (obj) {
+                    return obj.ID != id
+                });
+            }
+            $(".CheckItemCategory").each(function () {
+                if ($(this).is(":checked")) {
+                    $("#CheckAllitemCategory").prop('checked', true);
+                }
+                else {
+                    $("#CheckAllitemCategory").prop('checked', false);
+                    return false;
+                }
+            });
+        });
+
+        $("#CheckAllitemCategory").click(function () {
+            if ($(this).is(":checked")) {
+                $(".CheckItemCategory").each(function(){
+                    if(!$(this).is(":checked")){
+                        $(this).prop('checked', true);
+                        jobCatCheck.push({
+                            ID: $(this).val()
+                        });
+                    }
+                });
+            }
+            else {
+                $(".CheckItemCategory").each(function(){
+                    var id = $(this).val();
+                    $(this).prop('checked', false);
+                    jobCatCheck = jobCatCheck.filter(function (obj) {
+                        return obj.ID != id
+                    });
+                });
+            }
+        });
+
+        $("#tblOperations").on("change", ".CheckItemOperation", function () {
+            var id = $(this).val()
+            if ($(this).is(":checked")) {
+                jobOperationCheck.push({
+                    ID: $(this).val()
+                });
+            } else {
+                jobOperationCheck = jobOperationCheck.filter(function (obj) {
+                    return obj.ID != id
+                });
+            }
+            $(".CheckItemOperation").each(function () {
+                if ($(this).is(":checked")) {
+                    $("#CheckAllitemOperation").prop('checked', true);
+                }
+                else {
+                    $("#CheckAllitemOperation").prop('checked', false);
+                    return false;
+                }
+            });
+        });
+
+        $("#CheckAllitemOperation").click(function () {
+            if ($(this).is(":checked")) {
+                $(".CheckItemOperation").each(function(){
+                    if(!$(this).is(":checked")){
+                        $(this).prop('checked', true);
+                        jobOperationCheck.push({
+                            ID: $(this).val()
+                        });
+                    }
+                });
+            }
+            else {
+                $(".CheckItemOperation").each(function(){
+                    var id = $(this).val();
+                    $(this).prop('checked', false);
+                    jobOperationCheck = jobOperationCheck.filter(function (obj) {
+                        return obj.ID != id
+                    });
+                });
+            }
+        });
+
+        $("#tblQualifications").on("change", ".CheckItemQualification", function () {
+            var id = $(this).val()
+            if ($(this).is(":checked")) {
+                jobQualificationCheck.push({
+                    ID: $(this).val()
+                });
+            } else {
+                jobQualificationCheck = jobQualificationCheck.filter(function (obj) {
+                    return obj.ID != id
+                });
+            }
+            $(".CheckItemQualification").each(function () {
+                if ($(this).is(":checked")) {
+                    $("#CheckAllitemQualification").prop('checked', true);
+                }
+                else {
+                    $("#CheckAllitemQualification").prop('checked', false);
+                    return false;
+                }
+            });
+        });
+
+        $("#CheckAllitemQualification").click(function () {
+            if ($(this).is(":checked")) {
+                $(".CheckItemQualification").each(function(){
+                    if(!$(this).is(":checked")){
+                        $(this).prop('checked', true);
+                        jobQualificationCheck.push({
+                            ID: $(this).val()
+                        });
+                    }
+                });
+            }
+            else {
+                $(".CheckItemQualification").each(function(){
+                    var id = $(this).val();
+                    $(this).prop('checked', false);
+                    jobQualificationCheck = jobQualificationCheck.filter(function (obj) {
+                        return obj.ID != id
+                    });
                 });
             }
         });
@@ -590,7 +718,7 @@
     //     }
     //     return this;
     // }
-    
+
     function drawJobCategoriesTable(){
         if (!$.fn.DataTable.isDataTable('#tblJobCategories')) {
             tblCategories = $('#tblJobCategories').DataTable({
@@ -613,13 +741,28 @@
                             {
                                 title: "<input type='checkbox' id='CheckAllitemCategory' />",
                                 render: function (data, row, meta){
-                                    return "<input type='checkbox' class='CheckItemCategory text-center' value='" + meta.ID + "'>";
+                                    return "<input type='checkbox' name='CheckItemCategory' class='CheckItemCategory text-center' value='" + meta.ID + "'>";
                                 },
                                 width: "2%", orderable: false
                             },
                             { data: 'JobType', name: 'JobType' ,orderable: true, title: "Job Type"},
                             { data: 'Category', name: 'Category' ,orderable: true, title: "Category"},
-                        ],
+                ],
+                "drawCallback": function() {
+                    for(var i = 0; i < jobCatCheck.length; i++){
+                        $("input[name='CheckItemCategory'][value="+ jobCatCheck[i].ID +"]").prop('checked', true);
+                    }
+                    
+                    $(".CheckItemCategory").each(function () {
+                        if ($(this).is(":checked")) {
+                            $("#CheckAllitemCategory").prop('checked', true);
+                        }
+                        else {
+                            $("#CheckAllitemCategory").prop('checked', false);
+                            return false;
+                        }
+                    });
+                },
             }).on('page.dt', function() {
             });
         }
@@ -648,7 +791,7 @@
                             {
                                 title: "<input type='checkbox' id='CheckAllitemOperation' />",
                                 render: function (data, row, meta){
-                                    return "<input type='checkbox' class='CheckItemOperation text-center' value='" + meta.ID + "'>";
+                                    return "<input type='checkbox' name='CheckItemOperation' class='CheckItemOperation text-center' value='" + meta.ID + "'>";
                                 },
                                 width: "2%", orderable: false
                             },
@@ -660,7 +803,23 @@
                                 },
                                 width: "2%", orderable: false
                             },
-                        ],
+                ],
+                "drawCallback": function() {
+                    $("#btnViewQualification").attr('disabled', true);
+                    for(var i = 0; i < jobOperationCheck.length; i++){
+                        $("input[name='CheckItemOperation'][value="+ jobOperationCheck[i].ID +"]").prop('checked', true);
+                    }
+                    
+                    $(".CheckItemOperation").each(function () {
+                        if ($(this).is(":checked")) {
+                            $("#CheckAllitemOperation").prop('checked', true);
+                        }
+                        else {
+                            $("#CheckAllitemOperation").prop('checked', false);
+                            return false;
+                        }
+                    });
+                },
             }).on('page.dt', function() {
             });
         }
@@ -687,14 +846,29 @@
                 ],
                 columns:[
                             {
-                                title: "<input type='checkbox' id='CheckAllitem' />",
+                                title: "<input type='checkbox' id='CheckAllitemQualification' />",
                                 render: function (data, row, meta){
-                                    return "<input type='checkbox' class='CheckItem text-center' value='" + meta.ID + "'>";
+                                    return "<input type='checkbox' name='CheckItemQualification' class='CheckItemQualification text-center' value='" + meta.ID + "'>";
                                 },
                                 width: "2%", orderable: false
                             },
                             { data: 'Qualification', name: 'Qualification' ,orderable: true, title: "Qualification"},
-                        ],
+                ],
+                "drawCallback": function() {
+                    for(var i = 0; i < jobQualificationCheck.length; i++){
+                        $("input[name='CheckItemQualification'][value="+ jobQualificationCheck[i].ID +"]").prop('checked', true);
+                    }
+                    
+                    $(".CheckItemQualification").each(function () {
+                        if ($(this).is(":checked")) {
+                            $("#CheckAllitemQualification").prop('checked', true);
+                        }
+                        else {
+                            $("#CheckAllitemQualification").prop('checked', false);
+                            return false;
+                        }
+                    });
+                },
             }).on('page.dt', function() {
             });
         }

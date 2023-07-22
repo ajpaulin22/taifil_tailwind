@@ -4413,15 +4413,26 @@ B. Synopsis: Class Module used to process data
     var dataUser = "";
     var ajax = $D();
     var chkDataUser = [];
+    var tableCheck = [];
     token = $("meta[name=csrf-token]").attr("content");
     $(document).ready(function(){
         drawUserTable();
 
         $("#btnAdd").click(function(){
+            $("#Password").attr('required', true);
+            $("#ConfirmPassword").attr('required', true);
+            $(".PasswordRequired").text("*");
+            $(".PasswordRequired").addClass("text-danger");
+            $("#mdlUserTitle").text("Create User");
             $("#mdlAddUser").modal('show');
         });
 
         $("#btnEdit").click(function(){
+            $("#Password").removeAttr('required');
+            $("#ConfirmPassword").removeAttr('required');
+            $(".PasswordRequired").text("");
+            $(".PasswordRequired").removeClass("text-danger");
+            $("#mdlUserTitle").text("Edit User");
             $.ajax({
                 url: "/admin/MasterMaintenance/UserInformation/GetUserInformation",
                 dataType: "JSON",
@@ -4507,17 +4518,6 @@ B. Synopsis: Class Module used to process data
             }
         });
 
-        $("#tblUserInformation").on("change", ".CheckItem", function () {
-            var trData = tblUserInformation.row($(this).parents('tr')).data();
-            if ($(this).is(":checked")) {
-                chkDataUser.push({ ID: trData.ID});
-            } else {
-                chkDataUser = chkDataUser.filter(function (obj) {
-                    return obj.ID !== trData.ID;
-                });
-            }
-        });
-
         $('#tblUserInformation tbody').on('click', 'tr', function(e){
             dataUser = tblUserInformation.row($(this)).data();
             switch (e.target.localName) {
@@ -4557,6 +4557,50 @@ B. Synopsis: Class Module used to process data
             $("#ConfirmPassword").val("");
         });
 
+        $("#tblUserInformation").on("change", ".CheckItem", function () {
+            var id = $(this).val()
+            if ($(this).is(":checked")) {
+                tableCheck.push({
+                    ID: $(this).val()
+                });
+            } else {
+                tableCheck = tableCheck.filter(function (obj) {
+                    return obj.ID != id
+                });
+            }
+            $(".CheckItem").each(function () {
+                if ($(this).is(":checked")) {
+                    $("#CheckAllitem").prop('checked', true);
+                }
+                else {
+                    $("#CheckAllitem").prop('checked', false);
+                    return false;
+                }
+            });
+        });
+
+        $("#CheckAllitem").click(function () {
+            if ($(this).is(":checked")) {
+                $(".CheckItem").each(function(){
+                    if(!$(this).is(":checked")){
+                        $(this).prop('checked', true);
+                        tableCheck.push({
+                            ID: $(this).val()
+                        });
+                    }
+                });
+            }
+            else {
+                $(".CheckItem").each(function(){
+                    var id = $(this).val();
+                    $(this).prop('checked', false);
+                    tableCheck = tableCheck.filter(function (obj) {
+                        return obj.ID != id
+                    });
+                });
+            }
+        })
+
     });
 
     function drawUserTable(){
@@ -4575,7 +4619,7 @@ B. Synopsis: Class Module used to process data
                 deferRender: true,
                 pageLength: 10,
                 order: [
-                    [0, "asc"]
+                    [1, "asc"]
                 ],
                 lengthMenu: [
                     [10, 20, 50, 100, 150, 200, 500, -1],
@@ -4604,7 +4648,7 @@ B. Synopsis: Class Module used to process data
                     {
                         title: "<input type='checkbox' id='CheckAllitem'/>",
                         render: function (data, row, meta){
-                            return "<input type='checkbox' class='CheckItem text-center' value='" + meta.ID + "'>";
+                            return "<input type='checkbox' name='CheckItem' class='CheckItem text-center' value='" + meta.ID + "'>";
                         },
                         width: "2%", orderable: false
                     },
@@ -4612,8 +4656,23 @@ B. Synopsis: Class Module used to process data
                     { title: 'UserName', data: "UserName", width: "18%"},
                     { title: 'FirstName', data: "FirstName", width: "18%"},
                     { title: 'LastName', data: "LastName", width: "18%"},
-
                 ],
+                "drawCallback": function() {
+                    
+                    for(var i = 0; i < tableCheck.length; i++){
+                        $("input[name='CheckItem'][value="+ tableCheck[i].ID +"]").prop('checked', true);
+                    }
+                    
+                    $(".CheckItem").each(function () {
+                        if ($(this).is(":checked")) {
+                            $("#CheckAllitem").prop('checked', true);
+                        }
+                        else {
+                            $("#CheckAllitem").prop('checked', false);
+                            return false;
+                        }
+                    });
+                },
             }).on('page.dt', function() {
             });
         }

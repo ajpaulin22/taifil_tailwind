@@ -34,7 +34,7 @@ class ManagementRegistrationController extends Controller
         $totalRowCount = DB::table('personal_datas')
                         ->where("IsDeleted",0)
                         ->select()->Get();
-        $totalRowCount = (count($totalRowCount) > 0 ? count($totalRowCount): 0);
+        $totalRowCount = (count($data) > 0 ? count($totalRowCount): 0);
         $json_data = [
             'draw' => intval($request->draw),
             'recordsTotal' => $totalRowCount,

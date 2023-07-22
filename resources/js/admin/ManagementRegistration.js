@@ -5,6 +5,8 @@
     var applicantID = 0;
     var AbroadData = [];
     var tableData = [];
+    var abroadCheck = [];
+    var tableCheck = [];
 
     token = $("meta[name=csrf-token]").attr("content");
     
@@ -31,8 +33,6 @@
         $("#btnCreateApplicant").click(function(){
             location.href = "/client/Biodata?data=" + $("#JobType").val() +"&type=fresh";
         });
-
-
 
         $("#btnEdit").click(function(){
             collectCheckBoxID();
@@ -68,8 +68,8 @@
                 $("#mdlInterview").modal('show');
             }
         });
-
         $("#btnSaveAbroad").click(function(){
+            AbroadData = [];
             $(".CheckAbroad").each(function(){
                 AbroadData.push({
                     ID: $(this).val(),
@@ -143,6 +143,16 @@
         });
 
         $("#tblManagementRegistration").on("change", ".CheckItem", function () {
+            var id = $(this).val()
+            if ($(this).is(":checked")) {
+                tableCheck.push({
+                    ID: $(this).val()
+                });
+            } else {
+                tableCheck = tableCheck.filter(function (obj) {
+                    return obj.ID != id
+                });
+            }
             $(".CheckItem").each(function () {
                 if ($(this).is(":checked")) {
                     $("#CheckAllitem").prop('checked', true);
@@ -152,6 +162,19 @@
                     return false;
                 }
             });
+        });
+
+        $("#tblManagementRegistration").on("change", ".CheckAbroad", function () {
+            var id = $(this).val()
+            if ($(this).is(":checked")) {
+                abroadCheck.push({
+                    ID: $(this).val()
+                });
+            } else {
+                abroadCheck = abroadCheck.filter(function (obj) {
+                    return obj.ID != id
+                });
+            }
         });
 
         $("#btnDelete").click(function(){
@@ -218,16 +241,29 @@
         });
 
         $(".Number-Only").on("input change paste", function () {
-            var newVal = $(this).val().replace(/[^0-9\.-]/g, '');
+            var newVal = $(this).val().replace(/[^0-9\.]/g, '');
             $(this).val(newVal.replace(/,/g, ''));
         });
 
         $("#CheckAllitem").click(function () {
             if ($(this).is(":checked")) {
-                $(".CheckItem").prop('checked', true);
+                $(".CheckItem").each(function(){
+                    if(!$(this).is(":checked")){
+                        $(this).prop('checked', true);
+                        tableCheck.push({
+                            ID: $(this).val()
+                        });
+                    }
+                });
             }
             else {
-                $(".CheckItem").prop('checked', false);
+                $(".CheckItem").each(function(){
+                    var id = $(this).val();
+                    $(this).prop('checked', false);
+                    tableCheck = tableCheck.filter(function (obj) {
+                        return obj.ID != id
+                    });
+                });
             }
         })
     })
@@ -284,8 +320,6 @@
         })
     }
 
-    
-
     function drawDataTable(){
         if (!$.fn.DataTable.isDataTable('#tblManagementRegistration')) {
             tblManagementRegistration = $('#tblManagementRegistration').DataTable({
@@ -315,7 +349,7 @@
                     {
                         title: "<input type='checkbox' id='CheckAllitem'/>",
                         render: function (data, row, meta){
-                            return "<input type='checkbox' class='CheckItem text-center' value='" + meta.ID + "'>";
+                            return "<input type='checkbox' name='CheckItem' class='CheckItem text-center' value='" + meta.ID + "'>";
                         },
                         width: "2%", orderable: false
                     },
@@ -331,12 +365,30 @@
                     {
                         title: 'To Abroad',
                         render: function (data, row, meta){
-                            return "<input type='checkbox' class='CheckAbroad text-center' value='" + meta.ID + "' " + (meta.ToAbroad == 1 ? 'checked' : '' ) + ">";
+                            return "<input type='checkbox' name='CheckAbroad' class='CheckAbroad text-center' value='" + meta.ID + "' " + (meta.ToAbroad == 1 ? 'checked' : '' ) + ">";
                         },
                         width: "2%", orderable: false, className: "dt-center"
                     },
                     { title: 'AbroadDate', data: "AbroadDate", width:"4%", className: "dt-center"},
                 ],
+                "drawCallback": function() {
+                    for(var i = 0; i < tableCheck.length; i++){
+                        $("input[name='CheckItem'][value="+ tableCheck[i].ID +"]").prop('checked', true);
+                    }
+                    for(var i = 0; i < abroadCheck.length; i++){
+                        $("input[name='CheckAbroad'][value="+ abroadCheck[i].ID +"]").prop('checked', true);
+                    }
+                    
+                    $(".CheckItem").each(function () {
+                        if ($(this).is(":checked")) {
+                            $("#CheckAllitem").prop('checked', true);
+                        }
+                        else {
+                            $("#CheckAllitem").prop('checked', false);
+                            return false;
+                        }
+                    });
+                }
             }).on('page.dt', function() {
             });
         }

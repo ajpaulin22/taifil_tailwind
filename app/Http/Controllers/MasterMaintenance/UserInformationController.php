@@ -22,7 +22,7 @@ class UserInformationController extends Controller
 
         $limit = $request->length;
         $start = $request->start;
-        $order111 = $request->input('order.0.column');
+        $sorCol = $request['columns'][$request['order.0.column']]['data'];
         $dir = $request->input('order.0.dir');
         $search = $request->input('search.value');
         
@@ -39,16 +39,17 @@ class UserInformationController extends Controller
         CAST(id as char(200)) LIKE '%".$search."%'
         OR  username LIKE '%".$search."%'
         OR  firstname LIKE '%".$search."%'
-        OR  lastname LIKE '%".$search."%')";
+        OR  lastname LIKE '%".$search."%') ORDER BY ". $sorCol . " " . $dir;
     
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
-        $total_result = (count($data) > 0 ? count($data): 0);
-        $totalFiltered = (count($data) > 0 ? count($data): 0);
+
+        $query = "select * from users where is_deleted = 0";
+        $totalRows = DB::select($query);
         $json_data = [
             'draw' => intval($request->draw),
-            'recordsTotal' => $total_result,
-            'recordsFiltered' => $totalFiltered,
+            'recordsTotal' => COUNT($totalRows),
+            'recordsFiltered' => COUNT($totalRows),
             'data' => $data
         ];
         return json_encode($json_data);
@@ -60,7 +61,6 @@ class UserInformationController extends Controller
         $msgType = "success";
         $msgTitle = "Success!";
         $success = true;
-        // dd($request);
         $encryptedPassword = bcrypt($request['data'][6]["value"]);
         if($request['data'][1]["value"] == 0){
             if (DB::table("users")->where('username', $request["data"][4]["value"])->where('is_deleted', 0)->select()->count() != 0){
@@ -122,18 +122,30 @@ class UserInformationController extends Controller
                 $success = false;
             }
             else{
+
                 DB::table('users')
                 ->where('id', $request["UserID"])
-                ->update([
+                ->update($request['data'][6]["value"] == null ?
+                 [
                     'firstname' => $request["data"][2]["value"]
                     ,'lastname' => $request["data"][3]["value"]
                     ,'username' => $request["data"][4]["value"]
                     ,'email' => $request["data"][5]["value"]
-                    ,'password' => $encryptedPassword
                     ,'create_user' => 'admin'
                     ,'update_user' => 'admin'
                     ,'admin' => $request["data"][0]["value"]
-                ]);
+                ]:
+                [
+                    'firstname' => $request["data"][2]["value"]
+                    ,'lastname' => $request["data"][3]["value"]
+                    ,'username' => $request["data"][4]["value"]
+                    ,'email' => $request["data"][5]["value"]
+                    , 'password' => $encryptedPassword
+                    ,'create_user' => 'admin'
+                    ,'update_user' => 'admin'
+                    ,'admin' => $request["data"][0]["value"]
+                ]
+                );
                 $msg = 'User Information Updated Successfully';
             }
             
