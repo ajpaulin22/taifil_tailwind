@@ -7,7 +7,7 @@
     var tableData = [];
     var abroadCheck = [];
     var tableCheck = [];
-
+    var ajax = $D();
     token = $("meta[name=csrf-token]").attr("content");
     
     $(document).ready(function(){
@@ -107,6 +107,9 @@
         });
 
         $("#btnCancelAddInterview").click(function(){
+            ajax.clearFromData("frmInterview");
+            $("#AttendInterview").val("").trigger('change');
+            $("#InterviewDate").val("");
             $("#mdlAddInterview").modal('hide');
             $("#mdlInterview").modal('show');
         });
@@ -138,9 +141,6 @@
             });
         });
 
-        $("#btnCancelAddInterview").click(function(){
-            $(".input").val("");
-        });
 
         $("#tblManagementRegistration").on("change", ".CheckItem", function () {
             var id = $(this).val()

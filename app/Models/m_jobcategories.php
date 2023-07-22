@@ -10,7 +10,7 @@ class m_jobcategories extends Model
     use HasFactory;
     protected $fillable = [
         "ID"
-        ,"JobCodesID"
+        ,"JobType"
         ,"Category"
         ,"IsDeleted"
         ,"CreateID"

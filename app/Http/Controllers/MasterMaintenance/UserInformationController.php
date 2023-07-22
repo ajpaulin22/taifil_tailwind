@@ -86,7 +86,6 @@ class UserInformationController extends Controller
                         ,'password' => $encryptedPassword
                         ,'create_user' => 'admin'
                         ,'update_user' => 'admin'
-                        ,'admin' => $request["data"][0]["value"]
                         ,'is_deleted' => 0
                     ]);
                     $msg =  'User Information Saved Successfully';
@@ -101,7 +100,6 @@ class UserInformationController extends Controller
                     ,'is_deleted' => 0
                     ,'create_user' => 'admin'
                     ,'update_user' => 'admin'
-                    ,'admin' => $request["data"][0]["value"]
                 ]);
                 $msg = "User Information Saved Successfully";
             }

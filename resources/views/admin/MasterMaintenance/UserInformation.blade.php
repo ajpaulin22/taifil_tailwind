@@ -64,19 +64,6 @@ User Information
                         <form id="frmUser" data-parsley-validate>
                             <div class="row col-sm-12">
                                 <div class="input-group m-b-5">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" id="lblPosition" style="width: 140px;"> Position <span class="text-danger"> *</span></label>
-                                    </div>
-                                    <select class="form-control" id="Position" name="Position" placeholder="Please Select Position" required>
-                                        <option id=""></option>
-                                        <option value="1">Admin</option>
-                                        <option value="0">Staff</option>
-                                    </select>
-                                </div>
-                                <div id="err-Position"></div>
-                            </div>
-                            <div class="row col-sm-12">
-                                <div class="input-group m-b-5">
                                     <div class="input-group-prepend" style="text-align:right;">
                                         <label class="input-group-text" id="lblFirstName" style="width: 140px;"> First Name <span class="text-danger"> *</span></label>
                                     </div>

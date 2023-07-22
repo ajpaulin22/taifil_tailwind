@@ -4417,7 +4417,7 @@ B. Synopsis: Class Module used to process data
     var tableData = [];
     var abroadCheck = [];
     var tableCheck = [];
-
+    var ajax = $D();
     token = $("meta[name=csrf-token]").attr("content");
     
     $(document).ready(function(){
@@ -4517,6 +4517,9 @@ B. Synopsis: Class Module used to process data
         });
 
         $("#btnCancelAddInterview").click(function(){
+            ajax.clearFromData("frmInterview");
+            $("#AttendInterview").val("").trigger('change');
+            $("#InterviewDate").val("");
             $("#mdlAddInterview").modal('hide');
             $("#mdlInterview").modal('show');
         });
@@ -4548,9 +4551,6 @@ B. Synopsis: Class Module used to process data
             });
         });
 
-        $("#btnCancelAddInterview").click(function(){
-            $(".input").val("");
-        });
 
         $("#tblManagementRegistration").on("change", ".CheckItem", function () {
             var id = $(this).val()
