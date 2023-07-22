@@ -94,7 +94,7 @@
 
     $("#create_form").validate({
         rules: {
-            pictures: {
+            'pictures[]': {
                 extension: "png|jpeg|jpg",
                 maxsize: 1932979,
                 maxsizetotal:10932979,
@@ -102,7 +102,7 @@
             },
         },
         messages:{
-            pictures: {
+            'pictures[]': {
                 maxsize: "File size must not exceed 2MB each", 
             },
         },

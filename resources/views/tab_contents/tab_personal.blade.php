@@ -170,7 +170,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Shoe Size(cm)<span style="color:red">*</span>:</label>
-                <input name="shoe_size" autocomplete="off" type="text" maxlength="3" class="form-control Number-Only" style="text-align:right">
+                <input name="shoe_size" autocomplete="off" type="text" maxlength="2ss" class="form-control Number-Only" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Hobbies<span style="color:red">*</span>:</label>

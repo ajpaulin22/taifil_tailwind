@@ -1301,7 +1301,7 @@
         let id = biodata.sibling
         let form = `<div class="sibling_item col-span-13 md:grid grid-col-13 gap-4">
         <div class="md:mt-0 mt-2 form-group col-span-1 flex items-center">
-         <button class='btnDelsibling py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>Delete Record</button>
+            <button class='btnDelsibling py-2 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>x</button>
         </div>
         <div class="form-group col-span-3">
             <label for="" class="form-label">Name<span style="color:red">*</span>:</label>
@@ -1346,7 +1346,7 @@
        let id = biodata.children
        let form = `<div class="children_content w-full md:grid grid-col-13 gap-4 grid-flow-col">
        <div class="md:mt-0 mt-2 form-group col-span-1 flex items-center">
-           <button  class='btnDelchildren py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>Delete Record</button>
+       <button  class='btnDelchildren py-2 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>x</button>
        </div>
        <div class="form-group col-span-8">
            <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
@@ -1391,6 +1391,7 @@
             $(".btnDelsibling").attr("disabled",true)
             $(".sibling").attr("disabled",true)
             $("#add_sibling").attr("disabled",true)
+            $("#siblings_nav").html("")
         }else{
             $(".sibling").attr("disabled",false)
             $(".btnDelsibling").attr("disabled",false)

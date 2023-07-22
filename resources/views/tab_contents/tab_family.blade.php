@@ -132,7 +132,7 @@
                 </div>
             </div>
             <div id="siblings_nav" class="col-span-13">
-                
+       
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-13">
                 <label class="text-xl font-bold">Spouse<span style="color:red">*</span>:</label>
@@ -172,8 +172,8 @@
             <div class="form-group col-span-1">
                 <button id="add_children" class="py-2 px-4 bg-sky-700 rounded w-full self-end text-sm text-white disabled:bg-sky-900">Add Children</button>
             </div>
-            <div class=" form-group col-span-1">
-                    
+            <div class=" md:mt-0 mt-2 form-group col-span-1 flex items-center">
+                <button  class='py-2 bg-white rounded w-full self-end text-sm text-white pointer-events-none'>x</button>
             </div>
             <div class="form-group col-span-8">
                 <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
@@ -187,6 +187,7 @@
                 </div>
             </div>
             <div class="col-span-13" id="children">
+                
             </div>
             
             <div class="col-span-13 flex items-center my-4 md:my-0">
