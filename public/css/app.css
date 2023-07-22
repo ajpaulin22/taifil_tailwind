@@ -17821,6 +17821,12 @@ input[type='number']::-webkit-outer-spin-button,
 .h-screen {
   height: 100vh;
 }
+.h-60 {
+  height: 15rem;
+}
+.h-52 {
+  height: 13rem;
+}
 .max-h-36 {
   max-height: 9rem;
 }
@@ -17829,6 +17835,27 @@ input[type='number']::-webkit-outer-spin-button,
 }
 .max-h-full {
   max-height: 100%;
+}
+.max-h-96 {
+  max-height: 24rem;
+}
+.max-h-\[100\] {
+  max-height: 100;
+}
+.max-h-\[100rem\] {
+  max-height: 100rem;
+}
+.max-h-\[50rem\] {
+  max-height: 50rem;
+}
+.max-h-\[20rem\] {
+  max-height: 20rem;
+}
+.max-h-\[30rem\] {
+  max-height: 30rem;
+}
+.max-h-\[0rem\] {
+  max-height: 0rem;
 }
 .min-h-\[305px\] {
   min-height: 305px;
@@ -18929,6 +18956,10 @@ input[type='number']::-webkit-outer-spin-button,
   -o-object-fit: cover;
      object-fit: cover;
 }
+.object-center {
+  -o-object-position: center;
+     object-position: center;
+}
 .p-0 {
   padding: 0px;
 }
@@ -19487,6 +19518,14 @@ input[type='number']::-webkit-outer-spin-button,
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(114 59 19 / var(--tw-text-opacity));
+}
+.text-orange-500 {
+  --tw-text-opacity: 1;
+  color: rgb(255 90 31 / var(--tw-text-opacity));
+}
+.text-sky-500 {
+  --tw-text-opacity: 1;
+  color: rgb(14 165 233 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -20254,6 +20293,11 @@ input[type='number']::-webkit-outer-spin-button,
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+  .hover\:text-blue-200:hover {
+  --tw-text-opacity: 1;
+  color: rgb(195 221 253 / var(--tw-text-opacity));
+}
+
   .hover\:underline:hover {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -20276,6 +20320,12 @@ input[type='number']::-webkit-outer-spin-button,
   .hover\:shadow-inner:hover {
   --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+  .hover\:shadow-2xl:hover {
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 

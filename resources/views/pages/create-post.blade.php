@@ -27,7 +27,7 @@
 
         <div class="form-group">
           <label  class="block text-sm font-medium leading-6 text-gray-900">Title<span style="color:red">*</span>:</label>
-          <input  name="title" type="text" placeholder="Add Title" autocomplete="off" class="form-control" required>
+          <input  name="title" type="text" placeholder="Add Title" maxlength="50" autocomplete="off" class="form-control" required>
         </div>
   
         <div class="form-group">
@@ -87,7 +87,7 @@
         </div>
         <div class="form-group col-span-3">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Pictures</label>
-            <input name="pictures[]" id="pictures" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" type="file" accept=".png,.jpeg,.jpg" multiple>
+            <input name="pictures" id="pictures" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" type="file" accept=".png,.jpeg,.jpg" multiple>
             <p class="mt-1 text-xs text-gray-500 dark:text-gray-300" id="file_input_help">Compatible file type: PNG, JPG.</p>
           </div>
 
