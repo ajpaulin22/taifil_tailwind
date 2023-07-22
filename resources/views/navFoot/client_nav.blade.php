@@ -158,7 +158,7 @@
         location.replace(`/jp${location.pathname}${location.hash}${location.search}`);
     })
     $("#eng_btn").on("click",function(){
-        location.replace(`/${location.pathname}${location.hash}${location.search}`);
+        location.replace(`${location.origin}${location.hash}${location.search}`);
     })
 
    </script>
