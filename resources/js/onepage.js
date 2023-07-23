@@ -123,7 +123,7 @@
         $("#loader").show();
         let form = $(this)[0]
         $.ajax({
-          url:"/client/contact-form/",
+          url:"/client/contact-form",
           type:"POST",
           data:onepage.contact_form,
           dataType:"JSON",
