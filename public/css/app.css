@@ -59,7 +59,7 @@
         @apply block w-full p-2 text-sm font-normal border border-[#ced4da] rounded
     }
 .date_picker{
-    @apply border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2
+    @apply border-2 border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2
 }
 input.error{
     @apply border-red-600
@@ -69,6 +69,12 @@ input.error{
 }
 [datepicker] label.error{
     @apply hidden
+}
+.floating-form{
+    @apply block min-h-[auto] w-full rounded border-2 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0
+}
+.floating-label{
+    @apply pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary
 }
 input[type='number']::-webkit-outer-spin-button,
         input[type='number']::-webkit-inner-spin-button,
@@ -17156,7 +17162,7 @@ input:checked + .toggle-bg {
   display: block;
   width: 100%;
   border-radius: 0.25rem;
-  border-width: 1px;
+  border-width: 2px;
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
   padding: 0.5rem;
@@ -17197,6 +17203,117 @@ input.error {
 }
 [datepicker] label.error {
   display: none;
+}
+.floating-form {
+  display: block;
+  min-height: auto;
+  width: 100%;
+  border-radius: 0.25rem;
+  border-width: 2px;
+  background-color: transparent;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.32rem;
+  padding-bottom: 0.32rem;
+  line-height: 1.6;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+}
+.floating-form:focus::-moz-placeholder {
+  opacity: 1;
+}
+.floating-form:focus::placeholder {
+  opacity: 1;
+}
+.peer:focus ~ .floating-form {
+  --tw-text-opacity: 1;
+  color: rgb(59 113 202 / var(--tw-text-opacity));
+}
+.floating-form[data-te-input-state-active]::-moz-placeholder {
+  opacity: 1;
+}
+.floating-form[data-te-input-state-active]::placeholder {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+
+  .floating-form {
+    transition-property: none;
+  }
+}
+:is(.dark .floating-form) {
+  --tw-text-opacity: 1;
+  color: rgb(229 229 229 / var(--tw-text-opacity));
+}
+:is(.dark .floating-form)::-moz-placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(229 229 229 / var(--tw-text-opacity));
+}
+:is(.dark .floating-form)::placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(229 229 229 / var(--tw-text-opacity));
+}
+:is(.dark .peer:focus ~ .floating-form) {
+  --tw-text-opacity: 1;
+  color: rgb(59 113 202 / var(--tw-text-opacity));
+}
+.floating-form:not([data-te-input-placeholder-active])::-moz-placeholder {
+  opacity: 0;
+}
+.floating-form:not([data-te-input-placeholder-active])::placeholder {
+  opacity: 0;
+}
+.floating-label {
+  pointer-events: none;
+  position: absolute;
+  left: 0.75rem;
+  top: 0px;
+  margin-bottom: 0px;
+  max-width: 90%;
+  transform-origin: 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-top: 0.37rem;
+  line-height: 1.6;
+  --tw-text-opacity: 1;
+  color: rgb(115 115 115 / var(--tw-text-opacity));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+.peer:focus ~ .floating-label {
+  --tw-translate-y: -0.9rem;
+  --tw-scale-x: 0.8;
+  --tw-scale-y: 0.8;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  --tw-text-opacity: 1;
+  color: rgb(59 113 202 / var(--tw-text-opacity));
+}
+.peer[data-te-input-state-active] ~ .floating-label {
+  --tw-translate-y: -0.9rem;
+  --tw-scale-x: 0.8;
+  --tw-scale-y: 0.8;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+@media (prefers-reduced-motion: reduce) {
+
+  .floating-label {
+    transition-property: none;
+  }
+}
+:is(.dark .floating-label) {
+  --tw-text-opacity: 1;
+  color: rgb(229 229 229 / var(--tw-text-opacity));
+}
+:is(.dark .peer:focus ~ .floating-label) {
+  --tw-text-opacity: 1;
+  color: rgb(59 113 202 / var(--tw-text-opacity));
 }
 input[type='number']::-webkit-outer-spin-button,
         input[type='number']::-webkit-inner-spin-button,
@@ -17544,6 +17661,9 @@ input[type='number']::-webkit-outer-spin-button,
 }
 .mb-2\.5 {
   margin-bottom: 0.625rem;
+}
+.mb-3 {
+  margin-bottom: 0.75rem;
 }
 .mb-4 {
   margin-bottom: 1rem;

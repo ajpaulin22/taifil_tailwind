@@ -1,6 +1,6 @@
 <div class="form-group col-span-1">
     <label for="personal_lastname" class="form-label">Citizenship<span style="color:red">*</span>:</label>
-    <select name="citizenship" class="form-select">
+    <select required name="citizenship" class="form-select">
         <option value="" selected disabled value>Choose....</option>
 <option value="afghan">Afghan</option>
 <option value="albanian">Albanian</option>
