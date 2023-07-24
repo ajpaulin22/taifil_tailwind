@@ -87,6 +87,7 @@ mix.js(['resources/js/app.js','resources/js/iziToast/dist/js/iziToast.min.js'], 
     .js('resources/js/modules/quill.js',"public/js/modules")
     .js('resources/js/modules/swiper.js',"public/js/modules")
     .js('resources/js/modules/tw_elements.js',"public/js/modules")
+
     .styles("resources/js/iziToast/dist/css/iziToast.min.css","public/css/iziToast.min.css")
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps()
@@ -96,10 +97,33 @@ mix.js(['resources/js/app.js','resources/js/iziToast/dist/js/iziToast.min.js'], 
     .styles(TrxCSS, "public/css/trx.css")
 
     .scripts('resources/js/auth/auth.js','public/js/auth/auth.js')
-    .scripts('resources/js/onepage.js','public/js/onepage.js')
-    .scripts('resources/js/client/Biodata.js',"public/js/client/Biodata.js")
+
+    .scripts(['public/js/modules/swiper.js'
+            ,'public/js/modules/AOS.js'
+            ,'public/js/modules/izitoast.js'
+            ,'resources/js/onepage.js'
+        ],'public/js/onepage.js')
+
+    .scripts(['public/js/modules/tw_elements.js'
+            ,'public/js/modules/izitoast.js'
+            ,'public/js/modules/flowbite.js'
+            ,'public/js/modules/moment.js'
+            ,'resources/js/client/Biodata.js'
+        ],"public/js/client/Biodata.js")
+
     .scripts('resources/js/client/jobcategory.js',"public/js/client/jobcategory.js")
-    .scripts('resources/js/client/qualification.js',"public/js/client/qualification.js")
+    .scripts(['public/js/modules/flowbite.js'
+              ,'public/js/modules/izitoast.js'
+              ,'public/js/modules/quill.js'
+              ,'resources/js/client/qualification.js'
+        ],"public/js/client/qualification.js")
+
+    .scripts(['public/js/modules/AOS.js'
+            ,'public/js/modules/quill.js'
+            ,'public/js/modules/izitoast.js'
+            ,'public/js/modules/swiper.js'
+            ,'resources/js/client/gallery.js'
+        ],"public/js/client/gallery.js")
 
     .scripts([
         "public/js/theme.js",
@@ -129,6 +153,6 @@ mix.js(['resources/js/app.js','resources/js/iziToast/dist/js/iziToast.min.js'], 
     .styles([
         "public/css/theme.css",
         "public/css/trx.css",
-    ], "public/css/admin/MasterMaintenance/UserInformation.css")
+    ], "public/css/admin/MasterMaintenance/UserInformation.css");
     
-    .scripts(['public/js/app.js','resources/js/client/gallery.js'],"public/js/client/gallery.js");
+    
