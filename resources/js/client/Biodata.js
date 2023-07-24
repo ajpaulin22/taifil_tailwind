@@ -534,6 +534,7 @@
     $("[data-tab-target]").toArray().forEach(tab => {
         let valid = false;
         $(tab).on("click",function(){
+            console.log(tab.attr("id"))
             const target = $(tab)[0].dataset.tabTarget
             $("[data-tab-content]").toArray().forEach((content)=>{
                 

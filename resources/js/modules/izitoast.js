@@ -1,0 +1,1 @@
+window.iziToast = require("izitoast");
