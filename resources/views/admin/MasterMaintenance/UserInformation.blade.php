@@ -95,7 +95,7 @@ User Information
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" id="lblEmailAddress" style="width: 140px;"> Email Address <span class="text-danger"> *</span></label>
                                     </div>
-                                    <input type="text" id="EmailAddress" name="EmailAddress" class="form-control input" autocomplete="off" maxlength="50" required>
+                                    <input type="email" id="EmailAddress" name="EmailAddress" class="form-control input" autocomplete="off" maxlength="50" required>
                                 </div>
                                 <div id="err-EmailAddress"></div>
                             </div>

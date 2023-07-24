@@ -675,7 +675,15 @@
             $(target).removeClass("hidden");
         });
     });
+    $("#date_from_elem").on("blur",function(){
+        const datepickerWithLimits = document.getElementById('date_until_elem');
+        new Datepicker(datepickerWithLimits, {
+        min: new Date(2023, 7, 22)
+        });
+    });
+    
 
+    
     //PERSONAL TAB ============================================EVENT LISTENER
     $("#personalBtn").on("click",function(e){
         biodata.validatePersonal();
