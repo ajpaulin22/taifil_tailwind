@@ -242,7 +242,6 @@ class ManagementRegistrationController extends Controller
         $dataChildren = DB::select($query);
         $query = "Select * from relative_datas where isdeleted = 0 AND family_id = " . $dataFamily[0]->id;
         $dataRelative = DB::select($query);
-        dd($dataPersonal[0]);
         $data = [
             'data' => $dataPersonal[0],
             'educational' => $dataEducational[0],
