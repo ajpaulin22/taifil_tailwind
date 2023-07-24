@@ -507,6 +507,9 @@
     // biodata.getCode();
     biodata.getData();
     biodata.getCategories()
+    $.validator.addMethod("validDate", function(value, element) {
+        return this.optional(element) || moment(value,"MM/DD/YYYY").isValid();
+    }, "Please enter a valid date in the format DD/MM/YYYY");
     //=================================================EVENTS LISTENER
     // $("#jobcodes").on("change",function(){
     //     biodata.getCategories($(this).val());
@@ -517,8 +520,11 @@
 
     $(".date_picker").on("input",function(){
         var $form = $(this).closest('form');
-            console.log($form.attr('id'));
-       console.log(moment($(this).val(), "DD/MM/YYYY", true).isValid());
+            console.log();
+       if(moment($(this).val(), "MM/DD/YYYY", true).isValid() == false){
+        
+       }
+       $(`#${$form.attr('id')}`).valid()
     })
 
 
@@ -1505,6 +1511,7 @@
         }else{
             family_form.resetForm();
             $(".father_na").val("")
+            $(".father_deceased").val("")
             $(".father_deceased").attr("disabled",true)
             $(".father_na").attr("disabled",true)
             $(".req_father_deceased").html("")
@@ -1531,6 +1538,7 @@
         }
         else if($(this).val() == 2){
             family_form.resetForm();
+            $(".mother_deceased").val("")
             $(".mother_deceased").attr("disabled",true)
             $(".mother_na").attr("disabled",false)
             $(".req_mother_deceased").html("")
@@ -1541,6 +1549,8 @@
             }
         }else{
             family_form.resetForm();
+            $(".mother_na").val("")
+            $(".mother_deceased").val("")
             $(".mother_deceased").attr("disabled",true)
             $(".mother_na").attr("disabled",true)
             $(".req_mother_deceased").html("")
