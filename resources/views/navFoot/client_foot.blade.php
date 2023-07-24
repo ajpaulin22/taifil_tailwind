@@ -33,6 +33,14 @@
                   </ul>  
                 </div>  
               </div> --}}
+
+
+                  <!-- Messenger Chat Plugin Code -->
+              <div id="fb-root"></div>
+
+              <!-- Your Chat Plugin code -->
+              <div id="fb-customer-chat" class="fb-customerchat">
+              </div>
               <div class="col-md-3">  
                 <h4 class="text-gray-200 text-lg md:text-2xl font-bold"> Follow Us </h4>  
                 <ul class="list-group grid grid-cols-3 gap-5">
@@ -50,3 +58,26 @@
         <p class="text-center my-4 text-gray-400"> © Copyright 2023 - Tai-Fil Manpower Services Corp.  All rights reserved. </p>
     </div>
 </footer>
+<script>
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "356049177768418");
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      xfbml            : true,
+      version          : 'v17.0'
+    });
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>

@@ -20,11 +20,11 @@
     "/js/client/Biodata.js": "/js/client/Biodata.js",
     "/js/client/jobcategory.js": "/js/client/jobcategory.js",
     "/js/client/qualification.js": "/js/client/qualification.js",
-    "/js/client/gallery.js": "/js/client/gallery.js",
     "/js/admin/ManagementRegistration.js": "/js/admin/ManagementRegistration.js",
     "/css/admin/ManagementRegistration.css": "/css/admin/ManagementRegistration.css",
     "/js/admin/MasterMaintenance/JobInformation.js": "/js/admin/MasterMaintenance/JobInformation.js",
     "/css/admin/MasterMaintenance/JobInformation.css": "/css/admin/MasterMaintenance/JobInformation.css",
     "/js/admin/MasterMaintenance/UserInformation.js": "/js/admin/MasterMaintenance/UserInformation.js",
-    "/css/admin/MasterMaintenance/UserInformation.css": "/css/admin/MasterMaintenance/UserInformation.css"
+    "/css/admin/MasterMaintenance/UserInformation.css": "/css/admin/MasterMaintenance/UserInformation.css",
+    "/js/client/gallery.js": "/js/client/gallery.js"
 }
