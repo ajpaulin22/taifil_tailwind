@@ -52,10 +52,9 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="address" class="form-label">Date of Birth<span style="color:red">*</span>:</label>
-                <div class="relative max-w-sm">
-                    <x-picker_logo/>
-                    <input required datepicker name="birthday" id="birthday" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="MM/DD/YYYY">
-                </div>
+                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" name="birthday" id="birthday" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+               </div>
             </div>
             <div class="form-group col-span-1">
                 <label for="address" class="form-label">Place of Birth<span style="color:red">*</span>:</label>
@@ -205,17 +204,15 @@
             </div>
             <div class="form-group col-span-1">
                     <label for="height" class="form-label">Issue Date.<span style="color:red">*</span>:</label>
-                    <div class="relative max-w-sm">
-                        <x-picker_logo/>
-                        <input required datepicker name="issue_date" autocomplete="off" type="text" maxlength="100" class="date_picker" placeholder="MM/DD/YYYY">
-                    </div>
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" name="issue_date" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                   </div>
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Expiry Date.<span style="color:red">*</span>:</label>
-                <div class="relative max-w-sm">
-                    <x-picker_logo/>
-                    <input required datepicker name="expiry_date" autocomplete="off" type="text" maxlength="100" class="date_picker" placeholder="MM/DD/YYYY">
-                </div>
+                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-past="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" name="expiry_date" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+               </div>
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Issue Place<span style="color:red">*</span>:</label>
@@ -275,10 +272,9 @@
                 </div>
                 <div class="form-group col-span-1 licensed" hidden>
                     <label for="height" class="form-label">Valid Until<span style="color:red">*</span>:</label>
-                    <div class="relative max-w-sm">
-                        <x-picker_logo/>
-                        <input required datepicker autocomplete="off" name="licensed_until" type="text" maxlength="100" class="date_picker" placeholder="MM/DD/YYYY">
-                    </div>
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" name="licensed_until" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                   </div>
                 </div>
         </div>
         <button id="personalBtn" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white hover:bg-green-800">Next >></button>

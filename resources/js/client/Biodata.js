@@ -508,8 +508,13 @@
     biodata.getData();
     biodata.getCategories()
     $.validator.addMethod("validDate", function(value, element) {
-        return this.optional(element) || moment(value,"MM/DD/YYYY").isValid();
+        return moment(value,"MM/DD/YYYY",true).isValid();
     }, "Please enter a valid date in the format DD/MM/YYYY");
+    $.validator.addMethod("pastDate", function(value, element) {
+        now = new Date(value) - 10;
+        return moment(value,"MM/DD/YYYY",true).isValid();
+
+    }, "Past Date is not valid");
     //=================================================EVENTS LISTENER
     // $("#jobcodes").on("change",function(){
     //     biodata.getCategories($(this).val());
@@ -519,12 +524,7 @@
     });
 
     $(".date_picker").on("input",function(){
-        var $form = $(this).closest('form');
-            console.log();
-       if(moment($(this).val(), "MM/DD/YYYY", true).isValid() == false){
-        
-       }
-       $(`#${$form.attr('id')}`).valid()
+       $(this).valid()
     })
 
 
@@ -614,10 +614,12 @@
         // }
     })
 
-    $("#birthday").on("focusout",function(){
-        const getAge = Math.floor((new Date() - new Date($(this).val()).getTime()) / 3.15576e+10)
-        console.log(getAge)
+    $("#birthday").on("input",function(){
+        if($(this).valid()){
+            const getAge = Math.floor((new Date() - new Date($(this).val()).getTime()) / 3.15576e+10)
         $("#age").val(getAge).trigger("change");
+        }
+        
     });
 
     $("input[name='allergy']").on("click",function(){
@@ -902,7 +904,6 @@
 
     //LOCAL EMP TAB ===========================================EVENT LISTENER
     let emplocalValid = $("#empLocal_form").validate({
-               
         errorElement: 'span',
         errorPlacement: function (error, element) {
             error.addClass('text-red-500 text-sm');
@@ -958,20 +959,14 @@
             <input name='address_local_${id+1}' autocomplete='off' type='text' class='address_local form-control disabled:bg-slate-200' placeholder='Company Address' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-            <div class='relative max-w-sm'>
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-          </div>
-                <input datepicker name='date_from_local_${id+1}' autocomplete='off' type='text' class='date_from_local form-control date_picker disabled:bg-slate-200' placeholder='Date From' required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-            <div class='relative max-w-sm'>
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-          </div>
-                <input datepicker name='date_until_local_${id+1}' autocomplete='off' type='text' class='date_until_local form-control date_picker disabled:bg-slate-200' placeholder='Date Until' required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
         </div>
         </div>`;
@@ -984,22 +979,7 @@
             biodata.local_company --
         })
         biodata.local_company ++
-        // $('[datepicker]').each(function (datepickerEl) {
-        //     Datepicker(datepickerEl);
-        //   });
-        // $("#personal_form").removeData('validator');
-        // $("#personal_form").removeData('unobtrusiveValidation');
-        // $.validator.unobtrusive.parse("#personal_form");
-        
-            // $('#empLocal_form :input.form-control').each(function() {
-            //     console.log($(this)[0])
-
-            //     $(this).rules("add", 
-            //         {
-            //             required: true
-            //         })
-            // })
-        Datepicker.initDatepickers();
+        tw_elements.initTE({ Datepicker,Input });
     });
 
     $("#local_applicable").on("click",function(e){

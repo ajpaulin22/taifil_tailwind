@@ -14,16 +14,18 @@
                 <input name="add_elem" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
-                <div class="relative max-w-sm">
-                    <x-picker_logo/>
-                    <input datepicker datepicker-mindate='2023-07-22' name="date_from_elem" id="date_from_elem" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date From" required>
-                </div>
+                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" name="date_from_elem" id="date_from_elem" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+               </div>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
-                <div class="relative max-w-sm">
+                {{-- <div class="relative max-w-sm">
                     <x-picker_logo/>
                     <input datepicker name="date_until_elem" id="date_until_elem" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
-                </div>
+                </div> --}}
+                <div class="relative" data-te-datepicker-init data-te-inline="true" min=`$("input[name='date_from_elem']").val()` data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_elem" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+               </div>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-7">
                 <label class="text-xl font-bold">High School<span style="color:red">*</span>:</label>
@@ -35,16 +37,16 @@
                 <input name="add_highschool" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
-                <div class="relative max-w-sm">
-                    <x-picker_logo/>
-                    <input datepicker name="date_from_highschool" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date From" required>
-                </div>
+                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" name="date_from_highschool" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+               </div>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
                 <div class="relative max-w-sm">
                     <x-picker_logo/>
                     <input datepicker name="date_until_highschool" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
                 </div>
+                
             </div>
 
                 <div class="mt-2 md:mt-0 form-group col-span-6">
@@ -97,10 +99,9 @@
                 <input name="add_jpl" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
-                <div class="relative max-w-sm">
-                    <x-picker_logo/>
-                    <input datepicker name="date_from_jpl" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date From" required>
-                </div>
+                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" name="date_from_jpl" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+               </div>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
                 <div class="relative max-w-sm">
@@ -129,10 +130,9 @@
                 <input name="add_college" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
-                <div class="relative max-w-sm">
-                    <x-picker_logo/>
-                    <input datepicker name="date_from_college" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date From" required>
-                </div>
+                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" name="date_from_college" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+               </div>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
                 <div class="relative max-w-sm">
