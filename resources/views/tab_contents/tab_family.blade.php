@@ -31,10 +31,9 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">Birth Date<span style="color:red" class="req_father_deceased">*</span>:</label>
-                <div class="relative max-w-sm">
-                    <x-picker_logo/>
-                    <input datepicker name="father_birthday" autocomplete="off" type="text" maxlength="100" class="father_deceased form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
-                </div>
+                <div class="relative" data-te-datepicker-init data-te-disable-future="true" data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" data-rule-pastDate="true" name="father_birthday" maxlength="10" autocomplete="off" type="text" required class="father_deceased form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+               </div>
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red" class="req_father_deceased">*</span>:</label>
@@ -76,10 +75,9 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">Birth Date<span style="color:red" class="req_mother_deceased">*</span>:</label>
-                <div class="relative max-w-sm">
-                    <x-picker_logo/>
-                    <input datepicker name="mother_birthday" autocomplete="off" type="text" maxlength="100" class="mother_deceased form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
-                </div>
+                <div class="relative" data-te-datepicker-init data-te-disable-future="true" data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" data-rule-pastDate="true" name="mother_birthday" maxlength="10" autocomplete="off" type="text" required class="mother_deceased form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+               </div>
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red" class="req_mother_deceased">*</span>:</label>
@@ -113,10 +111,9 @@
                 </div>
                 <div class="form-group col-span-3">
                     <label for="sibling_birthday" class="form-label">Birth Date<span style="color:red" class="sibling_required">*</span>:</label>
-                    <div class="relative max-w-sm">
-                        <x-picker_logo/>
-                        <input datepicker name="sibling_birthday_0" autocomplete="off" type="text" maxlength="100" class="sibling form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
-                    </div>
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" data-rule-pastDate="true" name="sibling_birthday_0" maxlength="10" autocomplete="off" type="text" required class="sibling form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                   </div>
                 </div>
                 <div class="form-group col-span-3">
                     <label for="lastname" class="form-label">Occupation<span style="color:red" class="sibling_required">*</span>:</label>
@@ -145,10 +142,9 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
-                <div class="relative max-w-sm">
-                    <x-picker_logo/>
-                    <input datepicker name="spouse_birthday" autocomplete="off" type="text" maxlength="100" class="form-control spouse date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
-                </div>
+                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" data-rule-pastDate="true" name="spouse_birthday" maxlength="10" autocomplete="off" type="text" required class="spouse form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+               </div>
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">Occupation<span style="color:red">*</span>:</label>
@@ -181,10 +177,9 @@
             </div>
             <div class="form-group col-span-4">
                 <label for="lastname" class="form-label">Birth Date<span style="color:red" class="required_children">*</span>:</label>
-                <div class="relative w-full">
-                    <x-picker_logo/>
-                    <input datepicker name="child_birthday_0" autocomplete="off" type="text" maxlength="100" class="children form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
-                </div>
+                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" data-rule-pastDate="true" name="child_birthday_0" maxlength="10" autocomplete="off" type="text" required class="children form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+               </div>
             </div>
             <div class="col-span-13" id="children">
                 
@@ -236,10 +231,9 @@
                 </div>
                 <div class="form-group col-span-4 japan_group" hidden>
                     <label for="lastname" class="form-label">When (kailan?)</label>
-                    <div class="relative w-full">
-                        <x-picker_logo/>
-                        <input datepicker name="japan_when" autocomplete="off" type="text" maxlength="100" class="japan form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required disabled>
-                    </div>
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_when" maxlength="10" autocomplete="off" type="text" required class="japan form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                   </div>
                 </div>
                 <div class="form-group col-span-4 japan_group" hidden>
                     <label for="lastname" class="form-label">Where in japan</label>
@@ -326,10 +320,9 @@
                 </div>
                 <div class="form-group col-span-4 visa_group" hidden >
                     <label for="lastname" class="form-label">When</label>
-                    <div class="relative w-full">
-                        <x-picker_logo/>
-                        <input datepicker name="visa_when" autocomplete="off" type="text" maxlength="100" class="visa form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required disabled>
-                    </div>
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" data-rule-pastDate="true" name="visa_when" maxlength="10" autocomplete="off" type="text" required class="visa form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                   </div>
                 </div>
                 <div class="form-group col-span-4 visa_group" hidden>
                     <label for="personal_lastname" class="form-label">Was it Approved of Denied<span style="color:red">*</span>:</label>
