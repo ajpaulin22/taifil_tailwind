@@ -1,0 +1,1 @@
+window.flowbite = require("flowbite");

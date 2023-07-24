@@ -78,6 +78,15 @@ mix.js(['resources/js/app.js','resources/js/iziToast/dist/js/iziToast.min.js'], 
     .postCss('resources/css/app.css', 'public/css', [
         require("tailwindcss"),
     ])
+    .js('resources/js/modules/AOS.js',"public/js/modules")
+    .js('resources/js/modules/flowbite.js',"public/js/modules")
+    .js('resources/js/modules/izitoast.js',"public/js/modules")
+    .js('resources/js/modules/jquery.js',"public/js/modules")
+    .js('resources/js/modules/jquery_validation.js',"public/js/modules")
+    .js('resources/js/modules/moment.js',"public/js/modules")
+    .js('resources/js/modules/quill.js',"public/js/modules")
+    .js('resources/js/modules/swiper.js',"public/js/modules")
+    .js('resources/js/modules/tw_elements.js',"public/js/modules")
     .styles("resources/js/iziToast/dist/css/iziToast.min.css","public/css/iziToast.min.css")
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps()
