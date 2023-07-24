@@ -202,11 +202,11 @@
             </div>
             <div class="partner_hidden form-group col-span-3" hidden>
                 <label for="lastname" class="form-label">Age<span style="color:red">*</span>:</label>
-                <input name="partner_age" autocomplete="off" type="number" onKeyPress="if(this.value.length==3) return false;" class="form-control partner disabled:bg-slate-200" required disabled style="text-align:right">
+                <input name="partner_age" autocomplete="off" type="number" onKeyPress="if(this.value.length==2) return false;" class="form-control partner Number-Only disabled:bg-slate-200" required disabled style="text-align:right">
             </div>
             <div class="partner_hidden form-group col-span-3" hidden>
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                <input name="partner_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control partner disabled:bg-slate-200" required disabled style="text-align:right">
+                <input name="partner_cp" autocomplete="off" type="text" maxlength="2" class="form-control partner disabled:bg-slate-200" required disabled style="text-align:right">
             </div>
             <div class="partner_hidden form-group col-span-1" hidden>
                 <label for="lastname" class="form-label">How Long(Months)<span style="color:red">*</span>:</label>

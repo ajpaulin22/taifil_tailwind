@@ -8,6 +8,11 @@
     }
     Biodata.init = function() {
         this.family_validator =false;
+        this.personal_validator = false;
+        this.educational_validator = false;
+        this.local_emp_validator = false;
+        this.abroad_emp_validator = false;
+        this.certificate_validator = false;
         this.id = 0;
         this.token = $("meta[name=csrf-token]").attr("content");
         this.biodata_type = $("meta[name=biodata_type]").attr("content");
@@ -492,6 +497,7 @@
 
     var biodata = Biodata();
    $(document).ready(function() {
+    //initialiazed
     let Datepicker = tw_elements.Datepicker;
     let Input = tw_elements.Input;
     tw_elements.initTE({ Datepicker,Input });
@@ -501,7 +507,7 @@
     // biodata.getCode();
     biodata.getData();
     biodata.getCategories()
-    //EVENTS
+    //=================================================EVENTS LISTENER
     // $("#jobcodes").on("change",function(){
     //     biodata.getCategories($(this).val());
     // })
@@ -511,14 +517,14 @@
 
     $(".date_picker").on("input",function(){
         var $form = $(this).closest('form');
-console.log($form.attr('id'));
+            console.log($form.attr('id'));
        console.log(moment($(this).val(), "DD/MM/YYYY", true).isValid());
     })
 
 
 
 
-    //tabs Event Listener
+    //====================================================================tabs Event Listener
     $("[data-tab-target]").toArray().forEach(tab => {
         let valid = false;
         $(tab).on("click",function(){
@@ -531,12 +537,12 @@ console.log($form.attr('id'));
                         biodata.family_validator = true;
                     }
                 }
-                if(valid){
+                if(true){
                     $(content).addClass("hidden")
                 }
                 
             })
-            if(valid){
+            if(true){
                 $("[data-tab-target]").toArray().forEach((content)=>{
                     $(content).removeClass("bg-green-800")
                     $(content).addClass("bg-green-300")
@@ -1478,6 +1484,7 @@ console.log($form.attr('id'));
         }
         else if($(this).val() == 2){
             family_form.resetForm();
+            $(".father_deceased").val("")
             $(".father_deceased").attr("disabled",true)
             $(".father_na").attr("disabled",false)
             $(".req_father_deceased").html("")
@@ -1489,6 +1496,7 @@ console.log($form.attr('id'));
 
         }else{
             family_form.resetForm();
+            $(".father_na").val("")
             $(".father_deceased").attr("disabled",true)
             $(".father_na").attr("disabled",true)
             $(".req_father_deceased").html("")
