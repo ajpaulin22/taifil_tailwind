@@ -33,14 +33,14 @@
                   </ul>  
                 </div>  
               </div> --}}
-              <!-- Messenger Chat Plugin Code -->
+
+
+                  <!-- Messenger Chat Plugin Code -->
               <div id="fb-root"></div>
 
               <!-- Your Chat Plugin code -->
               <div id="fb-customer-chat" class="fb-customerchat">
               </div>
-
-              
               <div class="col-md-3">  
                 <h4 class="text-gray-200 text-lg md:text-2xl font-bold"> Follow Us </h4>  
                 <ul class="list-group grid grid-cols-3 gap-5">
