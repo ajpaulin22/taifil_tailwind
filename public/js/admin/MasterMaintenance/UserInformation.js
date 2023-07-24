@@ -4621,10 +4621,6 @@ B. Synopsis: Class Module used to process data
                 order: [
                     [1, "asc"]
                 ],
-                lengthMenu: [
-                    [10, 20, 50, 100, 150, 200, 500, -1],
-                    [10, 20, 50, 100, 150, 200, 500, "All"]
-                ],
                 language: {
                     aria: {
                         sortAscending: ": activate to sort column ascending",

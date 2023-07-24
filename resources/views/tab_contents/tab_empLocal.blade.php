@@ -39,13 +39,13 @@
                     </div>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
-                    <div class="relative max-w-sm">
+                    {{-- <div class="relative max-w-sm">
                         <x-picker_logo/>
                         <input datepicker name="date_until_local_0" autocomplete="off" type="text" maxlength="100" class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" required>
-                    </div>
-                    {{-- <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-past="true" data-te-input-wrapper-init>
-                        <input id="yeahh" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
-                   </div> --}}
+                    </div> --}}
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-disabled-input="true" data-te-disable-past="true" data-te-input-wrapper-init>
+                        <input validDate name="date_until_local_0" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+                   </div>
                 </div>
             </div>
         </div>
