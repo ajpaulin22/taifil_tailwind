@@ -5,7 +5,7 @@
     <form action="" id="family_form" class="flex flex-col">
         <div class="md:grid grid-col-13 gap-4">
             <div class="mt-2 md:mt-0 form-group col-span-12">
-                <label class="text-xl font-bold">Parents<span style="color:red">*</span>:</label>
+                <label class="text-xl font-bold">Parents<span style="color:red"></span>:</label>
             </div>
             <div class="form-group col-span-1">
                 <div class="flex">
@@ -25,27 +25,27 @@
             </div>
             <div class=" form-group col-span-1">
             </div>
-            <div class="form-group col-span-3">
-                <label for="father" class="form-label">Father Name<span style="color:red">*</span>:</label>
+            <div class="form-group col-span-5">
+                <label for="father" class="form-label">Father Name<span style="color:red" class="req_father_na">*</span>:</label>
                 <input name="father" autocomplete="off" type="text" maxlength="100" class="father_na form-control disabled:bg-slate-200" required>
             </div>
             <div class="form-group col-span-3">
-                <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
+                <label for="lastname" class="form-label">Birth Date<span style="color:red" class="req_father_deceased">*</span>:</label>
                 <div class="relative max-w-sm">
                     <x-picker_logo/>
                     <input datepicker name="father_birthday" autocomplete="off" type="text" maxlength="100" class="father_deceased form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
                 </div>
             </div>
             <div class="form-group col-span-3">
-                <label for="lastname" class="form-label">Occupation<span style="color:red">*</span>:</label>
-                <input name="father_occupation" autocomplete="off" type="text" maxlength="100" class="father_deceased form-control disabled:bg-slate-200" required>
-            </div>
-            <div class="form-group col-span-3">
-                <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
+                <label for="lastname" class="form-label">CP No.<span style="color:red" class="req_father_deceased">*</span>:</label>
                 <input name="father_cp" autocomplete="off" type="text" maxlength="20" class="Number-Only father_deceased form-control disabled:bg-slate-200" required style="text-align:right">
             </div>
+            <div class="form-group col-span-1">
+                <label for="lastname" class="form-label">Occupation<span style="color:red" class="req_father_deceased">*</span>:</label>
+                <input name="father_occupation" autocomplete="off" type="text" maxlength="100" class="father_deceased form-control disabled:bg-slate-200" required>
+            </div>
             <div class="form-group col-start-2 col-span-12">
-                <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
+                <label for="lastname" class="form-label">Address<span style="color:red" class="req_father_deceased">*</span>:</label>
                 <input name="father_address" autocomplete="off" type="text" maxlength="100" class="father_deceased form-control disabled:bg-slate-200" required>
             </div>
 
@@ -70,32 +70,32 @@
 
             <div class="mt-2 md:mt-0 form-group col-span-1">
             </div>
-            <div class="form-group col-span-3">
-                <label for="lastname" class="form-label">Mother Name<span style="color:red">*</span>:</label>
+            <div class="form-group col-span-5">
+                <label for="lastname" class="form-label">Mother Name<span style="color:red" class="req_mother_na">*</span>:</label>
                 <input name="mother" autocomplete="off" type="text" maxlength="100" class="mother_na form-control disabled:bg-slate-200" required>
             </div>
             <div class="form-group col-span-3">
-                <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
+                <label for="lastname" class="form-label">Birth Date<span style="color:red" class="req_mother_deceased">*</span>:</label>
                 <div class="relative max-w-sm">
                     <x-picker_logo/>
                     <input datepicker name="mother_birthday" autocomplete="off" type="text" maxlength="100" class="mother_deceased form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
                 </div>
             </div>
             <div class="form-group col-span-3">
-                <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
+                <label for="lastname" class="form-label">CP No.<span style="color:red" class="req_mother_deceased">*</span>:</label>
                 <input name="mother_cp" autocomplete="off" type="text" maxlength="20" class="Number-Only mother_deceased form-control disabled:bg-slate-200" required style="text-align:right">
             </div>
-            <div class="form-group col-span-3">
-                <label for="lastname" class="form-label">Occupation<span style="color:red">*</span>:</label>
+            <div class="form-group col-span-1">
+                <label for="lastname" class="form-label">Occupation<span style="color:red" class="req_mother_deceased">*</span>:</label>
                 <input name="mother_occupation" autocomplete="off" type="text" maxlength="100" class="mother_deceased form-control disabled:bg-slate-200" required>
             </div>
             
             <div class="form-group col-start-2 col-span-12">
-                <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
+                <label for="lastname" class="form-label">Address<span style="color:red" class="req_mother_deceased">*</span>:</label>
                 <input name="mother_address" autocomplete="off" type="text" maxlength="100" class="mother_deceased form-control disabled:bg-slate-200" required>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-11">
-                <label class="text-xl font-bold">Siblings<span style="color:red">*</span>:</label>
+                <label class="text-xl font-bold">Siblings<span style="color:red" class="sibling_required">*</span>:</label>
             </div>
             <div class="form-group col-span-1 flex items-center my-4 md:my-0">
                 <input type="checkbox" value="1" id="sibling_applicable" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
@@ -108,26 +108,26 @@
                 <div class="mt-2 md:mt-0 form-group col-span-1">
                 </div>
                 <div class="form-group col-span-3">
-                    <label for="sibling" class="form-label">Name<span style="color:red">*</span>:</label>
+                    <label for="sibling" class="form-label">Name<span style="color:red" class="sibling_required">*</span>:</label>
                     <input name="sibling_0" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required>
                 </div>
                 <div class="form-group col-span-3">
-                    <label for="sibling_birthday" class="form-label">Birth Date<span style="color:red">*</span>:</label>
+                    <label for="sibling_birthday" class="form-label">Birth Date<span style="color:red" class="sibling_required">*</span>:</label>
                     <div class="relative max-w-sm">
                         <x-picker_logo/>
                         <input datepicker name="sibling_birthday_0" autocomplete="off" type="text" maxlength="100" class="sibling form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
                     </div>
                 </div>
                 <div class="form-group col-span-3">
-                    <label for="lastname" class="form-label">Occupation<span style="color:red">*</span>:</label>
+                    <label for="lastname" class="form-label">Occupation<span style="color:red" class="sibling_required">*</span>:</label>
                     <input name="sibling_occupation_0" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required>
                 </div>
                 <div class="form-group col-span-3">
-                    <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
+                    <label for="lastname" class="form-label">CP No.<span style="color:red" class="sibling_required">*</span>:</label>
                     <input name="sibling_cp_0" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="sibling form-control disabled:bg-slate-200" required style="text-align:right">
                 </div>
                 <div class="form-group col-start-2 col-span-12">
-                    <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
+                    <label for="lastname" class="form-label">Address<span style="color:red" class="sibling_required">*</span>:</label>
                     <input name="sibling_address_0" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required>
                 </div>
             </div>
@@ -139,8 +139,8 @@
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
             </div>
-            <div class="form-group col-span-3">
-                <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
+            <div class="form-group col-span-5">
+                <label for="lastname" class="form-label">Name<span style="color:red" id="spouse_required">*</span>:</label>
                 <input name="spouse" autocomplete="off" type="text" maxlength="100" class="form-control spouse disabled:bg-slate-200" required>
             </div>
             <div class="form-group col-span-3">
@@ -154,7 +154,7 @@
                 <label for="lastname" class="form-label">Occupation<span style="color:red">*</span>:</label>
                 <input name="spouse_occupation" autocomplete="off" type="text" maxlength="100" class="form-control spouse disabled:bg-slate-200" required>
             </div>
-            <div class="form-group col-span-3">
+            <div class="form-group col-span-1">
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
                 <input name="spouse_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" maxlength="100" class="form-control spouse disabled:bg-slate-200" required style="text-align:right" style="text-align:right">
             </div>
@@ -163,7 +163,7 @@
                 <input name="spouse_address" autocomplete="off" type="text" maxlength="100" class="form-control spouse disabled:bg-slate-200" required>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-11">
-                <label class="text-xl font-bold">Children<span style="color:red">*</span>:</label>
+                <label class="text-xl font-bold">Children<span style="color:red" class="required_children">*</span>:</label>
             </div>
             <div class="form-group col-span-1 flex items-center my-4 md:my-0">
                 <input type="checkbox" value="1" id="children_applicable" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
@@ -172,15 +172,15 @@
             <div class="form-group col-span-1">
                 <button id="add_children" class="py-2 px-4 bg-sky-700 rounded w-full self-end text-sm text-white disabled:bg-sky-900">Add Children</button>
             </div>
-            <div class=" md:mt-0 mt-2 form-group col-span-1 flex items-center">
+            <div class=" md:mt-0 mt-2 form-group col-span-2 flex items-center">
                 <button  class='py-2 bg-white rounded w-full self-end text-sm text-white pointer-events-none'>x</button>
             </div>
-            <div class="form-group col-span-8">
-                <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
+            <div class="form-group col-span-7">
+                <label for="lastname" class="form-label">Name<span style="color:red" class="required_children">*</span>:</label>
                 <input name="child_0" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
             </div>
             <div class="form-group col-span-4">
-                <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
+                <label for="lastname" class="form-label">Birth Date<span style="color:red" class="required_children">*</span>:</label>
                 <div class="relative w-full">
                     <x-picker_logo/>
                     <input datepicker name="child_birthday_0" autocomplete="off" type="text" maxlength="100" class="children form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
@@ -196,7 +196,7 @@
             </div>
             <div class="partner_hidden form-group col-span-1" hidden>
             </div>
-            <div class="partner_hidden form-group col-span-3" hidden>
+            <div class="partner_hidden form-group col-span-5" hidden>
                 <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
                 <input name="partner" autocomplete="off" type="text" maxlength="100" class="form-control partner disabled:bg-slate-200" required disabled>
             </div>
@@ -208,7 +208,7 @@
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
                 <input name="partner_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control partner disabled:bg-slate-200" required disabled style="text-align:right">
             </div>
-            <div class="partner_hidden form-group col-span-3" hidden>
+            <div class="partner_hidden form-group col-span-1" hidden>
                 <label for="lastname" class="form-label">How Long(Months)<span style="color:red">*</span>:</label>
                 <input name="partner_howlong" autocomplete="off" type="text" maxlength="3" class="form-control partner Number-Only disabled:bg-slate-200 text-right" required disabled>
             </div>
@@ -260,8 +260,10 @@
                     </div>
                     </div>
                 </div>
-                <div class="form-group col-span-8 overstay_group" hidden>
+                <div class="form-group col-span-4 overstay_group" hidden>
                     <input name="overstay_howlong" autocomplete="off" type="text" maxlength="3" class="Number-Only overstay form-control disabled:bg-slate-200" placeholder="How Long(days)?" required disabled>
+                </div>
+                <div class="form-group col-span-4 overstay_group" hidden>
                 </div>
                 <div class="form-group col-span-4 japan_group" hidden>
                     <div class="flex gap-4 w-full">

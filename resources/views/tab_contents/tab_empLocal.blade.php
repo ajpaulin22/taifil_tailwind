@@ -12,13 +12,17 @@
     <form action="" id="empLocal_form" class="flex flex-col">
         <div class="companylocal md:grid grid-cols-9 gap-4" id="company_0">
             <div class="mt-2 md:mt-0 form-group col-span-9">
-                <label class="text-xl font-bold">Company<span style="color:red">*</span>:</label>
+                <label class="text-xl font-bold">Company<span style="color:red" id="local_required">*</span>:</label>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
                 
             </div>
             <div class="col-span-8 md:grid grid-cols-4 gap-4">
                 <div class="mt-2 md:mt-0 form-group col-span-2">
+                    {{-- <div class="relative" data-te-input-wrapper-init>
+                        <input type="text" required name="name_local_0" id="name_local_0" maxlength="100" class=" name_local_0 peer floating-form disabled:bg-slate-200" placeholder="Example label" />
+                        <label for="name_local_0" class="floating-label">Name of Company</label>
+                      </div> --}}
                     <input name="name_local_0" autocomplete="off" type="text" maxlength="100" class="name_local_0 form-control disabled:bg-slate-200" placeholder="Name of Company" required>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-2">
@@ -39,6 +43,9 @@
                         <x-picker_logo/>
                         <input datepicker name="date_until_local_0" autocomplete="off" type="text" maxlength="100" class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" required>
                     </div>
+                    {{-- <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-past="true" data-te-input-wrapper-init>
+                        <input id="yeahh" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+                   </div> --}}
                 </div>
             </div>
         </div>

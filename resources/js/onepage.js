@@ -123,10 +123,9 @@
         $("#loader").show();
         let form = $(this)[0]
         $.ajax({
-          url:"/client/contact-form/",
+          url:"/client/contact-form",
           type:"POST",
           data:onepage.contact_form,
-          dataType:"JSON",
           success:function(promise){
               if(promise.success){
                 iziToast.success({
@@ -147,6 +146,15 @@
                 });
                 $("#loader").hide();
                }
+          },
+          error:function(err){
+            iziToast.error({
+              class:'rounded-lg overflow-hidden',
+              title: 'Error',
+              message: `${err.statusText}`,
+              position:'topRight'
+          });
+          $("#loader").hide();
           }
         })
       }

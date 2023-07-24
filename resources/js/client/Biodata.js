@@ -7,6 +7,7 @@
         return new Biodata.init();
     }
     Biodata.init = function() {
+        this.family_validator =false;
         this.id = 0;
         this.token = $("meta[name=csrf-token]").attr("content");
         this.biodata_type = $("meta[name=biodata_type]").attr("content");
@@ -34,158 +35,6 @@
         this.upload;
     }
     Biodata.prototype = {
-        
-        validatePersonal: function(){
-            const self = this;
-            $("#personal_form").validate({
-                rules:{
-                    code:{
-                        required: true,
-                    },
-                    job_cat:{
-                        required: true,
-                    },
-                    operations:{
-                        required: true,
-                    },
-                    lastname:{
-                        required: true,
-                    },
-                    firstname:{
-                        required: true,
-                    },
-                    middlename:{
-                        required: true,
-                    },
-                    nickname:{
-                        required: true,
-                    },
-                    address:{
-                        required: true,
-                    },
-                    birthday:{
-                        required: true,
-                    },
-                    birth_place:{
-                        required: true,
-                    },
-                    gender:{
-                        required: true,
-                    },
-                    citizenship:{
-                        required: true,
-                    },
-                    age:{
-                        required: true,
-                    },
-                    civil_status:{
-                        required: true,
-                    },
-                    contact:{
-                        required: true,
-                    },
-                    height:{
-                        required: true,
-                    },
-                    religion:{
-                        required: true,
-                    },
-                    facebook:{
-                        required: true,
-                    },
-                    religion:{
-                        required: true,
-                    },
-                    smoking:{
-                        required: true,
-                    },
-                    weight:{
-                        required: true,
-                    },
-                    jp_reading:{
-                        required: true
-                    },
-                    shoe_size:{
-                        required: true
-                    },
-                    hobbies:{
-                        required: true
-                    },
-                    person_to_notify:{
-                        required: true
-                    },
-                    relation:{
-                        required: true
-                    },
-                    person_address:{
-                        required: true
-                    },
-                    person_contact:{
-                        required: true
-                    },
-                    passport:{
-                        required: true
-                    },
-                    issue_date:{
-                        required: true
-                    },
-                    expiry_date:{
-                        required: true
-                    },
-                    issue_place:{
-                        required: true
-                    },
-                    jp_reading:{
-                        required: true
-                    },
-                    allergy:{
-                        required: true
-                    },
-                    tattoo:{
-                        required: true
-                    },
-                    food_allergy:{
-                        required: true
-                    },
-                },
-                messages:{
-                    code:{
-                        required: "Code is required",
-                    },
-                    lastname:{
-                        required: "Last Name is required",
-                    }
-                },
-                errorElement: 'span',
-                errorPlacement: function (error, element) {
-                    error.addClass('text-red-500 text-sm');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).addClass('border-red-600');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).removeClass('border-red-600');
-                },
-                submitHandler: function(form) {
-                    self.personalData =  $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
-                    self.personalData.age = parseInt(self.personalData.age)
-                    self.personalData.contact = parseInt(self.personalData.contact)
-                    self.personalData.height = parseInt(self.personalData.height)
-                    self.personalData.weight = parseInt(self.personalData.weight)
-                    self.personalData.shoe_size = parseInt(self.personalData.shoe_size)
-                    self.personalData.person_contact = parseInt(self.personalData.person_contact)
-                    $(window).scrollTop(0);
-                     if($("#seminar_tab").length == 1) {
-                        $("#seminar_tab").removeClass('pointer-events-none')
-                         $("#seminar_tab").trigger('click');
-                     }else{
-                        $("#education_tab").removeClass('pointer-events-none')
-                         $("#education_tab").trigger('click');
-                     }
-                  }
-            });
-        },
         uploadData:function(){
             $("#loader").show()
             let self = this;
@@ -643,7 +492,9 @@
 
     var biodata = Biodata();
    $(document).ready(function() {
-
+    let Datepicker = tw_elements.Datepicker;
+    let Input = tw_elements.Input;
+    tw_elements.initTE({ Datepicker,Input });
     setTimeout(() => {
         $("#opening").hide();
     }, 1000);
@@ -656,23 +507,47 @@
     // })
     $("#jobcategories").on("change",function(){
         biodata.getOperations($(this).val());
+    });
+
+    $(".date_picker").on("input",function(){
+        var $form = $(this).closest('form');
+console.log($form.attr('id'));
+       console.log(moment($(this).val(), "DD/MM/YYYY", true).isValid());
     })
+
+
+
+
     //tabs Event Listener
     $("[data-tab-target]").toArray().forEach(tab => {
+        let valid = false;
         $(tab).on("click",function(){
             const target = $(tab)[0].dataset.tabTarget
             $("[data-tab-content]").toArray().forEach((content)=>{
-                $(content).addClass("hidden")
+                
+                if(!$(content).hasClass("hidden")){
+                    valid = $(content).find('form').valid()
+                    if($(content).find('form').attr("id") == "family_form") {
+                        biodata.family_validator = true;
+                    }
+                }
+                if(valid){
+                    $(content).addClass("hidden")
+                }
+                
             })
-            $("[data-tab-target]").toArray().forEach((content)=>{
-                $(content).removeClass("bg-green-800")
-                $(content).addClass("bg-green-300")
-                $(content).removeClass("text-white")
-                $(content).addClass("text-black")
-            })
-            $(tab).addClass('bg-green-800')
-            $(tab).addClass("text-white")
-            $(target).removeClass("hidden");
+            if(valid){
+                $("[data-tab-target]").toArray().forEach((content)=>{
+                    $(content).removeClass("bg-green-800")
+                    $(content).addClass("bg-green-300")
+                    $(content).removeClass("text-white")
+                    $(content).addClass("text-black")
+                })
+                $(tab).addClass('bg-green-800')
+                $(tab).addClass("text-white")
+                 $(target).removeClass("hidden");
+            }
+            
         });
     });
     $("#date_from_elem").on("blur",function(){
@@ -685,8 +560,38 @@
 
     
     //PERSONAL TAB ============================================EVENT LISTENER
+    $("#personal_form").validate({
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('text-red-500 text-sm');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('border-red-600');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('border-red-600');
+        },
+        submitHandler: function(form) {
+            biodata.personalData =  $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
+            biodata.personalData.age = parseInt(biodata.personalData.age)
+            biodata.personalData.contact = parseInt(biodata.personalData.contact)
+            biodata.personalData.height = parseInt(biodata.personalData.height)
+            biodata.personalData.weight = parseInt(biodata.personalData.weight)
+            biodata.personalData.shoe_size = parseInt(biodata.personalData.shoe_size)
+            biodata.personalData.person_contact = parseInt(biodata.personalData.person_contact)
+            $(window).scrollTop(0);
+             if($("#seminar_tab").length == 1) {
+                $("#seminar_tab").removeClass('pointer-events-none')
+                 $("#seminar_tab").trigger('click');
+             }else{
+                $("#education_tab").removeClass('pointer-events-none')
+                 $("#education_tab").trigger('click');
+             }
+          }
+    });
     $("#personalBtn").on("click",function(e){
-        biodata.validatePersonal();
+        $("#personal_form").valid();
 
         //to trigger the next tab-------------
         
@@ -700,7 +605,7 @@
     $("#birthday").on("focusout",function(){
         const getAge = Math.floor((new Date() - new Date($(this).val()).getTime()) / 3.15576e+10)
         console.log(getAge)
-        $("#age").val(getAge)
+        $("#age").val(getAge).trigger("change");
     });
 
     $("input[name='allergy']").on("click",function(){
@@ -1093,10 +998,13 @@
             // $("#local_companys :input").val("");
             // $("#local_companys :input").removeClass("border-red-600");
             $(".companylocal :input").attr("disabled", true);
+            $(".companylocal :input").val("");
+            $("#local_required").html("")
             
         }else{
             $(".companylocal :input").attr("disabled", false);
-            $("#add_local_btn").attr("disabled", false)
+            $("#add_local_btn").attr("disabled", false);
+            $("#local_required").html("*")
         }
     })
 
@@ -1227,9 +1135,12 @@
             $("#abroad_companys").html("");
             $("#add_abroad_btn").attr("disabled", true)
             $(".companyabroad :input").attr("disabled", true);
+            $(".companyabroad :input").val("");
+            $("#abroad_required").html("");
         }else{
             $(".companyabroad :input").attr("disabled", false);
             $("#add_abroad_btn").attr("disabled", false)
+            $("#abroad_required").html("*");
         }
        
     })
@@ -1249,7 +1160,7 @@
     
 
     //FAMILY TAB =========================================EVENT LISTENER
-    $("#family_form").validate({
+    let family_form = $("#family_form").validate({
         errorElement: 'span',
         errorPlacement: function (error, element) {
             error.addClass('text-red-500 text-sm');
@@ -1354,7 +1265,7 @@
        let id = biodata.children
        let form = `<div class="children_content w-full md:grid grid-col-13 gap-4 grid-flow-col">
        <div class="md:mt-0 mt-2 form-group col-span-1 flex items-center">
-       <button  class='btnDelchildren py-2 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>x</button>
+       <button  class='btnDelchildren py-2 px-3 bg-red-700 rounded w-full text-sm text-white disabled:bg-red-900'>x</button>
        </div>
        <div class="form-group col-span-8">
            <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
@@ -1384,34 +1295,73 @@
 
      $("#children_applicable").on("click",function(){
         if(this.checked){
+            family_form.resetForm();
             $(".btnDelchildren").attr("disabled",true)
             $(".children").attr("disabled",true)
             $("#add_children").attr("disabled",true)
+            $(".children").val("")
+            $("#children").html("")
+            $(".required_children").html("")
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
         }else{
+            family_form.resetForm();
             $(".children").attr("disabled",false)
             $(".btnDelchildren").attr("disabled",false)
             $("#add_children").attr("disabled",false)
+            $(".required_children").html("*")
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
         }
      })
 
      $("#sibling_applicable").on("click",function(){
         if(this.checked){
+            family_form.resetForm();
             $(".btnDelsibling").attr("disabled",true)
             $(".sibling").attr("disabled",true)
             $("#add_sibling").attr("disabled",true)
             $("#siblings_nav").html("")
+            $(".sibling_required").html("")
+            $(".sibling").val("")
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
         }else{
+            family_form.resetForm();
             $(".sibling").attr("disabled",false)
             $(".btnDelsibling").attr("disabled",false)
             $("#add_sibling").attr("disabled",false)
+            $(".sibling_required").html("*")
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
         }
      })
         
      $("select[name='civil_status']").on("change",function(){
         if($(this).val() == "Married"){
+            family_form.resetForm();
             $(".spouse").attr("disabled",false)
+            $("#spouse_required").html("")
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
         }else{
+            family_form.resetForm();
             $(".spouse").attr("disabled",true)
+            $("#spouse_required").html("*")
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
         }
      })
 
@@ -1421,6 +1371,7 @@
             $(".partner_hidden").attr("hidden",false)
         }else{
             $(".partner").attr("disabled",true)
+            $(".partner").val("")
             $(".partner_hidden").attr("hidden",true)
         }
      })
@@ -1432,6 +1383,7 @@
         }else{
             $(".japan_group").hide()
             $(".japan").attr("disabled",true)
+            $(".japan").val("")
         }
     })
 
@@ -1442,6 +1394,7 @@
         }else{
             $(".overstay_group").hide()
             $(".overstay").attr("disabled",true)
+            $(".overstay").val("")
         }
     })
 
@@ -1452,6 +1405,7 @@
         }else{
             $(".fakeidentity_group").hide()
             $(".fakeidentity").attr("disabled",true)
+            $(".fakeidentity").val("")
         }
     })
     $("input[name='visa']").on("click",function(){
@@ -1461,6 +1415,7 @@
         }else{
             $(".visa_group").hide()
             $(".visa").attr("disabled",true)
+            $(".visa").val("")
         }
     })
 
@@ -1469,7 +1424,7 @@
         let id = biodata.relatives
         let form = `<div class="relative_content relative_content_dynamic w-full md:grid grid-cols-13 grid-flow-col gap-4 mt-2">
         <div class="form-group col-span-1 flex items-center">
-            <button  class='btnDelrelatives py-2 bg-red-700 rounded w-full self-end text-xs font-bold text-white disabled:bg-red-900'>X</button>
+            <button  class='btnDelrelatives py-2 bg-red-700 rounded w-full text-xs font-bold text-white disabled:bg-red-900'>X</button>
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
             <input name="name_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Name">
@@ -1495,44 +1450,103 @@
 
     $("#relatives_applicable").on("click",function(e){
         if(this.checked){
+            family_form.resetForm();
             $(".relative_content_dynamic").remove();
             $("#relatives :input").attr("disabled",true)
             $("#relatives :input").val("");
-        }else{
+            $("#add_relatives").attr("disabled",true)
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
+         }else{
+            family_form.resetForm();
             $("#relatives :input").attr("disabled",false)
+            $("#add_relatives").attr("disabled",false)
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
         }
     })
 
     $("input[name='father_deceased']").on("click",function(){
         if($(this).val() == 1){
+             family_form.resetForm();
             $(".father_deceased").attr("disabled",false)
             $(".father_na").attr("disabled",false)
+            $(".req_father_deceased").html("*")
+            $(".req_father_na").html("*")
+            
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
+
         }
         else if($(this).val() == 2){
+            family_form.resetForm();
             $(".father_deceased").attr("disabled",true)
             $(".father_na").attr("disabled",false)
+            $(".req_father_deceased").html("")
+            $(".req_father_na").html("*")
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
+
         }else{
+            family_form.resetForm();
             $(".father_deceased").attr("disabled",true)
             $(".father_na").attr("disabled",true)
+            $(".req_father_deceased").html("")
+            $(".req_father_na").html("")
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
         }
+
     })
 
     $("input[name='mother_deceased']").on("click",function(){
         if($(this).val() == 1){
+            family_form.resetForm();
             $(".mother_deceased").attr("disabled",false)
             $(".mother_na").attr("disabled",false)
+            $(".req_mother_deceased").html("*")
+            $(".req_mother_na").html("*")
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
         }
         else if($(this).val() == 2){
+            family_form.resetForm();
             $(".mother_deceased").attr("disabled",true)
             $(".mother_na").attr("disabled",false)
+            $(".req_mother_deceased").html("")
+            $(".req_mother_na").html("*")
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
         }else{
+            family_form.resetForm();
             $(".mother_deceased").attr("disabled",true)
             $(".mother_na").attr("disabled",true)
+            $(".req_mother_deceased").html("")
+            $(".req_mother_na").html("")
+            if(biodata.family_validator){
+               
+                $("#family_form").valid();
+            }
         }
     })
 
      $("#family_form").on("submit",function(e){
         $("#family_form").valid();
+        biodata.family_validator = true;
      })
 
      $("#familyBtn_Prev").on("click",function(e){
