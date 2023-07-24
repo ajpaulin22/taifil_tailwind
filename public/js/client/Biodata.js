@@ -543,12 +543,12 @@
                         biodata.family_validator = true;
                     }
                 }
-                if(true){
+                if(valid){
                     $(content).addClass("hidden")
                 }
                 
             })
-            if(true){
+            if(valid){
                 $("[data-tab-target]").toArray().forEach((content)=>{
                     $(content).removeClass("bg-green-800")
                     $(content).addClass("bg-green-300")
