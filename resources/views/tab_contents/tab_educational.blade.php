@@ -16,13 +16,13 @@
             <div class="mt-2 md:mt-0 form-group col-span-1">
                 <div class="relative max-w-sm">
                     <x-picker_logo/>
-                    <input datepicker name="date_from_elem" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date From" required>
+                    <input datepicker datepicker-mindate='2023-07-22' name="date_from_elem" id="date_from_elem" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date From" required>
                 </div>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
                 <div class="relative max-w-sm">
                     <x-picker_logo/>
-                    <input datepicker name="date_until_elem" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
+                    <input datepicker name="date_until_elem" id="date_until_elem" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
                 </div>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-7">

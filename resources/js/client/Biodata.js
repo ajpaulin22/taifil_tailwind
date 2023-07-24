@@ -556,7 +556,15 @@
             
         });
     });
+    $("#date_from_elem").on("blur",function(){
+        const datepickerWithLimits = document.getElementById('date_until_elem');
+        new Datepicker(datepickerWithLimits, {
+        min: new Date(2023, 7, 22)
+        });
+    });
+    
 
+    
     //PERSONAL TAB ============================================EVENT LISTENER
     $("#personal_form").validate({
         errorElement: 'span',
