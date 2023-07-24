@@ -103,6 +103,11 @@
                 </div>
             </div>
         </div>
+        @if(!Auth::check())
+        <ul class="block justify-between md:flex">
+            <li class="p-3 px-5 text-lg font-bold text-sky-800 hover:text-green-600"><a class="hover:border-b-2 hover:border-b-green-600 block md:inline-block" href="/admin">Log In</a></li>
+        </ul>
+        @endif
     </nav>
     <div class="absolute right-4 top-7 hidden md:block">
          @admin
