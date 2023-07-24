@@ -847,7 +847,7 @@
    </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
         <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_vocational_${id+1}" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
    </div>
         </div>
@@ -858,7 +858,7 @@
             <input name="certificate_vocational_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
         <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_cert_vocational_${id+1}" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
    </div>
         </div>
