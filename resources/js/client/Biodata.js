@@ -701,36 +701,33 @@
             <input name="add_prometric_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_from_prometric_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date From" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_from_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+   </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_until_prometric_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-5">
             <input name="certificate_prometric_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-2">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_until_cert_prometric_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_cert_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
     </div>`;
 
        $("#prometric_div").append(form);
-       Datepicker.initDatepickers();
        $(".prometric_del").on("click",function(e){
            e.preventDefault();
            $(this).closest('.prometric_content').remove();
            biodata.prometric--
        })
        biodata.prometric++
+       tw_elements.initTE({ Datepicker,Input });
     })
 
     $("#add_japlang_btn").on("click",function(e){
@@ -749,30 +746,27 @@
             <input name="add_jpl_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_from_jpl_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date From" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_from_jpl_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+   </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_until_jpl_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_jpl_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-5">
             <input name="certificate_jpl_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-2">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_until_cert_jpl_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_cert_jpl_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
     </div>`;
 
        $("#jpl_div").append(form);
-       Datepicker.initDatepickers();
+       tw_elements.initTE({ Datepicker,Input });
        $(".jpl_del").on("click",function(e){
            e.preventDefault();
            $(this).closest('.jpl_content').remove();
