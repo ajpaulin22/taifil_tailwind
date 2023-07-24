@@ -84,7 +84,15 @@
         });
 
         $("#btnDelete").click(function(){
-            if (chkDataUser.length == 0){
+            var tableData = [];
+            $(".CheckItem").each(function(){
+                if($(this).is(":checked")){
+                    tableData.push({
+                        ID: $(this).val()
+                    });
+                }
+            });
+            if (tableData.length == 0){
                 showMessage("Error", "Please check a row in user table", "error", "red");
             }
             else{
@@ -93,7 +101,7 @@
                     type:"GET",
                     data:{
                         _token: token,
-                        ID: chkDataUser,
+                        ID: tableData,
                     },
                     dataType:"JSON",
                     beforeSend: function(){

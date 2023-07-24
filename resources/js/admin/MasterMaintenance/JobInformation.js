@@ -527,7 +527,6 @@
                     Value: $(this).is(":checked") ? 1 : 0
                 })
             })
-
             if(hiringData.length == 0){
                 showMessage("Error!", "Please check a row in Hiring Column", "error", "red");
             }
