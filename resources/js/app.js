@@ -8,7 +8,3 @@ window.AOS = require('aos');
 window.Quill = require('quill');
 window.tw_elements = require('tw-elements');
 window.moment = require('moment');
-
-
-
-

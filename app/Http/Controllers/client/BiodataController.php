@@ -318,7 +318,6 @@ class BiodataController extends Controller
                 DB::table("personal_datas")
                 ->where('id', $request["personalid"])
                 ->update([
-                    
                     // "code" => $request->personal["code"],
                     "job_cat" => $request->personal["job_cat"],
                     "operation" => $request->personal["operations"],
@@ -643,7 +642,6 @@ class BiodataController extends Controller
         }
         return response()->json($data);
     }
-
     public function get_code(Request $request){
        $data = DB::table("m_jobcodes")->where('IsDeleted',0)->select()->get();
        return $data;
@@ -658,7 +656,6 @@ class BiodataController extends Controller
         ->Get();
         return $data;
     }
-
     public function get_operations(Request $request){
         $data = DB::table('m_joboperations')
         ->where("JobCategoriesID",$request->ID)
@@ -682,9 +679,9 @@ class BiodataController extends Controller
         $personaldata[0]->id_picture = file_put_contents("test.jpg", $personaldata[0]->id_picture);
         $personaldata[0]->gov_id_picture = file_put_contents("test.jpg", $personaldata[0]->gov_id_picture);
         $personaldata[0]->passport_id_picture = file_put_contents("test.jpg", $personaldata[0]->passport_id_picture);
-        // $personaldata[0]->id_picture = base64_encode($personaldata[0]->id_picture);
-        // $personaldata[0]->gov_id_picture = base64_encode($personaldata[0]->gov_id_picture);
-        // $personaldata[0]->passport_id_picture = base64_encode($personaldata[0]->passport_id_picture);
+        $personaldata[0]->id_picture = base64_encode($personaldata[0]->id_picture);
+        $personaldata[0]->gov_id_picture = base64_encode($personaldata[0]->gov_id_picture);
+        $personaldata[0]->passport_id_picture = base64_encode($personaldata[0]->passport_id_picture);
         $educationaldata = DB::table('educational_datas')
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
