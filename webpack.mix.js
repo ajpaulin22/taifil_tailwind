@@ -86,11 +86,11 @@ mix.js(['resources/js/app.js','resources/js/iziToast/dist/js/iziToast.min.js'], 
     .scripts(TrxJS, "public/js/trx.js")
     .styles(TrxCSS, "public/css/trx.css")
 
-    .scripts(['public/js/app.js','resources/js/auth/auth.js'],'public/js/auth/auth.js')
-    .scripts(['public/js/app.js','resources/js/onepage.js'],'public/js/onepage.js')
-    .scripts(['public/js/app.js','resources/js/client/Biodata.js'],"public/js/client/Biodata.js")
-    .scripts(['public/js/app.js','resources/js/client/jobcategory.js'],"public/js/client/jobcategory.js")
-    .scripts(['public/js/app.js','resources/js/client/qualification.js'],"public/js/client/qualification.js")
+    .scripts('resources/js/auth/auth.js','public/js/auth/auth.js')
+    .scripts('resources/js/onepage.js','public/js/onepage.js')
+    .scripts('resources/js/client/Biodata.js',"public/js/client/Biodata.js")
+    .scripts('resources/js/client/jobcategory.js',"public/js/client/jobcategory.js")
+    .scripts('resources/js/client/qualification.js',"public/js/client/qualification.js")
 
     .scripts([
         "public/js/theme.js",

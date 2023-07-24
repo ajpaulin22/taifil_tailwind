@@ -508,8 +508,13 @@
     biodata.getData();
     biodata.getCategories()
     $.validator.addMethod("validDate", function(value, element) {
-        return this.optional(element) || moment(value,"MM/DD/YYYY").isValid();
+        return moment(value,"MM/DD/YYYY",true).isValid();
     }, "Please enter a valid date in the format DD/MM/YYYY");
+    $.validator.addMethod("pastDate", function(value, element) {
+        now = new Date(value) - 10;
+        return moment(value,"MM/DD/YYYY",true).isValid();
+
+    }, "Past Date is not valid");
     //=================================================EVENTS LISTENER
     // $("#jobcodes").on("change",function(){
     //     biodata.getCategories($(this).val());
@@ -519,12 +524,7 @@
     });
 
     $(".date_picker").on("input",function(){
-        var $form = $(this).closest('form');
-            console.log();
-       if(moment($(this).val(), "MM/DD/YYYY", true).isValid() == false){
-        
-       }
-       $(`#${$form.attr('id')}`).valid()
+       $(this).valid()
     })
 
 
@@ -614,10 +614,12 @@
         // }
     })
 
-    $("#birthday").on("focusout",function(){
-        const getAge = Math.floor((new Date() - new Date($(this).val()).getTime()) / 3.15576e+10)
-        console.log(getAge)
+    $("#birthday").on("input",function(){
+        if($(this).valid()){
+            const getAge = Math.floor((new Date() - new Date($(this).val()).getTime()) / 3.15576e+10)
         $("#age").val(getAge).trigger("change");
+        }
+        
     });
 
     $("input[name='allergy']").on("click",function(){
@@ -699,36 +701,33 @@
             <input name="add_prometric_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_from_prometric_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date From" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_from_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+   </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_until_prometric_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-5">
             <input name="certificate_prometric_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-2">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_until_cert_prometric_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_cert_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
     </div>`;
 
        $("#prometric_div").append(form);
-       Datepicker.initDatepickers();
        $(".prometric_del").on("click",function(e){
            e.preventDefault();
            $(this).closest('.prometric_content').remove();
            biodata.prometric--
        })
        biodata.prometric++
+       tw_elements.initTE({ Datepicker,Input });
     })
 
     $("#add_japlang_btn").on("click",function(e){
@@ -747,30 +746,27 @@
             <input name="add_jpl_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_from_jpl_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date From" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_from_jpl_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+   </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_until_jpl_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_jpl_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-5">
             <input name="certificate_jpl_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-2">
-            <div class="relative max-w-sm">
-                <x-picker_logo/>
-                <input datepicker name="date_until_cert_jpl_${id+1}" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_cert_jpl_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
     </div>`;
 
        $("#jpl_div").append(form);
-       Datepicker.initDatepickers();
+       tw_elements.initTE({ Datepicker,Input });
        $(".jpl_del").on("click",function(e){
            e.preventDefault();
            $(this).closest('.jpl_content').remove();
@@ -846,20 +842,14 @@
             <input name="add_vocational_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <div class="relative max-w-sm">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-        </div>
-                <input datepicker name="date_from_vocational_${id+1}" id="birthday" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date From" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_from_vocational_${id+1}"  maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+   </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <div class="relative max-w-sm">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-        </div>
-                <input datepicker name="date_until_vocational_${id+1}" id="birthday" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_vocational_${id+1}" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-4">
             <input name="course_vocational_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Course/Major" required>
@@ -868,23 +858,20 @@
             <input name="certificate_vocational_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <div class="relative max-w-sm">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-        </div>
-                <input datepicker name="date_until_cert_vocational_${id+1}" id="birthday" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_cert_vocational_${id+1}" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
     </div>`;
 
        $("#vocational").append(form);
-       Datepicker.initDatepickers();
        $(".delete_vocational").on("click",function(e){
            e.preventDefault();
            $(this).closest('.vocational_content').remove();
            biodata.vocational--
        })
        biodata.vocational++
+       tw_elements.initTE({ Datepicker,Input });
     })
 
     $("#educational_form").on("submit",function(){
@@ -902,7 +889,6 @@
 
     //LOCAL EMP TAB ===========================================EVENT LISTENER
     let emplocalValid = $("#empLocal_form").validate({
-               
         errorElement: 'span',
         errorPlacement: function (error, element) {
             error.addClass('text-red-500 text-sm');
@@ -958,20 +944,14 @@
             <input name='address_local_${id+1}' autocomplete='off' type='text' class='address_local form-control disabled:bg-slate-200' placeholder='Company Address' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-            <div class='relative max-w-sm'>
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-          </div>
-                <input datepicker name='date_from_local_${id+1}' autocomplete='off' type='text' class='date_from_local form-control date_picker disabled:bg-slate-200' placeholder='Date From' required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-            <div class='relative max-w-sm'>
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-          </div>
-                <input datepicker name='date_until_local_${id+1}' autocomplete='off' type='text' class='date_until_local form-control date_picker disabled:bg-slate-200' placeholder='Date Until' required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
         </div>
         </div>`;
@@ -984,22 +964,7 @@
             biodata.local_company --
         })
         biodata.local_company ++
-        // $('[datepicker]').each(function (datepickerEl) {
-        //     Datepicker(datepickerEl);
-        //   });
-        // $("#personal_form").removeData('validator');
-        // $("#personal_form").removeData('unobtrusiveValidation');
-        // $.validator.unobtrusive.parse("#personal_form");
-        
-            // $('#empLocal_form :input.form-control').each(function() {
-            //     console.log($(this)[0])
-
-            //     $(this).rules("add", 
-            //         {
-            //             required: true
-            //         })
-            // })
-        Datepicker.initDatepickers();
+        tw_elements.initTE({ Datepicker,Input });
     });
 
     $("#local_applicable").on("click",function(e){
@@ -1093,20 +1058,14 @@
             <input name='address_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Company Address' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-            <div class='relative max-w-sm'>
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-          </div>
-                <input datepicker name='date_from_abroad_${id+1}' autocomplete='off' type='text' class='form-control date_picker disabled:bg-slate-200' placeholder='Date From' required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_from_abroad_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+   </div>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-            <div class='relative max-w-sm'>
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-          </div>
-                <input datepicker name='date_until_abroad_${id+1}' autocomplete='off' type='text' class='form-control date_picker disabled:bg-slate-200' placeholder='Date Until' required>
-            </div>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_abroad_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+   </div>
         </div>
         </div>
         </div>`;
@@ -1118,27 +1077,8 @@
             $(this).closest('.companyabroad').remove();
             biodata.abroad_company --
         })
-        biodata.abroad_company ++
-
-        // $('[datepicker]').each(function (datepickerEl) {
-        //     Datepicker(datepickerEl);
-        //   });
-
-        // $("#personal_form").removeData('validator');
-        // $("#personal_form").removeData('unobtrusiveValidation');
-        // $.validator.unobtrusive.parse("#personal_form");
-        
-            // $('#empabroad_form :input.form-control').each(function() {
-            //     console.log($(this)[0])
-
-            //     $(this).rules("add", 
-            //         {
-            //             required: true
-            //         })
-            // })
-        
-
-        Datepicker.initDatepickers();
+        biodata.abroad_company++
+        tw_elements.initTE({ Datepicker,Input });
     });
 
     $("#abroad_applicable").on("click",function(e){
@@ -1240,12 +1180,9 @@
         </div>
         <div class="form-group col-span-3">
             <label for="sibling_birthday" class="form-label">Birth Date<span style="color:red">*</span>:</label>
-            <div class="relative max-w-sm">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-        </div>
-                <input datepicker name="sibling_birthday_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
-            </div>
+            <div class="relative" data-te-datepicker-init data-te-disable-future="true" data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" data-rule-pastDate="true" name="sibling_birthday_${id+1}" maxlength="10" autocomplete="off" type="text" required class="sibling form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                   </div>
         </div>
         <div class="form-group col-span-3">
             <label for="lastname" class="form-label">Occupation<span style="color:red">*</span>:</label>
@@ -1266,10 +1203,10 @@
            $(".btnDelsibling").on("click",function(e){
                e.preventDefault();
                $(this).closest('.sibling_item').remove();
-               biodata.sibling --
+               biodata.sibling--
            })
-           biodata.sibling ++
-           Datepicker.initDatepickers();
+           biodata.sibling++
+           tw_elements.initTE({ Datepicker,Input });
      })
 
      $("#add_children").on("click",function(e){
@@ -1279,18 +1216,15 @@
        <div class="md:mt-0 mt-2 form-group col-span-1 flex items-center">
        <button  class='btnDelchildren py-2 px-3 bg-red-700 rounded w-full text-sm text-white disabled:bg-red-900'>x</button>
        </div>
-       <div class="form-group col-span-8">
+       <div class="form-group col-span-7">
            <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
            <input name="child_${id+1}" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
        </div>
        <div class="form-group col-span-4">
            <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
-           <div class="relative w-full">
-           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-           <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-       </div>
-               <input datepicker name="child_birthday_${id+1}" autocomplete="off" type="text" maxlength="100" class="children form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" required>
-           </div>
+           <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" data-rule-pastDate="true" name="child_birthday_${id+1}" maxlength="10" autocomplete="off" type="text" required class="children form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+               </div>
        </div>
    </div>`
 
@@ -1301,8 +1235,8 @@
        $(this).closest('.children_content').remove();
                biodata.children --
       })
-      biodata.children ++
-      Datepicker.initDatepickers();
+      biodata.children++
+      tw_elements.initTE({ Datepicker,Input });
      })
 
      $("#children_applicable").on("click",function(){
