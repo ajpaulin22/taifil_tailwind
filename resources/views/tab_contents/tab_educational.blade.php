@@ -23,7 +23,7 @@
                     <x-picker_logo/>
                     <input datepicker name="date_until_elem" id="date_until_elem" autocomplete="off" value="" type="text" maxlength="100" class="date_picker" placeholder="Date Until" required>
                 </div> --}}
-                <div class="relative" data-te-datepicker-init data-te-inline="true" min=`$("input[name='date_from_elem']").val()` data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
                     <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_elem" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
                </div>
             </div>
