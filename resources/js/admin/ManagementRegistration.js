@@ -227,8 +227,8 @@
             collectCheckBoxID();
             if(tableData.length != 0){
                 for (var i = 0; i < tableData.length; i++){
-                    window.location = '/admin/ManagementRegistration/ExportBiodata?IDs=' + tableData[i].ID;
-                    // window.open('/admin/ManagementRegistration/ExportBiodata?IDs=' + tableData[i].ID, '_blank');
+                    // window.location = '/admin/ManagementRegistration/ExportBiodata?IDs=' + tableData[i].ID;
+                    window.open('/admin/ManagementRegistration/ExportBiodata?IDs=' + tableData[i].ID, '_blank');
                 }
             }
             else{
