@@ -12,7 +12,7 @@
     <form action="" id="empLocal_form" class="flex flex-col">
         <div class="companylocal md:grid grid-cols-9 gap-4" id="company_0">
             <div class="mt-2 md:mt-0 form-group col-span-9">
-                <label class="text-xl font-bold">Company<span style="color:red" id="local_required">*</span>:</label>
+                <label class="text-xl font-bold lblLocalCompany">Company 1<span style="color:red" id="local_required">*</span>:</label>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
                 

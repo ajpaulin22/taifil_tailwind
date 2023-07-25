@@ -488,15 +488,18 @@
                     console.log(promise.msgTitle)
                 }
             })
+        },
+        countRow:function(lblClass, lblText){
+            var count = 1;
+            $(".lbl" + lblClass).each(function(){
+                $(this).html(lblText + " " + count+"<span style='color:red'>*</span>:");
+                count++;
+            })
         }
     }
     Biodata.init.prototype = Biodata.prototype;
 
     var biodata = Biodata();
-    $(window).on('popstate',()=>{
-        console.log('yeahhh')
-        
-    })
    $(document).ready(function() {
     //initialiazed
     let Datepicker = tw_elements.Datepicker;
@@ -509,13 +512,10 @@
     biodata.getData();
     biodata.getCategories()
     $.validator.addMethod("validDate", function(value, element) {
-        return moment(value).isSameOrAfter('01/01/1900');
+        // return moment(value).isSameOrAfter('01/01/1900');
+        return true;
     }, "Please enter a valid date in the format DD/MM/YYYY");
-    $.validator.addMethod("pastDate", function(value, element) {
-        now = new Date(value) - 10;
-        return moment(value,"MM/DD/YYYY",true).isValid();
 
-    }, "Past Date is not valid");
     //=================================================EVENTS LISTENER
     // $("#jobcodes").on("change",function(){
     //     biodata.getCategories($(this).val());
@@ -523,6 +523,10 @@
     $("#jobcategories").on("change",function(){
         biodata.getOperations($(this).val());
     });
+
+    $(".date_picker").on("keydown",function(){
+       return false;
+    })
 
     $(".date_picker").on("input",function(){
         $(this).valid()
@@ -539,18 +543,41 @@
             $("[data-tab-content]").toArray().forEach((content)=>{
                 
                 if(!$(content).hasClass("hidden")){
-                    console.log($(content).find('form').attr("id"))
-                    valid = $(content).find('form').valid()
+                    let validRun = $(content).find('form').attr("id")
+                    switch (validRun){
+                        case "personal_form":
+                            valid = (biodata.personal_validator) ? $(content).find('form').valid() : true
+                            break;
+                        case "certificate_form":
+                            valid = (biodata.certificate_validator) ? $(content).find('form').valid() : true
+                            break;
+                        case "educational_form":
+                            valid = (biodata.educational_validator) ? $(content).find('form').valid() : true
+                            break;
+                        case "empLocal_form":
+                            valid = (biodata.local_emp_validator) ? $(content).find('form').valid() : true
+                            break;
+                        case "empAbroad_form":
+                            valid = (biodata.abroad_emp_validator) ? $(content).find('form').valid() : true
+                            break;
+                        case "family_form":
+                            valid = (biodata.family_validator) ? $(content).find('form').valid() : true
+                            break;
+                        case "upload_form":
+                            valid = (biodata.upload_validator) ? $(content).find('form').valid() : true
+                            break;    
+                    }
+
                     if($(content).find('form').attr("id") == "family_form") {
                         biodata.family_validator = true;
                     }
                 }
-                if(true){
+                if(valid){
                     $(content).addClass("hidden")
                 }
                 
             })
-            if(true){
+            if(valid){
                 $("[data-tab-target]").toArray().forEach((content)=>{
                     $(content).removeClass("bg-green-800")
                     $(content).addClass("bg-green-300")
@@ -932,10 +959,14 @@
 
     $("#add_local_btn").on("click",function(e){
         e.preventDefault();
+        let count = 0
+        $(".companylocal").each(function(){
+            count++
+        })
         let id = biodata.local_company;
         let forms = `<div class='companylocal md:grid grid-cols-9 gap-4' id='company_${id+1}'>
         <div class='mt-2 md:mt-0 form-group col-span-9'>
-            <label class='text-xl font-bold'>Company <span style='color:red'>*</span>:</label>
+            <label class='text-xl font-bold lblLocalCompany'>Company ${count+1}<span style='color:red'>*</span>:</label>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
             <button id='delete_btn' class='btnDelLocal py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>Delete Record</button>
@@ -968,25 +999,12 @@
         $(".btnDelLocal").on("click",function(e){
             e.preventDefault();
             $(this).closest('.companylocal').remove();
-            biodata.local_company --
+            biodata.countRow("LocalCompany", "Company");
+            // biodata.local_company--
         })
-        biodata.local_company ++
+        biodata.local_company++
         tw_elements.initTE({ Datepicker,Input });
-        // $('[datepicker]').each(function (datepickerEl) {
-        //     Datepicker(datepickerEl);
-        //   });
-        // $("#personal_form").removeData('validator');
-        // $("#personal_form").removeData('unobtrusiveValidation');
-        // $.validator.unobtrusive.parse("#personal_form");
-        
-            // $('#empLocal_form :input.form-control').each(function() {
-            //     console.log($(this)[0])
 
-            //     $(this).rules("add", 
-            //         {
-            //             required: true
-            //         })
-            // })
     });
 
     $("#local_applicable").on("click",function(e){
@@ -1063,10 +1081,14 @@
 
     $("#add_abroad_btn").on("click",function(e){
         e.preventDefault();
+        let count = 0
+        $(".companyabroad").each(function(){
+            count++
+        })
         let id = biodata.abroad_company;
         let forms = `<div class='companyabroad md:grid grid-cols-9 gap-4' id='company_${id+1}'>
         <div class='mt-2 md:mt-0 form-group col-span-9'>
-            <label class='text-xl font-bold'>Company<span style='color:red'>*</span>:</label>
+            <label class='text-xl font-bold lblAbroadCompany'>Company ${count+1}<span style='color:red'>*</span>:</label>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
             <button id='delete_btn' class='btnDelabroad py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white disabled:bg-red-900'>Delete Record</button>
@@ -1099,26 +1121,13 @@
         $(".btnDelabroad").on("click",function(e){
             e.preventDefault();
             $(this).closest('.companyabroad').remove();
-            biodata.abroad_company --
+            // biodata.abroad_company--
+            biodata.countRow("AbroadCompany", "Company");
+            
         })
         biodata.abroad_company++
         tw_elements.initTE({ Datepicker,Input });
-        // $('[datepicker]').each(function (datepickerEl) {
-        //     Datepicker(datepickerEl);
-        //   });
 
-        // $("#personal_form").removeData('validator');
-        // $("#personal_form").removeData('unobtrusiveValidation');
-        // $.validator.unobtrusive.parse("#personal_form");
-        
-            // $('#empabroad_form :input.form-control').each(function() {
-            //     console.log($(this)[0])
-
-            //     $(this).rules("add", 
-            //         {
-            //             required: true
-            //         })
-            // })
     });
 
     $("#abroad_applicable").on("click",function(e){
