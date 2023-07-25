@@ -152,7 +152,7 @@
                         $("input[name='shoe_size']").val(promise.personaldata[0].shoe_size);
                         $("input[name='hobbies']").val(promise.personaldata[0].hobbies);
                         $("input[name='person_to_notify']").val(promise.personaldata[0].person_to_notify);
-                        $("input[name='relation']").val(promise.personaldata[0].person_relation);
+                        $("select[name='relation']").val(promise.personaldata[0].person_relation).trigger('change');
                         $("input[name='person_address']").val(promise.personaldata[0].person_address);
                         $("input[name='person_contact']").val(promise.personaldata[0].person_contact);
                         $("input[name='passport']").val(promise.personaldata[0].passport_no);
@@ -232,12 +232,10 @@
                         //family
                         if (promise.familydata[0].father_name == null && promise.familydata[0].father_birth == null){
                             $("input[name='father_deceased'][value='3']").trigger('click');
-                            $("input[name='father']").val(promise.familydata[0].father_name);
                         }
                         else if(promise.familydata[0].father_name != null && promise.familydata[0].father_birth == null){
                             $("input[name='father_deceased'][value='2']").trigger('click');
                             $("input[name='father']").val(promise.familydata[0].father_name);
-                            $("input[name='father_birthday']").val(promise.familydata[0].father_birth);
                         }
                         else{
                             $("input[name='father']").val(promise.familydata[0].father_name);
@@ -249,12 +247,10 @@
 
                         if (promise.familydata[0].mother_name == null && promise.familydata[0].mother_birth == null){
                             $("input[name='mother_deceased'][value='3']").trigger('click');
-                            $("input[name='mother']").val(promise.familydata[0].mother_name);
                         }
                         else if(promise.familydata[0].mother_name != null && promise.familydata[0].mother_birth == null){
                             $("input[name='mother_deceased'][value='2']").trigger('click');
                             $("input[name='mother']").val(promise.familydata[0].mother_name);
-                            $("input[name='mother_birthday']").val(promise.familydata[0].mother_birth);
                         }
                         else{
                             $("input[name='mother']").val(promise.familydata[0].mother_name);
@@ -529,7 +525,7 @@
     });
 
     $(".date_picker").on("input",function(){
-       $(this).valid()
+        $(this).valid()
     })
 
 
@@ -794,8 +790,8 @@
 
 
     //EDUCATIONAL TAB===========================================EVENT LISTENER
-    $("#educational_form").validate({
-               
+    $("#educational_form").validate({       
+        
         errorElement: 'span',
         errorPlacement: function (error, element) {
             error.addClass('text-red-500 text-sm');
@@ -976,6 +972,21 @@
         })
         biodata.local_company ++
         tw_elements.initTE({ Datepicker,Input });
+        // $('[datepicker]').each(function (datepickerEl) {
+        //     Datepicker(datepickerEl);
+        //   });
+        // $("#personal_form").removeData('validator');
+        // $("#personal_form").removeData('unobtrusiveValidation');
+        // $.validator.unobtrusive.parse("#personal_form");
+        
+            // $('#empLocal_form :input.form-control').each(function() {
+            //     console.log($(this)[0])
+
+            //     $(this).rules("add", 
+            //         {
+            //             required: true
+            //         })
+            // })
     });
 
     $("#local_applicable").on("click",function(e){
@@ -1092,6 +1103,22 @@
         })
         biodata.abroad_company++
         tw_elements.initTE({ Datepicker,Input });
+        // $('[datepicker]').each(function (datepickerEl) {
+        //     Datepicker(datepickerEl);
+        //   });
+
+        // $("#personal_form").removeData('validator');
+        // $("#personal_form").removeData('unobtrusiveValidation');
+        // $.validator.unobtrusive.parse("#personal_form");
+        
+            // $('#empabroad_form :input.form-control').each(function() {
+            //     console.log($(this)[0])
+
+            //     $(this).rules("add", 
+            //         {
+            //             required: true
+            //         })
+            // })
     });
 
     $("#abroad_applicable").on("click",function(e){
@@ -1181,7 +1208,7 @@
           }
     });
 
-     $("#add_sibling").on("click",function(e){
+    $("#add_sibling").on("click",function(e){
         e.preventDefault();
         let id = biodata.sibling
         let form = `<div class="sibling_item col-span-13 md:grid grid-col-13 gap-4">
@@ -1224,23 +1251,23 @@
      })
 
      $("#add_children").on("click",function(e){
-       e.preventDefault();
-       let id = biodata.children
-       let form = `<div class="children_content w-full md:grid grid-col-13 gap-4 grid-flow-col">
-       <div class="md:mt-0 mt-2 form-group col-span-1 flex items-center">
-       <button  class='btnDelchildren py-2 px-3 bg-red-700 rounded w-full text-sm text-white disabled:bg-red-900'>x</button>
-       </div>
-       <div class="form-group col-span-7">
-           <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
-           <input name="child_${id+1}" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
-       </div>
-       <div class="form-group col-span-4">
-           <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
-           <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" data-rule-pastDate="true" name="child_birthday_${id+1}" maxlength="10" autocomplete="off" type="text" required class="children form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
-               </div>
-       </div>
-   </div>`
+        e.preventDefault();
+        let id = biodata.children
+        let form = `<div class="children_content w-full md:grid grid-col-13 gap-4 grid-flow-col">
+        <div class="md:mt-0 mt-2 form-group col-span-1 flex items-center">
+        <button  class='btnDelchildren py-2 px-3 bg-red-700 rounded w-full text-sm text-white disabled:bg-red-900'>x</button>
+        </div>
+        <div class="form-group col-span-7">
+            <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
+            <input name="child_${id+1}" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
+        </div>
+        <div class="form-group col-span-4">
+            <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
+            <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                     <input data-rule-validDate="true" data-rule-pastDate="true" name="child_birthday_${id+1}" maxlength="10" autocomplete="off" type="text" required class="children form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                </div>
+        </div>
+    </div>`
 
       $("#children").append(form);
 

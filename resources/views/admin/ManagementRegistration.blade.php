@@ -19,6 +19,9 @@ Management Registration
     .select2{
         width: 100% !important;
     }
+    table.dataTable thead tr>.dtfc-fixed-left, table.dataTable thead tr>.dtfc-fixed-right{
+        background-color: #144c28d4 !important;
+    }
 </style>
 <div class="panel panel-inverse">
 	<div class="panel-heading">

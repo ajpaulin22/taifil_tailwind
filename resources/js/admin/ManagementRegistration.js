@@ -325,6 +325,9 @@
             tblManagementRegistration = $('#tblManagementRegistration').DataTable({
                 processing: true,
                 serverSide: true,
+                fixedColumns:{
+                    leftColumns: 2
+                },
                 ajax: {
                     url: "/admin/ManagementRegistration/GetApplicantData",
                     dataType: "JSON",
@@ -371,6 +374,10 @@
                     },
                     { title: 'AbroadDate', data: "AbroadDate", width:"4%", className: "dt-center"},
                 ],
+                columnDefs: [{
+                    "defaultContent": "-",
+                    "targets": "_all"
+                }],
                 "drawCallback": function() {
                     for(var i = 0; i < tableCheck.length; i++){
                         $("input[name='CheckItem'][value="+ tableCheck[i].ID +"]").prop('checked', true);

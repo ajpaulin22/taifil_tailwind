@@ -4755,6 +4755,31 @@ B. Synopsis: Class Module used to process data
             ajax.clearFromData("frmQualification");
         });
 
+        $("#btnDeleteQualifications").click(function(){
+            if (jobQualificationCheck.length == 0){
+                showMessage("Error", "Please check a row in operation table", "error", "red");
+            }
+            else{
+                $.ajax({
+                    url:"/admin/MasterMaintenance/JobInformation/DeleteJobQualification",
+                    type:"POST",
+                    data:{
+                        _token: token,
+                        ID: jobQualificationCheck,
+                    },
+                    dataType:"JSON",
+                    beforeSend: function(){
+                        $("#loading_modal").show();
+                    },
+                    success:function(promise){
+                        $("#loading_modal").hide();
+                        tblQualifications.ajax.reload(null, false);
+                        showMessage("Success", "Job qualification was deleted successfully", "success", "green");
+                    }
+                })
+            }
+        });
+
         // $("#tblCodes").on("change", ".CheckItem", function () {
         //     var trData = tblCodes.row($(this).parents('tr')).data();
         //     if ($(this).is(":checked")) {
