@@ -3196,6 +3196,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
         this.local_emp_validator = false;
         this.abroad_emp_validator = false;
         this.certificate_validator = false;
+        this.upload_validator =false;
         this.id = 0;
         this.token = $("meta[name=csrf-token]").attr("content");
         this.biodata_type = $("meta[name=biodata_type]").attr("content");
@@ -3679,6 +3680,10 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
     Biodata.init.prototype = Biodata.prototype;
 
     var biodata = Biodata();
+    $(window).on('popstate',()=>{
+        console.log('yeahhh')
+        
+    })
    $(document).ready(function() {
     //initialiazed
     let Datepicker = tw_elements.Datepicker;
@@ -3717,22 +3722,22 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
     $("[data-tab-target]").toArray().forEach(tab => {
         let valid = false;
         $(tab).on("click",function(){
-            console.log($(tab).attr("id"))
             const target = $(tab)[0].dataset.tabTarget
             $("[data-tab-content]").toArray().forEach((content)=>{
                 
                 if(!$(content).hasClass("hidden")){
+                    console.log($(content).find('form').attr("id"))
                     valid = $(content).find('form').valid()
                     if($(content).find('form').attr("id") == "family_form") {
                         biodata.family_validator = true;
                     }
                 }
-                if(valid){
+                if(true){
                     $(content).addClass("hidden")
                 }
                 
             })
-            if(valid){
+            if(true){
                 $("[data-tab-target]").toArray().forEach((content)=>{
                     $(content).removeClass("bg-green-800")
                     $(content).addClass("bg-green-300")
@@ -3788,7 +3793,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
     });
     $("#personalBtn").on("click",function(e){
         $("#personal_form").valid();
-
+        biodata.personal_validator = true;
         //to trigger the next tab-------------
         
         // if($("#seminar_tab").length == 1) {
@@ -3837,6 +3842,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
             $(element).removeClass('border-red-600');
         },
         submitHandler: function(form) {
+            
             biodata.educationalData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
             biodata.prometricData = [];
             biodata.jplData = []
@@ -3961,6 +3967,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
 
     $("#certificate_form").on("submit",function(){
         $("#certificate_form").valid();
+        biodata.certificate_validator = true;
     })
 
     $("#certificateBtn_Prev").on("click",function(e){
@@ -3985,6 +3992,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
         },
         submitHandler: function(form) {
             $(window).scrollTop(0);
+            
             biodata.educationalData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
             biodata.vocationalData = [];
             for (let i = 0; $(form).find('input[name="name_vocational_' + i + '"]').val() != null ; i++){
@@ -4060,6 +4068,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
 
     $("#educational_form").on("submit",function(){
         $("#educational_form").valid();
+        biodata.educational_validator = true;
     })
 
     $("#educationalBtn_Prev").on("click",function(e){
@@ -4085,6 +4094,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
             $(element).removeClass('border-red-600');
         },
         submitHandler: function(form) {
+            biodata.local_emp_validator = true;
             $(window).scrollTop(0);
             // console.log($(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {}))
             biodata.local_empData = [];
@@ -4174,6 +4184,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
 
         // $("#empLocal_form").validate()
         $("#empLocal_form").valid();
+        biodata.local_emp_validator = true;
         
     });
 
@@ -4199,6 +4210,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
             $(element).removeClass('border-red-600');
         },
         submitHandler: function(form) {
+            biodata.abroad_emp_validator = true;
             $(window).scrollTop(0);
             // console.log($(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {}))
             biodata.abroad_empData = [];
@@ -4286,6 +4298,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
 
         // $("#empLocal_form").validate()
         $("#empAbroad_form").valid();
+        biodata.abroad_emp_validator = true;
         
     });
 
@@ -4779,6 +4792,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
     })
     $("#send").on("click",function(e){
         e.preventDefault();
+        biodata.upload_validator = true;
         if($("#upload_form").valid()){
             modal.show();
             biodata.upload = new FormData($("#upload_form")[0])
