@@ -140,8 +140,8 @@ class PostController extends Controller
             "title" => $request->title,
             "content" =>$request->content,
             "category" =>$request->category,
-            "created_at" => Carbon::now()->setTimezone('UTC'),
-            "updated_at" => Carbon::now()->setTimezone('UTC')
+            "created_at" => Carbon::now()->setTimezone('Asia/Hong_Kong'),
+            "updated_at" => Carbon::now()->setTimezone('Asia/Hong_Kong')
         ]);
 
         if($request->hasFile("pictures")){

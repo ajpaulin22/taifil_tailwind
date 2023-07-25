@@ -38,36 +38,36 @@ class OnepageController extends Controller
                 });
 
 
-                $query = DB::select("SELECT m.month,ifnull(d.depart,0) as 'person'
+                $query = DB::select("SELECT m.number,m.month,ifnull(d.depart,0) as 'person'
                 FROM (
                 SELECT 'January' AS
-                MONTH
+                MONTH, 1 AS number
                 UNION SELECT 'February' AS
-                MONTH
+                MONTH, 2 AS number
                 UNION SELECT 'March' AS
-                MONTH
+                MONTH, 3 AS number
                 UNION SELECT 'April' AS
-                MONTH
+                MONTH, 4 AS number
                 UNION SELECT 'May' AS
-                MONTH
+                MONTH, 5 AS number
                 UNION SELECT 'June' AS
-                MONTH
+                MONTH, 6 AS number
                 UNION SELECT 'July' AS
-                MONTH
+                MONTH, 7 AS number
                 UNION SELECT 'August' AS
-                MONTH
+                MONTH, 8 AS number
                 UNION SELECT 'September' AS
-                MONTH
+                MONTH, 9 AS number
                 UNION SELECT 'October' AS
-                MONTH
+                MONTH, 10 AS number
                 UNION SELECT 'November' AS
-                MONTH
+                MONTH, 11 AS number
                 UNION SELECT 'December' AS
-                MONTH
+                MONTH, 12 AS number
                 ) AS m
                 left JOIN (Select monthname(abroad_date) as `month`, count(monthname(abroad_date)) as 'depart'
                 from personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate()) AND isdeleted <> 1
-                group by monthname(abroad_date)) as d on m.month = d.month");
+                group by monthname(abroad_date)) as d on m.month = d.month order by number asc");
 
 
                 $year = DB::SELECT("SELECT y.Year,ifnull(d.depart,0) as 'person' from(
@@ -96,36 +96,36 @@ class OnepageController extends Controller
                     ];
                 });
                 
-                $query = DB::select("SELECT m.month,ifnull(d.depart,0) as 'person'
+                $query = DB::select("SELECT m.number,m.month,ifnull(d.depart,0) as 'person'
                 FROM (
                 SELECT 'January' AS
-                MONTH
+                MONTH, 1 AS number
                 UNION SELECT 'February' AS
-                MONTH
+                MONTH, 2 AS number
                 UNION SELECT 'March' AS
-                MONTH
+                MONTH, 3 AS number
                 UNION SELECT 'April' AS
-                MONTH
+                MONTH, 4 AS number
                 UNION SELECT 'May' AS
-                MONTH
+                MONTH, 5 AS number
                 UNION SELECT 'June' AS
-                MONTH
+                MONTH, 6 AS number
                 UNION SELECT 'July' AS
-                MONTH
+                MONTH, 7 AS number
                 UNION SELECT 'August' AS
-                MONTH
+                MONTH, 8 AS number
                 UNION SELECT 'September' AS
-                MONTH
+                MONTH, 9 AS number
                 UNION SELECT 'October' AS
-                MONTH
+                MONTH, 10 AS number
                 UNION SELECT 'November' AS
-                MONTH
+                MONTH, 11 AS number
                 UNION SELECT 'December' AS
-                MONTH
+                MONTH, 12 AS number
                 ) AS m
                 left JOIN (Select monthname(abroad_date) as `month`, count(monthname(abroad_date)) as 'depart'
                 from personal_datas where to_abroad <> 0 AND year(abroad_date) = year(curdate()) AND isdeleted <> 1
-                group by monthname(abroad_date)) as d on m.month = d.month");
+                group by monthname(abroad_date)) as d on m.month = d.month order by number asc");
 
                 foreach($query as $month){
                     switch($month->month){

@@ -508,7 +508,7 @@
     biodata.getData();
     biodata.getCategories()
     $.validator.addMethod("validDate", function(value, element) {
-        return moment(value,"MM/DD/YYYY",true).isValid();
+        return moment(value).isSameOrAfter('01/01/1900');
     }, "Please enter a valid date in the format DD/MM/YYYY");
     $.validator.addMethod("pastDate", function(value, element) {
         now = new Date(value) - 10;
