@@ -686,7 +686,6 @@ class BiodataController extends Controller
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
-
         $educationaldata[0]->from_elem = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->from_elem)[0]));
         $educationaldata[0]->until_elem = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->until_elem)[0]));
         $educationaldata[0]->from_highschool = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->from_highschool)[0]));
