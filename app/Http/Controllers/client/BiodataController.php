@@ -732,7 +732,6 @@ class BiodataController extends Controller
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
-
         $familydata[0]->father_birth = date('m-d-Y', strtotime(explode(" ", $familydata[0]->father_birth)[0]));
         $familydata[0]->mother_birth = date('m-d-Y', strtotime(explode(" ", $familydata[0]->mother_birth)[0]));
         $familydata[0]->spouse_birth = date('m-d-Y', strtotime(explode(" ", $familydata[0]->spouse_birth)[0]));
