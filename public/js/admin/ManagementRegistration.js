@@ -4778,7 +4778,7 @@ B. Synopsis: Class Module used to process data
                     {
                         title: 'To Abroad',
                         render: function (data, row, meta){
-                            return "<input type='checkbox' name='CheckAbroad' class='CheckAbroad text-center' value='" + meta.ID + "' " + (meta.ToAbroad == 1 ? 'checked' : '' ) + ">";
+                            return "<input type='checkbox' name='CheckAbroad' class='CheckAbroad text-center' value='" + meta.ID + "' " + (meta.ToAbroad == 'Yes' ? 'checked' : '' ) + ">";
                         },
                         width: "2%", orderable: false, className: "dt-center"
                     },

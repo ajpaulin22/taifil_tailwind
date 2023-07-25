@@ -24,6 +24,7 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
     {
         $sql = "call biodata_getdata('','','',0,0,'Name','asc',0,100,'')";
         $data = collect(DB::select(DB::raw($sql)))->whereIN("ID", $this->id);
+        dd($data);
         $data->transform(function($i) {
             unset($i->ID);
             return $i;
