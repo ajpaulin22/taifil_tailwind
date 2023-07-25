@@ -591,12 +591,7 @@
             
         });
     });
-    $("#date_from_elem").on("blur",function(){
-        const datepickerWithLimits = document.getElementById('date_until_elem');
-        new Datepicker(datepickerWithLimits, {
-        min: new Date(2023, 7, 22)
-        });
-    });
+ 
     
 
     
@@ -983,7 +978,7 @@
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
         <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_until_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+        <input data-rule-validDate="true" name="date_from_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
    </div>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>

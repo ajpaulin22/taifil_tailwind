@@ -147,6 +147,7 @@
                 success:function(promise){
                     console.log(promise.success);
                     if(promise.success){
+                        $("#create_form")[0].reset();
                         iziToast.success({
                             class:'rounded-lg overflow-hidden',
                             title: 'OK',
@@ -161,7 +162,7 @@
                         });
                         setTimeout(()=>{
                             location.replace((location.pathname.includes("/jp")? "/jp/client/gallery":"/client/gallery"));
-                        },5000)
+                        },1000)
                     }else{
                         iziToast.error({
                             class:'rounded-lg overflow-hidden',

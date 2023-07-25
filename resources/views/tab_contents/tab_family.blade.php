@@ -230,14 +230,14 @@
                     <input name="japan_times" autocomplete="off" type="number" onKeyPress="if(this.value.length==3) return false;" class="japan text-right form-control disabled:bg-slate-200" required disabled>
                 </div>
                 <div class="form-group col-span-4 japan_group" hidden>
-                    <label for="lastname" class="form-label">When (kailan?)</label>
-                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                        <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_when" maxlength="10" autocomplete="off" type="text" required class="japan form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
-                   </div>
-                </div>
-                <div class="form-group col-span-4 japan_group" hidden>
                     <label for="lastname" class="form-label">Where in japan</label>
                     <input name="japan_where" autocomplete="off" type="text" maxlength="100" class="japan form-control disabled:bg-slate-200" required disabled>
+                </div>
+                <div class="form-group col-span-4 japan_group" hidden>
+                </div>
+                <div class="form-group col-span-12 japan_group" hidden>
+                    <label for="lastname" class="form-label">When (kailan?)</label>
+                    <input name="japan_when" autocomplete="off" type="text" maxlength="100" class="japan form-control disabled:bg-slate-200" required disabled>
                 </div>
                 <div class="form-group col-span-4 japan_group" hidden>
                     <div class="flex gap-4 w-full">

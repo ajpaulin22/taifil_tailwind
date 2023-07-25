@@ -1350,6 +1350,9 @@ eval("/* provided dependency */ var Buffer = __webpack_require__(/*! buffer */ \
                         message: promise.message,
                         position:'topRight'
                     });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
                 }
             }
         })

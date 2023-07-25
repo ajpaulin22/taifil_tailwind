@@ -53,19 +53,19 @@
                     <a href="https://www.google.com/maps/place/N.T.+center+building/@14.4279191,121.0235601,19z/data=!4m6!3m5!1s0x3397d1cfe9a2d6bd:0x1b23ce8f795da06a!8m2!3d14.4277918!4d121.0233397!16s%2Fg%2F11g6_5qx8_?entry=ttu" class="hover:text-green-600">4C,D&E,N.T. Ctr, Alabang-Zapote,</a>
                 </div>
             </div>
-            <div data-aos="zoom-out" class="flex flex-col items-center justify-center p-5 border-2 border-green-500 rounded shadow-xl my-5 md:my-0">
+            <section id="callus" data-aos="zoom-out" class="flex flex-col items-center justify-center p-5 border-2 border-green-500 rounded shadow-xl my-5 md:my-0">
                 <div class="">
                     <img src="{{url("images/icon/02.png")}}" alt="" class="bg-green-400 p-5 rounded-full border-2 border-sky-800">
                 </div>
                 <div class="text-center">
                     <h1 class="text-xl font-bold">お問い合わせ番号</h1>
-                    <a href="tel:+02-8511-7381" class="hover:text-green-600 block">02-8511-7381</a>
-                    <a href="tel:+63917-894-7358" class="hover:text-green-600 block">+63917-894-7358</a>
-                    <a href="tel:+63917-158-7381" class="hover:text-green-600 block">+63917-158-7381</a>
-                    <a href="tel:+63917-159-7381" class="hover:text-green-600 block">+63917-159-7381</a>
-                    <a href="tel:+63917-155-7381" class="hover:text-green-600 block">+63917-155-7381</a>
+                    <a class="hover:text-green-600 block cursor-default">02-8511-7381</a>
+                    <a class="hover:text-green-600 block cursor-default">+63917-894-7358</a>
+                    <a class="hover:text-green-600 block cursor-default">+63917-158-7381</a>
+                    <a class="hover:text-green-600 block cursor-default">+63917-159-7381</a>
+                    <a class="hover:text-green-600 block cursor-default">+63917-155-7381</a>
                 </div>
-            </div>
+            </section>
             <div data-aos="zoom-out" class="flex flex-col items-center justify-center p-5 border-2 border-green-500 rounded shadow-xl">
                 <div class="">
                     <img src="{{url("images/icon/03.png")}}" alt="" class="bg-green-400 p-5 rounded-full border-2 border-sky-800">

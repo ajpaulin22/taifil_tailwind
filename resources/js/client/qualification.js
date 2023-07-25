@@ -53,6 +53,9 @@
                         message: promise.message,
                         position:'topRight'
                     });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
                 }
             }
         })

@@ -38,6 +38,25 @@ class JobCategoryController extends Controller
         AND op.Hiring = 1
         AND qua.Qualifications is not null");
 
+        $cards_1 =  DB::table("m_jobcategories as cat")
+        ->select([
+            DB::raw("cat.ID as `CategoryID`"),
+            DB::raw("cat.Category"),
+            DB::raw("op.ID as `OperationID`"),
+            DB::raw("op.Operation"),
+            DB::raw("qua.Qualifications")
+        ])
+        ->join("m_joboperations as op","on",'op.JobCategoriesID' ,'=', 'cat.ID')
+        ->leftJoin(DB::raw("(SELECT ope.Operation,group_concat(quali.Qualification) as 'Qualifications' from m_joboperations as ope JOIN m_jobqualifications as quali on quali.JobOperationsID = ope.ID where quali.isDeleted <> 1 group by ope.Operation) as qua"),function($join){
+            $join->on('qua.Operation' ,'=','op.Operation');
+        })
+        ->where("cat.isDeleted","<>",1)
+        ->where("cat.JobType = '$type'")
+        ->where("cat.Category like '%$category%'")
+        ->where("op.isDeleted <> 1")
+        ->where("op.Hiring = 1")
+        ->where("qua.Qualifications is not null");
+
         return view('pages.jobcategory',["id"=>$request->data,"cat"=>$cat,"category"=>$request->category,"cards"=>$cards]);
     }
 

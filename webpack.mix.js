@@ -107,7 +107,6 @@ mix.js(['resources/js/app.js','resources/js/iziToast/dist/js/iziToast.min.js'], 
     .scripts(['public/js/modules/tw_elements.js'
             ,'public/js/modules/izitoast.js'
             ,'public/js/modules/flowbite.js'
-            ,'public/js/modules/moment.js'
             ,'resources/js/client/Biodata.js'
         ],"public/js/client/Biodata.js")
 

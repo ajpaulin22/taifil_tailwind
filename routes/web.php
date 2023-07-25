@@ -96,6 +96,7 @@ Route::group(["prefix" => "jp"],function(){
     
         Route::group(["prefix" => "gallery"],function(){
             Route::get("/",[PostController::class,"view_jp"])->name('jpgallery');
+            Route::get("/create-post",[PostController::class,"create_post_jp"])->middleware("admin");
             Route::get("/post",[PostController::class,"post_jp"]);
         });
     

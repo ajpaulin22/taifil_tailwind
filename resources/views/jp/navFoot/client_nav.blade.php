@@ -160,7 +160,12 @@
         location.replace(`/jp${location.pathname}${location.hash}${location.search}`);
     })
     $("#eng_btn").on("click",function(){
-        location.replace(`${location.origin}${location.hash}${location.search}`);
+        console.log(location.pathname)
+        if(location.pathname == "/jp/"){
+            location.replace(`${location.origin}${location.hash}${location.search}`);
+        }else{
+            location.replace(`${location.pathname.substring(3,location.pathname.length)}${location.hash}${location.search}`);
+        }
         })
 
    </script>

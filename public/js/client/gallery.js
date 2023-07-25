@@ -1576,6 +1576,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 success:function(promise){
                     console.log(promise.success);
                     if(promise.success){
+                        $("#create_form")[0].reset();
                         iziToast.success({
                             class:'rounded-lg overflow-hidden',
                             title: 'OK',
@@ -1590,7 +1591,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         });
                         setTimeout(()=>{
                             location.replace((location.pathname.includes("/jp")? "/jp/client/gallery":"/client/gallery"));
-                        },5000)
+                        },1000)
                     }else{
                         iziToast.error({
                             class:'rounded-lg overflow-hidden',

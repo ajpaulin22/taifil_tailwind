@@ -38,7 +38,7 @@
                     <span class="font-semibold text-xl self-center">必要なスキル基準</span>
                 </div>
                 <p class="text-sm my-2">試験等により確認（技能実習2号修了者は試験等が免除）</p>
-                <p class="text-end italic">出典: <a href="https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/" class="text-blue-500 underline text-xs">https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/</a> 
+                <p class="text-end italic">出典: <a href="https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/" target="_blank"  class="text-blue-500 underline text-xs">https://www.mofa.go.jp/mofaj/ca/fna/ssw/us/overview/</a> 
                 </p>
             </div>
             

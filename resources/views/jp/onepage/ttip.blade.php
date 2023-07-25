@@ -25,7 +25,7 @@
                 </p>
                 <p class="mt-5">技能実習生は、母国では習得が難しい技能等を習得・習得・強化することができます。 実習期間は最長5年間で、技能実習計画に基づき技能等の修得が行われます。
                 </p>
-                <p class="text-end ">出典:<a href="https://www.jitco.or.jp/en/regulation/" class="text-blue-600 underline italic"> https://www.jitco.or.jp/en/regulation/
+                <p class="text-end ">出典:<a href="https://www.jitco.or.jp/en/regulation/" target="_blank"  class="text-blue-600 underline italic"> https://www.jitco.or.jp/en/regulation/
                 </a></p>
             </div>
         </div>
