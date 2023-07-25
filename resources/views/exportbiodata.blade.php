@@ -555,7 +555,7 @@
             <h5>Birthday:</h5>
         </div>
         <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{date('m/d/Y', strtotime($family->father_birth)) == null ? "N/A" : date('m/d/Y', strtotime($family->father_birth))}}</label>
+            <label>{{$family->father_name == null ? "N/A" : date('m/d/Y', strtotime($family->father_birth))}}</label>
         </div>
         <div style="float:left; width:11%; margin-right:10px;">
             <h5>Occupation:</h5>
@@ -587,7 +587,7 @@
             <h5>Birthday:</h5>
         </div>
         <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{date('m/d/Y', strtotime($family->mother_birth)) == null ? "N/A" : date('m/d/Y', strtotime($family->mother_birth))}}</label>
+            <label>{{$family->mother_name == null ? "N/A" : date('m/d/Y', strtotime($family->mother_birth))}}</label>
         </div>
         <div style="float:left; width:11%; margin-right:10px;">
             <h5>Occupation:</h5>
@@ -695,7 +695,7 @@
             <h5>Birthday:</h5>
         </div>
         <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{date('m/d/Y', strtotime($family->spouse_birth)) == null ? "N/A" : date('m/d/Y', strtotime($family->spouse_birth))}}</label>
+            <label>{{$family->spouse_name == null ? "N/A" : date('m/d/Y', strtotime($family->spouse_birth))}}</label>
         </div>
         <div style="float:left; width:11%; margin-right:10px;">
             <h5>Occupation:</h5>

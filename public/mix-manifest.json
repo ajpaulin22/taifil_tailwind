@@ -1,5 +1,14 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/modules/AOS.js": "/js/modules/AOS.js",
+    "/js/modules/flowbite.js": "/js/modules/flowbite.js",
+    "/js/modules/izitoast.js": "/js/modules/izitoast.js",
+    "/js/modules/jquery.js": "/js/modules/jquery.js",
+    "/js/modules/jquery_validation.js": "/js/modules/jquery_validation.js",
+    "/js/modules/moment.js": "/js/modules/moment.js",
+    "/js/modules/quill.js": "/js/modules/quill.js",
+    "/js/modules/swiper.js": "/js/modules/swiper.js",
+    "/js/modules/tw_elements.js": "/js/modules/tw_elements.js",
     "/css/app.css": "/css/app.css",
     "/css/iziToast.min.css": "/css/iziToast.min.css",
     "/js/theme.js": "/js/theme.js",
@@ -11,11 +20,11 @@
     "/js/client/Biodata.js": "/js/client/Biodata.js",
     "/js/client/jobcategory.js": "/js/client/jobcategory.js",
     "/js/client/qualification.js": "/js/client/qualification.js",
+    "/js/client/gallery.js": "/js/client/gallery.js",
     "/js/admin/ManagementRegistration.js": "/js/admin/ManagementRegistration.js",
     "/css/admin/ManagementRegistration.css": "/css/admin/ManagementRegistration.css",
     "/js/admin/MasterMaintenance/JobInformation.js": "/js/admin/MasterMaintenance/JobInformation.js",
     "/css/admin/MasterMaintenance/JobInformation.css": "/css/admin/MasterMaintenance/JobInformation.css",
     "/js/admin/MasterMaintenance/UserInformation.js": "/js/admin/MasterMaintenance/UserInformation.js",
-    "/css/admin/MasterMaintenance/UserInformation.css": "/css/admin/MasterMaintenance/UserInformation.css",
-    "/js/client/gallery.js": "/js/client/gallery.js"
+    "/css/admin/MasterMaintenance/UserInformation.css": "/css/admin/MasterMaintenance/UserInformation.css"
 }
