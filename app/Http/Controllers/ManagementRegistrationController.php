@@ -176,7 +176,7 @@ class ManagementRegistrationController extends Controller
      public function ExportApplicants(Request $request){
         $date = Carbon::now();
         $date->toDateTimeString();
-        return Excel::download(new ExportUser($request), 'users'. $date .'.xlsx');
+        return Excel::download(new ExportUser($request), 'Applicants_Biodata_'. $date .'.xlsx');
      }
      public function SaveAbroad(Request $request){
         $date = Carbon::now();
