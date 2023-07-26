@@ -1631,7 +1631,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         $("input[name='date_from_college']").val(promise.educationaldata[0].from_college);
                         $("input[name='date_until_college']").val(promise.educationaldata[0].until_college);
                         $("input[name='course_college']").val(promise.educationaldata[0].course_college);
-                        $("input[name='certificate_college']").val(promise.educationaldata[0].certificate_college);
+                        $("select[name='certificate_college']").val(promise.educationaldata[0].certificate_college).trigger('change');
                         $("input[name='date_until_cert_college']").val(promise.educationaldata[0].certificate_until_college);
                         for (var i = 0; i < promise.vocationaldata.length; i++){
                             if(i != 0)

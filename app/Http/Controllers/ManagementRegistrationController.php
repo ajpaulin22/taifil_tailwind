@@ -126,6 +126,9 @@ class ManagementRegistrationController extends Controller
             OR InterviewDate LIKE '%".$search."%') order by ". $sorCol . " " . $dir;
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
+        if (COUNT($data) != 0){
+            $data[0]->InterviewDate = date('m/d/Y', strtotime(explode(" ", $data[0]->InterviewDate)[0]));
+        }
         $data2 = DB::select($query_1);
         $total_result = (count($data2) > 0 ? count($data2): 0);
         $totalFiltered = (count($data2) > 0 ? count($data2): 0);

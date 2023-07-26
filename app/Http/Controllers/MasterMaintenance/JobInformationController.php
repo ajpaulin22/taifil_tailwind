@@ -269,7 +269,7 @@ class JobInformationController extends Controller
         $msg = "";
         try{
             $validated = $request->validate([
-                'Operation' => 'required|unique:m_joboperations,Operation,' .$request["OperationID"]
+                'Operation' => 'required|unique:m_joboperations,Operation,NULL,ID,JobCategoriesID,' .$request["CategoryID"]
             ]);
             $validated["JobCategoriesID"] = $request["CategoryID"];
             $validated["IsDeleted"] = 0;

@@ -4446,6 +4446,7 @@ B. Synopsis: Class Module used to process data
 
         $("#btnEdit").click(function(){
             collectCheckBoxID();
+            
             if(tableData.length == 0){
                 showMessage("Error!", "Please check a row in the table", "error", "red");
             }
@@ -4453,6 +4454,11 @@ B. Synopsis: Class Module used to process data
                 showMessage("Error!", "Can not select more than 1 applicant", "error", "red");
             }
             else{
+                $(".CheckItem").each(function(){
+                    if($(this).is(":checked")){
+                        tableData.push({JobType: $(this).attr('data-jobtype')});
+                    }
+                });
                 $.ajax({
                     url:"/admin/ManagementRegistration/GetPersonalData",
                     type:"GET",
@@ -4462,7 +4468,7 @@ B. Synopsis: Class Module used to process data
                     },
                     dataType:"JSON",
                     success:function(promise){
-                        location.href = "/client/Biodata?data=" + $("#JobType").val() + "&type=mod";
+                        location.href = "/client/Biodata?data=" + tableData[1].JobType + "&type=mod";
                     }
                 });
             }
@@ -4762,7 +4768,7 @@ B. Synopsis: Class Module used to process data
                     {
                         title: "<input type='checkbox' id='CheckAllitem'/>",
                         render: function (data, row, meta){
-                            return "<input type='checkbox' name='CheckItem' class='CheckItem text-center' value='" + meta.ID + "'>";
+                            return "<input type='checkbox' name='CheckItem' class='CheckItem text-center' value='" + meta.ID + "' data-jobtype='"+ meta.JobType +"'>";
                         },
                         width: "2%", orderable: false
                     },

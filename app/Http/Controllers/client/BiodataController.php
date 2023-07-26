@@ -714,8 +714,8 @@ class BiodataController extends Controller
             ->select()->Get();
 
         for($i = 0; $i < COUNT($employmentlocaldata); $i++){
-            $employmentlocaldata[0]->from = date('m/d/Y', strtotime(explode(" ", $employmentlocaldata[0]->from)[0]));
-            $employmentlocaldata[0]->until = date('m/d/Y', strtotime(explode(" ", $employmentlocaldata[0]->until)[0]));
+            $employmentlocaldata[$i]->from = date('m/d/Y', strtotime(explode(" ", $employmentlocaldata[$i]->from)[0]));
+            $employmentlocaldata[$i]->until = date('m/d/Y', strtotime(explode(" ", $employmentlocaldata[$i]->until)[0]));
         }
         
         $employmentabroaddata = DB::table('abroad_emps')
