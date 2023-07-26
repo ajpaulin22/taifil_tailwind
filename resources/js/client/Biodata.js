@@ -639,11 +639,8 @@
     })
 
     $("#birthday").on("input",function(){
-        if($(this).valid()){
-            const getAge = Math.floor((new Date() - new Date($(this).val()).getTime()) / 3.15576e+10)
+        const getAge = Math.floor((new Date($(this).val()).getTime()-new Date()) / 3.15576e+10)
         $("#age").val(getAge).trigger("change");
-        }
-        
     });
 
     $("input[name='allergy']").on("click",function(){
