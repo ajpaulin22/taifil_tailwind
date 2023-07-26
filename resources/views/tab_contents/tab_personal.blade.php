@@ -176,7 +176,7 @@
                 <input required name="hobbies" autocomplete="off" type="text" maxlength="100" class="form-control">
             </div>
             <div class="form-group col-span-2">
-                <label for="height" class="form-label">Person to notify in case o emergency<span style="color:red">*</span>:</label>
+                <label for="height" class="form-label">Person to notify in case of emergency<span style="color:red">*</span>:</label>
                 <input required name="person_to_notify" autocomplete="off" type="text" maxlength="100" class="form-control">
             </div>
             <div class="form-group col-span-1">

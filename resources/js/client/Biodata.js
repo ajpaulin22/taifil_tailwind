@@ -750,6 +750,13 @@
        })
        biodata.prometric++
        tw_elements.initTE({ Datepicker,Input });
+       $(".date_picker").on("keydown",function(){
+        return false;
+     })
+ 
+     $(".date_picker").on("input",function(){
+         $(this).valid()
+     })
     })
 
     $("#add_japlang_btn").on("click",function(e){
@@ -795,6 +802,13 @@
            biodata.jpl--
        })
        biodata.jpl++
+       $(".date_picker").on("keydown",function(){
+        return false;
+     })
+ 
+     $(".date_picker").on("input",function(){
+         $(this).valid()
+     })
     })
 
     $("#certificate_form").on("submit",function(){
@@ -896,6 +910,13 @@
        })
        biodata.vocational++
        tw_elements.initTE({ Datepicker,Input });
+       $(".date_picker").on("keydown",function(){
+        return false;
+     })
+ 
+     $(".date_picker").on("input",function(){
+         $(this).valid()
+     })
     })
 
     $("#educational_form").on("submit",function(){
@@ -996,6 +1017,13 @@
         })
         biodata.local_company++
         tw_elements.initTE({ Datepicker,Input });
+        $(".date_picker").on("keydown",function(){
+            return false;
+         })
+     
+         $(".date_picker").on("input",function(){
+             $(this).valid()
+         })
 
     });
 
@@ -1119,6 +1147,13 @@
         })
         biodata.abroad_company++
         tw_elements.initTE({ Datepicker,Input });
+        $(".date_picker").on("keydown",function(){
+            return false;
+         })
+     
+         $(".date_picker").on("input",function(){
+             $(this).valid()
+         })
 
     });
 
@@ -1249,6 +1284,13 @@
            })
            biodata.sibling++
            tw_elements.initTE({ Datepicker,Input });
+           $(".date_picker").on("keydown",function(){
+       return false;
+    })
+
+    $(".date_picker").on("input",function(){
+        $(this).valid()
+    })
      })
 
      $("#add_children").on("click",function(e){
@@ -1279,6 +1321,13 @@
       })
       biodata.children++
       tw_elements.initTE({ Datepicker,Input });
+      $(".date_picker").on("keydown",function(){
+        return false;
+     })
+ 
+     $(".date_picker").on("input",function(){
+         $(this).valid()
+     })
      })
 
      $("#children_applicable").on("click",function(){

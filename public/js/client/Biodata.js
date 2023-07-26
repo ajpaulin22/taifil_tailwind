@@ -2198,6 +2198,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
        })
        biodata.prometric++
        tw_elements.initTE({ Datepicker,Input });
+       $(".date_picker").on("keydown",function(){
+        return false;
+     })
+ 
+     $(".date_picker").on("input",function(){
+         $(this).valid()
+     })
     })
 
     $("#add_japlang_btn").on("click",function(e){
@@ -2243,6 +2250,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
            biodata.jpl--
        })
        biodata.jpl++
+       $(".date_picker").on("keydown",function(){
+        return false;
+     })
+ 
+     $(".date_picker").on("input",function(){
+         $(this).valid()
+     })
     })
 
     $("#certificate_form").on("submit",function(){
@@ -2344,6 +2358,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
        })
        biodata.vocational++
        tw_elements.initTE({ Datepicker,Input });
+       $(".date_picker").on("keydown",function(){
+        return false;
+     })
+ 
+     $(".date_picker").on("input",function(){
+         $(this).valid()
+     })
     })
 
     $("#educational_form").on("submit",function(){
@@ -2444,6 +2465,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         })
         biodata.local_company++
         tw_elements.initTE({ Datepicker,Input });
+        $(".date_picker").on("keydown",function(){
+            return false;
+         })
+     
+         $(".date_picker").on("input",function(){
+             $(this).valid()
+         })
 
     });
 
@@ -2567,6 +2595,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         })
         biodata.abroad_company++
         tw_elements.initTE({ Datepicker,Input });
+        $(".date_picker").on("keydown",function(){
+            return false;
+         })
+     
+         $(".date_picker").on("input",function(){
+             $(this).valid()
+         })
 
     });
 
@@ -2697,6 +2732,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
            })
            biodata.sibling++
            tw_elements.initTE({ Datepicker,Input });
+           $(".date_picker").on("keydown",function(){
+       return false;
+    })
+
+    $(".date_picker").on("input",function(){
+        $(this).valid()
+    })
      })
 
      $("#add_children").on("click",function(e){
@@ -2727,6 +2769,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
       })
       biodata.children++
       tw_elements.initTE({ Datepicker,Input });
+      $(".date_picker").on("keydown",function(){
+        return false;
+     })
+ 
+     $(".date_picker").on("input",function(){
+         $(this).valid()
+     })
      })
 
      $("#children_applicable").on("click",function(){

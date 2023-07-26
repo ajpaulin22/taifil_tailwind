@@ -132,7 +132,14 @@
                 <input name="course_college" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Course/Major" required>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-2">
-                <input name="certificate_college" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required>
+                {{-- <input name="certificate_college" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required> --}}
+                <select required name="certificate_college" class="form-select">
+                    <option value="" selected disabled value>Certificate Holder</option>
+                    <option value="4-year College Graduate">4-year College Graduate</option>
+                    <option value="3-year College Graduate">3-year College Graduate</option>
+                    <option value="2-year College Graduate">2-year College Graduate</option>
+                    <option value="Under Graduate">Under Graduate</option>
+                </select>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
                 <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>

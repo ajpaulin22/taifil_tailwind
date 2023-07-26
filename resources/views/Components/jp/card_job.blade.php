@@ -16,5 +16,5 @@
         </li>
         @endforeach
     </ul>
-    <a href="/client/Biodata?data={{$type}}&type=new&cat={{$cat}}&op={{$op}}" class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">今すぐ申し込む</a>
+    <a href="/jp/client/Biodata?data={{$type}}&type=new&cat={{$cat}}&op={{$op}}" class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">今すぐ申し込む</a>
 </div>
