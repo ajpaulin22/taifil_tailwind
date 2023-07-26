@@ -93,7 +93,7 @@ Route::group(["prefix" => "jp"],function(){
         Route::group(["prefix"=>"Biodata"],function(){
             Route::get("/",[BiodataController::class,"view_jp"]);
         });
-    
+
         Route::group(["prefix" => "gallery"],function(){
             Route::get("/",[PostController::class,"view_jp"])->name('jpgallery');
             Route::get("/create-post",[PostController::class,"create_post_jp"])->middleware("admin");

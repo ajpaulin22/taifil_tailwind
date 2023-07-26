@@ -204,7 +204,7 @@ class JobInformationController extends Controller
         try{
             $validated = $request->validate([
                 'JobType' => 'required|max:20',
-                'Category' => 'required|unique:m_jobcategories,Category,' .$request["CategoryID"],',ID,IsDeleted,0',
+                'Category' => 'required|unique:m_jobcategories,Category,' .$request["CategoryID"]. ',ID,IsDeleted,0,JobType,'.$request["JobType"],
             ]);
             $validated["IsDeleted"] = 0;
             $validated["CreateID"] = 'admin';
