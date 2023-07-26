@@ -640,7 +640,7 @@
 
     $("#birthday").on("input",function(){
         const getAge = Math.floor((new Date($(this).val()).getTime()-new Date()) / 3.15576e+10)
-        $("#age").val(getAge).trigger("change");
+        $("#age").val(getAge-1).trigger("change");
     });
 
     $("input[name='allergy']").on("click",function(){
