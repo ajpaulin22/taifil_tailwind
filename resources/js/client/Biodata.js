@@ -639,8 +639,11 @@
     })
 
     $("#birthday").on("input",function(){
-        const getAge = Math.floor((new Date($(this).val()).getTime()-new Date()) / 3.15576e+10)
-        $("#age").val(getAge).trigger("change");
+        // const getAge = Math.floor((new Date($(this).val()).getTime() - new Date()) / 3.15576e+10)
+        var difference=Date.now() - new Date($(this).val()).getTime(); 
+        var  ageDate = new Date(difference); 
+        var calculatedAge=   Math.abs(ageDate.getUTCFullYear() - 1970);
+        $("#age").val(calculatedAge).trigger("change");
     });
 
     $("input[name='allergy']").on("click",function(){
