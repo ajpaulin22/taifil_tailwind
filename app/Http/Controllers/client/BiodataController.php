@@ -673,9 +673,9 @@ class BiodataController extends Controller
             ->where("IsDeleted", 0)
             ->select()->Get();
         
-        $personaldata[0]->date_birth = date('m-d-Y', strtotime(explode(" ", $personaldata[0]->date_birth)[0]));
-        $personaldata[0]->issue_date = date('m-d-Y', strtotime(explode(" ", $personaldata[0]->issue_date)[0]));
-        $personaldata[0]->expiry_date = date('m-d-Y', strtotime(explode(" ", $personaldata[0]->expiry_date)[0]));
+        $personaldata[0]->date_birth = date('m/d/Y', strtotime(explode(" ", $personaldata[0]->date_birth)[0]));
+        $personaldata[0]->issue_date = date('m/d/Y', strtotime(explode(" ", $personaldata[0]->issue_date)[0]));
+        $personaldata[0]->expiry_date = date('m/d/Y', strtotime(explode(" ", $personaldata[0]->expiry_date)[0]));
         $personaldata[0]->id_picture = file_put_contents("test.jpg", $personaldata[0]->id_picture);
         $personaldata[0]->gov_id_picture = file_put_contents("test.jpg", $personaldata[0]->gov_id_picture);
         $personaldata[0]->passport_id_picture = file_put_contents("test.jpg", $personaldata[0]->passport_id_picture);
@@ -686,16 +686,16 @@ class BiodataController extends Controller
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
-        $educationaldata[0]->from_elem = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->from_elem)[0]));
-        $educationaldata[0]->until_elem = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->until_elem)[0]));
-        $educationaldata[0]->from_highschool = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->from_highschool)[0]));
-        $educationaldata[0]->until_highschool = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->until_highschool)[0]));
-        $educationaldata[0]->from_jp_lang = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->from_jp_lang)[0]));
-        $educationaldata[0]->until_jp_lang = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->until_jp_lang)[0]));
-        $educationaldata[0]->certificate_until_jp_lang = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->certificate_until_jp_lang)[0]));
-        $educationaldata[0]->from_college = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->from_college)[0]));
-        $educationaldata[0]->until_college = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->until_college)[0]));
-        $educationaldata[0]->certificate_until_college = date('m-d-Y', strtotime(explode(" ", $educationaldata[0]->certificate_until_college)[0]));
+        $educationaldata[0]->from_elem = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->from_elem)[0]));
+        $educationaldata[0]->until_elem = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->until_elem)[0]));
+        $educationaldata[0]->from_highschool = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->from_highschool)[0]));
+        $educationaldata[0]->until_highschool = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->until_highschool)[0]));
+        $educationaldata[0]->from_jp_lang = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->from_jp_lang)[0]));
+        $educationaldata[0]->until_jp_lang = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->until_jp_lang)[0]));
+        $educationaldata[0]->certificate_until_jp_lang = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->certificate_until_jp_lang)[0]));
+        $educationaldata[0]->from_college = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->from_college)[0]));
+        $educationaldata[0]->until_college = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->until_college)[0]));
+        $educationaldata[0]->certificate_until_college = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->certificate_until_college)[0]));
 
         $vocationaldata = DB::table('vocational_datas')
             ->where("educational_id", $educationaldata[0]->id)
@@ -703,9 +703,9 @@ class BiodataController extends Controller
             ->select()->Get();
 
         for($i = 0; $i < COUNT($vocationaldata); $i++){
-            $vocationaldata[$i]->certificate_until = date('m-d-Y', strtotime(explode(" ", $vocationaldata[$i]->certificate_until)[0]));
-            $vocationaldata[$i]->from = date('m-d-Y', strtotime(explode(" ", $vocationaldata[$i]->from)[0]));
-            $vocationaldata[$i]->until = date('m-d-Y', strtotime(explode(" ", $vocationaldata[$i]->until)[0]));
+            $vocationaldata[$i]->certificate_until = date('m/d/Y', strtotime(explode(" ", $vocationaldata[$i]->certificate_until)[0]));
+            $vocationaldata[$i]->from = date('m/d/Y', strtotime(explode(" ", $vocationaldata[$i]->from)[0]));
+            $vocationaldata[$i]->until = date('m/d/Y', strtotime(explode(" ", $vocationaldata[$i]->until)[0]));
         }
         
         $employmentlocaldata = DB::table('local_emps')
@@ -714,8 +714,8 @@ class BiodataController extends Controller
             ->select()->Get();
 
         for($i = 0; $i < COUNT($employmentlocaldata); $i++){
-            $employmentlocaldata[0]->from = date('m-d-Y', strtotime(explode(" ", $employmentlocaldata[0]->from)[0]));
-            $employmentlocaldata[0]->until = date('m-d-Y', strtotime(explode(" ", $employmentlocaldata[0]->until)[0]));
+            $employmentlocaldata[0]->from = date('m/d/Y', strtotime(explode(" ", $employmentlocaldata[0]->from)[0]));
+            $employmentlocaldata[0]->until = date('m/d/Y', strtotime(explode(" ", $employmentlocaldata[0]->until)[0]));
         }
         
         $employmentabroaddata = DB::table('abroad_emps')
@@ -724,26 +724,26 @@ class BiodataController extends Controller
             ->select()->Get();
 
         for($i = 0; $i < COUNT($employmentabroaddata); $i++){
-            $employmentabroaddata[$i]->from = date('m-d-Y', strtotime(explode(" ", $employmentabroaddata[$i]->from)[0]));
-            $employmentabroaddata[$i]->until = date('m-d-Y', strtotime(explode(" ", $employmentabroaddata[$i]->until)[0]));
+            $employmentabroaddata[$i]->from = date('m/d/Y', strtotime(explode(" ", $employmentabroaddata[$i]->from)[0]));
+            $employmentabroaddata[$i]->until = date('m/d/Y', strtotime(explode(" ", $employmentabroaddata[$i]->until)[0]));
         }
 
         $familydata = DB::table('family_datas')
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
-        $familydata[0]->father_birth = date('m-d-Y', strtotime(explode(" ", $familydata[0]->father_birth)[0]));
-        $familydata[0]->mother_birth = date('m-d-Y', strtotime(explode(" ", $familydata[0]->mother_birth)[0]));
-        $familydata[0]->spouse_birth = date('m-d-Y', strtotime(explode(" ", $familydata[0]->spouse_birth)[0]));
-        $familydata[0]->when_japan = date('m-d-Y', strtotime(explode(" ", $familydata[0]->when_japan)[0]));
-        $familydata[0]->when_applied_visa = date('m-d-Y', strtotime(explode(" ", $familydata[0]->when_applied_visa)[0]));
+        $familydata[0]->father_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->father_birth)[0]));
+        $familydata[0]->mother_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->mother_birth)[0]));
+        $familydata[0]->spouse_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->spouse_birth)[0]));
+        $familydata[0]->when_japan = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_japan)[0]));
+        $familydata[0]->when_applied_visa = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_applied_visa)[0]));
 
         $siblingdata = DB::table('sibling_datas')
             ->where("family_id", $familydata[0]->id)
             ->where("IsDeleted", 0)
             ->select()->Get();
         for($i = 0; $i < COUNT($siblingdata); $i++){
-            $siblingdata[$i]->sibling_birth = date('m-d-Y', strtotime(explode(" ", $siblingdata[$i]->sibling_birth)[0]));
+            $siblingdata[$i]->sibling_birth = date('m/d/Y', strtotime(explode(" ", $siblingdata[$i]->sibling_birth)[0]));
         }
         
         $childrendata = DB::table('children_datas')
@@ -751,7 +751,7 @@ class BiodataController extends Controller
             ->where("IsDeleted", 0)
             ->select()->Get();
         for($i = 0; $i < COUNT($childrendata); $i++){
-            $childrendata[$i]->birthday = date('m-d-Y', strtotime(explode(" ", $childrendata[$i]->birthday)[0]));
+            $childrendata[$i]->birthday = date('m/d/Y', strtotime(explode(" ", $childrendata[$i]->birthday)[0]));
         }
 
         $relativedata = DB::table('relative_datas')
