@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\client;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Models\abroad_emp;
-use App\Models\children_data;
-use App\Models\educational_data;
+use data;
 use App\Models\jpl_data;
 use App\Models\local_emp;
-use App\Models\personal_data;
-use App\Models\prometric_data;
-use App\Models\relative_data;
+use App\Models\abroad_emp;
 use App\Models\sibling_data;
+use Illuminate\Http\Request;
+use App\Models\children_data;
+use App\Models\personal_data;
+use App\Models\relative_data;
+use App\Models\prometric_data;
 use App\Models\vocational_data;
+use App\Models\educational_data;
+use App\Models\japanvisit_data;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class BiodataController extends Controller
 {
@@ -219,14 +221,14 @@ class BiodataController extends Controller
                     "spouse_cp" => isset( $request->family["spouse_cp"])? $request->family["spouse_cp"] :null,
                     "spouse_address" => isset($request->family["spouse_address"])?$request->family["spouse_address"] :null ,
                     "partner_name" => isset($request->family["partner"])?$request->family["partner"] :null ,
-                    "partner_age" => isset($request->family["partner_age"])?$request->family["partner_age"] :null ,
-                    "partner_howlong" => isset($request->family["partner_howlong"])?$request->family["partner_howlong"] :null ,
+                    "partner_birthday" => isset($request->family["partner_birthday"])?date('Y-m-d H:i:s' ,strtotime($request->family["partner_birthday"])) :null ,
+                    "partner_Occupation" => isset($request->family["partner_Occupation"])?$request->family["partner_Occupation"] :null ,
                     "partner_cp" => isset($request->family["partner_cp"])?$request->family["partner_cp"] :null ,
                     "partner_address" => isset($request->family["partner_address"])?$request->family["partner_address"] :null ,
                     "went_japan" => ($request->family["went_japan"] == "1")? true :false  ,
                     "how_many_japan" => isset($request->family["japan_times"])?$request->family["japan_times"] :null ,
-                    "when_japan" => isset($request->family["japan_when"])?$request->family["japan_when"] :null ,
-                    "where_japan" => isset($request->family["japan_where"])?$request->family["japan_where"] :null ,
+                    // "when_japan" => isset($request->family["japan_when"])?$request->family["japan_when"] :null ,
+                    // "where_japan" => isset($request->family["japan_where"])?$request->family["japan_where"] :null ,
                     "overstay_japan" => $overstay,
                     "how_long_overstay" => isset($request->family["overstay_howlong"])?$request->family["overstay_howlong"] :null ,
                     "fake_identity_japan" => $fakeidentity,
@@ -252,6 +254,21 @@ class BiodataController extends Controller
                         ]);
                     }
                 }
+                if(isset($request->japanvisit)){
+                    foreach($request->japanvisit as $c){
+                        // DB::table('japanvisit_data')->insert([
+                        //     'family_id' => $family_id,
+                        //     'where' => $c['where'],
+                        //     'when' => date('Y-m-d H:i:s' ,strtotime($c['when'])),
+                        // ]);
+                         japanvisit_data::create([
+                            'family_id' => $family_id,
+                            'where' => $c['where'],
+                            'when' => date('Y-m-d H:i:s' ,strtotime($c['when'])),
+                        ]);
+                    }
+                }
+
                 if(isset($request->sibling)){
                     foreach($request->sibling as $s){
                         sibling_data::create([
@@ -652,19 +669,20 @@ class BiodataController extends Controller
     public function get_categories(Request $request){
         $type = strtoupper($request->type);
         $data = DB::table('m_jobcategories')
+        ->select('ID','JobType','Category')
         ->where("JobType",$type)
         ->where("IsDeleted",0)
         ->orderby("Category","asc")
-        ->select()
         ->Get();
         return $data;
     }
     public function get_operations(Request $request){
         $data = DB::table('m_joboperations')
+        ->select('ID','JobCategoriesID','Operation')
         ->where("JobCategoriesID",$request->ID)
         ->where("IsDeleted",0)
         ->orderby("Operation","asc")
-        ->select()->Get();
+        ->Get();
         return $data;
     }
 

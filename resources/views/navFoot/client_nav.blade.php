@@ -160,14 +160,16 @@
 
 
     $("#jap_btn").on("click",function(){
-        location.replace(`/jp${location.pathname}${location.hash}${location.search}`);
+        // location.replace(`/jp${location.pathname}${location.hash}${location.search}`);
+        location.replace("/jp")
     })
     $("#eng_btn").on("click",function(){
-        if(location.pathname == "/jp"){
-            location.replace(`${location.origin}${location.hash}${location.search}`);
-        }else{
-            location.replace(`${location.pathname.substring(2,location.pathname.length)}${location.hash}${location.search}`);
-        }
+        // if(location.pathname == "/jp"){
+        //     location.replace(`${location.origin}${location.hash}${location.search}`);
+        // }else{
+        //     location.replace(`${location.pathname.substring(2,location.pathname.length)}${location.hash}${location.search}`);
+        // }
+        location.replace("/")
     })
 
    </script>
