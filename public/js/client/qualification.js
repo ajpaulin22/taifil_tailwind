@@ -76,7 +76,7 @@
    $(document).ready(function() {
     setTimeout(() => {
         $("#opening").hide();
-    }, 1000);
+    }, 300);
 
     const options = {
         placement: 'bottom-right',

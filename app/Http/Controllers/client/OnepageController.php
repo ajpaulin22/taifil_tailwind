@@ -24,7 +24,7 @@ class OnepageController extends Controller
     }
 
     public function view(){
-        $posts = post::select()->where("isdeleted",0)->orderby('id','desc')->limit(3)->get();
+        $posts = post::select('id','title','content','category','created_at')->where("isdeleted",0)->orderby('id','desc')->limit(3)->get();
                 $data = $posts->map(function($post,$key){
                     return [
                         "id" => $post->id,
@@ -187,16 +187,17 @@ class OnepageController extends Controller
         $data = [];
         
        try {
-        Mail::send('Mail',array(
-            'fullname'=>$request->fullname,
-            'email'=>$request->email,
-            'subject'=>$request->subject,
-            'content'=>$request->message
-        ), function($message) use ($request){
-            $message->to('email@taifilmanpower.com.ph')->subject($request->subject);
-            $message->from($request->email, $request->fullname);
-        });
-
+        dispatch(function () use ($request) {
+            Mail::send('Mail',array(
+                'fullname'=>$request->fullname,
+                'email'=>$request->email,
+                'subject'=>$request->subject,
+                'content'=>$request->message
+            ), function($message) use ($request){
+                $message->to('email@taifilmanpower.com.ph')->subject($request->subject);
+                $message->from($request->email, $request->fullname);
+            });
+        })->afterResponse();
         $data = [
             'success' => true,
             'message' => "Thank you we already receive your message and get back to you sooner"

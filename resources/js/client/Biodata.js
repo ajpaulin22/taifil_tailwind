@@ -304,7 +304,7 @@
                             else{
                                 $("input[name='fakeidentity'][value='"+ promise.familydata[0].fake_identity_japan +"']").trigger('click');
                                 $("input[name='fakeidentity_purpose']").val(promise.familydata[0].fake_identity_purpose);
-                                $("input[name='fakeidentity_purpose'][value='"+ promise.familydata[0].fake_identity_surrender +"']").trigger('click');
+                                $("input[name='fakeidentity_surrendered'][value='"+ promise.familydata[0].fake_identity_surrender +"']").trigger('click');
                             }
                         }
 
@@ -510,7 +510,7 @@
     tw_elements.initTE({ Datepicker,Input });
     setTimeout(() => {
         $("#opening").hide();
-    }, 1000);
+    }, 300);
     // biodata.getCode();
     biodata.getData();
     biodata.getCategories()

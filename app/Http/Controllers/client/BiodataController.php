@@ -90,6 +90,7 @@ class BiodataController extends Controller
                     "person_contact" => (int) $request->personal["person_contact"],
                     "passport_no" => $request->personal["passport"],
                     "issue_date" => date('Y-m-d H:i:s', strtotime($request->personal["issue_date"])),
+                    "isdeleted" => 0,
                     "expiry_date" => date('Y-m-d H:i:s', strtotime($request->personal["expiry_date"])),
                     "issue_place" => $request->personal["issue_place"],
                     "allergy" => $request->personal["allergy"] == "1" ? true : false,
@@ -126,6 +127,7 @@ class BiodataController extends Controller
                     "course_college" => $request->educational["course_college"],
                     "certificate_college" => $request->educational["certificate_college"],
                     "certificate_until_college" =>  date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_cert_college"])),
+                    "isdeleted" => 0,
                     "created_at" => date('Y-m-d H:i:s'),
                     "updated_at" => date('Y-m-d H:i:s')
                 ]);
@@ -236,6 +238,7 @@ class BiodataController extends Controller
                     "type_visa" => isset($request->family["visa_type"])?$request->family["visa_type"] :null ,
                     "when_applied_visa" => isset($request->family["visa_when"])?date('Y-m-d H:i:s' ,strtotime($request->family["visa_when"])) :null ,
                     "approved" => $approved_visa,
+                    "isdeleted" => 0,
                     "created_at" => date('Y-m-d H:i:s'),
                     "updated_at" => date('Y-m-d H:i:s')
                 ]);
@@ -666,19 +669,20 @@ class BiodataController extends Controller
     public function get_categories(Request $request){
         $type = strtoupper($request->type);
         $data = DB::table('m_jobcategories')
+        ->select('ID','JobType','Category')
         ->where("JobType",$type)
         ->where("IsDeleted",0)
         ->orderby("Category","asc")
-        ->select()
         ->Get();
         return $data;
     }
     public function get_operations(Request $request){
         $data = DB::table('m_joboperations')
+        ->select('ID','JobCategoriesID','Operation')
         ->where("JobCategoriesID",$request->ID)
         ->where("IsDeleted",0)
         ->orderby("Operation","asc")
-        ->select()->Get();
+        ->Get();
         return $data;
     }
 

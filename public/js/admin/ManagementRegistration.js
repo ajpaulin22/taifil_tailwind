@@ -4486,34 +4486,50 @@ B. Synopsis: Class Module used to process data
         });
         $("#btnSaveAbroad").click(function(){
             AbroadData = [];
-            $(".CheckAbroad").each(function(){
-                AbroadData.push({
-                    ID: $(this).val(),
-                    Value: $(this).is(":checked") ? 1 : 0
-                });
-            });
+            var isValid = true;
             
-            if(AbroadData.length == 0){
-                showMessage("Error!", "Please check a row in To Abroad Column", "error", "red");
-            }
-            else{
-                $.ajax({
-                    url:"/admin/ManagementRegistration/SaveAbroad",
-                    type:"POST",
-                    data:{
-                        _token: token,
-                        PersonalID: AbroadData
-                    },
-                    dataType:"JSON",
-                    beforeSend: function(){
-                        $("#loading_modal").show();
-                    },
-                    success:function(promise){
-                        $("#loading_modal").hide();
-                        tblManagementRegistration.ajax.reload(null, false);
-                        showMessage("Success!", "Abroad Information Was Saved Successfully", "success", "green");
+            $(".CheckAbroad").each(function(){
+                var abroadDate = $(this).parent().next().children('input').val();
+                if($(this).is(":checked") && abroadDate == ""){
+                    isValid = false;
+                    return false;
+                }
+            });
+            if(isValid){
+                $(".CheckAbroad").each(function(){
+                    var abroadDate = $(this).parent().next().children('input').val();
+                    AbroadData.push({
+                        ID: $(this).val(),
+                        Value: $(this).is(":checked") ? 1 : 0,
+                        AbroadDate: abroadDate
+                    });
+
+                    if(AbroadData.length == 0){
+                        showMessage("Error!", "Please check a row in To Abroad Column", "error", "red");
+                    }
+                    else{
+                        $.ajax({
+                            url:"/admin/ManagementRegistration/SaveAbroad",
+                            type:"POST",
+                            data:{
+                                _token: token,
+                                PersonalID: AbroadData
+                            },
+                            dataType:"JSON",
+                            beforeSend: function(){
+                                $("#loading_modal").show();
+                            },
+                            success:function(promise){
+                                $("#loading_modal").hide();
+                                tblManagementRegistration.ajax.reload(null, false);
+                                showMessage("Success!", "Abroad Information Was Saved Successfully", "success", "green");
+                            }
+                        });
                     }
                 });
+            }
+            else{
+                showMessage("Error!", "Insert date on checked checkbox in ToAbroad Column", "error", "red");
             }
         });
 
@@ -4540,6 +4556,7 @@ B. Synopsis: Class Module used to process data
                     AttendInterview: $("#AttendInterview").val(),
                     InterviewDate: $("#InterviewDate").val(),
                     Company: $("#Company").val(),
+                    Status: $("#Status").val(),
                     PersonalID: tableData
                 },
                 dataType:"JSON",
@@ -4591,6 +4608,8 @@ B. Synopsis: Class Module used to process data
                     return obj.ID != id
                 });
             }
+
+
         });
 
         $("#btnDelete").click(function(){
@@ -4788,7 +4807,13 @@ B. Synopsis: Class Module used to process data
                         },
                         width: "2%", orderable: false, className: "dt-center"
                     },
-                    { title: 'AbroadDate', data: "AbroadDate", width:"4%", className: "dt-center"},
+                    { 
+                        title: 'Abroad Date',
+                        render: function (data, row, meta){
+                            return "<input type='date' style='width:50%' name='InterviewDate' class='form-control AbroadDate' autocomplete='off' onkeydown='return false' value='"+ meta.AbroadDate+"'> ";
+                        },
+                        width: "2%", orderable: false, className: "dt-center"
+                    },
                 ],
                 columnDefs: [{
                     "defaultContent": "-",
@@ -4841,6 +4866,7 @@ B. Synopsis: Class Module used to process data
                     { title: 'Name', data: "Name", width: "7%", className: "dt-center"},
                     { title: 'AttendInterview', data: "AttendInterview", width: "7%", className: "dt-center"},
                     { title: 'InterviewDate', data: "InterviewDate", width: "28%", className: "dt-center"},
+                    { title: 'Status', data: "Status", width: "7%", className: "dt-center"},
                     { title: 'Company', data: "Company", width: "65%", className: "dt-center"},
                 ],
             }).on('page.dt', function() {
