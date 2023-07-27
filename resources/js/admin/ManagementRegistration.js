@@ -93,30 +93,29 @@
                         Value: $(this).is(":checked") ? 1 : 0,
                         AbroadDate: abroadDate
                     });
-
-                    if(AbroadData.length == 0){
-                        showMessage("Error!", "Please check a row in To Abroad Column", "error", "red");
-                    }
-                    else{
-                        $.ajax({
-                            url:"/admin/ManagementRegistration/SaveAbroad",
-                            type:"POST",
-                            data:{
-                                _token: token,
-                                PersonalID: AbroadData
-                            },
-                            dataType:"JSON",
-                            beforeSend: function(){
-                                $("#loading_modal").show();
-                            },
-                            success:function(promise){
-                                $("#loading_modal").hide();
-                                tblManagementRegistration.ajax.reload(null, false);
-                                showMessage("Success!", "Abroad Information Was Saved Successfully", "success", "green");
-                            }
-                        });
-                    }
                 });
+                if(AbroadData.length == 0){
+                    showMessage("Error!", "Please check a row in To Abroad Column", "error", "red");
+                }
+                else{
+                    $.ajax({
+                        url:"/admin/ManagementRegistration/SaveAbroad",
+                        type:"POST",
+                        data:{
+                            _token: token,
+                            PersonalID: AbroadData
+                        },
+                        dataType:"JSON",
+                        beforeSend: function(){
+                            $("#loading_modal").show();
+                        },
+                        success:function(promise){
+                            $("#loading_modal").hide();
+                            tblManagementRegistration.ajax.reload(null, false);
+                            showMessage("Success!", "Abroad Information Was Saved Successfully", "success", "green");
+                        }
+                    });
+                }
             }
             else{
                 showMessage("Error!", "Insert date on checked checkbox in ToAbroad Column", "error", "red");
