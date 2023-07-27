@@ -67,9 +67,7 @@
 
     var qualification = Qualification();
    $(document).ready(function() {
-    setTimeout(() => {
-        $("#opening").hide();
-    }, 300);
+
 
     const options = {
         placement: 'bottom-right',
