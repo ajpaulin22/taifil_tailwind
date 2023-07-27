@@ -15,6 +15,12 @@
 
     var jobcategory = JobCategory();
    $(document).ready(function() {
+<<<<<<< HEAD
+    setTimeout(() => {
+        $("#opening").hide();
+    }, 10);
+=======
+>>>>>>> a6d84b61ba91c60f0b9c8a9926d1c370ff20cb76
     });
 })();
 
