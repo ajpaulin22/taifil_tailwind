@@ -201,7 +201,7 @@ Management Registration
 </div>
 
 <div class="modal fade" id="mdlAddInterview" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-blue-madison">
                 <h4 class="modal-title" id="mdlInterviewTitle"> Add Interview Information</h4>
@@ -209,7 +209,7 @@ Management Registration
             <div class="modal-body">
                 <form id="frmInterview" data-parsley-validate>
                     <div class="row col-sm-12">
-                        <div class="col-sm-5">
+                        <div class="col-sm-4">
                             <div class="input-group input-group-sm m-b-5">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width:127px;" id="lblAttendInterview"> Attended Interview <span class="text-danger"> *</span></label>
@@ -221,12 +221,24 @@ Management Registration
                             </div>
                             <div id="err-AttendInterview"></div>
                         </div>
-                        <div class="col-sm-7">
+                        <div class="col-sm-4">
                             <div class="input-group input-group-sm m-b-5">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" style="width:127px;" id="lblInterviewDate"> Interview Date <span class="text-danger"> *</span></label>
+                                    <label class="input-group-text" style="width:100px;" id="lblInterviewDate"> Interview Date <span class="text-danger"> *</span></label>
                                 </div>
-                                <input type="date" id="InterviewDate" name="InterviewDate" class="form-control" data-parsley-required data-parsley-errors-container="#err-InterviewDate" autocomplete="off" onkeydown="return false" placeholder="MM/DD/YYYY"> 
+                                <input type="date" id="InterviewDate" style="width:50%" name="InterviewDate" class="form-control" data-parsley-required data-parsley-errors-container="#err-InterviewDate" autocomplete="off" onkeydown="return false" placeholder="MM/DD/YYYY"> 
+                            </div>
+                            <div id="err-AttendInterview"></div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group input-group-sm m-b-5">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" style="width:60px;" id="lblStatus"> Status <span class="text-danger"> *</span></label>
+                                </div>
+                                <select class="form-control" id="Status" required>
+                                    <option value="Passed">Passed</option>
+                                    <option value="Failed">Failed</option>
+                                </select>
                             </div>
                             <div id="err-AttendInterview"></div>
                         </div>
