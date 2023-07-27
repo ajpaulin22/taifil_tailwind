@@ -666,15 +666,16 @@ class BiodataController extends Controller
     public function get_categories(Request $request){
         $type = strtoupper($request->type);
         $data = DB::table('m_jobcategories')
+        ->select('ID','JobType','Category')
         ->where("JobType",$type)
         ->where("IsDeleted",0)
         ->orderby("Category","asc")
-        ->select()
         ->Get();
         return $data;
     }
     public function get_operations(Request $request){
         $data = DB::table('m_joboperations')
+        ->select('ID','JobCategoriesID','Operation')
         ->where("JobCategoriesID",$request->ID)
         ->where("IsDeleted",0)
         ->orderby("Operation","asc")
