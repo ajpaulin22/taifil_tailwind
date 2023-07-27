@@ -65,6 +65,9 @@
             <h1 class="text-center col-span-3 text-lg mt-10">求人情報は掲載されていません...</h1>
             @endif
         </div>
+        <div>
+          {{$cards->links()}}
+      </div>
     </section>
 
     
