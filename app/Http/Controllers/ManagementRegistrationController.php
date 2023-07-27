@@ -192,7 +192,7 @@ class ManagementRegistrationController extends Controller
             if($request["PersonalID"][0]["Value"] == 1)
             {
                 DB::table('personal_datas')
-                ->whereIN('id', $IDInsertAbroad)
+                ->where('id', $request["PersonalID"][0]["ID"])
                 ->update([
                     'to_abroad' => 1
                     ,'abroad_date' => $request["PersonalID"][0]["AbroadDate"]
@@ -200,7 +200,7 @@ class ManagementRegistrationController extends Controller
             }
             else{
                 DB::table('personal_datas')
-                ->whereIN('id', $IDRemoveAbroad)
+                ->where('id', $request["PersonalID"][0]["ID"])
                 ->update([
                     'to_abroad' => 0
                     ,'abroad_date' => null
