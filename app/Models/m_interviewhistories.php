@@ -13,6 +13,7 @@ class m_interviewhistories extends Model
         ,"PersonalInfoID"
         ,"AttendInterview"
         ,"InterviewDate"
+        ,"Status"
         ,"Company"
         ,"IsDeleted"
         ,"createID"

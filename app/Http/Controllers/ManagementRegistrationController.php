@@ -79,6 +79,7 @@ class ManagementRegistrationController extends Controller
                 "PersonalInfoID" => $request["PersonalID"][$i]["ID"],
                 "AttendInterview" => $request["AttendInterview"],
                 "InterviewDate" => $request["InterviewDate"],
+                "Status" => $request["Status"],
                 "Company" => $request["Company"],
                 "IsDeleted" => 0,
                 "CreateID" => "admin",
@@ -115,7 +116,7 @@ class ManagementRegistrationController extends Controller
         $search = $request->input('search.value');
         
         $order = "id";
-        $query_1 = "SELECT p.ID, CONCAT(first_name, ' ', last_name) as Name, m.AttendInterview, m.InterviewDate, m.Company
+        $query_1 = "SELECT p.ID, CONCAT(first_name, ' ', last_name) as Name, m.AttendInterview, m.InterviewDate, m.Status, m.Company
                 FROM personal_datas p
                 JOIN m_interviewhistories m ON p.ID = m.PersonalInfoID WHERE m.IsDeleted = 0 AND p.isdeleted = 0 AND p.ID IN (" . $IDs . ")";
         $query_1 .= " 
@@ -123,6 +124,7 @@ class ManagementRegistrationController extends Controller
             OR AttendInterview LIKE '%".$search."%'
             OR first_name LIKE '%".$search."%'
             OR last_name LIKE '%".$search."%'
+            OR Status LIKE '%".$search."%'
             OR InterviewDate LIKE '%".$search."%') order by ". $sorCol . " " . $dir;
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
@@ -167,7 +169,7 @@ class ManagementRegistrationController extends Controller
          ->select()->Get();
          return $data;
      }
- 
+
      public function get_operations(Request $request){
          $data = DB::table('m_joboperations')
          ->where("IsDeleted",0)
@@ -187,26 +189,23 @@ class ManagementRegistrationController extends Controller
         $IDInsertAbroad = [];
         $IDRemoveAbroad = [];
         for ($i = 0; $i < count($request["PersonalID"]); $i++){
-            if($request["PersonalID"][$i]["Value"] == 1){
-                array_push($IDInsertAbroad, $request["PersonalID"][$i]["ID"]);
+            if($request["PersonalID"][0]["Value"] == 1)
+            {
+                DB::table('personal_datas')
+                ->whereIN('id', $IDInsertAbroad)
+                ->update([
+                    'to_abroad' => 1
+                    ,'abroad_date' => $request["PersonalID"][0]["AbroadDate"]
+                ]);
             }
-            DB::table('personal_datas')
-            ->whereIN('id', $IDInsertAbroad)
-            ->update([
-                'to_abroad' => 1
-                ,'abroad_date' => $date
-            ]);
-        }
-        for ($i = 0; $i < count($request["PersonalID"]); $i++){
-            if($request["PersonalID"][$i]["Value"] == 0){
-                array_push($IDRemoveAbroad, $request["PersonalID"][$i]["ID"]);
+            else{
+                DB::table('personal_datas')
+                ->whereIN('id', $IDRemoveAbroad)
+                ->update([
+                    'to_abroad' => 0
+                    ,'abroad_date' => null
+                ]);
             }
-            DB::table('personal_datas')
-            ->whereIN('id', $IDRemoveAbroad)
-            ->update([
-                'to_abroad' => 0
-                ,'abroad_date' => null
-            ]);
         }
         $data = [
             'msg' =>  "Abroad Information Updated Successfully",
