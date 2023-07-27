@@ -15,9 +15,6 @@
 
     var jobcategory = JobCategory();
    $(document).ready(function() {
-    setTimeout(() => {
-        $("#opening").hide();
-    }, 300);
     });
 })();
 

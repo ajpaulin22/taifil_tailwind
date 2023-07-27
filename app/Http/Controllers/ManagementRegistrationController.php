@@ -186,21 +186,19 @@ class ManagementRegistrationController extends Controller
      public function SaveAbroad(Request $request){
         $date = Carbon::now();
         $date->toDateTimeString();
-        $IDInsertAbroad = [];
-        $IDRemoveAbroad = [];
         for ($i = 0; $i < count($request["PersonalID"]); $i++){
-            if($request["PersonalID"][0]["Value"] == 1)
+            if($request["PersonalID"][$i]["Value"] == 1)
             {
                 DB::table('personal_datas')
-                ->where('id', $request["PersonalID"][0]["ID"])
+                ->where('id', $request["PersonalID"][$i]["ID"])
                 ->update([
                     'to_abroad' => 1
-                    ,'abroad_date' => $request["PersonalID"][0]["AbroadDate"]
+                    ,'abroad_date' => $request["PersonalID"][$i]["AbroadDate"]
                 ]);
             }
             else{
                 DB::table('personal_datas')
-                ->where('id', $request["PersonalID"][0]["ID"])
+                ->where('id', $request["PersonalID"][$i]["ID"])
                 ->update([
                     'to_abroad' => 0
                     ,'abroad_date' => null
