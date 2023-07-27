@@ -678,7 +678,7 @@ class BiodataController extends Controller
         ->where("JobCategoriesID",$request->ID)
         ->where("IsDeleted",0)
         ->orderby("Operation","asc")
-        ->select()->Get();
+        ->Get();
         return $data;
     }
 
