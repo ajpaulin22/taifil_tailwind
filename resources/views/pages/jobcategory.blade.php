@@ -65,6 +65,9 @@
             <h1 class="text-center col-span-3 text-lg mt-10">No Job Listing posted...</h1>
             @endif
         </div>
+        <div class="col-start-2 col-span-6">
+          {{$cards->links()}}
+      </div>
     </section>
     
  

@@ -1366,7 +1366,7 @@ eval("/* provided dependency */ var Buffer = __webpack_require__(/*! buffer */ \
    $(document).ready(function() {
     setTimeout(() => {
         $("#opening").hide();
-    }, 1000);
+    }, 300);
 
     const options = {
         placement: 'bottom-right',

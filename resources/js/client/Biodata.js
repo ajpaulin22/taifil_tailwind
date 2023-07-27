@@ -510,7 +510,7 @@
     tw_elements.initTE({ Datepicker,Input });
     setTimeout(() => {
         $("#opening").hide();
-    }, 1000);
+    }, 300);
     // biodata.getCode();
     biodata.getData();
     biodata.getCategories()

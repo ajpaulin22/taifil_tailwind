@@ -9,7 +9,7 @@ use App\Models\qualification_content;
 class QualificationController extends Controller
 {
     public function view(Request $request){
-        $qualification = qualification_content::where("type",$request->data)->select()->get();
+        $qualification = qualification_content::where("type",$request->data)->select("content","id")->get();
         $content = isset($qualification[0]->content)? $qualification[0]->content : "" ;
         $content_id = isset($qualification[0]->id)? $qualification[0]->id : "";
         return view('pages.qualification',["id"=>$request->data,"content"=>$content,"content_id"=>$content_id]);

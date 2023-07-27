@@ -1448,7 +1448,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
    $(document).ready(function() {
     setTimeout(() => {
         $("#opening").hide();
-    }, 1000);
+    }, 300);
 
     AOS.init({
         duration: 300, // values from 0 to 3000, with step 50ms
