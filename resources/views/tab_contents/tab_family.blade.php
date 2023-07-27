@@ -212,7 +212,7 @@
                 <label for="lastname" class="form-label">Birthday<span style="color:red">*</span>:</label>
                 {{-- <input name="partner_age" autocomplete="off" type="number" onKeyPress="if(this.value.length==2) return false;" class="form-control partner Number-Only disabled:bg-slate-200" required disabled style="text-align:right"> --}}
                 <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" data-rule-pastDate="true" name="partner_birthday" maxlength="10" autocomplete="off" type="text" required class="spouse form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                    <input data-rule-validDate="true" data-rule-pastDate="true" name="partner_birthday" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
                </div>
             </div>
             <div class="partner_hidden form-group col-span-3" hidden>
@@ -221,7 +221,7 @@
             </div>
             <div class="partner_hidden form-group col-span-1" hidden>
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                <input name="partner_cp" autocomplete="off" type="text" maxlength="2" class="form-control partner Number-Only disabled:bg-slate-200" required disabled style="text-align:right">
+                <input name="partner_cp" autocomplete="off" type="text" maxlength="20" class="form-control partner Number-Only disabled:bg-slate-200" required disabled style="text-align:right">
             </div>
 
             <div class="partner_hidden form-group col-start-2 col-span-12" hidden>
@@ -258,7 +258,7 @@
                 <div class="form-group col-span-4 japan_group" hidden>
                     <label for="lastname" class="form-label">When (kailan?)</label>
                     <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                        <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_when_0" maxlength="10" autocomplete="off" type="text" required class="spouse form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                        <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_when_0" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
                    </div>
                 </div>
                 <div id="japanvisit_nav" class="col-span-12 japan_group grid grid-cols-12" hidden>
