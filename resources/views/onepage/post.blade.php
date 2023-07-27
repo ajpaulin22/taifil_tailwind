@@ -38,7 +38,7 @@
                     <a href="/client/gallery/post?id={{$d['id']}}" class="mt-4 hover:border hover:border-white hover:px-4 hover:py-2 hover:rounded transition-all ease-in duration-300"> Read more...</a>
                 </div>
             </div> --}}
-                <div key={content} class="group relative rounded-lg overflow-hidden bg-white  hover:shadow-2xl ">
+                <div data-aos="flip-down" class="group relative rounded-lg overflow-hidden bg-white  hover:shadow-2xl ">
                     
                   <div class="h-52">
           

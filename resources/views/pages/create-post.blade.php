@@ -8,6 +8,10 @@
 <div id="alert">
 </div>
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
+    
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <a href="{{ url()->previous() }}" class="flex w-full justify-center rounded-md bg-green-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</a>
+  </div>
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create Post</h2>
     </div>
