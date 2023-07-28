@@ -107,11 +107,11 @@
                 <div class="form-group col-span-13">
                     <div class="flex justify-end">
                         <div class="flex items-center mr-4">
-                            <input type="radio" value="1" name="sibling_deceased" class="sibling w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " checked>
+                            <input type="radio" value="1" name="sibling_deceased" class="sibling_radio w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " checked>
                             <label for="inline-radio" class="ml-2 text-lg text-gray-900">Available</label>
                         </div>
                         <div class="flex items-center mr-4">
-                            <input type="radio" value="2" name="sibling_deceased" class="sibling w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                            <input type="radio" value="2" name="sibling_deceased" class="sibling_radio w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                             <label for="inline-radio" class="ml-2 text-lg text-gray-900">Deceased</label>
                         </div>
                     </div>

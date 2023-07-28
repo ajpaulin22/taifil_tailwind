@@ -636,6 +636,10 @@ class BiodataController extends Controller
              $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
              $data->passport_id_picture = file_get_contents($request->file('passport_id')->getPathname());
              $data->id_picture= file_get_contents($request->file('picture')->getPathname());
+             $data->gov_id_picture = $request->file('gov_id')->getClientOriginalName();
+             $data->passport_id_picture = $request->file('passport_id')->getClientOriginalName();
+             $data->id_picture= $request->file('picture')->getClientOriginalName();
+             
 
             
             

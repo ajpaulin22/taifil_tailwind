@@ -58,6 +58,9 @@ class personal_data extends Model
         "id_picture",
         "gov_id_picture",
         "passport_id_picture",
+        "id_filename",
+        "gov_id_filename",
+        "passport_id_filename",
         "is_deleted",
         "to_abroad",
         "job_type"
