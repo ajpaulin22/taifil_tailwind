@@ -703,10 +703,34 @@ class BiodataController extends Controller
         $personaldata[0]->id_picture = base64_encode($personaldata[0]->id_picture);
         $personaldata[0]->gov_id_picture = base64_encode($personaldata[0]->gov_id_picture);
         $personaldata[0]->passport_id_picture = base64_encode($personaldata[0]->passport_id_picture);
+
+        $prometricsdata = DB::table('prometric_datas')
+            ->where("personal_id", $personalid)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+
+        for($i = 0; $i < COUNT($prometricsdata); $i++){
+            $prometricsdata[$i]->from = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->from)[0]));
+            $prometricsdata[$i]->until = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->until)[0]));
+            $prometricsdata[$i]->cert_until = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->cert_until)[0]));
+        }
+
+        $languagedata = DB::table('jpl_datas')
+            ->where("personal_id", $personalid)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+
+        for($i = 0; $i < COUNT($languagedata); $i++){
+            $languagedata[$i]->from = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->from)[0]));
+            $languagedata[$i]->until = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->until)[0]));
+            $languagedata[$i]->cert_until = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->cert_until)[0]));
+        }
+
         $educationaldata = DB::table('educational_datas')
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
+
         $educationaldata[0]->from_elem = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->from_elem)[0]));
         $educationaldata[0]->until_elem = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->until_elem)[0]));
         $educationaldata[0]->from_highschool = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->from_highschool)[0]));
@@ -782,6 +806,8 @@ class BiodataController extends Controller
 
         $data = [
             "personaldata" => $personaldata,
+            "prometricsdata" => $prometricsdata,
+            "languagedata" => $languagedata,
             "educationaldata" => $educationaldata,
             "vocationaldata" => $vocationaldata,
             "employmentlocaldata" => $employmentlocaldata,

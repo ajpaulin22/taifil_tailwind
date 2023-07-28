@@ -166,6 +166,36 @@
                         $("input[name='tattoo'][value='" + promise.personaldata[0].tattoo + "']").prop("checked", true);
                         $("input[name='licensed'][value='" + promise.personaldata[0].drivers_licensed + "']").prop("checked", true);
 
+                        //Prometrics
+                        if(promise.personaldata[0].job_type == "SSW"){
+                            if(promise.prometricsdata.length == 0){
+                                $("#certificate_applicable").trigger('click');
+                            }
+                            else{
+                                for(var i = 0; i < promise.prometricsdata.length; i++){
+                                    if (i != 0)
+                                        $("#add_prometric").trigger('click');
+                                    $("input[name='name_prometric_"+ i +"']").val(promise.prometricsdata[i].name);
+                                    $("input[name='add_prometric_"+ i +"']").val(promise.prometricsdata[i].address);
+                                    $("input[name='date_from_prometric_"+ i +"']").val(promise.prometricsdata[i].from);
+                                    $("input[name='date_until_prometric_"+ i +"']").val(promise.prometricsdata[i].until);
+                                    $("input[name='certificate_prometric_"+ i +"']").val(promise.prometricsdata[i].certificate);
+                                    $("input[name='date_until_cert_prometric_"+ i +"']").val(promise.prometricsdata[i].cert_until);
+                                }
+
+                                for(var i = 0; i < promise.languagedata.length; i++){
+                                    if (i != 0)
+                                        $("#add_japlang_btn").trigger('click');
+                                    $("input[name='name_jpl_"+ i +"']").val(promise.languagedata[i].name);
+                                    $("input[name='add_jpl_"+ i +"']").val(promise.languagedata[i].address);
+                                    $("input[name='date_from_jpl_"+ i +"']").val(promise.languagedata[i].from);
+                                    $("input[name='date_until_jpl_"+ i +"']").val(promise.languagedata[i].until);
+                                    $("input[name='certificate_jpl_"+ i +"']").val(promise.languagedata[i].certificate);
+                                    $("input[name='date_until_cert_jpl_"+ i +"']").val(promise.languagedata[i].cert_until);
+                                }
+                            }
+                        }
+
                         //educational
                         $("input[name='name_elem']").val(promise.educationaldata[0].name_elem);
                         $("input[name='add_elem']").val(promise.educationaldata[0].address_elem);
@@ -233,7 +263,7 @@
                         }
 
                         //family
-                        if (promise.familydata[0].father_name == null && promise.familydata[0].father_birth == null){
+                        if (promise.familydata[0].father_name == null && promise.familydata[0].father_cp == null){
                             $("input[name='father_deceased'][value='3']").trigger('click');
                         }
                         else if(promise.familydata[0].father_name != null && promise.familydata[0].father_birth == null){
