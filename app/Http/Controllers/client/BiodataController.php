@@ -509,8 +509,8 @@ class BiodataController extends Controller
                     "spouse_cp" => isset( $request->family["spouse_cp"])? $request->family["spouse_cp"] :null,
                     "spouse_address" => isset($request->family["spouse_address"])?$request->family["spouse_address"] :null ,
                     "partner_name" => isset($request->family["partner"])?$request->family["partner"] :null ,
-                    "partner_age" => isset($request->family["partner_age"])?$request->family["partner_age"] :null ,
-                    "partner_howlong" => isset($request->family["partner_howlong"])?$request->family["partner_howlong"] :null ,
+                    "partner_birthday" => isset($request->family["partner_birthday"])?$request->family["partner_birthday"] :null ,
+                    "partner_Occupation" => isset($request->family["partner_Occupation"])?$request->family["partner_Occupation"] :null ,
                     "partner_cp" => isset($request->family["partner_cp"])?$request->family["partner_cp"] :null ,
                     "partner_address" => isset($request->family["partner_address"])?$request->family["partner_address"] :null ,
                     "went_japan" => ($request->family["went_japan"] == "1")? true :false  ,
@@ -601,7 +601,6 @@ class BiodataController extends Controller
                     'msgTitle' => 'Success!'
                 ];
             }
-            
         }
         DB::commit();
 
@@ -636,6 +635,10 @@ class BiodataController extends Controller
              $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
              $data->passport_id_picture = file_get_contents($request->file('passport_id')->getPathname());
              $data->id_picture= file_get_contents($request->file('picture')->getPathname());
+             $data->gov_id_filename = $request->file('gov_id')->getClientOriginalName();
+             $data->passport_id_filename = $request->file('passport_id')->getClientOriginalName();
+             $data->id_filename= $request->file('picture')->getClientOriginalName();
+             
 
             
             
@@ -703,10 +706,34 @@ class BiodataController extends Controller
         $personaldata[0]->id_picture = base64_encode($personaldata[0]->id_picture);
         $personaldata[0]->gov_id_picture = base64_encode($personaldata[0]->gov_id_picture);
         $personaldata[0]->passport_id_picture = base64_encode($personaldata[0]->passport_id_picture);
+
+        $prometricsdata = DB::table('prometric_datas')
+            ->where("personal_id", $personalid)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+
+        for($i = 0; $i < COUNT($prometricsdata); $i++){
+            $prometricsdata[$i]->from = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->from)[0]));
+            $prometricsdata[$i]->until = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->until)[0]));
+            $prometricsdata[$i]->cert_until = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->cert_until)[0]));
+        }
+
+        $languagedata = DB::table('jpl_datas')
+            ->where("personal_id", $personalid)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+
+        for($i = 0; $i < COUNT($languagedata); $i++){
+            $languagedata[$i]->from = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->from)[0]));
+            $languagedata[$i]->until = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->until)[0]));
+            $languagedata[$i]->cert_until = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->cert_until)[0]));
+        }
+
         $educationaldata = DB::table('educational_datas')
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
+
         $educationaldata[0]->from_elem = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->from_elem)[0]));
         $educationaldata[0]->until_elem = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->until_elem)[0]));
         $educationaldata[0]->from_highschool = date('m/d/Y', strtotime(explode(" ", $educationaldata[0]->from_highschool)[0]));
@@ -756,6 +783,7 @@ class BiodataController extends Controller
         $familydata[0]->father_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->father_birth)[0]));
         $familydata[0]->mother_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->mother_birth)[0]));
         $familydata[0]->spouse_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->spouse_birth)[0]));
+        $familydata[0]->partner_birthday = date('m/d/Y', strtotime(explode(" ", $familydata[0]->partner_birthday)[0]));
         $familydata[0]->when_japan = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_japan)[0]));
         $familydata[0]->when_applied_visa = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_applied_visa)[0]));
 
@@ -782,6 +810,8 @@ class BiodataController extends Controller
 
         $data = [
             "personaldata" => $personaldata,
+            "prometricsdata" => $prometricsdata,
+            "languagedata" => $languagedata,
             "educationaldata" => $educationaldata,
             "vocationaldata" => $vocationaldata,
             "employmentlocaldata" => $employmentlocaldata,

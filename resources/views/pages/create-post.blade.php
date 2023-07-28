@@ -104,6 +104,6 @@
 </div>
 <img id="sample" src="" alt="">
 @push('scripts')
-    <script src="{{asset("js/client/gallery.js")}}"></script>
+    <script defer src="{{asset("js/client/gallery.js")}}"></script>
 @endpush
 @endsection
