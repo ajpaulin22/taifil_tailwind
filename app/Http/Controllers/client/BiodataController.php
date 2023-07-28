@@ -509,8 +509,8 @@ class BiodataController extends Controller
                     "spouse_cp" => isset( $request->family["spouse_cp"])? $request->family["spouse_cp"] :null,
                     "spouse_address" => isset($request->family["spouse_address"])?$request->family["spouse_address"] :null ,
                     "partner_name" => isset($request->family["partner"])?$request->family["partner"] :null ,
-                    "partner_age" => isset($request->family["partner_age"])?$request->family["partner_age"] :null ,
-                    "partner_howlong" => isset($request->family["partner_howlong"])?$request->family["partner_howlong"] :null ,
+                    "partner_birthday" => isset($request->family["partner_birthday"])?$request->family["partner_birthday"] :null ,
+                    "partner_Occupation" => isset($request->family["partner_Occupation"])?$request->family["partner_Occupation"] :null ,
                     "partner_cp" => isset($request->family["partner_cp"])?$request->family["partner_cp"] :null ,
                     "partner_address" => isset($request->family["partner_address"])?$request->family["partner_address"] :null ,
                     "went_japan" => ($request->family["went_japan"] == "1")? true :false  ,
@@ -601,7 +601,6 @@ class BiodataController extends Controller
                     'msgTitle' => 'Success!'
                 ];
             }
-            
         }
         DB::commit();
 
@@ -633,16 +632,12 @@ class BiodataController extends Controller
             // $data->gov_id_picture = $request->file('gov_id')->store('gov_id_pictures',"public");
             // $data->passport_id_picture =$request->file('passport_id')->store('passport_id_pictures',"public");
             // $data->id_picture=$request->file('picture')->store('1x1_pictures',"public");
-             $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
-             $data->passport_id_picture = file_get_contents($request->file('passport_id')->getPathname());
-             $data->id_picture= file_get_contents($request->file('picture')->getPathname());
-             $data->gov_id_picture = $request->file('gov_id')->getClientOriginalName();
-             $data->passport_id_picture = $request->file('passport_id')->getClientOriginalName();
-             $data->id_picture= $request->file('picture')->getClientOriginalName();
-             
-
-            
-            
+            $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
+            $data->passport_id_picture = file_get_contents($request->file('passport_id')->getPathname());
+            $data->id_picture= file_get_contents($request->file('picture')->getPathname());
+            $data->gov_id_picture = $request->file('gov_id')->getClientOriginalName();
+            $data->passport_id_picture = $request->file('passport_id')->getClientOriginalName();
+            $data->id_picture= $request->file('picture')->getClientOriginalName();
             if($data->update()){
                 $data = [
                     'msg' => 'The Biodata has been uploaded',
@@ -784,6 +779,7 @@ class BiodataController extends Controller
         $familydata[0]->father_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->father_birth)[0]));
         $familydata[0]->mother_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->mother_birth)[0]));
         $familydata[0]->spouse_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->spouse_birth)[0]));
+        $familydata[0]->partner_birthday = date('m/d/Y', strtotime(explode(" ", $familydata[0]->partner_birthday)[0]));
         $familydata[0]->when_japan = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_japan)[0]));
         $familydata[0]->when_applied_visa = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_applied_visa)[0]));
 
