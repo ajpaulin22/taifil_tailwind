@@ -3017,6 +3017,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             }
         }else{
             family_form.resetForm();
+            $(".spouse").val("");
             $(".spouse").attr("disabled",true)
             $("#spouse_required").html("*")
             if(biodata.family_validator){

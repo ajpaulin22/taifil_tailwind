@@ -1569,6 +1569,7 @@
             }
         }else{
             family_form.resetForm();
+            $(".spouse").val("");
             $(".spouse").attr("disabled",true)
             $("#spouse_required").html("*")
             if(biodata.family_validator){
