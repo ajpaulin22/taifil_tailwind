@@ -14,8 +14,8 @@
     <title>@yield('title') | Tai-Fil Manpower Services Corp</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="{{asset("css/iziToast.min.css")}}">
-    <link rel="stylesheet" href="{{asset("css/app.css")}}">
+    <link rel="stylesheet" href="{{asset("css/iziToast.min.css")}}" async>
+    <link rel="stylesheet" href="{{asset("css/app.css")}}" async>
     @stack('styles')
 </head>
 <body class="min-h-full flex flex-col overflow-x-hidden">
@@ -26,16 +26,16 @@
     </main>
 
     @include('navFoot.client_foot')
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script defer src=""></script>
-    <script src="{{asset("js/app.js")}}"></script>
-    <script>
-        $("#page_lang").on("change",function(){
-            console.log($(this).val())
-            $("meta[name='language']").attr('lang', $(this).val());
-        })
-    
-       </script>
-    @stack('scripts')
+
 </body>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="{{asset("js/app.js")}}"></script>
+<script>
+    $("#page_lang").on("change",function(){
+        console.log($(this).val())
+        $("meta[name='language']").attr('lang', $(this).val());
+    })
+
+   </script>
+@stack('scripts')
 </html>
