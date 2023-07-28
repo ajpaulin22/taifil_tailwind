@@ -632,7 +632,6 @@ class BiodataController extends Controller
             // $data->gov_id_picture = $request->file('gov_id')->store('gov_id_pictures',"public");
             // $data->passport_id_picture =$request->file('passport_id')->store('passport_id_pictures',"public");
             // $data->id_picture=$request->file('picture')->store('1x1_pictures',"public");
-<<<<<<< HEAD
              $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
              $data->passport_id_picture = file_get_contents($request->file('passport_id')->getPathname());
              $data->id_picture= file_get_contents($request->file('picture')->getPathname());
@@ -643,14 +642,6 @@ class BiodataController extends Controller
 
             
             
-=======
-            $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
-            $data->passport_id_picture = file_get_contents($request->file('passport_id')->getPathname());
-            $data->id_picture= file_get_contents($request->file('picture')->getPathname());
-            $data->gov_id_picture = $request->file('gov_id')->getClientOriginalName();
-            $data->passport_id_picture = $request->file('passport_id')->getClientOriginalName();
-            $data->id_picture= $request->file('picture')->getClientOriginalName();
->>>>>>> 24c4f470f9fbe2da815a0c43c7ec6c9249fdc129
             if($data->update()){
                 $data = [
                     'msg' => 'The Biodata has been uploaded',

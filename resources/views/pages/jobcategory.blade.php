@@ -75,5 +75,5 @@
 @endsection     
 
 @push('scripts')
-    <script src="{{asset("js/client/jobcategory.js")}}"></script>
+    <script defer src="{{asset("js/client/jobcategory.js")}}"></script>
 @endpush

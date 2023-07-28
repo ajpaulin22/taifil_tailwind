@@ -135,6 +135,6 @@
   </div>
 </section>
 @push('scripts')
-<script src="{{asset("js/client/qualification.js")}}"></script>
+<script defer src="{{asset("js/client/qualification.js")}}"></script>
 @endpush
 @endsection
