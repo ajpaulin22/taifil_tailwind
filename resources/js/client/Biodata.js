@@ -266,9 +266,10 @@
                         if (promise.familydata[0].father_name == null && promise.familydata[0].father_cp == null){
                             $("input[name='father_deceased'][value='3']").trigger('click');
                         }
-                        else if(promise.familydata[0].father_name != null && promise.familydata[0].father_birth == null){
+                        else if(promise.familydata[0].father_name != null && promise.familydata[0].father_cp == null){
                             $("input[name='father_deceased'][value='2']").trigger('click');
                             $("input[name='father']").val(promise.familydata[0].father_name);
+                            $("input[name='father_birthday']").val(promise.familydata[0].father_birth);
                         }
                         else{
                             $("input[name='father']").val(promise.familydata[0].father_name);
@@ -278,13 +279,16 @@
                             $("input[name='father_address']").val(promise.familydata[0].father_address);
                         }
 
-                        if (promise.familydata[0].mother_name == null && promise.familydata[0].mother_birth == null){
+                        if (promise.familydata[0].mother_name == null && promise.familydata[0].mother_cp == null){
                             $("input[name='mother_deceased'][value='3']").trigger('click');
                         }
-                        else if(promise.familydata[0].mother_name != null && promise.familydata[0].mother_birth == null){
+
+                        else if(promise.familydata[0].mother_name != null && promise.familydata[0].mother_cp == null){
                             $("input[name='mother_deceased'][value='2']").trigger('click');
                             $("input[name='mother']").val(promise.familydata[0].mother_name);
+                            $("input[name='mother_birthday']").val(promise.familydata[0].mother_birth);
                         }
+
                         else{
                             $("input[name='mother']").val(promise.familydata[0].mother_name);
                             $("input[name='mother_birthday']").val(promise.familydata[0].mother_birth);
@@ -305,7 +309,7 @@
                             $("#partner_applicable").trigger('click');
                             $("input[name='partner']").val(promise.familydata[0].partner_name);
                             $("input[name='partner_birthday']").val(promise.familydata[0].partner_birth);
-                            $("input[name='partner_occupation']").val(promise.familydata[0].partner_occupation);
+                            $("input[name='partner_Occupation']").val(promise.familydata[0].partner_occupation);
                             $("input[name='partner_cp']").val(promise.familydata[0].partner_cp);
                             $("input[name='partner_address']").val(promise.familydata[0].partner_address);
                         }
