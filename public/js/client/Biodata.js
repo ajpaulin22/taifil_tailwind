@@ -2929,6 +2929,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             $("#siblings_nav").html("")
             $(".sibling_required").html("")
             $(".sibling").val("")
+            $(".sibling_radio").attr("disabled",true)
             if(biodata.family_validator){
                 $("#family_form").valid();
             }
@@ -2938,6 +2939,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             $(".btnDelsibling").attr("disabled",false)
             $("#add_sibling").attr("disabled",false)
             $(".sibling_required").html("*")
+            $(".sibling_radio").attr("disabled",false)
             if(biodata.family_validator){
                
                 $("#family_form").valid();

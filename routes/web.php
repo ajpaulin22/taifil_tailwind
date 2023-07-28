@@ -64,8 +64,8 @@ Route::group(["prefix"=>"client"],function(){
 
     Route::group(["prefix" => "gallery"],function(){
         Route::get("/",[PostController::class,"view"])->name('gallery');
-        Route::get("/create-post",[PostController::class,"create_post"])->middleware("admin");
-        Route::post("/create",[PostController::class,"create"])->middleware("admin");
+        Route::get("/create-post",[PostController::class,"create_post"])->middleware("auth");
+        Route::post("/create",[PostController::class,"create"])->middleware("auth");
         Route::get("/post",[PostController::class,"post"]);
         Route::get("/delete",[PostController::class,"delete"])->middleware("admin");
     });
