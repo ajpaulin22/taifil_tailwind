@@ -53,11 +53,11 @@
             <hr>
             </div>
         <div class="w-full">
-            @admin
+            @auth
             <div class="mt-5">
                 <a href="/client/gallery/create-post" class="py-2 px-4 border border-green-500 rounded shadow-lg hover:bg-green-500 hover:border-green-900 hover:text-white ">Create Post</a>
             </div>
-            @endadmin
+            @endauth
             @if(count($posts) == 0)
              <div class="mt-5 text-center">No Post Available....</div>
             @endif

@@ -17,7 +17,7 @@
    $(document).ready(function() {
     setTimeout(() => {
         $("#opening").hide();
-    }, 300);
+    }, 10);
     });
 })();
 
