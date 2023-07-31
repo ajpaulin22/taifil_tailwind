@@ -121,5 +121,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{asset("js/client/Biodata.js")}}" defer></script>
+    <script defer src="{{asset("js/client/Biodata.js")}}"></script>
 @endpush
