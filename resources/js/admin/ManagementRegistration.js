@@ -154,6 +154,9 @@
                 },
                 success:function(promise){
                     $("#loading_modal").hide();
+                    ajax.clearFromData("frmInterview");
+                    $("#AttendInterview").val("").trigger('change');
+                    $("#InterviewDate").val("");
                     tblInterview.ajax.reload(null, false);
                     tblManagementRegistration.ajax.reload(null, false);
                     $("#mdlAddInterview").modal('hide');

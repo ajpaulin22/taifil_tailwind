@@ -256,17 +256,12 @@ class BiodataController extends Controller
                 }
                 if(isset($request->japanvisit)){
                     foreach($request->japanvisit as $c){
-                        // DB::table('japanvisit_data')->insert([
-                        //     'family_id' => $family_id,
-                        //     'where' => $c['where'],
-                        //     'when' => date('Y-m-d H:i:s' ,strtotime($c['when'])),
-                        // ]);
-                         japanvisit_data::create([
+                        japanvisit_data::create([
                             'family_id' => $family_id,
                             'where' => $c['where'],
                             'when' => date('Y-m-d H:i:s' ,strtotime($c['when'])),
                         ]);
-                    }
+                    }   
                 }
 
                 if(isset($request->sibling)){
@@ -529,6 +524,7 @@ class BiodataController extends Controller
                     "updated_at" => date('Y-m-d H:i:s')
                 ]);
                 $family_id = DB::select("select id from family_datas where personal_id = " . $request["personalid"]);
+                
                 if(isset($request->relative)){
                     DB::table('relative_datas')->where('family_id', $family_id[0]->id)->delete();
                     foreach($request->relative as $r){
@@ -537,12 +533,22 @@ class BiodataController extends Controller
                             "name" => $r['name'],
                             "relation" => $r['relation'],
                             "cp" => $r['contact'],
-                            "address" => $r['address'],
-                            
+                            "address" => $r['address']
                         ]);
                     }
                 }
-    
+
+                if(isset($request->japanvisit)){
+                    DB::table('japanvisit_datas')->where('family_id', $family_id[0]->id)->delete();
+                    foreach($request->japanvisit as $c){
+                         japanvisit_data::create([
+                            'family_id' => $family_id[0]->id,
+                            'where' => $c['where'],
+                            'when' => date('Y-m-d H:i:s' ,strtotime($c['when'])),
+                        ]);
+                    }
+                }
+
                 if(isset($request->sibling)){
                     DB::table('sibling_datas')->where('family_id', $family_id[0]->id)->delete();
                     foreach($request->sibling as $s){
@@ -604,7 +610,6 @@ class BiodataController extends Controller
         }
         DB::commit();
 
-        
        } catch (\Throwable $th) {
         DB::rollBack();
         $data = [
@@ -633,11 +638,20 @@ class BiodataController extends Controller
             // $data->passport_id_picture =$request->file('passport_id')->store('passport_id_pictures',"public");
             // $data->id_picture=$request->file('picture')->store('1x1_pictures',"public");
             $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
+            if(str_contains($data->gov_id_picture, '<!doctype html>')){
+                unset($data->gov_id_picture);
+            }
             $data->passport_id_picture = file_get_contents($request->file('passport_id')->getPathname());
+            if(str_contains($data->passport_id_picture, '<!doctype html>')){
+                unset($data->passport_id_picture);
+            }
             $data->id_picture= file_get_contents($request->file('picture')->getPathname());
-            $data->gov_id_picture = $request->file('gov_id')->getClientOriginalName();
-            $data->passport_id_picture = $request->file('passport_id')->getClientOriginalName();
-            $data->id_picture= $request->file('picture')->getClientOriginalName();
+            if(str_contains($data->id_picture, '<!doctype html>')){
+                unset($data->id_picture);
+            }
+            $data->gov_id_filename = $request->file('gov_id')->getClientOriginalName();
+            $data->passport_id_filename = $request->file('passport_id')->getClientOriginalName();
+            $data->id_filename = $request->file('picture')->getClientOriginalName();
             if($data->update()){
                 $data = [
                     'msg' => 'The Biodata has been uploaded',
@@ -647,9 +661,6 @@ class BiodataController extends Controller
                     'msgTitle' => 'Success!'
                 ];
             }
-
-            
-            
         } catch (\Throwable $th) {
             $data = [
                 'msg' => $th->getMessage(),
@@ -661,10 +672,12 @@ class BiodataController extends Controller
         }
         return response()->json($data);
     }
+
     public function get_code(Request $request){
        $data = DB::table("m_jobcodes")->where('IsDeleted',0)->select()->get();
        return $data;
     }
+
     public function get_categories(Request $request){
         $type = strtoupper($request->type);
         $data = DB::table('m_jobcategories')
@@ -675,6 +688,7 @@ class BiodataController extends Controller
         ->Get();
         return $data;
     }
+
     public function get_operations(Request $request){
         $data = DB::table('m_joboperations')
         ->select('ID','JobCategoriesID','Operation')
@@ -707,7 +721,7 @@ class BiodataController extends Controller
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
-
+    
         for($i = 0; $i < COUNT($prometricsdata); $i++){
             $prometricsdata[$i]->from = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->from)[0]));
             $prometricsdata[$i]->until = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->until)[0]));
@@ -718,13 +732,13 @@ class BiodataController extends Controller
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
-
+    
         for($i = 0; $i < COUNT($languagedata); $i++){
             $languagedata[$i]->from = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->from)[0]));
             $languagedata[$i]->until = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->until)[0]));
             $languagedata[$i]->cert_until = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->cert_until)[0]));
         }
-
+    
         $educationaldata = DB::table('educational_datas')
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
@@ -804,6 +818,15 @@ class BiodataController extends Controller
             ->where("IsDeleted", 0)
             ->select()->Get();
 
+        $japanvisitdata = DB::table('japanvisit_datas')
+        ->where("family_id", $familydata[0]->id)
+        ->where("IsDeleted", 0)
+        ->select()->Get();
+
+        for($i = 0; $i < COUNT($japanvisitdata); $i++){
+            $japanvisitdata[$i]->when =  date('m/d/Y', strtotime(explode(" ", $japanvisitdata[$i]->when)[0]));
+        }
+
         $data = [
             "personaldata" => $personaldata,
             "prometricsdata" => $prometricsdata,
@@ -815,7 +838,8 @@ class BiodataController extends Controller
             "familydata" => $familydata,
             "siblingdata" => $siblingdata,
             "childrendata" => $childrendata,
-            "relativedata" => $relativedata
+            "relativedata" => $relativedata,
+            "japanvisitdata" => $japanvisitdata
         ];
         return $data;
     }

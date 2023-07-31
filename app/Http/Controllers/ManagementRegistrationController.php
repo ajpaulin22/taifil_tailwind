@@ -9,6 +9,7 @@ use App\Exports\ExportBiodata;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Models\m_interviewhistories;
+use App\Models\m_joboperations;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ManagementRegistrationController extends Controller
@@ -108,15 +109,11 @@ class ManagementRegistrationController extends Controller
         }
         
         $sorCol = $request['columns'][$request['order.0.column']]['data'];
-        $applicantID = $request["applicantID"];
         $limit = $request->length;
         $start = $request->start;
-        $order111 = $request->input('order.0.column');
         $dir = $request->input('order.0.dir');
         $search = $request->input('search.value');
-        
-        $order = "id";
-        $query_1 = "SELECT p.ID, CONCAT(first_name, ' ', last_name) as Name, m.AttendInterview, m.InterviewDate, m.Status, m.Company
+        $query_1 = "SELECT p.ID, CONCAT(first_name, ' ', last_name) as Name, m.AttendInterview, DATE_FORMAT(m.InterviewDate, '%m/%d/%Y') as InterviewDate, m.Status, m.Company
                 FROM personal_datas p
                 JOIN m_interviewhistories m ON p.ID = m.PersonalInfoID WHERE m.IsDeleted = 0 AND p.isdeleted = 0 AND p.ID IN (" . $IDs . ")";
         $query_1 .= " 
@@ -128,9 +125,10 @@ class ManagementRegistrationController extends Controller
             OR InterviewDate LIKE '%".$search."%') order by ". $sorCol . " " . $dir;
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
-        if (COUNT($data) != 0){
-            $data[0]->InterviewDate = date('m/d/Y', strtotime(explode(" ", $data[0]->InterviewDate)[0]));
-        }
+
+        // if (COUNT($data) != 0){
+        //     $data[0]->InterviewDate = date('m/d/Y', strtotime(explode(" ", $data[0]->InterviewDate)[0]));
+        // }
         $data2 = DB::select($query_1);
         $total_result = (count($data2) > 0 ? count($data2): 0);
         $totalFiltered = (count($data2) > 0 ? count($data2): 0);
@@ -163,19 +161,14 @@ class ManagementRegistrationController extends Controller
             return response()->json($data);
     }
      public function get_categories(Request $request){
-         $data = DB::table('m_jobcategories')
-         ->where("IsDeleted",0)
-         ->orderby('Category', 'asc')
-         ->select()->Get();
+        $data = DB::select('select DISTINCT Category from m_jobcategories where IsDeleted = 0 order by Category asc');
          return $data;
      }
 
      public function get_operations(Request $request){
-         $data = DB::table('m_joboperations')
-         ->where("IsDeleted",0)
-         ->orderby('Operation', 'asc')
-         ->select()->Get();
-         return $data;
+
+        $data = DB::select('select DISTINCT Operation from m_joboperations where IsDeleted = 0 order by Operation asc');
+        return $data;
      }
 
      public function ExportApplicants(Request $request){

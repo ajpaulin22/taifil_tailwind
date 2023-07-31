@@ -320,9 +320,13 @@
                         else{
                             $("input[name='went_japan'][value='"+ promise.familydata[0].went_japan +"']").trigger('click');
                             $("input[name='japan_times']").val(promise.familydata[0].how_many_japan);
-                            $("input[name='japan_when']").val(promise.familydata[0].when_japan);
-                            $("input[name='japan_where']").val(promise.familydata[0].where_japan);
-                            $("input[name='japan_where']").val(promise.familydata[0].where_japan);
+
+                            for(var i = 0; i < promise.japanvisitdata.length; i++){
+                                if(i != 0)
+                                    $("#add_japanvisit").trigger('click');
+                                $("input[name='japan_where_"+ i +"']").val(promise.japanvisitdata[i].where);
+                                $("input[name='japan_when_"+ i +"']").val(promise.japanvisitdata[i].when);
+                            }
 
                             if(promise.familydata[0].overstay_japan == 0){
                                 $("input[name='went_japan'][value='"+ promise.familydata[0].overstay_japan +"']").trigger('click');
@@ -394,9 +398,9 @@
                         }
 
                         //pictures
-                        var pictureName = promise.personaldata[0].id_picture.replace('1x1_pictures/', '')
-                        var govIDName = promise.personaldata[0].gov_id_picture.replace('gov_id_pictures/', '')
-                        var passportIDName = promise.personaldata[0].passport_id_picture.replace('passport_id_pictures/', '')
+                        var pictureName = promise.personaldata[0].id_filename
+                        var govIDName = promise.personaldata[0].gov_id_filename
+                        var passportIDName = promise.personaldata[0].passport_id_filename
                         biodata.loadURLToInputField('/storage/1x1_pictures/' + pictureName, pictureName, "picture");
                         biodata.loadURLToInputField('/storage/gov_id_pictures/' + govIDName, govIDName, "gov_id");
                         biodata.loadURLToInputField('/storage/passport_id_pictures/' + passportIDName, passportIDName, "passport_id");
@@ -459,6 +463,7 @@
                 }
             })
         },
+        
         getOperations:function(id){
             $.ajax({
                 url:"/client/Biodata/get-operations",

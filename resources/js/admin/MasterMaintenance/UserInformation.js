@@ -246,7 +246,6 @@
                         },
                         width: "2%", orderable: false
                     },
-                    { title: 'Position', data: "Position", width: "18%"},
                     { title: 'UserName', data: "UserName", width: "18%"},
                     { title: 'FirstName', data: "FirstName", width: "18%"},
                     { title: 'LastName', data: "LastName", width: "18%"},
