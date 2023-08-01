@@ -1917,7 +1917,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 }
             })
         },
-<<<<<<< HEAD
         getCategoriesSSW:function(){
             let self = this;
             $.ajax({
@@ -1941,9 +1940,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 }
             })
         },
-=======
-        
->>>>>>> 9ef7452c6ad1fb8eb05db1e6b27e96e5608b57ac
         getOperations:function(id){
             $.ajax({
                 url:"/client/Biodata/get-operations",
