@@ -30,7 +30,7 @@
       <h1 class="text-4xl my-5">About Us <hr></h1>
       <div class="md:flex gap-5">
         <div class="my-5">
-          <img src="/images/tf logo.png" alt="" class="h-1/2 mx-auto" >
+          <img src="/images/tf logo.png" alt="" class="h-40 md:h-1/2 mx-auto" >
         </div>
         <div class="md:text-xl my-5" >
           Tai-Fil Manpower Services Corporation is a land-based recruitment agency duly licensed by the Philippine Overseas Employment Administration (POEA) and Department of Labor and Employment (DOLE). The company was incorporated and established in the year 2000 to engage in the business of career placement of Filipino professionals, skilled and unskilled workers for overseas employment and to act as agents of individuals or firms in the supply of manpower

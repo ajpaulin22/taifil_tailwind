@@ -1309,7 +1309,7 @@
         }
     })
 
-    $("#jpl_applicable").on("click",function(){
+    $("#jpl_applicable_education").on("click",function(){
         if(this.checked){
             educationalValid.resetForm();
             $(".jpl").attr("disabled",true)

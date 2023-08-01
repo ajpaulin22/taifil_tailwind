@@ -18,6 +18,7 @@ use App\Http\Controllers\ManagementRegistrationController;
 use App\Http\Controllers\MasterMaintenance\JobInformationController;
 use App\Http\Controllers\MasterMaintenance\UserInformationController;
 use App\Http\Controllers\exportbiodataview;
+use App\Http\Controllers\MasterMaintenance\PromJapLangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,6 +159,11 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
             Route::post("/SaveUserData",[UserInformationController::class,"SaveUserData"]);
             Route::get("/GetUserInformation",[UserInformationController::class,"GetUserInformation"]);
             Route::get("/DeleteUser",[UserInformationController::class,"DeleteUser"]);
+        });
+
+        Route::group(["prefix" => "PromJaplang"],function(){
+            Route::get("/",[PromJapLangController::class,"view"]);
+            Route::get("/GetPrometrics",[PromJapLangController::class,"GetPrometrics"]);
         });
     });
 });

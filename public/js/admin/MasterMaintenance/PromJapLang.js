@@ -4409,219 +4409,157 @@ B. Synopsis: Class Module used to process data
     return window.DataClass = window.$D = DataClass;
 }());
 (function(){
-    var tblUserInformation = "";
-    var dataUser = "";
+    // var tblCodes = "";
+    var tblprometrics = "";
+    var tbljaplang = "";
+
+
     var ajax = $D();
-    var chkDataUser = [];
-    var tableCheck = [];
     token = $("meta[name=csrf-token]").attr("content");
+    // $.fn.DataTable.ext.pager.numbers_length = 4;
     $(document).ready(function(){
-        drawUserTable();
+        // drawCodesTable();
+        drawJobCategoriesTable();
+        drawOperationsTable();
+        //Job Code Events
+        // $("#btnAddCodes").click(function(){
+        //     $("#mdlCode").modal("show");
+        // });
 
-        $("#btnAdd").click(function(){
-            $("#Password").attr('required', true);
-            $("#ConfirmPassword").attr('required', true);
-            $(".PasswordRequired").text("*");
-            $(".PasswordRequired").addClass("text-danger");
-            $("#mdlUserTitle").text("Create User");
-            $("#mdlAddUser").modal('show');
+        // $("#btnSaveCode").click(function(){
+        //     $.ajax({
+        //         url:"/admin/MasterMaintenance/JobInformation/SaveCode",
+        //         type:"POST",
+        //         data:{
+        //             _token: token,
+        //             ID: $("#CodeID").val(),
+        //             Code: $("#CodeValue").val(),
+        //         },
+        //         dataType:"JSON",
+        //         beforeSend: function(){
+        //             $("#loading_modal").show();
+        //         },
+        //         success:function(promise){
+        //             $("#loading_modal").hide();
+        //             tblCodes.ajax.reload(null, false);
+        //             $("#mdlCode").modal("hide");
+        //             cancelform();
+        //             showMessage("Success", "Job code was saved successfully", "success", "green");
+        //         }
+        //     })
+        // });
+
+        // $("#btnEditCodes").click(function(){
+        //     $("#CodeID").val(dataJobCode.ID);
+        //     $("#CodeValue").val(dataJobCode.Code);
+        //     $("#mdlCode").modal("show");
+        // });
+
+        // $("#btnCancelCode").click(function(){
+        //     $(".input").val("");
+        // });
+
+        // $("#tblCodes").on("change", ".CheckItem", function () {
+        //     var trData = tblCodes.row($(this).parents('tr')).data();
+        //     if ($(this).is(":checked")) {
+        //         JobCodeChkData.push({ ID: trData.ID});
+        //     } else {
+        //         JobCodeChkData = JobCodeChkData.filter(function (obj) {
+        //             return obj.ID !== trData.ID;
+        //         });
+        //     }
+        // });
+        //Job Categories Events
+
+        $("#btnAddPrometrics").click(function(){
         });
 
-        $("#btnEdit").click(function(){
-            $("#Password").removeAttr('required');
-            $("#ConfirmPassword").removeAttr('required');
-            $(".PasswordRequired").text("");
-            $(".PasswordRequired").removeClass("text-danger");
-            $("#mdlUserTitle").text("Edit User");
-            $.ajax({
-                url: "/admin/MasterMaintenance/UserInformation/GetUserInformation",
-                dataType: "JSON",
-                type: "GET",
-                data:{
-                    _token: token
-                    ,UserID: dataUser.ID
-                },
-                beforeSend: function(){
-                    $("#loading_modal").show();
-                },
-                success: function(promise){
-                    $("#loading_modal").hide();
-                    $("#Position").val(promise[0].admin).trigger('change');
-                    $("#FirstName").val(promise[0].firstname);
-                    $("#LastName").val(promise[0].lastname);
-                    $("#UserName").val(promise[0].username);
-                    $("#EmailAddress").val(promise[0].email);
-                    $("#UserID").val(promise[0].id);
-                    $("#mdlAddUser").modal('show');
-                }
-            });
+        $("#btnEditPrometrics").click(function(){
         });
 
-        $("#frmUser").submit(function(e){
-            e.preventDefault();
-            if ($("#Password").val() != $("#ConfirmPassword").val())
-            {
-                showMessage('Error', 'Password do not match', 'error', 'red');
-            }
-            else{
-                var data = $("#frmUser").serializeArray();
-                var UserID = $("#UserID").val();
-                $.ajax({
-                    url: "/admin/MasterMaintenance/UserInformation/SaveUserData",
-                    dataType: "JSON",
-                    type: "POST",
-                    data: {
-                        _token: token,
-                        data: data,
-                        UserID: UserID
-                    },
-                    beforeSend: function(){
-                        $("#loading_modal").show();
-                    },
-                    success: function(promise){
-                        $("#loading_modal").hide();
-                        showMessage(promise.msgTitle, promise.msg, promise.msgType, (promise.success == true ? 'green' : 'red'));
-                        if(promise.success == true){
-                            tblUserInformation.ajax.reload(null, false);
-                            $("#mdlAddUser").modal('hide');
-                            ajax.clearFromData("frmUser")
-                            $("#Password").val("");
-                            $("#ConfirmPassword").val("");
-                        }
-                    },
-                });
-            }
+
+        $("#btnDeletePrometrics").click(function(){
         });
 
-        $("#btnDelete").click(function(){
-            var tableData = [];
-            $(".CheckItem").each(function(){
-                if($(this).is(":checked")){
-                    tableData.push({
-                        ID: $(this).val()
-                    });
-                }
-            });
-            if (tableData.length == 0){
-                showMessage("Error", "Please check a row in user table", "error", "red");
-            }
-            else{
-                $.ajax({
-                    url:"/admin/MasterMaintenance/UserInformation/DeleteUser",
-                    type:"GET",
-                    data:{
-                        _token: token,
-                        ID: tableData,
-                    },
-                    dataType:"JSON",
-                    beforeSend: function(){
-                        $("#loading_modal").show();
-                    },
-                    success:function(promise){
-                        $("#loading_modal").hide();
-                        tblUserInformation.ajax.reload(null, false);
-                        showMessage("Success", "User information was deleted successfully", "success", "green");
-                    }
-                })
-            }
+
+        $("#btnAddJaplang").click(function(){
+       
         });
 
-        $('#tblUserInformation tbody').on('click', 'tr', function(e){
-            dataUser = tblUserInformation.row($(this)).data();
-            switch (e.target.localName) {
-                case "button":
-                    break;
-                case "span":
-                    break;
-                case "checkbox":
-                    break;
-                case "i":
-                    break;
-                case "textbox":
-                    break;
-                case "input":
-                    break;
-                default:
-                    if ($.trim(dataUser) != "") {
-                        if ($(this).hasClass('selected')) {
-                            dataUser = "";
-                            $("#btnEdit").attr('disabled', true);
-                            tblUserInformation.$('tr.selected').removeClass('selected');
-                        }
-                        else {
-                            tblUserInformation.$('tr.selected').removeClass('selected');
-                            $("#btnEdit").removeAttr('disabled');
-                            $(this).addClass('selected');
-                        }
-                    }
-                    break;
-            }
+        $("#btnDeleteJaplang").click(function(){
+     
         });
 
-        $("#btnCancelUser").click(function(){
-            $("#mdlAddUser").modal('hide');
-            ajax.clearFromData("frmUser");
-            $("#Password").val("");
-            $("#ConfirmPassword").val("");
+        $("#btnEditJaplang").click(function(){
+    
         });
-
-        $("#tblUserInformation").on("change", ".CheckItem", function () {
-            var id = $(this).val()
-            if ($(this).is(":checked")) {
-                tableCheck.push({
-                    ID: $(this).val()
-                });
-            } else {
-                tableCheck = tableCheck.filter(function (obj) {
-                    return obj.ID != id
-                });
-            }
-            $(".CheckItem").each(function () {
-                if ($(this).is(":checked")) {
-                    $("#CheckAllitem").prop('checked', true);
-                }
-                else {
-                    $("#CheckAllitem").prop('checked', false);
-                    return false;
-                }
-            });
-        });
-
-        $("#CheckAllitem").click(function () {
-            if ($(this).is(":checked")) {
-                $(".CheckItem").each(function(){
-                    if(!$(this).is(":checked")){
-                        $(this).prop('checked', true);
-                        tableCheck.push({
-                            ID: $(this).val()
-                        });
-                    }
-                });
-            }
-            else {
-                $(".CheckItem").each(function(){
-                    var id = $(this).val();
-                    $(this).prop('checked', false);
-                    tableCheck = tableCheck.filter(function (obj) {
-                        return obj.ID != id
-                    });
-                });
-            }
-        })
 
     });
 
-    function drawUserTable(){
-        if (!$.fn.DataTable.isDataTable('#tblUserInformation')) {
-            tblUserInformation = $('#tblUserInformation').DataTable({
+    // function drawCodesTable(){
+    //     if (!$.fn.DataTable.isDataTable('#tblCodes')) {
+    //         tblCodes = $('#tblCodes').DataTable({
+    //             processing: true,
+    //             serverSide: true,
+    //             "order": [
+    //                 [1, "asc"]
+    //             ],
+    //             ajax: {
+    //                 url: "/admin/MasterMaintenance/JobInformation/GetJobCode",
+    //                 dataType: "JSON",
+    //                 type: "GET",
+    //             },
+    //             deferRender: true,
+    //             pageLength: 10,
+    //             lengthMenu: [
+    //                 [10, 20, 50, 100, 150, 200, 500, -1],
+    //                 [10, 20, 50, 100, 150, 200, 500, "All"]
+    //             ],
+    //             language: {
+    //                 aria: {
+    //                     sortAscending: ": activate to sort column ascending",
+    //                     sortDescending: ": activate to sort column descending"
+    //                 },
+    //                 emptyTable: "No data available in table",
+    //                 info: "Showing _START_ to _END_ of _TOTAL_ records",
+    //                 infoEmpty: "No records found",
+    //                 infoFiltered: "(filtered1 from _MAX_ total records)",
+    //                 lengthMenu: "Show _MENU_",
+    //                 search: "Search:",
+    //                 zeroRecords: "No matching records found",
+    //                 paginate: {
+    //                     "previous": "Prev",
+    //                     "next": "Next",
+    //                     "last": "Last",
+    //                     "first": "First"
+    //                 }
+    //             },
+    //             columns:[
+    //                         {
+    //                             title: "<input type='checkbox' id='CheckAllitem' />",
+    //                             render: function (data, row, meta){
+    //                                 return "<input type='checkbox' class='CheckItem text-center JobCodeschkbox' value='" + meta.ID + "'>";
+    //                             },
+    //                             width: "2%", orderable: false
+    //                         },
+    //                         { data: 'Code', name: 'Code', title: "Code"},
+    //                     ],
+    //         }).on('page.dt', function() {
+    //         });
+    //     }
+    //     return this;
+    // }
+
+    function drawJobCategoriesTable(){
+        if (!$.fn.DataTable.isDataTable('#tblprometrics')) {
+            tblCategories = $('#tblJobCategories').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "/admin/MasterMaintenance/UserInformation/GetUserData",
+                    url: "/admin/MasterMaintenance/PromJaplang/GetPrometrics",
                     dataType: "JSON",
                     type: "GET",
                     data: function(d){
-                        _token = token
                     }
                 },
                 deferRender: true,
@@ -4629,49 +4567,87 @@ B. Synopsis: Class Module used to process data
                 order: [
                     [1, "asc"]
                 ],
-                language: {
-                    aria: {
-                        sortAscending: ": activate to sort column ascending",
-                        sortDescending: ": activate to sort column descending"
-                    },
-                    emptyTable: "No data available in table",
-                    info: "Showing _START_ to _END_ of _TOTAL_ records",
-                    infoEmpty: "No records found",
-                    infoFiltered: "(filtered1 from _MAX_ total records)",
-                    lengthMenu: "Show _MENU_",
-                    search: "Search:",
-                    zeroRecords: "No matching records found",
-                    paginate: {
-                        "previous": "Prev",
-                        "next": "Next",
-                        "last": "Last",
-                        "first": "First"
-                    }
-                },
+                autowidth: false,
                 columns:[
-                    {
-                        title: "<input type='checkbox' id='CheckAllitem'/>",
-                        render: function (data, row, meta){
-                            return "<input type='checkbox' name='CheckItem' class='CheckItem text-center' value='" + meta.ID + "'>";
-                        },
-                        width: "2%", orderable: false
-                    },
-                    { title: 'UserName', data: "UserName", width: "18%"},
-                    { title: 'FirstName', data: "FirstName", width: "18%"},
-                    { title: 'LastName', data: "LastName", width: "18%"},
+                            {
+                                title: "<input type='checkbox' id='CheckAllitemCategory' />",
+                                render: function (data, row, meta){
+                                    return "<input type='checkbox' name='CheckItemCategory' class='CheckItemCategory text-center' value='" + meta.ID + "'>";
+                                },
+                                width: "2%", orderable: false
+                            },
+                            { data: 'prometric', name: 'prometric' ,orderable: true, title: "Prometric"},
                 ],
                 "drawCallback": function() {
-                    
-                    for(var i = 0; i < tableCheck.length; i++){
-                        $("input[name='CheckItem'][value="+ tableCheck[i].ID +"]").prop('checked', true);
+                    for(var i = 0; i < jobCatCheck.length; i++){
+                        $("input[name='CheckItemCategory'][value="+ jobCatCheck[i].ID +"]").prop('checked', true);
                     }
-                    
-                    $(".CheckItem").each(function () {
+                    $("#btnEditJobCategories").attr('disabled', true);
+                    dataJobCategory = "";
+                    $(".CheckItemCategory").each(function () {
                         if ($(this).is(":checked")) {
-                            $("#CheckAllitem").prop('checked', true);
+                            $("#CheckAllitemCategory").prop('checked', true);
                         }
                         else {
-                            $("#CheckAllitem").prop('checked', false);
+                            $("#CheckAllitemCategory").prop('checked', false);
+                            return false;
+                        }
+                    });
+                },
+            }).on('page.dt', function() {
+            });
+        }
+        return this;
+    }
+
+    function drawOperationsTable(){
+        if (!$.fn.DataTable.isDataTable('#tbljaplang')) {
+            tblOperations = $('#tblOperations').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "/admin/MasterMaintenance/JobInformation/GetJobOperation",
+                    dataType: "JSON",
+                    type: "GET",
+                    data: function(d){
+                        d["ID"] = dataJobCategory == "" ? 0 : dataJobCategory.ID
+                    }
+                },
+                deferRender: true,
+                pageLength: 10,
+                order: [
+                    [1, "asc"]
+                ],
+                columns:[
+                            {
+                                title: "<input type='checkbox' id='CheckAllitemOperation' />",
+                                render: function (data, row, meta){
+                                    return "<input type='checkbox' name='CheckItemOperation' class='CheckItemOperation text-center' value='" + meta.ID + "'>";
+                                },
+                                width: "2%", orderable: false
+                            },
+                            { data: 'Operation', name: 'Operation' ,orderable: true, title: "Operation"},
+                            {
+                                title: "Hiring",
+                                render: function (data, row, meta){
+                                    return "<input type='checkbox' class='CheckHiring text-center' value='" + meta.ID + "' " + (meta.Hiring == 1 ? 'checked' : '' ) +">";
+                                },
+                                width: "2%", orderable: false
+                            },
+                ],
+                "drawCallback": function() {
+                    $("#btnViewQualification").attr('disabled', true);
+                    for(var i = 0; i < jobOperationCheck.length; i++){
+                        $("input[name='CheckItemOperation'][value="+ jobOperationCheck[i].ID +"]").prop('checked', true);
+                    }
+                    $("#btnEditOperations").attr("disabled", true);
+                    dataJobOperation = "";
+                    $(".CheckItemOperation").each(function () {
+                        if ($(this).is(":checked")) {
+                            $("#CheckAllitemOperation").prop('checked', true);
+                        }
+                        else {
+                            $("#CheckAllitemOperation").prop('checked', false);
                             return false;
                         }
                     });
