@@ -72,6 +72,10 @@ class JobInformationController extends Controller
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
         $query_2 = "SELECT * FROM m_jobcategories where IsDeleted = 0";
+        $query_2 .="
+            AND  (
+            Category LIKE '%".$search."%'
+            OR  JobType LIKE '%".$search."%')";
         $data2 = DB::select($query_2);
 
         $total_result = (count($data2) > 0 ? count($data2): 0);
@@ -103,6 +107,8 @@ class JobInformationController extends Controller
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
         $query_2 = "SELECT * FROM m_joboperations where IsDeleted = 0 AND JobCategoriesID = ".$request->ID;
+        $query_2 .= " AND (
+                    Operation LIKE '%".$search."%')";
         $data2 = DB::select($query_2);
         $total_result = (count($data2) > 0 ? count($data2): 0);
         $totalFiltered = (count($data2) > 0 ? count($data2): 0);
@@ -204,7 +210,7 @@ class JobInformationController extends Controller
         try{
             $validated = $request->validate([
                 'JobType' => 'required|max:20',
-                'Category' => 'required|unique:m_jobcategories,Category,' .$request["CategoryID"]. ',ID,IsDeleted,0,JobType,'.$request["JobType"],
+                'Category' => 'required|unique:m_jobcategories,Category,' .$request["CategoryID"]. ',ID,IsDeleted,0,JobType,'.$request["JobType"]
             ]);
             $validated["IsDeleted"] = 0;
             $validated["CreateID"] = 'admin';
@@ -269,7 +275,7 @@ class JobInformationController extends Controller
         $msg = "";
         try{
             $validated = $request->validate([
-                'Operation' => 'required|unique:m_joboperations,Operation,NULL,ID,JobCategoriesID,' .$request["CategoryID"]
+                'Operation' => 'required|unique:m_joboperations,Operation,NULL,ID,JobCategoriesID,' .$request["CategoryID"] . ',IsDeleted, 0'
             ]);
             $validated["JobCategoriesID"] = $request["CategoryID"];
             $validated["IsDeleted"] = 0;

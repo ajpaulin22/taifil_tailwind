@@ -10,13 +10,10 @@ class jpl_data extends Model
     use HasFactory;
 
     protected $fillable=[
-        "personal_id",
-        "name",
-        "address",
-        "from",
-        "until",
-        "certificate",
-        "cert_until",
+        "certificate_id",
+        "jpl",
+        "taken",
+        "passed",
         "isdeleted",
     ];
 }

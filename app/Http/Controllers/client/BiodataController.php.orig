@@ -11,11 +11,10 @@ use Illuminate\Http\Request;
 use App\Models\children_data;
 use App\Models\personal_data;
 use App\Models\relative_data;
-use App\Models\certificatejob;
 use App\Models\prometric_data;
-use App\Models\japanvisit_data;
 use App\Models\vocational_data;
 use App\Models\educational_data;
+use App\Models\japanvisit_data;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -286,34 +285,29 @@ class BiodataController extends Controller
                         ]);
                     }
                 }
-
-                $cert_id = 0;
-                if(isset($request->certificatejob)){
-                    $cert_id = DB::table("certificatejobs")->insertGetID([
-                        "personal_id" =>$id,
-                        "ex-trainee" =>($request->certificatejob['ex_trainee'] == "true")? 1 : 0 ,
-                        "jobcategory" =>$request->certificatejob['jobcategory'],
-                         "joboperation"=>$request->certificatejob['joboperation']
-                    ]);
-                }
                 if(isset($request->prometric)){
                     foreach($request->prometric as $p){
                         prometric_data::create([
-                            "certificate_id" => $cert_id,
-                            "certificate" => $p["test"],
-                            "taken" => date('Y-m-d H:i:s' ,strtotime($p['taken'])),
-                            "passed" => $p["passed"],
+                            "personal_id" => $id,
+                            "name" => $p["name"],
+                            "address" => $p["address"],
+                            "from" => date('Y-m-d H:i:s' ,strtotime($p['from'])),
+                            "until" => date('Y-m-d H:i:s' ,strtotime($p['until'])),
+                            "certificate" => $p["certificate"],
+                            "cert_until" => date('Y-m-d H:i:s' ,strtotime($p['certificate_until'])),
                         ]);
                     }
                 }
                 if(isset($request->jpl)){
                     foreach($request->jpl as $j){
                         jpl_data::create([
-                            "certificate_id" => $cert_id,
-                            "jpl" => $j["test"],
-                            "taken" => date('Y-m-d H:i:s' ,strtotime($j['taken'])),
-                            "passed" => $j["passed"],
-
+                            "personal_id" => $id,
+                            "name" => $j["name"],
+                            "address" => $j["address"],
+                            "from" => date('Y-m-d H:i:s' ,strtotime($j['from'])),
+                            "until" => date('Y-m-d H:i:s' ,strtotime($j['until'])),
+                            "certificate" => $j["certificate"],
+                            "cert_until" => date('Y-m-d H:i:s' ,strtotime($j['certificate_until'])),
                         ]);
                     }
                 }
@@ -643,6 +637,7 @@ class BiodataController extends Controller
             // $data->gov_id_picture = $request->file('gov_id')->store('gov_id_pictures',"public");
             // $data->passport_id_picture =$request->file('passport_id')->store('passport_id_pictures',"public");
             // $data->id_picture=$request->file('picture')->store('1x1_pictures',"public");
+<<<<<<< HEAD
             $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
             if(str_contains($data->gov_id_picture, '<!doctype html>')){
                 unset($data->gov_id_picture);
@@ -658,6 +653,18 @@ class BiodataController extends Controller
             $data->gov_id_filename = $request->file('gov_id')->getClientOriginalName();
             $data->passport_id_filename = $request->file('passport_id')->getClientOriginalName();
             $data->id_filename = $request->file('picture')->getClientOriginalName();
+=======
+             $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
+             $data->passport_id_picture = file_get_contents($request->file('passport_id')->getPathname());
+             $data->id_picture= file_get_contents($request->file('picture')->getPathname());
+             $data->gov_id_filename = $request->file('gov_id')->getClientOriginalName();
+             $data->passport_id_filename = $request->file('passport_id')->getClientOriginalName();
+             $data->id_filename= $request->file('picture')->getClientOriginalName();
+             
+
+            
+            
+>>>>>>> be4db3873fbd0676b8457fa68d05068c594a7abc
             if($data->update()){
                 $data = [
                     'msg' => 'The Biodata has been uploaded',
@@ -848,14 +855,5 @@ class BiodataController extends Controller
             "japanvisitdata" => $japanvisitdata
         ];
         return $data;
-    }
-
-    public function getJapLang(Request $request){
-        $japlang = DB::table('japlangs')->select('jap_lang')->where('isdeleted',0)->get();
-        return response()->json($japlang);
-    }
-    public function getPrometric(Request $request){
-        $prometric = DB::table('prometrics')->select('prometric')->where('isdeleted',0)->get();
-        return response()->json($prometric);
     }
 }
