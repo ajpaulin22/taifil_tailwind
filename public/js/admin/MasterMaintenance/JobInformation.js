@@ -4582,6 +4582,7 @@ B. Synopsis: Class Module used to process data
                     },
                     success:function(promise){
                         $("#loading_modal").hide();
+                        JobCategoryChkData = [];
                         tblCategories.ajax.reload(null, false);
                         showMessage("Success!", "Job category was deleted successfully", "success", "green");
                     }
@@ -4673,6 +4674,7 @@ B. Synopsis: Class Module used to process data
                     },
                     success:function(promise){
                         $("#loading_modal").hide();
+                        JobOperationChkData = [];
                         tblOperations.ajax.reload(null, false);
                         showMessage("Success", "Job operation was deleted successfully", "success", "green");
                     }
@@ -4773,6 +4775,7 @@ B. Synopsis: Class Module used to process data
                     },
                     success:function(promise){
                         $("#loading_modal").hide();
+                        jobQualificationCheck = [];
                         tblQualifications.ajax.reload(null, false);
                         showMessage("Success", "Job qualification was deleted successfully", "success", "green");
                     }
@@ -5206,7 +5209,8 @@ B. Synopsis: Class Module used to process data
                     for(var i = 0; i < jobCatCheck.length; i++){
                         $("input[name='CheckItemCategory'][value="+ jobCatCheck[i].ID +"]").prop('checked', true);
                     }
-                    
+                    $("#btnEditJobCategories").attr('disabled', true);
+                    dataJobCategory = "";
                     $(".CheckItemCategory").each(function () {
                         if ($(this).is(":checked")) {
                             $("#CheckAllitemCategory").prop('checked', true);
@@ -5263,7 +5267,8 @@ B. Synopsis: Class Module used to process data
                     for(var i = 0; i < jobOperationCheck.length; i++){
                         $("input[name='CheckItemOperation'][value="+ jobOperationCheck[i].ID +"]").prop('checked', true);
                     }
-                    
+                    $("#btnEditOperations").attr("disabled", true);
+                    dataJobOperation = "";
                     $(".CheckItemOperation").each(function () {
                         if ($(this).is(":checked")) {
                             $("#CheckAllitemOperation").prop('checked', true);

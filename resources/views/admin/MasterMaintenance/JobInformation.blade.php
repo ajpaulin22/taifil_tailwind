@@ -243,7 +243,7 @@ Job Information
 </div>
 
 <div class="modal fade" id="mdlQualification" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header bg-blue-madison">
                 <h4 class="modal-title" id="mdlQualificationTitle"> Create Qualification</h4>
@@ -254,7 +254,7 @@ Job Information
                         <div class="col-sm-12">
                             <div class="input-group input-group-sm m-b-5">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" style="width:90px;" id="lblCategoryQualificationParent" readonly> Category <span class="text-danger"> *</span></label>
+                                    <label class="input-group-text" style="width:90px;" id="lblCategoryQualificationParent" readonly> Operation <span class="text-danger"> *</span></label>
                                 </div>
                                 <input type="hidden" id="ValueCategoryQualification" name="ValueCategoryQualification" class="form-control input" autocomplete="off" readonly>
                                 <input type="text" id="TextCategoryQualification" name="TextCategoryQualification" class="form-control input" autocomplete="off" readonly>
@@ -268,7 +268,7 @@ Job Information
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" style="width:90px;" id="lblQualification"> Qualification <span class="text-danger"> *</span></label>
                                 </div>
-                                <input type="text" id="QualificationValue" name="QualificationValue" class="form-control input" data-parsley-required data-parsley-errors-container="#err-QualificationValue" autocomplete="off">
+                                <input type="text" id="QualificationValue" name="QualificationValue" class="form-control input" maxlength="150" data-parsley-required data-parsley-errors-container="#err-QualificationValue" autocomplete="off">
                                 <input type="hidden" id="QualificationID" name="QualificationID" class="form-control input ID" data-parsley-errors-container="#err-CategoryID" value="0">
                             </div>
                             <div id="err-QualificationValue"></div>
