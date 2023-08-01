@@ -486,7 +486,7 @@
                     .end()
                     .append('<option value="" selected disabled value>Choose....</option>')
                     promise.forEach(data=>{
-                        let option = `<option value="${data.ID}" >${data.Category}</option>`;
+                        let option = `<option value="${data.Category}" >${data.Category}</option>`;
                         $("#certificate_category").append(option)
                     })
                 }
@@ -539,7 +539,7 @@
                     .end()
                     .append('')
                     promise.forEach(data=>{
-                        let option = `<option value="${data.ID}">${data.Operation}</option>`;
+                        let option = `<option value="${data.Operation}">${data.Operation}</option>`;
                         $("#certificate_operation").append(option)
                     })
                 }
@@ -1020,7 +1020,7 @@
                     <label for="inline-radio" class="ml-2 text-sm md:text-xl text-gray-900">Passed</label>
                 </div>
                 <div class="flex items-center mr-4">
-                    <input required type="radio" value="0" name="rtrainee_esult_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <input required type="radio" value="0" name="trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                     <label for="inline-2-radio" class="ml-2 text-sm md:text-xl text-gray-900">Failed</label>
                 </div>
             </div>
