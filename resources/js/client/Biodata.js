@@ -486,7 +486,7 @@
                     .end()
                     .append('<option value="" selected disabled value>Choose....</option>')
                     promise.forEach(data=>{
-                        let option = `<option value="${data.Category}" >${data.Category}</option>`;
+                        let option = `<option value="${data.ID}" >${data.Category}</option>`;
                         $("#certificate_category").append(option)
                     })
                 }
@@ -539,7 +539,7 @@
                     .end()
                     .append('')
                     promise.forEach(data=>{
-                        let option = `<option value="${data.Operation}">${data.Operation}</option>`;
+                        let option = `<option value="${data.ID}">${data.Operation}</option>`;
                         $("#certificate_operation").append(option)
                     })
                 }
@@ -1114,6 +1114,7 @@
             $("#ex-trainee").show();
             $("#not-ex-trainee :input").attr("disabled",true)
             $("#not-ex-trainee :input").val("")
+            $("input[name='not_trainee_result_prometric_0']").prop('checked',false)
             $("#not-ex-trainee :button").attr("disabled",true)
             $("#not-ex-trainee").hide()
             $(".job").attr("disabled",false)

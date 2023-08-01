@@ -191,7 +191,7 @@ class PostController extends Controller
         try {
             $nextid = (int)$request->id+1;
             $previd = (int)$request->id-1;
-            $post = post::select()->where("id",$request->id)->where("isdeleted",0)->get();
+            $post = post::select('id','title','content','category','created_at')->where("id",$request->id)->where("isdeleted",0)->get();
             $nextpost = post::select("id")->where("id",">",$request->id)->where("isdeleted",0)->orderBy('id','asc')->first();
             $prevpost = post::select("id")->where("id","<",$request->id)->where("isdeleted",0)->orderBy('id','desc')->first();
         $data = $post->map(function($post,$key){
@@ -202,7 +202,7 @@ class PostController extends Controller
                 "category" => $post->category,
                 "date" => date('m/d/Y' ,strtotime($post->created_at)),
                 "time" => Carbon::parse($post->created_at)->format('g:i a'),
-                "images" => image::select()->where("post_id",$post->id)->get()->toArray()
+                "images" => image::select('path')->where("post_id",$post->id)->where('isdeleted',0)->get()->toArray()
             ];
         });
         } catch (\Throwable $th) {
@@ -215,7 +215,7 @@ class PostController extends Controller
         try {
             $nextid = (int)$request->id+1;
             $previd = (int)$request->id-1;
-            $post = post::select()->where("id",$request->id)->where("isdeleted",0)->get();
+            $post = post::select('id','title','content','category','created_at')->where("id",$request->id)->where("isdeleted",0)->get();
             $nextpost = post::select("id")->where("id",">",$request->id)->where("isdeleted",0)->orderBy('id','asc')->first();
             $prevpost = post::select("id")->where("id","<",$request->id)->where("isdeleted",0)->orderBy('id','desc')->first();
         $data = $post->map(function($post,$key){
@@ -226,7 +226,7 @@ class PostController extends Controller
                 "category" => $post->category,
                 "date" => date('m/d/Y' ,strtotime($post->created_at)),
                 "time" => Carbon::parse($post->created_at)->format('g:i a'),
-                "images" => image::select()->where("post_id",$post->id)->get()->toArray()
+                "images" => image::select('path')->where("post_id",$post->id)->where('isdeleted',0)->get()->toArray()
             ];
         });
         } catch (\Throwable $th) {
