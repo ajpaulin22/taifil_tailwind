@@ -2757,7 +2757,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         }
     })
 
-    $("#jpl_applicable").on("click",function(){
+    $("#jpl_applicable_education").on("click",function(){
         if(this.checked){
             educationalValid.resetForm();
             $(".jpl").attr("disabled",true)

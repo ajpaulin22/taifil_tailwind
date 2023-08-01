@@ -152,6 +152,16 @@ mix.js(['resources/js/app.js','resources/js/iziToast/dist/js/iziToast.min.js'], 
     .styles([
         "public/css/theme.css",
         "public/css/trx.css",
-    ], "public/css/admin/MasterMaintenance/UserInformation.css");
+    ], "public/css/admin/MasterMaintenance/UserInformation.css")
+
+    .scripts([
+        "public/js/theme.js",
+        "public/js/trx.js",
+        "resources/js/admin/MasterMaintenance/PromJapLang.js"
+    ], "public/js/admin/MasterMaintenance/PromJapLang.js")
+    .styles([
+        "public/css/theme.css",
+        "public/css/trx.css",
+    ], "public/css/admin/MasterMaintenance/PromJapLang.css");
     
     

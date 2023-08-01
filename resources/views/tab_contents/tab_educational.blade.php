@@ -1,10 +1,5 @@
 <div class="">
-    @if($biodata != "SSW")
-    <div class="flex items-center mr-4 justify-end">
-        <label class="ml-2 mr-2 text-sm md:text-sm font-normal text-gray-900">Tick this checkbox if ex-trainee.</label>
-        <input type="checkbox" value="1" id="jpl_applicable" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
-    </div>
-    @endif
+   
     <div class="block my-3 md:hidden text-center border-b border-green-600">
         <label class="text-xl  font-bold pb-4">Educational Background</label>
     </div>
@@ -86,8 +81,16 @@
 
             </div>   
             @if($biodata != "SSW")
-            <div class="mt-2 md:mt-0 form-group col-span-7">
+            <div class="mt-2 md:mt-0 form-group col-span-5">
                 <label class="text-xl font-bold">Japanese Language<span class="required_jpl" style="color:red">*</span>:</label>
+            </div>
+            <div class="mt-2 md:mt-0 form-group col-span-2">
+                @if($biodata != "SSW")
+                <div class="flex items-center mr-4 justify-end">
+                    <label class="ml-2 mr-2 text-sm md:text-sm font-normal text-gray-900">Tick this checkbox if N/A.</label>
+                    <input type="checkbox" value="1" id="jpl_applicable_education" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                </div>
+                @endif
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-3">
                 <input name="name_jpl" autocomplete="off" type="text" maxlength="100" class="jpl disabled:bg-slate-200 form-control" placeholder="Name of School" required>

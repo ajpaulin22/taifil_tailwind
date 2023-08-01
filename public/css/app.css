@@ -21906,6 +21906,17 @@ input[type='number']::-webkit-outer-spin-button,
   }
 }
 
+  @media (min-width: 1536px) {
+
+  .\32xl\:block {
+    display: block;
+  }
+
+  .\32xl\:hidden {
+    display: none;
+  }
+}
+
   @media (min-width: 320px) {
 
   @media not all and (min-width: 768px) {
