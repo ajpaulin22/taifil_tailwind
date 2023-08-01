@@ -486,7 +486,7 @@
                     .end()
                     .append('<option value="" selected disabled value>Choose....</option>')
                     promise.forEach(data=>{
-                        let option = `<option value="${data.Category}" >${data.Category}</option>`;
+                        let option = `<option value="${data.ID}" >${data.Category}</option>`;
                         $("#certificate_category").append(option)
                     })
                 }
@@ -539,7 +539,7 @@
                     .end()
                     .append('')
                     promise.forEach(data=>{
-                        let option = `<option value="${data.Operation}">${data.Operation}</option>`;
+                        let option = `<option value="${data.ID}">${data.Operation}</option>`;
                         $("#certificate_operation").append(option)
                     })
                 }
@@ -1114,6 +1114,7 @@
             $("#ex-trainee").show();
             $("#not-ex-trainee :input").attr("disabled",true)
             $("#not-ex-trainee :input").val("")
+            $("#not-ex-trainee :input").prop('checked',false)
             $("#not-ex-trainee :button").attr("disabled",true)
             $("#not-ex-trainee").hide()
             $(".job").attr("disabled",false)
@@ -1144,12 +1145,14 @@
         if(this.checked){
             certificateValid.resetForm();
             $(".prometric_trainee").attr("disabled",false)
+            
             if(biodata.certificate_validator){
                 $("#certificate_form").valid();
             }
         }else{
             certificateValid.resetForm();
             $(".prometric_trainee").attr("disabled",true)
+            $(".prometric_trainee").prop("checked",false)
             $(".prometric_trainee").val("")
             $("#trainee_prometric_nav").html("")
             $('.prometric_test').remove()
@@ -1169,6 +1172,7 @@
         }else{
             certificateValid.resetForm();
             $(".jpl_trainee").attr("disabled",true)
+            $(".jpl_trainee").prop("checked",false)
             $(".jpl_trainee").val("")
             $("#trainee_jpl_div").html("")
             if(biodata.certificate_validator){
