@@ -1114,7 +1114,7 @@
             $("#ex-trainee").show();
             $("#not-ex-trainee :input").attr("disabled",true)
             $("#not-ex-trainee :input").val("")
-            $("input[name='not_trainee_result_prometric_0']").prop('checked',false)
+            $("#not-ex-trainee :input").prop('checked',false)
             $("#not-ex-trainee :button").attr("disabled",true)
             $("#not-ex-trainee").hide()
             $(".job").attr("disabled",false)
@@ -1145,12 +1145,14 @@
         if(this.checked){
             certificateValid.resetForm();
             $(".prometric_trainee").attr("disabled",false)
+            
             if(biodata.certificate_validator){
                 $("#certificate_form").valid();
             }
         }else{
             certificateValid.resetForm();
             $(".prometric_trainee").attr("disabled",true)
+            $(".prometric_trainee").prop("checked",false)
             $(".prometric_trainee").val("")
             $("#trainee_prometric_nav").html("")
             $('.prometric_test').remove()
@@ -1170,6 +1172,7 @@
         }else{
             certificateValid.resetForm();
             $(".jpl_trainee").attr("disabled",true)
+            $(".jpl_trainee").prop("checked",false)
             $(".jpl_trainee").val("")
             $("#trainee_jpl_div").html("")
             if(biodata.certificate_validator){
