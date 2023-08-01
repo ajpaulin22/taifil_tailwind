@@ -49,18 +49,12 @@
                     data: function(d){
                     }
                 },
-                deferRender: true,
-                pageLength: 5,
-                autowidth: false,
+                select:true,
+                // deferRender: true,
+                pageLength: 10,
+                autowidth: true,
                 columns:[
-                            {
-                                title: "<input type='checkbox' id='CheckAllitemCategory' />",
-                                render: function (data, row, meta){
-                                    return "<input type='checkbox' name='CheckItemCategory' class='CheckItemCategory text-center' >";
-                                },
-                                width: "2%", orderable: false
-                            },
-                            { data: 'prometric', name: 'prometric' ,orderable: true, title: "Prometric"}
+                            { data: 'prometric', name: 'prometric' ,orderable: false, title: "Prometric"}
                 ],
                 "drawCallback": function() {
                    
@@ -84,20 +78,11 @@
                     data: function(d){
                     }
                 },
+                select:true,
                 deferRender: true,
                 pageLength: 10,
-                order: [
-                    [1, "asc"]
-                ],
                 columns:[
-                            {
-                                title: "<input type='checkbox' id='CheckAllitemOperation' />",
-                                render: function (data, row, meta){
-                                    return "<input type='checkbox' name='CheckItemOperation' class='CheckItemOperation text-center' value='" + meta.ID + "'>";
-                                },
-                                width: "2%", orderable: false
-                            },
-                            { data: 'jap_lang', name: 'jap_lang' ,orderable: true, title: "Japanese Language"},
+                            { data: 'jap_lang', name: 'jap_lang' ,orderable: false, title: "Japanese Language"},
                 ],
                 "drawCallback": function() {
                 },
