@@ -109,7 +109,7 @@
         </ul>
         @endif
     </nav>
-    <div class="absolute right-4 top-7 hidden 2xl:block">
+    <div class="absolute right-4 top-7 hidden lg:block">
          @auth
           <div class="flex items-end justify-end">
                @auth

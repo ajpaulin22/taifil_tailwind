@@ -1,5 +1,5 @@
 @admin
-       <div class="bg-slate-300 flex p-4 items-end justify-end 2xl:hidden">
+       <div class="bg-slate-300 flex p-4 items-end justify-end lg:hidden">
             @admin
             <div class=" ">
                 {{-- <a href="/admin" class="">サイトを管理する</a> --}}

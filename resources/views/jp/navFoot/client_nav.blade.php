@@ -105,7 +105,7 @@
             </div>
         </div>
     </nav>
-    <div class="absolute right-4 top-7 hidden md:block">
+    <div class="absolute right-4 top-7 hidden lg:block">
         @admin
        <div class=" flex items-end justify-end">
             @admin
