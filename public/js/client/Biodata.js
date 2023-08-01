@@ -1472,8 +1472,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         this.children = 0;
         this.relatives = 0;
         this.prometric =0;
+        this.prometric_trainee = 0;
         this.japanvisit = 0;
-        this.jpl = 0;
+        this.jpl_trainee = 0;
         this.japanvisitData;
         this.personalData;
         this.educationalData;
@@ -1484,11 +1485,15 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         this.local_empData;
         this.abroad_empData;
         this.certificateData;
+        this.certificateJobData;
         this.familyData;
         this.uploadData;
         this.prometricData;
         this.jplData;
         this.upload;
+        this.ex_trainee = false;
+        this.prometric_options = "<option value='' selected disabled value>Choose....</option>";
+        this.japlang_options = "<option value='' selected disabled value>Choose....</option>";
     }
     Biodata.prototype = {
         uploadData:function(){
@@ -1512,6 +1517,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                     vocational:self.vocationalData,
                     personal:self.personalData,
                     japanvisit:self.japanvisitData,
+                    certificatejob:self.certificateJobData,
                     personalid: $("#PersonalInfoID").val()
                 },
                 dataType:"JSON",
@@ -1907,6 +1913,29 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 }
             })
         },
+        getCategoriesSSW:function(){
+            let self = this;
+            $.ajax({
+                url:"/client/Biodata/get-categories",
+                type:"GET",
+                data:{
+                    _token:self.token,
+                    type:"TITP"
+                },
+                dataType:"JSON",
+                success:function(promise){
+                    $('#certificate_category')
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option value="" selected disabled value>Choose....</option>')
+                    promise.forEach(data=>{
+                        let option = `<option value="${data.ID}" >${data.Category}</option>`;
+                        $("#certificate_category").append(option)
+                    })
+                }
+            })
+        },
         getOperations:function(id){
             $.ajax({
                 url:"/client/Biodata/get-operations",
@@ -1935,6 +1964,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                             $("#joboperations").val(p[1]).trigger('change');
                         }
                     }
+                }
+            })
+        },
+        getOperationsSSW:function(id){
+            $.ajax({
+                url:"/client/Biodata/get-operations",
+                type:"GET",
+                data:{
+                    _token:self.token,
+                    ID:id
+                },
+                dataType:"JSON",
+                success:function(promise){
+                    $('#certificate_operation')
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('')
+                    promise.forEach(data=>{
+                        let option = `<option value="${data.ID}">${data.Operation}</option>`;
+                        $("#certificate_operation").append(option)
+                    })
                 }
             })
         },
@@ -1980,6 +2031,45 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 $(this).html(lblText + " " + count+"<span style='color:red'>*</span>:");
                 count++;
             })
+        },
+        getPrometrics:function(){
+            let self=this;
+            $.ajax({
+                url:"/client/Biodata/get-prometric",
+                type:"GET",
+                data:{
+                    _token:self.token
+                },
+                dataType:"json",
+                success:function(promise){
+                    promise.forEach(data=>{
+                        let option = `<option value="${data.prometric}">${data.prometric}</option>`;
+                        self.prometric_options += option; 
+                    })
+                    $("select[name='trainee_test_prometric_0']").append(self.prometric_options)
+                    $("select[name='not_trainee_test_prometric_0']").append(self.prometric_options)
+                }
+            })
+        },
+        getJaplang:function(){
+            let self = this;
+            $.ajax({
+                url:"/client/Biodata/get-japlang",
+                type:"GET",
+                data:{
+                    _token:self.token
+                },
+                dataType:"json",
+                success:function(promise){
+                    promise.forEach(data=>{
+                        let option = `<option value="${data.jap_lang}">${data.jap_lang}</option>`;
+                        self.japlang_options += option; 
+                    })
+                    $("select[name='trainee_test_jpl_0']").append(self.japlang_options)
+                    $("select[name='not_trainee_test_jpl_0']").append(self.japlang_options)
+                    
+                }
+            })
         }
     }
     Biodata.init.prototype = Biodata.prototype;
@@ -1990,11 +2080,22 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
     let Datepicker = tw_elements.Datepicker;
     let Input = tw_elements.Input;
     tw_elements.initTE({ Datepicker,Input });
+
     setTimeout(() => {
         $("#opening").hide();
     }, 300);
     // biodata.getCode();
     biodata.getData();
+    if(biodata.biodata_type == 'SSW'){
+        biodata.getCategoriesSSW()
+        biodata.getJaplang();
+        biodata.getPrometrics();
+       setTimeout(() => {
+        $(".jpl_trainee").attr("disabled",true)
+        $(".prometric_trainee").attr("disabled",true)
+       },3000)
+    }
+
     biodata.getCategories()
     $.validator.addMethod("validDate", function(value, element) {
         // return moment(value).isSameOrAfter('01/01/1900');
@@ -2007,6 +2108,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
     // })
     $("#jobcategories").on("change",function(){
         biodata.getOperations($(this).val());
+    });
+    $("#certificate_category").on("change",function(){
+        biodata.getOperationsSSW($(this).val());
     });
 
     $(".date_picker").on("keydown",function(){
@@ -2066,12 +2170,15 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 $("[data-tab-target]").toArray().forEach((content)=>{
                     $(content).removeClass("bg-green-800")
                     $(content).addClass("bg-green-300")
+                    $(content).addClass("shadow-xl")
                     $(content).removeClass("text-white")
                     $(content).addClass("text-black")
                 })
+                $(tab).removeClass("shadow-xl")
                 $(tab).addClass('bg-green-800')
                 $(tab).addClass("text-white")
                  $(target).removeClass("hidden");
+                 
             }
             
         });
@@ -2162,37 +2269,59 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             $(element).removeClass('border-red-600');
         },
         submitHandler: function(form) {
-            
-            biodata.educationalData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
+            biodata.certificate_validator = true;
+            // biodata.educationalData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
             biodata.prometricData = [];
             biodata.jplData = []
             $(window).scrollTop(0);
-            for (let i = 0; $(form).find('input[name="name_prometric_' + i + '"]').val() != null ; i++){
-                if($('input[name="name_prometric_' + i + '"]').val() != ''){
-                    biodata.prometricData.push({
-                        name:$('input[name="name_prometric_' + i + '"]').val(),
-                        address:$('input[name="add_prometric_' + i + '"]').val(),
-                        from:$('input[name="date_from_prometric_' + i + '"]').val(),
-                        until:$('input[name="date_until_prometric_' + i + '"]').val(),
-                        certificate:$('input[name="certificate_prometric_' + i + '"]').val(),
-                        certificate_until:$('input[name="date_until_cert_prometric_' + i + '"]').val(),
-                    })
+             console.log(biodata.ex_trainee)
+             biodata.certificateJobData = {
+                jobcategory:$("#certificate_category").val(),
+                joboperation:$("#certificate_operation").val(),
+                ex_trainee:biodata.ex_trainee
+            }
+            if(biodata.ex_trainee){
+                for (let i = 0; $(form).find('select[name="trainee_test_prometric_' + i + '"]').val() != null ; i++){
+                    if($('select[name="trainee_test_prometric_' + i + '"]').val() != ''){
+                        biodata.prometricData.push({
+                            test:$('select[name="trainee_test_prometric_' + i + '"]').val() == 'Others' ? $('select[name="trainee_test_prometric_' + i + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="trainee_test_prometric_' + i + '"]').val(),
+                            taken:$('input[name="trainee_taken_prometric_' + i + '"]').val(),
+                            passed:parseInt($('input[name="trainee_result_prometric_' + i + '"]').val()),
+                        })
+                    }
+                }
+                for (let i = 0; $(form).find('select[name="trainee_test_jpl_' + i + '"]').val() != null ; i++){
+                    if($('select[name="trainee_test_jpl_' + i + '"]').val() != ''){
+                        biodata.jplData.push({
+                            test:$('select[name="trainee_test_jpl_' + i + '"]').val(),
+                            taken:$('input[name="trainee_taken_jpl_' + i + '"]').val(),
+                            passed:parseInt($('input[name="trainee_result_jpl_' + i + '"]').val()),
+                        })
+                    }
+                   
+                }
+            }else{
+                for (let i = 0; $(form).find('select[name="not_trainee_test_prometric_' + i + '"]').val() != null ; i++){
+                    if($('select[name="not_trainee_test_prometric_' + i + '"]').val() != ''){
+                        biodata.prometricData.push({
+                            test:$('select[name="not_trainee_test_prometric_' + i + '"]').val() == 'Others' ? $('select[name="not_trainee_test_prometric_' + i + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="not_trainee_test_prometric_' + i + '"]').val(),
+                            taken:$('input[name="not_trainee_taken_prometric_' + i + '"]').val(),
+                            passed:parseInt($('input[name="not_trainee_result_prometric_' + i + '"]').val()),
+                        })
+                    }
+                }
+                for (let i = 0; $(form).find('select[name="not_trainee_test_jpl_' + i + '"]').val() != null ; i++){
+                    if($('select[name="not_trainee_test_jpl_' + i + '"]').val() != ''){
+                        biodata.jplData.push({
+                            test:$('select[name="not_trainee_test_jpl_' + i + '"]').val(),
+                            taken:$('input[name="not_trainee_taken_jpl_' + i + '"]').val(),
+                            passed:parseInt($('input[name="not_trainee_result_jpl_' + i + '"]').val()),
+                        })
+                    }
+                   
                 }
             }
-
-            for (let i = 0; $(form).find('input[name="name_jpl_' + i + '"]').val() != null ; i++){
-                if($('input[name="name_jpl_' + i + '"]').val() != ''){
-                    biodata.jplData.push({
-                        name:$('input[name="name_jpl_' + i + '"]').val(),
-                        address:$('input[name="add_jpl_' + i + '"]').val(),
-                        from:$('input[name="date_from_jpl_' + i + '"]').val(),
-                        until:$('input[name="date_until_jpl_' + i + '"]').val(),
-                        certificate:$('input[name="certificate_jpl_' + i + '"]').val(),
-                        certificate_until:$('input[name="date_until_cert_jpl_' + i + '"]').val(),
-                    })
-                }
-               
-            }
+            console.log(biodata.prometricData,biodata.jplData)
 
             $("#education_tab").removeClass('pointer-events-none')
             $("#education_tab").trigger("click")
@@ -2200,49 +2329,160 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
           }
     });
 
-    $("#add_prometric").on("click",function(e){
+    $("#add_prometric_trainee").on("click",function(e){
         e.preventDefault();
-        let id = biodata.prometric;
-        let form = `<div class="prometric_content w-full md:grid grid-cols-7 gap-4 mt-2">
-        <div class="mt-2 md:mt-0 form-group col-span-6">
-        </div>
-        <div class="mt-2 md:mt-0 form-group col-span-1">
-            <button id="del_certificate_btn" class="prometric_del py-2 px-4 bg-red-600 rounded w-full self-end text-sm text-white">remove</button>
+        let id = biodata.prometric_trainee;
+        let form = `<div class="md:grid my-3 grid-cols-7 gap-4">
+                    <div class="mt-2 md:mt-0 form-group col-span-3">
+                        <select required name="trainee_test_prometric_${id+1}" class="form-select disabled:bg-slate-200">
+                            ${biodata.prometric_options}
+                        </select>
+                    </div>
+                    <div class="mt-2 md:mt-0 form-group col-span-1">
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" name="trainee_taken_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Taken" />
+                   </div>
+                    </div>
+                    <div class="form-group col-span-2">
+                        <div class="flex">
+                            <div class="flex items-center mr-5">
+                                <input required type="radio" value="1" name="trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                                <label for="inline-radio" class="ml-2 text-sm md:text-xl text-gray-900">Passed</label>
+                            </div>
+                            <div class="flex items-center mr-4">
+                                <input required type="radio" value="0" name="trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                                <label for="inline-2-radio" class="ml-2 text-sm md:text-xl text-gray-900">Failed</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 md:mt-0 form-group col-span-1">
+                        <button class="remove_prometric_trainee py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white">Remove Record</button>
+                    </div>
+                    
+                </div>`;
+
+       $("#trainee_prometric_nav").append(form);
+       $(".remove_prometric_trainee").on("click",function(e){
+           e.preventDefault();
+           $(this).closest('.grid-cols-7').remove();
+       })
+       biodata.prometric_trainee++
+       tw_elements.initTE({ Datepicker,Input });
+       $(".date_picker").on("keydown",function(){
+        return false;
+     })
+ 
+     $(".date_picker").on("input",function(){
+         $(this).valid()
+     })
+
+     $(`select[name='trainee_test_prometric_${id+1}']`).on("change",function(){
+        if ($(this).val() == 'Others'){
+            let input = "<div class='prometric_test mt-2 md:mt-0 form-group col-span-3'><input autocomplete='off' type='text' maxlength='100' class=' form-control disabled:bg-slate-200' placeholder='Prometric Test' required></div>"
+            $(this).closest('.grid-cols-7').append(input)
+        }else{
+            $(this).parent().parent().find('.prometric_test').remove()
+        }
+    })
+    })
+    $("#add_prometric_not_trainee").on("click",function(e){
+        e.preventDefault();
+        let id = biodata.prometric_trainee;
+        let form = `<div class="md:grid grid-cols-7 gap-4">
+        <div class="mt-2 md:mt-0 form-group col-span-7">
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-3">
-            <input name="name_prometric_${id+1}" autocomplete="off" type="text"  maxlength="100" class="form-control" placeholder="Name of School" required>
-        </div>
-        <div class="mt-2 md:mt-0 form-group col-span-2">
-            <input name="add_prometric_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
-        </div>
-        <div class="mt-2 md:mt-0 form-group col-span-1">
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_from_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
-   </div>
+            <select required name="not_trainee_test_prometric_${id+1}" class="disabled:bg-slate-200 form-select">
+                ${biodata.prometric_options}
+            </select>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_until_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
-   </div>
+            <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                <input data-rule-validDate="true" name="not_trainee_taken_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Taken" />
+           </div>
         </div>
-        <div class="mt-2 md:mt-0 form-group col-span-5">
-            <input name="certificate_prometric_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required>
+        <div class="form-group col-span-2">
+            <div class="flex">
+                <div class="flex items-center mr-5">
+                    <input required type="radio" value="1" name="not_trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <label for="inline-radio" class="ml-2 text-xl text-gray-900">Passed</label>
+                </div>
+                <div class="flex items-center mr-4">
+                    <input required type="radio" value="0" name="not_trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <label for="inline-2-radio" class="ml-2 text-xl text-gray-900">Failed</label>
+                </div>
+            </div>
         </div>
-        <div class="mt-2 md:mt-0 form-group col-span-2">
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_until_cert_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
-   </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <button class="remove_prometric_not_trainee py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white">Remove Record</button>
         </div>
     </div>`;
 
-       $("#prometric_div").append(form);
-       $(".prometric_del").on("click",function(e){
+       $("#not_trainee_prometric_nav").append(form);
+       $(".remove_prometric_not_trainee").on("click",function(e){
            e.preventDefault();
-           $(this).closest('.prometric_content').remove();
-           biodata.prometric--
+           $(this).closest('.grid-cols-7').remove();
        })
-       biodata.prometric++
+       biodata.prometric_trainee++
        tw_elements.initTE({ Datepicker,Input });
+       $(".date_picker").on("keydown",function(){
+        return false;
+     })
+ 
+     $(".date_picker").on("input",function(){
+         $(this).valid()
+     })
+
+     $(`select[name='not_trainee_test_prometric_${id+1}']`).on("change",function(){
+        if ($(this).val() == 'Others'){
+            let input = "<div class='prometric_test mt-2 md:mt-0 form-group col-span-3'><input autocomplete='off' type='text' maxlength='100' class=' form-control disabled:bg-slate-200' placeholder='Prometric Test' required></div>"
+            $(this).closest('.grid-cols-7').append(input)
+        }else{
+            $(this).parent().parent().find('.prometric_test').remove()
+        }
+    })
+    })
+
+    $("#add_japlang_trainee").on("click",function(e){
+        e.preventDefault();
+        let id = biodata.jpl_trainee;
+        let form = `<div class="md:grid my-3 grid-cols-7 gap-4">
+        <div class="mt-2 md:mt-0 form-group col-span-3">
+            <select required name="trainee_test_jpl_${id+1}" class="disabled:bg-slate-200 form-select">
+                ${biodata.japlang_options}
+            </select>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                <input data-rule-validDate="true" name="trainee_taken_jpl_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Taken" />
+           </div>
+        </div>
+        <div class="form-group col-span-2">
+            <div class="flex">
+                <div class="flex items-center mr-5">
+                    <input required type="radio" value="1" name="trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <label for="inline-radio" class="ml-2 text-sm md:text-xl text-gray-900">Passed</label>
+                </div>
+                <div class="flex items-center mr-4">
+                    <input required type="radio" value="0" name="rtrainee_esult_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <label for="inline-2-radio" class="ml-2 text-sm md:text-xl text-gray-900">Failed</label>
+                </div>
+            </div>
+        </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <button class="remove_jpl_trainee py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white">Remove Record</button>
+        </div>
+        
+    </div>`;
+
+       $("#trainee_jpl_div").append(form);
+       tw_elements.initTE({ Datepicker,Input });
+       $(".remove_jpl_trainee").on("click",function(e){
+           e.preventDefault();
+           $(this).closest('.grid-cols-7').remove();
+           
+       })
+       biodata.jpl_trainee++
        $(".date_picker").on("keydown",function(){
         return false;
      })
@@ -2252,49 +2492,47 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
      })
     })
 
-    $("#add_japlang_btn").on("click",function(e){
+    $("#add_japlang_not_trainee").on("click",function(e){
         e.preventDefault();
-        let id = biodata.jpl;
-        let form = `<div class="jpl_content w-full md:grid grid-cols-7 gap-4 mt-4">
+        let id = biodata.jpl_trainee;
+        let form = `<div class="md:grid grid-cols-7 gap-4">
         <div class="mt-2 md:mt-0 form-group col-span-6">
         </div>
-        <div class="mt-2 md:mt-0 form-group col-span-1">
-            <button  class="jpl_del py-2 px-4 bg-red-600 rounded w-full self-end text-sm text-white">remove</button>
-        </div>
         <div class="mt-2 md:mt-0 form-group col-span-3">
-            <input name="name_jpl_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Name of School" required>
-        </div>
-        <div class="mt-2 md:mt-0 form-group col-span-2">
-            <input name="add_jpl_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
-        </div>
-        <div class="mt-2 md:mt-0 form-group col-span-1">
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_from_jpl_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
-   </div>
+            <select required name="not_trainee_test_jpl_${id+1}" class="disabled:bg-slate-200 form-select">
+            ${biodata.japlang_options}
+            </select>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_until_jpl_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
-   </div>
+            <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                <input data-rule-validDate="true" name="not_trainee_taken_jpl_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Taken" />
+           </div>
         </div>
-        <div class="mt-2 md:mt-0 form-group col-span-5">
-            <input name="certificate_jpl_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required>
+        <div class="form-group col-span-2">
+            <div class="flex">
+                <div class="flex items-center mr-5">
+                    <input required type="radio" value="1" name="not_trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <label for="inline-radio" class="ml-2 text-xl text-gray-900">Passed</label>
+                </div>
+                <div class="flex items-center mr-4">
+                    <input required type="radio" value="0" name="not_trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <label for="inline-2-radio" class="ml-2 text-xl text-gray-900">Failed</label>
+                </div>
+            </div>
         </div>
-        <div class="mt-2 md:mt-0 form-group col-span-2">
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_until_cert_jpl_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
-   </div>
+        <div class="mt-2 md:mt-0 form-group col-span-1">
+            <button  class="remove_jpl_not_trainee py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white">Remove Record</button>
         </div>
     </div>`;
 
-       $("#jpl_div").append(form);
+       $("#not_trainee_jpl_div").append(form);
        tw_elements.initTE({ Datepicker,Input });
-       $(".jpl_del").on("click",function(e){
+       $(".remove_jpl_not_trainee").on("click",function(e){
            e.preventDefault();
-           $(this).closest('.jpl_content').remove();
-           biodata.jpl--
+           $(this).closest('.grid-cols-7').remove();
+           
        })
-       biodata.jpl++
+       biodata.jpl_trainee++
        $(".date_picker").on("keydown",function(){
         return false;
      })
@@ -2314,26 +2552,94 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         $("#personal_tab").trigger('click');
     })
 
-    $("#certificate_applicable").on("click",function(e){
+    $("#certificate_trainee").on("click",function(e){
+        certificateValid.resetForm();
         if(this.checked){
-            certificateValid.resetForm();
-            $("#certificate_form").find("input").attr("disabled",true);
-            $("#certificate_form").find("input").html("");
-            $("#add_prometric").attr("disabled", true)
-            $("#add_japlang_btn").attr("disabled", true)
-
-            $("#prometric_div").html("")
-            $("#jpl_div").html("")
+            $("#ex-trainee").show();
+            $("#not-ex-trainee :input").attr("disabled",true)
+            $("#not-ex-trainee :input").val("")
+            $("#not-ex-trainee :button").attr("disabled",true)
+            $("#not-ex-trainee").hide()
+            $(".job").attr("disabled",false)
+            biodata.ex_trainee = true;
+            $("#not_trainee_jpl_div").html("")
+            $("#not_trainee_prometric_nav").html("")
+            
             
         }else{
-            $("#certificate_form").find("input").attr("disabled",false);
-            $("#add_prometric").attr("disabled", false)
-            $("#add_japlang_btn").attr("disabled", false)
+            $("#ex-trainee").hide();
+            $("#not-ex-trainee").show()
+            $(".job").attr("disabled",true)
+            
+            $("#not-ex-trainee :input").attr("disabled",false)
+            $("#not-ex-trainee :button").attr("disabled",false)
+            if($("#prometric_applicable").is(":checked")){
+                $("#prometric_applicable").trigger('click')
+            }
+            if($("#jpl_applicable").is(":checked")){
+                $("#jpl_applicable").trigger('click')
+            }
+            biodata.ex_trainee = false;
+
+        }
+    })
+
+    $("#prometric_applicable").on("click",function(){
+        if(this.checked){
+            certificateValid.resetForm();
+            $(".prometric_trainee").attr("disabled",false)
+            if(biodata.certificate_validator){
+                $("#certificate_form").valid();
+            }
+        }else{
+            certificateValid.resetForm();
+            $(".prometric_trainee").attr("disabled",true)
+            $(".prometric_trainee").val("")
+            $("#trainee_prometric_nav").html("")
+            $('.prometric_test').remove()
+            $("")
+            if(biodata.certificate_validator){
+                $("#certificate_form").valid();
+            }
+        }
+    })
+    $("#jpl_applicable").on("click",function(){
+        if(this.checked){
+            certificateValid.resetForm();
+            $(".jpl_trainee").attr("disabled",false)
+            if(biodata.certificate_validator){
+                $("#certificate_form").valid();
+            }
+        }else{
+            certificateValid.resetForm();
+            $(".jpl_trainee").attr("disabled",true)
+            $(".jpl_trainee").val("")
+            $("#trainee_jpl_div").html("")
+            if(biodata.certificate_validator){
+                $("#certificate_form").valid();
+            }
+        }
+    })
+    $("select[name='trainee_test_prometric_0']").on("change",function(){
+        if ($(this).val() == 'Others'){
+            let input = "<div class='prometric_test mt-2 md:mt-0 form-group col-span-3'><input autocomplete='off' type='text' maxlength='100' class=' form-control disabled:bg-slate-200' placeholder='Prometric Test' required></div>"
+            $(this).closest('.grid-cols-7').append(input)
+        }else{
+            $(this).parent().parent().find('.prometric_test').remove()
+        }
+    })
+
+    $("select[name='not_trainee_test_prometric_0']").on("change",function(){
+        if ($(this).val() == 'Others'){
+            let input = "<div class='prometric_test mt-2 md:mt-0 form-group col-span-3'><input autocomplete='off' type='text' maxlength='100' class=' form-control disabled:bg-slate-200' placeholder='Prometric Test' required></div>"
+            $(this).closest('.grid-cols-7').append(input)
+        }else{
+            $(this).parent().parent().find('.prometric_test').remove()
         }
     })
 
     //EDUCATIONAL TAB===========================================EVENT LISTENER
-    $("#educational_form").validate({       
+    let educationalValid = $("#educational_form").validate({       
         
         errorElement: 'span',
         errorPlacement: function (error, element) {
@@ -2442,6 +2748,25 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             $("#personal_tab").trigger('click');
         }
     })
+
+    $("#jpl_applicable").on("click",function(){
+        if(this.checked){
+            educationalValid.resetForm();
+            $(".jpl").attr("disabled",true)
+            $(".jpl").val("")
+            $(".required_jpl").html("")
+            if(biodata.educational_validator){
+                $("#educational_form").valid();
+            }
+        }else{
+            educationalValid.resetForm();
+            $(".jpl").attr("disabled",false)
+            $(".required_jpl").html("*")
+            if(biodata.educational_validator){
+                $("#educational_form").valid();
+            }
+        }
+     })
 
     //LOCAL EMP TAB ===========================================EVENT LISTENER
     let emplocalValid = $("#empLocal_form").validate({

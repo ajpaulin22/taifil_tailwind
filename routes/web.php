@@ -60,6 +60,8 @@ Route::group(["prefix"=>"client"],function(){
         Route::get("/get-operations",[BiodataController::class,"get_operations"]);
         Route::post("/upload-image",[BiodataController::class,"upload_image"])->name('client.biodata.upload-image');
         Route::get("/GetPersonalData",[BiodataController::class,"GetPersonalData"]);
+        Route::get("/get-prometric",[BiodataController::class,"getPrometric"]);
+        Route::get("/get-japlang",[BiodataController::class,"getJapLang"]);
     });
 
     Route::group(["prefix" => "gallery"],function(){

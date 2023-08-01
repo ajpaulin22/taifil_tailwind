@@ -249,7 +249,7 @@
                 </div>
             </div>
             <div class="form-group col-span-1">
-                <label for="address" class="form-label">Do you have Driver's License?<span style="color:red"></span>:</label>
+                <label for="address" class="form-label">Do you have Driver's License?<span style="color:red">*</span>:</label>
                 <div class="flex">
                     <div class="flex items-center mr-4">
                         <input required type="radio" value="1" name="licensed" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">

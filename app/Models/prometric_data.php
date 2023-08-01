@@ -10,13 +10,10 @@ class prometric_data extends Model
     use HasFactory;
 
     protected $fillable=[
-        "personal_id",
-        "name",
-        "address",
-        "from",
-        "until",
+        "certificate_id",
         "certificate",
-        "cert_until",
+        "taken",
+        "passed",
         "isdeleted",
     ];
 }
