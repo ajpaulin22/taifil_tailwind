@@ -723,26 +723,27 @@ class BiodataController extends Controller
         $personaldata[0]->gov_id_picture = base64_encode($personaldata[0]->gov_id_picture);
         $personaldata[0]->passport_id_picture = base64_encode($personaldata[0]->passport_id_picture);
 
-        $prometricsdata = DB::table('prometric_datas')
+        $traineedata = DB::table('certificatejobs')
             ->where("personal_id", $personalid)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+            
+        $prometricsdata = DB::table('prometric_datas')
+            ->where("certificate_id", $traineedata[0]->id)
             ->where("IsDeleted", 0)
             ->select()->Get();
     
         for($i = 0; $i < COUNT($prometricsdata); $i++){
-            $prometricsdata[$i]->from = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->from)[0]));
-            $prometricsdata[$i]->until = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->until)[0]));
-            $prometricsdata[$i]->cert_until = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->cert_until)[0]));
+            $prometricsdata[$i]->taken = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->taken)[0]));
         }
 
         $languagedata = DB::table('jpl_datas')
-            ->where("personal_id", $personalid)
+            ->where("certificate_id", $traineedata[0]->id)
             ->where("IsDeleted", 0)
             ->select()->Get();
     
         for($i = 0; $i < COUNT($languagedata); $i++){
-            $languagedata[$i]->from = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->from)[0]));
-            $languagedata[$i]->until = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->until)[0]));
-            $languagedata[$i]->cert_until = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->cert_until)[0]));
+            $languagedata[$i]->taken = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->taken)[0]));
         }
     
         $educationaldata = DB::table('educational_datas')
@@ -835,6 +836,7 @@ class BiodataController extends Controller
 
         $data = [
             "personaldata" => $personaldata,
+            "traineedata" => $traineedata,
             "prometricsdata" => $prometricsdata,
             "languagedata" => $languagedata,
             "educationaldata" => $educationaldata,
