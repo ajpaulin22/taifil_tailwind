@@ -11,10 +11,11 @@ use Illuminate\Http\Request;
 use App\Models\children_data;
 use App\Models\personal_data;
 use App\Models\relative_data;
+use App\Models\certificatejob;
 use App\Models\prometric_data;
+use App\Models\japanvisit_data;
 use App\Models\vocational_data;
 use App\Models\educational_data;
-use App\Models\japanvisit_data;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -285,29 +286,34 @@ class BiodataController extends Controller
                         ]);
                     }
                 }
+
+                $cert_id = 0;
+                if(isset($request->certificatejob)){
+                    $cert_id = DB::table("certificatejobs")->insertGetID([
+                        "personal_id" =>$id,
+                        "ex-trainee" =>($request->certificatejob['ex_trainee'] == "true")? 1 : 0 ,
+                        "jobcategory" =>$request->certificatejob['jobcategory'],
+                         "joboperation"=>$request->certificatejob['joboperation']
+                    ]);
+                }
                 if(isset($request->prometric)){
                     foreach($request->prometric as $p){
                         prometric_data::create([
-                            "personal_id" => $id,
-                            "name" => $p["name"],
-                            "address" => $p["address"],
-                            "from" => date('Y-m-d H:i:s' ,strtotime($p['from'])),
-                            "until" => date('Y-m-d H:i:s' ,strtotime($p['until'])),
-                            "certificate" => $p["certificate"],
-                            "cert_until" => date('Y-m-d H:i:s' ,strtotime($p['certificate_until'])),
+                            "certificate_id" => $cert_id,
+                            "certificate" => $p["test"],
+                            "taken" => date('Y-m-d H:i:s' ,strtotime($p['taken'])),
+                            "passed" => $p["passed"],
                         ]);
                     }
                 }
                 if(isset($request->jpl)){
                     foreach($request->jpl as $j){
                         jpl_data::create([
-                            "personal_id" => $id,
-                            "name" => $j["name"],
-                            "address" => $j["address"],
-                            "from" => date('Y-m-d H:i:s' ,strtotime($j['from'])),
-                            "until" => date('Y-m-d H:i:s' ,strtotime($j['until'])),
-                            "certificate" => $j["certificate"],
-                            "cert_until" => date('Y-m-d H:i:s' ,strtotime($j['certificate_until'])),
+                            "certificate_id" => $cert_id,
+                            "jpl" => $j["test"],
+                            "taken" => date('Y-m-d H:i:s' ,strtotime($j['taken'])),
+                            "passed" => $j["passed"],
+
                         ]);
                     }
                 }
@@ -842,5 +848,14 @@ class BiodataController extends Controller
             "japanvisitdata" => $japanvisitdata
         ];
         return $data;
+    }
+
+    public function getJapLang(Request $request){
+        $japlang = DB::table('japlangs')->select('jap_lang')->where('isdeleted',0)->get();
+        return response()->json($japlang);
+    }
+    public function getPrometric(Request $request){
+        $prometric = DB::table('prometrics')->select('prometric')->where('isdeleted',0)->get();
+        return response()->json($prometric);
     }
 }

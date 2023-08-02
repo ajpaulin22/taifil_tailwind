@@ -18,6 +18,7 @@ use App\Http\Controllers\ManagementRegistrationController;
 use App\Http\Controllers\MasterMaintenance\JobInformationController;
 use App\Http\Controllers\MasterMaintenance\UserInformationController;
 use App\Http\Controllers\exportbiodataview;
+use App\Http\Controllers\MasterMaintenance\PromJapLangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,8 @@ Route::group(["prefix"=>"client"],function(){
         Route::get("/get-operations",[BiodataController::class,"get_operations"]);
         Route::post("/upload-image",[BiodataController::class,"upload_image"])->name('client.biodata.upload-image');
         Route::get("/GetPersonalData",[BiodataController::class,"GetPersonalData"]);
+        Route::get("/get-prometric",[BiodataController::class,"getPrometric"]);
+        Route::get("/get-japlang",[BiodataController::class,"getJapLang"]);
     });
 
     Route::group(["prefix" => "gallery"],function(){
@@ -156,6 +159,12 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
             Route::post("/SaveUserData",[UserInformationController::class,"SaveUserData"]);
             Route::get("/GetUserInformation",[UserInformationController::class,"GetUserInformation"]);
             Route::get("/DeleteUser",[UserInformationController::class,"DeleteUser"]);
+        });
+
+        Route::group(["prefix" => "PromJaplang"],function(){
+            Route::get("/",[PromJapLangController::class,"view"]);
+            Route::get("/GetPrometrics",[PromJapLangController::class,"GetPrometrics"]);
+            Route::get("/GetJaplang",[PromJapLangController::class,"GetJaplang"]);
         });
     });
 });
