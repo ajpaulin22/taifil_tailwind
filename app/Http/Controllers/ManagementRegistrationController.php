@@ -33,9 +33,13 @@ class ManagementRegistrationController extends Controller
         $search = $request["search.value"];
         $sql = "call biodata_getdata('".($request['Type'] == null ? '' : $request['Type']) . "', '". ($request['Category'] == null ? '' : $request['Category']). "', '". ($request['Operations'] == null ? '' : $request['Operations']). "', ". ($request['AgeFrom'] == null ? 0 : $request['AgeFrom']). ", ". ($request['AgeTo'] == null ? 0 : $request['AgeTo']) .", '" . $sorCol."', '" . $sorDir."', " . $start.", " . $length. ", '". $search ."')";
         $data = collect(DB::select(DB::raw($sql)));
-        $totalRowCount = DB::table('personal_datas')
-                        ->where("IsDeleted",0)
-                        ->select()->Get();
+
+        $sql = "SELECT * from personal_datas where isdeleted = 0 "
+                        .($request['Type'] == null ? "" : " AND job_type = '". $request['Type'] ."' ")
+                        .($request['Category'] == null ? "" : " AND job_cat = '". $request['Category'] ."' ")
+                        .($request['operation'] == null ? "" : " AND job_operation = '". $request['operation'] ."' ")
+                        ." AND Age BETWEEN " . ($request["AgeFrom"] == null ? 0 : $request["AgeFrom"]) . " AND " . ($request["AgeTo"] == null ? 100 : $request["AgeTo"]);
+        $totalRowCount = collect(DB::select(DB::raw($sql)));
         $totalRowCount = (count($data) > 0 ? count($totalRowCount): 0);
         $json_data = [
             'draw' => intval($request->draw),
@@ -161,13 +165,13 @@ class ManagementRegistrationController extends Controller
             return response()->json($data);
     }
      public function get_categories(Request $request){
-        $data = DB::select('select DISTINCT Category from m_jobcategories where IsDeleted = 0 order by Category asc');
+        $data = DB::select('select DISTINCT ID, Category from m_jobcategories where IsDeleted = 0 order by Category asc');
          return $data;
      }
 
      public function get_operations(Request $request){
 
-        $data = DB::select('select DISTINCT Operation from m_joboperations where IsDeleted = 0 order by Operation asc');
+        $data = DB::select('select DISTINCT ID, Operation from m_joboperations where IsDeleted = 0 order by Operation asc');
         return $data;
      }
 
@@ -219,6 +223,12 @@ class ManagementRegistrationController extends Controller
         $dataPersonal[0]->id_picture = base64_encode($dataPersonal[0]->id_picture);
         $dataPersonal[0]->gov_id_picture = base64_encode($dataPersonal[0]->gov_id_picture);
         $dataPersonal[0]->passport_id_picture = base64_encode($dataPersonal[0]->passport_id_picture);
+        $query = "Select * from certificatejobs where isdeleted = 0 AND personal_id = " . $request["IDs"];
+        $dataCertificate = DB::select($query);
+        $query = "Select * from prometric_datas where isdeleted = 0 AND certificate_id = " . $dataCertificate[0]->id;
+        $dataPrometric = DB::select($query);
+        $query = "Select * from jpl_datas where isdeleted = 0 AND certificate_id = " . $dataCertificate[0]->id;
+        $dataLanguage = DB::select($query);
         $query = "Select * from educational_datas where isdeleted = 0 AND personal_id = " . $request["IDs"];
         $dataEducational = DB::select($query);
         $query = "Select * from vocational_datas where isdeleted = 0 AND educational_id = " . $dataEducational[0]->id;
@@ -229,6 +239,8 @@ class ManagementRegistrationController extends Controller
         $dataAbroad = DB::select($query);
         $query = "Select * from family_datas where isdeleted = 0 AND personal_id = " . $request["IDs"];
         $dataFamily = DB::select($query);
+        $query = "Select * from japanvisit_datas where isdeleted = 0 AND family_id = " . $dataFamily[0]->id;
+        $dataVisit = DB::select($query);
         $query = "Select * from sibling_datas where isdeleted = 0 AND family_id = " . $dataFamily[0]->id;
         $dataSiblings = DB::select($query);
         $query = "Select * from children_datas where isdeleted = 0 AND family_id = " . $dataFamily[0]->id;
@@ -237,11 +249,15 @@ class ManagementRegistrationController extends Controller
         $dataRelative = DB::select($query);
         $data = [
             'data' => $dataPersonal[0],
+            'certificate' => $dataCertificate[0],
+            'prometric' => $dataPrometric,
+            'language' => $dataLanguage,
             'educational' => $dataEducational[0],
             'vocational' => $dataVocational,
             'local' => $dataLocal,
             'abroad' => $dataAbroad,
             'family' => $dataFamily[0],
+            'japanvisit' => $dataVisit,
             'siblings' => $dataSiblings,
             'children' => $dataChildren,
             'relative' => $dataRelative

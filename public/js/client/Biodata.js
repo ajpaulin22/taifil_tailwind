@@ -1623,7 +1623,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         //Prometrics
                         
                         if(promise.personaldata[0].job_type == "SSW"){
-                            if(promise.traineedata[0].ex-trainee == 1){
+                            if(promise.traineedata[0]["ex-trainee"] == 1){
                                 $("#certificate_trainee").trigger('click');
                                 $("#certificate_category").val("jobcategory").trigger('change');
                                 $("#certificate_operation").val("joboperation").trigger('change');
