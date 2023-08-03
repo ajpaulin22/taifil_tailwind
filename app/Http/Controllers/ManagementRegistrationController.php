@@ -223,12 +223,14 @@ class ManagementRegistrationController extends Controller
         $dataPersonal[0]->id_picture = base64_encode($dataPersonal[0]->id_picture);
         $dataPersonal[0]->gov_id_picture = base64_encode($dataPersonal[0]->gov_id_picture);
         $dataPersonal[0]->passport_id_picture = base64_encode($dataPersonal[0]->passport_id_picture);
-        $query = "Select * from certificatejobs where isdeleted = 0 AND personal_id = " . $request["IDs"];
-        $dataCertificate = DB::select($query);
-        $query = "Select * from prometric_datas where isdeleted = 0 AND certificate_id = " . $dataCertificate[0]->id;
-        $dataPrometric = DB::select($query);
-        $query = "Select * from jpl_datas where isdeleted = 0 AND certificate_id = " . $dataCertificate[0]->id;
-        $dataLanguage = DB::select($query);
+        if($dataPersonal[0]->job_type == "SSW"){
+            $query = "Select * from certificatejobs where isdeleted = 0 AND personal_id = " . $request["IDs"];
+            $dataCertificate = DB::select($query);
+            $query = "Select * from prometric_datas where isdeleted = 0 AND certificate_id = " . $dataCertificate[0]->id;
+            $dataPrometric = DB::select($query);
+            $query = "Select * from jpl_datas where isdeleted = 0 AND certificate_id = " . $dataCertificate[0]->id;
+            $dataLanguage = DB::select($query);
+        }
         $query = "Select * from educational_datas where isdeleted = 0 AND personal_id = " . $request["IDs"];
         $dataEducational = DB::select($query);
         $query = "Select * from vocational_datas where isdeleted = 0 AND educational_id = " . $dataEducational[0]->id;
