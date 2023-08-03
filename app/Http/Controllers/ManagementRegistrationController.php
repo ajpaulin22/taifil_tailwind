@@ -253,9 +253,6 @@ class ManagementRegistrationController extends Controller
         if($dataPersonal[0]->job_type != "SSW"){
             $data = [
                 'data' => $dataPersonal[0],
-                'certificate' => $dataCertificate[0],
-                'prometric' => $dataPrometric,
-                'language' => $dataLanguage,
                 'educational' => $dataEducational[0],
                 'vocational' => $dataVocational,
                 'local' => $dataLocal,
@@ -270,6 +267,9 @@ class ManagementRegistrationController extends Controller
         else{
             $data = [
                 'data' => $dataPersonal[0],
+                'certificate' => $dataCertificate[0],
+                'prometric' => $dataPrometric,
+                'language' => $dataLanguage,
                 'educational' => $dataEducational[0],
                 'vocational' => $dataVocational,
                 'local' => $dataLocal,
