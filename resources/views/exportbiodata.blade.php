@@ -376,6 +376,7 @@
                     @endif
             </div>
         }
+        @endif
         <div style="clear:both"></div>
         <h1 class="row">Educational Background</h1>
         <div class="row" >
