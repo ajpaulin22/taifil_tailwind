@@ -213,6 +213,7 @@ class ManagementRegistrationController extends Controller
      }
 
      public function ExportBiodata(Request $request){
+        $data = [];
         $date = Carbon::now();
         $date->toDateTimeString();
         $query = "Select *, c.Category, o.Operation from personal_datas p"
@@ -249,21 +250,38 @@ class ManagementRegistrationController extends Controller
         $dataChildren = DB::select($query);
         $query = "Select * from relative_datas where isdeleted = 0 AND family_id = " . $dataFamily[0]->id;
         $dataRelative = DB::select($query);
-        $data = [
-            'data' => $dataPersonal[0],
-            'certificate' => $dataCertificate[0],
-            'prometric' => $dataPrometric,
-            'language' => $dataLanguage,
-            'educational' => $dataEducational[0],
-            'vocational' => $dataVocational,
-            'local' => $dataLocal,
-            'abroad' => $dataAbroad,
-            'family' => $dataFamily[0],
-            'japanvisit' => $dataVisit,
-            'siblings' => $dataSiblings,
-            'children' => $dataChildren,
-            'relative' => $dataRelative
-        ];
+        if($dataPersonal[0]->job_type != "SSW"){
+            $data = [
+                'data' => $dataPersonal[0],
+                'certificate' => $dataCertificate[0],
+                'prometric' => $dataPrometric,
+                'language' => $dataLanguage,
+                'educational' => $dataEducational[0],
+                'vocational' => $dataVocational,
+                'local' => $dataLocal,
+                'abroad' => $dataAbroad,
+                'family' => $dataFamily[0],
+                'japanvisit' => $dataVisit,
+                'siblings' => $dataSiblings,
+                'children' => $dataChildren,
+                'relative' => $dataRelative
+            ];
+        }
+        else{
+            $data = [
+                'data' => $dataPersonal[0],
+                'educational' => $dataEducational[0],
+                'vocational' => $dataVocational,
+                'local' => $dataLocal,
+                'abroad' => $dataAbroad,
+                'family' => $dataFamily[0],
+                'japanvisit' => $dataVisit,
+                'siblings' => $dataSiblings,
+                'children' => $dataChildren,
+                'relative' => $dataRelative
+            ];
+        }
+        
         $pdf = Pdf::loadView('exportbiodata', $data);
         return $pdf->download("biodata".$date.'.pdf');
      }
