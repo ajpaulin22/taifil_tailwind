@@ -875,7 +875,7 @@
             <h5>Birthday:</h5>
         </div>
         <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$family->partner_name == null ? "N/A" : date('m/d/Y', strtotime($family->partner_birth))}}</label>
+            <label>{{$family->partner_name == null ? "N/A" : date('m/d/Y', strtotime($family->partner_birthday))}}</label>
         </div>
         <div style="float:left; width:11%; margin-right:10px;">
             <h5>Occupation:</h5>
