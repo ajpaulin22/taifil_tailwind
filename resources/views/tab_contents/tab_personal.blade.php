@@ -149,15 +149,15 @@
                         <label class="ml-2 text-sm md:text-lg font-medium text-gray-500 ">Reading</label>
                     </div>
                     <div class="flex items-center mr-4">
-                        <input name="jp_writing" type="checkbox" value="1" class="jp-group w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                        <input  name="jp_writing" type="checkbox" value="1" class="jp-group w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
                         <label  class="ml-2 text-sm md:text-lg font-medium text-gray-500 ">Writing</label>
                     </div>
                     <div class="flex items-center mr-4">
-                        <input name="jp_Speaking" type="checkbox" value="1" class="jp-group w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                        <input  name="jp_Speaking" type="checkbox" value="1" class="jp-group w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
                         <label  class="ml-2 text-sm md:text-lg font-medium text-gray-500 ">Speaking</label>
                     </div>
                     <div class="flex items-center">
-                        <input name="jp_Listening" type="checkbox" value="1" class="jp-group w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                        <input  name="jp_Listening" type="checkbox" value="1" class="jp-group w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
                         <label  class="ml-2 text-sm md:text-lg font-medium text-gray-500 ">Listening</label>
                     </div>
                 </div>

@@ -497,7 +497,6 @@
                     .find('option')
                     // .remove()
                     .end()
-                    .append('<option value="" selected disabled value>Choose....</option>')
                     promise.forEach(data=>{
                         let option = `<option value="${data.ID}" >${data.Category}</option>`;
                         $("#jobcategories").append(option)
@@ -573,7 +572,7 @@
         },
         getOperationsSSW:function(id){
             $.ajax({
-                url:"/client/Biodata/get-operations",
+                url:"/client/Biodata/get-operationsSSW",
                 type:"GET",
                 data:{
                     _token:self.token,
