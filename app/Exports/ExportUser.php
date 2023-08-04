@@ -28,6 +28,15 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
             unset($i->ID);
             return $i;
         });
+
+        if(COUNT($data) != 0){
+            for($i = 0; $i < COUNT($data); $i++){
+                if($data[$i]->AbroadDate != null){
+                    $data[$i]->AbroadDate = date('d/m/Y',strtotime($data[$i]->AbroadDate));
+                }
+            }
+        }
+
         return $data;
     }
 

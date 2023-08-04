@@ -34,6 +34,11 @@ class ManagementRegistrationController extends Controller
         $sql = "call biodata_getdata('".($request['Type'] == null ? '' : $request['Type']) . "', '". ($request['Category'] == null ? '' : $request['Category']). "', '". ($request['Operations'] == null ? '' : $request['Operations']). "', ". ($request['AgeFrom'] == null ? 0 : $request['AgeFrom']). ", ". ($request['AgeTo'] == null ? 0 : $request['AgeTo']) .", '" . $sorCol."', '" . $sorDir."', " . $start.", " . $length. ", '". $search ."')";
         $data = collect(DB::select(DB::raw($sql)));
 
+        // if(COUNT($data) != 0){
+        //     for($i = 0; $i < COUNT($data); $i++){
+        //         $data[$i]->AbroadDate = $data[$i]->AbroadDate->format('Y-m-d') ?? null;
+        //     }
+        // }
         $sql = "SELECT * from personal_datas where isdeleted = 0 "
                         .($request['Type'] == null ? "" : " AND job_type = '". $request['Type'] ."' ")
                         .($request['Category'] == null ? "" : " AND job_cat = '". $request['Category'] ."' ")
