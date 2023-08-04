@@ -15,41 +15,46 @@
     }
 
     const handlePrometricCertificate = (options)=> {
+        $(`select[name='trainee_test_prometric_0']`).append(options)
+        $(`select[name='not_trainee_test_prometric_0']`).append(options)
         PrometricCertificate.forEach((prometric, index) => {
             if(index > 0) {
                 if(isPrometricTrainee) $('#add_prometric_trainee').trigger('click')
                 else $('#add_prometric_not_trainee').trigger('click')
             }
             if(isPrometricTrainee) {
-                if(options) $(`select[name='trainee_test_prometric_${index}']`).append(options)
+                if(options && index > 0) $(`select[name='trainee_test_prometric_${index}']`).append(options)
                 $(`select[name='trainee_test_prometric_${index}']`).val(prometric.certificate)
                 $(`input[name='trainee_taken_prometric_${index}']`).val(prometric.taken)
                 if(prometric.passed === 1) $(`#trainee_passed_prometric_${index}`).prop('checked', true)
                 else $(`#trainee_failed_prometric_${index}`).prop('checked', true)
             }else {
-                if(options) $(`select[name='not_trainee_test_prometric_${index}']`).append(options)
+                if(options && index > 0) $(`select[name='not_trainee_test_prometric_${index}']`).append(options)
                 $(`select[name='not_trainee_test_prometric_${index}']`).val(prometric.certificate)
                 $(`input[name='not_trainee_taken_prometric_${index}']`).val(prometric.taken)
                 if(prometric.passed === 1) $(`#not_trainee_passed_prometric_${index}`).prop('checked', true)
                 else $(`#not_trainee_failed_prometric_${index}`).prop('checked', true)
             }
         })
+
     }
 
     const handlePrometricLanguage = (options)=> {
+        $(`select[name='trainee_test_jpl_0']`).append(options)
+        $(`select[name='not_trainee_test_jpl_0']`).append(options)
         PrometricLanguage.forEach((language, index) => {
             if(index > 0) {
                 if(isPrometricTrainee) $('#add_japlang_trainee').trigger('click')
                 else $('#add_japlang_not_trainee').trigger('click')
             }
             if(isPrometricTrainee) {
-                if(options) $(`select[name='trainee_test_jpl_${index}']`).append(options)
+                if(options && index > 0) $(`select[name='trainee_test_jpl_${index}']`).append(options)
                 $(`select[name='trainee_test_jpl_${index}']`).val(language.jpl)
                 $(`input[name='trainee_taken_jpl_${index}']`).val(language.taken)
                 if(language.passed === 1) $(`#trainee_passed_language_${index}`).prop('checked', true)
                 else $(`#trainee_failed_language_${index}`).prop('checked', true)
             }else {
-                if(options) $(`select[name='not_trainee_test_jpl_${index}']`).append(options)
+                if(options && index > 0) $(`select[name='not_trainee_test_jpl_${index}']`).append(options)
                 $(`select[name='not_trainee_test_jpl_${index}']`).val(language.jpl)
                 $(`input[name='not_trainee_taken_jpl_${index}']`).val(language.taken)
                 if(language.passed === 1) $(`#not_trainee_passed_language_${index}`).prop('checked', true)
@@ -648,9 +653,7 @@
                         let option = `<option value="${data.prometric}" >${data.prometric}</option>`;
                         self.prometric_options += option;
                     })
-                    if(PrometricCertificate.length != 0){
-                        handlePrometricCertificate(self.prometric_options)
-                    }
+                    handlePrometricCertificate(self.prometric_options)
                 }
             })
         },
@@ -668,10 +671,7 @@
                         let option = `<option value="${data.jap_lang}">${data.jap_lang}</option>`;
                         self.japlang_options += option;
                     })
-
-                    if(PrometricLanguage.length != 0){
-                        handlePrometricLanguage(self.japlang_options)
-                    }
+                    handlePrometricLanguage(self.japlang_options)
                     // $("select[name='trainee_test_jpl_0']").append(self.japlang_options)
                     // $("select[name='not_trainee_test_jpl_0']").append(self.japlang_options)
                 }
