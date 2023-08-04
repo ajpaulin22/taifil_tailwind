@@ -12,6 +12,7 @@ class japanvisit_data extends Model
     protected $fillable = [
         "when",
         "where",
-        "isdeleted"
+        "isdeleted",
+        'family_id'
     ];
 }
