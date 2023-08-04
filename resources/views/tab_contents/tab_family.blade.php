@@ -87,7 +87,7 @@
                 <label for="lastname" class="form-label">Occupation<span style="color:red" class="req_mother_deceased">*</span>:</label>
                 <input name="mother_occupation" autocomplete="off" type="text" maxlength="100" class="mother_deceased form-control disabled:bg-slate-200" required>
             </div>
-            
+
             <div class="form-group col-start-2 col-span-12">
                 <label for="lastname" class="form-label">Address<span style="color:red" class="req_mother_deceased">*</span>:</label>
                 <input name="mother_address" autocomplete="off" type="text" maxlength="100" class="mother_deceased form-control disabled:bg-slate-200" required>
@@ -98,7 +98,7 @@
             <div class="form-group col-span-1 flex items-center my-4 md:my-0">
                 <input type="checkbox" value="1" id="sibling_applicable" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
                 <label class="ml-2 text-sm md:text-sm font-normal text-gray-900 ">Tick this checkbox if only child.</label>
-                
+
             </div>
             <div class="form-group col-span-1">
                 <button id="add_sibling" class=" py-2 px-4 bg-sky-700 rounded w-full self-end text-sm text-white disabled:bg-sky-900">Add Sibling</button>
@@ -142,7 +142,7 @@
                 </div>
             </div>
             <div id="siblings_nav" class="col-span-13">
-              
+
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-13">
                 <label class="text-xl font-bold">Spouse<span style="color:red">*</span>:</label>
@@ -195,9 +195,9 @@
                </div>
             </div>
             <div class="col-span-13" id="children">
-                
+
             </div>
-            
+
             <div class="col-span-13 flex items-center my-4 md:my-0">
                 <input type="checkbox" value="1" id="partner_applicable" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
                 <label class="ml-2 text-sm md:text-sm font-normal text-gray-900 ">Tick this checkbox if you have Live In Partner.</label>
@@ -232,11 +232,11 @@
                 <label for="address" class="form-label text-sm md:text-base">Have you been to japan? (nakapunta ka na ba sa Japan):</label>
                 <div class="flex">
                     <div class="flex items-center mr-4">
-                        <input type="radio" value="1" name="went_japan" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required >
+                        <input type="radio" value="1" id="went_japan_yes" name="went_japan" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required >
                         <label  class="ml-2 text-sm md:text-lg text-gray-900">YES</label>
                     </div>
                     <div class="flex items-center mr-4">
-                        <input type="radio" value="0" name="went_japan" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required>
+                        <input type="radio" value="0" id="went_japan_no" name="went_japan" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required>
                         <label  class="ml-2 text-sm md:text-lg text-gray-900">NO</label>
                     </div>
                 </div>
@@ -262,25 +262,25 @@
                    </div>
                 </div>
                 <div id="japanvisit_nav" class="col-span-12 japan_group grid grid-cols-12" hidden>
-                   
+
                 </div>
                 <div class="form-group col-span-4 japan_group" hidden>
                     <div class="flex gap-4 w-full">
                         <label for="address" class="form-label">Have you overstayed in Japan?:</label>
                     <div class="flex">
                         <div class="flex items-center mr-4">
-                            <input type="radio" value="1" name="overstay" class="japan w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required disabled> 
+                            <input type="radio" value="1" id="jp_overstay_yes" name="overstay" class="japan w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required disabled>
                             <label  class="ml-2 text-sm md:text-lg text-gray-900">YES</label>
                         </div>
                         <div class="flex items-center mr-4">
-                            <input type="radio" value="0" name="overstay" class="japan w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required disabled>
+                            <input type="radio" value="0" id="jp_overstay_no" name="overstay" class="japan w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required disabled>
                             <label  class="ml-2 text-sm md:text-lg text-gray-900">NO</label>
                         </div>
                     </div>
                     </div>
                 </div>
                 <div class="form-group col-span-4 overstay_group" hidden>
-                    <input name="overstay_howlong" autocomplete="off" type="text" maxlength="3" class="Number-Only overstay form-control disabled:bg-slate-200" placeholder="How Long(days)?" required disabled>
+                    <input id="jp_overstay_count" name="overstay_howlong" autocomplete="off" type="text" maxlength="3" class="Number-Only overstay form-control disabled:bg-slate-200" placeholder="How Long(days)?" required disabled>
                 </div>
                 <div class="form-group col-span-4 overstay_group" hidden>
                 </div>
@@ -342,7 +342,7 @@
                         <option value="Transit Visa">Transit Visa</option>
                         <option value="Student Visa">Student Visa</option>
                         <option value="Entertainer visa">Entertainer Visa</option>
-                        
+
                     </select>
                 </div>
                 <div class="form-group col-span-4 visa_group" hidden >
@@ -375,7 +375,7 @@
             <div class="col-span-13" id="relatives">
                 <div class="relative_content w-full md:grid grid-cols-13 grid-flow-col gap-4 hidden">
                     <div class="form-group col-span-1">
-     
+
                     </div>
                     <div class="form-group col-span-4 text-center">
                         <label for="sibling" class="form-label font-bold">Name</label>
@@ -414,7 +414,7 @@
             <button id="familyBtn_Prev" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white hover:bg-green-800"><< Prev</button>
             <button id="familyBtn_Next" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white hover:bg-green-800">Next >></button>
         </div>
-       
-        
+
+
     </form>
 </div>

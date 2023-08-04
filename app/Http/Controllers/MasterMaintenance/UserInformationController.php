@@ -130,10 +130,10 @@ class UserInformationController extends Controller
                     ,'update_user' => 'admin'
                 ]:
                 [
-                    'firstname' => $request["data"][2]["value"]
-                    ,'lastname' => $request["data"][3]["value"]
-                    ,'username' => $request["data"][4]["value"]
-                    ,'email' => $request["data"][5]["value"]
+                    'firstname' => $request["data"][1]["value"]
+                    ,'lastname' => $request["data"][2]["value"]
+                    ,'username' => $request["data"][3]["value"]
+                    ,'email' => $request["data"][4]["value"]
                     , 'password' => $encryptedPassword
                     ,'create_user' => 'admin'
                     ,'update_user' => 'admin'
@@ -141,7 +141,6 @@ class UserInformationController extends Controller
                 );
                 $msg = 'User Information Updated Successfully';
             }
-            
         }
         $data = [
             'msg' =>  $msg,

@@ -1,8 +1,63 @@
-
-
 (function() {
     var JobCategoryID = 0;
     var JobOperationID = 0;
+    let CertificateId = -1;
+    let CertificateOperation = -1;
+    let isPrometricTrainee = false
+    let PrometricCertificate = []
+    let PrometricLanguage = []
+    let spouse = {
+        name: '',
+        occupation: '',
+        cp: '',
+        birthday: '',
+        address: '',
+    }
+
+    const handlePrometricCertificate = (options)=> {
+        PrometricCertificate.forEach((prometric, index) => {
+            if(index > 0) {
+                if(isPrometricTrainee) $('#add_prometric_trainee').trigger('click')
+                else $('#add_prometric_not_trainee').trigger('click')
+            }
+            if(isPrometricTrainee) {
+                if(options) $(`select[name='trainee_test_prometric_${index}']`).append(options)
+                $(`select[name='trainee_test_prometric_${index}']`).val(prometric.certificate)
+                $(`input[name='trainee_taken_prometric_${index}']`).val(prometric.taken)
+                if(prometric.passed === 1) $(`#trainee_passed_prometric_${index}`).prop('checked', true)
+                else $(`#trainee_failed_prometric_${index}`).prop('checked', true)
+            }else {
+                if(options) $(`select[name='not_trainee_test_prometric_${index}']`).append(options)
+                $(`select[name='not_trainee_test_prometric_${index}']`).val(prometric.certificate)
+                $(`input[name='not_trainee_taken_prometric_${index}']`).val(prometric.taken)
+                if(prometric.passed === 1) $(`#not_trainee_passed_prometric_${index}`).prop('checked', true)
+                else $(`#not_trainee_failed_prometric_${index}`).prop('checked', true)
+            }
+        })
+    }
+
+    const handlePrometricLanguage = (options)=> {
+        PrometricLanguage.forEach((language, index) => {
+            if(index > 0) {
+                if(isPrometricTrainee) $('#add_japlang_trainee').trigger('click')
+                else $('#add_japlang_not_trainee').trigger('click')
+            }
+            if(isPrometricTrainee) {
+                if(options) $(`select[name='trainee_test_jpl_${index}']`).append(options)
+                $(`select[name='trainee_test_jpl_${index}']`).val(language.jpl)
+                $(`input[name='trainee_taken_jpl_${index}']`).val(language.taken)
+                if(language.passed === 1) $(`#trainee_passed_language_${index}`).prop('checked', true)
+                else $(`#trainee_failed_language_${index}`).prop('checked', true)
+            }else {
+                if(options) $(`select[name='not_trainee_test_jpl_${index}']`).append(options)
+                $(`select[name='not_trainee_test_jpl_${index}']`).val(language.jpl)
+                $(`input[name='not_trainee_taken_jpl_${index}']`).val(language.taken)
+                if(language.passed === 1) $(`#not_trainee_passed_language_${index}`).prop('checked', true)
+                else $(`#not_trainee_failed_language_${index}`).prop('checked', true)
+            }
+        })
+    }
+
     const Biodata = function() {
         return new Biodata.init();
     }
@@ -51,49 +106,47 @@
         uploadData:function(){
             $("#loader").show()
             let self = this;
-           try {
-            $.ajax({
-                url:"/client/Biodata/uploadData",
-                type:"POST",
-                data:{
-                    _token:self.token,
-                    prometric:self.prometricData,
-                    jpl:self.jplData,
-                    family:self.familyData,
-                    sibling:self.siblingData,
-                    relative:self.relativeData,
-                    children:self.childrenData,
-                    local_emp:self.local_empData,
-                    abroad_emp:self.abroad_empData,
-                    educational:self.educationalData,
-                    vocational:self.vocationalData,
-                    personal:self.personalData,
-                    japanvisit:self.japanvisitData,
-                    certificatejob:self.certificateJobData,
-                    personalid: $("#PersonalInfoID").val()
-                },
-                dataType:"JSON",
-                success:function(promise){
-                      console.log(promise)
-                      if(promise.success){
-                        self.saveid(promise.id);
-                      }
-                      else{
-                        $("#loader").hide();
-                        iziToast.error({
-                            class:'rounded-lg overflow-hidden',
-                            title: 'Error',
-                            message: promise.msgTitle,
-                            position:'topRight'
-                        });
-                      }
-                      
-                }
-
-            })
-           } catch (error) {
-            console.log(error)
-           }
+            try {
+                $.ajax({
+                    url:"/client/Biodata/uploadData",
+                    type:"POST",
+                    data:{
+                        _token:self.token,
+                        prometric:self.prometricData,
+                        jpl:self.jplData,
+                        family:self.familyData,
+                        sibling:self.siblingData,
+                        relative:self.relativeData,
+                        children:self.childrenData,
+                        local_emp:self.local_empData,
+                        abroad_emp:self.abroad_empData,
+                        educational:self.educationalData,
+                        vocational:self.vocationalData,
+                        personal:self.personalData,
+                        japanvisit:self.japanvisitData,
+                        certificatejob:self.certificateJobData,
+                        personalid: $("#PersonalInfoID").val()
+                    },
+                    dataType:"JSON",
+                    success:function(promise){
+                            console.log(promise)
+                            if(promise.success){
+                            self.saveid(promise.id);
+                            }
+                            else{
+                            $("#loader").hide();
+                            iziToast.error({
+                                class:'rounded-lg overflow-hidden',
+                                title: 'Error',
+                                message: promise.msgTitle,
+                                position:'topRight'
+                            });
+                            }
+                    }
+                })
+            } catch (error) {
+                console.log(error)
+            }
         },
 
         loadURLToInputField:function(url, fileName, key){
@@ -137,7 +190,7 @@
                         $("#lastname").val(promise.personaldata[0].lastname);
                         $("#firstname").val(promise.personaldata[0].first_name);
                         $("#middlename").val(promise.personaldata[0].middle_name);
-                        $("#nickanme").val(promise.personaldata[0].nickname);
+                        $("#nickname").val(promise.personaldata[0].nickname);
                         $("#address").val(promise.personaldata[0].address);
                         $("#birthday").val(promise.personaldata[0].date_birth);
                         $("#birth_place").val(promise.personaldata[0].place_birth);
@@ -168,36 +221,32 @@
                         $("input[name='issue_date']").val(promise.personaldata[0].issue_date);
                         $("input[name='expiry_date']").val(promise.personaldata[0].expiry_date);
                         $("input[name='issue_place']").val(promise.personaldata[0].issue_place);
-                        $("input[name='allergy'][value='" + promise.personaldata[0].allergy + "']").prop("checked", true);
+                        $("input[name='allergy'][value='" + promise.personaldata[0].allergy + "']").trigger('click');
+                        $("input[name='food_allergy']").val(promise.personaldata[0].food_alergy);
                         $("input[name='tattoo'][value='" + promise.personaldata[0].tattoo + "']").prop("checked", true);
                         $("input[name='licensed'][value='" + promise.personaldata[0].drivers_licensed + "']").prop("checked", true);
 
                         //Prometrics
                         if(promise.personaldata[0].job_type == "SSW"){
-                            if(promise.prometricsdata.length == 0){
-                                $("#certificate_applicable").trigger('click');
+                            if(promise.traineedata[0]["ex-trainee"] == 1){
+                                $("#certificate_trainee").trigger('click');
+                                isPrometricTrainee = true
+                                CertificateId = promise.traineedata[0].jobcategory
+                                CertificateOperation = promise.traineedata[0].joboperation
                             }
-                            else{
-                                for(var i = 0; i < promise.prometricsdata.length; i++){
-                                    if (i != 0)
-                                        $("#add_prometric").trigger('click');
-                                    $("input[name='name_prometric_"+ i +"']").val(promise.prometricsdata[i].name);
-                                    $("input[name='add_prometric_"+ i +"']").val(promise.prometricsdata[i].address);
-                                    $("input[name='date_from_prometric_"+ i +"']").val(promise.prometricsdata[i].from);
-                                    $("input[name='date_until_prometric_"+ i +"']").val(promise.prometricsdata[i].until);
-                                    $("input[name='certificate_prometric_"+ i +"']").val(promise.prometricsdata[i].certificate);
-                                    $("input[name='date_until_cert_prometric_"+ i +"']").val(promise.prometricsdata[i].cert_until);
-                                }
 
+                            if(promise.prometricsdata.length !== 0){
+                                $("#prometric_applicable").trigger('click');
+                                PrometricCertificate = []
+                                for(var i = 0; i < promise.prometricsdata.length; i++){
+                                    PrometricCertificate.push(promise.prometricsdata[i])
+                                }
+                            }
+                            if(promise.languagedata.length !== 0){
+                                $("#jpl_applicable").trigger('click');
+                                PrometricLanguage = []
                                 for(var i = 0; i < promise.languagedata.length; i++){
-                                    if (i != 0)
-                                        $("#add_japlang_btn").trigger('click');
-                                    $("input[name='name_jpl_"+ i +"']").val(promise.languagedata[i].name);
-                                    $("input[name='add_jpl_"+ i +"']").val(promise.languagedata[i].address);
-                                    $("input[name='date_from_jpl_"+ i +"']").val(promise.languagedata[i].from);
-                                    $("input[name='date_until_jpl_"+ i +"']").val(promise.languagedata[i].until);
-                                    $("input[name='certificate_jpl_"+ i +"']").val(promise.languagedata[i].certificate);
-                                    $("input[name='date_until_cert_jpl_"+ i +"']").val(promise.languagedata[i].cert_until);
+                                    PrometricLanguage.push(promise.languagedata[i])
                                 }
                             }
                         }
@@ -224,21 +273,20 @@
                         $("input[name='course_college']").val(promise.educationaldata[0].course_college);
                         $("select[name='certificate_college']").val(promise.educationaldata[0].certificate_college).trigger('change');
                         $("input[name='date_until_cert_college']").val(promise.educationaldata[0].certificate_until_college);
-                        for (var i = 0; i < promise.vocationaldata.length; i++){
-                            if(i != 0)
-                                $("#add_vocational_btn").trigger('click');
-                            $("input[name='name_vocational_"+ i +"']").val(promise.vocationaldata[i].name);
-                            $("input[name='add_vocational_"+ i +"']").val(promise.vocationaldata[i].address);
-                            $("input[name='date_from_vocational_"+ i +"']").val(promise.vocationaldata[i].from);
-                            $("input[name='date_until_vocational_"+ i +"']").val(promise.vocationaldata[i].until);
-                            $("input[name='course_vocational_"+ i +"']").val(promise.vocationaldata[i].course);
-                            $("input[name='certificate_vocational_"+ i +"']").val(promise.vocationaldata[i].certificate);
-                            $("input[name='date_until_cert_vocational_"+ i +"']").val(promise.vocationaldata[i].certificate_until);
-                        }
+                        promise.vocationaldata.forEach((vocational, index)=> {
+                            if(index > 0) $("#add_vocational_btn").trigger('click');
+                            $(`input[name='name_vocational_${index}']`).val(vocational.name);
+                            $(`input[name='add_vocational_${index}']`).val(vocational.address);
+                            $(`input[name='date_from_vocational_${index}']`).val(vocational.from);
+                            $(`input[name='date_until_vocational_${index}']`).val(vocational.until);
+                            $(`input[name='course_vocational_${index}']`).val(vocational.course);
+                            $(`input[name='certificate_vocational_${index}']`).val(vocational.certificate);
+                            $(`input[name='date_until_cert_vocational_${index}']`).val(vocational.certificate_until);
+                        })
 
                         //localemployment
                         if (promise.employmentlocaldata.length == 0){
-                            $("#local_applicable").trigger('click');                        
+                            $("#local_applicable").trigger('click');
                         }
                         else{
                             for (var i = 0; i < promise.employmentlocaldata.length; i++){
@@ -254,7 +302,7 @@
 
                         //abroademployment
                         if (promise.employmentabroaddata.length == 0){
-                            $("#abroad_applicable").trigger('click');                        
+                            $("#abroad_applicable").trigger('click');
                         }
                         else{
                             for (var i = 0; i < promise.employmentabroaddata.length; i++){
@@ -294,7 +342,6 @@
                             $("input[name='mother']").val(promise.familydata[0].mother_name);
                             $("input[name='mother_birthday']").val(promise.familydata[0].mother_birth);
                         }
-
                         else{
                             $("input[name='mother']").val(promise.familydata[0].mother_name);
                             $("input[name='mother_birthday']").val(promise.familydata[0].mother_birth);
@@ -302,50 +349,47 @@
                             $("input[name='mother_cp']").val(promise.familydata[0].mother_cp);
                             $("input[name='mother_address']").val(promise.familydata[0].mother_address);
                         }
-
                         if($("select[name='civil_status']").val() == 'Married'){
                             $("input[name='spouse']").val(promise.familydata[0].spouse_name);
                             $("input[name='spouse_birthday']").val(promise.familydata[0].spouse_birth);
                             $("input[name='spouse_occupation']").val(promise.familydata[0].spouse_occupation);
                             $("input[name='spouse_cp']").val(promise.familydata[0].spouse_cp);
                             $("input[name='spouse_address']").val(promise.familydata[0].spouse_address);
+                            spouse.name = promise.familydata[0].spouse_name
+                            spouse.cp = promise.familydata[0].spouse_cp
+                            spouse.occupation = promise.familydata[0].spouse_occupation
+                            spouse.birthday = promise.familydata[0].spouse_nbirth
+                            spouse.address = promise.familydata[0].spouse_address
                         }
-                        
                         if(promise.familydata[0].partner_name != null){
                             $("#partner_applicable").trigger('click');
                             $("input[name='partner']").val(promise.familydata[0].partner_name);
-                            $("input[name='partner_birthday']").val(promise.familydata[0].partner_birth);
-                            $("input[name='partner_Occupation']").val(promise.familydata[0].partner_occupation);
+                            $("input[name='partner_birthday']").val(promise.familydata[0].partner_birthday);
+                            $("input[name='partner_Occupation']").val(promise.familydata[0].partner_Occupation);
                             $("input[name='partner_cp']").val(promise.familydata[0].partner_cp);
                             $("input[name='partner_address']").val(promise.familydata[0].partner_address);
                         }
-
                         if(promise.familydata[0].went_japan == 0){
-                            $("input[name='went_japan'][value='"+ promise.familydata[0].went_japan +"']").trigger('click');
-                        }
-                        else{
-                            $("input[name='went_japan'][value='"+ promise.familydata[0].went_japan +"']").trigger('click');
+                            $('#went_japan_no').trigger('click')
+                            // $("input[name='went_japan'][value='"+ promise.familydata[0].went_japan +"']").trigger('click');
+                        }else{
+                            // $(`input[name='went_japan'][value='${promise.familydata[0].went_japan}']`).trigger('click');
+                            $('#went_japan_yes').trigger('click')
                             $("input[name='japan_times']").val(promise.familydata[0].how_many_japan);
-
                             for(var i = 0; i < promise.japanvisitdata.length; i++){
-                                if(i != 0)
-                                    $("#add_japanvisit").trigger('click');
-                                $("input[name='japan_where_"+ i +"']").val(promise.japanvisitdata[i].where);
-                                $("input[name='japan_when_"+ i +"']").val(promise.japanvisitdata[i].when);
+                                if(i != 0) $("#add_japanvisit").trigger('click');
+                                $(`input[name='japan_where_${i}']`).val(promise.japanvisitdata[i].where);
+                                $(`input[name='japan_when_${i}']`).val(promise.japanvisitdata[i].when);
                             }
 
-                            if(promise.familydata[0].overstay_japan == 0){
-                                $("input[name='went_japan'][value='"+ promise.familydata[0].overstay_japan +"']").trigger('click');
-                            }
-                            else{
-                                $("input[name='overstay'][value='"+ promise.familydata[0].overstay_japan +"']").trigger('click');
-                                $("input[name='overstay_howlong']").val(promise.familydata[0].how_long_overstay);
+                            if(promise.familydata[0].overstay_japan === 1) {
+                                $('#jp_overstay_yes').trigger('click')
+                                $('#jp_overstay_count').val(promise.familydata[0].how_long_overstay)
                             }
 
                             if(promise.familydata[0].fake_identity_japan == 0){
                                 $("input[name='fakeidentity'][value='"+ promise.familydata[0].fake_identity_japan +"']").trigger('click');
-                            }
-                            else{
+                            }else{
                                 $("input[name='fakeidentity'][value='"+ promise.familydata[0].fake_identity_japan +"']").trigger('click');
                                 $("input[name='fakeidentity_purpose']").val(promise.familydata[0].fake_identity_purpose);
                                 $("input[name='fakeidentity_surrendered'][value='"+ promise.familydata[0].fake_identity_surrender +"']").trigger('click');
@@ -354,8 +398,7 @@
 
                         if(promise.familydata[0].applied_visa == 0){
                             $("input[name='visa'][value='"+ promise.familydata[0].applied_visa +"']").trigger('click');
-                        }
-                        else{
+                        }else{
                             $("input[name='visa'][value='"+ promise.familydata[0].applied_visa +"']").trigger('click');
                             $("select[name='visa_type']").val(promise.familydata[0].type_visa).trigger('change');
                             $("input[name='visa_when']").val(promise.familydata[0].when_applied_visa);
@@ -363,9 +406,8 @@
                         }
 
                         if (promise.siblingdata.length == 0){
-                            $("#sibling_applicable").trigger('click');                        
-                        }
-                        else{
+                            $("#sibling_applicable").trigger('click');
+                        } else{
                             for (var i = 0; i < promise.siblingdata.length; i++){
                                 if(i != 0)
                                     $("#add_sibling").trigger('click');
@@ -378,9 +420,8 @@
                         }
 
                         if (promise.childrendata.length == 0){
-                            $("#children_applicable").trigger('click');                        
-                        }
-                        else{
+                            $("#children_applicable").trigger('click');
+                        } else{
                             for (var i = 0; i < promise.childrendata.length; i++){
                                 if(i != 0)
                                     $("#add_children").trigger('click');
@@ -390,9 +431,8 @@
                         }
 
                         if (promise.relativedata.length == 0){
-                            $("#relatives_applicable").trigger('click');                        
-                        }
-                        else{
+                            $("#relatives_applicable").trigger('click');
+                        } else{
                             for (var i = 0; i < promise.relativedata.length; i++){
                                 if(i != 0)
                                     $("#add_relatives").trigger('click');
@@ -450,7 +490,7 @@
                 success:function(promise){
                     $('#jobcategories')
                     .find('option')
-                    .remove()
+                    // .remove()
                     .end()
                     .append('<option value="" selected disabled value>Choose....</option>')
                     promise.forEach(data=>{
@@ -489,6 +529,9 @@
                         let option = `<option value="${data.ID}" >${data.Category}</option>`;
                         $("#certificate_category").append(option)
                     })
+                    if(CertificateId != -1){
+                        $("#certificate_category").val(CertificateId).trigger('change');
+                    }
                 }
             })
         },
@@ -542,6 +585,9 @@
                         let option = `<option value="${data.ID}">${data.Operation}</option>`;
                         $("#certificate_operation").append(option)
                     })
+                    if(CertificateOperation != -1){
+                        $("#certificate_operation").val(CertificateOperation).trigger('change');
+                    }
                 }
             })
         },
@@ -599,11 +645,12 @@
                 dataType:"json",
                 success:function(promise){
                     promise.forEach(data=>{
-                        let option = `<option value="${data.prometric}">${data.prometric}</option>`;
-                        self.prometric_options += option; 
+                        let option = `<option value="${data.prometric}" >${data.prometric}</option>`;
+                        self.prometric_options += option;
                     })
-                    $("select[name='trainee_test_prometric_0']").append(self.prometric_options)
-                    $("select[name='not_trainee_test_prometric_0']").append(self.prometric_options)
+                    if(PrometricCertificate.length != 0){
+                        handlePrometricCertificate(self.prometric_options)
+                    }
                 }
             })
         },
@@ -619,11 +666,14 @@
                 success:function(promise){
                     promise.forEach(data=>{
                         let option = `<option value="${data.jap_lang}">${data.jap_lang}</option>`;
-                        self.japlang_options += option; 
+                        self.japlang_options += option;
                     })
-                    $("select[name='trainee_test_jpl_0']").append(self.japlang_options)
-                    $("select[name='not_trainee_test_jpl_0']").append(self.japlang_options)
-                    
+
+                    if(PrometricLanguage.length != 0){
+                        handlePrometricLanguage(self.japlang_options)
+                    }
+                    // $("select[name='trainee_test_jpl_0']").append(self.japlang_options)
+                    // $("select[name='not_trainee_test_jpl_0']").append(self.japlang_options)
                 }
             })
         }
@@ -677,16 +727,13 @@
         $(this).valid()
     })
 
-
-
-
     //====================================================================tabs Event Listener
     $("[data-tab-target]").toArray().forEach(tab => {
         let valid = false;
         $(tab).on("click",function(){
             const target = $(tab)[0].dataset.tabTarget
             $("[data-tab-content]").toArray().forEach((content)=>{
-                
+
                 if(!$(content).hasClass("hidden")){
                     let validRun = $(content).find('form').attr("id")
                     switch (validRun){
@@ -710,7 +757,7 @@
                             break;
                         case "upload_form":
                             valid = (biodata.upload_validator) ? $(content).find('form').valid() : true
-                            break;    
+                            break;
                     }
 
                     if($(content).find('form').attr("id") == "family_form") {
@@ -720,7 +767,7 @@
                 if(valid){
                     $(content).addClass("hidden")
                 }
-                
+
             })
             if(valid){
                 $("[data-tab-target]").toArray().forEach((content)=>{
@@ -734,15 +781,12 @@
                 $(tab).addClass('bg-green-800')
                 $(tab).addClass("text-white")
                  $(target).removeClass("hidden");
-                 
+
             }
-            
+
         });
     });
- 
-    
 
-    
     //PERSONAL TAB ============================================EVENT LISTENER
     $("#personal_form").validate({
         errorElement: 'span',
@@ -778,7 +822,7 @@
         $("#personal_form").valid();
         biodata.personal_validator = true;
         //to trigger the next tab-------------
-        
+
         // if($("#seminar_tab").length == 1) {
         //     $("#seminar_tab").trigger('click');
         // }else{
@@ -788,8 +832,8 @@
 
     $("#birthday").on("input",function(){
         // const getAge = Math.floor((new Date($(this).val()).getTime() - new Date()) / 3.15576e+10)
-        var difference=Date.now() - new Date($(this).val()).getTime(); 
-        var  ageDate = new Date(difference); 
+        var difference=Date.now() - new Date($(this).val()).getTime();
+        var  ageDate = new Date(difference);
         var calculatedAge=   Math.abs(ageDate.getUTCFullYear() - 1970);
         $("#age").val(calculatedAge).trigger("change");
     });
@@ -799,7 +843,7 @@
             $("#allergy").show()
             $("input[name='food_allergy']").attr("disabled",false)
         }else{
-            $("#allergy").hide() 
+            $("#allergy").hide()
             $("input[name='food_allergy']").attr("disabled",true)
         }
     })
@@ -807,7 +851,7 @@
         if($(this).val() == 1){
             $(".licensed").show()
         }else{
-            $(".licensed").hide() 
+            $(".licensed").hide()
         }
     })
 
@@ -854,7 +898,7 @@
                             passed:parseInt($('input[name="trainee_result_jpl_' + i + '"]').val()),
                         })
                     }
-                   
+
                 }
             }else{
                 for (let i = 0; $(form).find('select[name="not_trainee_test_prometric_' + i + '"]').val() != null ; i++){
@@ -862,7 +906,7 @@
                         biodata.prometricData.push({
                             test:$('select[name="not_trainee_test_prometric_' + i + '"]').val() == 'Others' ? $('select[name="not_trainee_test_prometric_' + i + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="not_trainee_test_prometric_' + i + '"]').val(),
                             taken:$('input[name="not_trainee_taken_prometric_' + i + '"]').val(),
-                            passed:parseInt($('input[name="not_trainee_result_prometric_' + i + '"]').val()),
+                            passed:$(`#not_trainee_passed_prometric_${i}`).prop('checked'),
                         })
                     }
                 }
@@ -871,76 +915,80 @@
                         biodata.jplData.push({
                             test:$('select[name="not_trainee_test_jpl_' + i + '"]').val(),
                             taken:$('input[name="not_trainee_taken_jpl_' + i + '"]').val(),
-                            passed:parseInt($('input[name="not_trainee_result_jpl_' + i + '"]').val()),
+                            passed: $(`#not_trainee_passed_language_${i}`).prop('checked'),
                         })
                     }
-                   
+
                 }
             }
             console.log(biodata.prometricData,biodata.jplData)
 
             $("#education_tab").removeClass('pointer-events-none')
             $("#education_tab").trigger("click")
-            
+
           }
     });
 
     $("#add_prometric_trainee").on("click",function(e){
         e.preventDefault();
         let id = biodata.prometric_trainee;
-        let form = `<div class="md:grid my-3 grid-cols-7 gap-4">
-                    <div class="mt-2 md:mt-0 form-group col-span-3">
-                        <select required name="trainee_test_prometric_${id+1}" class="form-select disabled:bg-slate-200">
-                            ${biodata.prometric_options}
-                        </select>
-                    </div>
-                    <div class="mt-2 md:mt-0 form-group col-span-1">
-                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                        <input data-rule-validDate="true" name="trainee_taken_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Taken" />
-                   </div>
-                    </div>
-                    <div class="form-group col-span-2">
-                        <div class="flex">
-                            <div class="flex items-center mr-5">
-                                <input required type="radio" value="1" name="trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
-                                <label for="inline-radio" class="ml-2 text-sm md:text-xl text-gray-900">Passed</label>
-                            </div>
-                            <div class="flex items-center mr-4">
-                                <input required type="radio" value="0" name="trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
-                                <label for="inline-2-radio" class="ml-2 text-sm md:text-xl text-gray-900">Failed</label>
+        let form = `<div class="md:grid my-3 grid-cols-7 gap-4 biodata-id-priometric}">
+                        <div class="mt-2 md:mt-0 form-group col-span-3">
+                            <select id="trainee_test_prometric_${id+1}" required name="trainee_test_prometric_${id+1}" class="form-select disabled:bg-slate-200">
+                                ${biodata.prometric_options}
+                            </select>
+                        </div>
+                        <div class="mt-2 md:mt-0 form-group col-span-1">
+                        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                            <input data-rule-validDate="true" name="trainee_taken_prometric_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Taken" />
+                        </div>
+                        </div>
+                        <div class="form-group col-span-2">
+                            <div class="flex">
+                                <div class="flex items-center mr-5">
+                                    <input required type="radio" value="1" id="trainee_passed_prometric_${id+1}" name="trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                                    <label for="inline-radio" class="ml-2 text-sm md:text-xl text-gray-900">Passed</label>
+                                </div>
+                                <div class="flex items-center mr-4">
+                                    <input required type="radio" value="0" id="trainee_failed_prometric_${id+1}" name="trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                                    <label for="inline-2-radio" class="ml-2 text-sm md:text-xl text-gray-900">Failed</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mt-2 md:mt-0 form-group col-span-1">
-                        <button class="remove_prometric_trainee py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white">Remove Record</button>
-                    </div>
-                    
-                </div>`;
+                        <div class="mt-2 md:mt-0 form-group col-span-1">
+                            <button id="remove_prometric_trainee_${id + 1}" class="py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white">Remove Record</button>
+                        </div>
+                    </div>`;
 
-       $("#trainee_prometric_nav").append(form);
-       $(".remove_prometric_trainee").on("click",function(e){
-           e.preventDefault();
-           $(this).closest('.grid-cols-7').remove();
-       })
-       biodata.prometric_trainee++
-       tw_elements.initTE({ Datepicker,Input });
-       $(".date_picker").on("keydown",function(){
-        return false;
-     })
- 
-     $(".date_picker").on("input",function(){
+        $("#trainee_prometric_nav").append(form);
+        $(`#remove_prometric_trainee_${id + 1}`).on("click",function(e){
+            e.preventDefault();
+            const select = $(`#trainee_test_prometric_${id+1}`);
+            PrometricCertificate = PrometricCertificate.filter(cert => cert.certificate !== select.val())
+            $(this).closest('.grid-cols-7').remove();
+        })
+
+        biodata.prometric_trainee++
+        tw_elements.initTE({ Datepicker,Input });
+
+        $(".date_picker").on("keydown",function(){
+            return false;
+        })
+
+        $(".date_picker").on("input",function(){
          $(this).valid()
-     })
+        })
 
-     $(`select[name='trainee_test_prometric_${id+1}']`).on("change",function(){
-        if ($(this).val() == 'Others'){
-            let input = "<div class='prometric_test mt-2 md:mt-0 form-group col-span-3'><input autocomplete='off' type='text' maxlength='100' class=' form-control disabled:bg-slate-200' placeholder='Prometric Test' required></div>"
-            $(this).closest('.grid-cols-7').append(input)
-        }else{
-            $(this).parent().parent().find('.prometric_test').remove()
-        }
+        $(`select[name='trainee_test_prometric_${id+1}']`).on("change",function(){
+            if ($(this).val() == 'Others'){
+                let input = "<div class='prometric_test mt-2 md:mt-0 form-group col-span-3'><input autocomplete='off' type='text' maxlength='100' class=' form-control disabled:bg-slate-200' placeholder='Prometric Test' required></div>"
+                $(this).closest('.grid-cols-7').append(input)
+            }else{
+                $(this).parent().parent().find('.prometric_test').remove()
+            }
+        })
     })
-    })
+
     $("#add_prometric_not_trainee").on("click",function(e){
         e.preventDefault();
         let id = biodata.prometric_trainee;
@@ -960,11 +1008,11 @@
         <div class="form-group col-span-2">
             <div class="flex">
                 <div class="flex items-center mr-5">
-                    <input required type="radio" value="1" name="not_trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <input required type="radio" value="1" id="not_trainee_passed_prometric_${id+1}" name="not_trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                     <label for="inline-radio" class="ml-2 text-xl text-gray-900">Passed</label>
                 </div>
                 <div class="flex items-center mr-4">
-                    <input required type="radio" value="0" name="not_trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <input required type="radio" value="0" id="not_trainee_failed_prometric_${id+1}" name="not_trainee_result_prometric_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                     <label for="inline-2-radio" class="ml-2 text-xl text-gray-900">Failed</label>
                 </div>
             </div>
@@ -984,7 +1032,7 @@
        $(".date_picker").on("keydown",function(){
         return false;
      })
- 
+
      $(".date_picker").on("input",function(){
          $(this).valid()
      })
@@ -1004,7 +1052,7 @@
         let id = biodata.jpl_trainee;
         let form = `<div class="md:grid my-3 grid-cols-7 gap-4">
         <div class="mt-2 md:mt-0 form-group col-span-3">
-            <select required name="trainee_test_jpl_${id+1}" class="disabled:bg-slate-200 form-select">
+            <select id="trainee_test_jpl_${id+1}" required name="trainee_test_jpl_${id+1}" class="disabled:bg-slate-200 form-select">
                 ${biodata.japlang_options}
             </select>
         </div>
@@ -1016,33 +1064,36 @@
         <div class="form-group col-span-2">
             <div class="flex">
                 <div class="flex items-center mr-5">
-                    <input required type="radio" value="1" name="trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <input required type="radio" value="1" id="trainee_passed_language_${id+1}" name="trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                     <label for="inline-radio" class="ml-2 text-sm md:text-xl text-gray-900">Passed</label>
                 </div>
                 <div class="flex items-center mr-4">
-                    <input required type="radio" value="0" name="trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <input required type="radio" value="0" id="trainee_failed_language_${id+1}" name="trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                     <label for="inline-2-radio" class="ml-2 text-sm md:text-xl text-gray-900">Failed</label>
                 </div>
             </div>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
-            <button class="remove_jpl_trainee py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white">Remove Record</button>
+            <button id="remove_jpl_trainee_${id + 1}" class="py-2 px-4 bg-red-700 rounded w-full self-end text-sm text-white">Remove Record</button>
         </div>
-        
+
     </div>`;
 
        $("#trainee_jpl_div").append(form);
        tw_elements.initTE({ Datepicker,Input });
-       $(".remove_jpl_trainee").on("click",function(e){
-           e.preventDefault();
-           $(this).closest('.grid-cols-7').remove();
-           
+
+       $(`#remove_jpl_trainee_${id + 1}`).on("click",function(e){
+            e.preventDefault();
+            const select = $(`#trainee_test_jpl_${id+1}`);
+            PrometricLanguage = PrometricLanguage.filter(language => language.jpl !== select.val())
+            $(this).closest('.grid-cols-7').remove();
        })
+
        biodata.jpl_trainee++
        $(".date_picker").on("keydown",function(){
         return false;
      })
- 
+
      $(".date_picker").on("input",function(){
          $(this).valid()
      })
@@ -1067,11 +1118,11 @@
         <div class="form-group col-span-2">
             <div class="flex">
                 <div class="flex items-center mr-5">
-                    <input required type="radio" value="1" name="not_trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <input required type="radio" value="1" id="not_trainee_passed_language_${id+1}" name="not_trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                     <label for="inline-radio" class="ml-2 text-xl text-gray-900">Passed</label>
                 </div>
                 <div class="flex items-center mr-4">
-                    <input required type="radio" value="0" name="not_trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                    <input required type="radio" value="0" id="not_trainee_failed_language_${id+1}" name="not_trainee_result_jpl_${id+1}" class="w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                     <label for="inline-2-radio" class="ml-2 text-xl text-gray-900">Failed</label>
                 </div>
             </div>
@@ -1086,13 +1137,13 @@
        $(".remove_jpl_not_trainee").on("click",function(e){
            e.preventDefault();
            $(this).closest('.grid-cols-7').remove();
-           
+
        })
        biodata.jpl_trainee++
        $(".date_picker").on("keydown",function(){
         return false;
      })
- 
+
      $(".date_picker").on("input",function(){
          $(this).valid()
      })
@@ -1110,6 +1161,8 @@
 
     $("#certificate_trainee").on("click",function(e){
         certificateValid.resetForm();
+        biodata.prometric_trainee = 0
+        biodata.jpl_trainee = 0
         if(this.checked){
             $("#ex-trainee").show();
             $("#not-ex-trainee :input").attr("disabled",true)
@@ -1121,13 +1174,11 @@
             biodata.ex_trainee = true;
             $("#not_trainee_jpl_div").html("")
             $("#not_trainee_prometric_nav").html("")
-            
-            
         }else{
             $("#ex-trainee").hide();
             $("#not-ex-trainee").show()
             $(".job").attr("disabled",true)
-            
+
             $("#not-ex-trainee :input").attr("disabled",false)
             $("#not-ex-trainee :button").attr("disabled",false)
             if($("#prometric_applicable").is(":checked")){
@@ -1137,20 +1188,21 @@
                 $("#jpl_applicable").trigger('click')
             }
             biodata.ex_trainee = false;
-
         }
     })
 
     $("#prometric_applicable").on("click",function(){
         if(this.checked){
             certificateValid.resetForm();
+            biodata.prometric_trainee = 0
+            handlePrometricCertificate()
             $(".prometric_trainee").attr("disabled",false)
-            
             if(biodata.certificate_validator){
                 $("#certificate_form").valid();
             }
         }else{
             certificateValid.resetForm();
+            handlePrometricCertificate()
             $(".prometric_trainee").attr("disabled",true)
             $(".prometric_trainee").prop("checked",false)
             $(".prometric_trainee").val("")
@@ -1162,15 +1214,19 @@
             }
         }
     })
+
     $("#jpl_applicable").on("click",function(){
         if(this.checked){
             certificateValid.resetForm();
+            biodata.jpl_trainee = 0
+            handlePrometricLanguage()
             $(".jpl_trainee").attr("disabled",false)
             if(biodata.certificate_validator){
                 $("#certificate_form").valid();
             }
         }else{
             certificateValid.resetForm();
+            handlePrometricLanguage()
             $(".jpl_trainee").attr("disabled",true)
             $(".jpl_trainee").prop("checked",false)
             $(".jpl_trainee").val("")
@@ -1199,8 +1255,8 @@
     })
 
     //EDUCATIONAL TAB===========================================EVENT LISTENER
-    let educationalValid = $("#educational_form").validate({       
-        
+    let educationalValid = $("#educational_form").validate({
+
         errorElement: 'span',
         errorPlacement: function (error, element) {
             error.addClass('text-red-500 text-sm');
@@ -1214,7 +1270,7 @@
         },
         submitHandler: function(form) {
             $(window).scrollTop(0);
-            
+
             biodata.educationalData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
             biodata.vocationalData = [];
             for (let i = 0; $(form).find('input[name="name_vocational_' + i + '"]').val() != null ; i++){
@@ -1234,7 +1290,7 @@
 
             $("#job_local_tab").removeClass('pointer-events-none')
             $("#job_local_tab").trigger("click")
-            
+
           }
     });
 
@@ -1244,7 +1300,7 @@
         let id = biodata.vocational;
         let form = `<div id="" class="vocational_content md:grid grid-cols-7 gap-4 col-span-7 mt-2">
         <div class="mt-2 md:mt-0 form-group col-span-6">
-            
+
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-1">
             <button id="" class="delete_vocational py-2 px-4 bg-red-600 rounded w-full self-end text-sm text-white">Delete Record</button>
@@ -1289,7 +1345,7 @@
        $(".date_picker").on("keydown",function(){
         return false;
      })
- 
+
      $(".date_picker").on("input",function(){
          $(this).valid()
      })
@@ -1358,10 +1414,10 @@
                 }
             }
 
-            
+
             $("#job_abroad_tab").removeClass('pointer-events-none')
             $("#job_abroad_tab").trigger('click');
-            
+
           }
     });
 
@@ -1415,7 +1471,7 @@
         $(".date_picker").on("keydown",function(){
             return false;
          })
-     
+
          $(".date_picker").on("input",function(){
              $(this).valid()
          })
@@ -1432,7 +1488,7 @@
             $(".companylocal :input").attr("disabled", true);
             $(".companylocal :input").val("");
             $("#local_required").html("")
-            
+
         }else{
             $(".companylocal :input").attr("disabled", false);
             $("#add_local_btn").attr("disabled", false);
@@ -1446,7 +1502,7 @@
         // $("#empLocal_form").validate()
         $("#empLocal_form").valid();
         biodata.local_emp_validator = true;
-        
+
     });
 
     $("#empLocalBtn_Prev").on("click",function(e){
@@ -1455,10 +1511,9 @@
 
     })
 
-
     //ABROAD EMP TAB ===========================================EVENT LISTENER
     let empAbroadValid = $("#empAbroad_form").validate({
-               
+
         errorElement: 'span',
         errorPlacement: function (error, element) {
             error.addClass('text-red-500 text-sm');
@@ -1492,7 +1547,6 @@
             $("#family_tab").trigger('click')
           }
     });
-
 
     $("#add_abroad_btn").on("click",function(e){
         e.preventDefault();
@@ -1538,14 +1592,14 @@
             $(this).closest('.companyabroad').remove();
             // biodata.abroad_company--
             biodata.countRow("AbroadCompany", "Company");
-            
+
         })
         biodata.abroad_company++
         tw_elements.initTE({ Datepicker,Input });
         $(".date_picker").on("keydown",function(){
             return false;
          })
-     
+
          $(".date_picker").on("input",function(){
              $(this).valid()
          })
@@ -1565,7 +1619,7 @@
             $("#add_abroad_btn").attr("disabled", false)
             $("#abroad_required").html("*");
         }
-       
+
     })
 
     $("#empAbroad_form").on("submit",function(e){
@@ -1574,14 +1628,13 @@
         // $("#empLocal_form").validate()
         $("#empAbroad_form").valid();
         biodata.abroad_emp_validator = true;
-        
+
     });
 
     $("#empAbroadBtn_Prev").on("click",function(e){
         e.preventDefault()
         $("#job_local_tab").trigger('click')
     })
-    
 
     //FAMILY TAB =========================================EVENT LISTENER
     let family_form = $("#family_form").validate({
@@ -1635,6 +1688,7 @@
                 }
             }
 
+            // japan visit
             for (let i = 0; $(form).find('input[name="japan_where_' + i + '"]').val() != null ; i++){
                 if($('input[name="japan_where_' + i + '"]').val() != ''){
                     biodata.japanvisitData.push({
@@ -1715,12 +1769,12 @@
                      family_form.resetForm();
                     $(`.sibling_${id+1}_deceased`).attr("disabled",false)
                     $(`.req_sibling_${id+1}_deceased`).html("*")
-                    
+
                     if(biodata.family_validator){
-                       
+
                         $("#family_form").valid();
                     }
-        
+
                 }
                 else if($(this).val() == 2){
                     family_form.resetForm();
@@ -1730,9 +1784,9 @@
                     if(biodata.family_validator){
                         $("#family_form").valid();
                     }
-        
+
                 }
-        
+
             })
      });
 
@@ -1767,7 +1821,7 @@
       $(".date_picker").on("keydown",function(){
         return false;
      })
- 
+
      $(".date_picker").on("input",function(){
          $(this).valid()
      })
@@ -1823,7 +1877,7 @@
             $("#children").html("")
             $(".required_children").html("")
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
         }else{
@@ -1833,7 +1887,7 @@
             $("#add_children").attr("disabled",false)
             $(".required_children").html("*")
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
         }
@@ -1860,7 +1914,7 @@
             $(".sibling_required").html("*")
             $(".sibling_radio").attr("disabled",false)
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
         }
@@ -1870,9 +1924,9 @@
              family_form.resetForm();
             $(".sibling_deceased").attr("disabled",false)
             $(".req_sibling_deceased").html("*")
-            
+
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
 
@@ -1883,30 +1937,32 @@
             $(".sibling_deceased").attr("disabled",true)
             $(".req_sibling_deceased").html("")
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
 
         }
 
     })
-        
+
      $("select[name='civil_status']").on("change",function(){
         if($(this).val() == "Married"){
             family_form.resetForm();
             $(".spouse").attr("disabled",false)
             $("#spouse_required").html("")
-            if(biodata.family_validator){
-               
-                $("#family_form").valid();
-            }
+            if(biodata.family_validator)
+            $("input[name='spouse']").val(spouse.name);
+            $("input[name='spouse_birthday']").val(spouse.birthday);
+            $("input[name='spouse_occupation']").val(spouse.occupation);
+            $("input[name='spouse_cp']").val(spouse.cp);
+            $("input[name='spouse_address']").val(spouse.address);
         }else{
             family_form.resetForm();
             $(".spouse").val("");
             $(".spouse").attr("disabled",true)
             $("#spouse_required").html("*")
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
         }
@@ -1922,10 +1978,10 @@
             $(".partner_hidden").attr("hidden",true)
         }
      })
-     
+
      $("input[name='went_japan']").on("click",function(){
         if($(this).val() == 1){
-             $(".japan_group").show()
+            $(".japan_group").show()
             $(".japan").attr("disabled",false)
         }else{
             $(".japan_group").hide()
@@ -2003,7 +2059,7 @@
             $("#relatives :input").val("");
             $("#add_relatives").attr("disabled",true)
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
          }else{
@@ -2011,7 +2067,7 @@
             $("#relatives :input").attr("disabled",false)
             $("#add_relatives").attr("disabled",false)
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
         }
@@ -2024,9 +2080,9 @@
             $(".father_na").attr("disabled",false)
             $(".req_father_deceased").html("*")
             $(".req_father_na").html("*")
-            
+
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
 
@@ -2039,7 +2095,7 @@
             $(".req_father_deceased").html("")
             $(".req_father_na").html("*")
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
 
@@ -2052,7 +2108,7 @@
             $(".req_father_deceased").html("")
             $(".req_father_na").html("")
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
         }
@@ -2067,7 +2123,7 @@
             $(".req_mother_deceased").html("*")
             $(".req_mother_na").html("*")
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
         }
@@ -2079,7 +2135,7 @@
             $(".req_mother_deceased").html("")
             $(".req_mother_na").html("*")
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
         }else{
@@ -2091,7 +2147,7 @@
             $(".req_mother_deceased").html("")
             $(".req_mother_na").html("")
             if(biodata.family_validator){
-               
+
                 $("#family_form").valid();
             }
         }
@@ -2111,14 +2167,13 @@
         var newVal = $(this).val().replace(/[^0-9\.]/g, '');
         $(this).val(newVal.replace(/,/g, ''));
     });
-     
-     //UPLOAD TAB =======================================================EVENT LISTENER
 
+     //UPLOAD TAB =======================================================EVENT LISTENER
      $.validator.addMethod( "maxsize", function( value, element, param ) {
         if ( this.optional( element ) ) {
             return true;
         }
-    
+
         if ( $( element ).attr( "type" ) === "file" ) {
             if ( element.files && element.files.length ) {
                 for ( var i = 0; i < element.files.length; i++ ) {
@@ -2128,7 +2183,7 @@
                 }
             }
         }
-    
+
         return true;
     }, $.validator.format( "File size must not exceed {0} bytes each." ) );
 
@@ -2142,28 +2197,28 @@
             picture: {
                 required: true,
                 extension: "png|jpeg|jpg",
-                maxsize: 1932979, 
+                maxsize: 1932979,
             },
             gov_id: {
-                required: true, 
+                required: true,
                 extension: "png|jpeg|jpg",
-                maxsize: 1932979,   
+                maxsize: 1932979,
             },
             passport_id: {
-                required: true, 
+                required: true,
                 extension: "png|jpeg|jpg",
-                maxsize: 1932979,   
+                maxsize: 1932979,
             }
         },
         messages:{
             picture: {
-                maxsize: "File size must not exceed 2MB each", 
+                maxsize: "File size must not exceed 2MB each",
             },
             gov_id: {
-                maxsize: "File size must not exceed 2MB each",   
+                maxsize: "File size must not exceed 2MB each",
             },
             passport_id: {
-                maxsize: "File size must not exceed 2MB each",   
+                maxsize: "File size must not exceed 2MB each",
             }
         },
         errorElement: 'span',
@@ -2189,7 +2244,7 @@
         closable: true,
       };
     let modal = new flowbite.Modal($("#popup-modal")[0],options);
-    
+
     $(".close_send").on("click",function(e){
         e.preventDefault();
         modal.hide();
@@ -2201,21 +2256,16 @@
             modal.show();
             biodata.upload = new FormData($("#upload_form")[0])
         }
-        
     });
 
     $("#upload_details").on("click",function(){
-        
         biodata.uploadData()
         modal.hide();
     })
-
-
      $("#uploadBtn_Prev").on("click",function(e){
         e.preventDefault();
         $("#family_tab").trigger("click");
      })
-
     });
 })();
 

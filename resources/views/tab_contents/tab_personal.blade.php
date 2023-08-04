@@ -1,4 +1,3 @@
-
 <div class="">
     <div class="block my-3 md:hidden text-center border-b border-green-600">
         <label class="text-xl  font-bold pb-4">Personal Data</label>
@@ -8,7 +7,7 @@
             <input required name="job_type" autocomplete="off" type="text" class="form-control" value="{{$biodata}}">
         </div>
         <div class="md:grid grid-cols-4 gap-4">
-            
+
             <div class="form-group col-span-1">
                 <label for="personal_lastname" class="form-label">Job Categories<span style="color:red">*</span>:</label>
                 <select required name="job_cat" class="form-select" id="jobcategories">
@@ -25,7 +24,7 @@
                 <input name="PersonalInfoID" type="hidden" class="form-control" id="PersonalInfoID">
                 {{-- <label for="personal_lastname" class="form-label">Code<span style="color:red">*</span>:</label>
                 <select required name="code" class="form-select" id="jobcodes">
-                    
+
                     <option value="" selected disabled value>Choose....</option>
                 </select> --}}
             </div>
@@ -44,7 +43,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="nickname" class="form-label">Nickname<span style="color:red">*</span>:</label>
-                <input required name="nickname" autocomplete="off" type="text" maxlength="100" class="form-control" id="nickanme">
+                <input required name="nickname" autocomplete="off" type="text" maxlength="100" class="form-control" id="nickname">
             </div>
             <div class="form-group col-span-4">
                 <label for="address" class="form-label">Present Address<span style="color:red">*</span>:</label>
@@ -64,8 +63,8 @@
                 <label for="address" class="form-label">Gender<span style="color:red">*</span>:</label>
                 <div class="flex">
                     <div class="flex items-center mr-4">
-                        <input required type="radio" value="M" name="gender" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
-                        <label for="inline-radio" class="ml-2 text-lg text-gray-900">M</label>
+                        <input id="gender_male" required type="radio" value="M" name="gender" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                        <label id="gender_female" for="inline-radio" class="ml-2 text-lg text-gray-900">M</label>
                     </div>
                     <div class="flex items-center mr-4">
                         <input required type="radio" value="F" name="gender" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
@@ -222,11 +221,11 @@
                 <label for="address" class="form-label">Do you have food Allergies<span style="color:red">*</span>:</label>
                 <div class="flex">
                     <div class="flex items-center mr-4">
-                        <input required type="radio" value="1" name="allergy" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                        <input id="allergy_yes" required type="radio" value="1" name="allergy" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                         <label for="inline-radio" class="ml-2 text-lg text-gray-900">Yes</label>
                     </div>
                     <div class="flex items-center mr-4">
-                        <input required type="radio" value="0" name="allergy" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                        <input id="allergy_no" required type="radio" value="0" name="allergy" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                         <label for="inline-2-radio" class="ml-2 text-lg text-gray-900">No</label>
                     </div>
                 </div>
@@ -239,11 +238,11 @@
                 <label for="address" class="form-label">Do you have Tattoo?<span style="color:red">*</span>:</label>
                 <div class="flex">
                     <div class="flex items-center mr-4">
-                        <input required type="radio" value="1" name="tattoo" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                        <input id="tattoo_yes" required type="radio" value="1" name="tattoo" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                         <label for="inline-radio" class="ml-2 text-lg text-gray-900">Yes</label>
                     </div>
                     <div class="flex items-center mr-4">
-                        <input required type="radio" value="0" name="tattoo" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                        <input id="tattoo_no" required type="radio" value="0" name="tattoo" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                         <label for="inline-2-radio" class="ml-2 text-lg text-gray-900">No</label>
                     </div>
                 </div>
@@ -252,11 +251,11 @@
                 <label for="address" class="form-label">Do you have Driver's License?<span style="color:red">*</span>:</label>
                 <div class="flex">
                     <div class="flex items-center mr-4">
-                        <input required type="radio" value="1" name="licensed" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                        <input id="drivers_licensed_yes" required type="radio" value="1" name="licensed" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                         <label for="inline-radio" class="ml-2 text-lg text-gray-900">Yes</label>
                     </div>
                     <div class="flex items-center mr-4">
-                        <input required type="radio" value="0" name="licensed" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                        <input id="drivers_licensed_yes" required type="radio" value="0" name="licensed" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
                         <label for="inline-2-radio" class="ml-2 text-lg text-gray-900">No</label>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 <div class="">
-   
+
     <div class="block my-3 md:hidden text-center border-b border-green-600">
         <label class="text-xl  font-bold pb-4">Educational Background</label>
     </div>
@@ -79,44 +79,43 @@
                 </div>
              <div id="vocational" class="col-span-7">
 
-            </div>   
+            </div>
             @if($biodata != "SSW")
-            <div class="mt-2 md:mt-0 form-group col-span-5">
-                <label class="text-xl font-bold">Japanese Language<span class="required_jpl" style="color:red">*</span>:</label>
-            </div>
-            <div class="mt-2 md:mt-0 form-group col-span-2">
-                @if($biodata != "SSW")
-                <div class="flex items-center mr-4 justify-end">
-                    <label class="ml-2 mr-2 text-sm md:text-sm font-normal text-gray-900">Tick this checkbox if N/A.</label>
-                    <input type="checkbox" value="1" id="jpl_applicable_education" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                <div class="mt-2 md:mt-0 form-group col-span-5">
+                    <label class="text-xl font-bold">Japanese Language<span class="required_jpl" style="color:red">*</span>:</label>
                 </div>
-                @endif
-            </div>
-            <div class="mt-2 md:mt-0 form-group col-span-3">
-                <input name="name_jpl" autocomplete="off" type="text" maxlength="100" class="jpl disabled:bg-slate-200 form-control" placeholder="Name of School" required>
-            </div>
-            <div class="mt-2 md:mt-0 form-group col-span-2">
-                <input name="add_jpl" autocomplete="off" type="text" maxlength="100" class="jpl disabled:bg-slate-200 form-control" placeholder="School Address" required>
-            </div>
-            <div class="mt-2 md:mt-0 form-group col-span-1">
-                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" name="date_from_jpl" maxlength="10" autocomplete="off" type="text" required class="jpl form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
-               </div>
-            </div>
-            <div class="mt-2 md:mt-0 form-group col-span-1">
-                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_jpl" maxlength="10" autocomplete="off" type="text" required class="jpl form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
-               </div>
-            </div>
-            <div class="mt-2 md:mt-0 form-group col-span-5">
-                <input name="certificate_jpl" autocomplete="off" type="text" maxlength="100" class="jpl disabled:bg-slate-200 form-control" placeholder="Certificate Holder" required>
-            </div>
-            <div class="mt-2 md:mt-0 form-group col-span-2">
-                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_cert_jpl" maxlength="10" autocomplete="off" type="text" required class="jpl form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
-               </div>
-            </div>
-            
+                <div class="mt-2 md:mt-0 form-group col-span-2">
+                    @if($biodata != "SSW")
+                        <div class="flex items-center mr-4 justify-end">
+                            <label class="ml-2 mr-2 text-sm md:text-sm font-normal text-gray-900">Tick this checkbox if N/A.</label>
+                            <input type="checkbox" value="1" id="jpl_applicable_education" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                        </div>
+                    @endif
+                </div>
+                <div class="mt-2 md:mt-0 form-group col-span-3">
+                    <input name="name_jpl" autocomplete="off" type="text" maxlength="100" class="jpl disabled:bg-slate-200 form-control" placeholder="Name of School" required>
+                </div>
+                <div class="mt-2 md:mt-0 form-group col-span-2">
+                    <input name="add_jpl" autocomplete="off" type="text" maxlength="100" class="jpl disabled:bg-slate-200 form-control" placeholder="School Address" required>
+                </div>
+                <div class="mt-2 md:mt-0 form-group col-span-1">
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" name="date_from_jpl" maxlength="10" autocomplete="off" type="text" required class="jpl form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+                    </div>
+                </div>
+                <div class="mt-2 md:mt-0 form-group col-span-1">
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_jpl" maxlength="10" autocomplete="off" type="text" required class="jpl form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+                    </div>
+                </div>
+                <div class="mt-2 md:mt-0 form-group col-span-5">
+                    <input name="certificate_jpl" autocomplete="off" type="text" maxlength="100" class="jpl disabled:bg-slate-200 form-control" placeholder="Certificate Holder" required>
+                </div>
+                <div class="mt-2 md:mt-0 form-group col-span-2">
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_cert_jpl" maxlength="10" autocomplete="off" type="text" required class="jpl form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+                    </div>
+                </div>
             @endif
             <div class="mt-2 md:mt-0 form-group col-span-7">
                 <label class="text-xl font-bold">College<span style="color:red">*</span>:</label>
@@ -160,6 +159,6 @@
             <button id="educationalBtn_Prev" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white hover:bg-green-800"><< Prev</button>
             <button id="educationalBtn_Next" class="py-2 px-4 bg-green-600 rounded mt-5 self-end text-sm text-white hover:bg-green-800">Next >></button>
         </div>
-        
+
     </form>
 </div>
