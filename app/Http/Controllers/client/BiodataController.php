@@ -327,7 +327,7 @@ class BiodataController extends Controller
         }
         else{
             // UPDATE
-            if($IsExist[0]->id != $request["personalid"]){
+            if(COUNT($IsExist) != 0 && $IsExist[0]->id != $request["personalid"]){
                 $data = [
                     'id' => '',
                     'success' => false,
