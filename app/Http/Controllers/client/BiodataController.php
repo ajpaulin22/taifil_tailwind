@@ -703,6 +703,19 @@ class BiodataController extends Controller
 
     public function get_categories(Request $request){
         $type = strtoupper($request->type);
+        $data = DB::select("SELECT ID,JobType,Category from m_jobcategories where ID in (SELECT cat.ID as 'cnt' from m_jobcategories cat
+        JOIN m_joboperations op on op.JobCategoriesID = cat.ID
+        left join m_jobqualifications quali on op.ID = quali.JobOperationsID AND quali.isDeleted <> 1
+        where cat.isDeleted <> 1
+        AND cat.JobType = '$type'
+        AND op.isDeleted <> 1
+        AND op.Hiring = 1
+        group by cat.Category having count(quali.ID) > 0)");
+        return $data;
+    }
+
+    public function get_categoriesSSW(Request $request){
+        $type = strtoupper($request->type);
         $data = DB::table('m_jobcategories')
         ->select('ID','JobType','Category')
         ->where("JobType",$type)

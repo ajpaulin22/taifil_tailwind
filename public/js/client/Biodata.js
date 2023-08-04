@@ -1940,7 +1940,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                     .find('option')
                     // .remove()
                     .end()
-                    .append('<option value="" selected disabled value>Choose....</option>')
                     promise.forEach(data=>{
                         let option = `<option value="${data.ID}" >${data.Category}</option>`;
                         $("#jobcategories").append(option)
@@ -2016,7 +2015,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         },
         getOperationsSSW:function(id){
             $.ajax({
-                url:"/client/Biodata/get-operations",
+                url:"/client/Biodata/get-operationsSSW",
                 type:"GET",
                 data:{
                     _token:self.token,
