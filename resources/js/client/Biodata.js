@@ -104,67 +104,49 @@
     }
     Biodata.prototype = {
         uploadData:function(){
-            console.log('UPLOAD')
-            // $("#loader").show()
+            $("#loader").show()
             let self = this;
-            console.log({
-                _token:self.token,
-                prometric:self.prometricData,
-                jpl:self.jplData,
-                family:self.familyData,
-                sibling:self.siblingData,
-                relative:self.relativeData,
-                children:self.childrenData,
-                local_emp:self.local_empData,
-                abroad_emp:self.abroad_empData,
-                educational:self.educationalData,
-                vocational:self.vocationalData,
-                personal:self.personalData,
-                japanvisit:self.japanvisitData,
-                certificatejob:self.certificateJobData,
-                personalid: $("#PersonalInfoID").val()
-            })
-           try {
-            $.ajax({
-                url:"/client/Biodata/uploadData",
-                type:"POST",
-                data:{
-                    _token:self.token,
-                    prometric:self.prometricData,
-                    jpl:self.jplData,
-                    family:self.familyData,
-                    sibling:self.siblingData,
-                    relative:self.relativeData,
-                    children:self.childrenData,
-                    local_emp:self.local_empData,
-                    abroad_emp:self.abroad_empData,
-                    educational:self.educationalData,
-                    vocational:self.vocationalData,
-                    personal:self.personalData,
-                    japanvisit:self.japanvisitData,
-                    certificatejob:self.certificateJobData,
-                    personalid: $("#PersonalInfoID").val()
-                },
-                dataType:"JSON",
-                success:function(promise){
-                      console.log(promise)
-                      if(promise.success){
-                        self.saveid(promise.id);
-                      }
-                      else{
-                        $("#loader").hide();
-                        iziToast.error({
-                            class:'rounded-lg overflow-hidden',
-                            title: 'Error',
-                            message: promise.msgTitle,
-                            position:'topRight'
-                        });
-                      }
-                }
-            })
-           } catch (error) {
-            console.log(error)
-           }
+            try {
+                $.ajax({
+                    url:"/client/Biodata/uploadData",
+                    type:"POST",
+                    data:{
+                        _token:self.token,
+                        prometric:self.prometricData,
+                        jpl:self.jplData,
+                        family:self.familyData,
+                        sibling:self.siblingData,
+                        relative:self.relativeData,
+                        children:self.childrenData,
+                        local_emp:self.local_empData,
+                        abroad_emp:self.abroad_empData,
+                        educational:self.educationalData,
+                        vocational:self.vocationalData,
+                        personal:self.personalData,
+                        japanvisit:self.japanvisitData,
+                        certificatejob:self.certificateJobData,
+                        personalid: $("#PersonalInfoID").val()
+                    },
+                    dataType:"JSON",
+                    success:function(promise){
+                            console.log(promise)
+                            if(promise.success){
+                            self.saveid(promise.id);
+                            }
+                            else{
+                            $("#loader").hide();
+                            iziToast.error({
+                                class:'rounded-lg overflow-hidden',
+                                title: 'Error',
+                                message: promise.msgTitle,
+                                position:'topRight'
+                            });
+                            }
+                    }
+                })
+            } catch (error) {
+                console.log(error)
+            }
         },
 
         loadURLToInputField:function(url, fileName, key){
@@ -394,8 +376,6 @@
                             // $(`input[name='went_japan'][value='${promise.familydata[0].went_japan}']`).trigger('click');
                             $('#went_japan_yes').trigger('click')
                             $("input[name='japan_times']").val(promise.familydata[0].how_many_japan);
-
-                            console.log(promise.japanvisitdata)
                             for(var i = 0; i < promise.japanvisitdata.length; i++){
                                 if(i != 0) $("#add_japanvisit").trigger('click');
                                 $(`input[name='japan_where_${i}']`).val(promise.japanvisitdata[i].where);
