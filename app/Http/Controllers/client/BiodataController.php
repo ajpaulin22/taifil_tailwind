@@ -293,7 +293,7 @@ class BiodataController extends Controller
                         "personal_id" =>$id,
                         "ex-trainee" =>($request->certificatejob['ex_trainee'] == "true")? 1 : 0 ,
                         "jobcategory" =>$request->certificatejob['jobcategory'],
-                         "joboperation"=>$request->certificatejob['joboperation']
+                        "joboperation"=>$request->certificatejob['joboperation']
                     ]);
                 }
                 if(isset($request->prometric)){
@@ -326,7 +326,7 @@ class BiodataController extends Controller
             }
         }
         else{
-
+            // UPDATE
             if($IsExist[0]->id != $request["personalid"]){
                 $data = [
                     'id' => '',
@@ -336,6 +336,7 @@ class BiodataController extends Controller
                 ];
             }
             else{
+                // CHECK ALL
                 DB::table("personal_datas")
                 ->where('id', $request["personalid"])
                 ->update([
@@ -353,7 +354,7 @@ class BiodataController extends Controller
                     "gender" => $request->personal["gender"],
                     "citizenship" => $request->personal["citizenship"],
                     "age" => (int) $request->personal["age"],
-                    "bloodtype" => isset($request->personal["blood_type"])?$request->personal["blood_type"]:'N/A',
+                    "bloodtype" => isset($request->personal["blood_type"]) ? $request->personal["blood_type"] : 'N/A',
                     "civil_status" => $request->personal["civil_status"],
                     "contact" => (int) $request->personal["contact"],
                     "height" => (int) $request->personal["height"],
@@ -456,9 +457,10 @@ class BiodataController extends Controller
                         ]);
                     }
                 }
+
                 $overstay = false;
                 $fakeidentity = false;
-                $surrender =false;
+                $surrender = false;
                 $approved_visa = false;
 
                 if(isset($request->family["overstay"])){
@@ -490,6 +492,8 @@ class BiodataController extends Controller
                         $approved_visa = false;
                     }
                 }
+                error_log("BIRTHDAY");
+                error_log($request->family["partner_birthday"]);
                 DB::table("family_datas")
                 ->where('personal_id', $request["personalid"])
                 ->update([
@@ -510,14 +514,14 @@ class BiodataController extends Controller
                     "spouse_cp" => isset( $request->family["spouse_cp"])? $request->family["spouse_cp"] :null,
                     "spouse_address" => isset($request->family["spouse_address"])?$request->family["spouse_address"] :null ,
                     "partner_name" => isset($request->family["partner"])?$request->family["partner"] :null ,
-                    "partner_birthday" => isset($request->family["partner_birthday"])?$request->family["partner_birthday"] :null ,
-                    "partner_Occupation" => isset($request->family["partner_Occupation"])?$request->family["partner_Occupation"] :null ,
+                    "partner_birthday" => isset($request->family["partner_birthday"]) ? date('Y-m-d H:i:s' ,strtotime($request->family["partner_birthday"])) :null ,
+                    "partner_Occupation" => isset($request->family["partner_Occupation"]) ? $request->family["partner_Occupation"] :null ,
                     "partner_cp" => isset($request->family["partner_cp"])?$request->family["partner_cp"] :null ,
                     "partner_address" => isset($request->family["partner_address"])?$request->family["partner_address"] :null ,
-                    "went_japan" => ($request->family["went_japan"] == "1")? true :false  ,
-                    "how_many_japan" => isset($request->family["japan_times"])?$request->family["japan_times"] :null ,
-                    "when_japan" => isset($request->family["japan_when"])?$request->family["japan_when"] :null ,
-                    "where_japan" => isset($request->family["japan_where"])?$request->family["japan_where"] :null ,
+                    "went_japan" => $request->family["went_japan"] == "1",
+                    "how_many_japan" => isset($request->family["japan_times"]) ? $request->family["japan_times"] : null ,
+                    "when_japan" => isset($request->family["japan_when"]) ? date('Y-m-d H:i:s' ,strtotime($request->family["japan_when"])) : null ,
+                    "where_japan" => isset($request->family["japan_where"]) ? $request->family["japan_where"] : null ,
                     "overstay_japan" => $overstay,
                     "how_long_overstay" => isset($request->family["overstay_howlong"])?$request->family["overstay_howlong"] :null ,
                     "fake_identity_japan" => $fakeidentity,
@@ -547,10 +551,11 @@ class BiodataController extends Controller
                 if(isset($request->japanvisit)){
                     DB::table('japanvisit_datas')->where('family_id', $family_id[0]->id)->delete();
                     foreach($request->japanvisit as $c){
-                         japanvisit_data::create([
+                        japanvisit_data::create([
                             'family_id' => $family_id[0]->id,
                             'where' => $c['where'],
                             'when' => date('Y-m-d H:i:s' ,strtotime($c['when'])),
+                            'isdeleted' => 0
                         ]);
                     }
                 }
@@ -578,31 +583,36 @@ class BiodataController extends Controller
                         ]);
                     }
                 }
+
+                // query certificatejobs to get prometric data
+                $certificateJob = certificatejob::query()
+                -> where('personal_id', request('personalid'))
+                -> where('isdeleted', 0)
+                -> first();
+
+                // taken not changing * fix
                 if(isset($request->prometric)){
-                    DB::table('prometric_datas')->where('personal_id', $request["personalid"])->delete();
-                    foreach($request->prometric as $p){
+                    DB::table('prometric_datas')->where('certificate_id', $certificateJob -> id)->delete();
+                    foreach($request->prometric as $prometric){
                         prometric_data::create([
-                            "personal_id" => $request["personalid"],
-                            "name" => $p["name"],
-                            "address" => $p["address"],
-                            "from" => date('Y-m-d H:i:s' ,strtotime($p['from'])),
-                            "until" => date('Y-m-d H:i:s' ,strtotime($p['until'])),
-                            "certificate" => $p["certificate"],
-                            "cert_until" => date('Y-m-d H:i:s' ,strtotime($p['certificate_until'])),
+                            "certificate_id" => $certificateJob -> id,
+                            "certificate" => $prometric["test"],
+                            "taken" => date('Y-m-d H:i:s' ,strtotime($prometric['taken'])),
+                            "passed" => $prometric["passed"] === 'true' ? 1 : 0,
+                            "isdeleted" => 0
                         ]);
                     }
                 }
+
                 if(isset($request->jpl)){
-                    DB::table('jpl_datas')->where('personal_id', $request["personalid"])->delete();
+                    DB::table('jpl_datas')->where('certificate_id', $certificateJob -> id)->delete();
                     foreach($request->jpl as $j){
                         jpl_data::create([
-                            "personal_id" => $request["personalid"],
-                            "name" => $j["name"],
-                            "address" => $j["address"],
-                            "from" => date('Y-m-d H:i:s' ,strtotime($j['from'])),
-                            "until" => date('Y-m-d H:i:s' ,strtotime($j['until'])),
-                            "certificate" => $j["certificate"],
-                            "cert_until" => date('Y-m-d H:i:s' ,strtotime($j['certificate_until'])),
+                            "certificate_id" => $certificateJob -> id,
+                            "jpl" => $j["test"],
+                            "taken" => date('Y-m-d H:i:s' ,strtotime($j['taken'])),
+                            "passed" => $j["passed"] === 'true' ? 1 : 0,
+                            "isdeleted" => 0
                         ]);
                     }
                 }
@@ -838,7 +848,7 @@ class BiodataController extends Controller
             ->where("family_id", $familydata[0]->id)
             ->where("IsDeleted", 0)
             ->select()->Get();
-            error_log(print_r($japanvisitdata, true));
+
             for($i = 0; $i < COUNT($japanvisitdata); $i++){
                 $japanvisitdata[$i]->when =  date('m/d/Y', strtotime(explode(" ", $japanvisitdata[$i]->when)[0]));
             }

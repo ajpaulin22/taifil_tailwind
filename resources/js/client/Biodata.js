@@ -104,8 +104,26 @@
     }
     Biodata.prototype = {
         uploadData:function(){
-            $("#loader").show()
+            console.log('UPLOAD')
+            // $("#loader").show()
             let self = this;
+            console.log({
+                _token:self.token,
+                prometric:self.prometricData,
+                jpl:self.jplData,
+                family:self.familyData,
+                sibling:self.siblingData,
+                relative:self.relativeData,
+                children:self.childrenData,
+                local_emp:self.local_empData,
+                abroad_emp:self.abroad_empData,
+                educational:self.educationalData,
+                vocational:self.vocationalData,
+                personal:self.personalData,
+                japanvisit:self.japanvisitData,
+                certificatejob:self.certificateJobData,
+                personalid: $("#PersonalInfoID").val()
+            })
            try {
             $.ajax({
                 url:"/client/Biodata/uploadData",
@@ -142,9 +160,7 @@
                             position:'topRight'
                         });
                       }
-
                 }
-
             })
            } catch (error) {
             console.log(error)
@@ -192,7 +208,7 @@
                         $("#lastname").val(promise.personaldata[0].lastname);
                         $("#firstname").val(promise.personaldata[0].first_name);
                         $("#middlename").val(promise.personaldata[0].middle_name);
-                        $("#nickanme").val(promise.personaldata[0].nickname);
+                        $("#nickname").val(promise.personaldata[0].nickname);
                         $("#address").val(promise.personaldata[0].address);
                         $("#birthday").val(promise.personaldata[0].date_birth);
                         $("#birth_place").val(promise.personaldata[0].place_birth);
@@ -223,14 +239,14 @@
                         $("input[name='issue_date']").val(promise.personaldata[0].issue_date);
                         $("input[name='expiry_date']").val(promise.personaldata[0].expiry_date);
                         $("input[name='issue_place']").val(promise.personaldata[0].issue_place);
-                        $("input[name='allergy'][value='" + promise.personaldata[0].allergy + "']").prop("checked", true);
+                        $("input[name='allergy'][value='" + promise.personaldata[0].allergy + "']").trigger('click');
+                        $("input[name='food_allergy']").val(promise.personaldata[0].food_alergy);
                         $("input[name='tattoo'][value='" + promise.personaldata[0].tattoo + "']").prop("checked", true);
                         $("input[name='licensed'][value='" + promise.personaldata[0].drivers_licensed + "']").prop("checked", true);
 
                         //Prometrics
-
                         if(promise.personaldata[0].job_type == "SSW"){
-                            if(promise.traineedata[0].ex-trainee == 1){
+                            if(promise.traineedata[0]["ex-trainee"] == 1){
                                 $("#certificate_trainee").trigger('click');
                                 isPrometricTrainee = true
                                 CertificateId = promise.traineedata[0].jobcategory
@@ -351,7 +367,6 @@
                             $("input[name='mother_cp']").val(promise.familydata[0].mother_cp);
                             $("input[name='mother_address']").val(promise.familydata[0].mother_address);
                         }
-                        console.log($("select[name='civil_status']").val())
                         if($("select[name='civil_status']").val() == 'Married'){
                             $("input[name='spouse']").val(promise.familydata[0].spouse_name);
                             $("input[name='spouse_birthday']").val(promise.familydata[0].spouse_birth);
@@ -380,6 +395,7 @@
                             $('#went_japan_yes').trigger('click')
                             $("input[name='japan_times']").val(promise.familydata[0].how_many_japan);
 
+                            console.log(promise.japanvisitdata)
                             for(var i = 0; i < promise.japanvisitdata.length; i++){
                                 if(i != 0) $("#add_japanvisit").trigger('click');
                                 $(`input[name='japan_where_${i}']`).val(promise.japanvisitdata[i].where);
@@ -402,8 +418,7 @@
 
                         if(promise.familydata[0].applied_visa == 0){
                             $("input[name='visa'][value='"+ promise.familydata[0].applied_visa +"']").trigger('click');
-                        }
-                        else{
+                        }else{
                             $("input[name='visa'][value='"+ promise.familydata[0].applied_visa +"']").trigger('click');
                             $("select[name='visa_type']").val(promise.familydata[0].type_visa).trigger('change');
                             $("input[name='visa_when']").val(promise.familydata[0].when_applied_visa);
@@ -412,8 +427,7 @@
 
                         if (promise.siblingdata.length == 0){
                             $("#sibling_applicable").trigger('click');
-                        }
-                        else{
+                        } else{
                             for (var i = 0; i < promise.siblingdata.length; i++){
                                 if(i != 0)
                                     $("#add_sibling").trigger('click');
@@ -427,8 +441,7 @@
 
                         if (promise.childrendata.length == 0){
                             $("#children_applicable").trigger('click');
-                        }
-                        else{
+                        } else{
                             for (var i = 0; i < promise.childrendata.length; i++){
                                 if(i != 0)
                                     $("#add_children").trigger('click');
@@ -439,8 +452,7 @@
 
                         if (promise.relativedata.length == 0){
                             $("#relatives_applicable").trigger('click');
-                        }
-                        else{
+                        } else{
                             for (var i = 0; i < promise.relativedata.length; i++){
                                 if(i != 0)
                                     $("#add_relatives").trigger('click');
@@ -735,9 +747,6 @@
         $(this).valid()
     })
 
-
-
-
     //====================================================================tabs Event Listener
     $("[data-tab-target]").toArray().forEach(tab => {
         let valid = false;
@@ -797,9 +806,6 @@
 
         });
     });
-
-
-
 
     //PERSONAL TAB ============================================EVENT LISTENER
     $("#personal_form").validate({
@@ -920,7 +926,7 @@
                         biodata.prometricData.push({
                             test:$('select[name="not_trainee_test_prometric_' + i + '"]').val() == 'Others' ? $('select[name="not_trainee_test_prometric_' + i + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="not_trainee_test_prometric_' + i + '"]').val(),
                             taken:$('input[name="not_trainee_taken_prometric_' + i + '"]').val(),
-                            passed:parseInt($('input[name="not_trainee_result_prometric_' + i + '"]').val()),
+                            passed:$(`#not_trainee_passed_prometric_${i}`).prop('checked'),
                         })
                     }
                 }
@@ -929,7 +935,7 @@
                         biodata.jplData.push({
                             test:$('select[name="not_trainee_test_jpl_' + i + '"]').val(),
                             taken:$('input[name="not_trainee_taken_jpl_' + i + '"]').val(),
-                            passed:parseInt($('input[name="not_trainee_result_jpl_' + i + '"]').val()),
+                            passed: $(`#not_trainee_passed_language_${i}`).prop('checked'),
                         })
                     }
 
@@ -1525,7 +1531,6 @@
 
     })
 
-
     //ABROAD EMP TAB ===========================================EVENT LISTENER
     let empAbroadValid = $("#empAbroad_form").validate({
 
@@ -1562,7 +1567,6 @@
             $("#family_tab").trigger('click')
           }
     });
-
 
     $("#add_abroad_btn").on("click",function(e){
         e.preventDefault();
@@ -1651,7 +1655,6 @@
         e.preventDefault()
         $("#job_local_tab").trigger('click')
     })
-
 
     //FAMILY TAB =========================================EVENT LISTENER
     let family_form = $("#family_form").validate({
@@ -2186,7 +2189,6 @@
     });
 
      //UPLOAD TAB =======================================================EVENT LISTENER
-
      $.validator.addMethod( "maxsize", function( value, element, param ) {
         if ( this.optional( element ) ) {
             return true;
@@ -2274,21 +2276,16 @@
             modal.show();
             biodata.upload = new FormData($("#upload_form")[0])
         }
-
     });
 
     $("#upload_details").on("click",function(){
-
         biodata.uploadData()
         modal.hide();
     })
-
-
      $("#uploadBtn_Prev").on("click",function(e){
         e.preventDefault();
         $("#family_tab").trigger("click");
      })
-
     });
 })();
 

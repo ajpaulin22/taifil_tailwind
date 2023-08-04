@@ -34,7 +34,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -48,17 +48,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
@@ -71,7 +71,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/ensure chunk */
 /******/ 	(() => {
 /******/ 		__webpack_require__.f = {};
@@ -84,7 +84,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}, []));
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/get javascript chunk filename */
 /******/ 	(() => {
 /******/ 		// This function allow to reference async chunks
@@ -95,7 +95,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			return undefined;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/get mini-css chunk filename */
 /******/ 	(() => {
 /******/ 		// This function allow to reference all chunks
@@ -104,12 +104,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			return undefined;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/load script */
 /******/ 	(() => {
 /******/ 		var inProgress = {};
@@ -128,13 +128,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			if(!script) {
 /******/ 				needAttach = true;
 /******/ 				script = document.createElement('script');
-/******/
+/******/ 		
 /******/ 				script.charset = 'utf-8';
 /******/ 				script.timeout = 120;
 /******/ 				if (__webpack_require__.nc) {
 /******/ 					script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 				}
-/******/
+/******/ 		
 /******/ 				script.src = url;
 /******/ 			}
 /******/ 			inProgress[url] = [done];
@@ -154,7 +154,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			needAttach && document.head.appendChild(script);
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -165,28 +165,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/publicPath */
 /******/ 	(() => {
 /******/ 		__webpack_require__.p = "/";
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
-/******/
+/******/ 		
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/modules/tw_elements": 0
 /******/ 		};
-/******/
+/******/ 		
 /******/ 		__webpack_require__.f.j = (chunkId, promises) => {
 /******/ 				// JSONP chunk loading for javascript
 /******/ 				var installedChunkData = __webpack_require__.o(installedChunks, chunkId) ? installedChunks[chunkId] : undefined;
 /******/ 				if(installedChunkData !== 0) { // 0 means "already installed".
-/******/
+/******/ 		
 /******/ 					// a Promise means "currently loading".
 /******/ 					if(installedChunkData) {
 /******/ 						promises.push(installedChunkData[2]);
@@ -195,7 +195,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 							// setup Promise in chunk cache
 /******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
 /******/ 							promises.push(installedChunkData[2] = promise);
-/******/
+/******/ 		
 /******/ 							// start chunk loading
 /******/ 							var url = __webpack_require__.p + __webpack_require__.u(chunkId);
 /******/ 							// create error before stack unwound to get useful stacktrace later
@@ -220,17 +220,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 					}
 /******/ 				}
 /******/ 		};
-/******/
+/******/ 		
 /******/ 		// no prefetching
-/******/
+/******/ 		
 /******/ 		// no preloaded
-/******/
+/******/ 		
 /******/ 		// no HMR
-/******/
+/******/ 		
 /******/ 		// no HMR manifest
-/******/
+/******/ 		
 /******/ 		// no on chunks loaded
-/******/
+/******/ 		
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
@@ -253,21 +253,21 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 				}
 /******/ 				installedChunks[chunkId] = 0;
 /******/ 			}
-/******/
+/******/ 		
 /******/ 		}
-/******/
+/******/ 		
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./resources/js/modules/tw_elements.js");
-/******/
+/******/ 	
 /******/ })()
 ;
 /*
@@ -305,7 +305,7 @@ eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPAC
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -319,14 +319,14 @@ eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPAC
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
@@ -339,14 +339,14 @@ eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPAC
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./resources/js/modules/izitoast.js");
-/******/
+/******/ 	
 /******/ })()
 ;
 /*
@@ -1386,7 +1386,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -1400,14 +1400,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
@@ -1420,12 +1420,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -1436,14 +1436,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./resources/js/modules/flowbite.js");
-/******/
+/******/ 	
 /******/ })()
 ;
 (function() {
@@ -1552,8 +1552,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
     }
     Biodata.prototype = {
         uploadData:function(){
-            $("#loader").show()
+            console.log('UPLOAD')
+            // $("#loader").show()
             let self = this;
+            console.log({
+                _token:self.token,
+                prometric:self.prometricData,
+                jpl:self.jplData,
+                family:self.familyData,
+                sibling:self.siblingData,
+                relative:self.relativeData,
+                children:self.childrenData,
+                local_emp:self.local_empData,
+                abroad_emp:self.abroad_empData,
+                educational:self.educationalData,
+                vocational:self.vocationalData,
+                personal:self.personalData,
+                japanvisit:self.japanvisitData,
+                certificatejob:self.certificateJobData,
+                personalid: $("#PersonalInfoID").val()
+            })
            try {
             $.ajax({
                 url:"/client/Biodata/uploadData",
@@ -1590,9 +1608,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                             position:'topRight'
                         });
                       }
-
                 }
-
             })
            } catch (error) {
             console.log(error)
@@ -1640,7 +1656,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         $("#lastname").val(promise.personaldata[0].lastname);
                         $("#firstname").val(promise.personaldata[0].first_name);
                         $("#middlename").val(promise.personaldata[0].middle_name);
-                        $("#nickanme").val(promise.personaldata[0].nickname);
+                        $("#nickname").val(promise.personaldata[0].nickname);
                         $("#address").val(promise.personaldata[0].address);
                         $("#birthday").val(promise.personaldata[0].date_birth);
                         $("#birth_place").val(promise.personaldata[0].place_birth);
@@ -1671,14 +1687,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         $("input[name='issue_date']").val(promise.personaldata[0].issue_date);
                         $("input[name='expiry_date']").val(promise.personaldata[0].expiry_date);
                         $("input[name='issue_place']").val(promise.personaldata[0].issue_place);
-                        $("input[name='allergy'][value='" + promise.personaldata[0].allergy + "']").prop("checked", true);
+                        $("input[name='allergy'][value='" + promise.personaldata[0].allergy + "']").trigger('click');
+                        $("input[name='food_allergy']").val(promise.personaldata[0].food_alergy);
                         $("input[name='tattoo'][value='" + promise.personaldata[0].tattoo + "']").prop("checked", true);
                         $("input[name='licensed'][value='" + promise.personaldata[0].drivers_licensed + "']").prop("checked", true);
 
                         //Prometrics
-
                         if(promise.personaldata[0].job_type == "SSW"){
-                            if(promise.traineedata[0].ex-trainee == 1){
+                            if(promise.traineedata[0]["ex-trainee"] == 1){
                                 $("#certificate_trainee").trigger('click');
                                 isPrometricTrainee = true
                                 CertificateId = promise.traineedata[0].jobcategory
@@ -1799,7 +1815,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                             $("input[name='mother_cp']").val(promise.familydata[0].mother_cp);
                             $("input[name='mother_address']").val(promise.familydata[0].mother_address);
                         }
-                        console.log($("select[name='civil_status']").val())
                         if($("select[name='civil_status']").val() == 'Married'){
                             $("input[name='spouse']").val(promise.familydata[0].spouse_name);
                             $("input[name='spouse_birthday']").val(promise.familydata[0].spouse_birth);
@@ -1828,6 +1843,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                             $('#went_japan_yes').trigger('click')
                             $("input[name='japan_times']").val(promise.familydata[0].how_many_japan);
 
+                            console.log(promise.japanvisitdata)
                             for(var i = 0; i < promise.japanvisitdata.length; i++){
                                 if(i != 0) $("#add_japanvisit").trigger('click');
                                 $(`input[name='japan_where_${i}']`).val(promise.japanvisitdata[i].where);
@@ -1850,8 +1866,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
                         if(promise.familydata[0].applied_visa == 0){
                             $("input[name='visa'][value='"+ promise.familydata[0].applied_visa +"']").trigger('click');
-                        }
-                        else{
+                        }else{
                             $("input[name='visa'][value='"+ promise.familydata[0].applied_visa +"']").trigger('click');
                             $("select[name='visa_type']").val(promise.familydata[0].type_visa).trigger('change');
                             $("input[name='visa_when']").val(promise.familydata[0].when_applied_visa);
@@ -1860,8 +1875,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
                         if (promise.siblingdata.length == 0){
                             $("#sibling_applicable").trigger('click');
-                        }
-                        else{
+                        } else{
                             for (var i = 0; i < promise.siblingdata.length; i++){
                                 if(i != 0)
                                     $("#add_sibling").trigger('click');
@@ -1875,8 +1889,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
                         if (promise.childrendata.length == 0){
                             $("#children_applicable").trigger('click');
-                        }
-                        else{
+                        } else{
                             for (var i = 0; i < promise.childrendata.length; i++){
                                 if(i != 0)
                                     $("#add_children").trigger('click');
@@ -1887,8 +1900,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
                         if (promise.relativedata.length == 0){
                             $("#relatives_applicable").trigger('click');
-                        }
-                        else{
+                        } else{
                             for (var i = 0; i < promise.relativedata.length; i++){
                                 if(i != 0)
                                     $("#add_relatives").trigger('click');
@@ -2183,9 +2195,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         $(this).valid()
     })
 
-
-
-
     //====================================================================tabs Event Listener
     $("[data-tab-target]").toArray().forEach(tab => {
         let valid = false;
@@ -2245,9 +2254,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
         });
     });
-
-
-
 
     //PERSONAL TAB ============================================EVENT LISTENER
     $("#personal_form").validate({
@@ -2368,7 +2374,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         biodata.prometricData.push({
                             test:$('select[name="not_trainee_test_prometric_' + i + '"]').val() == 'Others' ? $('select[name="not_trainee_test_prometric_' + i + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="not_trainee_test_prometric_' + i + '"]').val(),
                             taken:$('input[name="not_trainee_taken_prometric_' + i + '"]').val(),
-                            passed:parseInt($('input[name="not_trainee_result_prometric_' + i + '"]').val()),
+                            passed:$(`#not_trainee_passed_prometric_${i}`).prop('checked'),
                         })
                     }
                 }
@@ -2377,7 +2383,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         biodata.jplData.push({
                             test:$('select[name="not_trainee_test_jpl_' + i + '"]').val(),
                             taken:$('input[name="not_trainee_taken_jpl_' + i + '"]').val(),
-                            passed:parseInt($('input[name="not_trainee_result_jpl_' + i + '"]').val()),
+                            passed: $(`#not_trainee_passed_language_${i}`).prop('checked'),
                         })
                     }
 
@@ -2973,7 +2979,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
     })
 
-
     //ABROAD EMP TAB ===========================================EVENT LISTENER
     let empAbroadValid = $("#empAbroad_form").validate({
 
@@ -3010,7 +3015,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             $("#family_tab").trigger('click')
           }
     });
-
 
     $("#add_abroad_btn").on("click",function(e){
         e.preventDefault();
@@ -3099,7 +3103,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         e.preventDefault()
         $("#job_local_tab").trigger('click')
     })
-
 
     //FAMILY TAB =========================================EVENT LISTENER
     let family_form = $("#family_form").validate({
@@ -3634,7 +3637,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
     });
 
      //UPLOAD TAB =======================================================EVENT LISTENER
-
      $.validator.addMethod( "maxsize", function( value, element, param ) {
         if ( this.optional( element ) ) {
             return true;
@@ -3722,21 +3724,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             modal.show();
             biodata.upload = new FormData($("#upload_form")[0])
         }
-
     });
 
     $("#upload_details").on("click",function(){
-
         biodata.uploadData()
         modal.hide();
     })
-
-
      $("#uploadBtn_Prev").on("click",function(e){
         e.preventDefault();
         $("#family_tab").trigger("click");
      })
-
     });
 })();
 
