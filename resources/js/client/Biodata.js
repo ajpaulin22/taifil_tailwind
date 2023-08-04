@@ -228,8 +228,9 @@
                         $("input[name='licensed'][value='" + promise.personaldata[0].drivers_licensed + "']").prop("checked", true);
 
                         //Prometrics
-                        if(promise.personaldata[0].job_type == "SSW" && promise.traineedata.length !== 0){
-                            if(promise.traineedata[0]["ex_trainee"] === 1){
+
+                        if(promise.personaldata[0].job_type == "SSW"){
+                            if(promise.traineedata[0].ex-trainee == 1){
                                 $("#certificate_trainee").trigger('click');
                                 isPrometricTrainee = true
                                 CertificateId = promise.traineedata[0].jobcategory
