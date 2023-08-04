@@ -327,13 +327,16 @@ class BiodataController extends Controller
         }
         else{
             // UPDATE
-            if($IsExist[0]->id != $request["personalid"]){
-                $data = [
-                    'id' => '',
-                    'success' => false,
-                    'msgType' => 'error',
-                    'msgTitle' => 'Applicant name with same job category already exists!'
-                ];
+            if(COUNT($IsExist) != 0)
+            {
+                if($IsExist[0]->id != $request["personalid"]){
+                    $data = [
+                        'id' => '',
+                        'success' => false,
+                        'msgType' => 'error',
+                        'msgTitle' => 'Applicant name with same job category already exists!'
+                    ];
+                }
             }
             else{
                 // CHECK ALL
@@ -592,7 +595,7 @@ class BiodataController extends Controller
 
                 // taken not changing * fix
                 if(isset($request->prometric)){
-                    DB::table('prometric_datas')->where('certificate_id', $certificateJob -> id)->delete();
+                    DB::table('prometric_datas')->where('certificate_id', $certificateJob->id)->delete();
                     foreach($request->prometric as $prometric){
                         prometric_data::create([
                             "certificate_id" => $certificateJob -> id,
@@ -605,7 +608,7 @@ class BiodataController extends Controller
                 }
 
                 if(isset($request->jpl)){
-                    DB::table('jpl_datas')->where('certificate_id', $certificateJob -> id)->delete();
+                    DB::table('jpl_datas')->where('certificate_id', $certificateJob->id)->delete();
                     foreach($request->jpl as $j){
                         jpl_data::create([
                             "certificate_id" => $certificateJob -> id,

@@ -107,23 +107,6 @@
             console.log('UPLOAD')
             // $("#loader").show()
             let self = this;
-            console.log({
-                _token:self.token,
-                prometric:self.prometricData,
-                jpl:self.jplData,
-                family:self.familyData,
-                sibling:self.siblingData,
-                relative:self.relativeData,
-                children:self.childrenData,
-                local_emp:self.local_empData,
-                abroad_emp:self.abroad_empData,
-                educational:self.educationalData,
-                vocational:self.vocationalData,
-                personal:self.personalData,
-                japanvisit:self.japanvisitData,
-                certificatejob:self.certificateJobData,
-                personalid: $("#PersonalInfoID").val()
-            })
            try {
             $.ajax({
                 url:"/client/Biodata/uploadData",
