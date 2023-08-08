@@ -168,6 +168,8 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
             Route::get("/GetJaplang",[PromJapLangController::class,"GetJaplang"]);
             Route::post("/SavePrometrics",[PromJapLangController::class,"SavePrometrics"]);
             Route::post("/SaveJaplang",[PromJapLangController::class,"SaveJaplang"]);
+            Route::post("/DeletePrometrics",[PromJapLangController::class,"DeletePrometrics"]);
+            Route::post("/DeleteJaplang",[PromJapLangController::class,"DeleteJaplang"]);
         });
     });
 });
