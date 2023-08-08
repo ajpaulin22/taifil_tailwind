@@ -196,7 +196,7 @@
                 $(".CheckItemPrometrics").each(function(){
                     if(!$(this).is(":checked")){
                         $(this).prop('checked', true);
-                        jobCatCheck.push({
+                        prometricCheck.push({
                             ID: $(this).val()
                         });
                     }
@@ -206,57 +206,111 @@
                 $(".CheckItemPrometrics").each(function(){
                     var id = $(this).val();
                     $(this).prop('checked', false);
-                    jobCatCheck = jobCatCheck.filter(function (obj) {
+                    prometricCheck = prometricCheck.filter(function (obj) {
                         return obj.ID != id
                     });
                 });
             }
         });
 
-        $("#tblprometrics").on("change", ".CheckItemPrometrics", function () {
+        $("#tbljaplang").on("change", ".CheckItemJapLang", function () {
             var id = $(this).val()
             if ($(this).is(":checked")) {
-                prometricCheck.push({
+                japLangCheck.push({
                     ID: $(this).val()
                 });
             } else {
-                prometricCheck = prometricCheck.filter(function (obj) {
+                japLangCheck = japLangCheck.filter(function (obj) {
                     return obj.ID != id
                 });
             }
-            $(".CheckItemPrometrics").each(function () {
+            $(".CheckItemJapLang").each(function () {
                 if ($(this).is(":checked")) {
-                    $("#CheckAllitemPrometrics").prop('checked', true);
+                    $("#CheckAllitemJapLang").prop('checked', true);
                 }
                 else {
-                    $("#CheckAllitemPrometrics").prop('checked', false);
+                    $("#CheckAllitemJapLang").prop('checked', false);
                     return false;
                 }
             });
         });
 
-        $("#CheckAllitemCategory").click(function () {
+        $("#CheckAllitemJapLang").click(function () {
             if ($(this).is(":checked")) {
-                $(".CheckItemCategory").each(function(){
+                $(".CheckItemJapLang").each(function(){
                     if(!$(this).is(":checked")){
                         $(this).prop('checked', true);
-                        jobCatCheck.push({
+                        japLangCheck.push({
                             ID: $(this).val()
                         });
                     }
                 });
             }
             else {
-                $(".CheckItemCategory").each(function(){
+                $(".CheckItemJapLang").each(function(){
                     var id = $(this).val();
                     $(this).prop('checked', false);
-                    jobCatCheck = jobCatCheck.filter(function (obj) {
+                    japLangCheck = japLangCheck.filter(function (obj) {
                         return obj.ID != id
                     });
                 });
             }
         });
+        
+        $("#btnDeletePrometrics").click(function(){
+            if (prometricCheck.length == 0){
+                showMessage("Error!", "Please check a row in prometrics table", "error", "red");
+            }
+            else{
+                $.ajax({
+                    url:"/admin/MasterMaintenance/PromJaplang/DeletePrometrics",
+                    type:"POST",
+                    data:{
+                        _token: token,
+                        ID: prometricCheck,
+                    },
+                    dataType:"JSON",
+                    beforeSend: function(){
+                        $("#loading_modal").show();
+                    },
+                    success:function(promise){
+                        $("#loading_modal").hide();
+                        prometricCheck = [];
+                        tblprometrics.ajax.reload(null, false);
+                        showMessage("Success!", "Prometrics was deleted successfully", "success", "green");
+                    }
+                })
+            }
+        });
+
+        $("#btnDeleteJaplang").click(function(){
+            if (japLangCheck.length == 0){
+                showMessage("Error!", "Please check a row in japanese language table", "error", "red");
+            }
+            else{
+                $.ajax({
+                    url:"/admin/MasterMaintenance/PromJaplang/DeleteJaplang",
+                    type:"POST",
+                    data:{
+                        _token: token,
+                        ID: japLangCheck,
+                    },
+                    dataType:"JSON",
+                    beforeSend: function(){
+                        $("#loading_modal").show();
+                    },
+                    success:function(promise){
+                        $("#loading_modal").hide();
+                        japLangCheck = [];
+                        tbljaplang.ajax.reload(null, false);
+                        showMessage("Success!", "Japanese Languages was deleted successfully", "success", "green");
+                    }
+                })
+            }
+        });
     });
+
+
 
     function drawPrometricsTable(){
         if (!$.fn.DataTable.isDataTable('#tblprometrics')) {

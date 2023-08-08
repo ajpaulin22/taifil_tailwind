@@ -109,4 +109,67 @@ class PromJapLangController extends Controller
         return response()->json($data);
       }
    }
+   public function DeletePrometrics(Request $request){
+      try{
+         $IDs = [];
+        for ($i = 0; $i < count($request["ID"]); $i++){
+            array_push($IDs,$request["ID"][$i]["ID"]);
+        }
+        
+        DB::table('prometrics')
+            ->whereIN('ID', $IDs)
+            ->update(['isdeleted' => 1]);
+
+            $data = [
+                'msg' =>  "Prometrics Deleted Successfully",
+                'data' => [],
+                'success' => true,
+                'msgType' => 'success',
+                'msgTitle' => 'Success!'
+            ];
+            return response()->json($data);
+      }
+      catch(\Throwable $th){
+         $data = [
+            'msg' =>  '',
+            'data' => [],
+            'success' => false,
+            'msgType' => 'error',
+            'msgTitle' => 'Error!'
+        ];
+        return response()->json($data);
+      }
+   }
+
+   public function DeleteJaplang(Request $request){
+      try{
+         $IDs = [];
+        for ($i = 0; $i < count($request["ID"]); $i++){
+            array_push($IDs,$request["ID"][$i]["ID"]);
+        }
+        
+        DB::table('japlangs')
+            ->whereIN('ID', $IDs)
+            ->update(['isdeleted' => 1]);
+
+            $data = [
+                'msg' =>  "Japanese Languages Deleted Successfully",
+                'data' => [],
+                'success' => true,
+                'msgType' => 'success',
+                'msgTitle' => 'Success!'
+            ];
+            return response()->json($data);
+      }
+      catch(\Throwable $th){
+         $data = [
+            'msg' =>  '',
+            'data' => [],
+            'success' => false,
+            'msgType' => 'error',
+            'msgTitle' => 'Error!'
+        ];
+        return response()->json($data);
+      }
+   }
 }
