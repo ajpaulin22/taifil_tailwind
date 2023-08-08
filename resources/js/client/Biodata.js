@@ -512,6 +512,7 @@
                     }
                 }
             })
+    
         },
         getCategoriesSSW:function(){
             let self = this;
