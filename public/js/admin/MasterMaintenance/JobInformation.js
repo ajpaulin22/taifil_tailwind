@@ -4433,54 +4433,6 @@ B. Synopsis: Class Module used to process data
         drawJobCategoriesTable();
         drawOperationsTable();
         drawQualificationsTable();
-        //Job Code Events
-        // $("#btnAddCodes").click(function(){
-        //     $("#mdlCode").modal("show");
-        // });
-
-        // $("#btnSaveCode").click(function(){
-        //     $.ajax({
-        //         url:"/admin/MasterMaintenance/JobInformation/SaveCode",
-        //         type:"POST",
-        //         data:{
-        //             _token: token,
-        //             ID: $("#CodeID").val(),
-        //             Code: $("#CodeValue").val(),
-        //         },
-        //         dataType:"JSON",
-        //         beforeSend: function(){
-        //             $("#loading_modal").show();
-        //         },
-        //         success:function(promise){
-        //             $("#loading_modal").hide();
-        //             tblCodes.ajax.reload(null, false);
-        //             $("#mdlCode").modal("hide");
-        //             cancelform();
-        //             showMessage("Success", "Job code was saved successfully", "success", "green");
-        //         }
-        //     })
-        // });
-
-        // $("#btnEditCodes").click(function(){
-        //     $("#CodeID").val(dataJobCode.ID);
-        //     $("#CodeValue").val(dataJobCode.Code);
-        //     $("#mdlCode").modal("show");
-        // });
-
-        // $("#btnCancelCode").click(function(){
-        //     $(".input").val("");
-        // });
-
-        // $("#tblCodes").on("change", ".CheckItem", function () {
-        //     var trData = tblCodes.row($(this).parents('tr')).data();
-        //     if ($(this).is(":checked")) {
-        //         JobCodeChkData.push({ ID: trData.ID});
-        //     } else {
-        //         JobCodeChkData = JobCodeChkData.filter(function (obj) {
-        //             return obj.ID !== trData.ID;
-        //         });
-        //     }
-        // });
         //Job Categories Events
 
         $("#btnAddJobCategories").click(function(){
@@ -4504,46 +4456,19 @@ B. Synopsis: Class Module used to process data
                     $("#loading_modal").show();
                 },
                 success:function(promise){
+                    $("#loading_modal").hide();
                     if(promise.success){
-                        $("#loading_modal").hide();
                         tblCategories.ajax.reload(null, false);
                         $("#mdlCategory").modal("hide");
                         cancelform();
                         showMessage("Success", "Job category was saved successfully", "success", "green");
                     }
                     else{
-                        $("#loading_modal").hide();
                         showMessage("Error!", "Job category already exists", "error", "red");
                     }
                 }
             })
         });
-
-        // $("#btnDeleteCodes").click(function(){
-        
-        //     if (JobCodeChkData.length == 0){
-        //         showMessage("Error", "Please check a row in code table", "error", "red");
-        //     }
-        //     else{
-        //         $.ajax({
-        //             url:"/admin/MasterMaintenance/JobInformation/DeleteJobCode",
-        //             type:"POST",
-        //             data:{
-        //                 _token: token,
-        //                 ID: JobCodeChkData,
-        //             },
-        //             dataType:"JSON",
-        //             beforeSend: function(){
-        //                 $("#loading_modal").show();
-        //             },
-        //             success:function(promise){
-        //                 $("#loading_modal").hide();
-        //                 tblCodes.ajax.reload(null, false);
-        //                 showMessage("Success", "Job category was deleted successfully", "success", "green");
-        //             }
-        //         })
-        //     }
-        // });
 
         $("#btnEditJobCategories").click(function(){
             $("#mdlCategoryTitle").text("Update Category");
@@ -4807,48 +4732,6 @@ B. Synopsis: Class Module used to process data
                 }
             });
         });
-
-        // $('#tblCodes tbody').on('click', 'tr', function(e){
-        //     dataJobCode = tblCodes.row($(this)).data();
-        //     switch (e.target.localName) {
-        //         case "button":
-        //             break;
-        //         case "span":
-        //             break;
-        //         case "checkbox":
-        //             break;
-        //         case "i":
-        //             break;
-        //         case "textbox":
-        //             break;
-        //         case "input":
-        //             break;
-        //         default:
-        //             if($.trim(dataJobCode) != ""){
-        //                 if ($(this).hasClass('selected')) {
-        //                     dataJobCode = "";
-        //                     $("#btnEditCodes").attr('disabled', true);
-        //                     $("#btnAddJobCategories").attr('disabled', true);
-        //                     tblCodes.$('tr.selected').removeClass('selected');
-        //                 }
-        //                 else {
-        //                     $("#btnEditCodes").removeAttr('disabled');
-        //                     $("#btnAddJobCategories").removeAttr('disabled');
-        //                     tblCodes.$('tr.selected').removeClass('selected');
-        //                     $(this).addClass('selected');
-        //                 }
-        //             }
-
-        //             $(".CodeDisable").attr('disabled', true);
-        //             dataJobCategory = "";
-        //             dataJobOperation = "";
-        //             dataQualification = "";
-        //             tblCategories.ajax.reload(null, false);
-        //             tblOperations.ajax.reload(null, false);
-        //             tblQualifications.ajax.reload(null, false);
-        //             break;
-        //     }
-        // });
     
         $('#tblJobCategories tbody').on('click', 'tr', function(e){
             dataJobCategory = tblCategories.row($(this)).data();

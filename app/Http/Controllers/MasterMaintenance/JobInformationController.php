@@ -172,7 +172,7 @@ class JobInformationController extends Controller
             ->where('id', $request["ID"])
             ->update(['Code' => $request["Code"]]);
 
-            $msg = 'Job Code Saved Successfully';
+            $msg = 'Job Code Updated Successfully';
         }
         $data = [
             'msg' =>  $msg,
