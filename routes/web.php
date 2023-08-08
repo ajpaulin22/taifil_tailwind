@@ -166,6 +166,8 @@ Route::group(["middleware" => "admin","prefix" => "admin"],function(){
             Route::get("/",[PromJapLangController::class,"view"]);
             Route::get("/GetPrometrics",[PromJapLangController::class,"GetPrometrics"]);
             Route::get("/GetJaplang",[PromJapLangController::class,"GetJaplang"]);
+            Route::post("/SavePrometrics",[PromJapLangController::class,"SavePrometrics"]);
+            Route::post("/SaveJaplang",[PromJapLangController::class,"SaveJaplang"]);
         });
     });
 });
