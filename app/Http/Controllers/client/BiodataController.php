@@ -291,7 +291,7 @@ class BiodataController extends Controller
                 if(isset($request->certificatejob)){
                     $cert_id = DB::table("certificatejobs")->insertGetID([
                         "personal_id" =>$id,
-                        "ex-trainee" =>($request->certificatejob['ex_trainee'] == "true")? 1 : 0 ,
+                        "ex_trainee" =>($request->certificatejob['ex_trainee'] == "true")? 1 : 0 ,
                         "jobcategory" =>$request->certificatejob['jobcategory'],
                         "joboperation"=>$request->certificatejob['joboperation']
                     ]);
