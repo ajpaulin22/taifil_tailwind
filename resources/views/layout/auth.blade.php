@@ -6,7 +6,7 @@
     <meta content="Tai-Fil" name="description" />
     <meta content="dGl0aSBrbyBtYWxha2kK" name="author" />
 
-    <link rel="icon" type="image/png" href="/images/favicon.ico">
+    <link rel="icon" type="image/png" href="/images/tf logo.png">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
