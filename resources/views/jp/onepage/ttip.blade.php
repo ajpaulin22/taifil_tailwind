@@ -9,21 +9,21 @@
             </div>
             <div data-aos="fade-left" class="col-span-1 text-sm">
                 <div class="text-green-500 font-bold text-2xl md:text-5xl mb-10">TITP（Technical Intern Training Program技能実習制度）とは？</div>
-                <p class="text-sm md:text-lg">外国人技能実習制度は、1960年代後半から海外現地企業等が従業員教育として実施してきた研修制度が高く評価され、1993年に正式な制度として創設されました。
+                <p class="text-sm md:text-lg">外国人技能実習制度は、1960年代後半から海外現地企業等が従業員教育として実施してきた研修制度が高く評価され、1993年に正式な制度として創設されたものになります
                 </p>
-                <p>技能実習制度お目的は以下のとおりです。
+                <p>技能実習制度の目的は以下の通りです
                 </p>
                 <ul class="list-item list-disc ml-5">
-                    <li>技術を継承する為
+                    <li>技能の継承
                     </li>
-                    <li>テクノロジーを継承する為
+                    <li>技術の継承
                     </li>
-                    <li>知識を継承する為
+                    <li>知識の継承
                     </li>
                 </ul>
-                <p class="mt-5">日本に蓄積された人材を開発途上地域等に還元し、開発途上地域の経済発展を担う人材の育成に貢献することにより国際協力を推進します。
+                <p class="mt-5">発展途上地域の経済発展を担う人材の育成することで、日本が蓄積してきた技術や知識を途上国を始めとする諸地域に移転し、国際支援を進めてい参ります。
                 </p>
-                <p class="mt-5">技能実習生は、母国では習得が難しい技能等を習得・習得・強化することができます。 実習期間は最長5年間で、技能実習計画に基づき技能等の修得が行われます。
+                <p class="mt-5">技能実習生は、母国では習得が難しい技能等を習得・習熟・熟達することができます。 実習期間は最長5年間で、技能実習計画に基づき技能等の修得が行われます
                 </p>
                 <p class="text-end ">出典:<a href="https://www.jitco.or.jp/en/regulation/" target="_blank"  class="text-blue-600 underline italic"> https://www.jitco.or.jp/en/regulation/
                 </a></p>
