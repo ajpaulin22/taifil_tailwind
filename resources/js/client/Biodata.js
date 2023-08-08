@@ -106,6 +106,7 @@
         this.ex_trainee = false;
         this.prometric_options = "<option value='' selected disabled value>Choose....</option>";
         this.japlang_options = "<option value='' selected disabled value>Choose....</option>";
+        this.searchParams = new URLSearchParams(location.search)
     }
     Biodata.prototype = {
         uploadData:function(){
@@ -679,6 +680,9 @@
     let Datepicker = tw_elements.Datepicker;
     let Input = tw_elements.Input;
     tw_elements.initTE({ Datepicker,Input });
+    if(biodata.searchParams.get('type') != "mod" && !biodata.searchParams.has('cat')){
+        $("#opening").hide();
+    }
     biodata.getData();
     if(biodata.biodata_type == 'SSW'){
         biodata.getCategoriesSSW()
