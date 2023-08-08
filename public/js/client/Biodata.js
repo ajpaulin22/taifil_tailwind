@@ -1621,6 +1621,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         _token:self.token,
                     },
                     dataType:"JSON",
+                    async: false,
                     success:function(promise){
                         JobCategoryID = promise.personaldata[0].job_cat;
                         JobOperationID = promise.personaldata[0].operation;
@@ -1890,8 +1891,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         biodata.loadURLToInputField('/storage/1x1_pictures/' + pictureName, pictureName, "picture");
                         biodata.loadURLToInputField('/storage/gov_id_pictures/' + govIDName, govIDName, "gov_id");
                         biodata.loadURLToInputField('/storage/passport_id_pictures/' + passportIDName, passportIDName, "passport_id");
+                        
                     },
                 })
+                
             }
         },
 
@@ -2003,7 +2006,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         }
                     }
                 }
+            }).done(function(){
+                $("#opening").hide();
             })
+            
         },
         getOperationsSSW:function(id){
             $.ajax({
@@ -2120,11 +2126,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
     let Datepicker = tw_elements.Datepicker;
     let Input = tw_elements.Input;
     tw_elements.initTE({ Datepicker,Input });
-
-    setTimeout(() => {
-        $("#opening").hide();
-    }, 300);
-    // biodata.getCode();
     biodata.getData();
     if(biodata.biodata_type == 'SSW'){
         biodata.getCategoriesSSW()
@@ -2135,7 +2136,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         $(".prometric_trainee").attr("disabled",true)
        },3000)
     }
-
     biodata.getCategories()
     $.validator.addMethod("validDate", function(value, element) {
         // return moment(value).isSameOrAfter('01/01/1900');
@@ -2148,6 +2148,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
     // })
     $("#jobcategories").on("change",function(){
         biodata.getOperations($(this).val());
+        
     });
     $("#certificate_category").on("change",function(){
         biodata.getOperationsSSW($(this).val());
@@ -2160,7 +2161,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
     $(".date_picker").on("input",function(){
         $(this).valid()
     })
-
+    
     //====================================================================tabs Event Listener
     $("[data-tab-target]").toArray().forEach(tab => {
         let valid = false;
