@@ -748,9 +748,6 @@ class BiodataController extends Controller
         $personaldata[0]->date_birth = date('m/d/Y', strtotime(explode(" ", $personaldata[0]->date_birth)[0]));
         $personaldata[0]->issue_date = date('m/d/Y', strtotime(explode(" ", $personaldata[0]->issue_date)[0]));
         $personaldata[0]->expiry_date = date('m/d/Y', strtotime(explode(" ", $personaldata[0]->expiry_date)[0]));
-        $personaldata[0]->id_picture = file_put_contents("test.jpg", $personaldata[0]->id_picture);
-        $personaldata[0]->gov_id_picture = file_put_contents("test.jpg", $personaldata[0]->gov_id_picture);
-        $personaldata[0]->passport_id_picture = file_put_contents("test.jpg", $personaldata[0]->passport_id_picture);
         $personaldata[0]->id_picture = base64_encode($personaldata[0]->id_picture);
         $personaldata[0]->gov_id_picture = base64_encode($personaldata[0]->gov_id_picture);
         $personaldata[0]->passport_id_picture = base64_encode($personaldata[0]->passport_id_picture);

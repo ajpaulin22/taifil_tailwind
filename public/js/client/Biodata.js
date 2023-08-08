@@ -1603,25 +1603,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         },
 
         loadURLToInputField:function(url, fileName, key){
-            biodata.getImgURL(url, (imgBlob)=>{
-              // Load img blob to input
-              // WIP: UTF8 character error
-              let file = new File([imgBlob], fileName,{type:"image/jpeg", lastModified:new Date().getTime()}, 'utf-8');
-              let container = new DataTransfer();
-              container.items.add(file);
-              document.querySelector('#' + key).files = container.files;
-            })
+            let file = new File([""], fileName,{type:"image/jpeg", lastModified:new Date().getTime()}, 'utf-8');
+            let container = new DataTransfer();
+            container.items.add(file);
+            document.querySelector('#' + key).files = container.files;
         },
-          // xmlHTTP return blob respond
-        getImgURL:function(url, callback){
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function() {
-            callback(xhr.response);
-        };
-        xhr.open('GET', url);
-        xhr.responseType = 'blob';
-        xhr.send();
-        },
+
 
         getData:function(){
             var strx = location.search.substring(1).split('&');
