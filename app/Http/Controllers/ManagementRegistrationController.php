@@ -25,7 +25,6 @@ class ManagementRegistrationController extends Controller
     }
 
     public function GetApplicantData(Request $request){
-        // dd($request);
         $sorCol = $request['columns'][$request['order.0.column']]['data'];
         $sorDir = $request["order.0.dir"];
         $start = $request["start"];
@@ -33,19 +32,15 @@ class ManagementRegistrationController extends Controller
         $search = $request["search.value"];
         $sql = "call biodata_getdata('".($request['Type'] == null ? '' : $request['Type']) . "', '". ($request['Category'] == null ? '' : $request['Category']). "', '". ($request['Operations'] == null ? '' : $request['Operations']). "', ". ($request['AgeFrom'] == null ? 0 : $request['AgeFrom']). ", ". ($request['AgeTo'] == null ? 0 : $request['AgeTo']) .", '" . $sorCol."', '" . $sorDir."', " . $start.", " . $length. ", '". $search ."')";
         $data = collect(DB::select(DB::raw($sql)));
-
-        // if(COUNT($data) != 0){
-        //     for($i = 0; $i < COUNT($data); $i++){
-        //         $data[$i]->AbroadDate = $data[$i]->AbroadDate->format('Y-m-d') ?? null;
-        //     }
-        // }
-        $sql = "SELECT * from personal_datas where isdeleted = 0 "
-                        .($request['Type'] == null ? "" : " AND job_type = '". $request['Type'] ."' ")
-                        .($request['Category'] == null ? "" : " AND job_cat = '". $request['Category'] ."' ")
-                        .($request['operation'] == null ? "" : " AND job_operation = '". $request['operation'] ."' ")
-                        ." AND Age BETWEEN " . ($request["AgeFrom"] == null ? 0 : $request["AgeFrom"]) . " AND " . ($request["AgeTo"] == null ? 100 : $request["AgeTo"]);
+        $sql = "call biodata_getdata('".($request['Type'] == null ? '' : $request['Type']) . "', '". ($request['Category'] == null ? '' : $request['Category']). "', '". ($request['Operations'] == null ? '' : $request['Operations']). "', ". ($request['AgeFrom'] == null ? 0 : $request['AgeFrom']). ", ". ($request['AgeTo'] == null ? 0 : $request['AgeTo']) .", '" . $sorCol."', '" . $sorDir."', 0, 10000, '". $search ."')";
+        $data2 = collect(DB::select(DB::raw($sql)));
+        // $sql = "SELECT * from personal_datas where isdeleted = 0 "
+        //                 .($request['Type'] == null ? "" : " AND job_type = '". $request['Type'] ."' ")
+        //                 .($request['Category'] == null ? "" : " AND job_cat = '". $request['Category'] ."' ")
+        //                 .($request['operation'] == null ? "" : " AND job_operation = '". $request['operation'] ."' ")
+        //                 ." AND Age BETWEEN " . ($request["AgeFrom"] == null ? 0 : $request["AgeFrom"]) . " AND " . ($request["AgeTo"] == null ? 100 : $request["AgeTo"]);
         $totalRowCount = collect(DB::select(DB::raw($sql)));
-        $totalRowCount = (count($data) > 0 ? count($totalRowCount): 0);
+        $totalRowCount = (count($data) > 0 ? count($data2): 0);
         $json_data = [
             'draw' => intval($request->draw),
             'recordsTotal' => $totalRowCount,
@@ -54,22 +49,6 @@ class ManagementRegistrationController extends Controller
         ];
         return json_encode($json_data);
     }
-    // function get_multi_result_set($conn, $statement)
-    // {
-    //     $results = [];
-    //     $pdo = DB::connection($conn)->getPdo();
-    //     $result = $pdo->prepare($statement);
-    //     $result->execute();
-    //     do {
-    //         $resultSet = [];
-    //         foreach ($result->fetchall(PDO::FETCH_ASSOC) as $res) {
-    //             array_push($resultSet, $res);
-    //         }
-    //         array_push($results, $resultSet);
-    //     } while ($result->nextRowset());
-
-    //     return $results;
-    // }
 
     public function GetPersonalData(Request $request){
         $data = DB::table('personal_datas')
@@ -288,6 +267,6 @@ class ManagementRegistrationController extends Controller
         }
         
         $pdf = Pdf::loadView('exportbiodata', $data);
-        return $pdf->download("biodata".$date.'.pdf');
+        return $pdf->stream("biodata".$date.'.pdf');
      }
 }

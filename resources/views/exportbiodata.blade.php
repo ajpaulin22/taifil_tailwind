@@ -334,7 +334,7 @@
                             <div style="clear:both"></div>
                         @endfor
                     @endif
-    
+                <br>
                 <div style="float: left; width:20%;">
                     <h5>Japanese Language</h5>
                 </div>
@@ -350,7 +350,7 @@
                     </div>
                 <div style="clear:both"></div>
                     @if(COUNT($language) == 0)
-                    <div style="float: left; width:60%; margin-left: 20px; margin-right: 42px; border-bottom: 1px solid black; text-align:center">
+                    <div style="float: left; width:60%; margin-left: 20px; margin-right: 42px; border-bottom: 1px solid black;">
                         <label>N/A</label>
                     </div>
                     <div style="float: left; width:8.5%; margin-right:68px; border-bottom: 1px solid black; text-align:center">
@@ -362,7 +362,7 @@
                     <div style="clear:both"></div>
                     @else
                         @for($i = 0; $i < COUNT($language); $i++)
-                            <div style="float: left; width:60%; margin-left: 20px; margin-right: 42px; border-bottom: 1px solid black; text-align:center">
+                            <div style="float: left; width:60%; margin-left: 20px; margin-right: 42px; border-bottom: 1px solid black;">
                                 <label>{{ $language[$i]->jpl }}</label>
                             </div>
                             <div style="float: left; width:8.5%; margin-right:68px; border-bottom: 1px solid black; text-align:center">

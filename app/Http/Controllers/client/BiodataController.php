@@ -663,15 +663,15 @@ class BiodataController extends Controller
             // $data->passport_id_picture =$request->file('passport_id')->store('passport_id_pictures',"public");
             // $data->id_picture=$request->file('picture')->store('1x1_pictures',"public");
             $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
-            if(str_contains($data->gov_id_picture, '<!doctype html>')){
+            if(str_contains($data->gov_id_picture, '<!doctype html>') || $data->gov_id_picture == ""){
                 unset($data->gov_id_picture);
             }
             $data->passport_id_picture = file_get_contents($request->file('passport_id')->getPathname());
-            if(str_contains($data->passport_id_picture, '<!doctype html>')){
+            if(str_contains($data->passport_id_picture, '<!doctype html>') || $data->gov_id_picture == ""){
                 unset($data->passport_id_picture);
             }
             $data->id_picture= file_get_contents($request->file('picture')->getPathname());
-            if(str_contains($data->id_picture, '<!doctype html>')){
+            if(str_contains($data->id_picture, '<!doctype html>') || $data->gov_id_picture == ""){
                 unset($data->id_picture);
             }
             $data->gov_id_filename = $request->file('gov_id')->getClientOriginalName();
