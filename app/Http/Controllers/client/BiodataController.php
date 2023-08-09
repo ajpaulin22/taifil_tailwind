@@ -119,6 +119,7 @@ class BiodataController extends Controller
                     "address_jp_lang" => isset($request->educational["add_jpl"])?$request->educational["add_jpl"]:null,
                     "from_jp_lang" => isset($request->educational["date_from_jpl"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_jpl"])):null,
                     "until_jp_lang" => isset($request->educational["date_until_jpl"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_jpl"])):null,
+
                     "certificate_jp_lang" => isset($request->educational["certificate_jpl"])?$request->educational["certificate_jpl"]:null,
                     "certificate_until_jp_lang" => isset($request->educational["date_until_cert_jpl"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_cert_jpl"])):null,
                     "name_college" => $request->educational["name_college"],
@@ -598,8 +599,8 @@ class BiodataController extends Controller
                 -> first();
 
                 if($personaldata -> job_type === 'SSW') {
+                    DB::table('prometric_datas')->where('certificate_id', $certificateJob -> id)->delete();
                     if(isset($request->prometric)){
-                        DB::table('prometric_datas')->where('certificate_id', $certificateJob -> id)->delete();
                         foreach($request->prometric as $prometric){
                             prometric_data::create([
                                 "certificate_id" => $certificateJob -> id,
@@ -609,17 +610,17 @@ class BiodataController extends Controller
                                 "isdeleted" => 0
                             ]);
                         }
-                        if(isset($request->jpl) && $personaldata -> job_type === 'SSw'){
-                            DB::table('jpl_datas')->where('certificate_id', $certificateJob -> id)->delete();
-                            foreach($request->jpl as $j){
-                                jpl_data::create([
-                                    "certificate_id" => $certificateJob -> id,
-                                    "jpl" => $j["test"],
-                                    "taken" => date('Y-m-d H:i:s' ,strtotime($j['taken'])),
-                                    "passed" => $j["passed"] === 'true' ? 1 : 0,
-                                    "isdeleted" => 0
-                                ]);
-                            }
+                    }
+                    DB::table('jpl_datas')->where('certificate_id', $certificateJob -> id)->delete();
+                    if(isset($request->jpl) && $personaldata -> job_type === 'SSW'){
+                        foreach($request->jpl as $j){
+                            jpl_data::create([
+                                "certificate_id" => $certificateJob -> id,
+                                "jpl" => $j["test"],
+                                "taken" => date('Y-m-d H:i:s' ,strtotime($j['taken'])),
+                                "passed" => $j["passed"] === 'true' ? 1 : 0,
+                                "isdeleted" => 0
+                            ]);
                         }
                     }
                 }

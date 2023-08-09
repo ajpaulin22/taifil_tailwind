@@ -269,23 +269,23 @@
                 <h5>Have Driver's License:</h5> 
             </div>
             <div style="float: left; width:3%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{ $data->drivers_licensed == 1? "Yes" : "No" }}</label>
+                <label>{{ $data->drivers_licensed == 1 ? "Yes" : "No" }}</label>
             </div>
             <div style="float: left; width:16%">
                 <h5>Type of License:</h5>
             </div>
             <div style="float: left; width:15%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{ $data->drivers_licensed == null? "N/A" : $data->drivers_licensed }}</label>
+                <label>{{ $data->drivers_licensed == 0 ? "N/A" : $data->drivers_licensed }}</label>
             </div>
             <div style="float: left; width:12.5%">
                 <h5>Valid Until:</h5>
             </div>
             <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{ date('m/d/Y', strtotime($data->date_birth))}}</label>
+                <label>{{ $data->drivers_licensed == 0 ? "N/A" : date('m/d/Y', strtotime($data->date_birth))}}</label>
             </div>
         </div>
         <div style="clear:both"></div>
-        @if($data->job_type == "SSW"){
+        @if($data->job_type == "SSW")
             <h1 class="row">Seminar / Certificate</h1>
             <div class="row" >
                 <div style="float: left; width:20%;">
@@ -375,7 +375,6 @@
                         @endfor
                     @endif
             </div>
-        }
         @endif
         <div style="clear:both"></div>
         <h1 class="row">Educational Background</h1>
