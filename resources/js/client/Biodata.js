@@ -237,7 +237,11 @@
                                 }
                             }
                             else{
+<<<<<<< HEAD
                                 $(".prometric_trainee").attr("disabled",true)
+=======
+                                $(".prometric_trainee").attr('disabled', true);
+>>>>>>> master
                             }
 
                             if(promise.languagedata.length !== 0){
@@ -248,7 +252,11 @@
                                 }
                             }
                             else{
+<<<<<<< HEAD
                                 $(".jpl_trainee").attr("disabled",true)
+=======
+                                $(".jpl_trainee").attr('disabled', true);
+>>>>>>> master
                             }
                         }
 
