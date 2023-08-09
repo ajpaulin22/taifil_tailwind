@@ -297,7 +297,7 @@ class BiodataController extends Controller
                         "joboperation"=>$request->certificatejob['joboperation']
                     ]);
                 }
-                
+
                 if(isset($request->prometric)){
                     foreach($request->prometric as $p){
                         prometric_data::create([
@@ -601,6 +601,14 @@ class BiodataController extends Controller
                 -> first();
 
                 if($personaldata -> job_type === 'SSW') {
+                    DB::table("certificatejobs")
+                    ->where('personal_id', $request["personalid"])
+                    ->update([
+                            "ex_trainee" =>($request->certificatejob['ex_trainee'] == "true")? 1 : 0 ,
+                            "jobcategory" =>$request->certificatejob['jobcategory'],
+                            "joboperation"=>$request->certificatejob['joboperation']
+                    ]);
+
                     DB::table('prometric_datas')->where('certificate_id', $certificateJob -> id)->delete();
                     if(isset($request->prometric)){
                         foreach($request->prometric as $prometric){

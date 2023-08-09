@@ -1670,7 +1670,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
                         //Prometrics
                         if(promise.personaldata[0].job_type == "SSW"){
-                            if(promise.traineedata[0]["ex-trainee"] == 1){
+                            if(promise.traineedata[0]["ex_trainee"] == 1){
                                 $("#certificate_trainee").trigger('click');
                                 isPrometricTrainee = true
                                 CertificateId = promise.traineedata[0].jobcategory
@@ -1679,11 +1679,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
                             if(promise.prometricsdata.length !== 0){
                                 $("#prometric_applicable").trigger('click');
+                                $(".prometric_trainee").removeAttr('disabled');
                                 PrometricCertificate = []
                                 for(var i = 0; i < promise.prometricsdata.length; i++){
                                     PrometricCertificate.push(promise.prometricsdata[i])
                                 }
                             }
+
                             if(promise.languagedata.length !== 0){
                                 $("#jpl_applicable").trigger('click');
                                 PrometricLanguage = []
@@ -1958,7 +1960,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         getCategoriesSSW:function(){
             let self = this;
             $.ajax({
-                url:"/client/Biodata/get-categories",
+                url:"/client/Biodata/get-categoriesSSW",
                 type:"GET",
                 data:{
                     _token:self.token,
@@ -2127,13 +2129,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             }
             self.getData();
             if(self.biodata_type == 'SSW'){
-                self.getCategoriesSSW()
+                self.getCategoriesSSW();
                 self.getJaplang();
                 self.getPrometrics();
-               setTimeout(() => {
-                $(".jpl_trainee").attr("disabled",true)
-                $(".prometric_trainee").attr("disabled",true)
-               },3000)
+               
             }
             self.getCategories();
             $.validator.addMethod("validDate", function(value, element) {
@@ -2331,7 +2330,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         biodata.prometricData.push({
                             test:$('select[name="trainee_test_prometric_' + i + '"]').val() == 'Others' ? $('select[name="trainee_test_prometric_' + i + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="trainee_test_prometric_' + i + '"]').val(),
                             taken:$('input[name="trainee_taken_prometric_' + i + '"]').val(),
-                            passed:$('input[name="trainee_result_prometric_' + i + '"]').prop('checked'),
+                            passed:$(`#trainee_passed_prometric_${i}`).prop('checked'),
                         })
                     }
                 }
@@ -2340,10 +2339,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         biodata.jplData.push({
                             test:$('select[name="trainee_test_jpl_' + i + '"]').val(),
                             taken:$('input[name="trainee_taken_jpl_' + i + '"]').val(),
-                            passed:$('input[name="trainee_result_jpl_' + i + '"]').prop('checked'),
+                            passed:$(`#trainee_passed_language_${i}`).prop('checked'),
                         })
                     }
-
                 }
             }else{
                 for (let i = 0; $(form).find('select[name="not_trainee_test_prometric_' + i + '"]').val() != null ; i++){
