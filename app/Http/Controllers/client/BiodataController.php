@@ -297,6 +297,7 @@ class BiodataController extends Controller
                         "joboperation"=>$request->certificatejob['joboperation']
                     ]);
                 }
+                
                 if(isset($request->prometric)){
                     foreach($request->prometric as $p){
                         prometric_data::create([
@@ -307,6 +308,7 @@ class BiodataController extends Controller
                         ]);
                     }
                 }
+
                 if(isset($request->jpl)){
                     foreach($request->jpl as $j){
                         jpl_data::create([
