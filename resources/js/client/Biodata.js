@@ -231,11 +231,13 @@
 
                             if(promise.prometricsdata.length !== 0){
                                 $("#prometric_applicable").trigger('click');
-                                $(".prometric_trainee").removeAttr('disabled');
                                 PrometricCertificate = []
                                 for(var i = 0; i < promise.prometricsdata.length; i++){
                                     PrometricCertificate.push(promise.prometricsdata[i])
                                 }
+                            }
+                            else{
+                                $(".prometric_trainee").attr("disabled",true)
                             }
 
                             if(promise.languagedata.length !== 0){
@@ -244,6 +246,9 @@
                                 for(var i = 0; i < promise.languagedata.length; i++){
                                     PrometricLanguage.push(promise.languagedata[i])
                                 }
+                            }
+                            else{
+                                $(".jpl_trainee").attr("disabled",true)
                             }
                         }
 
