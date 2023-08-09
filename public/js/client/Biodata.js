@@ -1702,12 +1702,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         $("input[name='add_highschool']").val(promise.educationaldata[0].address_highschool);
                         $("input[name='date_from_highschool']").val(promise.educationaldata[0].from_highschool);
                         $("input[name='date_until_highschool']").val(promise.educationaldata[0].until_highschool);
-                        $("input[name='name_jpl']").val(promise.educationaldata[0].name_jp_lang);
-                        $("input[name='add_jpl']").val(promise.educationaldata[0].address_jp_lang);
-                        $("input[name='date_from_jpl']").val(promise.educationaldata[0].from_jp_lang);
-                        $("input[name='date_until_jpl']").val(promise.educationaldata[0].until_jp_lang);
-                        $("input[name='certificate_jpl']").val(promise.educationaldata[0].certificate_jp_lang);
-                        $("input[name='date_until_cert_jpl']").val(promise.educationaldata[0].certificate_until_jp_lang);
+                        if(promise.educationaldata[0].name_jp_lang != ""){
+                            $("input[name='name_jpl']").val(promise.educationaldata[0].name_jp_lang);
+                            $("input[name='add_jpl']").val(promise.educationaldata[0].address_jp_lang);
+                            $("input[name='date_from_jpl']").val(promise.educationaldata[0].from_jp_lang);
+                            $("input[name='date_until_jpl']").val(promise.educationaldata[0].until_jp_lang);
+                            $("input[name='certificate_jpl']").val(promise.educationaldata[0].certificate_jp_lang);
+                            $("input[name='date_until_cert_jpl']").val(promise.educationaldata[0].certificate_until_jp_lang);
+                        }
+                        else{
+                            $("#jpl_applicable_education").trigger('click');
+                        }
                         $("input[name='name_college']").val(promise.educationaldata[0].name_college);
                         $("input[name='add_college']").val(promise.educationaldata[0].address_college);
                         $("input[name='date_from_college']").val(promise.educationaldata[0].from_college);
@@ -2326,7 +2331,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         biodata.prometricData.push({
                             test:$('select[name="trainee_test_prometric_' + i + '"]').val() == 'Others' ? $('select[name="trainee_test_prometric_' + i + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="trainee_test_prometric_' + i + '"]').val(),
                             taken:$('input[name="trainee_taken_prometric_' + i + '"]').val(),
-                            passed:parseInt($('input[name="trainee_result_prometric_' + i + '"]').val()),
+                            passed:$('input[name="trainee_result_prometric_' + i + '"]').prop('checked'),
                         })
                     }
                 }
@@ -2335,7 +2340,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         biodata.jplData.push({
                             test:$('select[name="trainee_test_jpl_' + i + '"]').val(),
                             taken:$('input[name="trainee_taken_jpl_' + i + '"]').val(),
-                            passed:parseInt($('input[name="trainee_result_jpl_' + i + '"]').val()),
+                            passed:$('input[name="trainee_result_jpl_' + i + '"]').prop('checked'),
                         })
                     }
 
@@ -3342,6 +3347,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             $(".sibling_required").html("")
             $(".sibling").val("")
             $(".sibling_radio").attr("disabled",true)
+            $(".sibling_radio").prop('checked', false)
             if(biodata.family_validator){
                 $("#family_form").valid();
             }
