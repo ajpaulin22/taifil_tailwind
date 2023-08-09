@@ -551,13 +551,12 @@
                         $("#joboperations").val(JobOperationID).trigger('change');
                     }
                     let params = new URLSearchParams(window.location.search)
+                    
                     for (let p of params) {
                         if(p[0] == "op"){
                             $("#joboperations").val(p[1]).trigger('change');
-                            
                         }
                     }
-                    $("#opening").hide();
                 }
             })
         },
@@ -683,7 +682,7 @@
                 $(".prometric_trainee").attr("disabled",true)
                },3000)
             }
-            self.getCategories()
+            self.getCategories();
             $.validator.addMethod("validDate", function(value, element) {
                 // return moment(value).isSameOrAfter('01/01/1900');
                 return true;
@@ -2159,7 +2158,7 @@
         var newVal = $(this).val().replace(/[^0-9\.]/g, '');
         $(this).val(newVal.replace(/,/g, ''));
     });
-
+    biodata.loadFunctions();
      //UPLOAD TAB =======================================================EVENT LISTENER
      $.validator.addMethod( "maxsize", function( value, element, param ) {
         if ( this.optional( element ) ) {
@@ -2253,13 +2252,16 @@
     $("#upload_details").on("click",function(){
         biodata.uploadData()
         modal.hide();
-    })
+    });
+
      $("#uploadBtn_Prev").on("click",function(e){
         e.preventDefault();
         $("#family_tab").trigger("click");
      })
     });
-    biodata.loadFunctions();
+    setTimeout(() => {
+        $("#opening").hide();
+    },5000)
 })();
 
 
