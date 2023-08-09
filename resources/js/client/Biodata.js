@@ -254,7 +254,7 @@
                         $("input[name='add_highschool']").val(promise.educationaldata[0].address_highschool);
                         $("input[name='date_from_highschool']").val(promise.educationaldata[0].from_highschool);
                         $("input[name='date_until_highschool']").val(promise.educationaldata[0].until_highschool);
-                        if(promise.educationaldata[0].name_jp_lang != ""){
+                        if(promise.educationaldata[0].name_jp_lang != null){
                             $("input[name='name_jpl']").val(promise.educationaldata[0].name_jp_lang);
                             $("input[name='add_jpl']").val(promise.educationaldata[0].address_jp_lang);
                             $("input[name='date_from_jpl']").val(promise.educationaldata[0].from_jp_lang);
