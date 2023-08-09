@@ -444,10 +444,8 @@
                         biodata.loadURLToInputField('/storage/1x1_pictures/' + pictureName, pictureName, "picture");
                         biodata.loadURLToInputField('/storage/gov_id_pictures/' + govIDName, govIDName, "gov_id");
                         biodata.loadURLToInputField('/storage/passport_id_pictures/' + passportIDName, passportIDName, "passport_id");
-                        
                     },
                 })
-                
             }
         },
 
@@ -503,7 +501,6 @@
                     }
                 }
             })
-    
         },
         getCategoriesSSW:function(){
             let self = this;
@@ -529,7 +526,7 @@
                         $("#certificate_category").val(CertificateId).trigger('change');
                     }
                 }
-            })
+            });
         },
         getOperations:function(id){
             $.ajax({
@@ -557,13 +554,12 @@
                     for (let p of params) {
                         if(p[0] == "op"){
                             $("#joboperations").val(p[1]).trigger('change');
+                            
                         }
                     }
+                    $("#opening").hide();
                 }
-            }).done(function(){
-                $("#opening").hide();
             })
-            
         },
         getOperationsSSW:function(id){
             $.ajax({
@@ -670,6 +666,28 @@
                     // $("select[name='not_trainee_test_jpl_0']").append(self.japlang_options)
                 }
             })
+        },
+
+        loadFunctions:function(){
+            let self = this;
+            if(self.searchParams.get('type') != "mod" && !self.searchParams.has('cat')){
+                $("#opening").hide();
+            }
+            self.getData();
+            if(self.biodata_type == 'SSW'){
+                self.getCategoriesSSW()
+                self.getJaplang();
+                self.getPrometrics();
+               setTimeout(() => {
+                $(".jpl_trainee").attr("disabled",true)
+                $(".prometric_trainee").attr("disabled",true)
+               },3000)
+            }
+            self.getCategories()
+            $.validator.addMethod("validDate", function(value, element) {
+                // return moment(value).isSameOrAfter('01/01/1900');
+                return true;
+            }, "Please enter a valid date in the format DD/MM/YYYY");
         }
     }
     Biodata.init.prototype = Biodata.prototype;
@@ -680,24 +698,7 @@
     let Datepicker = tw_elements.Datepicker;
     let Input = tw_elements.Input;
     tw_elements.initTE({ Datepicker,Input });
-    if(biodata.searchParams.get('type') != "mod" && !biodata.searchParams.has('cat')){
-        $("#opening").hide();
-    }
-    biodata.getData();
-    if(biodata.biodata_type == 'SSW'){
-        biodata.getCategoriesSSW()
-        biodata.getJaplang();
-        biodata.getPrometrics();
-       setTimeout(() => {
-        $(".jpl_trainee").attr("disabled",true)
-        $(".prometric_trainee").attr("disabled",true)
-       },3000)
-    }
-    biodata.getCategories()
-    $.validator.addMethod("validDate", function(value, element) {
-        // return moment(value).isSameOrAfter('01/01/1900');
-        return true;
-    }, "Please enter a valid date in the format DD/MM/YYYY");
+    
 
     //=================================================EVENTS LISTENER
     // $("#jobcodes").on("change",function(){
@@ -705,8 +706,8 @@
     // })
     $("#jobcategories").on("change",function(){
         biodata.getOperations($(this).val());
-        
     });
+
     $("#certificate_category").on("change",function(){
         biodata.getOperationsSSW($(this).val());
     });
@@ -1472,7 +1473,7 @@
 
     $("#local_applicable").on("click",function(e){
         if(this.checked){
-            emplocalValid.resetForm();
+            // emplocalValid.resetForm();
             $("#local_companys").html("");
             $("#add_local_btn").attr("disabled", true)
             // $("#local_companys :input").val("");
@@ -1486,8 +1487,7 @@
             $("#add_local_btn").attr("disabled", false);
             $("#local_required").html("*")
         }
-    })
-
+    });
     $("#empLocal_form").on("submit",function(e){
         //biodata.validateLocalEmp()
 
@@ -2259,6 +2259,7 @@
         $("#family_tab").trigger("click");
      })
     });
+    biodata.loadFunctions();
 })();
 
 

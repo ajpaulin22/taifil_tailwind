@@ -430,8 +430,9 @@ class BiodataController extends Controller
                         "certificate_until" =>  date('Y-m-d H:i:s' ,strtotime($vc["certificate_until"])),
                     ]);
                 }
+
+                DB::table('local_emps')->where('personal_id', $request["personalid"])->delete();
                 if(isset($request->local_emp)){
-                    DB::table('local_emps')->where('personal_id', $request["personalid"])->delete();
                     foreach($request->local_emp as $le){
                         local_emp::create([
                             "personal_id" => $request["personalid"],
@@ -444,8 +445,8 @@ class BiodataController extends Controller
                     }
                 }
 
+                DB::table('abroad_emps')->where('personal_id', $request["personalid"])->delete();
                 if(isset($request->abroad_emp)){
-                    DB::table('abroad_emps')->where('personal_id', $request["personalid"])->delete();
                     foreach($request->abroad_emp as $le){
                         abroad_emp::create([
                             "personal_id" => $request["personalid"],
