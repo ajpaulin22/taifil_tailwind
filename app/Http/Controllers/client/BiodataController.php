@@ -738,6 +738,17 @@ class BiodataController extends Controller
         return $data;
     }
 
+    public function get_operationsSSW(Request $request){
+        $data = DB::table('m_joboperations')
+        ->select('ID','JobCategoriesID','Operation')
+        ->where("JobCategoriesID",$request->ID)
+        ->where("IsDeleted",0)
+        ->where("Hiring",1)
+        ->orderby("Operation","asc")
+        ->Get();
+        return $data;
+    }
+
     public function GetPersonalData(Request $request)
     {
         $personalid = $request->session()->get('personaldata');
