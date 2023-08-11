@@ -15,12 +15,15 @@
             <img src="data:image/png;base64,{{$data->id_picture}}" alt="Italian Trulli" style="width:96px;height:96px; float:right">
         </div>
         <div>
-            <h3>Job Type: {{ $data->job_type }}</h3>
-            <h3>Job Categories: {{$data->Category}}</h3>
-            <h3>Job Operations: {{$data->Operation}} </h3>
+            <h3 style="float: left; margin-right:5px;">Job Type:</h3>
+            <h3 style="font-weight: Normal; font-size: 20px; margin-top:2px;">{{ $data->job_type }}</h3>
+            <h3 style="float: left; margin-right:5px;">Job Categories:</h3>
+            <h3 style="font-weight: Normal; font-size: 20px; margin-top:2px;">{{ $data->Category }}</h3>
+            <h3 style="float: left; margin-right:5px;">Job Operations:</h3>
+            <h3 style="font-weight: Normal; font-size: 20px; margin-top:2px;">{{ $data->Operation }}</h3>
         </div>
         <hr>
-        <h1 class="row">Personal Data</h1>
+        <h3 class="row">Personal Data</h3>
         <div class="row">
             <div style="float:left; width:12%;">
                 <h5>First Name: </h5>
@@ -43,10 +46,10 @@
         </div>
         <div style="clear:both"></div>
         <div class="row">
-            <div style="float:left; width:20%; margin-left:89px;">
+            <div style="float:left; width:23%; margin-left:89px;">
                 <label>(last name)</label>
             </div>
-            <div style="float:left; width:20%;">
+            <div style="float:left; width:22%;">
                 <label>(first name)</label>
             </div>
             <div style="float:left; width:15%;">
@@ -286,7 +289,8 @@
         </div>
         <div style="clear:both"></div>
         @if($data->job_type == "SSW")
-            <h1 class="row">Seminar / Certificate</h1>
+            <br>
+            <h3 class="row">Seminar / Certificate</h3>
             <div class="row" >
                 <div style="float: left; width:20%;">
                     <h5>Have Been a Trainee:</h5>
@@ -295,11 +299,25 @@
                     <label>{{ $certificate->ex_trainee == 1 ? "Yes" : "No" }}</label>
                 </div>
                 <div style="clear:both"></div>
-                <div style="float: left; width:20%;">
-                    <h5>Prometrics</h5>
-                </div>
-                <div style="clear:both"></div>
-                    <div style="float: left; width:40%; margin-left: 200px">
+                @if($certificate->ex_trainee == 1)
+                    <div style="float: left; width:14%;">
+                        <h5>Job Category:</h5>
+                    </div>
+                    <div style="float:left; width:35%; border-bottom: 1px solid black;">
+                        <label>{{ $certificate->Category }}</label>
+                    </div>
+                    <div style="float: left; width:15%; margin-left:5px;">
+                        <h5>Job Operation:</h5>
+                    </div>
+                    <div style="float:left; width:35%; border-bottom: 1px solid black;">
+                        <label>{{ $certificate->Operation }}</label>
+                    </div>
+                @endif
+                <div class="row" style="clear:both"></div>
+                    <div style="float: left; width:20%;">
+                        <h5>Prometrics:</h5>
+                    </div>
+                    <div style="float: left; width:34%; margin-left: 100px">
                         <h5>Certificate</h5>
                     </div>
                     <div style="float: left; width:20%">
@@ -335,11 +353,11 @@
                         @endfor
                     @endif
                 <br>
-                <div style="float: left; width:20%;">
-                    <h5>Japanese Language</h5>
-                </div>
                 <div style="clear:both"></div>
-                    <div style="float: left; width:40%; margin-left: 200px">
+                    <div style="float: left; width:20%;">
+                        <h5>Japanese Language:</h5>
+                    </div>
+                    <div style="float: left; width:34%; margin-left: 100px">
                         <h5>Language</h5>
                     </div>
                     <div style="float: left; width:20%">
@@ -376,16 +394,11 @@
                     @endif
             </div>
         @endif
+        <br>
         <div style="clear:both"></div>
-        <h1 class="row">Educational Background</h1>
+        <h3 class="row">Educational Background</h3>
         <div class="row" >
-            <div style="float: left; width:34%; margin-left:150px">
-                <h5>Name of School</h5>
-            </div>
-            <div style="float: left; width:25%">
-                <h5>School Address</h5>
-            </div>
-            <div style="float: left; width:11%">
+            <div style="float: left; margin-left: 563px; width:11%">
                 <h5>Date From</h5>
             </div>
             <div style="float: left; width:15%">
@@ -394,14 +407,11 @@
         </div>
         <div style="clear:both"></div>
         <div class="row" >
-            <div style="float: left; width:13%;">
+            <div style="float: left; width:13.5%; margin-left:2px;">
                 <h5>Elementary:</h5>
             </div>
-            <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float:left; width:64%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{ $educational->name_elem}}</label>
-            </div>
-            <div style="float:left; width:34%; border-bottom: 1px solid black; margin-right:14px;">
-                <label>{{ $educational->address_elem}}</label>
             </div>
             <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:18.5px;">
                 <label>{{ date('m/d/Y', strtotime($educational->from_elem))}}</label>
@@ -411,15 +421,19 @@
             </div>
         </div>
         <div style="clear:both"></div>
+        <div style="float: left; margin-left:17.5px;">
+            <h5>Address:</h5>
+        </div>
+        <div style="float:left; width:66%; border-bottom: 1px solid black; margin-right:14px; margin-left:12.5px;">
+            <label>{{ $educational->address_elem}}</label>
+        </div>
+        <div style="clear:both"></div>
         <div class="row" >
-            <div style="float: left; width:13%;">
+            <div style="float: left; width:13%; margin-left:1.5px;">
                 <h5>High School:</h5>
             </div>
-            <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float:left; width:64.5%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{ $educational->name_highschool}}</label>
-            </div>
-            <div style="float:left; width:34%; border-bottom: 1px solid black; margin-right:14px;">
-                <label>{{ $educational->address_highschool}}</label>
             </div>
             <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:18.5px;">
                 <label>{{ date('m/d/Y', strtotime($educational->from_highschool))}}</label>
@@ -429,37 +443,41 @@
             </div>
         </div>
         <div style="clear:both"></div>
-
-        @if (COUNT($vocational) == 0)
-        <div class="row" >
-            <div style="float: left; width:13%;">
-                <h5>Vocational:</h5>
-            </div>
-            <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>N/A</label>
-            </div>
-            <div style="float:left; width:34%; border-bottom: 1px solid black; margin-right:14px;">
-                <label>N/A</label>
-            </div>
-            <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:18.5px;">
-                <label>N/A</label>
-            </div>
-            <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>N/A</label>
-            </div>
+        <div style="float: left; margin-left:17.5px;">
+            <h5>Address:</h5>
+        </div>
+        <div style="float:left; width:66%; border-bottom: 1px solid black; margin-right:14px; margin-left:12.5px;">
+            <label>{{ $educational->address_highschool}}</label>
         </div>
         <div style="clear:both"></div>
-        <div class="row">
-            <div style="float: left; width:15%;">
-                <h5>Course/Major:</h5>
+
+        @if (COUNT($vocational) == 0)
+            <div class="row" >
+                <div style="float: left; width:13%; margin-left:5px;">
+                    <h5>Vocational:</h5>
+                </div>
+                <div style="float:left; width:64.5%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>N/A</label>
+                </div>
+                <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:18.5px;">
+                    <label>N/A</label>
+                </div>
+                <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>N/A</label>
+                </div>
             </div>
-            <div style="float:left; width:25%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="clear:both"></div>
+            <div style="float: left; margin-left:17.5px;">
+                <h5>Address:</h5>
+            </div>
+            <div style="float:left; width:66%; border-bottom: 1px solid black; margin-right:14px; margin-left:12.5px;">
                 <label>N/A</label>
             </div>
-            <div style="float: left; width:19%;">
-                <h5>Certificate Holder:</h5>
+            <div style="clear:both"></div>
+            <div style="float: left; width:15%; margin-left:17.5px;">
+                <h5>Course/Major:</h5>
             </div>
-            <div style="float:left; width:18%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float:left; width:60%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>N/A</label>
             </div>
             <div style="float: left; width:12%;">
@@ -468,19 +486,22 @@
             <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>N/A</label>
             </div>
-        </div>
-        <div style="clear:both"></div>
+            <div style="clear:both"></div>
+            <div style="float: left; width:19%; margin-left:17.5px;">
+                <h5>Certificate Holder:</h5>
+            </div>
+            <div style="float:left; width:57%; border-bottom: 1px solid black; margin-right:14px;">
+                <label>N/A</label>
+            </div>
+            <div style="clear:both"></div>
         @else 
             @for ($i = 0; $i < COUNT($vocational); $i++)
                 <div class="row">
                     <div style="float: left; width:13%;">
-                        <h5>Vocational:</h5>
+                        <h5>Vocational {{$i + 1}}:</h5>
                     </div>
-                    <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
+                    <div style="float:left; width:64.5%; border-bottom: 1px solid black; margin-right:10px;">
                         <label>{{ $vocational[$i]->name}}</label>
-                    </div>
-                    <div style="float:left; width:34%; border-bottom: 1px solid black; margin-right:14px;">
-                        <label>{{ $vocational[$i]->address}}</label>
                     </div>
                     <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:18.5px;">
                         <label>{{ date('m/d/Y', strtotime($vocational[$i]->from))}}</label>
@@ -490,30 +511,117 @@
                     </div>
                 </div>
                 <div style="clear:both"></div>
-                <div class="row">
-                    <div style="float: left; width:15%;">
-                        <h5>Course/Major:</h5>
-                    </div>
-                    <div style="float:left; width:25%; border-bottom: 1px solid black; margin-right:10px;">
-                        <label>{{$vocational[$i]->course}}</label>
-                    </div>
-                    <div style="float: left; width:19%;">
-                        <h5>Certificate Holder:</h5>
-                    </div>
-                    <div style="float:left; width:18%; border-bottom: 1px solid black; margin-right:10px;">
-                        <label>{{$vocational[$i]->certificate}}</label>
-                    </div>
-                    <div style="float: left; width:12%;">
-                        <h5>Valid Until:</h5>
-                    </div>
-                    <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-                        <label>{{ date('m/d/Y', strtotime($vocational[$i]->certificate_until))}}</label>
-                    </div>
+                <div style="float: left; margin-left:17.5px;">
+                    <h5>Address:</h5>
+                </div>
+                <div style="float:left; width:66%; border-bottom: 1px solid black; margin-right:14px; margin-left:12.5px;">
+                    <label>{{ $vocational[$i]->address}}</label>
+                </div>
+                <div style="clear:both"></div>
+                <div style="float: left; width:15%; margin-left:17.5px;">
+                    <h5>Course/Major:</h5>
+                </div>
+                <div style="float:left; width:61%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{$vocational[$i]->course}}</label>
+                </div>
+                <div style="clear:both"></div>
+                <div style="float: left; width:19%; margin-left:17.5px;">
+                    <h5>Certificate Holder:</h5>
+                </div>
+                <div style="float:left; width:57%; border-bottom: 1px solid black; margin-right:14px;">
+                    <label>{{ $vocational[$i]->certificate}}</label>
+                </div>
+                <div style="float: left; width:12%;">
+                    <h5>Valid Until:</h5>
+                </div>
+                <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{ date('m/d/Y', strtotime($vocational[$i]->certificate_until))}}</label>
                 </div>
                 <div style="clear:both"></div>
             @endfor
         @endif
-        <h1 class="row">Employment Record (Local)</h1>
+
+        @if($data->job_type != "SSW")
+            <div class="row" >
+                <div style="float: left; width:20%; margin-left:5px;">
+                    <h5>Japanese Language:</h5>
+                </div>
+                <div style="float:left; width:57%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{ $educational->name_jp_lang == null ? "N/A" : $educational->name_jp_lang }}</label>
+                </div>
+                <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:18.5px;">
+                    <label>{{ $educational->name_jp_lang == null ? "N/A" : date('m/d/Y', strtotime($educational->from_jp_lang)) }}</label>
+                </div>
+                <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{ $educational->name_jp_lang == null ? "N/A" : date('m/d/Y', strtotime($educational->until_jp_lang)) }}</label>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+            <div style="float: left; margin-left:17.5px;">
+                <h5>Address:</h5>
+            </div>
+            <div style="float:left; width:66%; border-bottom: 1px solid black; margin-right:14px; margin-left:12.5px;">
+                <label>{{ $educational->name_jp_lang == null ? "N/A" : $educational->address_jp_lang }}</label>
+            </div>
+            <div style="clear:both"></div>
+            <div style="float: left; width:15%; margin-left:17.5px;">
+                <h5>Course/Major:</h5>
+            </div>
+            <div style="float:left; width:61%; border-bottom: 1px solid black; margin-right:10px;">
+                <label>{{ $educational->name_jp_lang == null ? "N/A" : $educational->certificate_jp_lang }}</label>
+            </div>
+            <div style="float: left; width:12%;">
+                <h5>Valid Until:</h5>
+            </div>
+            <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
+                <label>{{ $educational->name_jp_lang == null ? "N/A" : date('m/d/Y', strtotime($educational->certificate_until_jp_lang)) }}</label>
+            </div>
+            <div style="clear:both"></div>
+        @endif
+        <div class="row" >
+            <div style="float: left; width:9%; margin-left:5px;">
+                <h5>College:</h5>
+            </div>
+            <div style="float:left; width:68%; border-bottom: 1px solid black; margin-right:10px;">
+                <label>{{ $educational->name_college }}</label>
+            </div>
+            <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:18.5px;">
+                <label>{{ date('m/d/Y', strtotime($educational->from_college)) }}</label>
+            </div>
+            <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
+                <label>{{ date('m/d/Y', strtotime($educational->until_college)) }}</label>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        <div style="float: left; margin-left:17.5px;">
+            <h5>Address:</h5>
+        </div>
+        <div style="float:left; width:66%; border-bottom: 1px solid black; margin-right:14px; margin-left:12.5px;">
+            <label>{{ $educational->address_college }}</label>
+        </div>
+        <div style="clear:both"></div>
+        <div style="float: left; width:15%; margin-left:17.5px;">
+            <h5>Course/Major:</h5>
+        </div>
+        <div style="float:left; width:61%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{ $educational->course_college }}</label>
+        </div>
+        <div style="clear:both"></div>
+        <div style="float: left; width:19%; margin-left:17.5px;">
+            <h5>Certificate Holder:</h5>
+        </div>
+        <div style="float:left; width:57%; border-bottom: 1px solid black; margin-right:14px;">
+            <label>{{ $educational->certificate_college }}</label>
+        </div>
+        <div style="float: left; width:12%;">
+            <h5>Valid Until:</h5>
+        </div>
+        <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{ date('m/d/Y', strtotime($educational->certificate_until_college)) }}</label>
+        </div>
+        <br>
+        <div style="clear:both"></div>
+        <h3 class="row">Employment Record (Local)</h3>
         <div class="row">
             <div style="float: left; width:32%; margin-left:55px">
                 <h5>Name of Company</h5>
@@ -574,7 +682,7 @@
             @endfor
         @endif
 
-        <h1 class="row">Employment Record (Abroad)</h1>
+        <h3 class="row">Employment Record (Abroad)</h3>
         <div class="row">
             <div style="float: left; width:32%; margin-left:55px">
                 <h5>Name of Company</h5>
@@ -634,7 +742,7 @@
             <div style="clear:both"></div>
             @endfor
         @endif
-        <h1 class="row">Family Information</h1>
+        <h3 class="row">Family Information</h3>
         <div class="row">
             <h5>Parents:</h5>
         </div>
@@ -987,7 +1095,7 @@
             <h5>When:</h5>
         </div>
         <div style="float:left; width:10.5%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$family->when_applied_visa == null ? "N/A" : $family->when_applied_visa}}</label>
+            <label>{{ $family->when_applied_visa == null ? "N/A" : date('m/d/Y', strtotime($family->when_applied_visa)) }}</label>
         </div>
         <div style="float:left; width:10.5%; margin-right:10px;">
             <h5>Approved:</h5>
@@ -996,7 +1104,7 @@
             <label>{{$family->applied_visa == 0 ? "N/A" : ($family->approved == 0 ? "No" : "Yes")}}</label>
         </div>
         <div style="clear:both"></div>
-        <h1 class="row" >Relatives and Acquaintances in Japan</h1>
+        <h3 class="row" >Relatives and Acquaintances in Japan</h3>
         <div style="float: left; width:26%; margin-left:100px">
             <h5>Name</h5>
         </div>
@@ -1044,11 +1152,11 @@
         </div>
         <div style="clear: both;"></div>
         <div style="page-break-after: always;"></div>
-        <h1 class="row">Government ID</h1>
+        <h3 class="row">Government ID</h3>
         <div style="text-align:center">
             <img src="data:image/png;base64,{{$data->gov_id_picture}}" alt="government id" style="width:200px;height:200px;display:block:margin:auto">
         </div>
-        <h1 class="row">Passport ID</h1>
+        <h3 class="row">Passport ID</h3>
         <div style="text-align:center">
             <img src="data:image/png;base64,{{$data->passport_id_picture}}" alt="passport id" style="width:200px;height:200px;display:block:margin:auto">
         </div>

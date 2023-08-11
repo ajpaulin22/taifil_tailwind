@@ -1,6 +1,6 @@
-@push("styles"){
+@push("styles")
     <link rel="stylesheet" href="{{asset("css/admin/MasterMaintenance/PromJapLang.css")}}">
-}
+
 
 @section('title')
     Prometrics & Japanese Language
@@ -112,6 +112,5 @@
 </div>
 @endsection
 
-@push("scripts"){
+@push("scripts")
     <script src="{{asset("js/admin/MasterMaintenance/PromJapLang.js")}}"></script>
-}
