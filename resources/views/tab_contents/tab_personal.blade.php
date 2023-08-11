@@ -49,6 +49,10 @@
                 <label for="address" class="form-label">Present Address<span style="color:red">*</span>:</label>
                 <input required name="address" autocomplete="off" type="text" maxlength="100" class="form-control" id="address">
             </div>
+            <div class="form-group col-span-4">
+                <label for="address" class="form-label">Permanent Address<span style="color:red">*</span>:</label>
+                <input required name="permanentaddress" autocomplete="off" type="text" maxlength="100" class="form-control" id="address">
+            </div>
             <div class="form-group col-span-1">
                 <label for="address" class="form-label">Date of Birth<span style="color:red">*</span>:</label>
                 <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
