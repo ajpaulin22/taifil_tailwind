@@ -148,12 +148,12 @@ class ManagementRegistrationController extends Controller
             ];
             return response()->json($data);
     }
-     public function get_categories(Request $request){
+     public function get_categories(){
         $data = DB::select('select DISTINCT ID, Category from m_jobcategories where IsDeleted = 0 order by Category asc');
          return $data;
      }
 
-     public function get_operations(Request $request){
+     public function get_operations(){
 
         $data = DB::select('select DISTINCT ID, Operation from m_joboperations where IsDeleted = 0 order by Operation asc');
         return $data;
@@ -200,16 +200,18 @@ class ManagementRegistrationController extends Controller
         $data = [];
         $date = Carbon::now();
         $date->toDateTimeString();
-        $query = "Select *, c.Category, o.Operation from personal_datas p"
-                ." LEFT JOIN m_jobcategories c ON p.job_cat = c.ID"
-                ." LEFT JOIN m_joboperations o ON p.operation = o.ID"
-                ." WHERE p.ID = " . $request["IDs"] . " AND p.isdeleted = 0";
+        $query = "Select *, c.Category, o.Operation from personal_datas p
+                LEFT JOIN m_jobcategories c ON p.job_cat = c.ID
+                LEFT JOIN m_joboperations o ON p.operation = o.ID
+                WHERE p.ID = " . $request["IDs"] . " AND p.isdeleted = 0";
         $dataPersonal = DB::select($query);
         $dataPersonal[0]->id_picture = base64_encode($dataPersonal[0]->id_picture);
         $dataPersonal[0]->gov_id_picture = base64_encode($dataPersonal[0]->gov_id_picture);
         $dataPersonal[0]->passport_id_picture = base64_encode($dataPersonal[0]->passport_id_picture);
         if($dataPersonal[0]->job_type == "SSW"){
-            $query = "Select * from certificatejobs where isdeleted = 0 AND personal_id = " . $request["IDs"];
+            $query = "Select j.*, c.Category, o.Operation from certificatejobs j
+                    LEFT JOIN m_jobcategories c ON j.jobcategory = c.ID
+                    LEFT JOIN m_joboperations o ON j.joboperation = o.ID where j.isdeleted = 0 AND personal_id = " . $request["IDs"];
             $dataCertificate = DB::select($query);
             $query = "Select * from prometric_datas where isdeleted = 0 AND certificate_id = " . $dataCertificate[0]->id;
             $dataPrometric = DB::select($query);

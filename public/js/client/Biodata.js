@@ -244,11 +244,7 @@
                                 }
                             }
                             else{
-<<<<<<< HEAD
-                                $(".prometric_trainee").attr("disabled",true)
-=======
                                 $(".prometric_trainee").attr('disabled', true);
->>>>>>> master
                             }
 
                             if(promise.languagedata.length !== 0){
@@ -259,11 +255,7 @@
                                 }
                             }
                             else{
-<<<<<<< HEAD
-                                $(".jpl_trainee").attr("disabled",true)
-=======
                                 $(".jpl_trainee").attr('disabled', true);
->>>>>>> master
                             }
                         }
 
@@ -1179,6 +1171,10 @@
         biodata.prometric_trainee = 0
         biodata.jpl_trainee = 0
         if(this.checked){
+            $(".prometric_trainee").attr("disabled", true);
+            $(".jpl_trainee").attr("disabled", true);
+            $("#prometric_applicable").prop('checked', false);
+            $("#jpl_applicable").prop('checked', false);
             $("#ex-trainee").show();
             $("#not-ex-trainee :input").attr("disabled",true)
             $("#not-ex-trainee :input").val("")

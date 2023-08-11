@@ -26,22 +26,22 @@
             </div>
             <div class="md:grid my-3 grid-cols-7 gap-4">
                 <div class="mt-2 md:mt-0 form-group col-span-3">
-                    <select required name="trainee_test_prometric_0" class="prometric_trainee form-select disabled:bg-slate-200">
+                    <select required name="trainee_test_prometric_0" class="prometric_trainee form-select disabled:bg-slate-200" disabled>
                     </select>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
                 <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" name="trainee_taken_prometric_0" maxlength="10" autocomplete="off" type="text" required class="prometric_trainee form-control date_picker disabled:bg-slate-200" placeholder="Date Taken"/>
+                    <input data-rule-validDate="true" name="trainee_taken_prometric_0" maxlength="10" autocomplete="off" type="text" required class="prometric_trainee form-control date_picker disabled:bg-slate-200" placeholder="Date Taken" disabled/>
                </div>
                 </div>
                 <div class="form-group col-span-2">
                     <div class="flex">
                         <div class="flex items-center mr-5">
-                            <input required type="radio" value="1" id="trainee_passed_prometric_0" name="trainee_result_prometric_0" class="prometric_trainee w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                            <input required type="radio" value="1" id="trainee_passed_prometric_0" name="trainee_result_prometric_0" class="prometric_trainee w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " disabled>
                             <label for="inline-radio" class="ml-2 text-sm md:text-xl text-gray-900">Passed</label>
                         </div>
                         <div class="flex items-center mr-4">
-                            <input required type="radio" value="0" id="trainee_failed_prometric_0" name="trainee_result_prometric_0" class="prometric_trainee w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                            <input required type="radio" value="0" id="trainee_failed_prometric_0" name="trainee_result_prometric_0" class="prometric_trainee w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " disabled>
                             <label for="inline-2-radio" class="ml-2 text-sm md:text-xl text-gray-900">Failed</label>
                         </div>
                     </div>
@@ -60,21 +60,21 @@
             </div>
             <div class="md:grid my-3 grid-cols-7 gap-4">
                 <div class="mt-2 md:mt-0 form-group col-span-3">
-                    <select required name="trainee_test_jpl_0" class="jpl_trainee disabled:bg-slate-200 form-select"></select>
+                    <select required name="trainee_test_jpl_0" class="jpl_trainee disabled:bg-slate-200 form-select" disabled></select>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
                     <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                        <input data-rule-validDate="true" name="trainee_taken_jpl_0" maxlength="10" autocomplete="off" type="text" required class="jpl_trainee form-control date_picker disabled:bg-slate-200" placeholder="Date Taken"/>
+                        <input data-rule-validDate="true" name="trainee_taken_jpl_0" maxlength="10" autocomplete="off" type="text" required class="jpl_trainee form-control date_picker disabled:bg-slate-200" placeholder="Date Taken" disabled/>
                    </div>
                 </div>
                 <div class="form-group col-span-2">
                     <div class="flex">
                         <div class="flex items-center mr-5">
-                            <input required type="radio" value="1" id="trainee_passed_language_0" name="result_jpl_0" class="jpl_trainee w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                            <input required type="radio" value="1" id="trainee_passed_language_0" name="result_jpl_0" class="jpl_trainee w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " disabled>
                             <label for="inline-radio" class="ml-2 text-sm md:text-xl text-gray-900">Passed</label>
                         </div>
                         <div class="flex items-center mr-4">
-                            <input required type="radio" value="0" id="trainee_failed_language_0" name="result_jpl_0" class="jpl_trainee w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+                            <input required type="radio" value="0" id="trainee_failed_language_0" name="result_jpl_0" class="jpl_trainee w-4 h-4 disabled:bg-slate-200 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " disabled>
                             <label for="inline-2-radio" class="ml-2 text-sm md:text-xl text-gray-900">Failed</label>
                         </div>
                     </div>
