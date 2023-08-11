@@ -713,7 +713,8 @@
     let Datepicker = tw_elements.Datepicker;
     let Input = tw_elements.Input;
     tw_elements.initTE({ Datepicker,Input });
-    
+    $(".prometric_trainee").attr('disabled', true);
+    $(".jpl_trainee").attr('disabled', true);
 
     //=================================================EVENTS LISTENER
     // $("#jobcodes").on("change",function(){
