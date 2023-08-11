@@ -65,6 +65,7 @@ class BiodataController extends Controller
                     "nickname" => $request->personal["nickname"],
                     "lastname" => $request->personal["lastname"],
                     "address" => $request->personal["address"],
+                    "permanentaddress" => $request->personal["permanentaddress"],
                     "date_birth" => date('Y-m-d H:i:s',strtotime( $request->personal["birthday"])),
                     "place_birth" => $request->personal["birth_place"],
                     "gender" => $request->personal["gender"],

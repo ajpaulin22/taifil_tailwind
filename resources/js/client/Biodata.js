@@ -110,6 +110,8 @@
     }
     Biodata.prototype = {
         uploadData:function(){
+
+           
             $("#loader").show()
             let self = this;
             try {
@@ -789,7 +791,7 @@
     });
 
     //PERSONAL TAB ============================================EVENT LISTENER
-    $("#personal_form").validate({
+    let personalvalid = $("#personal_form").validate({
         errorElement: 'span',
         errorPlacement: function (error, element) {
             error.addClass('text-red-500 text-sm');
@@ -809,6 +811,7 @@
             biodata.personalData.weight = parseInt(biodata.personalData.weight)
             biodata.personalData.shoe_size = parseInt(biodata.personalData.shoe_size)
             biodata.personalData.person_contact = parseInt(biodata.personalData.person_contact)
+            biodata.personalData.religion = (biodata.personalData.religion == "Others") ? $("#religion").val() : biodata.personalData.religion;
             $(window).scrollTop(0);
              if($("#seminar_tab").length == 1) {
                 $("#seminar_tab").removeClass('pointer-events-none')
@@ -853,6 +856,32 @@
             $(".licensed").show()
         }else{
             $(".licensed").hide()
+        }
+    })
+
+    $("#jp-group_applicable").on("click",function(){
+        if(this.checked){
+            personalvalid.resetForm();
+            $(".jp-group").attr("disabled",true)
+            $(".jp-group").prop("checked",false)
+            if(biodata.personal_validator){
+                $("#personal_form").valid();
+            }
+        }else{
+            personalvalid.resetForm();
+            $(".jp-group").attr("disabled",false)
+            if(biodata.personal_validator){
+                $("#personal_form").valid();
+            }
+        }
+    })
+
+    $("select[name='religion']").on("change",function(){
+        if ($(this).val() == 'Others'){
+            let input = "<div class='religion mt-2 md:mt-2 form-group col-span-3'><input id='religion' autocomplete='off' type='text' maxlength='100' class=' form-control disabled:bg-slate-200' placeholder='Other religion' required></div>"
+            $(this).closest('.form-group').append(input)
+        }else{
+            $(this).parent().parent().find('.religion').remove()
         }
     })
 
@@ -1383,6 +1412,41 @@
             }
         }
      })
+
+     $("#college_applicable").on("click",function(){
+        if(this.checked){
+            educationalValid.resetForm();
+            $(".college").attr("disabled",true)
+            $(".college").val("")
+            if(biodata.educational_validator){
+                $("#educational_form").valid();
+            }
+        }else{
+            educationalValid.resetForm();
+            $(".college").attr("disabled",false)
+            if(biodata.educational_validator){
+                $("#educational_form").valid();
+            }
+        }
+    })
+
+    $("#vocational_applicable").on("click",function(){
+        if(this.checked){
+            educationalValid.resetForm();
+            $(".vocational").attr("disabled",true)
+            $(".vocational").val("")
+            $("#vocational").html("")
+            if(biodata.educational_validator){
+                $("#educational_form").valid();
+            }
+        }else{
+            educationalValid.resetForm();
+            $(".vocational").attr("disabled",false)
+            if(biodata.educational_validator){
+                $("#educational_form").valid();
+            }
+        }
+    })
 
     //LOCAL EMP TAB ===========================================EVENT LISTENER
     let emplocalValid = $("#empLocal_form").validate({
@@ -2164,7 +2228,7 @@
      })
 
      $(".Number-Only").on("input change paste", function () {
-        var newVal = $(this).val().replace(/[^0-9\.]/g, '');
+        var newVal = $(this).val().replace(/[^0-9.]/g, '');
         $(this).val(newVal.replace(/,/g, ''));
     });
     biodata.loadFunctions();
@@ -2255,6 +2319,23 @@
         if($("#upload_form").valid()){
             modal.show();
             biodata.upload = new FormData($("#upload_form")[0])
+            console.log({
+                _token:biodata.token,
+                prometric:biodata.prometricData,
+                jpl:biodata.jplData,
+                family:biodata.familyData,
+                sibling:biodata.siblingData,
+                relative:biodata.relativeData,
+                children:biodata.childrenData,
+                local_emp:biodata.local_empData,
+                abroad_emp:biodata.abroad_empData,
+                educational:biodata.educationalData,
+                vocational:biodata.vocationalData,
+                personal:biodata.personalData,
+                japanvisit:biodata.japanvisitData,
+                certificatejob:biodata.certificateJobData,
+                personalid: $("#PersonalInfoID").val()
+            })
         }
     });
 

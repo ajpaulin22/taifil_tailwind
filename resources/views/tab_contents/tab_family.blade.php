@@ -98,7 +98,6 @@
             <div class="form-group col-span-1 flex items-center my-4 md:my-0">
                 <input type="checkbox" value="1" id="sibling_applicable" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
                 <label class="ml-2 text-sm md:text-sm font-normal text-gray-900 ">Tick this checkbox if only child.</label>
-
             </div>
             <div class="form-group col-span-1">
                 <button id="add_sibling" class=" py-2 px-4 bg-sky-700 rounded w-full self-end text-sm text-white disabled:bg-sky-900">Add Sibling</button>
