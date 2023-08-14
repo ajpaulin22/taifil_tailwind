@@ -12,6 +12,7 @@ class children_data extends Model
         "family_id",
         "name",
         "birthday",
+        "address",
         "isdeleted",
     ];
 }

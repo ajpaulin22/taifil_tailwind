@@ -121,6 +121,7 @@
                     <option value="RomanCatholic">Roman Catholic</option>
                     <option value="Islam">Islam</option>
                     <option value="Buddhism">Buddhism</option>
+                    <option value="Others">Others</option>
                     <option value="N/A">N/A</option>
                 </select>
             </div>
@@ -147,6 +148,7 @@
             </div>
             <div class="form-group col-span-2">
                 <label for="height" class="form-label">Japanese Language<span style="color:red">*</span>:</label>
+
                 <div class="md:flex justify-evenly">
                     <div class="flex items-center mr-4">
                         <input required name="jp_reading" type="checkbox" value="1" class="jp-group w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " checked>
@@ -164,6 +166,12 @@
                         <input  name="jp_Listening" type="checkbox" value="1" class="jp-group w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
                         <label  class="ml-2 text-sm md:text-lg font-medium text-gray-500 ">Listening</label>
                     </div>
+                    @if($biodata == "TITP")
+                    <div class="flex items-center mr-4">
+                        <input id="jp-group_applicable" type="checkbox" value="1" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                        <label class="ml-2 text-sm md:text-lg font-medium text-gray-500 ">N/A</label>
+                    </div>
+                    @endif
                 </div>
             </div>
             <div class="form-group col-span-1">
@@ -172,7 +180,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Shoe Size(cm)<span style="color:red">*</span>:</label>
-                <input required name="shoe_size" autocomplete="off" type="text" maxlength="2ss" class="form-control Number-Only" style="text-align:right">
+                <input required name="shoe_size" autocomplete="off" type="text" maxlength="4" class="form-control Number-Only" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Hobbies<span style="color:red">*</span>:</label>
