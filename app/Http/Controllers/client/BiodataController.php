@@ -123,12 +123,12 @@ class BiodataController extends Controller
 
                     "certificate_jp_lang" => isset($request->educational["certificate_jpl"])?$request->educational["certificate_jpl"]:null,
                     "certificate_until_jp_lang" => isset($request->educational["date_until_cert_jpl"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_cert_jpl"])):null,
-                    "name_college" => $request->educational["name_college"],
-                    "address_college" => $request->educational["add_college"],
-                    "from_college" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_college"])),
-                    "until_college" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_college"])),
-                    "course_college" => $request->educational["course_college"],
-                    "certificate_college" => $request->educational["certificate_college"],
+                    "name_college" => isset($request->educational["name_college"])? $request->educational["name_college"]:null,
+                    "address_college" =>isset($request->educational["add_college"])? $request->educational["add_college"]:null,
+                    "from_college" => isset($request->educational["date_from_college"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_college"])):null,
+                    "until_college" =>isset($request->educational["date_until_college"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_college"])):null,
+                    "course_college" =>isset($request->educational["course_college"])? $request->educational["course_college"]:null,
+                    "certificate_college" =>isset($request->educational["certificate_college"])? $request->educational["certificate_college"]:null,
                     "isdeleted" => 0,
                     "created_at" => date('Y-m-d H:i:s'),
                     "updated_at" => date('Y-m-d H:i:s')
