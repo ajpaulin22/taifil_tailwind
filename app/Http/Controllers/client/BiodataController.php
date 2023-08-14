@@ -23,18 +23,20 @@ class BiodataController extends Controller
 {
 
 
-    public function view(Request $request){
-        return view("/pages/biodata",['biodata'=>$request->data]);
+    public function view(Request $request)
+    {
+        return view("/pages/biodata", ['biodata' => $request->data]);
     }
-    public function view_jp(Request $request){
-        return view("jp/pages/biodata",['biodata'=>$request->data]);
+    public function view_jp(Request $request)
+    {
+        return view("jp/pages/biodata", ['biodata' => $request->data]);
     }
 
     public function uploadData(Request $request)
     {
         $query = "Select * from personal_datas where isdeleted = 0 AND last_name = '" . $request->personal["lastname"] .
-                "' AND first_name = '" . $request->personal["firstname"] . "' AND middle_name = '" .$request->personal["middlename"].
-                "' AND job_cat = '" . $request->personal["job_cat"]. "'";
+            "' AND first_name = '" . $request->personal["firstname"] . "' AND middle_name = '" . $request->personal["middlename"] .
+            "' AND job_cat = '" . $request->personal["job_cat"] . "'";
         $IsExist = DB::select($query);
         $personalID = 0;
         $data = [
@@ -43,628 +45,629 @@ class BiodataController extends Controller
             'msgType' => 'error',
             'msgTitle' => 'error!'
         ];
-       try {
-        DB::beginTransaction();
-        if ($request["personalid"] == 0){
-            if(COUNT($IsExist) != 0){
-                $data = [
-                    'id' => '',
-                    'success' => false,
-                    'msgType' => 'error',
-                    'msgTitle' => 'Applicant name with same job category already exists!'
-                ];
-            }
-            else{
-                $id = DB::table("personal_datas")->insertGetID([
-                    // "code" => $request->personal["code"],
-                    "job_cat" => $request->personal["job_cat"],
-                    "operation" => $request->personal["operations"],
-                    "last_name" => $request->personal["lastname"],
-                    "first_name" => $request->personal["firstname"],
-                    "middle_name" => $request->personal["middlename"],
-                    "nickname" => $request->personal["nickname"],
-                    "lastname" => $request->personal["lastname"],
-                    "address" => $request->personal["address"],
-                    "permanentaddress" => $request->personal["permanentaddress"],
-                    "date_birth" => date('Y-m-d H:i:s',strtotime( $request->personal["birthday"])),
-                    "place_birth" => $request->personal["birth_place"],
-                    "gender" => $request->personal["gender"],
-                    "citizenship" => $request->personal["citizenship"],
-                    "age" => (int) $request->personal["age"],
-                    "bloodtype" => isset($request->personal["blood_type"])?$request->personal["blood_type"]:'N/A',
-                    "civil_status" => $request->personal["civil_status"],
-                    "contact" => (int) $request->personal["contact"],
-                    "height" => (int) $request->personal["height"],
-                    "religion" => $request->personal["religion"],
-                    "facebook" => $request->personal["facebook"],
-                    "smoking" => $request->personal["smoking"],
-                    "weight" => (int) $request->personal["weight"],
-                    "jap_reading" => isset($request->personal["jp_reading"])?  $request->personal["jp_reading"] : null,
-                    "jap_writing" => isset($request->personal["jp_writing"])?  $request->personal["jp_writing"] : null,
-                    "jap_speaking" => isset($request->personal["jp_Speaking"])? $request->personal["jp_Speaking"] : null,
-                    "jap_listening" => isset($request->personal["jp_Listening"])? $request->personal["jp_Listening"] : null,
-                    "other_lang" => $request->personal["other_lang"],
-                    "shoe_size" => (float) $request->personal["shoe_size"],
-                    "hobbies" => $request->personal["hobbies"],
-                    "person_to_notify" => $request->personal["person_to_notify"],
-                    "person_relation" => $request->personal["relation"],
-                    "person_address" => $request->personal["person_address"],
-                    "person_contact" => (int) $request->personal["person_contact"],
-                    "passport_no" => $request->personal["passport"],
-                    "issue_date" => date('Y-m-d H:i:s', strtotime($request->personal["issue_date"])),
-                    "isdeleted" => 0,
-                    "expiry_date" => date('Y-m-d H:i:s', strtotime($request->personal["expiry_date"])),
-                    "issue_place" => $request->personal["issue_place"],
-                    "allergy" => $request->personal["allergy"] == "1" ? true : false,
-                    "food_alergy" => isset($request->personal["food_allergy"]) ? $request->personal["food_allergy"] : null,
-                    "tattoo" =>  $request->personal["tattoo"] == "1" ? true : false,
-                    "drivers_licensed" =>  $request->personal["licensed"] == "1" ? true : false,
-                    "type_licensed" => isset($request->personal["type_licensed"]) ? $request->personal["type_licensed"] : null,
-                    "valid_licensed" => isset($request->personal["licensed_until"]) ? date('Y-m-d H:i:s', strtotime($request->personal["licensed_until"])) : null,
-                    "job_type" => $request->personal["job_type"],
-                    "created_at" => date('Y-m-d H:i:s'),
-                    "updated_at" => date('Y-m-d H:i:s')
-                ]);
-
-                $educ_id = DB::table("educational_datas")->insertGetID([
-                    "personal_id" => $id,
-                    "name_elem" => $request->educational["name_elem"],
-                    "address_elem" => $request->educational["add_elem"],
-                    "from_elem" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_elem"])),
-                    "until_elem" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_elem"])),
-                    "name_highschool" => $request->educational["name_highschool"],
-                    "address_highschool" => $request->educational["add_highschool"],
-                    "from_highschool" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_highschool"])),
-                    "until_highschool" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_highschool"])),
-                    "name_jp_lang" => isset($request->educational["name_jpl"])?$request->educational["name_jpl"]:null,
-                    "address_jp_lang" => isset($request->educational["add_jpl"])?$request->educational["add_jpl"]:null,
-                    "from_jp_lang" => isset($request->educational["date_from_jpl"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_jpl"])):null,
-                    "until_jp_lang" => isset($request->educational["date_until_jpl"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_jpl"])):null,
-
-                    "certificate_jp_lang" => isset($request->educational["certificate_jpl"])?$request->educational["certificate_jpl"]:null,
-                    "certificate_until_jp_lang" => isset($request->educational["date_until_cert_jpl"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_cert_jpl"])):null,
-                    "name_college" => isset($request->educational["name_college"])? $request->educational["name_college"]:null,
-                    "address_college" =>isset($request->educational["add_college"])? $request->educational["add_college"]:null,
-                    "from_college" => isset($request->educational["date_from_college"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_college"])):null,
-                    "until_college" =>isset($request->educational["date_until_college"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_college"])):null,
-                    "course_college" =>isset($request->educational["course_college"])? $request->educational["course_college"]:null,
-                    "certificate_college" =>isset($request->educational["certificate_college"])? $request->educational["certificate_college"]:null,
-                    "isdeleted" => 0,
-                    "created_at" => date('Y-m-d H:i:s'),
-                    "updated_at" => date('Y-m-d H:i:s')
-                ]);
-
-                foreach ($request->vocational as $vc){
-                    vocational_data::create([
-                        "educational_id" => $educ_id,
-                        "name" => $vc["name"],
-                        "address" => $vc["address"],
-                        "from" =>  date('Y-m-d H:i:s' ,strtotime($vc["from"])),
-                        "until" =>  date('Y-m-d H:i:s' ,strtotime($vc["until"])),
-                        "course" => $vc["course"],
-                        "certificate" => $vc["certificate"],
-                        "certificate_until" =>  date('Y-m-d H:i:s' ,strtotime($vc["certificate_until"])),
+        try {
+            DB::beginTransaction();
+            if ($request["personalid"] == 0) {
+                if (COUNT($IsExist) != 0) {
+                    $data = [
+                        'id' => '',
+                        'success' => false,
+                        'msgType' => 'error',
+                        'msgTitle' => 'Applicant name with same job category already exists!'
+                    ];
+                } else {
+                    $id = DB::table("personal_datas")->insertGetID([
+                        // "code" => $request->personal["code"],
+                        "job_cat" => $request->personal["job_cat"],
+                        "operation" => $request->personal["operations"],
+                        "last_name" => $request->personal["lastname"],
+                        "first_name" => $request->personal["firstname"],
+                        "middle_name" => $request->personal["middlename"],
+                        "nickname" => $request->personal["nickname"],
+                        "lastname" => $request->personal["lastname"],
+                        "address" => $request->personal["address"],
+                        "permanentaddress" => $request->personal["permanentaddress"],
+                        "date_birth" => date('Y-m-d H:i:s', strtotime($request->personal["birthday"])),
+                        "place_birth" => $request->personal["birth_place"],
+                        "gender" => $request->personal["gender"],
+                        "citizenship" => $request->personal["citizenship"],
+                        "age" => (int) $request->personal["age"],
+                        "bloodtype" => isset($request->personal["blood_type"]) ? $request->personal["blood_type"] : 'N/A',
+                        "civil_status" => $request->personal["civil_status"],
+                        "contact" => (int) $request->personal["contact"],
+                        "height" => (int) $request->personal["height"],
+                        "religion" => $request->personal["religion"],
+                        "facebook" => $request->personal["facebook"],
+                        "smoking" => $request->personal["smoking"],
+                        "weight" => (int) $request->personal["weight"],
+                        "jap_reading" => isset($request->personal["jp_reading"]) ?  $request->personal["jp_reading"] : null,
+                        "jap_writing" => isset($request->personal["jp_writing"]) ?  $request->personal["jp_writing"] : null,
+                        "jap_speaking" => isset($request->personal["jp_Speaking"]) ? $request->personal["jp_Speaking"] : null,
+                        "jap_listening" => isset($request->personal["jp_Listening"]) ? $request->personal["jp_Listening"] : null,
+                        "other_lang" => $request->personal["other_lang"],
+                        "shoe_size" => (float) $request->personal["shoe_size"],
+                        "hobbies" => $request->personal["hobbies"],
+                        "person_to_notify" => $request->personal["person_to_notify"],
+                        "person_relation" => $request->personal["relation"],
+                        "person_address" => $request->personal["person_address"],
+                        "person_contact" => (int) $request->personal["person_contact"],
+                        "passport_no" => $request->personal["passport"],
+                        "issue_date" => date('Y-m-d H:i:s', strtotime($request->personal["issue_date"])),
+                        "isdeleted" => 0,
+                        "expiry_date" => date('Y-m-d H:i:s', strtotime($request->personal["expiry_date"])),
+                        "issue_place" => $request->personal["issue_place"],
+                        "allergy" => $request->personal["allergy"] == "1" ? true : false,
+                        "food_alergy" => isset($request->personal["food_allergy"]) ? $request->personal["food_allergy"] : null,
+                        "tattoo" =>  $request->personal["tattoo"] == "1" ? true : false,
+                        "drivers_licensed" =>  $request->personal["licensed"] == "1" ? true : false,
+                        "type_licensed" => isset($request->personal["type_licensed"]) ? $request->personal["type_licensed"] : null,
+                        "valid_licensed" => isset($request->personal["licensed_until"]) ? date('Y-m-d H:i:s', strtotime($request->personal["licensed_until"])) : null,
+                        "job_type" => $request->personal["job_type"],
+                        "created_at" => date('Y-m-d H:i:s'),
+                        "updated_at" => date('Y-m-d H:i:s')
                     ]);
-                }
 
-                if(isset($request->local_emp)){
-                    foreach($request->local_emp as $le){
-                        local_emp::create([
+                    $educ_id = DB::table("educational_datas")->insertGetID([
+                        "personal_id" => $id,
+                        "name_elem" => $request->educational["name_elem"],
+                        "address_elem" => $request->educational["add_elem"],
+                        "from_elem" => date('Y-m-d H:i:s', strtotime($request->educational["date_from_elem"])),
+                        "until_elem" => date('Y-m-d H:i:s', strtotime($request->educational["date_until_elem"])),
+                        "name_highschool" => $request->educational["name_highschool"],
+                        "address_highschool" => $request->educational["add_highschool"],
+                        "from_highschool" => date('Y-m-d H:i:s', strtotime($request->educational["date_from_highschool"])),
+                        "until_highschool" => date('Y-m-d H:i:s', strtotime($request->educational["date_until_highschool"])),
+                        "name_jp_lang" => isset($request->educational["name_jpl"]) ? $request->educational["name_jpl"] : null,
+                        "address_jp_lang" => isset($request->educational["add_jpl"]) ? $request->educational["add_jpl"] : null,
+                        "from_jp_lang" => isset($request->educational["date_from_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_from_jpl"])) : null,
+                        "until_jp_lang" => isset($request->educational["date_until_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_until_jpl"])) : null,
+
+                        "certificate_jp_lang" => isset($request->educational["certificate_jpl"]) ? $request->educational["certificate_jpl"] : null,
+                        "certificate_until_jp_lang" => isset($request->educational["date_until_cert_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_until_cert_jpl"])) : null,
+                        "name_college" => isset($request->educational["name_college"]) ? $request->educational["name_college"] : null,
+                        "address_college" => isset($request->educational["add_college"]) ? $request->educational["add_college"] : null,
+                        "from_college" => isset($request->educational["date_from_college"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_from_college"])) : null,
+                        "until_college" => isset($request->educational["date_until_college"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_until_college"])) : null,
+                        "course_college" => isset($request->educational["course_college"]) ? $request->educational["course_college"] : null,
+                        "certificate_college" => isset($request->educational["certificate_college"]) ? $request->educational["certificate_college"] : null,
+                        "isdeleted" => 0,
+                        "created_at" => date('Y-m-d H:i:s'),
+                        "updated_at" => date('Y-m-d H:i:s')
+                    ]);
+
+                    $vocational = $request->vocational;
+                    if (isset($vocational)) {
+                        foreach ($vocational as $vc) {
+                            vocational_data::create([
+                                "educational_id" => $educ_id,
+                                "name" => $vc["name"],
+                                "address" => $vc["address"],
+                                "from" =>  date('Y-m-d H:i:s', strtotime($vc["from"])),
+                                "until" =>  date('Y-m-d H:i:s', strtotime($vc["until"])),
+                                "course" => $vc["course"],
+                                "certificate" => $vc["certificate"],
+                                "certificate_until" =>  date('Y-m-d H:i:s', strtotime($vc["certificate_until"])),
+                            ]);
+                        }
+                    }
+                    if (isset($request->local_emp)) {
+                        foreach ($request->local_emp as $le) {
+                            local_emp::create([
+                                "personal_id" => $id,
+                                "company_name" => $le["company"],
+                                "position" => $le["position"],
+                                "company_address" => $le["address"],
+                                "from" => date('Y-m-d H:i:s', strtotime($le["from"])),
+                                "until" => date('Y-m-d H:i:s', strtotime($le["until"])),
+                            ]);
+                        }
+                    }
+
+                    if (isset($request->abroad_emp)) {
+                        foreach ($request->abroad_emp as $le) {
+                            abroad_emp::create([
+                                "personal_id" => $id,
+                                "company_name" => $le["company"],
+                                "position" => $le["position"],
+                                "company_address" => $le["address"],
+                                "from" => date('Y-m-d H:i:s', strtotime($le["from"])),
+                                "until" => date('Y-m-d H:i:s', strtotime($le["until"]))
+                            ]);
+                        }
+                    }
+                    $overstay = false;
+                    $fakeidentity = false;
+                    $surrender = false;
+                    $approved_visa = false;
+
+                    if (isset($request->family["overstay"])) {
+                        if ($request->family["overstay"] == "1") {
+                            $overstay = true;
+                        } else {
+                            $overstay = false;
+                        }
+                    }
+                    if (isset($request->family["fakeidentity"])) {
+                        if ($request->family["fakeidentity"] == "1") {
+                            $fakeidentity = true;
+                        } else {
+                            $fakeidentity = false;
+                        }
+                    }
+                    if (isset($request->family["fakeidentity_surrendered"])) {
+                        if ($request->family["fakeidentity_surrendered"] == "1") {
+                            $surrender = true;
+                        } else {
+                            $surrender = false;
+                        }
+                    }
+                    if (isset($request->family["visa_approved"])) {
+                        if ($request->family["visa_approved"] == "1") {
+                            $approved_visa = true;
+                        } else {
+                            $approved_visa = false;
+                        }
+                    }
+                    $family_id = DB::table("family_datas")->insertGetId([
+                        "personal_id" => $id,
+                        "father_name" => isset($request->family["father"]) ? $request->family["father"] : null,
+                        "father_birth" => isset($request->family["father_birthday"]) ? date('Y-m-d H:i:s', strtotime($request->family["father_birthday"])) : null,
+                        "father_occupation" => isset($request->family["father_occupation"]) ? $request->family["father_occupation"] : null,
+                        "father_cp" => isset($request->family["father_cp"]) ? $request->family["father_cp"] : null,
+                        "father_address" => isset($request->family["father_address"]) ? $request->family["father_address"] : null,
+                        "mother_name" => isset($request->family["mother"]) ? $request->family["mother"] : null,
+                        "mother_birth" => isset($request->family["mother_birthday"]) ? date('Y-m-d H:i:s', strtotime($request->family["mother_birthday"])) : null,
+                        "mother_occupation" => isset($request->family["mother_occupation"]) ? $request->family["mother_occupation"] : null,
+                        "mother_cp" => isset($request->family["mother_cp"]) ? $request->family["mother_cp"] : null,
+                        "mother_address" => isset($request->family["mother_address"]) ? $request->family["mother_address"] : null,
+                        "spouse_name" => isset($request->family["spouse"]) ? $request->family["spouse"] : null,
+                        "spouse_birth" => isset($request->family["spouse_birthday"]) ? date('Y-m-d H:i:s', strtotime($request->family["spouse_birthday"])) : null,
+                        "spouse_occupation" => isset($request->family["spouse_occupation"]) ? $request->family["spouse_occupation"] : null,
+                        "spouse_cp" => isset($request->family["spouse_cp"]) ? $request->family["spouse_cp"] : null,
+                        "spouse_address" => isset($request->family["spouse_address"]) ? $request->family["spouse_address"] : null,
+                        "partner_name" => isset($request->family["partner"]) ? $request->family["partner"] : null,
+                        "partner_birthday" => isset($request->family["partner_birthday"]) ? date('Y-m-d H:i:s', strtotime($request->family["partner_birthday"])) : null,
+                        "partner_Occupation" => isset($request->family["partner_Occupation"]) ? $request->family["partner_Occupation"] : null,
+                        "partner_cp" => isset($request->family["partner_cp"]) ? $request->family["partner_cp"] : null,
+                        "partner_address" => isset($request->family["partner_address"]) ? $request->family["partner_address"] : null,
+                        "went_japan" => ($request->family["went_japan"] == "1") ? true : false,
+                        "how_many_japan" => isset($request->family["japan_times"]) ? $request->family["japan_times"] : null,
+                        // "when_japan" => isset($request->family["japan_when"])?$request->family["japan_when"] :null ,
+                        // "where_japan" => isset($request->family["japan_where"])?$request->family["japan_where"] :null ,
+                        "overstay_japan" => $overstay,
+                        "how_long_overstay" => isset($request->family["overstay_howlong"]) ? $request->family["overstay_howlong"] : null,
+                        "fake_identity_japan" => $fakeidentity,
+                        "fake_identity_purpose" => isset($request->family["fakeidentity_purpose"]) ? $request->family["fakeidentity_purpose"] : null,
+                        "fake_identity_surrender" => $surrender,
+                        "applied_visa" => ($request->family["visa"] == "1") ? true : false,
+                        "type_visa" => isset($request->family["visa_type"]) ? $request->family["visa_type"] : null,
+                        "when_applied_visa" => isset($request->family["visa_when"]) ? date('Y-m-d H:i:s', strtotime($request->family["visa_when"])) : null,
+                        "approved" => $approved_visa,
+                        "isdeleted" => 0,
+                        "created_at" => date('Y-m-d H:i:s'),
+                        "updated_at" => date('Y-m-d H:i:s')
+                    ]);
+                    if (isset($request->relative)) {
+                        foreach ($request->relative as $r) {
+                            relative_data::create([
+                                "family_id" => $family_id,
+                                "name" => $r['name'],
+                                "relation" => $r['relation'],
+                                "cp" => $r['contact'],
+                                "address" => $r['address'],
+
+                            ]);
+                        }
+                    }
+                    if (isset($request->japanvisit)) {
+                        foreach ($request->japanvisit as $c) {
+                            japanvisit_data::create([
+                                'family_id' => $family_id,
+                                'where' => $c['where'],
+                                'fromwhen' => date('Y-m-d H:i:s', strtotime($c['fromwhen'])),
+                                'untilwhen' => date('Y-m-d H:i:s', strtotime($c['untilwhen'])),
+                            ]);
+                        }
+                    }
+
+                    if (isset($request->sibling)) {
+                        foreach ($request->sibling as $s) {
+                            sibling_data::create([
+                                "family_id" => $family_id,
+                                "sibling_name" => $s['name'],
+                                "sibling_birth" => date('Y-m-d H:i:s', strtotime($s['birhtday'])),
+                                "sibling_occupation" => $s['occupation'],
+                                "sibling_cp" => $s['cp'],
+                                "sibling_address" => $s['address'],
+                            ]);
+                        }
+                    }
+                    if (isset($request->children)) {
+                        foreach ($request->children as $c) {
+                            children_data::create([
+                                "family_id" => $family_id,
+                                "name" => $c["name"],
+                                "birthday" => date('Y-m-d H:i:s', strtotime($c['birthday'])),
+                                "address" =>  $c["address"],
+                            ]);
+                        }
+                    }
+
+                    $cert_id = 0;
+                    if (isset($request->certificatejob)) {
+                        $cert_id = DB::table("certificatejobs")->insertGetID([
                             "personal_id" => $id,
-                            "company_name" => $le["company"],
-                            "position" => $le["position"],
-                            "company_address" => $le["address"],
-                            "from" => date('Y-m-d H:i:s' ,strtotime($le["from"])),
-                            "until" => date('Y-m-d H:i:s' ,strtotime($le["until"])),
+                            "ex_trainee" => ($request->certificatejob['ex_trainee'] == "true") ? 1 : 0,
+                            "jobcategory" => $request->certificatejob['jobcategory'],
+                            "joboperation" => $request->certificatejob['joboperation']
                         ]);
                     }
-                }
 
-                if(isset($request->abroad_emp)){
-                    foreach($request->abroad_emp as $le){
-                        abroad_emp::create([
-                            "personal_id" => $id,
-                            "company_name" => $le["company"],
-                            "position" => $le["position"],
-                            "company_address" => $le["address"],
-                            "from" => date('Y-m-d H:i:s' ,strtotime($le["from"])),
-                            "until" => date('Y-m-d H:i:s' ,strtotime($le["until"]))
-                        ]);
-                    }
-                }
-                $overstay = false;
-                $fakeidentity = false;
-                $surrender =false;
-                $approved_visa = false;
-
-                if(isset($request->family["overstay"])){
-                    if($request->family["overstay"] == "1"){
-                        $overstay = true;
-                    }else{
-                        $overstay = false;
-                    }
-                }
-                if(isset($request->family["fakeidentity"])){
-                    if($request->family["fakeidentity"] == "1"){
-                        $fakeidentity = true;
-                    }else{
-                        $fakeidentity = false;
-                    }
-                }
-                if(isset($request->family["fakeidentity_surrendered"])){
-                    if($request->family["fakeidentity_surrendered"] == "1"){
-                        $surrender = true;
-                    }else{
-                        $surrender = false;
-                    }
-                }
-                if(isset($request->family["visa_approved"])){
-                    if($request->family["visa_approved"] == "1"){
-                        $approved_visa = true;
-                    }else{
-                        $approved_visa = false;
-                    }
-                }
-                $family_id = DB::table("family_datas")->insertGetId([
-                    "personal_id" => $id,
-                    "father_name" => isset($request->family["father"])?$request->family["father"] :null ,
-                    "father_birth" => isset($request->family["father_birthday"])?date('Y-m-d H:i:s' ,strtotime($request->family["father_birthday"])) :null ,
-                    "father_occupation" => isset($request->family["father_occupation"])?$request->family["father_occupation"] :null ,
-                    "father_cp" => isset($request->family["father_cp"])?$request->family["father_cp"] :null ,
-                    "father_address" => isset($request->family["father_address"])?$request->family["father_address"] :null ,
-                    "mother_name" => isset($request->family["mother"])?$request->family["mother"] :null ,
-                    "mother_birth" => isset($request->family["mother_birthday"])?date('Y-m-d H:i:s' ,strtotime($request->family["mother_birthday"])) :null ,
-                    "mother_occupation" => isset($request->family["mother_occupation"])?$request->family["mother_occupation"] :null ,
-                    "mother_cp" => isset( $request->family["mother_cp"])? $request->family["mother_cp"] :null,
-                    "mother_address" => isset($request->family["mother_address"])?$request->family["mother_address"] :null ,
-                    "spouse_name" => isset($request->family["spouse"])?$request->family["spouse"] :null ,
-                    "spouse_birth" => isset($request->family["spouse_birthday"])?date('Y-m-d H:i:s' ,strtotime($request->family["spouse_birthday"])) :null ,
-                    "spouse_occupation" => isset($request->family["spouse_occupation"])?$request->family["spouse_occupation"] :null ,
-                    "spouse_cp" => isset( $request->family["spouse_cp"])? $request->family["spouse_cp"] :null,
-                    "spouse_address" => isset($request->family["spouse_address"])?$request->family["spouse_address"] :null ,
-                    "partner_name" => isset($request->family["partner"])?$request->family["partner"] :null ,
-                    "partner_birthday" => isset($request->family["partner_birthday"])?date('Y-m-d H:i:s' ,strtotime($request->family["partner_birthday"])) :null ,
-                    "partner_Occupation" => isset($request->family["partner_Occupation"])?$request->family["partner_Occupation"] :null ,
-                    "partner_cp" => isset($request->family["partner_cp"])?$request->family["partner_cp"] :null ,
-                    "partner_address" => isset($request->family["partner_address"])?$request->family["partner_address"] :null ,
-                    "went_japan" => ($request->family["went_japan"] == "1")? true :false  ,
-                    "how_many_japan" => isset($request->family["japan_times"])?$request->family["japan_times"] :null ,
-                    // "when_japan" => isset($request->family["japan_when"])?$request->family["japan_when"] :null ,
-                    // "where_japan" => isset($request->family["japan_where"])?$request->family["japan_where"] :null ,
-                    "overstay_japan" => $overstay,
-                    "how_long_overstay" => isset($request->family["overstay_howlong"])?$request->family["overstay_howlong"] :null ,
-                    "fake_identity_japan" => $fakeidentity,
-                    "fake_identity_purpose" => isset($request->family["fakeidentity_purpose"])?$request->family["fakeidentity_purpose"] :null ,
-                    "fake_identity_surrender" => $surrender,
-                    "applied_visa" => ($request->family["visa"] == "1")?true :false ,
-                    "type_visa" => isset($request->family["visa_type"])?$request->family["visa_type"] :null ,
-                    "when_applied_visa" => isset($request->family["visa_when"])?date('Y-m-d H:i:s' ,strtotime($request->family["visa_when"])) :null ,
-                    "approved" => $approved_visa,
-                    "isdeleted" => 0,
-                    "created_at" => date('Y-m-d H:i:s'),
-                    "updated_at" => date('Y-m-d H:i:s')
-                ]);
-                if(isset($request->relative)){
-                    foreach($request->relative as $r){
-                        relative_data::create([
-                            "family_id" => $family_id,
-                            "name" => $r['name'],
-                            "relation" => $r['relation'],
-                            "cp" => $r['contact'],
-                            "address" => $r['address'],
-
-                        ]);
-                    }
-                }
-                if(isset($request->japanvisit)){
-                    foreach($request->japanvisit as $c){
-                        japanvisit_data::create([
-                            'family_id' => $family_id,
-                            'where' => $c['where'],
-                            'fromwhen' => date('Y-m-d H:i:s' ,strtotime($c['fromwhen'])),
-                            'untilwhen' => date('Y-m-d H:i:s' ,strtotime($c['untilwhen'])),
-                        ]);
-                    }
-                }
-
-                if(isset($request->sibling)){
-                    foreach($request->sibling as $s){
-                        sibling_data::create([
-                            "family_id" => $family_id,
-                            "sibling_name" => $s['name'],
-                            "sibling_birth" => date('Y-m-d H:i:s' ,strtotime($s['birhtday'])),
-                            "sibling_occupation" => $s['occupation'],
-                            "sibling_cp" => $s['cp'],
-                            "sibling_address" => $s['address'],
-                        ]);
-                    }
-                }
-                if(isset($request->children)){
-                    foreach($request->children as $c){
-                        children_data::create([
-                            "family_id" => $family_id,
-                            "name" => $c["name"],
-                            "birthday" => date('Y-m-d H:i:s' ,strtotime($c['birthday'])),
-                            "address" =>  $c["address"],
-                        ]);
-                    }
-                }
-
-                $cert_id = 0;
-                if(isset($request->certificatejob)){
-                    $cert_id = DB::table("certificatejobs")->insertGetID([
-                        "personal_id" =>$id,
-                        "ex_trainee" =>($request->certificatejob['ex_trainee'] == "true")? 1 : 0 ,
-                        "jobcategory" =>$request->certificatejob['jobcategory'],
-                        "joboperation"=>$request->certificatejob['joboperation']
-                    ]);
-                }
-
-                if(isset($request->prometric)){
-                    foreach($request->prometric as $p){
-                        prometric_data::create([
-                            "certificate_id" => $cert_id,
-                            "certificate" => $p["test"],
-                            "taken" => date('Y-m-d H:i:s' ,strtotime($p['taken'])),
-                            "passed" => $p["passed"],
-                        ]);
-                    }
-                }
-
-                if(isset($request->jpl)){
-                    foreach($request->jpl as $j){
-                        jpl_data::create([
-                            "certificate_id" => $cert_id,
-                            "jpl" => $j["test"],
-                            "taken" => date('Y-m-d H:i:s' ,strtotime($j['taken'])),
-                            "passed" => $j["passed"],
-
-                        ]);
-                    }
-                }
-                $data = [
-                    'id' => $id,
-                    'success' => true,
-                    'msgType' => 'success',
-                    'msgTitle' => 'Success!'
-                ];
-            }
-        }
-        else{
-            // UPDATE
-            if(COUNT($IsExist) != 0 && $IsExist[0]->id != $request["personalid"]){
-                $data = [
-                    'id' => '',
-                    'success' => false,
-                    'msgType' => 'error',
-                    'msgTitle' => 'Applicant name with same job category already exists!'
-                ];
-            }
-            else{
-
-                DB::table("personal_datas")
-                ->where('id', $request["personalid"])
-                ->update([
-                    // "code" => $request->personal["code"],
-                    "job_cat" => $request->personal["job_cat"],
-                    "operation" => $request->personal["operations"],
-                    "last_name" => $request->personal["lastname"],
-                    "first_name" => $request->personal["firstname"],
-                    "middle_name" => $request->personal["middlename"],
-                    "nickname" => $request->personal["nickname"],
-                    "lastname" => $request->personal["lastname"],
-                    "address" => $request->personal["address"],
-                    "date_birth" => date('Y-m-d H:i:s',strtotime( $request->personal["birthday"])),
-                    "place_birth" => $request->personal["birth_place"],
-                    "gender" => $request->personal["gender"],
-                    "citizenship" => $request->personal["citizenship"],
-                    "age" => (int) $request->personal["age"],
-                    "bloodtype" => isset($request->personal["blood_type"]) ? $request->personal["blood_type"] : 'N/A',
-                    "civil_status" => $request->personal["civil_status"],
-                    "contact" => (int) $request->personal["contact"],
-                    "height" => (int) $request->personal["height"],
-                    "religion" => $request->personal["religion"],
-                    "facebook" => $request->personal["facebook"],
-                    "smoking" => $request->personal["smoking"],
-                    "weight" => (int) $request->personal["weight"],
-                    "jap_reading" => isset($request->personal["jp_reading"])?  $request->personal["jp_reading"] : null,
-                    "jap_writing" => isset($request->personal["jp_writing"])?  $request->personal["jp_writing"] : null,
-                    "jap_speaking" => isset($request->personal["jp_Speaking"])? $request->personal["jp_Speaking"] : null,
-                    "jap_listening" => isset($request->personal["jp_Listening"])? $request->personal["jp_Listening"] : null,
-                    "other_lang" => $request->personal["other_lang"],
-                    "shoe_size" => (int) $request->personal["shoe_size"],
-                    "hobbies" => $request->personal["hobbies"],
-                    "person_to_notify" => $request->personal["person_to_notify"],
-                    "person_relation" => $request->personal["relation"],
-                    "person_address" => $request->personal["person_address"],
-                    "person_contact" => (int) $request->personal["person_contact"],
-                    "passport_no" => $request->personal["passport"],
-                    "issue_date" => date('Y-m-d H:i:s', strtotime($request->personal["issue_date"])),
-                    "expiry_date" => date('Y-m-d H:i:s', strtotime($request->personal["expiry_date"])),
-                    "issue_place" => $request->personal["issue_place"],
-                    "allergy" => $request->personal["allergy"] == "1" ? true : false,
-                    "food_alergy" => isset($request->personal["food_allergy"]) ? $request->personal["food_allergy"] : null,
-                    "tattoo" =>  $request->personal["tattoo"] == "1" ? true : false,
-                    "drivers_licensed" =>  $request->personal["licensed"] == "1" ? true : false,
-                    "type_licensed" => isset($request->personal["type_licensed"]) ? $request->personal["type_licensed"] : null,
-                    "valid_licensed" => isset($request->personal["licensed_until"]) ? date('Y-m-d H:i:s', strtotime($request->personal["licensed_until"])) : null,
-                    "job_type" => $request->personal["job_type"],
-                    "updated_at" => date('Y-m-d H:i:s')
-                ]);
-
-                DB::table("educational_datas")
-                ->where('personal_id', $request["personalid"])
-                ->update([
-                    "personal_id" => $request["personalid"],
-                    "name_elem" => $request->educational["name_elem"],
-                    "address_elem" => $request->educational["add_elem"],
-                    "from_elem" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_elem"])),
-                    "until_elem" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_elem"])),
-                    "name_highschool" => $request->educational["name_highschool"],
-                    "address_highschool" => $request->educational["add_highschool"],
-                    "from_highschool" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_highschool"])),
-                    "until_highschool" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_highschool"])),
-                    "name_jp_lang" => isset($request->educational["name_jpl"])?$request->educational["name_jpl"]:null,
-                    "address_jp_lang" => isset($request->educational["add_jpl"])?$request->educational["add_jpl"]:null,
-                    "from_jp_lang" => isset($request->educational["date_from_jpl"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_jpl"])):null,
-                    "until_jp_lang" => isset($request->educational["date_until_jpl"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_jpl"])):null,
-                    "certificate_jp_lang" => isset($request->educational["certificate_jpl"])?$request->educational["certificate_jpl"]:null,
-                    "certificate_until_jp_lang" => isset($request->educational["date_until_cert_jpl"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_cert_jpl"])):null,
-                    "name_college" => $request->educational["name_college"],
-                    "address_college" => $request->educational["add_college"],
-                    "from_college" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_college"])),
-                    "until_college" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_college"])),
-                    "course_college" => $request->educational["course_college"],
-                    "certificate_college" => $request->educational["certificate_college"],
-                    "certificate_until_college" =>  date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_cert_college"])),
-                    "updated_at" => date('Y-m-d H:i:s')
-                ]);
-
-                $educ_id = DB::select("select id from educational_datas where personal_id = '" . $request["personalid"] . "'");
-
-                DB::table('vocational_datas')->where('educational_id', $educ_id[0]->id)->delete();
-                foreach ($request->vocational as $vc){
-                    vocational_data::create([
-                        "educational_id" => $educ_id[0]->id,
-                        "name" => $vc["name"],
-                        "address" => $vc["address"],
-                        "from" =>  date('Y-m-d H:i:s' ,strtotime($vc["from"])),
-                        "until" =>  date('Y-m-d H:i:s' ,strtotime($vc["until"])),
-                        "course" => $vc["course"],
-                        "certificate" => $vc["certificate"],
-                        "certificate_until" =>  date('Y-m-d H:i:s' ,strtotime($vc["certificate_until"])),
-                    ]);
-                }
-
-                DB::table('local_emps')->where('personal_id', $request["personalid"])->delete();
-                if(isset($request->local_emp)){
-                    foreach($request->local_emp as $le){
-                        local_emp::create([
-                            "personal_id" => $request["personalid"],
-                            "company_name" => $le["company"],
-                            "position" => $le["position"],
-                            "company_address" => $le["address"],
-                            "from" => date('Y-m-d H:i:s' ,strtotime($le["from"])),
-                            "until" => date('Y-m-d H:i:s' ,strtotime($le["until"])),
-                        ]);
-                    }
-                }
-
-                DB::table('abroad_emps')->where('personal_id', $request["personalid"])->delete();
-                if(isset($request->abroad_emp)){
-                    foreach($request->abroad_emp as $le){
-                        abroad_emp::create([
-                            "personal_id" => $request["personalid"],
-                            "company_name" => $le["company"],
-                            "position" => $le["position"],
-                            "company_address" => $le["address"],
-                            "from" => date('Y-m-d H:i:s' ,strtotime($le["from"])),
-                            "until" => date('Y-m-d H:i:s' ,strtotime($le["until"]))
-                        ]);
-                    }
-                }
-
-                $overstay = false;
-                $fakeidentity = false;
-                $surrender = false;
-                $approved_visa = false;
-
-                if(isset($request->family["overstay"])){
-                    if($request->family["overstay"] == "1"){
-                        $overstay = true;
-                    }else{
-                        $overstay = false;
-                    }
-                }
-                if(isset($request->family["fakeidentity"])){
-                    if($request->family["fakeidentity"] == "1"){
-                        $fakeidentity = true;
-                    }else{
-                        $fakeidentity = false;
-                    }
-                }
-                if(isset($request->family["fakeidentity_surrendered"])){
-                    if($request->family["fakeidentity_surrendered"] == "1"){
-                        $surrender = true;
-                    }else{
-                        $surrender = false;
-                    }
-                }
-
-                if(isset($request->family["visa_approved"])){
-                    if($request->family["visa_approved"] == "1"){
-                        $approved_visa = true;
-                    }else{
-                        $approved_visa = false;
-                    }
-                }
-
-                DB::table("family_datas")
-                ->where('personal_id', $request["personalid"])
-                ->update([
-                    "personal_id" => $request["personalid"],
-                    "father_name" => isset($request->family["father"])?$request->family["father"] :null ,
-                    "father_birth" => isset($request->family["father_birthday"])?date('Y-m-d H:i:s' ,strtotime($request->family["father_birthday"])) :null ,
-                    "father_occupation" => isset($request->family["father_occupation"])?$request->family["father_occupation"] :null ,
-                    "father_cp" => isset($request->family["father_cp"])?$request->family["father_cp"] :null ,
-                    "father_address" => isset($request->family["father_address"])?$request->family["father_address"] :null ,
-                    "mother_name" => isset($request->family["mother"])?$request->family["mother"] :null ,
-                    "mother_birth" => isset($request->family["mother_birthday"])?date('Y-m-d H:i:s' ,strtotime($request->family["mother_birthday"])) :null ,
-                    "mother_occupation" => isset($request->family["mother_occupation"])?$request->family["mother_occupation"] :null ,
-                    "mother_cp" => isset( $request->family["mother_cp"])? $request->family["mother_cp"] :null,
-                    "mother_address" => isset($request->family["mother_address"])?$request->family["mother_address"] :null ,
-                    "spouse_name" => isset($request->family["spouse"])?$request->family["spouse"] :null ,
-                    "spouse_birth" => isset($request->family["spouse_birthday"])?date('Y-m-d H:i:s' ,strtotime($request->family["spouse_birthday"])) :null ,
-                    "spouse_occupation" => isset($request->family["spouse_occupation"])?$request->family["spouse_occupation"] :null ,
-                    "spouse_cp" => isset( $request->family["spouse_cp"])? $request->family["spouse_cp"] :null,
-                    "spouse_address" => isset($request->family["spouse_address"])?$request->family["spouse_address"] :null ,
-                    "partner_name" => isset($request->family["partner"])?$request->family["partner"] :null ,
-                    "partner_birthday" => isset($request->family["partner_birthday"]) ? date('Y-m-d H:i:s' ,strtotime($request->family["partner_birthday"])) :null ,
-                    "partner_Occupation" => isset($request->family["partner_Occupation"]) ? $request->family["partner_Occupation"] :null ,
-                    "partner_cp" => isset($request->family["partner_cp"])?$request->family["partner_cp"] :null ,
-                    "partner_address" => isset($request->family["partner_address"])?$request->family["partner_address"] :null ,
-                    "went_japan" => $request->family["went_japan"] == "1",
-                    "how_many_japan" => isset($request->family["japan_times"]) ? $request->family["japan_times"] : null ,
-                    "when_japan" => isset($request->family["japan_when"]) ? date('Y-m-d H:i:s' ,strtotime($request->family["japan_when"])) : null ,
-                    "where_japan" => isset($request->family["japan_where"]) ? $request->family["japan_where"] : null ,
-                    "overstay_japan" => $overstay,
-                    "how_long_overstay" => isset($request->family["overstay_howlong"])?$request->family["overstay_howlong"] :null ,
-                    "fake_identity_japan" => $fakeidentity,
-                    "fake_identity_purpose" => isset($request->family["fakeidentity_purpose"])?$request->family["fakeidentity_purpose"] :null ,
-                    "fake_identity_surrender" => $surrender,
-                    "applied_visa" => ($request->family["visa"] == "1")?true :false ,
-                    "type_visa" => isset($request->family["visa_type"])?$request->family["visa_type"] :null ,
-                    "when_applied_visa" => isset($request->family["visa_when"])?date('Y-m-d H:i:s' ,strtotime($request->family["visa_when"])) :null ,
-                    "approved" => $approved_visa,
-                    "updated_at" => date('Y-m-d H:i:s')
-                ]);
-
-                $family_id = DB::select("select id from family_datas where personal_id = " . $request["personalid"]);
-
-                if(isset($request->relative)){
-                    DB::table('relative_datas')->where('family_id', $family_id[0]->id)->delete();
-                    foreach($request->relative as $r){
-                        relative_data::create([
-                            "family_id" => $family_id[0]->id,
-                            "name" => $r['name'],
-                            "relation" => $r['relation'],
-                            "cp" => $r['contact'],
-                            "address" => $r['address']
-                        ]);
-                    }
-                }
-
-                if(isset($request->japanvisit)){
-                    DB::table('japanvisit_datas')->where('family_id', $family_id[0]->id)->delete();
-                    foreach($request->japanvisit as $c){
-                        japanvisit_data::create([
-                            'family_id' => $family_id[0]->id,
-                            'where' => $c['where'],
-                            'when' => date('Y-m-d H:i:s' ,strtotime($c['when'])),
-                            'isdeleted' => 0
-                        ]);
-                    }
-                }
-
-                if(isset($request->sibling)){
-                    DB::table('sibling_datas')->where('family_id', $family_id[0]->id)->delete();
-                    foreach($request->sibling as $s){
-                        sibling_data::create([
-                            "family_id" => $family_id[0]->id,
-                            "sibling_name" => $s['name'],
-                            "sibling_birth" => date('Y-m-d H:i:s' ,strtotime($s['birhtday'])),
-                            "sibling_occupation" => $s['occupation'],
-                            "sibling_cp" => $s['cp'],
-                            "sibling_address" => $s['address'],
-                        ]);
-                    }
-                }
-
-                if(isset($request->children)){
-                    DB::table('children_datas')->where('family_id', $family_id[0]->id)->delete();
-                    foreach($request->children as $c){
-                        children_data::create([
-                            "family_id" => $family_id[0]->id,
-                            "name" => $c["name"],
-                            "birthday" => date('Y-m-d H:i:s' ,strtotime($c['birthday'])),
-                        ]);
-                    }
-                }
-
-                // query certificatejobs to get prometric data
-                $certificateJob = certificatejob::query()
-                -> where('personal_id', request('personalid'))
-                -> where('isdeleted', 0)
-                -> first();
-
-                $personaldata = personal_data::query()
-                -> where('id', request('personalid'))
-                -> where('isdeleted', 0)
-                -> first();
-
-                if($personaldata -> job_type === 'SSW') {
-                    DB::table("certificatejobs")
-                    ->where('personal_id', $request["personalid"])
-                    ->update([
-                            "ex_trainee" =>($request->certificatejob['ex_trainee'] == "true")? 1 : 0 ,
-                            "jobcategory" =>$request->certificatejob['jobcategory'],
-                            "joboperation"=>$request->certificatejob['joboperation']
-                    ]);
-
-                    DB::table('prometric_datas')->where('certificate_id', $certificateJob -> id)->delete();
-                    if(isset($request->prometric)){
-                        foreach($request->prometric as $prometric){
+                    if (isset($request->prometric)) {
+                        foreach ($request->prometric as $p) {
                             prometric_data::create([
-                                "certificate_id" => $certificateJob -> id,
-                                "certificate" => $prometric["test"],
-                                "taken" => date('Y-m-d H:i:s' ,strtotime($prometric['taken'])),
-                                "passed" => $prometric["passed"] === 'true' ? 1 : 0,
-                                "isdeleted" => 0
+                                "certificate_id" => $cert_id,
+                                "certificate" => $p["test"],
+                                "taken" => date('Y-m-d H:i:s', strtotime($p['taken'])),
+                                "passed" => $p["passed"],
                             ]);
                         }
                     }
-                    DB::table('jpl_datas')->where('certificate_id', $certificateJob -> id)->delete();
-                    if(isset($request->jpl) && $personaldata -> job_type === 'SSW'){
-                        foreach($request->jpl as $j){
+
+                    if (isset($request->jpl)) {
+                        foreach ($request->jpl as $j) {
                             jpl_data::create([
-                                "certificate_id" => $certificateJob -> id,
+                                "certificate_id" => $cert_id,
                                 "jpl" => $j["test"],
-                                "taken" => date('Y-m-d H:i:s' ,strtotime($j['taken'])),
-                                "passed" => $j["passed"] === 'true' ? 1 : 0,
-                                "isdeleted" => 0
+                                "taken" => date('Y-m-d H:i:s', strtotime($j['taken'])),
+                                "passed" => $j["passed"],
+
                             ]);
                         }
                     }
+                    $data = [
+                        'id' => $id,
+                        'success' => true,
+                        'msgType' => 'success',
+                        'msgTitle' => 'Success!'
+                    ];
                 }
+            } else {
+                // UPDATE
+                if (COUNT($IsExist) != 0 && $IsExist[0]->id != $request["personalid"]) {
+                    $data = [
+                        'id' => '',
+                        'success' => false,
+                        'msgType' => 'error',
+                        'msgTitle' => 'Applicant name with same job category already exists!'
+                    ];
+                } else {
+                    DB::table("personal_datas")
+                        ->where('id', $request["personalid"])
+                        ->update([
+                            // "code" => $request->personal["code"],
+                            "job_cat" => $request->personal["job_cat"],
+                            "operation" => $request->personal["operations"],
+                            "last_name" => $request->personal["lastname"],
+                            "first_name" => $request->personal["firstname"],
+                            "middle_name" => $request->personal["middlename"],
+                            "nickname" => $request->personal["nickname"],
+                            "lastname" => $request->personal["lastname"],
+                            "address" => $request->personal["address"],
+                            "date_birth" => date('Y-m-d H:i:s', strtotime($request->personal["birthday"])),
+                            "place_birth" => $request->personal["birth_place"],
+                            "gender" => $request->personal["gender"],
+                            "citizenship" => $request->personal["citizenship"],
+                            "age" => (int) $request->personal["age"],
+                            "bloodtype" => isset($request->personal["blood_type"]) ? $request->personal["blood_type"] : 'N/A',
+                            "civil_status" => $request->personal["civil_status"],
+                            "contact" => (int) $request->personal["contact"],
+                            "height" => (int) $request->personal["height"],
+                            "religion" => $request->personal["religion"],
+                            "facebook" => $request->personal["facebook"],
+                            "smoking" => $request->personal["smoking"],
+                            "weight" => (int) $request->personal["weight"],
+                            "jap_reading" => isset($request->personal["jp_reading"]) ?  $request->personal["jp_reading"] : null,
+                            "jap_writing" => isset($request->personal["jp_writing"]) ?  $request->personal["jp_writing"] : null,
+                            "jap_speaking" => isset($request->personal["jp_Speaking"]) ? $request->personal["jp_Speaking"] : null,
+                            "jap_listening" => isset($request->personal["jp_Listening"]) ? $request->personal["jp_Listening"] : null,
+                            "other_lang" => $request->personal["other_lang"],
+                            "shoe_size" => (int) $request->personal["shoe_size"],
+                            "hobbies" => $request->personal["hobbies"],
+                            "person_to_notify" => $request->personal["person_to_notify"],
+                            "person_relation" => $request->personal["relation"],
+                            "person_address" => $request->personal["person_address"],
+                            "person_contact" => (int) $request->personal["person_contact"],
+                            "passport_no" => $request->personal["passport"],
+                            "issue_date" => date('Y-m-d H:i:s', strtotime($request->personal["issue_date"])),
+                            "expiry_date" => date('Y-m-d H:i:s', strtotime($request->personal["expiry_date"])),
+                            "issue_place" => $request->personal["issue_place"],
+                            "allergy" => $request->personal["allergy"] == "1" ? true : false,
+                            "food_alergy" => isset($request->personal["food_allergy"]) ? $request->personal["food_allergy"] : null,
+                            "tattoo" =>  $request->personal["tattoo"] == "1" ? true : false,
+                            "drivers_licensed" =>  $request->personal["licensed"] == "1" ? true : false,
+                            "type_licensed" => isset($request->personal["type_licensed"]) ? $request->personal["type_licensed"] : null,
+                            "valid_licensed" => isset($request->personal["licensed_until"]) ? date('Y-m-d H:i:s', strtotime($request->personal["licensed_until"])) : null,
+                            "job_type" => $request->personal["job_type"],
+                            "updated_at" => date('Y-m-d H:i:s')
+                        ]);
 
-                $data = [
-                    'id' => $request["personalid"],
-                    'success' => true,
-                    'msgType' => 'success',
-                    'msgTitle' => 'Success!'
-                ];
+                    DB::table("educational_datas")
+                        ->where('personal_id', $request["personalid"])
+                        ->update([
+                            "personal_id" => $request["personalid"],
+                            "name_elem" => $request->educational["name_elem"],
+                            "address_elem" => $request->educational["add_elem"],
+                            "from_elem" => date('Y-m-d H:i:s', strtotime($request->educational["date_from_elem"])),
+                            "until_elem" => date('Y-m-d H:i:s', strtotime($request->educational["date_until_elem"])),
+                            "name_highschool" => $request->educational["name_highschool"],
+                            "address_highschool" => $request->educational["add_highschool"],
+                            "from_highschool" => date('Y-m-d H:i:s', strtotime($request->educational["date_from_highschool"])),
+                            "until_highschool" => date('Y-m-d H:i:s', strtotime($request->educational["date_until_highschool"])),
+                            "name_jp_lang" => isset($request->educational["name_jpl"]) ? $request->educational["name_jpl"] : null,
+                            "address_jp_lang" => isset($request->educational["add_jpl"]) ? $request->educational["add_jpl"] : null,
+                            "from_jp_lang" => isset($request->educational["date_from_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_from_jpl"])) : null,
+                            "until_jp_lang" => isset($request->educational["date_until_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_until_jpl"])) : null,
+                            "certificate_jp_lang" => isset($request->educational["certificate_jpl"]) ? $request->educational["certificate_jpl"] : null,
+                            "certificate_until_jp_lang" => isset($request->educational["date_until_cert_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_until_cert_jpl"])) : null,
+                            "name_college" => $request->educational["name_college"],
+                            "address_college" => $request->educational["add_college"],
+                            "from_college" => date('Y-m-d H:i:s', strtotime($request->educational["date_from_college"])),
+                            "until_college" => date('Y-m-d H:i:s', strtotime($request->educational["date_until_college"])),
+                            "course_college" => $request->educational["course_college"],
+                            "certificate_college" => $request->educational["certificate_college"],
+                            "certificate_until_college" =>  date('Y-m-d H:i:s', strtotime($request->educational["date_until_cert_college"])),
+                            "updated_at" => date('Y-m-d H:i:s')
+                        ]);
+
+                    $educ_id = DB::select("select id from educational_datas where personal_id = '" . $request["personalid"] . "'");
+
+                    DB::table('vocational_datas')->where('educational_id', $educ_id[0]->id)->delete();
+                    $vocational = $request->vocational;
+                    if(isset($vocational)) {
+                        foreach ($vocational as $vc) {
+                            vocational_data::create([
+                                "educational_id" => $educ_id[0]->id,
+                                "name" => $vc["name"],
+                                "address" => $vc["address"],
+                                "from" =>  date('Y-m-d H:i:s', strtotime($vc["from"])),
+                                "until" =>  date('Y-m-d H:i:s', strtotime($vc["until"])),
+                                "course" => $vc["course"],
+                                "certificate" => $vc["certificate"],
+                                "certificate_until" =>  date('Y-m-d H:i:s', strtotime($vc["certificate_until"])),
+                            ]);
+                        }
+                    }
+
+                    DB::table('local_emps')->where('personal_id', $request["personalid"])->delete();
+                    if (isset($request->local_emp)) {
+                        foreach ($request->local_emp as $le) {
+                            local_emp::create([
+                                "personal_id" => $request["personalid"],
+                                "company_name" => $le["company"],
+                                "position" => $le["position"],
+                                "company_address" => $le["address"],
+                                "from" => date('Y-m-d H:i:s', strtotime($le["from"])),
+                                "until" => date('Y-m-d H:i:s', strtotime($le["until"])),
+                            ]);
+                        }
+                    }
+
+                    DB::table('abroad_emps')->where('personal_id', $request["personalid"])->delete();
+                    if (isset($request->abroad_emp)) {
+                        foreach ($request->abroad_emp as $le) {
+                            abroad_emp::create([
+                                "personal_id" => $request["personalid"],
+                                "company_name" => $le["company"],
+                                "position" => $le["position"],
+                                "company_address" => $le["address"],
+                                "from" => date('Y-m-d H:i:s', strtotime($le["from"])),
+                                "until" => date('Y-m-d H:i:s', strtotime($le["until"]))
+                            ]);
+                        }
+                    }
+
+                    $overstay = false;
+                    $fakeidentity = false;
+                    $surrender = false;
+                    $approved_visa = false;
+
+                    if (isset($request->family["overstay"])) {
+                        if ($request->family["overstay"] == "1") {
+                            $overstay = true;
+                        } else {
+                            $overstay = false;
+                        }
+                    }
+                    if (isset($request->family["fakeidentity"])) {
+                        if ($request->family["fakeidentity"] == "1") {
+                            $fakeidentity = true;
+                        } else {
+                            $fakeidentity = false;
+                        }
+                    }
+                    if (isset($request->family["fakeidentity_surrendered"])) {
+                        if ($request->family["fakeidentity_surrendered"] == "1") {
+                            $surrender = true;
+                        } else {
+                            $surrender = false;
+                        }
+                    }
+
+                    if (isset($request->family["visa_approved"])) {
+                        if ($request->family["visa_approved"] == "1") {
+                            $approved_visa = true;
+                        } else {
+                            $approved_visa = false;
+                        }
+                    }
+
+                    DB::table("family_datas")
+                        ->where('personal_id', $request["personalid"])
+                        ->update([
+                            "personal_id" => $request["personalid"],
+                            "father_name" => isset($request->family["father"]) ? $request->family["father"] : null,
+                            "father_birth" => isset($request->family["father_birthday"]) ? date('Y-m-d H:i:s', strtotime($request->family["father_birthday"])) : null,
+                            "father_occupation" => isset($request->family["father_occupation"]) ? $request->family["father_occupation"] : null,
+                            "father_cp" => isset($request->family["father_cp"]) ? $request->family["father_cp"] : null,
+                            "father_address" => isset($request->family["father_address"]) ? $request->family["father_address"] : null,
+                            "mother_name" => isset($request->family["mother"]) ? $request->family["mother"] : null,
+                            "mother_birth" => isset($request->family["mother_birthday"]) ? date('Y-m-d H:i:s', strtotime($request->family["mother_birthday"])) : null,
+                            "mother_occupation" => isset($request->family["mother_occupation"]) ? $request->family["mother_occupation"] : null,
+                            "mother_cp" => isset($request->family["mother_cp"]) ? $request->family["mother_cp"] : null,
+                            "mother_address" => isset($request->family["mother_address"]) ? $request->family["mother_address"] : null,
+                            "spouse_name" => isset($request->family["spouse"]) ? $request->family["spouse"] : null,
+                            "spouse_birth" => isset($request->family["spouse_birthday"]) ? date('Y-m-d H:i:s', strtotime($request->family["spouse_birthday"])) : null,
+                            "spouse_occupation" => isset($request->family["spouse_occupation"]) ? $request->family["spouse_occupation"] : null,
+                            "spouse_cp" => isset($request->family["spouse_cp"]) ? $request->family["spouse_cp"] : null,
+                            "spouse_address" => isset($request->family["spouse_address"]) ? $request->family["spouse_address"] : null,
+                            "partner_name" => isset($request->family["partner"]) ? $request->family["partner"] : null,
+                            "partner_birthday" => isset($request->family["partner_birthday"]) ? date('Y-m-d H:i:s', strtotime($request->family["partner_birthday"])) : null,
+                            "partner_Occupation" => isset($request->family["partner_Occupation"]) ? $request->family["partner_Occupation"] : null,
+                            "partner_cp" => isset($request->family["partner_cp"]) ? $request->family["partner_cp"] : null,
+                            "partner_address" => isset($request->family["partner_address"]) ? $request->family["partner_address"] : null,
+                            "went_japan" => $request->family["went_japan"] == "1",
+                            "how_many_japan" => isset($request->family["japan_times"]) ? $request->family["japan_times"] : null,
+                            "when_japan" => isset($request->family["japan_when"]) ? date('Y-m-d H:i:s', strtotime($request->family["japan_when"])) : null,
+                            "where_japan" => isset($request->family["japan_where"]) ? $request->family["japan_where"] : null,
+                            "overstay_japan" => $overstay,
+                            "how_long_overstay" => isset($request->family["overstay_howlong"]) ? $request->family["overstay_howlong"] : null,
+                            "fake_identity_japan" => $fakeidentity,
+                            "fake_identity_purpose" => isset($request->family["fakeidentity_purpose"]) ? $request->family["fakeidentity_purpose"] : null,
+                            "fake_identity_surrender" => $surrender,
+                            "applied_visa" => ($request->family["visa"] == "1") ? true : false,
+                            "type_visa" => isset($request->family["visa_type"]) ? $request->family["visa_type"] : null,
+                            "when_applied_visa" => isset($request->family["visa_when"]) ? date('Y-m-d H:i:s', strtotime($request->family["visa_when"])) : null,
+                            "approved" => $approved_visa,
+                            "updated_at" => date('Y-m-d H:i:s')
+                        ]);
+
+                    $family_id = DB::select("select id from family_datas where personal_id = " . $request["personalid"]);
+
+                    if (isset($request->relative)) {
+                        DB::table('relative_datas')->where('family_id', $family_id[0]->id)->delete();
+                        foreach ($request->relative as $r) {
+                            relative_data::create([
+                                "family_id" => $family_id[0]->id,
+                                "name" => $r['name'],
+                                "relation" => $r['relation'],
+                                "cp" => $r['contact'],
+                                "address" => $r['address']
+                            ]);
+                        }
+                    }
+
+                    if (isset($request->japanvisit)) {
+                        DB::table('japanvisit_datas')->where('family_id', $family_id[0]->id)->delete();
+                        foreach ($request->japanvisit as $c) {
+                            japanvisit_data::create([
+                                'family_id' => $family_id[0]->id,
+                                'where' => $c['where'],
+                                'when' => date('Y-m-d H:i:s', strtotime($c['when'])),
+                                'isdeleted' => 0
+                            ]);
+                        }
+                    }
+
+                    if (isset($request->sibling)) {
+                        DB::table('sibling_datas')->where('family_id', $family_id[0]->id)->delete();
+                        foreach ($request->sibling as $s) {
+                            sibling_data::create([
+                                "family_id" => $family_id[0]->id,
+                                "sibling_name" => $s['name'],
+                                "sibling_birth" => date('Y-m-d H:i:s', strtotime($s['birhtday'])),
+                                "sibling_occupation" => $s['occupation'],
+                                "sibling_cp" => $s['cp'],
+                                "sibling_address" => $s['address'],
+                            ]);
+                        }
+                    }
+
+                    if (isset($request->children)) {
+                        DB::table('children_datas')->where('family_id', $family_id[0]->id)->delete();
+                        foreach ($request->children as $c) {
+                            children_data::create([
+                                "family_id" => $family_id[0]->id,
+                                "name" => $c["name"],
+                                "birthday" => date('Y-m-d H:i:s', strtotime($c['birthday'])),
+                            ]);
+                        }
+                    }
+
+                    // query certificatejobs to get prometric data
+                    $certificateJob = certificatejob::query()
+                        ->where('personal_id', request('personalid'))
+                        ->where('isdeleted', 0)
+                        ->first();
+
+                    $personaldata = personal_data::query()
+                        ->where('id', request('personalid'))
+                        ->where('isdeleted', 0)
+                        ->first();
+
+                    if ($personaldata->job_type === 'SSW') {
+                        DB::table("certificatejobs")
+                            ->where('personal_id', $request["personalid"])
+                            ->update([
+                                "ex_trainee" => ($request->certificatejob['ex_trainee'] == "true") ? 1 : 0,
+                                "jobcategory" => $request->certificatejob['jobcategory'],
+                                "joboperation" => $request->certificatejob['joboperation']
+                            ]);
+
+                        DB::table('prometric_datas')->where('certificate_id', $certificateJob->id)->delete();
+                        if (isset($request->prometric)) {
+                            foreach ($request->prometric as $prometric) {
+                                prometric_data::create([
+                                    "certificate_id" => $certificateJob->id,
+                                    "certificate" => $prometric["test"],
+                                    "taken" => date('Y-m-d H:i:s', strtotime($prometric['taken'])),
+                                    "passed" => $prometric["passed"] === 'true' ? 1 : 0,
+                                    "isdeleted" => 0
+                                ]);
+                            }
+                        }
+                        DB::table('jpl_datas')->where('certificate_id', $certificateJob->id)->delete();
+                        if (isset($request->jpl) && $personaldata->job_type === 'SSW') {
+                            foreach ($request->jpl as $j) {
+                                jpl_data::create([
+                                    "certificate_id" => $certificateJob->id,
+                                    "jpl" => $j["test"],
+                                    "taken" => date('Y-m-d H:i:s', strtotime($j['taken'])),
+                                    "passed" => $j["passed"] === 'true' ? 1 : 0,
+                                    "isdeleted" => 0
+                                ]);
+                            }
+                        }
+                    }
+
+                    $data = [
+                        'id' => $request["personalid"],
+                        'success' => true,
+                        'msgType' => 'success',
+                        'msgTitle' => 'Success!'
+                    ];
+                }
             }
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $data = [
+                'id' => "",
+                'success' => false,
+                'msgType' => 'error',
+                'msgTitle' => $th->getMessage()
+            ];
         }
-        DB::commit();
-
-       } catch (\Throwable $th) {
-        DB::rollBack();
-        $data = [
-            'id' => "",
-            'success' => false,
-            'msgType' => 'error',
-            'msgTitle' => $th->getMessage()
-        ];
-       }
-       return response()->json($data);
+        return response()->json($data);
     }
 
-    public function upload_image(Request $request){
+    public function upload_image(Request $request)
+    {
 
         $data = [
-			'msg' => 'Completing Transaction has failed.',
+            'msg' => 'Completing Transaction has failed.',
             'data' => [],
-			'success' => true,
+            'success' => true,
             'msgType' => 'warning',
             'msgTitle' => 'Failed!'
         ];
@@ -675,21 +678,21 @@ class BiodataController extends Controller
             // $data->passport_id_picture =$request->file('passport_id')->store('passport_id_pictures',"public");
             // $data->id_picture=$request->file('picture')->store('1x1_pictures',"public");
             $data->gov_id_picture = file_get_contents($request->file('gov_id')->getPathname());
-            if(str_contains($data->gov_id_picture, '<!doctype html>') || $data->gov_id_picture == ""){
+            if (str_contains($data->gov_id_picture, '<!doctype html>') || $data->gov_id_picture == "") {
                 unset($data->gov_id_picture);
             }
             $data->passport_id_picture = file_get_contents($request->file('passport_id')->getPathname());
-            if(str_contains($data->passport_id_picture, '<!doctype html>') || $data->gov_id_picture == ""){
+            if (str_contains($data->passport_id_picture, '<!doctype html>') || $data->gov_id_picture == "") {
                 unset($data->passport_id_picture);
             }
-            $data->id_picture= file_get_contents($request->file('picture')->getPathname());
-            if(str_contains($data->id_picture, '<!doctype html>') || $data->gov_id_picture == ""){
+            $data->id_picture = file_get_contents($request->file('picture')->getPathname());
+            if (str_contains($data->id_picture, '<!doctype html>') || $data->gov_id_picture == "") {
                 unset($data->id_picture);
             }
             $data->gov_id_filename = $request->file('gov_id')->getClientOriginalName();
             $data->passport_id_filename = $request->file('passport_id')->getClientOriginalName();
             $data->id_filename = $request->file('picture')->getClientOriginalName();
-            if($data->update()){
+            if ($data->update()) {
                 $data = [
                     'msg' => 'The Biodata has been uploaded',
                     'data' => [],
@@ -710,12 +713,14 @@ class BiodataController extends Controller
         return response()->json($data);
     }
 
-    public function get_code(Request $request){
-       $data = DB::table("m_jobcodes")->where('IsDeleted',0)->select()->get();
-       return $data;
+    public function get_code(Request $request)
+    {
+        $data = DB::table("m_jobcodes")->where('IsDeleted', 0)->select()->get();
+        return $data;
     }
 
-    public function get_categories(Request $request){
+    public function get_categories(Request $request)
+    {
         $type = strtoupper($request->type);
         $data = DB::select("SELECT ID,JobType,Category from m_jobcategories where ID in (SELECT cat.ID as 'cnt' from m_jobcategories cat
         JOIN m_joboperations op on op.JobCategoriesID = cat.ID
@@ -728,36 +733,39 @@ class BiodataController extends Controller
         return $data;
     }
 
-    public function get_categoriesSSW(Request $request){
+    public function get_categoriesSSW(Request $request)
+    {
         $type = strtoupper($request->type);
         $data = DB::table('m_jobcategories')
-        ->select('ID','JobType','Category')
-        ->where("JobType",$type)
-        ->where("IsDeleted",0)
-        ->orderby("Category","asc")
-        ->Get();
+            ->select('ID', 'JobType', 'Category')
+            ->where("JobType", $type)
+            ->where("IsDeleted", 0)
+            ->orderby("Category", "asc")
+            ->Get();
         return $data;
     }
 
-    public function get_operations(Request $request){
+    public function get_operations(Request $request)
+    {
         $data = DB::table('m_joboperations')
-        ->select('ID','JobCategoriesID','Operation')
-        ->where("JobCategoriesID",$request->ID)
-        ->where("IsDeleted",0)
-        ->where("Hiring",1)
-        ->orderby("Operation","asc")
-        ->Get();
+            ->select('ID', 'JobCategoriesID', 'Operation')
+            ->where("JobCategoriesID", $request->ID)
+            ->where("IsDeleted", 0)
+            ->where("Hiring", 1)
+            ->orderby("Operation", "asc")
+            ->Get();
         return $data;
     }
 
-    public function get_operationsSSW(Request $request){
+    public function get_operationsSSW(Request $request)
+    {
         $data = DB::table('m_joboperations')
-        ->select('ID','JobCategoriesID','Operation')
-        ->where("JobCategoriesID",$request->ID)
-        ->where("IsDeleted",0)
-        ->where("Hiring",1)
-        ->orderby("Operation","asc")
-        ->Get();
+            ->select('ID', 'JobCategoriesID', 'Operation')
+            ->where("JobCategoriesID", $request->ID)
+            ->where("IsDeleted", 0)
+            ->where("Hiring", 1)
+            ->orderby("Operation", "asc")
+            ->Get();
         return $data;
     }
 
@@ -784,20 +792,20 @@ class BiodataController extends Controller
 
         $prometricsdata = [];
         $languagedata = [];
-        if(Count($traineedata) !== 0) {
+        if (Count($traineedata) !== 0) {
             $prometricsdata = DB::table('prometric_datas')
-            ->where("certificate_id", $traineedata[0]->id)
-            ->where("IsDeleted", 0)
-            ->select()->Get();
-            for($i = 0; $i < COUNT($prometricsdata); $i++){
+                ->where("certificate_id", $traineedata[0]->id)
+                ->where("IsDeleted", 0)
+                ->select()->Get();
+            for ($i = 0; $i < COUNT($prometricsdata); $i++) {
                 $prometricsdata[$i]->taken = date('m/d/Y', strtotime(explode(" ", $prometricsdata[$i]->taken)[0]));
             }
 
             $languagedata = DB::table('jpl_datas')
-            ->where("certificate_id", $traineedata[0]->id)
-            ->where("IsDeleted", 0)
-            ->select()->Get();
-            for($i = 0; $i < COUNT($languagedata); $i++){
+                ->where("certificate_id", $traineedata[0]->id)
+                ->where("IsDeleted", 0)
+                ->select()->Get();
+            for ($i = 0; $i < COUNT($languagedata); $i++) {
                 $languagedata[$i]->taken = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->taken)[0]));
             }
         }
@@ -823,7 +831,7 @@ class BiodataController extends Controller
             ->where("IsDeleted", 0)
             ->select()->Get();
 
-        for($i = 0; $i < COUNT($vocationaldata); $i++){
+        for ($i = 0; $i < COUNT($vocationaldata); $i++) {
             $vocationaldata[$i]->certificate_until = date('m/d/Y', strtotime(explode(" ", $vocationaldata[$i]->certificate_until)[0]));
             $vocationaldata[$i]->from = date('m/d/Y', strtotime(explode(" ", $vocationaldata[$i]->from)[0]));
             $vocationaldata[$i]->until = date('m/d/Y', strtotime(explode(" ", $vocationaldata[$i]->until)[0]));
@@ -834,7 +842,7 @@ class BiodataController extends Controller
             ->where("IsDeleted", 0)
             ->select()->Get();
 
-        for($i = 0; $i < COUNT($employmentlocaldata); $i++){
+        for ($i = 0; $i < COUNT($employmentlocaldata); $i++) {
             $employmentlocaldata[$i]->from = date('m/d/Y', strtotime(explode(" ", $employmentlocaldata[$i]->from)[0]));
             $employmentlocaldata[$i]->until = date('m/d/Y', strtotime(explode(" ", $employmentlocaldata[$i]->until)[0]));
         }
@@ -844,7 +852,7 @@ class BiodataController extends Controller
             ->where("IsDeleted", 0)
             ->select()->Get();
 
-        for($i = 0; $i < COUNT($employmentabroaddata); $i++){
+        for ($i = 0; $i < COUNT($employmentabroaddata); $i++) {
             $employmentabroaddata[$i]->from = date('m/d/Y', strtotime(explode(" ", $employmentabroaddata[$i]->from)[0]));
             $employmentabroaddata[$i]->until = date('m/d/Y', strtotime(explode(" ", $employmentabroaddata[$i]->until)[0]));
         }
@@ -859,42 +867,42 @@ class BiodataController extends Controller
         $relativedata = [];
         $japanvisitdata = [];
         // if(Count($familydata) !== 0) {
-            $familydata[0]->father_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->father_birth)[0]));
-            $familydata[0]->mother_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->mother_birth)[0]));
-            $familydata[0]->spouse_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->spouse_birth)[0]));
-            $familydata[0]->partner_birthday = date('m/d/Y', strtotime(explode(" ", $familydata[0]->partner_birthday)[0]));
-            $familydata[0]->when_japan = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_japan)[0]));
-            $familydata[0]->when_applied_visa = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_applied_visa)[0]));
+        $familydata[0]->father_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->father_birth)[0]));
+        $familydata[0]->mother_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->mother_birth)[0]));
+        $familydata[0]->spouse_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->spouse_birth)[0]));
+        $familydata[0]->partner_birthday = date('m/d/Y', strtotime(explode(" ", $familydata[0]->partner_birthday)[0]));
+        $familydata[0]->when_japan = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_japan)[0]));
+        $familydata[0]->when_applied_visa = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_applied_visa)[0]));
 
-            $siblingdata = DB::table('sibling_datas')
-                ->where("family_id", $familydata[0]->id)
-                ->where("IsDeleted", 0)
-                ->select()->Get();
-            for($i = 0; $i < COUNT($siblingdata); $i++){
-                $siblingdata[$i]->sibling_birth = date('m/d/Y', strtotime(explode(" ", $siblingdata[$i]->sibling_birth)[0]));
-            }
+        $siblingdata = DB::table('sibling_datas')
+            ->where("family_id", $familydata[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+        for ($i = 0; $i < COUNT($siblingdata); $i++) {
+            $siblingdata[$i]->sibling_birth = date('m/d/Y', strtotime(explode(" ", $siblingdata[$i]->sibling_birth)[0]));
+        }
 
-            $childrendata = DB::table('children_datas')
-                ->where("family_id", $familydata[0]->id)
-                ->where("IsDeleted", 0)
-                ->select()->Get();
-            for($i = 0; $i < COUNT($childrendata); $i++){
-                $childrendata[$i]->birthday = date('m/d/Y', strtotime(explode(" ", $childrendata[$i]->birthday)[0]));
-            }
+        $childrendata = DB::table('children_datas')
+            ->where("family_id", $familydata[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+        for ($i = 0; $i < COUNT($childrendata); $i++) {
+            $childrendata[$i]->birthday = date('m/d/Y', strtotime(explode(" ", $childrendata[$i]->birthday)[0]));
+        }
 
-            $relativedata = DB::table('relative_datas')
-                ->where("family_id", $familydata[0]->id)
-                ->where("IsDeleted", 0)
-                ->select()->Get();
-
-            $japanvisitdata = DB::table('japanvisit_datas')
+        $relativedata = DB::table('relative_datas')
             ->where("family_id", $familydata[0]->id)
             ->where("IsDeleted", 0)
             ->select()->Get();
 
-            for($i = 0; $i < COUNT($japanvisitdata); $i++){
-                $japanvisitdata[$i]->when =  date('m/d/Y', strtotime(explode(" ", $japanvisitdata[$i]->when)[0]));
-            }
+        $japanvisitdata = DB::table('japanvisit_datas')
+            ->where("family_id", $familydata[0]->id)
+            ->where("IsDeleted", 0)
+            ->select()->Get();
+
+        for ($i = 0; $i < COUNT($japanvisitdata); $i++) {
+            $japanvisitdata[$i]->when =  date('m/d/Y', strtotime(explode(" ", $japanvisitdata[$i]->when)[0]));
+        }
         // }
 
         $data = [
@@ -915,12 +923,14 @@ class BiodataController extends Controller
         return $data;
     }
 
-    public function getJapLang(Request $request){
-        $japlang = DB::table('japlangs')->select('jap_lang')->where('isdeleted',0)->get();
+    public function getJapLang(Request $request)
+    {
+        $japlang = DB::table('japlangs')->select('jap_lang')->where('isdeleted', 0)->get();
         return response()->json($japlang);
     }
-    public function getPrometric(Request $request){
-        $prometric = DB::table('prometrics')->select('prometric')->where('isdeleted',0)->get();
+    public function getPrometric(Request $request)
+    {
+        $prometric = DB::table('prometrics')->select('prometric')->where('isdeleted', 0)->get();
         return response()->json($prometric);
     }
 }

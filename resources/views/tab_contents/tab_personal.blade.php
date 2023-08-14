@@ -51,7 +51,7 @@
             </div>
             <div class="form-group col-span-4">
                 <label for="address" class="form-label">Permanent Address<span style="color:red">*</span>:</label>
-                <input required name="permanentaddress" autocomplete="off" type="text" maxlength="100" class="form-control" id="address">
+                <input required id="permanent_address" name="permanentaddress" autocomplete="off" type="text" maxlength="100" class="form-control" id="address">
             </div>
             <div class="form-group col-span-1">
                 <label for="address" class="form-label">Date of Birth<span style="color:red">*</span>:</label>
@@ -108,7 +108,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="contact" class="form-label">Contact No.<span style="color:red">*</span>:</label>
-                <input required name="contact" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control" id="contact" style="text-align:right">
+                <input required name="contact" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control" minlength="8" id="contact" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Height(cm)<span style="color:red">*</span>:</label>
@@ -207,7 +207,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Contact No.<span style="color:red">*</span>:</label>
-                <input required name="person_contact" onKeyPress="if(this.value.length==20) return false;" autocomplete="off" type="number" class="form-control" style="text-align:right">
+                <input required name="person_contact" onKeyPress="if(this.value.length==20) return false;" autocomplete="off" type="number" minlength="8" class="form-control" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Passport No.<span style="color:red">*</span>:</label>

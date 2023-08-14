@@ -110,10 +110,17 @@
     }
     Biodata.prototype = {
         uploadData:function(){
-
-           
             $("#loader").show()
             let self = this;
+            if(!self.educationalData.name_college) {
+                self.educationalData.name_college = null
+                self.educationalData.add_college = null
+                self.educationalData.date_from_college = null
+                self.educationalData.date_until_college = null
+                self.educationalData.course_college = null
+                self.educationalData.certificate_college = null
+                self.educationalData.date_until_cert_college = null
+            }
             try {
                 $.ajax({
                     url:"/client/Biodata/uploadData",
@@ -188,6 +195,7 @@
                         $("#middlename").val(promise.personaldata[0].middle_name);
                         $("#nickname").val(promise.personaldata[0].nickname);
                         $("#address").val(promise.personaldata[0].address);
+                        $("#permanent_address").val(promise.personaldata[0].permanentaddress)
                         $("#birthday").val(promise.personaldata[0].date_birth);
                         $("#birth_place").val(promise.personaldata[0].place_birth);
                         $("input[name='gender'][value='" + promise.personaldata[0].gender + "']").prop("checked", true);
@@ -197,7 +205,15 @@
                         $("select[name='civil_status']").val(promise.personaldata[0].civil_status).trigger('change');
                         $("#contact").val(promise.personaldata[0].contact);
                         $("input[name='height']").val(promise.personaldata[0].height);
-                        $("select[name='religion']").val(promise.personaldata[0].religion).trigger('change');
+                        const religion = promise.personaldata[0].religion
+                        if(
+                            religion !== 'Roman Catholic' ||
+                            religion !== 'Roman Catholic' ||
+                            religion !== 'Roman Catholic' ||
+                            religion !== 'Roman Catholic') {
+                                $("select[name='religion']").val("Others").trigger('change')
+                                $('#religion').val(religion)
+                        } else $("select[name='religion']").val(religion).trigger('change');
                         $("input[name='facebook']").val(promise.personaldata[0].facebook);
                         $("input[name='smoking'][value='" + promise.personaldata[0].smoking + "']").prop("checked", true);
                         $("input[name='weight']").val(promise.personaldata[0].weight);
@@ -263,6 +279,7 @@
                         $("input[name='add_highschool']").val(promise.educationaldata[0].address_highschool);
                         $("input[name='date_from_highschool']").val(promise.educationaldata[0].from_highschool);
                         $("input[name='date_until_highschool']").val(promise.educationaldata[0].until_highschool);
+
                         if(promise.educationaldata[0].name_jp_lang != null){
                             $("input[name='name_jpl']").val(promise.educationaldata[0].name_jp_lang);
                             $("input[name='add_jpl']").val(promise.educationaldata[0].address_jp_lang);
@@ -270,27 +287,33 @@
                             $("input[name='date_until_jpl']").val(promise.educationaldata[0].until_jp_lang);
                             $("input[name='certificate_jpl']").val(promise.educationaldata[0].certificate_jp_lang);
                             $("input[name='date_until_cert_jpl']").val(promise.educationaldata[0].certificate_until_jp_lang);
-                        }
-                        else{
-                            $("#jpl_applicable_education").trigger('click');
-                        }
-                        $("input[name='name_college']").val(promise.educationaldata[0].name_college);
-                        $("input[name='add_college']").val(promise.educationaldata[0].address_college);
-                        $("input[name='date_from_college']").val(promise.educationaldata[0].from_college);
-                        $("input[name='date_until_college']").val(promise.educationaldata[0].until_college);
-                        $("input[name='course_college']").val(promise.educationaldata[0].course_college);
-                        $("select[name='certificate_college']").val(promise.educationaldata[0].certificate_college).trigger('change');
-                        $("input[name='date_until_cert_college']").val(promise.educationaldata[0].certificate_until_college);
-                        promise.vocationaldata.forEach((vocational, index)=> {
-                            if(index > 0) $("#add_vocational_btn").trigger('click');
-                            $(`input[name='name_vocational_${index}']`).val(vocational.name);
-                            $(`input[name='add_vocational_${index}']`).val(vocational.address);
-                            $(`input[name='date_from_vocational_${index}']`).val(vocational.from);
-                            $(`input[name='date_until_vocational_${index}']`).val(vocational.until);
-                            $(`input[name='course_vocational_${index}']`).val(vocational.course);
-                            $(`input[name='certificate_vocational_${index}']`).val(vocational.certificate);
-                            $(`input[name='date_until_cert_vocational_${index}']`).val(vocational.certificate_until);
-                        })
+                        } else $("#jpl_applicable_education").trigger('click');
+
+                        if(promise.educationaldata[0].name_college) {
+                            $("input[name='name_college']").val(promise.educationaldata[0].name_college);
+                            $("input[name='add_college']").val(promise.educationaldata[0].address_college);
+                            $("input[name='date_from_college']").val(promise.educationaldata[0].from_college);
+                            $("input[name='date_until_college']").val(promise.educationaldata[0].until_college);
+                            $("input[name='course_college']").val(promise.educationaldata[0].course_college);
+                            $("select[name='certificate_college']").val(promise.educationaldata[0].certificate_college).trigger('change');
+                            $("input[name='date_until_cert_college']").val(promise.educationaldata[0].certificate_until_college);
+                        }else $('#college_applicable').trigger('click')
+
+                        const vocational = promise.vocationaldata
+                        if(vocational.length > 0) {
+                            promise.vocationaldata.forEach((vocational, index)=> {
+                                if(index > 0) $("#add_vocational_btn").trigger('click');
+                                $(`input[name='name_vocational_${index}']`).val(vocational.name);
+                                $(`input[name='add_vocational_${index}']`).val(vocational.address);
+                                $(`input[name='date_from_vocational_${index}']`).val(vocational.from);
+                                $(`input[name='date_until_vocational_${index}']`).val(vocational.until);
+                                $(`input[name='course_vocational_${index}']`).val(vocational.course);
+                                $(`input[name='certificate_vocational_${index}']`).val(vocational.certificate);
+                                $(`input[name='date_until_cert_vocational_${index}']`).val(vocational.certificate_until);
+                            })
+                        }else $('#vocational_applicable').trigger('click')
+
+
 
                         //localemployment
                         if (promise.employmentlocaldata.length == 0){
@@ -565,7 +588,7 @@
                         $("#joboperations").val(JobOperationID).trigger('change');
                     }
                     let params = new URLSearchParams(window.location.search)
-                    
+
                     for (let p of params) {
                         if(p[0] == "op"){
                             $("#joboperations").val(p[1]).trigger('change');
@@ -691,7 +714,7 @@
                 self.getCategoriesSSW();
                 self.getJaplang();
                 self.getPrometrics();
-               
+
             }
             self.getCategories();
             $.validator.addMethod("validDate", function(value, element) {
@@ -708,7 +731,7 @@
     let Datepicker = tw_elements.Datepicker;
     let Input = tw_elements.Input;
     tw_elements.initTE({ Datepicker,Input });
-    
+
 
     //=================================================EVENTS LISTENER
     // $("#jobcodes").on("change",function(){
@@ -729,7 +752,7 @@
     $(".date_picker").on("input",function(){
         $(this).valid()
     })
-    
+
     //====================================================================tabs Event Listener
     $("[data-tab-target]").toArray().forEach(tab => {
         let valid = false;
@@ -1763,7 +1786,7 @@
                 }
             }
 
-        
+
             console.log(biodata.siblingData)
             $("#upload_tab").removeClass('pointer-events-none')
             $("#upload_tab").trigger('click')
@@ -1805,7 +1828,7 @@
         </div>
         <div class="form-group col-span-3">
             <label for="lastname" class="form-label">CP No.<span class="req_sibling_${id+1}_deceased" style="color:red">*</span>:</label>
-            <input name="sibling_cp_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling_${id+1}_deceased form-control disabled:bg-slate-200" required>
+            <input name="sibling_cp_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling_${id+1}_deceased form-control disabled:bg-slate-200" minlength="8">
         </div>
         <div class="form-group col-start-2 col-span-12">
             <label for="lastname" class="form-label">Address<span class="req_sibling_${id+1}_deceased" style="color:red">*</span>:</label>
@@ -2103,7 +2126,7 @@
         let id = biodata.relatives
         let form = `<div class="relative_content relative_content_dynamic w-full md:grid grid-cols-13 grid-flow-col gap-4 mt-2">
         <div class="form-group col-span-1 flex items-center">
-            <button  class='btnDelrelatives py-2 bg-red-700 rounded w-full text-xs font-bold text-white disabled:bg-red-900'>X</button>
+            <button class='btnDelrelatives py-2 bg-red-700 rounded w-full text-xs font-bold text-white disabled:bg-red-900'>X</button>
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
             <input name="name_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Name">
@@ -2112,7 +2135,7 @@
             <input name="relation_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Relation">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
-            <input name="contact_relative_${id+1}" autocomplete="off" onKeyPress="if(this.value.length==20) return false;" type="number" class="sibling form-control disabled:bg-slate-200 text-right" required placeholder="Contact">
+            <input name="contact_relative_${id+1}" autocomplete="off" onKeyPress="if(this.value.length==20) return false;" type="number" class="sibling form-control disabled:bg-slate-200 text-right" minlength="8" placeholder="Contact">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
             <input name="address_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Address in Japan">
