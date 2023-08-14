@@ -1656,9 +1656,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         const religion = promise.personaldata[0].religion
                         if(
                             religion !== 'Roman Catholic' ||
-                            religion !== 'Roman Catholic' ||
-                            religion !== 'Roman Catholic' ||
-                            religion !== 'Roman Catholic') {
+                            religion !== 'Islam' ||
+                            religion !== 'Buddhism' ||
+                            religion !== 'N/A') {
                                 $("select[name='religion']").val("Others").trigger('change')
                                 $('#religion').val(religion)
                         } else $("select[name='religion']").val(religion).trigger('change');
