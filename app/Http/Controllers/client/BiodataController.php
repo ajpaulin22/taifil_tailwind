@@ -65,6 +65,7 @@ class BiodataController extends Controller
                     "nickname" => $request->personal["nickname"],
                     "lastname" => $request->personal["lastname"],
                     "address" => $request->personal["address"],
+                    "permanentaddress" => $request->personal["permanentaddress"],
                     "date_birth" => date('Y-m-d H:i:s',strtotime( $request->personal["birthday"])),
                     "place_birth" => $request->personal["birth_place"],
                     "gender" => $request->personal["gender"],
@@ -83,7 +84,7 @@ class BiodataController extends Controller
                     "jap_speaking" => isset($request->personal["jp_Speaking"])? $request->personal["jp_Speaking"] : null,
                     "jap_listening" => isset($request->personal["jp_Listening"])? $request->personal["jp_Listening"] : null,
                     "other_lang" => $request->personal["other_lang"],
-                    "shoe_size" => (int) $request->personal["shoe_size"],
+                    "shoe_size" => (float) $request->personal["shoe_size"],
                     "hobbies" => $request->personal["hobbies"],
                     "person_to_notify" => $request->personal["person_to_notify"],
                     "person_relation" => $request->personal["relation"],
@@ -122,13 +123,12 @@ class BiodataController extends Controller
 
                     "certificate_jp_lang" => isset($request->educational["certificate_jpl"])?$request->educational["certificate_jpl"]:null,
                     "certificate_until_jp_lang" => isset($request->educational["date_until_cert_jpl"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_cert_jpl"])):null,
-                    "name_college" => $request->educational["name_college"],
-                    "address_college" => $request->educational["add_college"],
-                    "from_college" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_college"])),
-                    "until_college" => date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_college"])),
-                    "course_college" => $request->educational["course_college"],
-                    "certificate_college" => $request->educational["certificate_college"],
-                    "certificate_until_college" =>  date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_cert_college"])),
+                    "name_college" => isset($request->educational["name_college"])? $request->educational["name_college"]:null,
+                    "address_college" =>isset($request->educational["add_college"])? $request->educational["add_college"]:null,
+                    "from_college" => isset($request->educational["date_from_college"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_from_college"])):null,
+                    "until_college" =>isset($request->educational["date_until_college"])? date('Y-m-d H:i:s' ,strtotime($request->educational["date_until_college"])):null,
+                    "course_college" =>isset($request->educational["course_college"])? $request->educational["course_college"]:null,
+                    "certificate_college" =>isset($request->educational["certificate_college"])? $request->educational["certificate_college"]:null,
                     "isdeleted" => 0,
                     "created_at" => date('Y-m-d H:i:s'),
                     "updated_at" => date('Y-m-d H:i:s')
@@ -261,7 +261,8 @@ class BiodataController extends Controller
                         japanvisit_data::create([
                             'family_id' => $family_id,
                             'where' => $c['where'],
-                            'when' => date('Y-m-d H:i:s' ,strtotime($c['when'])),
+                            'fromwhen' => date('Y-m-d H:i:s' ,strtotime($c['fromwhen'])),
+                            'untilwhen' => date('Y-m-d H:i:s' ,strtotime($c['untilwhen'])),
                         ]);
                     }
                 }
@@ -284,6 +285,7 @@ class BiodataController extends Controller
                             "family_id" => $family_id,
                             "name" => $c["name"],
                             "birthday" => date('Y-m-d H:i:s' ,strtotime($c['birthday'])),
+                            "address" =>  $c["address"],
                         ]);
                     }
                 }
