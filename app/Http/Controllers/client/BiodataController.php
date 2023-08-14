@@ -134,17 +134,19 @@ class BiodataController extends Controller
                     "updated_at" => date('Y-m-d H:i:s')
                 ]);
 
-                foreach ($request->vocational as $vc){
-                    vocational_data::create([
-                        "educational_id" => $educ_id,
-                        "name" => $vc["name"],
-                        "address" => $vc["address"],
-                        "from" =>  date('Y-m-d H:i:s' ,strtotime($vc["from"])),
-                        "until" =>  date('Y-m-d H:i:s' ,strtotime($vc["until"])),
-                        "course" => $vc["course"],
-                        "certificate" => $vc["certificate"],
-                        "certificate_until" =>  date('Y-m-d H:i:s' ,strtotime($vc["certificate_until"])),
-                    ]);
+                if(isset($request->vocational)){
+                    foreach ($request->vocational as $vc){
+                        vocational_data::create([
+                            "educational_id" => $educ_id,
+                            "name" => $vc["name"],
+                            "address" => $vc["address"],
+                            "from" =>  date('Y-m-d H:i:s' ,strtotime($vc["from"])),
+                            "until" =>  date('Y-m-d H:i:s' ,strtotime($vc["until"])),
+                            "course" => $vc["course"],
+                            "certificate" => $vc["certificate"],
+                            "certificate_until" =>  date('Y-m-d H:i:s' ,strtotime($vc["certificate_until"])),
+                        ]);
+                    }
                 }
 
                 if(isset($request->local_emp)){
