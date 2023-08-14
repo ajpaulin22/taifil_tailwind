@@ -78,7 +78,7 @@
                     _token: token,
                     ID: $("#ID").val(),
                     prometric: $("#Value").val(),
-                    jap_lang: $("#Value").val()
+                    jap_lang: $("#Value").val() 
                 },
                 dataType:"JSON",
                 beforeSend: function(){
@@ -99,7 +99,7 @@
                         showMessage("Success!", promise.msg, "success", "green");
                     }
                     else{
-                        showMessage("Error!", "Prometric already exists!", "error", "red");
+                        showMessage("Error!", promise.msg, "error", "red");
                     }
                 }
             })

@@ -4488,7 +4488,7 @@ B. Synopsis: Class Module used to process data
                     _token: token,
                     ID: $("#ID").val(),
                     prometric: $("#Value").val(),
-                    jap_lang: $("#Value").val()
+                    jap_lang: $("#Value").val() 
                 },
                 dataType:"JSON",
                 beforeSend: function(){
@@ -4509,7 +4509,7 @@ B. Synopsis: Class Module used to process data
                         showMessage("Success!", promise.msg, "success", "green");
                     }
                     else{
-                        showMessage("Error!", "Prometric already exists!", "error", "red");
+                        showMessage("Error!", promise.msg, "error", "red");
                     }
                 }
             })

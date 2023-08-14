@@ -269,6 +269,6 @@ class ManagementRegistrationController extends Controller
         }
         
         $pdf = Pdf::loadView('exportbiodata', $data);
-        return $pdf->download("biodata".$date.'.pdf');
+        return $pdf->stream("biodata".$date.'.pdf');
      }
 }
