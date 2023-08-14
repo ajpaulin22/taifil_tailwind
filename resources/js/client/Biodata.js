@@ -112,6 +112,15 @@
         uploadData:function(){
             $("#loader").show()
             let self = this;
+            if(!self.educationalData.name_college) {
+                self.educationalData.name_college = null
+                self.educationalData.add_college = null
+                self.educationalData.date_from_college = null
+                self.educationalData.date_until_college = null
+                self.educationalData.course_college = null
+                self.educationalData.certificate_college = null
+                self.educationalData.date_until_cert_college = null
+            }
             try {
                 $.ajax({
                     url:"/client/Biodata/uploadData",
@@ -186,6 +195,7 @@
                         $("#middlename").val(promise.personaldata[0].middle_name);
                         $("#nickname").val(promise.personaldata[0].nickname);
                         $("#address").val(promise.personaldata[0].address);
+                        $("#permanent_address").val(promise.personaldata[0].permanentaddress)
                         $("#birthday").val(promise.personaldata[0].date_birth);
                         $("#birth_place").val(promise.personaldata[0].place_birth);
                         $("input[name='gender'][value='" + promise.personaldata[0].gender + "']").prop("checked", true);
@@ -195,7 +205,15 @@
                         $("select[name='civil_status']").val(promise.personaldata[0].civil_status).trigger('change');
                         $("#contact").val(promise.personaldata[0].contact);
                         $("input[name='height']").val(promise.personaldata[0].height);
-                        $("select[name='religion']").val(promise.personaldata[0].religion).trigger('change');
+                        const religion = promise.personaldata[0].religion
+                        if(
+                            religion !== 'Roman Catholic' ||
+                            religion !== 'Islam' ||
+                            religion !== 'Buddhism' ||
+                            religion !== 'N/A') {
+                                $("select[name='religion']").val("Others").trigger('change')
+                                $('#religion').val(religion)
+                        } else $("select[name='religion']").val(religion).trigger('change');
                         $("input[name='facebook']").val(promise.personaldata[0].facebook);
                         $("input[name='smoking'][value='" + promise.personaldata[0].smoking + "']").prop("checked", true);
                         $("input[name='weight']").val(promise.personaldata[0].weight);
@@ -261,6 +279,7 @@
                         $("input[name='add_highschool']").val(promise.educationaldata[0].address_highschool);
                         $("input[name='date_from_highschool']").val(promise.educationaldata[0].from_highschool);
                         $("input[name='date_until_highschool']").val(promise.educationaldata[0].until_highschool);
+
                         if(promise.educationaldata[0].name_jp_lang != null){
                             $("input[name='name_jpl']").val(promise.educationaldata[0].name_jp_lang);
                             $("input[name='add_jpl']").val(promise.educationaldata[0].address_jp_lang);
@@ -268,27 +287,33 @@
                             $("input[name='date_until_jpl']").val(promise.educationaldata[0].until_jp_lang);
                             $("input[name='certificate_jpl']").val(promise.educationaldata[0].certificate_jp_lang);
                             $("input[name='date_until_cert_jpl']").val(promise.educationaldata[0].certificate_until_jp_lang);
-                        }
-                        else{
-                            $("#jpl_applicable_education").trigger('click');
-                        }
-                        $("input[name='name_college']").val(promise.educationaldata[0].name_college);
-                        $("input[name='add_college']").val(promise.educationaldata[0].address_college);
-                        $("input[name='date_from_college']").val(promise.educationaldata[0].from_college);
-                        $("input[name='date_until_college']").val(promise.educationaldata[0].until_college);
-                        $("input[name='course_college']").val(promise.educationaldata[0].course_college);
-                        $("select[name='certificate_college']").val(promise.educationaldata[0].certificate_college).trigger('change');
-                        $("input[name='date_until_cert_college']").val(promise.educationaldata[0].certificate_until_college);
-                        promise.vocationaldata.forEach((vocational, index)=> {
-                            if(index > 0) $("#add_vocational_btn").trigger('click');
-                            $(`input[name='name_vocational_${index}']`).val(vocational.name);
-                            $(`input[name='add_vocational_${index}']`).val(vocational.address);
-                            $(`input[name='date_from_vocational_${index}']`).val(vocational.from);
-                            $(`input[name='date_until_vocational_${index}']`).val(vocational.until);
-                            $(`input[name='course_vocational_${index}']`).val(vocational.course);
-                            $(`input[name='certificate_vocational_${index}']`).val(vocational.certificate);
-                            $(`input[name='date_until_cert_vocational_${index}']`).val(vocational.certificate_until);
-                        })
+                        } else $("#jpl_applicable_education").trigger('click');
+
+                        if(promise.educationaldata[0].name_college) {
+                            $("input[name='name_college']").val(promise.educationaldata[0].name_college);
+                            $("input[name='add_college']").val(promise.educationaldata[0].address_college);
+                            $("input[name='date_from_college']").val(promise.educationaldata[0].from_college);
+                            $("input[name='date_until_college']").val(promise.educationaldata[0].until_college);
+                            $("input[name='course_college']").val(promise.educationaldata[0].course_college);
+                            $("select[name='certificate_college']").val(promise.educationaldata[0].certificate_college).trigger('change');
+                            $("input[name='date_until_cert_college']").val(promise.educationaldata[0].certificate_until_college);
+                        }else $('#college_applicable').trigger('click')
+
+                        const vocational = promise.vocationaldata
+                        if(vocational.length > 0) {
+                            promise.vocationaldata.forEach((vocational, index)=> {
+                                if(index > 0) $("#add_vocational_btn").trigger('click');
+                                $(`input[name='name_vocational_${index}']`).val(vocational.name);
+                                $(`input[name='add_vocational_${index}']`).val(vocational.address);
+                                $(`input[name='date_from_vocational_${index}']`).val(vocational.from);
+                                $(`input[name='date_until_vocational_${index}']`).val(vocational.until);
+                                $(`input[name='course_vocational_${index}']`).val(vocational.course);
+                                $(`input[name='certificate_vocational_${index}']`).val(vocational.certificate);
+                                $(`input[name='date_until_cert_vocational_${index}']`).val(vocational.certificate_until);
+                            })
+                        }else $('#vocational_applicable').trigger('click')
+
+
 
                         //localemployment
                         if (promise.employmentlocaldata.length == 0){
@@ -563,7 +588,7 @@
                         $("#joboperations").val(JobOperationID).trigger('change');
                     }
                     let params = new URLSearchParams(window.location.search)
-                    
+
                     for (let p of params) {
                         if(p[0] == "op"){
                             $("#joboperations").val(p[1]).trigger('change');
@@ -689,7 +714,7 @@
                 self.getCategoriesSSW();
                 self.getJaplang();
                 self.getPrometrics();
-               
+
             }
             self.getCategories();
             $.validator.addMethod("validDate", function(value, element) {
@@ -706,7 +731,7 @@
     let Datepicker = tw_elements.Datepicker;
     let Input = tw_elements.Input;
     tw_elements.initTE({ Datepicker,Input });
-    
+
 
     //=================================================EVENTS LISTENER
     // $("#jobcodes").on("change",function(){
@@ -727,7 +752,7 @@
     $(".date_picker").on("input",function(){
         $(this).valid()
     })
-    
+
     //====================================================================tabs Event Listener
     $("[data-tab-target]").toArray().forEach(tab => {
         let valid = false;
@@ -789,7 +814,7 @@
     });
 
     //PERSONAL TAB ============================================EVENT LISTENER
-    $("#personal_form").validate({
+    let personalvalid = $("#personal_form").validate({
         errorElement: 'span',
         errorPlacement: function (error, element) {
             error.addClass('text-red-500 text-sm');
@@ -807,8 +832,8 @@
             biodata.personalData.contact = parseInt(biodata.personalData.contact)
             biodata.personalData.height = parseInt(biodata.personalData.height)
             biodata.personalData.weight = parseInt(biodata.personalData.weight)
-            biodata.personalData.shoe_size = parseInt(biodata.personalData.shoe_size)
-            biodata.personalData.person_contact = parseInt(biodata.personalData.person_contact)
+            biodata.personalData.shoe_size = parseFloat(biodata.personalData.shoe_size)
+            biodata.personalData.religion = (biodata.personalData.religion == "Others") ? $("#religion").val() : biodata.personalData.religion;
             $(window).scrollTop(0);
              if($("#seminar_tab").length == 1) {
                 $("#seminar_tab").removeClass('pointer-events-none')
@@ -853,6 +878,32 @@
             $(".licensed").show()
         }else{
             $(".licensed").hide()
+        }
+    })
+
+    $("#jp-group_applicable").on("click",function(){
+        if(this.checked){
+            personalvalid.resetForm();
+            $(".jp-group").attr("disabled",true)
+            $(".jp-group").prop("checked",false)
+            if(biodata.personal_validator){
+                $("#personal_form").valid();
+            }
+        }else{
+            personalvalid.resetForm();
+            $(".jp-group").attr("disabled",false)
+            if(biodata.personal_validator){
+                $("#personal_form").valid();
+            }
+        }
+    })
+
+    $("select[name='religion']").on("change",function(){
+        if ($(this).val() == 'Others'){
+            let input = "<div class='religion mt-2 md:mt-2 form-group col-span-3'><input id='religion' autocomplete='off' type='text' maxlength='100' class=' form-control disabled:bg-slate-200' placeholder='Other religion' required></div>"
+            $(this).closest('.form-group').append(input)
+        }else{
+            $(this).parent().parent().find('.religion').remove()
         }
     })
 
@@ -1384,6 +1435,41 @@
         }
      })
 
+     $("#college_applicable").on("click",function(){
+        if(this.checked){
+            educationalValid.resetForm();
+            $(".college").attr("disabled",true)
+            $(".college").val("")
+            if(biodata.educational_validator){
+                $("#educational_form").valid();
+            }
+        }else{
+            educationalValid.resetForm();
+            $(".college").attr("disabled",false)
+            if(biodata.educational_validator){
+                $("#educational_form").valid();
+            }
+        }
+    })
+
+    $("#vocational_applicable").on("click",function(){
+        if(this.checked){
+            educationalValid.resetForm();
+            $(".vocational").attr("disabled",true)
+            $(".vocational").val("")
+            $("#vocational").html("")
+            if(biodata.educational_validator){
+                $("#educational_form").valid();
+            }
+        }else{
+            educationalValid.resetForm();
+            $(".vocational").attr("disabled",false)
+            if(biodata.educational_validator){
+                $("#educational_form").valid();
+            }
+        }
+    })
+
     //LOCAL EMP TAB ===========================================EVENT LISTENER
     let emplocalValid = $("#empLocal_form").validate({
         errorElement: 'span',
@@ -1655,7 +1741,7 @@
             biodata.childrenData = []
             biodata.relativeData = []
             biodata.japanvisitData = []
-            for (let i = 0; $(form).find('input[name="sibling_' + i + '"]').val() != null ; i++){
+            for (let i = 0; $(form).find('.sibling_item').length + 1 > i ; i++){
                 if($('input[name="sibling_' + i + '"]').val() != ''){
                     biodata.siblingData.push({
                         name:$('input[name="sibling_' + i + '"]').val(),
@@ -1667,16 +1753,17 @@
                 }
             }
 
-            for (let i = 0; $(form).find('input[name="child_' + i + '"]').val() != null ; i++){
+            for (let i = 0; $(form).find('.children_content').length + 1 > i  ; i++){
                 if($('input[name="child_' + i + '"]').val() != ''){
                     biodata.childrenData.push({
                         name:$('input[name="child_' + i + '"]').val(),
                         birthday:$('input[name="child_birthday_' + i + '"]').val(),
+                        address:$('input[name="child_address_' + i + '"]').val(),
                     })
                 }
             }
 
-            for (let i = 0; $(form).find('input[name="name_relative_' + i + '"]').val() != null ; i++){
+            for (let i = 0; $(form).find('.relative_content').length + 1 > i ; i++){
                 if($('input[name="name_relative_' + i + '"]').val() != ''){
                     biodata.relativeData.push({
                         name:$('input[name="name_relative_' + i + '"]').val(),
@@ -1688,17 +1775,19 @@
             }
 
             // japan visit
-            for (let i = 0; $(form).find('input[name="japan_where_' + i + '"]').val() != null ; i++){
+            for (let i = 0; $(form).find('.japanvisit_content').length + 1 > i ; i++){
                 if($('input[name="japan_where_' + i + '"]').val() != ''){
                     biodata.japanvisitData.push({
                         where:$('input[name="japan_where_' + i + '"]').val(),
-                        when:$('input[name="japan_when_' + i + '"]').val(),
+                        fromwhen:$('input[name="japan_from_when_' + i + '"]').val(),
+                        untilwhen:$('input[name="japan_until_when_' + i + '"]').val(),
 
                     })
                 }
             }
 
-            console.log(biodata.japanvisitData)
+
+            console.log(biodata.siblingData)
             $("#upload_tab").removeClass('pointer-events-none')
             $("#upload_tab").trigger('click')
           }
@@ -1739,7 +1828,7 @@
         </div>
         <div class="form-group col-span-3">
             <label for="lastname" class="form-label">CP No.<span class="req_sibling_${id+1}_deceased" style="color:red">*</span>:</label>
-            <input name="sibling_cp_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling_${id+1}_deceased form-control disabled:bg-slate-200" required>
+            <input name="sibling_cp_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling_${id+1}_deceased form-control disabled:bg-slate-200" minlength="8">
         </div>
         <div class="form-group col-start-2 col-span-12">
             <label for="lastname" class="form-label">Address<span class="req_sibling_${id+1}_deceased" style="color:red">*</span>:</label>
@@ -1796,16 +1885,20 @@
         <div class="md:mt-0 mt-2 form-group col-span-1 flex items-center">
         <button  class='btnDelchildren py-2 px-3 bg-red-700 rounded w-full text-sm text-white disabled:bg-red-900'>x</button>
         </div>
-        <div class="form-group col-span-7">
+        <div class="form-group col-span-3">
             <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
             <input name="child_${id+1}" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
         </div>
-        <div class="form-group col-span-4">
+        <div class="form-group col-span-1">
             <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
             <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
                      <input data-rule-validDate="true" data-rule-pastDate="true" name="child_birthday_${id+1}" maxlength="10" autocomplete="off" type="text" required class="children form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
                 </div>
         </div>
+        <div class="form-group col-span-6">
+                <label for="lastname" class="form-label">Address<span style="color:red" class="required_children">*</span>:</label>
+                <input name="child_address_${id+1}" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
+            </div>
     </div>`
 
       $("#children").append(form);
@@ -1840,10 +1933,16 @@
             <label for="lastname" class="form-label">Where in japan</label>
             <input name="japan_where_${id+1}" autocomplete="off" type="text" maxlength="100" class="japan form-control disabled:bg-slate-200" required>
         </div>
-        <div class="form-group col-span-4 japan_group">
-            <label for="lastname" class="form-label">When (kailan?)</label>
+        <div class="form-group col-span-2 japan_group">
+            <label for="lastname" class="form-label">From When</label>
             <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_when_${id+1}" maxlength="10" autocomplete="off" type="text" required class="spouse form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_from_when_${id+1}" maxlength="10" autocomplete="off" type="text" required class="spouse form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+           </div>
+        </div>
+        <div class="form-group col-span-2 japan_group">
+            <label for="lastname" class="form-label">Until When</label>
+            <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_until_when_${id+1}" maxlength="10" autocomplete="off" type="text" required class="spouse form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
            </div>
         </div>
        </div>`
@@ -2027,7 +2126,7 @@
         let id = biodata.relatives
         let form = `<div class="relative_content relative_content_dynamic w-full md:grid grid-cols-13 grid-flow-col gap-4 mt-2">
         <div class="form-group col-span-1 flex items-center">
-            <button  class='btnDelrelatives py-2 bg-red-700 rounded w-full text-xs font-bold text-white disabled:bg-red-900'>X</button>
+            <button class='btnDelrelatives py-2 bg-red-700 rounded w-full text-xs font-bold text-white disabled:bg-red-900'>X</button>
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
             <input name="name_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Name">
@@ -2036,7 +2135,7 @@
             <input name="relation_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Relation">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
-            <input name="contact_relative_${id+1}" autocomplete="off" onKeyPress="if(this.value.length==20) return false;" type="number" class="sibling form-control disabled:bg-slate-200 text-right" required placeholder="Contact">
+            <input name="contact_relative_${id+1}" autocomplete="off" onKeyPress="if(this.value.length==20) return false;" type="number" class="sibling form-control disabled:bg-slate-200 text-right" minlength="8" placeholder="Contact">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
             <input name="address_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Address in Japan">
@@ -2164,7 +2263,7 @@
      })
 
      $(".Number-Only").on("input change paste", function () {
-        var newVal = $(this).val().replace(/[^0-9\.]/g, '');
+        var newVal = $(this).val().replace(/[^0-9.]/g, '');
         $(this).val(newVal.replace(/,/g, ''));
     });
     biodata.loadFunctions();
@@ -2255,6 +2354,11 @@
         if($("#upload_form").valid()){
             modal.show();
             biodata.upload = new FormData($("#upload_form")[0])
+            console.log({
+                _token:biodata.token,
+                personal:biodata.personalData,
+                personalid: $("#PersonalInfoID").val()
+            })
         }
     });
 

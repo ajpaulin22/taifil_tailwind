@@ -10,7 +10,8 @@ class japanvisit_data extends Model
     use HasFactory;
 
     protected $fillable = [
-        "when",
+        "fromwhen",
+        "untilwhen",
         "where",
         "isdeleted",
         'family_id'

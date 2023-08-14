@@ -27,6 +27,7 @@
             <div class="mt-2 md:mt-0 form-group col-span-7">
                 <label class="text-xl font-bold">High School<span style="color:red">*</span>:</label>
             </div>
+            
             <div class="mt-2 md:mt-0 form-group col-span-3">
                 <input name="name_highschool" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Name of School" required>
             </div>
@@ -44,37 +45,41 @@
                </div>
             </div>
 
-                <div class="mt-2 md:mt-0 form-group col-span-6">
+                <div class="mt-2 md:mt-0 form-group col-span-5">
                     <label class="text-xl font-bold">Vocational<span style="color:red">*</span>:</label>
                 </div>
+                <div class="form-group col-span-1 flex items-center my-4 md:my-0">
+                    <input type="checkbox" value="1" id="vocational_applicable" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                    <label class="ml-2 text-sm md:text-sm font-normal text-gray-900 ">Tick this checkbox if N/A</label>
+                </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
-                    <button id="add_vocational_btn" class="py-2 px-4 bg-sky-800 rounded w-full self-end text-sm text-white">Add Record</button>
+                    <button id="add_vocational_btn" class="vocational py-2 px-4 bg-sky-800 rounded w-full self-end text-sm text-white">Add Record</button>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-3">
-                    <input name="name_vocational_0" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Name of School" required>
+                    <input name="name_vocational_0" autocomplete="off" type="text" maxlength="100" class="vocational form-control disabled:bg-slate-200" placeholder="Name of School" required>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-2">
-                    <input name="add_vocational_0" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
+                    <input name="add_vocational_0" autocomplete="off" type="text" maxlength="100" class="vocational form-control disabled:bg-slate-200" placeholder="School Address" required>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
                     <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                        <input data-rule-validDate="true" name="date_from_vocational_0"  maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+                        <input data-rule-validDate="true" name="date_from_vocational_0"  maxlength="10" autocomplete="off" type="text" required class="vocational form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
                    </div>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
-                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                        <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_vocational_0" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-disable-future="true" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_vocational_0" maxlength="10" autocomplete="off" type="text" required class="vocational form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
                    </div>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-4">
-                    <input name="course_vocational_0" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Course/Major" required>
+                    <input name="course_vocational_0" autocomplete="off" type="text" maxlength="100" class="vocational form-control disabled:bg-slate-200" placeholder="Course/Major" required>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-2">
-                    <input name="certificate_vocational_0" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required>
+                    <input name="certificate_vocational_0" autocomplete="off" type="text" maxlength="100" class="vocational form-control disabled:bg-slate-200" placeholder="Certificate Holder" required>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
-                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                        <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_cert_vocational_0" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_cert_vocational_0" maxlength="10" autocomplete="off" type="text" required class="vocational form-control date_picker disabled:bg-slate-200" placeholder="Valid Until" />
                    </div>
                 </div>
              <div id="vocational" class="col-span-7">
@@ -117,31 +122,35 @@
                     </div>
                 </div>
             @endif
-            <div class="mt-2 md:mt-0 form-group col-span-7">
+            <div class="mt-2 md:mt-0 form-group col-span-6">
                 <label class="text-xl font-bold">College<span style="color:red">*</span>:</label>
             </div>
+            <div class="form-group col-span-1 flex items-center my-4 md:my-0">
+                <input type="checkbox" value="1" id="college_applicable" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                <label class="ml-2 text-sm md:text-sm font-normal text-gray-900 ">Tick this checkbox if N/A</label>
+            </div>
             <div class="mt-2 md:mt-0 form-group col-span-3">
-                <input name="name_college" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Name of School" required>
+                <input name="name_college" autocomplete="off" type="text" maxlength="100" class="college form-control disabled:bg-slate-200" placeholder="Name of School" required>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-2">
-                <input name="add_college" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
+                <input name="add_college" autocomplete="off" type="text" maxlength="100" class="college form-control disabled:bg-slate-200" placeholder="School Address" required>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
                 <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" name="date_from_college" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+                    <input data-rule-validDate="true" name="date_from_college" maxlength="10" autocomplete="off" type="text" required class="college form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
                </div>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
                 <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_college" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+                    <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_college" maxlength="10" autocomplete="off" type="text" required class="college form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
                </div>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-4">
-                <input name="course_college" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Course/Major" required>
+                <input name="course_college" autocomplete="off" type="text" maxlength="100" class="college form-control disabled:bg-slate-200" placeholder="Course/Major" required>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-2">
                 {{-- <input name="certificate_college" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required> --}}
-                <select required name="certificate_college" class="form-select">
+                <select required name="certificate_college" class="college form-select disabled:bg-slate-200">
                     <option value="" selected disabled value>Certificate Holder</option>
                     <option value="4-year College Graduate">4-year College Graduate</option>
                     <option value="3-year College Graduate">3-year College Graduate</option>
@@ -150,9 +159,9 @@
                 </select>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
-                <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_cert_college" maxlength="10" autocomplete="off" type="text" required class="form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
-               </div>
+                {{-- <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                    <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_cert_college" maxlength="10" autocomplete="off" type="text" required class="college form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+               </div> --}}
             </div>
         </div>
         <div class="self-end">

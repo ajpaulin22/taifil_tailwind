@@ -37,7 +37,7 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red" class="req_father_deceased">*</span>:</label>
-                <input name="father_cp" autocomplete="off" type="text" maxlength="20" class="Number-Only father_deceased form-control disabled:bg-slate-200" required style="text-align:right">
+                <input name="father_cp" autocomplete="off" type="text" maxlength="20" class="Number-Only father_deceased form-control disabled:bg-slate-200" minlength="8" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="lastname" class="form-label">Occupation<span style="color:red" class="req_father_deceased">*</span>:</label>
@@ -81,7 +81,7 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red" class="req_mother_deceased">*</span>:</label>
-                <input name="mother_cp" autocomplete="off" type="text" maxlength="20" class="Number-Only mother_deceased form-control disabled:bg-slate-200" required style="text-align:right">
+                <input name="mother_cp" autocomplete="off" type="text" maxlength="20" class="Number-Only mother_deceased form-control disabled:bg-slate-200" minlength="8" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="lastname" class="form-label">Occupation<span style="color:red" class="req_mother_deceased">*</span>:</label>
@@ -98,7 +98,6 @@
             <div class="form-group col-span-1 flex items-center my-4 md:my-0">
                 <input type="checkbox" value="1" id="sibling_applicable" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
                 <label class="ml-2 text-sm md:text-sm font-normal text-gray-900 ">Tick this checkbox if only child.</label>
-
             </div>
             <div class="form-group col-span-1">
                 <button id="add_sibling" class=" py-2 px-4 bg-sky-700 rounded w-full self-end text-sm text-white disabled:bg-sky-900">Add Sibling</button>
@@ -134,7 +133,7 @@
                 </div>
                 <div class="form-group col-span-3">
                     <label for="lastname" class="form-label">CP No.<span style="color:red" class="sibling_required req_sibling_deceased">*</span>:</label>
-                    <input name="sibling_cp_0" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="sibling_deceased sibling form-control disabled:bg-slate-200" required style="text-align:right">
+                    <input name="sibling_cp_0" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="sibling_deceased sibling form-control disabled:bg-slate-200" minlength="8" style="text-align:right">
                 </div>
                 <div class="form-group col-start-2 col-span-12">
                     <label for="lastname" class="form-label">Address<span style="color:red" class="sibling_required req_sibling_deceased">*</span>:</label>
@@ -165,7 +164,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="lastname" class="form-label">CP No.<span style="color:red">*</span>:</label>
-                <input name="spouse_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" maxlength="100" class="form-control spouse disabled:bg-slate-200" required style="text-align:right" style="text-align:right">
+                <input name="spouse_cp" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" maxlength="100" class="form-control spouse disabled:bg-slate-200" minlength="8" style="text-align:right" style="text-align:right">
             </div>
             <div class="form-group col-start-2 col-span-12">
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -184,7 +183,7 @@
             <div class=" md:mt-0 mt-2 form-group col-span-2 flex items-center">
                 <button  class='py-2 bg-white rounded w-full self-end text-sm text-white pointer-events-none'>x</button>
             </div>
-            <div class="form-group col-span-7">
+            <div class="form-group col-span-5">
                 <label for="lastname" class="form-label">Name<span style="color:red" class="required_children">*</span>:</label>
                 <input name="child_0" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
             </div>
@@ -193,6 +192,10 @@
                 <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
                     <input data-rule-validDate="true" data-rule-pastDate="true" name="child_birthday_0" maxlength="10" autocomplete="off" type="text" required class="children form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
                </div>
+            </div>
+            <div class="form-group col-span-2">
+                <label for="lastname" class="form-label">Address<span style="color:red" class="required_children">*</span>:</label>
+                <input name="child_address_0" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
             </div>
             <div class="col-span-13" id="children">
 
@@ -255,10 +258,16 @@
                     <label for="lastname" class="form-label">Where in japan</label>
                     <input name="japan_where_0" autocomplete="off" type="text" maxlength="100" class="japan form-control disabled:bg-slate-200" required disabled>
                 </div>
-                <div class="form-group col-span-4 japan_group" hidden>
-                    <label for="lastname" class="form-label">When (kailan?)</label>
+                <div class="form-group col-span-2 japan_group" hidden>
+                    <label for="lastname" class="form-label">From When</label>
                     <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                        <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_when_0" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                        <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_from_when_0" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                   </div>
+                </div>
+                <div class="form-group col-span-2 japan_group" hidden>
+                    <label for="lastname" class="form-label">Until When</label>
+                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                        <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_until_when_0" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
                    </div>
                 </div>
                 <div id="japanvisit_nav" class="col-span-12 japan_group grid grid-cols-12" hidden>
@@ -373,7 +382,7 @@
             </div>
 
             <div class="col-span-13" id="relatives">
-                <div class="relative_content w-full md:grid grid-cols-13 grid-flow-col gap-4 hidden">
+                <div class=" w-full md:grid grid-cols-13 grid-flow-col gap-4 hidden">
                     <div class="form-group col-span-1">
 
                     </div>
@@ -390,7 +399,7 @@
                         <label for="sibling" class="form-label font-bold">Address in Japan</label>
                     </div>
                 </div>
-                <div class="relative_content w-full md:grid grid-cols-13 grid-flow-col gap-4">
+                <div class=" w-full md:grid grid-cols-13 grid-flow-col gap-4">
                     <div class="form-group col-span-1">
                         <button class='py-2 bg-white w-full self-end text-xs font-bold text-white pointer-events-none'>X</button>
                     </div>
@@ -401,13 +410,12 @@
                         <input name="relation_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Relation">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
-                        <input name="contact_relative_0" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control text-right disabled:bg-slate-200" required placeholder="Contact">
+                        <input name="contact_relative_0" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control text-right disabled:bg-slate-200" minlength="8" placeholder="Contact">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
                         <input name="address_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Address in Japan">
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="self-end">

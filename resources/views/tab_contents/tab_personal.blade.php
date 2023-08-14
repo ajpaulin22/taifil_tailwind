@@ -49,6 +49,10 @@
                 <label for="address" class="form-label">Present Address<span style="color:red">*</span>:</label>
                 <input required name="address" autocomplete="off" type="text" maxlength="100" class="form-control" id="address">
             </div>
+            <div class="form-group col-span-4">
+                <label for="address" class="form-label">Permanent Address<span style="color:red">*</span>:</label>
+                <input required id="permanent_address" name="permanentaddress" autocomplete="off" type="text" maxlength="100" class="form-control" id="address">
+            </div>
             <div class="form-group col-span-1">
                 <label for="address" class="form-label">Date of Birth<span style="color:red">*</span>:</label>
                 <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
@@ -104,7 +108,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="contact" class="form-label">Contact No.<span style="color:red">*</span>:</label>
-                <input required name="contact" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control" id="contact" style="text-align:right">
+                <input required name="contact" autocomplete="off" type="number" onKeyPress="if(this.value.length==20) return false;" class="form-control" minlength="8" id="contact" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Height(cm)<span style="color:red">*</span>:</label>
@@ -117,6 +121,7 @@
                     <option value="RomanCatholic">Roman Catholic</option>
                     <option value="Islam">Islam</option>
                     <option value="Buddhism">Buddhism</option>
+                    <option value="Others">Others</option>
                     <option value="N/A">N/A</option>
                 </select>
             </div>
@@ -143,6 +148,7 @@
             </div>
             <div class="form-group col-span-2">
                 <label for="height" class="form-label">Japanese Language<span style="color:red">*</span>:</label>
+
                 <div class="md:flex justify-evenly">
                     <div class="flex items-center mr-4">
                         <input required name="jp_reading" type="checkbox" value="1" class="jp-group w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " checked>
@@ -160,6 +166,12 @@
                         <input  name="jp_Listening" type="checkbox" value="1" class="jp-group w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
                         <label  class="ml-2 text-sm md:text-lg font-medium text-gray-500 ">Listening</label>
                     </div>
+                    @if($biodata == "TITP")
+                    <div class="flex items-center mr-4">
+                        <input id="jp-group_applicable" type="checkbox" value="1" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 ">
+                        <label class="ml-2 text-sm md:text-lg font-medium text-gray-500 ">N/A</label>
+                    </div>
+                    @endif
                 </div>
             </div>
             <div class="form-group col-span-1">
@@ -168,7 +180,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Shoe Size(cm)<span style="color:red">*</span>:</label>
-                <input required name="shoe_size" autocomplete="off" type="text" maxlength="2ss" class="form-control Number-Only" style="text-align:right">
+                <input required name="shoe_size" autocomplete="off" type="text" maxlength="4" class="form-control Number-Only" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Hobbies<span style="color:red">*</span>:</label>
@@ -195,7 +207,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Contact No.<span style="color:red">*</span>:</label>
-                <input required name="person_contact" onKeyPress="if(this.value.length==20) return false;" autocomplete="off" type="number" class="form-control" style="text-align:right">
+                <input required name="person_contact" onKeyPress="if(this.value.length==20) return false;" autocomplete="off" type="number" minlength="8" class="form-control" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Passport No.<span style="color:red">*</span>:</label>
