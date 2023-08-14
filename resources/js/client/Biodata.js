@@ -809,8 +809,7 @@
             biodata.personalData.contact = parseInt(biodata.personalData.contact)
             biodata.personalData.height = parseInt(biodata.personalData.height)
             biodata.personalData.weight = parseInt(biodata.personalData.weight)
-            biodata.personalData.shoe_size = parseInt(biodata.personalData.shoe_size)
-            biodata.personalData.person_contact = parseInt(biodata.personalData.person_contact)
+            biodata.personalData.shoe_size = parseFloat(biodata.personalData.shoe_size)
             biodata.personalData.religion = (biodata.personalData.religion == "Others") ? $("#religion").val() : biodata.personalData.religion;
             $(window).scrollTop(0);
              if($("#seminar_tab").length == 1) {
@@ -1719,7 +1718,7 @@
             biodata.childrenData = []
             biodata.relativeData = []
             biodata.japanvisitData = []
-            for (let i = 0; $(form).find('input[name="sibling_' + i + '"]').val() != null ; i++){
+            for (let i = 0; $(form).find('.sibling_item').length + 1 > i ; i++){
                 if($('input[name="sibling_' + i + '"]').val() != ''){
                     biodata.siblingData.push({
                         name:$('input[name="sibling_' + i + '"]').val(),
@@ -1731,16 +1730,17 @@
                 }
             }
 
-            for (let i = 0; $(form).find('input[name="child_' + i + '"]').val() != null ; i++){
+            for (let i = 0; $(form).find('.children_content').length + 1 > i  ; i++){
                 if($('input[name="child_' + i + '"]').val() != ''){
                     biodata.childrenData.push({
                         name:$('input[name="child_' + i + '"]').val(),
                         birthday:$('input[name="child_birthday_' + i + '"]').val(),
+                        address:$('input[name="child_address_' + i + '"]').val(),
                     })
                 }
             }
 
-            for (let i = 0; $(form).find('input[name="name_relative_' + i + '"]').val() != null ; i++){
+            for (let i = 0; $(form).find('.relative_content').length + 1 > i ; i++){
                 if($('input[name="name_relative_' + i + '"]').val() != ''){
                     biodata.relativeData.push({
                         name:$('input[name="name_relative_' + i + '"]').val(),
@@ -1752,17 +1752,19 @@
             }
 
             // japan visit
-            for (let i = 0; $(form).find('input[name="japan_where_' + i + '"]').val() != null ; i++){
+            for (let i = 0; $(form).find('.japanvisit_content').length + 1 > i ; i++){
                 if($('input[name="japan_where_' + i + '"]').val() != ''){
                     biodata.japanvisitData.push({
                         where:$('input[name="japan_where_' + i + '"]').val(),
-                        when:$('input[name="japan_when_' + i + '"]').val(),
+                        fromwhen:$('input[name="japan_from_when_' + i + '"]').val(),
+                        untilwhen:$('input[name="japan_until_when_' + i + '"]').val(),
 
                     })
                 }
             }
 
-            console.log(biodata.japanvisitData)
+        
+            console.log(biodata.siblingData)
             $("#upload_tab").removeClass('pointer-events-none')
             $("#upload_tab").trigger('click')
           }
@@ -1860,16 +1862,20 @@
         <div class="md:mt-0 mt-2 form-group col-span-1 flex items-center">
         <button  class='btnDelchildren py-2 px-3 bg-red-700 rounded w-full text-sm text-white disabled:bg-red-900'>x</button>
         </div>
-        <div class="form-group col-span-7">
+        <div class="form-group col-span-3">
             <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
             <input name="child_${id+1}" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
         </div>
-        <div class="form-group col-span-4">
+        <div class="form-group col-span-1">
             <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
             <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
                      <input data-rule-validDate="true" data-rule-pastDate="true" name="child_birthday_${id+1}" maxlength="10" autocomplete="off" type="text" required class="children form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
                 </div>
         </div>
+        <div class="form-group col-span-6">
+                <label for="lastname" class="form-label">Address<span style="color:red" class="required_children">*</span>:</label>
+                <input name="child_address_${id+1}" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
+            </div>
     </div>`
 
       $("#children").append(form);
@@ -1904,10 +1910,16 @@
             <label for="lastname" class="form-label">Where in japan</label>
             <input name="japan_where_${id+1}" autocomplete="off" type="text" maxlength="100" class="japan form-control disabled:bg-slate-200" required>
         </div>
-        <div class="form-group col-span-4 japan_group">
-            <label for="lastname" class="form-label">When (kailan?)</label>
+        <div class="form-group col-span-2 japan_group">
+            <label for="lastname" class="form-label">From When</label>
             <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_when_${id+1}" maxlength="10" autocomplete="off" type="text" required class="spouse form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_from_when_${id+1}" maxlength="10" autocomplete="off" type="text" required class="spouse form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+           </div>
+        </div>
+        <div class="form-group col-span-2 japan_group">
+            <label for="lastname" class="form-label">Until When</label>
+            <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                <input data-rule-validDate="true" data-rule-pastDate="true" name="japan_until_when_${id+1}" maxlength="10" autocomplete="off" type="text" required class="spouse form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
            </div>
         </div>
        </div>`
@@ -2321,19 +2333,7 @@
             biodata.upload = new FormData($("#upload_form")[0])
             console.log({
                 _token:biodata.token,
-                prometric:biodata.prometricData,
-                jpl:biodata.jplData,
-                family:biodata.familyData,
-                sibling:biodata.siblingData,
-                relative:biodata.relativeData,
-                children:biodata.childrenData,
-                local_emp:biodata.local_empData,
-                abroad_emp:biodata.abroad_empData,
-                educational:biodata.educationalData,
-                vocational:biodata.vocationalData,
                 personal:biodata.personalData,
-                japanvisit:biodata.japanvisitData,
-                certificatejob:biodata.certificateJobData,
                 personalid: $("#PersonalInfoID").val()
             })
         }
