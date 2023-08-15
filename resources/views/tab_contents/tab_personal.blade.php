@@ -276,7 +276,7 @@
                     <label for="personal_lastname" class="form-label">Type of Licensed?<span style="color:red">*</span>:</label>
                     <select required name="type_licensed" class="form-select">
                         <option value="" selected disabled value>Choose....</option>
-                        <option value="StudentPermit">Student Permit</option>
+                        <option value="Student Permit">Student Permit</option>
                         <option value="Non-Professional">Non-Professional</option>
                         <option value="Professional">Professional</option>
                     </select>

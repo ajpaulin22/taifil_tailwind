@@ -266,6 +266,7 @@ class BiodataController extends Controller
                                 'where' => $c['where'],
                                 'fromwhen' => date('Y-m-d H:i:s', strtotime($c['fromwhen'])),
                                 'untilwhen' => date('Y-m-d H:i:s', strtotime($c['untilwhen'])),
+                                'isdeleted' => 0
                             ]);
                         }
                     }

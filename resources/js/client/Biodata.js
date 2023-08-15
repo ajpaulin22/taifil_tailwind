@@ -418,6 +418,9 @@
                                 $('#jp_overstay_yes').trigger('click')
                                 $('#jp_overstay_count').val(promise.familydata[0].how_long_overstay)
                             }
+                            else{
+                                $('#jp_overstay_no').trigger('click')
+                            }
 
                             if(promise.familydata[0].fake_identity_japan == 0){
                                 $("input[name='fakeidentity'][value='"+ promise.familydata[0].fake_identity_japan +"']").trigger('click');
