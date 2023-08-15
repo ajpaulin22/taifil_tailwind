@@ -1522,7 +1522,20 @@
                 }
             }
 
+            // $(".companylocal").each((a,b)=>{
+            //     console.log($(b).find("input[name='name_local_[]'").val())
+            //     if($(b).find("input[name='name_local_[]'").val() != ''){
+            //         biodata.local_empData.push({
+            //             company:$(b).find('input[name="name_local_[]').val(),
+            //             position:$(b).find('input[name="position_local_[]').val(),
+            //             address:$(b).find('input[name="address_local_[]').val(),
+            //             from:$(b).find('input[name="date_from_local_[]').val(),
+            //             until:$(b).find('input[name="date_until_local_[]').val(),
+            //         })
+            //     }
+            // })
 
+            console.log(biodata.local_empData)
             $("#job_abroad_tab").removeClass('pointer-events-none')
             $("#job_abroad_tab").trigger('click');
 
@@ -1588,7 +1601,7 @@
 
     $("#local_applicable").on("click",function(e){
         if(this.checked){
-            // emplocalValid.resetForm();
+            emplocalValid.resetForm();
             $("#local_companys").html("");
             $("#add_local_btn").attr("disabled", true)
             // $("#local_companys :input").val("");
@@ -1763,7 +1776,7 @@
             biodata.childrenData = []
             biodata.relativeData = []
             biodata.japanvisitData = []
-            for (let i = 0; $(form).find('.sibling_item').length + 1 > i ; i++){
+            for (let i = 0; $(form).find('input[name="sibling_' + i + '"]').val() !=null ; i++){
                 if($('input[name="sibling_' + i + '"]').val() != ''){
                     biodata.siblingData.push({
                         name:$('input[name="sibling_' + i + '"]').val(),
@@ -1775,7 +1788,7 @@
                 }
             }
 
-            for (let i = 0; $(form).find('.children_content').length + 1 > i  ; i++){
+            for (let i = 0; $(form).find('input[name="child_' + i + '"]').val() !=null  ; i++){
                 if($('input[name="child_' + i + '"]').val() != ''){
                     biodata.childrenData.push({
                         name:$('input[name="child_' + i + '"]').val(),
@@ -1785,7 +1798,7 @@
                 }
             }
 
-            for (let i = 0; $(form).find('.relative_content').length + 1 > i ; i++){
+            for (let i = 0; $(form).find('input[name="name_relative_' + i + '"]').val() !=null ; i++){
                 if($('input[name="name_relative_' + i + '"]').val() != ''){
                     biodata.relativeData.push({
                         name:$('input[name="name_relative_' + i + '"]').val(),
@@ -1797,7 +1810,7 @@
             }
 
             // japan visit
-            for (let i = 0; $(form).find('.japanvisit_content').length + 1 > i ; i++){
+            for (let i = 0; $(form).find('input[name="japan_where_' + i + '"]').val() !=null ; i++){
                 if($('input[name="japan_where_' + i + '"]').val() != ''){
                     biodata.japanvisitData.push({
                         where:$('input[name="japan_where_' + i + '"]').val(),
