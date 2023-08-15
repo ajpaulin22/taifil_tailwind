@@ -417,7 +417,6 @@ class BiodataController extends Controller
                             "until_college" => date('Y-m-d H:i:s', strtotime($request->educational["date_until_college"])),
                             "course_college" => $request->educational["course_college"],
                             "certificate_college" => $request->educational["certificate_college"],
-                            "certificate_until_college" =>  date('Y-m-d H:i:s', strtotime($request->educational["date_until_cert_college"])),
                             "updated_at" => date('Y-m-d H:i:s')
                         ]);
 
@@ -467,7 +466,7 @@ class BiodataController extends Controller
                             ]);
                         }
                     }
-
+                    
                     $overstay = false;
                     $fakeidentity = false;
                     $surrender = false;
