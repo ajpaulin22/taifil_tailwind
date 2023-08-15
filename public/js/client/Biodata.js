@@ -2955,19 +2955,32 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             $(window).scrollTop(0);
             // console.log($(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {}))
             biodata.local_empData = [];
-            for (let i = 0; $(form).find('input[name="name_local_' + i + '"]').val() != null ; i++){
-                if($('input[name="name_local_' + i + '"]').val() != ''){
+            // for (let i = 0; $(form).find('input[name="name_local_' + i + '"]').val() != null ; i++){
+            //     if($('input[name="name_local_' + i + '"]').val() != ''){
+            //         biodata.local_empData.push({
+            //             company:$('input[name="name_local_' + i + '"]').val(),
+            //             position:$('input[name="position_local_' + i + '"]').val(),
+            //             address:$('input[name="address_local_' + i + '"]').val(),
+            //             from:$('input[name="date_from_local_' + i + '"]').val(),
+            //             until:$('input[name="date_until_local_' + i + '"]').val(),
+            //         })
+            //     }
+            // }
+
+            $(".companylocal").each((a,b)=>{
+                console.log($(b).find("input[name='name_local_[]'").val())
+                if($(b).find("input[name='name_local_[]'").val() != ''){
                     biodata.local_empData.push({
-                        company:$('input[name="name_local_' + i + '"]').val(),
-                        position:$('input[name="position_local_' + i + '"]').val(),
-                        address:$('input[name="address_local_' + i + '"]').val(),
-                        from:$('input[name="date_from_local_' + i + '"]').val(),
-                        until:$('input[name="date_until_local_' + i + '"]').val(),
+                        company:$(b).find('input[name="name_local_[]').val(),
+                        position:$(b).find('input[name="position_local_[]').val(),
+                        address:$(b).find('input[name="address_local_[]').val(),
+                        from:$(b).find('input[name="date_from_local_[]').val(),
+                        until:$(b).find('input[name="date_until_local_[]').val(),
                     })
                 }
-            }
+            })
 
-
+            console.log(biodata.local_empData)
             $("#job_abroad_tab").removeClass('pointer-events-none')
             $("#job_abroad_tab").trigger('click');
 
@@ -2990,22 +3003,22 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         </div>
         <div class='col-span-8 md:grid grid-cols-4 gap-4'>
             <div class='mt-2 md:mt-0 form-group col-span-2'>
-                <input name='name_local_${id+1}' autocomplete='off' type='text' class='name_local form-control disabled:bg-slate-200' placeholder='Name of Company' required>
+                <input name='name_local_[]' autocomplete='off' type='text' class='name_local form-control disabled:bg-slate-200' placeholder='Name of Company' required>
             </div>
         <div class='mt-2 md:mt-0 form-group col-span-2'>
-            <input name='position_local_${id+1}' autocomplete='off' type='text' class='position_local form-control disabled:bg-slate-200' placeholder='Position' required>
+            <input name='position_local_[]' autocomplete='off' type='text' class='position_local form-control disabled:bg-slate-200' placeholder='Position' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-2'>
-            <input name='address_local_${id+1}' autocomplete='off' type='text' class='address_local form-control disabled:bg-slate-200' placeholder='Company Address' required>
+            <input name='address_local_[]' autocomplete='off' type='text' class='address_local form-control disabled:bg-slate-200' placeholder='Company Address' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
         <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_from_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+        <input data-rule-validDate="true" name="date_from_local_[]" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
    </div>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
         <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_until_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+        <input data-rule-validDate="true" name="date_until_local_[]" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
    </div>
         </div>
         </div>
@@ -3033,7 +3046,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
     $("#local_applicable").on("click",function(e){
         if(this.checked){
-            // emplocalValid.resetForm();
+            emplocalValid.resetForm();
             $("#local_companys").html("");
             $("#add_local_btn").attr("disabled", true)
             // $("#local_companys :input").val("");
