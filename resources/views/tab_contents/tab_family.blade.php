@@ -418,9 +418,7 @@
                         <input name="relation_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Relation">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
-                        <input name="contact_relative_0" autocomplete="off" type="number"
-                            oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                            onKeyPress="if(this.value.length==20) return false;" class="form-control text-right disabled:bg-slate-200" minlength="8" placeholder="Contact">
+                        <input name="contact_relative_0" autocomplete="off" type="text" class=" Number-Only form-control text-right disabled:bg-slate-200" minlength="8" placeholder="Contact">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
                         <input name="address_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Address in Japan">

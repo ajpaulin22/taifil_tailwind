@@ -108,9 +108,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="contact" class="form-label">Contact No.<span style="color:red">*</span>:</label>
-                <input required name="contact" autocomplete="off" type="number"
-                    oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                    onKeyPress="if(this.value.length==20) return false;" class="form-control" minlength="8" id="contact" style="text-align:right">
+                <input required name="contact" autocomplete="off" type="text" class="Number-Only form-control" minlength="8" id="contact" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Height(cm)<span style="color:red">*</span>:</label>
@@ -209,9 +207,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Contact No.<span style="color:red">*</span>:</label>
-                <input required name="person_contact" onKeyPress="if(this.value.length==20) return false;"
-                    oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                    autocomplete="off" type="number" minlength="8" class="form-control" style="text-align:right">
+                <input required name="person_contact" autocomplete="off" type="text" minlength="8" class="Number-Only form-control" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Passport No.<span style="color:red">*</span>:</label>
