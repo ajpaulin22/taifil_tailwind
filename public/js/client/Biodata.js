@@ -2958,17 +2958,29 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             $(window).scrollTop(0);
             // console.log($(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {}))
             biodata.local_empData = [];
-            for (let i = 0; $(form).find('input[name="name_local_' + i + '"]').val() != null ; i++){
-                if($('input[name="name_local_' + i + '"]').val() != ''){
+            $(".local").each(function(){
+                var ind = $(this).attr('id').split('_')[2];
+                if($("#name_local_" + ind).val()){
                     biodata.local_empData.push({
-                        company:$('input[name="name_local_' + i + '"]').val(),
-                        position:$('input[name="position_local_' + i + '"]').val(),
-                        address:$('input[name="address_local_' + i + '"]').val(),
-                        from:$('input[name="date_from_local_' + i + '"]').val(),
-                        until:$('input[name="date_until_local_' + i + '"]').val(),
+                        company:$("#name_local_" + ind).val(),
+                        position:$("#position_local_" + ind).val(),
+                        address:$("#address_local_" + ind).val(),
+                        from:$("#date_from_local_" + ind).val(),
+                        until:$("#date_until_local_" + ind).val(),
                     })
                 }
-            }
+            });
+            // for (let i = 0; $(form).find('input[name="name_local_' + i + '"]').val() != null ; i++){
+            //     if($('input[name="name_local_' + i + '"]').val() != ''){
+            //         biodata.local_empData.push({
+            //             company:$('input[name="name_local_' + i + '"]').val(),
+            //             position:$('input[name="position_local_' + i + '"]').val(),
+            //             address:$('input[name="address_local_' + i + '"]').val(),
+            //             from:$('input[name="date_from_local_' + i + '"]').val(),
+            //             until:$('input[name="date_until_local_' + i + '"]').val(),
+            //         })
+            //     }
+            // }
 
             // $(".companylocal").each((a,b)=>{
             //     console.log($(b).find("input[name='name_local_[]'").val())
@@ -3006,22 +3018,22 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         </div>
         <div class='col-span-8 md:grid grid-cols-4 gap-4'>
             <div class='mt-2 md:mt-0 form-group col-span-2'>
-                <input name='name_local_${id+1}' autocomplete='off' type='text' class='name_local form-control disabled:bg-slate-200' placeholder='Name of Company' required>
+                <input name='name_local_${id+1}' id='name_local_${id+1}' autocomplete='off' type='text' class='local name_local form-control disabled:bg-slate-200' placeholder='Name of Company' required>
             </div>
         <div class='mt-2 md:mt-0 form-group col-span-2'>
-            <input name='position_local_${id+1}' autocomplete='off' type='text' class='position_local form-control disabled:bg-slate-200' placeholder='Position' required>
+            <input name='position_local_${id+1}' id='position_local_${id+1}' autocomplete='off' type='text' class='position_local form-control disabled:bg-slate-200' placeholder='Position' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-2'>
-            <input name='address_local_${id+1}' autocomplete='off' type='text' class='address_local form-control disabled:bg-slate-200' placeholder='Company Address' required>
+            <input name='address_local_${id+1}' id='address_local_${id+1}' autocomplete='off' type='text' class='address_local form-control disabled:bg-slate-200' placeholder='Company Address' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
         <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_from_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+        <input data-rule-validDate="true" name="date_from_local_${id+1}" id='date_from_local_${id+1}' maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
    </div>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
         <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_until_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+        <input data-rule-validDate="true" name="date_until_local_${id+1}" id='date_until_local_${id+1}' maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
    </div>
         </div>
         </div>
@@ -3098,17 +3110,29 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             $(window).scrollTop(0);
             // console.log($(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {}))
             biodata.abroad_empData = [];
-            for (let i = 0; $(form).find('input[name="name_abroad_' + i + '"]').val() != null ; i++){
-                if($('input[name="name_abroad_' + i + '"]').val() != ''){
+            $(".abroad").each(function(){
+                var ind = $(this).attr('id').split('_')[2];
+                if($("#name_abroad_" + ind).val()){
                     biodata.abroad_empData.push({
-                        company:$('input[name="name_abroad_' + i + '"]').val(),
-                        position:$('input[name="position_abroad_' + i + '"]').val(),
-                        address:$('input[name="address_abroad_' + i + '"]').val(),
-                        from:$('input[name="date_from_abroad_' + i + '"]').val(),
-                        until:$('input[name="date_until_abroad_' + i + '"]').val(),
+                        company:$("#name_abroad_" + ind).val(),
+                        position:$("#position_abroad_" + ind).val(),
+                        address:$("#address_abroad_" + ind).val(),
+                        from:$("#date_from_abroad_" + ind).val(),
+                        until:$("#date_until_abroad_" + ind).val(),
                     })
                 }
-            }
+            });
+            // for (let i = 0; $(form).find('input[name="name_abroad_' + i + '"]').val() != null ; i++){
+            //     if($('input[name="name_abroad_' + i + '"]').val() != ''){
+                    // biodata.abroad_empData.push({
+                    //     company:$('input[name="name_abroad_' + i + '"]').val(),
+                    //     position:$('input[name="position_abroad_' + i + '"]').val(),
+                    //     address:$('input[name="address_abroad_' + i + '"]').val(),
+                    //     from:$('input[name="date_from_abroad_' + i + '"]').val(),
+                    //     until:$('input[name="date_until_abroad_' + i + '"]').val(),
+                    // })
+            //     }
+            // }
 
 
             $("#family_tab").removeClass('pointer-events-none')
@@ -3132,22 +3156,22 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         </div>
         <div class='col-span-8 md:grid grid-cols-4 gap-4'>
             <div class='mt-2 md:mt-0 form-group col-span-2'>
-                <input name='name_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Name of Company' required>
+                <input name='name_abroad_${id+1}' id='name_abroad_${id+1}' autocomplete='off' type='text' class='abroad_${id+1}' form-control disabled:bg-slate-200' placeholder='Name of Company' required>
             </div>
         <div class='mt-2 md:mt-0 form-group col-span-2'>
-            <input name='position_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Position' required>
+            <input name='position_abroad_${id+1}' id='position_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Position' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-2'>
-            <input name='address_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Company Address' required>
+            <input name='address_abroad_${id+1}' id='address_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Company Address' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
         <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_from_abroad_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+        <input data-rule-validDate="true" name="date_from_abroad_${id+1}" id='date_from_abroad_${id+1}' maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
    </div>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
         <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_until_abroad_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+        <input data-rule-validDate="true" name="date_until_abroad_${id+1}" id='date_until_abroad_${id+1}' maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
    </div>
         </div>
         </div>
