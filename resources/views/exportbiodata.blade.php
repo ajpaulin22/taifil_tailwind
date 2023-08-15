@@ -905,32 +905,9 @@
             </div>
         </div>
         <div style="clear:both"></div>
-<<<<<<< HEAD
         @if($family->went_japan == 1)
             <div style="float:left; width:12%; margin-right:10px;">
                 <h5>Times Went:</h5>
-=======
-        <div style="float:left; width:12%; margin-right:10px;">
-            <h5>Times Went:</h5>
-        </div>
-        <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$family->how_many_japan == null ? "N/A" : $family->how_many_japan}}</label>
-        </div>
-        <div style="clear:both"></div>
-        <div style="float: left; width:40%; margin-left: 200px">
-            <h5>Place</h5>
-        </div>
-        <div style="float: left; width:20%">
-            <h5>From</h5>
-        </div>
-        <div style="float: left; width:20%">
-            <h5>Until</h5>
-        </div>
-        <div style="clear:both"></div>
-        @if(COUNT($japanvisit) == 0)
-            <div style="float: left; width:60%; margin-left: 20px; margin-right: 27px; border-bottom: 1px solid black;">
-                <label>N/A</label>
->>>>>>> d85ec363593f03e50e7917da11aa2510d71a8514
             </div>
             <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{$family->how_many_japan == null ? "N/A" : $family->how_many_japan}}</label>
@@ -939,7 +916,7 @@
             <div style="float: left; width:40%; margin-left: 200px">
                 <h5>Place</h5>
             </div>
-            <div style="float: left; width:17%">
+            <div style="float: left; width:20%">
                 <h5>From</h5>
             </div>
             <div style="float: left; width:20%">
@@ -950,24 +927,23 @@
                 <div style="float: left; width:60%; margin-left: 20px; margin-right: 27px; border-bottom: 1px solid black;">
                     <label>N/A</label>
                 </div>
-                <div style="float: left; width:8.5%; margin-right:60px; border-bottom: 1px solid black; text-align:center">
-<<<<<<< HEAD
-                    <label>N/A</label>
-                </div>
-                <div style="float: left; width:8.5%; margin-right:60px; border-bottom: 1px solid black; text-align:center">
-                    <label>N/A</label>
-=======
-                    <label>{{date('m/d/Y', strtotime($japanvisit[$i]->fromwhen))}}</label>
-                </div>
-                <div style="float: left; width:8.5%; margin-right:60px; border-bottom: 1px solid black; text-align:center">
-                    <label>{{date('m/d/Y', strtotime($japanvisit[$i]->untilwhen))}}</label>
->>>>>>> d85ec363593f03e50e7917da11aa2510d71a8514
+                <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{$family->how_many_japan == null ? "N/A" : $family->how_many_japan}}</label>
                 </div>
                 <div style="clear:both"></div>
-            @else
-                @for($i = 0; $i < COUNT($japanvisit); $i++)
+                <div style="float: left; width:40%; margin-left: 200px">
+                    <h5>Place</h5>
+                </div>
+                <div style="float: left; width:17%">
+                    <h5>From</h5>
+                </div>
+                <div style="float: left; width:20%">
+                    <h5>Until</h5>
+                </div>
+                <div style="clear:both"></div>
+                @if(COUNT($japanvisit) == 0)
                     <div style="float: left; width:60%; margin-left: 20px; margin-right: 27px; border-bottom: 1px solid black;">
-                        <label>{{$japanvisit[$i]->where}}</label>
+                        <label>N/A</label>
                     </div>
                     <div style="float: left; width:8.5%; margin-right:60px; border-bottom: 1px solid black; text-align:center">
                         <label>{{date('m/d/Y', strtotime($japanvisit[$i]->fromwhen))}}</label>
@@ -976,74 +952,53 @@
                         <label>{{date('m/d/Y', strtotime($japanvisit[$i]->untilwhen))}}</label>
                     </div>
                     <div style="clear:both"></div>
-                @endfor
+                @else
+                    @for($i = 0; $i < COUNT($japanvisit); $i++)
+                        <div style="float: left; width:60%; margin-left: 20px; margin-right: 27px; border-bottom: 1px solid black;">
+                            <label>{{$japanvisit[$i]->where}}</label>
+                        </div>
+                        <div style="float: left; width:8.5%; margin-right:60px; border-bottom: 1px solid black; text-align:center">
+                            <label>{{date('m/d/Y', strtotime($japanvisit[$i]->fromwhen))}}</label>
+                        </div>
+                        <div style="float: left; width:8.5%; margin-right:60px; border-bottom: 1px solid black; text-align:center">
+                            <label>{{date('m/d/Y', strtotime($japanvisit[$i]->untilwhen))}}</label>
+                        </div>
+                        <div style="clear:both"></div>
+                    @endfor
+                @endif
+                <div style="float:left; width:20%; margin-right:10px;">
+                    <h5>Overstayed in Japan:</h5>
+                </div>
+                <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{$family->went_japan == 0 ? "N/A" : ($family->overstay_japan == 0 ? "No" : "Yes")}}</label>
+                </div>
+                <div style="float:left; width:11%; margin-right:10px;">
+                    <h5>How Long:</h5>
+                </div>
+                <div style="float:left; width:12%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{$family->overstay_japan == 0 ? "N/A" : $family->how_long_overstay}}</label>
+                </div>
+                <div style="clear:both"></div>
+                <div style="float:left; width:18.5%; margin-right:10px;">
+                    <h5>Used Fake Identity:</h5>
+                </div>
+                <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{$family->fake_identity_japan == 0 ? "No" : "Yes"}}</label>
+                </div>
+                <div style="float:left; width:12.5%; margin-right:10px;">
+                    <h5>Surrendered:</h5>
+                </div>
+                <div style="float:left; width:12%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{$family->fake_identity_japan == 0 ? "N/A" : ($family->fake_identity_surrender == 0 ? "No" : "Yes")}}</label>
+                </div>  
+                <div style="float:left; width:10%; margin-right:10px;">
+                    <h5>Purpose:</h5>
+                </div>
+                <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{$family->fake_identity_japan == 0 ? "N/A" : $family->fake_identity_purpose}}</label>
+                </div>  
             @endif
-            <div style="float:left; width:20%; margin-right:10px;">
-                <h5>Overstayed in Japan:</h5>
-            </div>
-            <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{$family->went_japan == 0 ? "N/A" : ($family->overstay_japan == 0 ? "No" : "Yes")}}</label>
-            </div>
-            <div style="float:left; width:11%; margin-right:10px;">
-                <h5>How Long:</h5>
-            </div>
-            <div style="float:left; width:12%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{$family->overstay_japan == 0 ? "N/A" : $family->how_long_overstay}}</label>
-            </div>
-            <div style="clear:both"></div>
-            <div style="float:left; width:18.5%; margin-right:10px;">
-                <h5>Used Fake Identity:</h5>
-            </div>
-            <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{$family->fake_identity_japan == 0 ? "No" : "Yes"}}</label>
-            </div>
-            <div style="float:left; width:12.5%; margin-right:10px;">
-                <h5>Surrendered:</h5>
-            </div>
-            <div style="float:left; width:12%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{$family->fake_identity_japan == 0 ? "N/A" : ($family->fake_identity_surrender == 0 ? "No" : "Yes")}}</label>
-            </div>  
-            <div style="float:left; width:10%; margin-right:10px;">
-                <h5>Purpose:</h5>
-            </div>
-            <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{$family->fake_identity_japan == 0 ? "N/A" : $family->fake_identity_purpose}}</label>
-            </div>  
         @endif
-<<<<<<< HEAD
-=======
-        <div style="float:left; width:20%; margin-right:10px;">
-            <h5>Overstayed in Japan:</h5>
-        </div>
-        <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$family->went_japan == 0 ? "N/A" : ($family->overstay_japan == 0 ? "No" : "Yes")}}</label>
-        </div>
-        <div style="float:left; width:11%; margin-right:10px;">
-            <h5>How Long:</h5>
-        </div>
-        <div style="float:left; width:12%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$family->overstay_japan == 0 ? "N/A" : $family->how_long_overstay}}</label>
-        </div>
-        <div style="clear:both"></div>
-        <div style="float:left; width:18.5%; margin-right:10px;">
-            <h5>Used Fake Identity:</h5>
-        </div>
-        <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$family->fake_identity_japan == 0 ? "No" : "Yes"}}</label>
-        </div>
-        <div style="float:left; width:12.5%; margin-right:10px;">
-            <h5>Surrendered:</h5>
-        </div>
-        <div style="float:left; width:12%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$family->fake_identity_japan == 0 ? "N/A" : ($family->fake_identity_surrender == 0 ? "No" : "Yes")}}</label>
-        </div>
-        <div style="float:left; width:10%; margin-right:10px;">
-            <h5>Purpose:</h5>
-        </div>
-        <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$family->fake_identity_japan == 0 ? "N/A" : $family->fake_identity_purpose}}</label>
-        </div>
->>>>>>> d85ec363593f03e50e7917da11aa2510d71a8514
         <div style="clear:both"></div>
         <div class="row" style="float:left; width:26%; margin-right:10px;">
             <h5>Applied For Japanese Visa:</h5>
@@ -1056,13 +1011,8 @@
             <h5>Type of Visa:</h5>
         </div>
         <div style="float:left; width:15%; border-bottom: 1px solid black; margin-right:10px;">
-<<<<<<< HEAD
             <label>{{$family->applied_visa == 0 ? "N/A" : $family->type_visa}}</label>
         </div>  
-=======
-            <label>{{$family->fake_identity_japan == null ? "N/A" : $family->fake_identity_purpose}}</label>
-        </div>
->>>>>>> d85ec363593f03e50e7917da11aa2510d71a8514
         <div style="float:left; width:7.5%; margin-right:10px;">
             <h5>When:</h5>
         </div>
