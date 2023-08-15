@@ -1858,7 +1858,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                             for(var i = 0; i < promise.japanvisitdata.length; i++){
                                 if(i != 0) $("#add_japanvisit").trigger('click');
                                 $(`input[name='japan_where_${i}']`).val(promise.japanvisitdata[i].where);
-                                $(`input[name='japan_when_${i}']`).val(promise.japanvisitdata[i].when);
+                                $(`input[name='japan_from_when_${i}']`).val(promise.japanvisitdata[i].fromwhen);
+                                $(`input[name='japan_until_when_${i}']`).val(promise.japanvisitdata[i].untilwhen);
                             }
 
                             if(promise.familydata[0].overstay_japan === 1) {
