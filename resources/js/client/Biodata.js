@@ -2285,7 +2285,7 @@
      })
 
      $(".Number-Only").on("input change paste", function () {
-        var newVal = $(this).val().replace(/[^0-9.]/g, '');
+        var newVal = $(this).val().replace(/[^0-9.\-+]/g, '');
         $(this).val(newVal.replace(/,/g, ''));
     });
     biodata.loadFunctions();
