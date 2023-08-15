@@ -68,7 +68,7 @@
                 <h5>Permanent Address:</h5>
             </div>
             <div style="float:left; width:79.5%; border-bottom: 1px solid black;">
-                <label>{{ $data->address}}</label>
+                <label>{{ $data->permanentaddress}}</label>
             </div>
         </div>
         <div style="clear:both"></div>
@@ -266,7 +266,7 @@
         <div style="clear:both"></div>
         <div class="row">
             <div style="float: left; width:22%">
-                <h5>Have Driver's License:</h5> 
+                <h5>Have Driver's License:</h5>
             </div>
             <div style="float: left; width:3%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{ $data->drivers_licensed == 1 ? "Yes" : "No" }}</label>
@@ -470,7 +470,7 @@
             </div>
         </div>
         <div style="clear:both"></div>
-        @else 
+        @else
             @for ($i = 0; $i < COUNT($vocational); $i++)
                 <div class="row">
                     <div style="float: left; width:13%;">
@@ -916,7 +916,10 @@
             <h5>Place</h5>
         </div>
         <div style="float: left; width:20%">
-            <h5>Date</h5>
+            <h5>From</h5>
+        </div>
+        <div style="float: left; width:20%">
+            <h5>Until</h5>
         </div>
         <div style="clear:both"></div>
         @if(COUNT($japanvisit) == 0)
@@ -933,7 +936,10 @@
                     <label>{{$japanvisit[$i]->where}}</label>
                 </div>
                 <div style="float: left; width:8.5%; margin-right:60px; border-bottom: 1px solid black; text-align:center">
-                    <label>{{date('m/d/Y', strtotime($japanvisit[$i]->when))}}</label>
+                    <label>{{date('m/d/Y', strtotime($japanvisit[$i]->fromwhen))}}</label>
+                </div>
+                <div style="float: left; width:8.5%; margin-right:60px; border-bottom: 1px solid black; text-align:center">
+                    <label>{{date('m/d/Y', strtotime($japanvisit[$i]->untilwhen))}}</label>
                 </div>
                 <div style="clear:both"></div>
             @endfor
@@ -962,27 +968,27 @@
         </div>
         <div style="float:left; width:12%; border-bottom: 1px solid black; margin-right:10px;">
             <label>{{$family->fake_identity_japan == 0 ? "N/A" : ($family->fake_identity_surrender == 0 ? "No" : "Yes")}}</label>
-        </div>  
+        </div>
         <div style="float:left; width:10%; margin-right:10px;">
             <h5>Purpose:</h5>
         </div>
         <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
             <label>{{$family->fake_identity_japan == 0 ? "N/A" : $family->fake_identity_purpose}}</label>
-        </div>  
+        </div>
         <div style="clear:both"></div>
         <div class="row" style="float:left; width:26%; margin-right:10px;">
             <h5>Applied For Japanese Visa:</h5>
         </div>
         <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
             <label>{{$family->applied_visa == 0 ? "No" : "Yes"}}</label>
-        </div>  
+        </div>
         <div style="clear:both"></div>
         <div style="float:left; width:13%; margin-right:10px;">
             <h5>Type of Visa:</h5>
         </div>
         <div style="float:left; width:15%; border-bottom: 1px solid black; margin-right:10px;">
             <label>{{$family->fake_identity_japan == null ? "N/A" : $family->fake_identity_purpose}}</label>
-        </div>  
+        </div>
         <div style="float:left; width:7.5%; margin-right:10px;">
             <h5>When:</h5>
         </div>
