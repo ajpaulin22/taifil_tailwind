@@ -419,7 +419,7 @@ class BiodataController extends Controller
                             "certificate_until_college" =>  date('Y-m-d H:i:s', strtotime($request->educational["date_until_cert_college"])),
                             "updated_at" => date('Y-m-d H:i:s')
                         ]);
-                        
+
                     $educ_id = DB::select("select id from educational_datas where personal_id = '" . $request["personalid"] . "'");
 
                     DB::table('vocational_datas')->where('educational_id', $educ_id[0]->id)->delete();
@@ -563,7 +563,8 @@ class BiodataController extends Controller
                             japanvisit_data::create([
                                 'family_id' => $family_id[0]->id,
                                 'where' => $c['where'],
-                                'when' => date('Y-m-d H:i:s', strtotime($c['when'])),
+                                'fromwhen' => date('Y-m-d H:i:s', strtotime($c['fromwhen'])),
+                                'untilwhen' => date('Y-m-d H:i:s', strtotime($c['untilwhen'])),
                                 'isdeleted' => 0
                             ]);
                         }
@@ -584,7 +585,7 @@ class BiodataController extends Controller
                     }
 
                     if (isset($request->children)) {
-                        DB::table('children_datas')->where('family_id', $family_id[0]->id)->delete();
+                        DB::table('children_datas') -> where('family_id', $family_id[0]->id)->delete();
                         foreach ($request->children as $c) {
                             children_data::create([
                                 "family_id" => $family_id[0]->id,
@@ -901,9 +902,9 @@ class BiodataController extends Controller
             ->select()->Get();
 
         for ($i = 0; $i < COUNT($japanvisitdata); $i++) {
-            $japanvisitdata[$i]->when =  date('m/d/Y', strtotime(explode(" ", $japanvisitdata[$i]->when)[0]));
+            $japanvisitdata[$i]->fromwhen =  date('m/d/Y', strtotime(explode(" ", $japanvisitdata[$i]->fromwhen)[0]));
+            $japanvisitdata[$i]->untilwhen =  date('m/d/Y', strtotime(explode(" ", $japanvisitdata[$i]->untilwhen)[0]));
         }
-        // }
 
         $data = [
             "personaldata" => $personaldata,

@@ -1858,7 +1858,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                             for(var i = 0; i < promise.japanvisitdata.length; i++){
                                 if(i != 0) $("#add_japanvisit").trigger('click');
                                 $(`input[name='japan_where_${i}']`).val(promise.japanvisitdata[i].where);
-                                $(`input[name='japan_when_${i}']`).val(promise.japanvisitdata[i].when);
+                                $(`input[name='japan_from_when_${i}']`).val(promise.japanvisitdata[i].fromwhen);
+                                $(`input[name='japan_until_when_${i}']`).val(promise.japanvisitdata[i].untilwhen);
                             }
 
                             if(promise.familydata[0].overstay_japan === 1) {
@@ -3293,7 +3294,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             <input name="sibling_occupation_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling_${id+1}_deceased form-control disabled:bg-slate-200" required>
         </div>
         <div class="form-group col-span-3">
-            <label for="lastname" class="form-label">CP No.<span class="req_sibling_${id+1}_deceased" style="color:red">*</span>:</label>
+            <label for="lastname" class="form-label">CP No.<span class="req_sibling_${id+1}_deceased" style="color:red"></span>:</label>
             <input name="sibling_cp_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling_${id+1}_deceased form-control disabled:bg-slate-200" minlength="8">
         </div>
         <div class="form-group col-start-2 col-span-12">
