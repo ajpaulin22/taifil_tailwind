@@ -310,7 +310,8 @@ class BiodataController extends Controller
                                 "certificate_id" => $cert_id,
                                 "certificate" => $p["test"],
                                 "taken" => date('Y-m-d H:i:s', strtotime($p['taken'])),
-                                "passed" => $p["passed"],
+                                "passed" => $p["passed"] === 'true' ? 1 : 0,
+                                "isdeleted" => 0
                             ]);
                         }
                     }
@@ -321,8 +322,8 @@ class BiodataController extends Controller
                                 "certificate_id" => $cert_id,
                                 "jpl" => $j["test"],
                                 "taken" => date('Y-m-d H:i:s', strtotime($j['taken'])),
-                                "passed" => $j["passed"],
-
+                                "passed" => $j["passed"] === 'true' ? 1 : 0,
+                                "isdeleted" => 0
                             ]);
                         }
                     }
@@ -466,7 +467,7 @@ class BiodataController extends Controller
                             ]);
                         }
                     }
-                    
+
                     $overstay = false;
                     $fakeidentity = false;
                     $surrender = false;
