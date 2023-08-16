@@ -61,14 +61,15 @@ class JobInformationController extends Controller
         $query_1 = "SELECT
         ID,
         JobType,
-        Category
-         FROM m_jobcategories WHERE IsDeleted = 0";
-        $query_1 .= " 
+        Category,
+        updated_at
+        FROM m_jobcategories WHERE IsDeleted = 0";
+        $query_1 .= "
         AND  (
         CAST(id as char(200)) LIKE '%".$search."%'
         OR  Category LIKE '%".$search."%'
         OR  JobType LIKE '%".$search."%') order by ". $col . " " . $dir;
-    
+
         $query_1 .= " limit ".$limit." offset ".$start;
         $data = DB::select($query_1);
         $query_2 = "SELECT * FROM m_jobcategories where IsDeleted = 0";
@@ -97,7 +98,8 @@ class JobInformationController extends Controller
         $query_1 = "SELECT
         ID,
         Operation,
-        Hiring
+        Hiring,
+        updated_at
          FROM m_joboperations WHERE IsDeleted = 0 AND JobCategoriesID = ".$request->ID;
         $query_1 .= " 
         AND  (
@@ -129,7 +131,8 @@ class JobInformationController extends Controller
         $search = $request->input('search.value');
         $query_1 = "SELECT
         ID,
-        Qualification
+        Qualification,
+        updated_at
          FROM m_jobqualifications WHERE IsDeleted = 0 AND JobOperationsID = ".$request->ID;
         $query_1 .= " 
         AND  (
