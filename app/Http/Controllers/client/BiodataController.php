@@ -764,7 +764,6 @@ class BiodataController extends Controller
             ->select('ID', 'JobCategoriesID', 'Operation')
             ->where("JobCategoriesID", $request->ID)
             ->where("IsDeleted", 0)
-            ->where("Hiring", 1)
             ->orderby("Operation", "asc")
             ->Get();
         return $data;
