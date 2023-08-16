@@ -103,6 +103,7 @@
         this.prometricData;
         this.jplData;
         this.upload;
+        this.partner_enable=false;
         this.ex_trainee = false;
         this.prometric_options = "<option value='' selected disabled value>Choose....</option>";
         this.japlang_options = "<option value='' selected disabled value>Choose....</option>";
@@ -2109,8 +2110,14 @@
 
      $("select[name='civil_status']").on("change",function(){
         if($(this).val() == "Married"){
+            if(biodata.partner_enable){
+                $("#partner_applicable").trigger('click');
+                biodata.partner_enable = false
+            }
+            $("#partner_applicable").attr("disabled",true)
             family_form.resetForm();
             $(".spouse").attr("disabled",false)
+            $(".partner").attr("disabled",true)
             $("#spouse_required").html("")
             if(biodata.family_validator)
             $("input[name='spouse']").val(spouse.name);
@@ -2122,9 +2129,9 @@
             family_form.resetForm();
             $(".spouse").val("");
             $(".spouse").attr("disabled",true)
+            $("#partner_applicable").attr("disabled",false)
             $("#spouse_required").html("*")
             if(biodata.family_validator){
-
                 $("#family_form").valid();
             }
         }
@@ -2134,10 +2141,12 @@
         if(this.checked){
             $(".partner").attr("disabled",false)
             $(".partner_hidden").attr("hidden",false)
+            biodata.partner_enable = true;
         }else{
             $(".partner").attr("disabled",true)
             $(".partner").val("")
             $(".partner_hidden").attr("hidden",true)
+            biodata.partner_enable = false
         }
      })
 

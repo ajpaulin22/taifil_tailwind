@@ -170,9 +170,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="lastname" class="form-label">CP No.<span style="color:red"></span>:</label>
-                <input name="spouse_cp" autocomplete="off" type="number"
-                    oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                    onKeyPress="if(this.value.length==20) return false;" maxlength="100" class="form-control spouse disabled:bg-slate-200" minlength="8" style="text-align:right" style="text-align:right">
+                <input name="spouse_cp" autocomplete="off" type="text" maxlength="100" class="Number-Only form-control spouse disabled:bg-slate-200" minlength="8" style="text-align:right" style="text-align:right">
             </div>
             <div class="form-group col-start-2 col-span-12">
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -223,7 +221,7 @@
                 <label for="lastname" class="form-label">Birthday<span style="color:red">*</span>:</label>
                 {{-- <input name="partner_age" autocomplete="off" type="number" onKeyPress="if(this.value.length==2) return false;" class="form-control partner Number-Only disabled:bg-slate-200" required disabled style="text-align:right"> --}}
                 <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" data-rule-pastDate="true" name="partner_birthday" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                    <input data-rule-validDate="true" data-rule-pastDate="true" name="partner_birthday" maxlength="10" autocomplete="off" type="text" required class="partner form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
                </div>
             </div>
             <div class="partner_hidden form-group col-span-3" hidden>
@@ -232,7 +230,7 @@
             </div>
             <div class="partner_hidden form-group col-span-1" hidden>
                 <label for="lastname" class="form-label">CP No.<span style="color:red"></span>:</label>
-                <input name="partner_cp" autocomplete="off" type="text" maxlength="20" class="form-control partner Number-Only disabled:bg-slate-200" required disabled style="text-align:right">
+                <input name="partner_cp" autocomplete="off" type="text" maxlength="20" minlength="8" class="form-control partner Number-Only disabled:bg-slate-200" disabled style="text-align:right">
             </div>
 
             <div class="partner_hidden form-group col-start-2 col-span-12" hidden>
