@@ -235,8 +235,14 @@
             </div>
         </div>
         <div style="clear:both"></div>
-        <div style="float: left; width:20%">
-            <h5>Issue Place:</h5>
+        <div class="row">
+            <div style="float: left; width:12%">
+                <h5>Issue Place:</h5>
+            </div>
+        </div>
+        
+        <div style="float: left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{$data->issue_place}}</label>
         </div>
         <div style="float: left; width:13.5%">
             <h5>Expiry Date:</h5>
@@ -244,9 +250,7 @@
         <div style="float: left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
             <label>{{date('m/d/Y', strtotime($data->expiry_date))}}</label>
         </div>
-        <div style="float: left; width:15%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$data->issue_place}}</label>
-        </div>
+
         <div style="clear:both"></div>
         <div class="row">
             <div style="float: left; width:20%">
