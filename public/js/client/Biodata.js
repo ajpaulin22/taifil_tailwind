@@ -2701,6 +2701,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             biodata.ex_trainee = true;
             $("#not_trainee_jpl_div").html("")
             $("#not_trainee_prometric_nav").html("")
+            $(".prometric_trainee").attr("disabled", true);
+            $(".jpl_trainee").attr("disabled", true);
+            $(".applicable").prop('checked', false);
         }else{
             $("#ex-trainee").hide();
             $("#not-ex-trainee").show()
