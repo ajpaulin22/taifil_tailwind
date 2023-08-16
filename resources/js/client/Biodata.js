@@ -655,7 +655,11 @@
                             position:'topRight'
                         });
                         setTimeout(() => {
-                            location.replace((location.pathname.includes("/jp")? "/jp/":"/"));
+                            if(self.searchParams.get('type') != "mod")
+                                location.replace((location.pathname.includes("/jp")? "/jp/":"/"));
+                            else
+                                location.replace("/admin/ManagementRegistration");
+                            
                         }, 2000);
                     }
                     console.log(promise.msgTitle)

@@ -836,9 +836,6 @@
             <div style="clear:both"></div>
         @else
             @for($i = 0; $i < COUNT($children); $i++)
-                <div class="row">
-                    <h5>Children:</h5>
-                </div>
                 <div style="float:left; width:7%; margin-right:10px;">
                     <h5>Name:</h5>
                 </div>
