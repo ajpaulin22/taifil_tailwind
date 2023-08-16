@@ -463,6 +463,7 @@
                                     $("#add_children").trigger('click');
                                 $("input[name='child_"+ i +"']").val(promise.childrendata[i].name);
                                 $("input[name='child_birthday_"+ i +"']").val(promise.childrendata[i].birthday);
+                                $("input[name='child_address_"+ i +"']").val(promise.childrendata[i].address);
                             }
                         }
 
