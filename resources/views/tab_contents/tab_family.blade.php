@@ -123,7 +123,7 @@
                 </div>
                 <div class="form-group col-span-3">
                     <label for="sibling" class="form-label">Name<span style="color:red" class="sibling_required req_sibling_na ">*</span>:</label>
-                    <input name="sibling_0" autocomplete="off" type="text" maxlength="100" class="sibling_na sibling form-control disabled:bg-slate-200" required>
+                    <input name="sibling_0" autocomplete="off" type="text" maxlength="100" class="siblings sibling_na sibling form-control disabled:bg-slate-200" required>
                 </div>
                 <div class="form-group col-span-3">
                     <label for="sibling_birthday" class="form-label">Birth Date<span style="color:red" class="sibling_required req_sibling_na">*</span>:</label>
@@ -191,7 +191,7 @@
             </div>
             <div class="form-group col-span-5">
                 <label for="lastname" class="form-label">Name<span style="color:red" class="required_children">*</span>:</label>
-                <input name="child_0" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
+                <input name="child_0" autocomplete="off" type="text" maxlength="100" class="childrens children form-control disabled:bg-slate-200" required>
             </div>
             <div class="form-group col-span-4">
                 <label for="lastname" class="form-label">Birth Date<span style="color:red" class="required_children">*</span>:</label>
@@ -256,13 +256,13 @@
                 </div>
                 <div class="form-group col-span-3 japan_group" hidden>
                     <label for="lastname" class="form-label">How many times? (ilang beses?)</label>
-                    <input name="japan_times" autocomplete="off" type="number" onKeyPress="if(this.value.length==3) return false;" class="japan text-right form-control disabled:bg-slate-200" required disabled>
+                    <input name="japan_times" autocomplete="off" type="number" onKeyPress="if(this.value.length==3) return false;" class=" japan text-right form-control disabled:bg-slate-200" required disabled>
                 </div>
                 <div class="form-group col-span-1 japan_group" hidden>
                 </div>
                 <div class="form-group col-span-4 japan_group" hidden>
                     <label for="lastname" class="form-label">Where in japan</label>
-                    <input name="japan_where_0" autocomplete="off" type="text" maxlength="100" class="japan form-control disabled:bg-slate-200" required disabled>
+                    <input name="japan_where_0" autocomplete="off" type="text" maxlength="100" class="japantimes japan form-control disabled:bg-slate-200" required disabled>
                 </div>
                 <div class="form-group col-span-2 japan_group" hidden>
                     <label for="lastname" class="form-label">From When</label>
@@ -410,7 +410,7 @@
                         <button class='py-2 bg-white w-full self-end text-xs font-bold text-white pointer-events-none'>X</button>
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
-                        <input name="name_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Name">
+                        <input name="name_relative_0" autocomplete="off" type="text" maxlength="100" class="relatives form-control disabled:bg-slate-200" required placeholder="Name">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
                         <input name="relation_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Relation">

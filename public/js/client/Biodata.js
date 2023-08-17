@@ -3269,50 +3269,56 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             biodata.childrenData = []
             biodata.relativeData = []
             biodata.japanvisitData = []
-            for (let i = 0; $(form).find('input[name="sibling_' + i + '"]').val() !=null ; i++){
-                if($('input[name="sibling_' + i + '"]').val() != ''){
+
+            $(".siblings").each(function(){
+                let ind = $(this).attr('name').split('_')[1];
+                if($('input[name="sibling_' + ind + '"]').val()){
                     biodata.siblingData.push({
-                        name:$('input[name="sibling_' + i + '"]').val(),
-                        birhtday:$('input[name="sibling_birthday_' + i + '"]').val(),
-                        occupation:$('input[name="sibling_occupation_' + i + '"]').val(),
-                        cp:$('input[name="sibling_cp_' + i + '"]').val(),
-                        address:$('input[name="sibling_address_' + i + '"]').val(),
+                        name:$('input[name="sibling_' + ind + '"]').val(),
+                        birhtday:$('input[name="sibling_birthday_' + ind + '"]').val(),
+                        occupation:$('input[name="sibling_occupation_' + ind + '"]').val(),
+                        cp:$('input[name="sibling_cp_' + ind + '"]').val(),
+                        address:$('input[name="sibling_address_' + ind + '"]').val(),
                     })
                 }
-            }
+             });
 
-            for (let i = 0; $(form).find('input[name="child_' + i + '"]').val() !=null  ; i++){
-                if($('input[name="child_' + i + '"]').val() != ''){
+             $(".childrens").each(function(){
+                let ind = $(this).attr('name').split('_')[1];
+                if($('input[name="child_' + ind + '"]').val()){
                     biodata.childrenData.push({
-                        name:$('input[name="child_' + i + '"]').val(),
-                        birthday:$('input[name="child_birthday_' + i + '"]').val(),
-                        address:$('input[name="child_address_' + i + '"]').val(),
+                        name:$('input[name="child_' + ind + '"]').val(),
+                        birthday:$('input[name="child_birthday_' + ind + '"]').val(),
+                        address:$('input[name="child_address_' + ind + '"]').val(),
                     })
                 }
-            }
+             });
 
-            for (let i = 0; $(form).find('input[name="name_relative_' + i + '"]').val() !=null ; i++){
-                if($('input[name="name_relative_' + i + '"]').val() != ''){
+             $(".japantimes").each(function(){
+                let ind = $(this).attr('name').split('_')[2];
+                if($('input[name="name_relative_' + ind + '"]').val() ){
                     biodata.relativeData.push({
-                        name:$('input[name="name_relative_' + i + '"]').val(),
-                        relation:$('input[name="relation_relative_' + i + '"]').val(),
-                        contact:$('input[name="contact_relative_' + i + '"]').val(),
-                        address:$('input[name="address_relative_' + i + '"]').val(),
+                        name:$('input[name="name_relative_' + ind + '"]').val(),
+                        relation:$('input[name="relation_relative_' + ind + '"]').val(),
+                        contact:$('input[name="contact_relative_' + ind + '"]').val(),
+                        address:$('input[name="address_relative_' + ind + '"]').val(),
                     })
                 }
-            }
+             });
 
             // japan visit
-            for (let i = 0; $(form).find('input[name="japan_where_' + i + '"]').val() !=null ; i++){
-                if($('input[name="japan_where_' + i + '"]').val() != ''){
+            $(".japantimes").each(function(){
+                let ind = $(this).attr('name').split('_')[2];
+                if($('input[name="japan_where_' + ind + '"]').val()){
                     biodata.japanvisitData.push({
-                        where:$('input[name="japan_where_' + i + '"]').val(),
-                        fromwhen:$('input[name="japan_from_when_' + i + '"]').val(),
-                        untilwhen:$('input[name="japan_until_when_' + i + '"]').val(),
+                        where:$('input[name="japan_where_' + ind + '"]').val(),
+                        fromwhen:$('input[name="japan_from_when_' + ind + '"]').val(),
+                        untilwhen:$('input[name="japan_until_when_' + ind + '"]').val(),
 
                     })
                 }
-            }
+             });
+
 
 
             console.log(biodata.siblingData)
@@ -3342,7 +3348,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         </div>
         <div class="form-group col-span-3">
             <label for="" class="form-label">Name<span style="color:red">*</span>:</label>
-            <input name="sibling_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling_${id+1} form-control disabled:bg-slate-200" required>
+            <input name="sibling_${id+1}" autocomplete="off" type="text" maxlength="100" class="siblings sibling_${id+1} form-control disabled:bg-slate-200" required>
         </div>
         <div class="form-group col-span-3">
             <label for="sibling_birthday" class="form-label">Birth Date<span style="color:red">*</span>:</label>
@@ -3415,7 +3421,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         </div>
         <div class="form-group col-span-3">
             <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
-            <input name="child_${id+1}" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
+            <input name="child_${id+1}" autocomplete="off" type="text" maxlength="100" class="childrens children form-control disabled:bg-slate-200" required>
         </div>
         <div class="form-group col-span-1">
             <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
@@ -3459,7 +3465,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         </div>
         <div class="form-group col-span-4 japan_group">
             <label for="lastname" class="form-label">Where in japan</label>
-            <input name="japan_where_${id+1}" autocomplete="off" type="text" maxlength="100" class="japan form-control disabled:bg-slate-200" required>
+            <input name="japan_where_${id+1}" autocomplete="off" type="text" maxlength="100" class="japantimes japan form-control disabled:bg-slate-200" required>
         </div>
         <div class="form-group col-span-2 japan_group">
             <label for="lastname" class="form-label">From When</label>
@@ -3665,16 +3671,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             <button class='btnDelrelatives py-2 bg-red-700 rounded w-full text-xs font-bold text-white disabled:bg-red-900'>X</button>
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
-            <input name="name_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Name">
+            <input name="name_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="relatives  form-control disabled:bg-slate-200" required placeholder="Name">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
-            <input name="relation_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Relation">
+            <input name="relation_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class=" form-control disabled:bg-slate-200" required placeholder="Relation">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
-            <input name="contact_relative_${id+1}" autocomplete="off" onKeyPress="if(this.value.length==20) return false;" type="number" class="sibling form-control disabled:bg-slate-200 text-right" minlength="8" placeholder="Contact">
+            <input name="contact_relative_${id+1}" autocomplete="off" onKeyPress="if(this.value.length==20) return false;" type="number" class=" form-control disabled:bg-slate-200 text-right" minlength="8" placeholder="Contact">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
-            <input name="address_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Address in Japan">
+            <input name="address_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class=" form-control disabled:bg-slate-200" required placeholder="Address in Japan">
         </div>
     </div>`
     $("#relatives").append(form)
