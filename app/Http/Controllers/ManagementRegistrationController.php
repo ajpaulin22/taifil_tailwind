@@ -218,7 +218,10 @@ class ManagementRegistrationController extends Controller
         $dataPersonal[0]->gov_id_picture = base64_encode($dataPersonal[0]->gov_id_picture);
         $dataPersonal[0]->passport_id_picture = base64_encode($dataPersonal[0]->passport_id_picture);
         if ($dataPersonal[0]->job_type == "SSW") {
-            $query = "Select * from certificatejobs where isdeleted = 0 AND personal_id = " . $request["IDs"];
+            $query = "Select p.*, c.Category, o.Operation from certificatejobs p"
+            . " LEFT JOIN m_jobcategories c ON p.jobcategory = c.ID"
+            . " LEFT JOIN m_joboperations o ON p.joboperation = o.ID"
+            . " WHERE p.personal_id = " . $request["IDs"] . " AND p.isdeleted = 0";
             $dataCertificate = DB::select($query);
             $query = "Select * from prometric_datas where isdeleted = 0 AND certificate_id = " . $dataCertificate[0]->id;
             $dataPrometric = DB::select($query);
