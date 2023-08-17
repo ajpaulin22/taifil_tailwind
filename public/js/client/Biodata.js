@@ -2408,45 +2408,53 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 joboperation:$("#certificate_operation").val(),
                 ex_trainee:biodata.ex_trainee
             }
-            if(biodata.ex_trainee){
-                for (let i = 0; $(form).find('select[name="trainee_test_prometric_' + i + '"]').val() != null ; i++){
-                    if($('select[name="trainee_test_prometric_' + i + '"]').val() != ''){
-                        biodata.prometricData.push({
-                            test:$('select[name="trainee_test_prometric_' + i + '"]').val() == 'Others' ? $('select[name="trainee_test_prometric_' + i + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="trainee_test_prometric_' + i + '"]').val(),
-                            taken:$('input[name="trainee_taken_prometric_' + i + '"]').val(),
-                            passed:$(`#trainee_passed_prometric_${i}`).prop('checked'),
-                        })
-                    }
-                }
-                for (let i = 0; $(form).find('select[name="trainee_test_jpl_' + i + '"]').val() != null ; i++){
-                    if($('select[name="trainee_test_jpl_' + i + '"]').val() != ''){
-                        biodata.jplData.push({
-                            test:$('select[name="trainee_test_jpl_' + i + '"]').val(),
-                            taken:$('input[name="trainee_taken_jpl_' + i + '"]').val(),
-                            passed:$(`#trainee_passed_language_${i}`).prop('checked'),
-                        })
-                    }
-                }
-            }else{
-                for (let i = 0; $(form).find('select[name="not_trainee_test_prometric_' + i + '"]').val() != null ; i++){
-                    if($('select[name="not_trainee_test_prometric_' + i + '"]').val() != ''){
-                        biodata.prometricData.push({
-                            test:$('select[name="not_trainee_test_prometric_' + i + '"]').val() == 'Others' ? $('select[name="not_trainee_test_prometric_' + i + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="not_trainee_test_prometric_' + i + '"]').val(),
-                            taken:$('input[name="not_trainee_taken_prometric_' + i + '"]').val(),
-                            passed:$(`#not_trainee_passed_prometric_${i}`).prop('checked'),
-                        })
-                    }
-                }
-                for (let i = 0; $(form).find('select[name="not_trainee_test_jpl_' + i + '"]').val() != null ; i++){
-                    if($('select[name="not_trainee_test_jpl_' + i + '"]').val() != ''){
-                        biodata.jplData.push({
-                            test:$('select[name="not_trainee_test_jpl_' + i + '"]').val(),
-                            taken:$('input[name="not_trainee_taken_jpl_' + i + '"]').val(),
-                            passed: $(`#not_trainee_passed_language_${i}`).prop('checked'),
-                        })
-                    }
 
-                }
+            if(biodata.ex_trainee){
+                $(".trainee_prometric").each(function(){
+                    let ind = $(this).attr('name').split('_')[3];
+                    if($('select[name="trainee_test_prometric_' + ind + '"]').val() ){
+                        biodata.prometricData.push({
+                            test:$('select[name="trainee_test_prometric_' + ind + '"]').val() == 'Others' ? $('select[name="trainee_test_prometric_' + ind + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="trainee_test_prometric_' + ind + '"]').val(),
+                            taken:$('input[name="trainee_taken_prometric_' + ind + '"]').val(),
+                            passed:$(`#trainee_passed_prometric_${ind}`).prop('checked'),
+                        })
+                    }
+                 });
+
+                 $(".trainee_jpl").each(function(){
+                    let ind = $(this).attr('name').split('_')[3];
+                    if($('select[name="trainee_test_jpl_' + ind + '"]').val() ){
+                        biodata.jplData.push({
+                            test:$('select[name="trainee_test_jpl_' + ind + '"]').val(),
+                            taken:$('input[name="trainee_taken_jpl_' + ind + '"]').val(),
+                            passed:$(`#trainee_passed_language_${ind}`).prop('checked'),
+                        })
+                    }
+                 });
+
+            }else{
+               
+                $(".nottrainee_prometric").each(function(){
+                    let ind = $(this).attr('name').split('_')[4];
+                    if($('select[name="not_trainee_test_prometric_' + ind + '"]').val() ){
+                        biodata.prometricData.push({
+                            test:$('select[name="not_trainee_test_prometric_' + ind + '"]').val() == 'Others' ? $('select[name="not_trainee_test_prometric_' + ind + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="not_trainee_test_prometric_' + ind + '"]').val(),
+                            taken:$('input[name="not_trainee_taken_prometric_' + ind + '"]').val(),
+                            passed:$(`#not_trainee_passed_prometric_${ind}`).prop('checked'),
+                        })
+                    }
+                 });
+                 
+                 $(".nottrainee_jpl").each(function(){
+                    let ind = $(this).attr('name').split('_')[4];
+                    if($('select[name="not_trainee_test_jpl_' + ind + '"]').val() ){
+                        biodata.jplData.push({
+                            test:$('select[name="not_trainee_test_jpl_' + ind + '"]').val(),
+                            taken:$('input[name="not_trainee_taken_jpl_' + ind + '"]').val(),
+                            passed: $(`#not_trainee_passed_language_${ind}`).prop('checked'),
+                        })
+                    }
+                 });
             }
             console.log(biodata.prometricData,biodata.jplData)
 
@@ -2461,7 +2469,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         let id = biodata.prometric_trainee;
         let form = `<div class="md:grid my-3 grid-cols-7 gap-4 biodata-id-priometric}">
                         <div class="mt-2 md:mt-0 form-group col-span-3">
-                            <select id="trainee_test_prometric_${id+1}" required name="trainee_test_prometric_${id+1}" class="form-select disabled:bg-slate-200">
+                            <select id="trainee_test_prometric_${id+1}" required name="trainee_test_prometric_${id+1}" class="trainee_prometric form-select disabled:bg-slate-200">
                                 ${biodata.prometric_options}
                             </select>
                         </div>
@@ -2523,7 +2531,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         <div class="mt-2 md:mt-0 form-group col-span-7">
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-3">
-            <select required name="not_trainee_test_prometric_${id+1}" class="disabled:bg-slate-200 form-select">
+            <select required name="not_trainee_test_prometric_${id+1}" class="nottrainee_prometric disabled:bg-slate-200 form-select">
                 ${biodata.prometric_options}
             </select>
         </div>
@@ -2579,7 +2587,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         let id = biodata.jpl_trainee;
         let form = `<div class="md:grid my-3 grid-cols-7 gap-4">
         <div class="mt-2 md:mt-0 form-group col-span-3">
-            <select id="trainee_test_jpl_${id+1}" required name="trainee_test_jpl_${id+1}" class="disabled:bg-slate-200 form-select">
+            <select id="trainee_test_jpl_${id+1}" required name="trainee_test_jpl_${id+1}" class="trainee_jpl disabled:bg-slate-200 form-select">
                 ${biodata.japlang_options}
             </select>
         </div>
@@ -2633,7 +2641,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         <div class="mt-2 md:mt-0 form-group col-span-6">
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-3">
-            <select required name="not_trainee_test_jpl_${id+1}" class="disabled:bg-slate-200 form-select">
+            <select required name="not_trainee_test_jpl_${id+1}" class="nottrainee_jpl disabled:bg-slate-200 form-select">
             ${biodata.japlang_options}
             </select>
         </div>
@@ -2803,21 +2811,25 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
             biodata.educationalData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
             biodata.vocationalData = [];
-            for (let i = 0; $(form).find('input[name="name_vocational_' + i + '"]').val() != null ; i++){
-                if($('input[name="name_vocational_' + i + '"]').val() != ''){
+
+            $(".voc").each(function(){
+                let ind = $(this).attr('name').split('_')[2];
+                if($('input[name="name_vocational_' + ind + '"]').val()){
                     biodata.vocationalData.push({
-                        name:$('input[name="name_vocational_' + i + '"]').val(),
-                        address:$('input[name="add_vocational_' + i + '"]').val(),
-                        from:$('input[name="date_from_vocational_' + i + '"]').val(),
-                        until:$('input[name="date_until_vocational_' + i + '"]').val(),
-                        course:$('input[name="course_vocational_' + i + '"]').val(),
-                        certificate:$('input[name="certificate_vocational_' + i + '"]').val(),
-                        certificate_until:$('input[name="date_until_cert_vocational_' + i + '"]').val(),
+                        name:$('input[name="name_vocational_' + ind + '"]').val(),
+                        address:$('input[name="add_vocational_' + ind + '"]').val(),
+                        from:$('input[name="date_from_vocational_' + ind + '"]').val(),
+                        until:$('input[name="date_until_vocational_' + ind + '"]').val(),
+                        course:$('input[name="course_vocational_' + ind + '"]').val(),
+                        certificate:$('input[name="certificate_vocational_' + ind + '"]').val(),
+                        certificate_until:$('input[name="date_until_cert_vocational_' + ind + '"]').val(),
                     })
                 }
-            }
+             });
 
+           
 
+            console.log(biodata.vocationalData)
             $("#job_local_tab").removeClass('pointer-events-none')
             $("#job_local_tab").trigger("click")
 
@@ -2836,7 +2848,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             <button id="" class="delete_vocational py-2 px-4 bg-red-600 rounded w-full self-end text-sm text-white">Delete Record</button>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-3">
-            <input name="name_vocational_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Name of School" required>
+            <input name="name_vocational_${id+1}" autocomplete="off" type="text" maxlength="100" class="voc form-control" placeholder="Name of School" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-2">
             <input name="add_vocational_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>

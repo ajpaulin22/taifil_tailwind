@@ -26,7 +26,7 @@
             </div>
             <div class="md:grid my-3 grid-cols-7 gap-4">
                 <div class="mt-2 md:mt-0 form-group col-span-3">
-                    <select required name="trainee_test_prometric_0" class="prometric_trainee form-select disabled:bg-slate-200">
+                    <select required name="trainee_test_prometric_0" class="trainee_prometric prometric_trainee form-select disabled:bg-slate-200">
                     </select>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
@@ -60,7 +60,7 @@
             </div>
             <div class="md:grid my-3 grid-cols-7 gap-4">
                 <div class="mt-2 md:mt-0 form-group col-span-3">
-                    <select required name="trainee_test_jpl_0" class="jpl_trainee disabled:bg-slate-200 form-select"></select>
+                    <select required name="trainee_test_jpl_0" class="trainee_jpl jpl_trainee disabled:bg-slate-200 form-select"></select>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
                     <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
@@ -94,7 +94,7 @@
                     <label class="text-xl font-bold">Prometrics<span style="color:red">*</span>:</label>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-3">
-                    <select required name="not_trainee_test_prometric_0" class="disabled:bg-slate-200 form-select">
+                    <select required name="not_trainee_test_prometric_0" class="nottrainee_prometric disabled:bg-slate-200 form-select">
                     </select>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
@@ -126,7 +126,7 @@
                     <label class="text-xl font-bold">Japanese Language<span style="color:red">*</span>:</label>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-3">
-                    <select required name="not_trainee_test_jpl_0" class="disabled:bg-slate-200 form-select">
+                    <select required name="not_trainee_test_jpl_0" class="nottrainee_jpl disabled:bg-slate-200 form-select">
                     </select>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-1">
