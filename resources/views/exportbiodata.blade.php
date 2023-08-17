@@ -650,7 +650,7 @@
         <div style="float: left; width:9%; margin-left:10px">
             <h5>Position:</h5>
         </div>
-        <div style="float:left; width:40%; border-bottom: 1px solid black; margin-right:10px;">
+        <div style="float:left; width:70%; border-bottom: 1px solid black; margin-right:10px;">
             <label>N/A</label>
         </div>
         <div style="clear:both"></div>
@@ -694,7 +694,7 @@
             <div style="float: left; width:9%; margin-left:10px">
                 <h5>Position:</h5>
             </div>
-            <div style="float:left; width:40%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float:left; width:70%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{$local[$i]->position}}</label>
             </div>
             <div style="clear:both"></div>
@@ -742,7 +742,7 @@
         <div style="float: left; width:9%; margin-left:10px">
             <h5>Position:</h5>
         </div>
-        <div style="float:left; width:40%; border-bottom: 1px solid black; margin-right:10px;">
+        <div style="float:left; width:70%; border-bottom: 1px solid black; margin-right:10px;">
             <label>N/A</label>
         </div>
         <div style="clear:both"></div>
@@ -786,7 +786,7 @@
             <div style="float: left; width:9%; margin-left:10px">
                 <h5>Position:</h5>
             </div>
-            <div style="float:left; width:40%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float:left; width:70%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{$abroad[$i]->position}}</label>
             </div>
             <div style="clear:both"></div>
@@ -1067,15 +1067,16 @@
             <div style="float:left; width:3%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{$family->went_japan == 0 ? "No" : "Yes"}}</label>
             </div>
-        </div>
-        <div style="clear:both"></div>
-        @if($family->went_japan == 1)
             <div style="float:left; width:12%; margin-right:10px;">
                 <h5>Times Went:</h5>
             </div>
             <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{$family->how_many_japan == null ? "N/A" : $family->how_many_japan}}</label>
+                <label>{{$family->went_japan == 0 ? "N/A" : $family->how_many_japan}}</label>
             </div>
+        </div>
+        <div style="clear:both"></div>
+        @if($family->went_japan == 1)
+            
             <div style="clear:both"></div>
             <div style="float: left; width:40%; margin-left: 200px">
                 <h5>Place</h5>
