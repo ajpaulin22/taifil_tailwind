@@ -310,13 +310,13 @@
                         <h5>Job Category:</h5>
                     </div>
                     <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px">
-                        <label>{{ $certificate->jobcategory}}</label>
+                        <label>{{ $certificate->Category}}</label>
                     </div>
                     <div style="float:left; width:15%;">
                         <h5>Job Operation:</h5>
                     </div>
                     <div style="float:left; width:30%; border-bottom: 1px solid black;">
-                        <label>{{ $certificate->joboperation}}</label>
+                        <label>{{ $certificate->Operation}}</label>
                     </div>
                 </div>
                 @endif
@@ -502,13 +502,14 @@
             <div style="float: left; width:15%;">
                 <h5>Course/Major:</h5>
             </div>
-            <div style="float:left; width:26%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float:left; width:50%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>N/A</label>
             </div>
+            <div style="clear:both"></div>
             <div style="float: left; width:19%;">
                 <h5>Certificate Holder:</h5>
             </div>
-            <div style="float:left; width:18%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float:left; width:50%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>N/A</label>
             </div>
             <div style="float: left; width:12%;">
@@ -555,13 +556,14 @@
                     <div style="float: left; width:15%;">
                         <h5>Course/Major:</h5>
                     </div>
-                    <div style="float:left; width:26%; border-bottom: 1px solid black; margin-right:10px;">
+                    <div style="float:left; width:50%; border-bottom: 1px solid black; margin-right:10px;">
                         <label>{{$vocational[$i]->course}}</label>
                     </div>
+                    <div style="clear:both"></div>
                     <div style="float: left; width:19%;">
                         <h5>Certificate Holder:</h5>
                     </div>
-                    <div style="float:left; width:18%; border-bottom: 1px solid black; margin-right:10px;">
+                    <div style="float:left; width:50%; border-bottom: 1px solid black; margin-right:10px;">
                         <label>{{$vocational[$i]->certificate}}</label>
                     </div>
                     <div style="float: left; width:12%;">
