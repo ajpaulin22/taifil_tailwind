@@ -170,10 +170,11 @@
             <div style="float: left; width:38%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>Read: {{ $data->jap_reading == 1 ? "Yes" : "No" }}&nbsp;&nbsp;&nbsp; Write: {{ $data->jap_writing == 1 ? "Yes" : "No" }}&nbsp;&nbsp;&nbsp; Speak: {{ $data->jap_speaking == 1 ? "Yes" : "No" }}&nbsp;&nbsp;&nbsp; Listen: {{ $data->jap_listening == 1 ? "Yes" : "No" }}</label>
             </div>
+            <div style="clear:both"></div>
             <div style="float: left; width:18%">
                 <h5>Other Language:</h5>
             </div>
-            <div style="float: left; width:22%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float: left; width:78%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{ $data->other_lang == null ? "N/A" : $data->other_lang }}</label>
             </div>
         </div>
@@ -188,28 +189,29 @@
             <div style="float: left; width:10%">
                 <h5>Hobbies:</h5>
             </div>
-            <div style="float: left; width:25%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float: left; width:70%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{$data->hobbies}}</label>
-            </div>
-            <div style="float: left; width:27%">
-                <h5>Emergency Contact Person:</h5>
-            </div>
-            <div style="float: left; width:21.5%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{$data->person_to_notify}}</label>
             </div>
         </div>
         <div style="clear:both"></div>
         <div class="row">
+            <div style="float: left; width:27%">
+                <h5>Emergency Contact Person:</h5>
+            </div>
+            <div style="float: left; width:50%; border-bottom: 1px solid black; margin-right:10px;">
+                <label>{{$data->person_to_notify}}</label>
+            </div>
             <div style="float: left; width:10%">
                 <h5>Relation:</h5>
             </div>
             <div style="float: left; width:10%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{$data->person_relation}}</label>
             </div>
+            <div style="clear:both"></div>
             <div style="float: left; width:10%">
                 <h5>Address:</h5>
             </div>
-            <div style="float: left; width:38%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float: left; width:59%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{$data->person_address}}</label>
             </div>
             <div style="float: left; width:17.5%">
@@ -259,18 +261,19 @@
             <div style="float: left; width:3%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{ $data->allergy == 1? "Yes" : "No"}}</label>
             </div>
-            <div style="float: left; width:14%">
-                <h5>Kind of Food:</h5>
-            </div>
-            <div style="float: left; width:43%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{ $data->food_alergy == null ? "N/A" : $data->food_alergy }}</label>
-            </div>
             <div style="float: left; width:13%">
                 <h5>Have Tattoo:</h5>
             </div>
             <div style="float: left; width:3%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{ $data->tattoo == 1? "Yes" : "No" }}</label>
             </div>
+        </div>
+        <div style="clear:both"></div>
+        <div style="float: left; width:14%">
+            <h5>Kind of Food:</h5>
+        </div>
+        <div style="float: left; width:80%; border-bottom: 1px solid black; margin-right:10px;">
+            <label>{{ $data->food_alergy == null ? "N/A" : $data->food_alergy }}</label>
         </div>
         <div style="clear:both"></div>
         <div class="row">
@@ -309,13 +312,14 @@
                     <div style="float:left; width:15%;">
                         <h5>Job Category:</h5>
                     </div>
-                    <div style="float:left; width:30%; border-bottom: 1px solid black; margin-right:10px">
+                    <div style="float:left; width:70%; border-bottom: 1px solid black; margin-right:10px">
                         <label>{{ $certificate->Category}}</label>
                     </div>
+                    <div style="clear:both"></div>
                     <div style="float:left; width:15%;">
                         <h5>Job Operation:</h5>
                     </div>
-                    <div style="float:left; width:30%; border-bottom: 1px solid black;">
+                    <div style="float:left; width:70%; border-bottom: 1px solid black;">
                         <label>{{ $certificate->Operation}}</label>
                     </div>
                 </div>
@@ -409,9 +413,19 @@
             <div style="float: left; width:13%;">
                 <h5>Elementary:</h5>
             </div>
-            <div style="float:left; width:52%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float:left; width:80%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{ $educational->name_elem}}</label>
             </div>
+        </div>
+        <div style="clear:both"></div>
+        <div>
+            <div style="float: left; width:9%;">
+                <h5>Address:</h5>
+            </div>
+            <div style="float:left; width:70%; border-bottom: 1px solid black; margin-right:14px;">
+                <label>{{ $educational->address_elem}}</label>
+            </div>
+            <div style="clear:both"></div>
             <div style="float: left; width:6%;">
                 <h5>From:</h5>
             </div>
@@ -425,32 +439,14 @@
                 <label>{{ date('m/d/Y', strtotime($educational->until_elem))}}</label>
             </div>
         </div>
-        <div style="clear:both"></div>
-        <div>
-            <div style="float: left; width:9%;">
-                <h5>Address:</h5>
-            </div>
-            <div style="float:left; width:70%; border-bottom: 1px solid black; margin-right:14px;">
-                <label>{{ $educational->address_elem}}</label>
-            </div>
-        </div>
         
         <div style="clear:both"></div>
         <div class="row" >
             <div style="float: left; width:13%;">
                 <h5>High School:</h5>
             </div>
-            <div style="float:left; width:52%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float:left; width:80%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{ $educational->name_highschool}}</label>
-            </div>
-            <div style="float: left; width:6%;">
-                <h5>From:</h5>
-            </div>
-            <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:18.5px;">
-                <label>{{ date('m/d/Y', strtotime($educational->from_highschool))}}</label>
-            </div>
-            <div style="float: left; width:6%;">
-                <h5>Until:</h5>
             </div>
             <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
                 <label>{{ date('m/d/Y', strtotime($educational->until_highschool))}}</label>
@@ -463,6 +459,16 @@
             </div>
             <div style="float:left; width:70%; border-bottom: 1px solid black; margin-right:14px;">
                 <label>{{ $educational->address_highschool}}</label>
+            </div>
+            <div style="clear:both"></div>
+            <div style="float: left; width:6%;">
+                <h5>From:</h5>
+            </div>
+            <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:18.5px;">
+                <label>{{ date('m/d/Y', strtotime($educational->from_highschool))}}</label>
+            </div>
+            <div style="float: left; width:6%;">
+                <h5>Until:</h5>
             </div>
         </div>
         <div style="clear:both"></div>

@@ -37,9 +37,9 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red" class="req_father_deceased"></span>:</label>
-                <input name="father_cp" autocomplete="off" type="text" maxlength="20"
+                <input name="father_cp" autocomplete="off" type="text" maxlength="13"
                     oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                    class="Number-Only father_deceased form-control disabled:bg-slate-200" minlength="8" style="text-align:right">
+                    class="Number-Only father_deceased form-control disabled:bg-slate-200" minlength="8"  style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="lastname" class="form-label">Occupation<span style="color:red" class="req_father_deceased">*</span>:</label>
@@ -83,7 +83,7 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red" class="req_mother_deceased"></span>:</label>
-                <input name="mother_cp" autocomplete="off" type="text" maxlength="20"
+                <input name="mother_cp" autocomplete="off" type="text" maxlength="13"
                     oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
                     class="Number-Only mother_deceased form-control disabled:bg-slate-200" minlength="8" style="text-align:right">
             </div>
@@ -139,7 +139,7 @@
                     <label for="lastname" class="form-label">CP No.<span style="color:red" class="sibling_required req_sibling_deceased"></span>:</label>
                     <input name="sibling_cp_0" autocomplete="off" type="number"
                         oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                        onKeyPress="if(this.value.length==20) return false;" class="sibling_deceased sibling form-control disabled:bg-slate-200" minlength="8" style="text-align:right">
+                        onKeyPress="if(this.value.length==20) return false;" class="sibling_deceased sibling form-control disabled:bg-slate-200" minlength="8" maxlength="13" style="text-align:right">
                 </div>
                 <div class="form-group col-start-2 col-span-12">
                     <label for="lastname" class="form-label">Address<span style="color:red" class="sibling_required req_sibling_deceased">*</span>:</label>
@@ -170,7 +170,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="lastname" class="form-label">CP No.<span style="color:red"></span>:</label>
-                <input name="spouse_cp" autocomplete="off" type="text" maxlength="100" class="Number-Only form-control spouse disabled:bg-slate-200" minlength="8" style="text-align:right" style="text-align:right">
+                <input name="spouse_cp" autocomplete="off" type="text" maxlength="13" class="Number-Only form-control spouse disabled:bg-slate-200" minlength="8" style="text-align:right" style="text-align:right">
             </div>
             <div class="form-group col-start-2 col-span-12">
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -230,7 +230,7 @@
             </div>
             <div class="partner_hidden form-group col-span-1" hidden>
                 <label for="lastname" class="form-label">CP No.<span style="color:red"></span>:</label>
-                <input name="partner_cp" autocomplete="off" type="text" maxlength="20" minlength="8" class="form-control partner Number-Only disabled:bg-slate-200" disabled style="text-align:right">
+                <input name="partner_cp" autocomplete="off" type="text" maxlength="13" minlength="8"  class="form-control partner Number-Only disabled:bg-slate-200" disabled style="text-align:right">
             </div>
 
             <div class="partner_hidden form-group col-start-2 col-span-12" hidden>
@@ -416,7 +416,7 @@
                         <input name="relation_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Relation">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
-                        <input name="contact_relative_0" autocomplete="off" type="text" class=" Number-Only form-control text-right disabled:bg-slate-200" minlength="8" placeholder="Contact">
+                        <input name="contact_relative_0" autocomplete="off" type="text" class=" Number-Only form-control text-right disabled:bg-slate-200" minlength="8" maxlength="13" placeholder="Contact">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
                         <input name="address_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Address in Japan">
