@@ -1717,7 +1717,7 @@
         </div>
         <div class='col-span-8 md:grid grid-cols-4 gap-4'>
             <div class='mt-2 md:mt-0 form-group col-span-2'>
-                <input name='name_abroad_${id+1}' id='name_abroad_${id+1}' autocomplete='off' type='text' class='abroad_${id+1}' form-control disabled:bg-slate-200' placeholder='Name of Company' required>
+                <input name='name_abroad_${id+1}' id='name_abroad_${id+1}' autocomplete='off' type='text' class='abroad_${id+1} form-control disabled:bg-slate-200' placeholder='Name of Company' required>
             </div>
         <div class='mt-2 md:mt-0 form-group col-span-2'>
             <input name='position_abroad_${id+1}' id='position_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Position' required>
