@@ -1588,12 +1588,12 @@
             <input name='address_local_${id+1}' id='address_local_${id+1}' autocomplete='off' type='text' class='address_local form-control disabled:bg-slate-200' placeholder='Company Address' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
         <input data-rule-validDate="true" name="date_from_local_${id+1}" id='date_from_local_${id+1}' maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
    </div>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
         <input data-rule-validDate="true" name="date_until_local_${id+1}" id='date_until_local_${id+1}' maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
    </div>
         </div>
@@ -1726,12 +1726,12 @@
             <input name='address_abroad_${id+1}' id='address_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Company Address' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
         <input data-rule-validDate="true" name="date_from_abroad_${id+1}" id='date_from_abroad_${id+1}' maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
    </div>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
         <input data-rule-validDate="true" name="date_until_abroad_${id+1}" id='date_until_abroad_${id+1}' maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
    </div>
         </div>
