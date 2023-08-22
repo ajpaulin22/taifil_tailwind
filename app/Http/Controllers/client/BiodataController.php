@@ -99,7 +99,7 @@ class BiodataController extends Controller
                         "allergy" => $request->personal["allergy"] == "1" ? true : false,
                         "food_alergy" => isset($request->personal["food_allergy"]) ? $request->personal["food_allergy"] : null,
                         "tattoo" =>  $request->personal["tattoo"] == "1" ? true : false,
-                        "drivers_licensed" =>  $request->personal["licensed"] == "1" ? true : false,
+                        "drivers_licensed" =>  $request->personal["licensed"] == "1" ? true : false, // -------------------CHANGE THIS TO VARCHAR NOT BIT
                         "type_licensed" => isset($request->personal["type_licensed"]) ? $request->personal["type_licensed"] : null,
                         "valid_licensed" => isset($request->personal["licensed_until"]) ? date('Y-m-d H:i:s', strtotime($request->personal["licensed_until"])) : null,
                         "job_type" => $request->personal["job_type"],
