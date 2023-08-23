@@ -113,15 +113,15 @@
         uploadData:function(){
             $("#loader").show()
             let self = this;
-            if(!self.educationalData.name_college) {
-                self.educationalData.name_college = null
-                self.educationalData.add_college = null
-                self.educationalData.date_from_college = null
-                self.educationalData.date_until_college = null
-                self.educationalData.course_college = null
-                self.educationalData.certificate_college = null
-                self.educationalData.date_until_cert_college = null
-            }
+            // if(!self.educationalData.name_college) {
+            //     self.educationalData.name_college = null
+            //     self.educationalData.add_college = null
+            //     self.educationalData.date_from_college = null
+            //     self.educationalData.date_until_college = null
+            //     self.educationalData.course_college = null
+            //     self.educationalData.certificate_college = null
+            //     self.educationalData.date_until_cert_college = null
+            // }
             try {
                 $.ajax({
                     url:"/client/Biodata/uploadData",
@@ -2445,15 +2445,10 @@
     $("#send").on("click",function(e){
         e.preventDefault();
         biodata.upload_validator = true;
-        if($("#upload_form").valid()){
+        // if($("#upload_form").valid()){
             modal.show();
             biodata.upload = new FormData($("#upload_form")[0])
-            console.log({
-                _token:biodata.token,
-                personal:biodata.personalData,
-                personalid: $("#PersonalInfoID").val()
-            })
-        }
+        // }
     });
 
     $("#upload_details").on("click",function(){
