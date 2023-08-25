@@ -37,9 +37,9 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red" class="req_father_deceased"></span>:</label>
-                <input name="father_cp" autocomplete="off" type="text" maxlength="20"
+                <input name="father_cp" autocomplete="off" type="text" maxlength="13"
                     oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                    class="Number-Only father_deceased form-control disabled:bg-slate-200" minlength="8" style="text-align:right">
+                    class="Number-Only father_deceased form-control disabled:bg-slate-200" minlength="8"  style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="lastname" class="form-label">Occupation<span style="color:red" class="req_father_deceased">*</span>:</label>
@@ -83,7 +83,7 @@
             </div>
             <div class="form-group col-span-3">
                 <label for="lastname" class="form-label">CP No.<span style="color:red" class="req_mother_deceased"></span>:</label>
-                <input name="mother_cp" autocomplete="off" type="text" maxlength="20"
+                <input name="mother_cp" autocomplete="off" type="text" maxlength="13"
                     oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
                     class="Number-Only mother_deceased form-control disabled:bg-slate-200" minlength="8" style="text-align:right">
             </div>
@@ -123,7 +123,7 @@
                 </div>
                 <div class="form-group col-span-3">
                     <label for="sibling" class="form-label">Name<span style="color:red" class="sibling_required req_sibling_na ">*</span>:</label>
-                    <input name="sibling_0" autocomplete="off" type="text" maxlength="100" class="sibling_na sibling form-control disabled:bg-slate-200" required>
+                    <input name="sibling_0" autocomplete="off" type="text" maxlength="100" class="siblings sibling_na sibling form-control disabled:bg-slate-200" required>
                 </div>
                 <div class="form-group col-span-3">
                     <label for="sibling_birthday" class="form-label">Birth Date<span style="color:red" class="sibling_required req_sibling_na">*</span>:</label>
@@ -139,7 +139,7 @@
                     <label for="lastname" class="form-label">CP No.<span style="color:red" class="sibling_required req_sibling_deceased"></span>:</label>
                     <input name="sibling_cp_0" autocomplete="off" type="number"
                         oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                        onKeyPress="if(this.value.length==20) return false;" class="sibling_deceased sibling form-control disabled:bg-slate-200" minlength="8" style="text-align:right">
+                        onKeyPress="if(this.value.length==20) return false;" class="sibling_deceased sibling form-control disabled:bg-slate-200" minlength="8" maxlength="13" style="text-align:right">
                 </div>
                 <div class="form-group col-start-2 col-span-12">
                     <label for="lastname" class="form-label">Address<span style="color:red" class="sibling_required req_sibling_deceased">*</span>:</label>
@@ -170,9 +170,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="lastname" class="form-label">CP No.<span style="color:red"></span>:</label>
-                <input name="spouse_cp" autocomplete="off" type="number"
-                    oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                    onKeyPress="if(this.value.length==20) return false;" maxlength="100" class="form-control spouse disabled:bg-slate-200" minlength="8" style="text-align:right" style="text-align:right">
+                <input name="spouse_cp" autocomplete="off" type="text" maxlength="13" class="Number-Only form-control spouse disabled:bg-slate-200" minlength="8" style="text-align:right" style="text-align:right">
             </div>
             <div class="form-group col-start-2 col-span-12">
                 <label for="lastname" class="form-label">Address<span style="color:red">*</span>:</label>
@@ -193,7 +191,7 @@
             </div>
             <div class="form-group col-span-5">
                 <label for="lastname" class="form-label">Name<span style="color:red" class="required_children">*</span>:</label>
-                <input name="child_0" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
+                <input name="child_0" autocomplete="off" type="text" maxlength="100" class="childrens children form-control disabled:bg-slate-200" required>
             </div>
             <div class="form-group col-span-4">
                 <label for="lastname" class="form-label">Birth Date<span style="color:red" class="required_children">*</span>:</label>
@@ -223,7 +221,7 @@
                 <label for="lastname" class="form-label">Birthday<span style="color:red">*</span>:</label>
                 {{-- <input name="partner_age" autocomplete="off" type="number" onKeyPress="if(this.value.length==2) return false;" class="form-control partner Number-Only disabled:bg-slate-200" required disabled style="text-align:right"> --}}
                 <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" data-rule-pastDate="true" name="partner_birthday" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                    <input data-rule-validDate="true" data-rule-pastDate="true" name="partner_birthday" maxlength="10" autocomplete="off" type="text" required class="partner form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
                </div>
             </div>
             <div class="partner_hidden form-group col-span-3" hidden>
@@ -232,7 +230,7 @@
             </div>
             <div class="partner_hidden form-group col-span-1" hidden>
                 <label for="lastname" class="form-label">CP No.<span style="color:red"></span>:</label>
-                <input name="partner_cp" autocomplete="off" type="text" maxlength="20" class="form-control partner Number-Only disabled:bg-slate-200" required disabled style="text-align:right">
+                <input name="partner_cp" autocomplete="off" type="text" maxlength="13" minlength="8"  class="form-control partner Number-Only disabled:bg-slate-200" disabled style="text-align:right">
             </div>
 
             <div class="partner_hidden form-group col-start-2 col-span-12" hidden>
@@ -258,13 +256,13 @@
                 </div>
                 <div class="form-group col-span-3 japan_group" hidden>
                     <label for="lastname" class="form-label">How many times? (ilang beses?)</label>
-                    <input name="japan_times" autocomplete="off" type="number" onKeyPress="if(this.value.length==3) return false;" class="japan text-right form-control disabled:bg-slate-200" required disabled>
+                    <input name="japan_times" autocomplete="off" type="number" onKeyPress="if(this.value.length==3) return false;" class=" japan text-right form-control disabled:bg-slate-200" required disabled>
                 </div>
                 <div class="form-group col-span-1 japan_group" hidden>
                 </div>
                 <div class="form-group col-span-4 japan_group" hidden>
                     <label for="lastname" class="form-label">Where in japan</label>
-                    <input name="japan_where_0" autocomplete="off" type="text" maxlength="100" class="japan form-control disabled:bg-slate-200" required disabled>
+                    <input name="japan_where_0" autocomplete="off" type="text" maxlength="100" class="japantimes japan form-control disabled:bg-slate-200" required disabled>
                 </div>
                 <div class="form-group col-span-2 japan_group" hidden>
                     <label for="lastname" class="form-label">From When</label>
@@ -412,15 +410,13 @@
                         <button class='py-2 bg-white w-full self-end text-xs font-bold text-white pointer-events-none'>X</button>
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
-                        <input name="name_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Name">
+                        <input name="name_relative_0" autocomplete="off" type="text" maxlength="100" class="relatives form-control disabled:bg-slate-200" required placeholder="Name">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
                         <input name="relation_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Relation">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
-                        <input name="contact_relative_0" autocomplete="off" type="number"
-                            oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                            onKeyPress="if(this.value.length==20) return false;" class="form-control text-right disabled:bg-slate-200" minlength="8" placeholder="Contact">
+                        <input name="contact_relative_0" autocomplete="off" type="text" class=" Number-Only form-control text-right disabled:bg-slate-200" minlength="8" maxlength="13" placeholder="Contact">
                     </div>
                     <div class="form-group col-span-4 mt-2 md:mt-0">
                         <input name="address_relative_0" autocomplete="off" type="text" maxlength="100" class="form-control disabled:bg-slate-200" required placeholder="Address in Japan">

@@ -44,20 +44,20 @@
                 Personal Data
             </li>
             @if($biodata == "SSW")
-            <li data-tab-target="#seminar_content" id="seminar_tab" class="pointer-events-none text-xs lg:text-sm   p-3 bg-green-300 text-black rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700"> 
+            <li data-tab-target="#seminar_content" id="seminar_tab" class=" text-xs lg:text-sm   p-3 bg-green-300 text-black rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700"> 
                 Seminar/Certificate
             </li>
             @endif
-            <li data-tab-target="#education_content" id="education_tab" class=" text-xs lg:text-sm  p-3 bg-green-300 text-black rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
+            <li data-tab-target="#education_content" id="education_tab" class="pointer-events-none text-xs lg:text-sm  p-3 bg-green-300 text-black rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
                 Educational Background
             </li>
-            <li data-tab-target="#emp_local_content" id="job_local_tab" class=" text-xs lg:text-sm  p-3 bg-green-300 text-black rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
+            <li data-tab-target="#emp_local_content" id="job_local_tab" class="pointer-events-none text-xs lg:text-sm  p-3 bg-green-300 text-black rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
                 Employment Record(local)
             </li>
-            <li data-tab-target="#emp_abroad_content" id="job_abroad_tab" class=" text-xs lg:text-sm  p-3 bg-green-300 text-black rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
+            <li data-tab-target="#emp_abroad_content" id="job_abroad_tab" class="pointer-events-none text-xs lg:text-sm  p-3 bg-green-300 text-black rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
                 Employment Record(Abroad)
             </li>
-            <li data-tab-target="#family_content" id="family_tab" class=" text-xs lg:text-sm  p-3 bg-green-300 text-black rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
+            <li data-tab-target="#family_content" id="family_tab" class="pointer-events-none text-xs lg:text-sm  p-3 bg-green-300 text-black rounded-md shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">
                 Family Information
             </li>
             <li data-tab-target="#upload_content" id="upload_tab" class=" text-xs lg:text-sm p-3 bg-green-300 text-black rounded-md  shadow-xl transition-all duration-300 ease-in-out hover:shadow-inner hover:cursor-pointer hover:bg-green-700">

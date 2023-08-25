@@ -5074,7 +5074,7 @@ B. Synopsis: Class Module used to process data
                 deferRender: true,
                 pageLength: 10,
                 order: [
-                    [1, "asc"]
+                    [1, "desc"]
                 ],
                 autowidth: false,
                 columns:[
@@ -5085,6 +5085,7 @@ B. Synopsis: Class Module used to process data
                                 },
                                 width: "2%", orderable: false
                             },
+                            { data: 'updated_at', name: 'updated_at' ,orderable: true, title: "CreateDate", visible: false},
                             { data: 'JobType', name: 'JobType' ,orderable: true, title: "Job Type"},
                             { data: 'Category', name: 'Category' ,orderable: true, title: "Category"},
                 ],
@@ -5126,7 +5127,7 @@ B. Synopsis: Class Module used to process data
                 deferRender: true,
                 pageLength: 10,
                 order: [
-                    [1, "asc"]
+                    [1, "desc"]
                 ],
                 columns:[
                             {
@@ -5136,6 +5137,7 @@ B. Synopsis: Class Module used to process data
                                 },
                                 width: "2%", orderable: false
                             },
+                            { data: 'updated_at', name: 'updated_at' ,orderable: true, title: "CreateDate", visible: false},
                             { data: 'Operation', name: 'Operation' ,orderable: true, title: "Operation"},
                             {
                                 title: "Hiring",
@@ -5184,7 +5186,7 @@ B. Synopsis: Class Module used to process data
                 deferRender: true,
                 pageLength: 10,
                 order: [
-                    [1, "asc"]
+                    [1, "desc"]
                 ],
                 columns:[
                             {
@@ -5194,6 +5196,7 @@ B. Synopsis: Class Module used to process data
                                 },
                                 width: "2%", orderable: false
                             },
+                            { data: 'updated_at', name: 'updated_at' ,orderable: true, title: "CreateDate", visible: false},
                             { data: 'Qualification', name: 'Qualification' ,orderable: true, title: "Qualification"},
                 ],
                 "drawCallback": function() {

@@ -99,7 +99,7 @@ class BiodataController extends Controller
                         "allergy" => $request->personal["allergy"] == "1" ? true : false,
                         "food_alergy" => isset($request->personal["food_allergy"]) ? $request->personal["food_allergy"] : null,
                         "tattoo" =>  $request->personal["tattoo"] == "1" ? true : false,
-                        "drivers_licensed" =>  $request->personal["licensed"] == "1" ? true : false,
+                        "drivers_licensed" =>  $request->personal["licensed"] == "1" ? true : false, // -------------------CHANGE THIS TO VARCHAR NOT BIT
                         "type_licensed" => isset($request->personal["type_licensed"]) ? $request->personal["type_licensed"] : null,
                         "valid_licensed" => isset($request->personal["licensed_until"]) ? date('Y-m-d H:i:s', strtotime($request->personal["licensed_until"])) : null,
                         "job_type" => $request->personal["job_type"],
@@ -266,6 +266,7 @@ class BiodataController extends Controller
                                 'where' => $c['where'],
                                 'fromwhen' => date('Y-m-d H:i:s', strtotime($c['fromwhen'])),
                                 'untilwhen' => date('Y-m-d H:i:s', strtotime($c['untilwhen'])),
+                                'isdeleted' => 0
                             ]);
                         }
                     }
@@ -309,7 +310,8 @@ class BiodataController extends Controller
                                 "certificate_id" => $cert_id,
                                 "certificate" => $p["test"],
                                 "taken" => date('Y-m-d H:i:s', strtotime($p['taken'])),
-                                "passed" => $p["passed"],
+                                "passed" => $p["passed"] === 'true' ? 1 : 0,
+                                "isdeleted" => 0
                             ]);
                         }
                     }
@@ -320,8 +322,8 @@ class BiodataController extends Controller
                                 "certificate_id" => $cert_id,
                                 "jpl" => $j["test"],
                                 "taken" => date('Y-m-d H:i:s', strtotime($j['taken'])),
-                                "passed" => $j["passed"],
-
+                                "passed" => $j["passed"] === 'true' ? 1 : 0,
+                                "isdeleted" => 0
                             ]);
                         }
                     }
@@ -416,7 +418,6 @@ class BiodataController extends Controller
                             "until_college" => date('Y-m-d H:i:s', strtotime($request->educational["date_until_college"])),
                             "course_college" => $request->educational["course_college"],
                             "certificate_college" => $request->educational["certificate_college"],
-                            "certificate_until_college" =>  date('Y-m-d H:i:s', strtotime($request->educational["date_until_cert_college"])),
                             "updated_at" => date('Y-m-d H:i:s')
                         ]);
 
@@ -764,7 +765,6 @@ class BiodataController extends Controller
             ->select('ID', 'JobCategoriesID', 'Operation')
             ->where("JobCategoriesID", $request->ID)
             ->where("IsDeleted", 0)
-            ->where("Hiring", 1)
             ->orderby("Operation", "asc")
             ->Get();
         return $data;

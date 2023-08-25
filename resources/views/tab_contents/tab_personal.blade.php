@@ -108,9 +108,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="contact" class="form-label">Contact No.<span style="color:red">*</span>:</label>
-                <input required name="contact" autocomplete="off" type="number"
-                    oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                    onKeyPress="if(this.value.length==20) return false;" class="form-control" minlength="8" id="contact" style="text-align:right">
+                <input required name="contact" autocomplete="off" type="text" class="Number-Only form-control" minlength="8" maxlength="13" id="contact" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Height(cm)<span style="color:red">*</span>:</label>
@@ -209,9 +207,7 @@
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Contact No.<span style="color:red">*</span>:</label>
-                <input required name="person_contact" onKeyPress="if(this.value.length==20) return false;"
-                    oninvalid="this.setCustomValidity('Minimum of 8 numbers')" onvalid="this.setCustomValidity('')"
-                    autocomplete="off" type="number" minlength="8" class="form-control" style="text-align:right">
+                <input required name="person_contact" autocomplete="off" type="text" minlength="8" maxlength="13" class="Number-Only form-control" style="text-align:right">
             </div>
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Passport No.<span style="color:red">*</span>:</label>
@@ -280,7 +276,7 @@
                     <label for="personal_lastname" class="form-label">Type of Licensed?<span style="color:red">*</span>:</label>
                     <select required name="type_licensed" class="form-select">
                         <option value="" selected disabled value>Choose....</option>
-                        <option value="StudentPermit">Student Permit</option>
+                        <option value="Student Permit">Student Permit</option>
                         <option value="Non-Professional">Non-Professional</option>
                         <option value="Professional">Professional</option>
                     </select>

@@ -103,6 +103,7 @@
         this.prometricData;
         this.jplData;
         this.upload;
+        this.partner_enable=false;
         this.ex_trainee = false;
         this.prometric_options = "<option value='' selected disabled value>Choose....</option>";
         this.japlang_options = "<option value='' selected disabled value>Choose....</option>";
@@ -112,15 +113,15 @@
         uploadData:function(){
             $("#loader").show()
             let self = this;
-            if(!self.educationalData.name_college) {
-                self.educationalData.name_college = null
-                self.educationalData.add_college = null
-                self.educationalData.date_from_college = null
-                self.educationalData.date_until_college = null
-                self.educationalData.course_college = null
-                self.educationalData.certificate_college = null
-                self.educationalData.date_until_cert_college = null
-            }
+            // if(!self.educationalData.name_college) {
+            //     self.educationalData.name_college = null
+            //     self.educationalData.add_college = null
+            //     self.educationalData.date_from_college = null
+            //     self.educationalData.date_until_college = null
+            //     self.educationalData.course_college = null
+            //     self.educationalData.certificate_college = null
+            //     self.educationalData.date_until_cert_college = null
+            // }
             try {
                 $.ajax({
                     url:"/client/Biodata/uploadData",
@@ -418,6 +419,9 @@
                                 $('#jp_overstay_yes').trigger('click')
                                 $('#jp_overstay_count').val(promise.familydata[0].how_long_overstay)
                             }
+                            else{
+                                $('#jp_overstay_no').trigger('click')
+                            }
 
                             if(promise.familydata[0].fake_identity_japan == 0){
                                 $("input[name='fakeidentity'][value='"+ promise.familydata[0].fake_identity_japan +"']").trigger('click');
@@ -459,6 +463,7 @@
                                     $("#add_children").trigger('click');
                                 $("input[name='child_"+ i +"']").val(promise.childrendata[i].name);
                                 $("input[name='child_birthday_"+ i +"']").val(promise.childrendata[i].birthday);
+                                $("input[name='child_address_"+ i +"']").val(promise.childrendata[i].address);
                             }
                         }
 
@@ -651,7 +656,11 @@
                             position:'topRight'
                         });
                         setTimeout(() => {
-                            location.replace((location.pathname.includes("/jp")? "/jp/":"/"));
+                            if(self.searchParams.get('type') != "mod")
+                                location.replace((location.pathname.includes("/jp")? "/jp/":"/"));
+                            else
+                                location.replace("/admin/ManagementRegistration");
+                            
                         }, 2000);
                     }
                     console.log(promise.msgTitle)
@@ -950,45 +959,53 @@
                 joboperation:$("#certificate_operation").val(),
                 ex_trainee:biodata.ex_trainee
             }
-            if(biodata.ex_trainee){
-                for (let i = 0; $(form).find('select[name="trainee_test_prometric_' + i + '"]').val() != null ; i++){
-                    if($('select[name="trainee_test_prometric_' + i + '"]').val() != ''){
-                        biodata.prometricData.push({
-                            test:$('select[name="trainee_test_prometric_' + i + '"]').val() == 'Others' ? $('select[name="trainee_test_prometric_' + i + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="trainee_test_prometric_' + i + '"]').val(),
-                            taken:$('input[name="trainee_taken_prometric_' + i + '"]').val(),
-                            passed:$(`#trainee_passed_prometric_${i}`).prop('checked'),
-                        })
-                    }
-                }
-                for (let i = 0; $(form).find('select[name="trainee_test_jpl_' + i + '"]').val() != null ; i++){
-                    if($('select[name="trainee_test_jpl_' + i + '"]').val() != ''){
-                        biodata.jplData.push({
-                            test:$('select[name="trainee_test_jpl_' + i + '"]').val(),
-                            taken:$('input[name="trainee_taken_jpl_' + i + '"]').val(),
-                            passed:$(`#trainee_passed_language_${i}`).prop('checked'),
-                        })
-                    }
-                }
-            }else{
-                for (let i = 0; $(form).find('select[name="not_trainee_test_prometric_' + i + '"]').val() != null ; i++){
-                    if($('select[name="not_trainee_test_prometric_' + i + '"]').val() != ''){
-                        biodata.prometricData.push({
-                            test:$('select[name="not_trainee_test_prometric_' + i + '"]').val() == 'Others' ? $('select[name="not_trainee_test_prometric_' + i + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="not_trainee_test_prometric_' + i + '"]').val(),
-                            taken:$('input[name="not_trainee_taken_prometric_' + i + '"]').val(),
-                            passed:$(`#not_trainee_passed_prometric_${i}`).prop('checked'),
-                        })
-                    }
-                }
-                for (let i = 0; $(form).find('select[name="not_trainee_test_jpl_' + i + '"]').val() != null ; i++){
-                    if($('select[name="not_trainee_test_jpl_' + i + '"]').val() != ''){
-                        biodata.jplData.push({
-                            test:$('select[name="not_trainee_test_jpl_' + i + '"]').val(),
-                            taken:$('input[name="not_trainee_taken_jpl_' + i + '"]').val(),
-                            passed: $(`#not_trainee_passed_language_${i}`).prop('checked'),
-                        })
-                    }
 
-                }
+            if(biodata.ex_trainee){
+                $(".trainee_prometric").each(function(){
+                    let ind = $(this).attr('name').split('_')[3];
+                    if($('select[name="trainee_test_prometric_' + ind + '"]').val() ){
+                        biodata.prometricData.push({
+                            test:$('select[name="trainee_test_prometric_' + ind + '"]').val() == 'Others' ? $('select[name="trainee_test_prometric_' + ind + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="trainee_test_prometric_' + ind + '"]').val(),
+                            taken:$('input[name="trainee_taken_prometric_' + ind + '"]').val(),
+                            passed:$(`#trainee_passed_prometric_${ind}`).prop('checked'),
+                        })
+                    }
+                 });
+
+                 $(".trainee_jpl").each(function(){
+                    let ind = $(this).attr('name').split('_')[3];
+                    if($('select[name="trainee_test_jpl_' + ind + '"]').val() ){
+                        biodata.jplData.push({
+                            test:$('select[name="trainee_test_jpl_' + ind + '"]').val(),
+                            taken:$('input[name="trainee_taken_jpl_' + ind + '"]').val(),
+                            passed:$(`#trainee_passed_language_${ind}`).prop('checked'),
+                        })
+                    }
+                 });
+
+            }else{
+               
+                $(".nottrainee_prometric").each(function(){
+                    let ind = $(this).attr('name').split('_')[4];
+                    if($('select[name="not_trainee_test_prometric_' + ind + '"]').val() ){
+                        biodata.prometricData.push({
+                            test:$('select[name="not_trainee_test_prometric_' + ind + '"]').val() == 'Others' ? $('select[name="not_trainee_test_prometric_' + ind + '"]').parent().parent().find('.prometric_test').children().val() : $('select[name="not_trainee_test_prometric_' + ind + '"]').val(),
+                            taken:$('input[name="not_trainee_taken_prometric_' + ind + '"]').val(),
+                            passed:$(`#not_trainee_passed_prometric_${ind}`).prop('checked'),
+                        })
+                    }
+                 });
+                 
+                 $(".nottrainee_jpl").each(function(){
+                    let ind = $(this).attr('name').split('_')[4];
+                    if($('select[name="not_trainee_test_jpl_' + ind + '"]').val() ){
+                        biodata.jplData.push({
+                            test:$('select[name="not_trainee_test_jpl_' + ind + '"]').val(),
+                            taken:$('input[name="not_trainee_taken_jpl_' + ind + '"]').val(),
+                            passed: $(`#not_trainee_passed_language_${ind}`).prop('checked'),
+                        })
+                    }
+                 });
             }
             console.log(biodata.prometricData,biodata.jplData)
 
@@ -1003,7 +1020,7 @@
         let id = biodata.prometric_trainee;
         let form = `<div class="md:grid my-3 grid-cols-7 gap-4 biodata-id-priometric}">
                         <div class="mt-2 md:mt-0 form-group col-span-3">
-                            <select id="trainee_test_prometric_${id+1}" required name="trainee_test_prometric_${id+1}" class="form-select disabled:bg-slate-200">
+                            <select id="trainee_test_prometric_${id+1}" required name="trainee_test_prometric_${id+1}" class="trainee_prometric form-select disabled:bg-slate-200">
                                 ${biodata.prometric_options}
                             </select>
                         </div>
@@ -1065,7 +1082,7 @@
         <div class="mt-2 md:mt-0 form-group col-span-7">
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-3">
-            <select required name="not_trainee_test_prometric_${id+1}" class="disabled:bg-slate-200 form-select">
+            <select required name="not_trainee_test_prometric_${id+1}" class="nottrainee_prometric disabled:bg-slate-200 form-select">
                 ${biodata.prometric_options}
             </select>
         </div>
@@ -1121,7 +1138,7 @@
         let id = biodata.jpl_trainee;
         let form = `<div class="md:grid my-3 grid-cols-7 gap-4">
         <div class="mt-2 md:mt-0 form-group col-span-3">
-            <select id="trainee_test_jpl_${id+1}" required name="trainee_test_jpl_${id+1}" class="disabled:bg-slate-200 form-select">
+            <select id="trainee_test_jpl_${id+1}" required name="trainee_test_jpl_${id+1}" class="trainee_jpl disabled:bg-slate-200 form-select">
                 ${biodata.japlang_options}
             </select>
         </div>
@@ -1175,7 +1192,7 @@
         <div class="mt-2 md:mt-0 form-group col-span-6">
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-3">
-            <select required name="not_trainee_test_jpl_${id+1}" class="disabled:bg-slate-200 form-select">
+            <select required name="not_trainee_test_jpl_${id+1}" class="nottrainee_jpl disabled:bg-slate-200 form-select">
             ${biodata.japlang_options}
             </select>
         </div>
@@ -1243,6 +1260,9 @@
             biodata.ex_trainee = true;
             $("#not_trainee_jpl_div").html("")
             $("#not_trainee_prometric_nav").html("")
+            $(".prometric_trainee").attr("disabled", true);
+            $(".jpl_trainee").attr("disabled", true);
+            $(".applicable").prop('checked', false);
         }else{
             $("#ex-trainee").hide();
             $("#not-ex-trainee").show()
@@ -1342,21 +1362,25 @@
 
             biodata.educationalData = $(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {})
             biodata.vocationalData = [];
-            for (let i = 0; $(form).find('input[name="name_vocational_' + i + '"]').val() != null ; i++){
-                if($('input[name="name_vocational_' + i + '"]').val() != ''){
+
+            $(".voc").each(function(){
+                let ind = $(this).attr('name').split('_')[2];
+                if($('input[name="name_vocational_' + ind + '"]').val()){
                     biodata.vocationalData.push({
-                        name:$('input[name="name_vocational_' + i + '"]').val(),
-                        address:$('input[name="add_vocational_' + i + '"]').val(),
-                        from:$('input[name="date_from_vocational_' + i + '"]').val(),
-                        until:$('input[name="date_until_vocational_' + i + '"]').val(),
-                        course:$('input[name="course_vocational_' + i + '"]').val(),
-                        certificate:$('input[name="certificate_vocational_' + i + '"]').val(),
-                        certificate_until:$('input[name="date_until_cert_vocational_' + i + '"]').val(),
+                        name:$('input[name="name_vocational_' + ind + '"]').val(),
+                        address:$('input[name="add_vocational_' + ind + '"]').val(),
+                        from:$('input[name="date_from_vocational_' + ind + '"]').val(),
+                        until:$('input[name="date_until_vocational_' + ind + '"]').val(),
+                        course:$('input[name="course_vocational_' + ind + '"]').val(),
+                        certificate:$('input[name="certificate_vocational_' + ind + '"]').val(),
+                        certificate_until:$('input[name="date_until_cert_vocational_' + ind + '"]').val(),
                     })
                 }
-            }
+             });
 
+           
 
+            console.log(biodata.vocationalData)
             $("#job_local_tab").removeClass('pointer-events-none')
             $("#job_local_tab").trigger("click")
 
@@ -1375,7 +1399,7 @@
             <button id="" class="delete_vocational py-2 px-4 bg-red-600 rounded w-full self-end text-sm text-white">Delete Record</button>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-3">
-            <input name="name_vocational_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Name of School" required>
+            <input name="name_vocational_${id+1}" autocomplete="off" type="text" maxlength="100" class="voc form-control" placeholder="Name of School" required>
         </div>
         <div class="mt-2 md:mt-0 form-group col-span-2">
             <input name="add_vocational_${id+1}" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="School Address" required>
@@ -1506,19 +1530,44 @@
             $(window).scrollTop(0);
             // console.log($(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {}))
             biodata.local_empData = [];
-            for (let i = 0; $(form).find('input[name="name_local_' + i + '"]').val() != null ; i++){
-                if($('input[name="name_local_' + i + '"]').val() != ''){
+            $(".local").each(function(){
+                var ind = $(this).attr('id').split('_')[2];
+                if($("#name_local_" + ind).val()){
                     biodata.local_empData.push({
-                        company:$('input[name="name_local_' + i + '"]').val(),
-                        position:$('input[name="position_local_' + i + '"]').val(),
-                        address:$('input[name="address_local_' + i + '"]').val(),
-                        from:$('input[name="date_from_local_' + i + '"]').val(),
-                        until:$('input[name="date_until_local_' + i + '"]').val(),
+                        company:$("#name_local_" + ind).val(),
+                        position:$("#position_local_" + ind).val(),
+                        address:$("#address_local_" + ind).val(),
+                        from:$("#date_from_local_" + ind).val(),
+                        until:$("#date_until_local_" + ind).val(),
                     })
                 }
-            }
+            });
+            // for (let i = 0; $(form).find('input[name="name_local_' + i + '"]').val() != null ; i++){
+            //     if($('input[name="name_local_' + i + '"]').val() != ''){
+            //         biodata.local_empData.push({
+            //             company:$('input[name="name_local_' + i + '"]').val(),
+            //             position:$('input[name="position_local_' + i + '"]').val(),
+            //             address:$('input[name="address_local_' + i + '"]').val(),
+            //             from:$('input[name="date_from_local_' + i + '"]').val(),
+            //             until:$('input[name="date_until_local_' + i + '"]').val(),
+            //         })
+            //     }
+            // }
 
+            // $(".companylocal").each((a,b)=>{
+            //     console.log($(b).find("input[name='name_local_[]'").val())
+            //     if($(b).find("input[name='name_local_[]'").val() != ''){
+            //         biodata.local_empData.push({
+            //             company:$(b).find('input[name="name_local_[]').val(),
+            //             position:$(b).find('input[name="position_local_[]').val(),
+            //             address:$(b).find('input[name="address_local_[]').val(),
+            //             from:$(b).find('input[name="date_from_local_[]').val(),
+            //             until:$(b).find('input[name="date_until_local_[]').val(),
+            //         })
+            //     }
+            // })
 
+            console.log(biodata.local_empData)
             $("#job_abroad_tab").removeClass('pointer-events-none')
             $("#job_abroad_tab").trigger('click');
 
@@ -1541,22 +1590,22 @@
         </div>
         <div class='col-span-8 md:grid grid-cols-4 gap-4'>
             <div class='mt-2 md:mt-0 form-group col-span-2'>
-                <input name='name_local_${id+1}' autocomplete='off' type='text' class='name_local form-control disabled:bg-slate-200' placeholder='Name of Company' required>
+                <input name='name_local_${id+1}' id='name_local_${id+1}' autocomplete='off' type='text' class='local name_local form-control disabled:bg-slate-200' placeholder='Name of Company' required>
             </div>
         <div class='mt-2 md:mt-0 form-group col-span-2'>
-            <input name='position_local_${id+1}' autocomplete='off' type='text' class='position_local form-control disabled:bg-slate-200' placeholder='Position' required>
+            <input name='position_local_${id+1}' id='position_local_${id+1}' autocomplete='off' type='text' class='position_local form-control disabled:bg-slate-200' placeholder='Position' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-2'>
-            <input name='address_local_${id+1}' autocomplete='off' type='text' class='address_local form-control disabled:bg-slate-200' placeholder='Company Address' required>
+            <input name='address_local_${id+1}' id='address_local_${id+1}' autocomplete='off' type='text' class='address_local form-control disabled:bg-slate-200' placeholder='Company Address' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_from_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_from_local_${id+1}" id='date_from_local_${id+1}' maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
    </div>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_until_local_${id+1}" maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_local_${id+1}" id='date_until_local_${id+1}' maxlength="10" autocomplete="off" type="text" required class="date_until_local_0 form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
    </div>
         </div>
         </div>
@@ -1584,7 +1633,7 @@
 
     $("#local_applicable").on("click",function(e){
         if(this.checked){
-            // emplocalValid.resetForm();
+            emplocalValid.resetForm();
             $("#local_companys").html("");
             $("#add_local_btn").attr("disabled", true)
             // $("#local_companys :input").val("");
@@ -1633,17 +1682,29 @@
             $(window).scrollTop(0);
             // console.log($(form).serializeArray().reduce((obj, item) => Object.assign(obj, { [item.name]: item.value }), {}))
             biodata.abroad_empData = [];
-            for (let i = 0; $(form).find('input[name="name_abroad_' + i + '"]').val() != null ; i++){
-                if($('input[name="name_abroad_' + i + '"]').val() != ''){
+            $(".abroad").each(function(){
+                var ind = $(this).attr('id').split('_')[2];
+                if($("#name_abroad_" + ind).val()){
                     biodata.abroad_empData.push({
-                        company:$('input[name="name_abroad_' + i + '"]').val(),
-                        position:$('input[name="position_abroad_' + i + '"]').val(),
-                        address:$('input[name="address_abroad_' + i + '"]').val(),
-                        from:$('input[name="date_from_abroad_' + i + '"]').val(),
-                        until:$('input[name="date_until_abroad_' + i + '"]').val(),
+                        company:$("#name_abroad_" + ind).val(),
+                        position:$("#position_abroad_" + ind).val(),
+                        address:$("#address_abroad_" + ind).val(),
+                        from:$("#date_from_abroad_" + ind).val(),
+                        until:$("#date_until_abroad_" + ind).val(),
                     })
                 }
-            }
+            });
+            // for (let i = 0; $(form).find('input[name="name_abroad_' + i + '"]').val() != null ; i++){
+            //     if($('input[name="name_abroad_' + i + '"]').val() != ''){
+                    // biodata.abroad_empData.push({
+                    //     company:$('input[name="name_abroad_' + i + '"]').val(),
+                    //     position:$('input[name="position_abroad_' + i + '"]').val(),
+                    //     address:$('input[name="address_abroad_' + i + '"]').val(),
+                    //     from:$('input[name="date_from_abroad_' + i + '"]').val(),
+                    //     until:$('input[name="date_until_abroad_' + i + '"]').val(),
+                    // })
+            //     }
+            // }
 
 
             $("#family_tab").removeClass('pointer-events-none')
@@ -1667,22 +1728,22 @@
         </div>
         <div class='col-span-8 md:grid grid-cols-4 gap-4'>
             <div class='mt-2 md:mt-0 form-group col-span-2'>
-                <input name='name_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Name of Company' required>
+                <input name='name_abroad_${id+1}' id='name_abroad_${id+1}' autocomplete='off' type='text' class='abroad_${id+1} form-control disabled:bg-slate-200' placeholder='Name of Company' required>
             </div>
         <div class='mt-2 md:mt-0 form-group col-span-2'>
-            <input name='position_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Position' required>
+            <input name='position_abroad_${id+1}' id='position_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Position' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-2'>
-            <input name='address_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Company Address' required>
+            <input name='address_abroad_${id+1}' id='address_abroad_${id+1}' autocomplete='off' type='text' class='form-control disabled:bg-slate-200' placeholder='Company Address' required>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_from_abroad_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_from_abroad_${id+1}" id='date_from_abroad_${id+1}' maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date From" />
    </div>
         </div>
         <div class='mt-2 md:mt-0 form-group col-span-1'>
-        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-        <input data-rule-validDate="true" name="date_until_abroad_${id+1}" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+        <input data-rule-validDate="true" name="date_until_abroad_${id+1}" id='date_until_abroad_${id+1}' maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
    </div>
         </div>
         </div>
@@ -1759,50 +1820,56 @@
             biodata.childrenData = []
             biodata.relativeData = []
             biodata.japanvisitData = []
-            for (let i = 0; $(form).find('.sibling_item').length + 1 > i ; i++){
-                if($('input[name="sibling_' + i + '"]').val() != ''){
+
+            $(".siblings").each(function(){
+                let ind = $(this).attr('name').split('_')[1];
+                if($('input[name="sibling_' + ind + '"]').val()){
                     biodata.siblingData.push({
-                        name:$('input[name="sibling_' + i + '"]').val(),
-                        birhtday:$('input[name="sibling_birthday_' + i + '"]').val(),
-                        occupation:$('input[name="sibling_occupation_' + i + '"]').val(),
-                        cp:$('input[name="sibling_cp_' + i + '"]').val(),
-                        address:$('input[name="sibling_address_' + i + '"]').val(),
+                        name:$('input[name="sibling_' + ind + '"]').val(),
+                        birhtday:$('input[name="sibling_birthday_' + ind + '"]').val(),
+                        occupation:$('input[name="sibling_occupation_' + ind + '"]').val(),
+                        cp:$('input[name="sibling_cp_' + ind + '"]').val(),
+                        address:$('input[name="sibling_address_' + ind + '"]').val(),
                     })
                 }
-            }
+             });
 
-            for (let i = 0; $(form).find('.children_content').length + 1 > i  ; i++){
-                if($('input[name="child_' + i + '"]').val() != ''){
+             $(".childrens").each(function(){
+                let ind = $(this).attr('name').split('_')[1];
+                if($('input[name="child_' + ind + '"]').val()){
                     biodata.childrenData.push({
-                        name:$('input[name="child_' + i + '"]').val(),
-                        birthday:$('input[name="child_birthday_' + i + '"]').val(),
-                        address:$('input[name="child_address_' + i + '"]').val(),
+                        name:$('input[name="child_' + ind + '"]').val(),
+                        birthday:$('input[name="child_birthday_' + ind + '"]').val(),
+                        address:$('input[name="child_address_' + ind + '"]').val(),
                     })
                 }
-            }
+             });
 
-            for (let i = 0; $(form).find('.relative_content').length + 1 > i ; i++){
-                if($('input[name="name_relative_' + i + '"]').val() != ''){
+             $(".japantimes").each(function(){
+                let ind = $(this).attr('name').split('_')[2];
+                if($('input[name="name_relative_' + ind + '"]').val() ){
                     biodata.relativeData.push({
-                        name:$('input[name="name_relative_' + i + '"]').val(),
-                        relation:$('input[name="relation_relative_' + i + '"]').val(),
-                        contact:$('input[name="contact_relative_' + i + '"]').val(),
-                        address:$('input[name="address_relative_' + i + '"]').val(),
+                        name:$('input[name="name_relative_' + ind + '"]').val(),
+                        relation:$('input[name="relation_relative_' + ind + '"]').val(),
+                        contact:$('input[name="contact_relative_' + ind + '"]').val(),
+                        address:$('input[name="address_relative_' + ind + '"]').val(),
                     })
                 }
-            }
+             });
 
             // japan visit
-            for (let i = 0; $(form).find('.japanvisit_content').length + 1 > i ; i++){
-                if($('input[name="japan_where_' + i + '"]').val() != ''){
+            $(".japantimes").each(function(){
+                let ind = $(this).attr('name').split('_')[2];
+                if($('input[name="japan_where_' + ind + '"]').val()){
                     biodata.japanvisitData.push({
-                        where:$('input[name="japan_where_' + i + '"]').val(),
-                        fromwhen:$('input[name="japan_from_when_' + i + '"]').val(),
-                        untilwhen:$('input[name="japan_until_when_' + i + '"]').val(),
+                        where:$('input[name="japan_where_' + ind + '"]').val(),
+                        fromwhen:$('input[name="japan_from_when_' + ind + '"]').val(),
+                        untilwhen:$('input[name="japan_until_when_' + ind + '"]').val(),
 
                     })
                 }
-            }
+             });
+
 
 
             console.log(biodata.siblingData)
@@ -1832,7 +1899,7 @@
         </div>
         <div class="form-group col-span-3">
             <label for="" class="form-label">Name<span style="color:red">*</span>:</label>
-            <input name="sibling_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling_${id+1} form-control disabled:bg-slate-200" required>
+            <input name="sibling_${id+1}" autocomplete="off" type="text" maxlength="100" class="siblings sibling_${id+1} form-control disabled:bg-slate-200" required>
         </div>
         <div class="form-group col-span-3">
             <label for="sibling_birthday" class="form-label">Birth Date<span style="color:red">*</span>:</label>
@@ -1905,7 +1972,7 @@
         </div>
         <div class="form-group col-span-3">
             <label for="lastname" class="form-label">Name<span style="color:red">*</span>:</label>
-            <input name="child_${id+1}" autocomplete="off" type="text" maxlength="100" class="children form-control disabled:bg-slate-200" required>
+            <input name="child_${id+1}" autocomplete="off" type="text" maxlength="100" class="childrens children form-control disabled:bg-slate-200" required>
         </div>
         <div class="form-group col-span-1">
             <label for="lastname" class="form-label">Birth Date<span style="color:red">*</span>:</label>
@@ -1949,7 +2016,7 @@
         </div>
         <div class="form-group col-span-4 japan_group">
             <label for="lastname" class="form-label">Where in japan</label>
-            <input name="japan_where_${id+1}" autocomplete="off" type="text" maxlength="100" class="japan form-control disabled:bg-slate-200" required>
+            <input name="japan_where_${id+1}" autocomplete="off" type="text" maxlength="100" class="japantimes japan form-control disabled:bg-slate-200" required>
         </div>
         <div class="form-group col-span-2 japan_group">
             <label for="lastname" class="form-label">From When</label>
@@ -2064,8 +2131,14 @@
 
      $("select[name='civil_status']").on("change",function(){
         if($(this).val() == "Married"){
+            if(biodata.partner_enable){
+                $("#partner_applicable").trigger('click');
+                biodata.partner_enable = false
+            }
+            $("#partner_applicable").attr("disabled",true)
             family_form.resetForm();
             $(".spouse").attr("disabled",false)
+            $(".partner").attr("disabled",true)
             $("#spouse_required").html("")
             if(biodata.family_validator)
             $("input[name='spouse']").val(spouse.name);
@@ -2077,9 +2150,9 @@
             family_form.resetForm();
             $(".spouse").val("");
             $(".spouse").attr("disabled",true)
+            $("#partner_applicable").attr("disabled",false)
             $("#spouse_required").html("*")
             if(biodata.family_validator){
-
                 $("#family_form").valid();
             }
         }
@@ -2089,10 +2162,12 @@
         if(this.checked){
             $(".partner").attr("disabled",false)
             $(".partner_hidden").attr("hidden",false)
+            biodata.partner_enable = true;
         }else{
             $(".partner").attr("disabled",true)
             $(".partner").val("")
             $(".partner_hidden").attr("hidden",true)
+            biodata.partner_enable = false
         }
      })
 
@@ -2147,16 +2222,16 @@
             <button class='btnDelrelatives py-2 bg-red-700 rounded w-full text-xs font-bold text-white disabled:bg-red-900'>X</button>
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
-            <input name="name_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Name">
+            <input name="name_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="relatives  form-control disabled:bg-slate-200" required placeholder="Name">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
-            <input name="relation_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Relation">
+            <input name="relation_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class=" form-control disabled:bg-slate-200" required placeholder="Relation">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
-            <input name="contact_relative_${id+1}" autocomplete="off" onKeyPress="if(this.value.length==20) return false;" type="number" class="sibling form-control disabled:bg-slate-200 text-right" minlength="8" placeholder="Contact">
+            <input name="contact_relative_${id+1}" autocomplete="off" onKeyPress="if(this.value.length==20) return false;" type="number" class=" form-control disabled:bg-slate-200 text-right" minlength="8" placeholder="Contact">
         </div>
         <div class="form-group col-span-4 mt-2 md:mt-0">
-            <input name="address_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class="sibling form-control disabled:bg-slate-200" required placeholder="Address in Japan">
+            <input name="address_relative_${id+1}" autocomplete="off" type="text" maxlength="100" class=" form-control disabled:bg-slate-200" required placeholder="Address in Japan">
         </div>
     </div>`
     $("#relatives").append(form)
@@ -2281,7 +2356,7 @@
      })
 
      $(".Number-Only").on("input change paste", function () {
-        var newVal = $(this).val().replace(/[^0-9.]/g, '');
+        var newVal = $(this).val().replace(/[^0-9.\-+]/g, '');
         $(this).val(newVal.replace(/,/g, ''));
     });
     biodata.loadFunctions();
@@ -2369,15 +2444,10 @@
     $("#send").on("click",function(e){
         e.preventDefault();
         biodata.upload_validator = true;
-        if($("#upload_form").valid()){
+        // if($("#upload_form").valid()){
             modal.show();
             biodata.upload = new FormData($("#upload_form")[0])
-            console.log({
-                _token:biodata.token,
-                personal:biodata.personalData,
-                personalid: $("#PersonalInfoID").val()
-            })
-        }
+        // }
     });
 
     $("#upload_details").on("click",function(){

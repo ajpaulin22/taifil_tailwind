@@ -56,7 +56,7 @@
                     <button id="add_vocational_btn" class="vocational py-2 px-4 bg-sky-800 rounded w-full self-end text-sm text-white">Add Record</button>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-3">
-                    <input name="name_vocational_0" autocomplete="off" type="text" maxlength="100" class="vocational form-control disabled:bg-slate-200" placeholder="Name of School" required>
+                    <input name="name_vocational_0" autocomplete="off" type="text" maxlength="100" class="voc vocational form-control disabled:bg-slate-200" placeholder="Name of School" required>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-2">
                     <input name="add_vocational_0" autocomplete="off" type="text" maxlength="100" class="vocational form-control disabled:bg-slate-200" placeholder="School Address" required>
