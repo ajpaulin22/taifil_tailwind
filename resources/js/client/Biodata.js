@@ -508,7 +508,6 @@
                 }
             })
         },
-
         getCategories:function(){
             let self = this;
             $.ajax({
@@ -704,7 +703,6 @@
                 }
             })
         },
-
         loadFunctions:function(){
             let self = this;
             if(self.searchParams.get('type') != "mod" && !self.searchParams.has('cat')){
@@ -724,9 +722,10 @@
             }, "Please enter a valid date in the format DD/MM/YYYY");
         }
     }
-    Biodata.init.prototype = Biodata.prototype;
 
+    Biodata.init.prototype = Biodata.prototype;
     var biodata = Biodata();
+    
    $(document).ready(function() {
     //initialiazed
     let Datepicker = tw_elements.Datepicker;

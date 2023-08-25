@@ -1956,7 +1956,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 }
             })
         },
-
         getCategories:function(){
             let self = this;
             $.ajax({
@@ -2152,7 +2151,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 }
             })
         },
-
         loadFunctions:function(){
             let self = this;
             if(self.searchParams.get('type') != "mod" && !self.searchParams.has('cat')){
@@ -2172,9 +2170,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             }, "Please enter a valid date in the format DD/MM/YYYY");
         }
     }
-    Biodata.init.prototype = Biodata.prototype;
 
+    Biodata.init.prototype = Biodata.prototype;
     var biodata = Biodata();
+    
    $(document).ready(function() {
     //initialiazed
     let Datepicker = tw_elements.Datepicker;
