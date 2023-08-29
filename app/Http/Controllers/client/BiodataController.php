@@ -237,11 +237,11 @@ class BiodataController extends Controller
                     ]);
                     if(request()->has('visa')) {
                         // delete
-                        Visa::query() -> where('personal_id', $request["personalid"]) -> delete();
+                        Visa::query() -> where('personal_id', $id) -> delete();
                         // insert
                         foreach(request('visa') as $visa) {
                             Visa::query() -> insert([
-                                'personal_id' => $request["personalid"],
+                                'personal_id' => $id,
                                 'type' => $visa['type'],
                                 'applied_at' => date('Y-m-d', strtotime($visa['appliedAt'])),
                                 'is_approved' => $visa['isApproved'],
