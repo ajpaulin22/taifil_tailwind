@@ -33,5 +33,6 @@ class educational_data extends Model
         "certificate_college",
         "certificate_until_college",
         "isdeleted",
+        'jpl_hours',
     ];
 }

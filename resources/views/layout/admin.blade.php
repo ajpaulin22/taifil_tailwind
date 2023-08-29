@@ -9,11 +9,11 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <title>@yield('title') | Tai-Fil Manpower Services Corp.</title>
 
     @stack('styles')
-    
+
 </head>
 <body>
     {{-- <div id="page-loader" class="fade show"><span class="spinner"></span></div> --}}

@@ -238,7 +238,7 @@
                 <input name="partner_address" autocomplete="off" type="text" maxlength="100" class="form-control partner disabled:bg-slate-200" required disabled>
             </div>
             <div class="form-group col-span-13 flex gap-4">
-                <label for="address" class="form-label text-sm md:text-base">Have you been to japan? (nakapunta ka na ba sa Japan):</label>
+                <label for="address" class="form-label text-sm md:text-base">Have you been to Japan? (nakapunta ka na ba sa Japan):</label>
                 <div class="flex">
                     <div class="flex items-center mr-4">
                         <input type="radio" value="1" id="went_japan_yes" name="went_japan" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required >
@@ -295,7 +295,7 @@
                     </div>
                 </div>
                 <div class="form-group col-span-4 overstay_group" hidden>
-                    <input id="jp_overstay_count" name="overstay_howlong" autocomplete="off" type="text" maxlength="3" class="Number-Only overstay form-control disabled:bg-slate-200" placeholder="How Long(days)?" required disabled>
+                    <input id="jp_overstay_count" name="overstay_howlong" autocomplete="off" type="text" maxlength="3" class="overstay form-control disabled:bg-slate-200" placeholder="How Long(days)?" required disabled>
                 </div>
                 <div class="form-group col-span-4 overstay_group" hidden>
                 </div>
@@ -346,36 +346,39 @@
                     </div>
                 </div>
             </div>
-            <div id="visa_hidden" class="col-span-13 md:grid grid-flow-col grid-cols-12 gap-4">
-                <div class="form-group col-span-4 visa_group" hidden>
-                    <label for="personal_lastname" class="form-label">Type of Visa<span style="color:red">*</span>:</label>
-                    <select name="visa_type" class="visa form-select disabled:bg-slate-200" required disabled>
-                        <option value="" selected disabled value>Choose....</option>
-                        <option value="Tourist Visa">Tourist Visa</option>
-                        <option value="Business Visa">Business Visa</option>
-                        <option value="Work Visa">Work Visa</option>
-                        <option value="Transit Visa">Transit Visa</option>
-                        <option value="Student Visa">Student Visa</option>
-                        <option value="Entertainer visa">Entertainer Visa</option>
-
-                    </select>
-                </div>
-                <div class="form-group col-span-4 visa_group" hidden >
-                    <label for="lastname" class="form-label">When</label>
-                    <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                        <input data-rule-validDate="true" data-rule-pastDate="true" name="visa_when" maxlength="10" autocomplete="off" type="text" required class="visa form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
-                   </div>
-                </div>
-                <div class="form-group col-span-4 visa_group" hidden>
-                    <label for="personal_lastname" class="form-label">Was it Approved of Denied<span style="color:red">*</span>:</label>
-                    <select name="visa_approved" class="visa form-select disabled:bg-slate-200" required disabled>
-                        <option value="" selected disabled value>Choose....</option>
-                        <option value="1">Approved</option>
-                        <option value="0">Denied</option>
-                    </select>
+            <div id="visa-container" class="col-span-13 gap-4 flex flex-col">
+                <div id="visa_hidden" class="hidden-visa col-span-13 md:grid grid-flow-col grid-cols-12 gap-4">
+                    <div class="form-group col-span-4 visa_group" hidden>
+                        <label for="personal_lastname" class="form-label">Type of Visa<span style="color:red">*</span>:</label>
+                        <select name="visa_type" class="visa form-select disabled:bg-slate-200 visa-type" required disabled>
+                            <option value="" selected disabled value>Choose....</option>
+                            <option value="Tourist Visa">Tourist Visa</option>
+                            <option value="Business Visa">Business Visa</option>
+                            <option value="Work Visa">Work Visa</option>
+                            <option value="Transit Visa">Transit Visa</option>
+                            <option value="Student Visa">Student Visa</option>
+                            <option value="Entertainer visa">Entertainer Visa</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-span-4 visa_group" hidden >
+                        <label for="lastname" class="form-label">Date Applied</label>
+                        <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                            <input data-rule-validDate="true" data-rule-pastDate="true" name="visa_when" maxlength="10" autocomplete="off" type="text" required class="visa-date visa form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                       </div>
+                    </div>
+                    <div class="form-group col-span-4 visa_group" hidden>
+                        <label for="personal_lastname" class="form-label">Was it Approved of Denied<span style="color:red">*</span>:</label>
+                        <select name="visa_approved" class="visa form-select disabled:bg-slate-200 visa-is-approved" required disabled>
+                            <option value="" selected disabled value>Choose....</option>
+                            <option value="1">Approved</option>
+                            <option value="0">Denied</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-
+            <div id="visa-add-container" class="mt-2 md:mt-0 form-group col-span-13" style="display: flex; justify-content: end;">
+                <input type="button" id="add-visa" value="Add Record" class="py-2 px-4 bg-sky-700 rounded self-end text-sm text-white disabled:bg-sky-900 cursor-pointer">
+            </div>
             <div class="mt-2 md:mt-0 form-group col-span-11">
                 <label class="text-sm md:text-xl font-bold">RELATIVES AND ACQUAINTANCES IN JAPAN (Mga Kamag-Anak At Kaibigan Sa Japan)<span style="color:red">*</span>:</label>
             </div>

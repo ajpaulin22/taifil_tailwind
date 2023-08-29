@@ -18,6 +18,7 @@ use App\Models\vocational_data;
 use App\Models\educational_data;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Visa;
 
 class BiodataController extends Controller
 {
@@ -121,7 +122,7 @@ class BiodataController extends Controller
                         "address_jp_lang" => isset($request->educational["add_jpl"]) ? $request->educational["add_jpl"] : null,
                         "from_jp_lang" => isset($request->educational["date_from_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_from_jpl"])) : null,
                         "until_jp_lang" => isset($request->educational["date_until_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_until_jpl"])) : null,
-
+                        'jpl_hours' => isset($request->educational["jpl_hours"]) ? $request->educational["jpl_hours"] : -1,
                         "certificate_jp_lang" => isset($request->educational["certificate_jpl"]) ? $request->educational["certificate_jpl"] : null,
                         "certificate_until_jp_lang" => isset($request->educational["date_until_cert_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_until_cert_jpl"])) : null,
                         "name_college" => isset($request->educational["name_college"]) ? $request->educational["name_college"] : null,
@@ -178,7 +179,6 @@ class BiodataController extends Controller
                     $overstay = false;
                     $fakeidentity = false;
                     $surrender = false;
-                    $approved_visa = false;
 
                     if (isset($request->family["overstay"])) {
                         if ($request->family["overstay"] == "1") {
@@ -199,13 +199,6 @@ class BiodataController extends Controller
                             $surrender = true;
                         } else {
                             $surrender = false;
-                        }
-                    }
-                    if (isset($request->family["visa_approved"])) {
-                        if ($request->family["visa_approved"] == "1") {
-                            $approved_visa = true;
-                        } else {
-                            $approved_visa = false;
                         }
                     }
                     $family_id = DB::table("family_datas")->insertGetId([
@@ -232,21 +225,30 @@ class BiodataController extends Controller
                         "partner_address" => isset($request->family["partner_address"]) ? $request->family["partner_address"] : null,
                         "went_japan" => ($request->family["went_japan"] == "1") ? true : false,
                         "how_many_japan" => isset($request->family["japan_times"]) ? $request->family["japan_times"] : null,
-                        // "when_japan" => isset($request->family["japan_when"])?$request->family["japan_when"] :null ,
-                        // "where_japan" => isset($request->family["japan_where"])?$request->family["japan_where"] :null ,
                         "overstay_japan" => $overstay,
                         "how_long_overstay" => isset($request->family["overstay_howlong"]) ? $request->family["overstay_howlong"] : null,
                         "fake_identity_japan" => $fakeidentity,
                         "fake_identity_purpose" => isset($request->family["fakeidentity_purpose"]) ? $request->family["fakeidentity_purpose"] : null,
                         "fake_identity_surrender" => $surrender,
                         "applied_visa" => ($request->family["visa"] == "1") ? true : false,
-                        "type_visa" => isset($request->family["visa_type"]) ? $request->family["visa_type"] : null,
-                        "when_applied_visa" => isset($request->family["visa_when"]) ? date('Y-m-d H:i:s', strtotime($request->family["visa_when"])) : null,
-                        "approved" => $approved_visa,
                         "isdeleted" => 0,
                         "created_at" => date('Y-m-d H:i:s'),
                         "updated_at" => date('Y-m-d H:i:s')
                     ]);
+                    if(request()->has('visa')) {
+                        // delete
+                        Visa::query() -> where('personal_id', $request["personalid"]) -> delete();
+                        // insert
+                        foreach(request('visa') as $visa) {
+                            Visa::query() -> insert([
+                                'personal_id' => $request["personalid"],
+                                'type' => $visa['type'],
+                                'applied_at' => date('Y-m-d', strtotime($visa['appliedAt'])),
+                                'is_approved' => $visa['isApproved'],
+                                'update_id' =>  auth() -> user() -> id
+                            ]);
+                        }
+                    }
                     if (isset($request->relative)) {
                         foreach ($request->relative as $r) {
                             relative_data::create([
@@ -410,6 +412,7 @@ class BiodataController extends Controller
                             "address_jp_lang" => isset($request->educational["add_jpl"]) ? $request->educational["add_jpl"] : null,
                             "from_jp_lang" => isset($request->educational["date_from_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_from_jpl"])) : null,
                             "until_jp_lang" => isset($request->educational["date_until_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_until_jpl"])) : null,
+                            'jpl_hours' => isset($request->educational["jpl_hours"]) ? $request->educational["jpl_hours"] : -1,
                             "certificate_jp_lang" => isset($request->educational["certificate_jpl"]) ? $request->educational["certificate_jpl"] : null,
                             "certificate_until_jp_lang" => isset($request->educational["date_until_cert_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_until_cert_jpl"])) : null,
                             "name_college" => $request->educational["name_college"],
@@ -471,7 +474,6 @@ class BiodataController extends Controller
                     $overstay = false;
                     $fakeidentity = false;
                     $surrender = false;
-                    $approved_visa = false;
 
                     if (isset($request->family["overstay"])) {
                         if ($request->family["overstay"] == "1") {
@@ -492,14 +494,6 @@ class BiodataController extends Controller
                             $surrender = true;
                         } else {
                             $surrender = false;
-                        }
-                    }
-
-                    if (isset($request->family["visa_approved"])) {
-                        if ($request->family["visa_approved"] == "1") {
-                            $approved_visa = true;
-                        } else {
-                            $approved_visa = false;
                         }
                     }
 
@@ -529,19 +523,29 @@ class BiodataController extends Controller
                             "partner_address" => isset($request->family["partner_address"]) ? $request->family["partner_address"] : null,
                             "went_japan" => $request->family["went_japan"] == "1",
                             "how_many_japan" => isset($request->family["japan_times"]) ? $request->family["japan_times"] : null,
-                            "when_japan" => isset($request->family["japan_when"]) ? date('Y-m-d H:i:s', strtotime($request->family["japan_when"])) : null,
-                            "where_japan" => isset($request->family["japan_where"]) ? $request->family["japan_where"] : null,
                             "overstay_japan" => $overstay,
                             "how_long_overstay" => isset($request->family["overstay_howlong"]) ? $request->family["overstay_howlong"] : null,
                             "fake_identity_japan" => $fakeidentity,
                             "fake_identity_purpose" => isset($request->family["fakeidentity_purpose"]) ? $request->family["fakeidentity_purpose"] : null,
                             "fake_identity_surrender" => $surrender,
                             "applied_visa" => ($request->family["visa"] == "1") ? true : false,
-                            "type_visa" => isset($request->family["visa_type"]) ? $request->family["visa_type"] : null,
-                            "when_applied_visa" => isset($request->family["visa_when"]) ? date('Y-m-d H:i:s', strtotime($request->family["visa_when"])) : null,
-                            "approved" => $approved_visa,
                             "updated_at" => date('Y-m-d H:i:s')
                         ]);
+
+                    if(request()->has('visa')) {
+                        // delete
+                        Visa::query() -> where('personal_id', $request["personalid"]) -> delete();
+                        // insert
+                        foreach(request('visa') as $visa) {
+                            Visa::query() -> insert([
+                                'personal_id' => $request["personalid"],
+                                'type' => $visa['type'],
+                                'applied_at' => date('Y-m-d', strtotime($visa['appliedAt'])),
+                                'is_approved' => $visa['isApproved'],
+                                'update_id' =>  auth() -> user() -> id
+                            ]);
+                        }
+                    }
 
                     $family_id = DB::select("select id from family_datas where personal_id = " . $request["personalid"]);
 
@@ -810,7 +814,6 @@ class BiodataController extends Controller
                 $languagedata[$i]->taken = date('m/d/Y', strtotime(explode(" ", $languagedata[$i]->taken)[0]));
             }
         }
-
         $educationaldata = DB::table('educational_datas')
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
@@ -862,18 +865,14 @@ class BiodataController extends Controller
             ->where("personal_id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
-
         $siblingdata = [];
         $childrendata = [];
         $relativedata = [];
         $japanvisitdata = [];
-        // if(Count($familydata) !== 0) {
         $familydata[0]->father_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->father_birth)[0]));
         $familydata[0]->mother_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->mother_birth)[0]));
         $familydata[0]->spouse_birth = date('m/d/Y', strtotime(explode(" ", $familydata[0]->spouse_birth)[0]));
         $familydata[0]->partner_birthday = date('m/d/Y', strtotime(explode(" ", $familydata[0]->partner_birthday)[0]));
-        $familydata[0]->when_japan = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_japan)[0]));
-        $familydata[0]->when_applied_visa = date('m/d/Y', strtotime(explode(" ", $familydata[0]->when_applied_visa)[0]));
 
         $siblingdata = DB::table('sibling_datas')
             ->where("family_id", $familydata[0]->id)
@@ -906,6 +905,9 @@ class BiodataController extends Controller
             $japanvisitdata[$i]->untilwhen =  date('m/d/Y', strtotime(explode(" ", $japanvisitdata[$i]->untilwhen)[0]));
         }
 
+        $visa = Visa::query()
+            -> where('personal_id', $personalid)
+            -> get();
         $data = [
             "personaldata" => $personaldata,
             "traineedata" => $traineedata,
@@ -916,6 +918,7 @@ class BiodataController extends Controller
             "employmentlocaldata" => $employmentlocaldata,
             "employmentabroaddata" => $employmentabroaddata,
             "familydata" => $familydata,
+            'visa' => $visa,
             "siblingdata" => $siblingdata,
             "childrendata" => $childrendata,
             "relativedata" => $relativedata,

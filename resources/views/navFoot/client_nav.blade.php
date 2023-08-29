@@ -1,6 +1,24 @@
+<style>
+    @media all and (max-width: 1280px) {
+        .custom-hidden {
+            display: none;
+        }
+    }
+
+    @media all and (min-width: 1280px) {
+        .custom-hidden-text {
+            display: none;
+        }
+    }
+
+    @media all and (min-width: 1500px) {
+        .custom-hidden-text {
+            display: unset;
+        }
+    }
+</style>
 <div id="nav" class="bg-slate-100 shadow-lg border-b-2 border-b-green-500 sticky top-0 z-10 h-20 md:h-auto overflow-hidden md:overflow-visible">
     <nav class=" md:flex items-center max-w-6xl h-full ml-auto mr-auto justify-between">
-        
             <div class="flex justify-between md:block">
                 <a href="/#" class="px-5 flex md:justify-between">
                 <img class="w-10 my-2 mr-3" src="{{url('images/tf logo.png')}}" alt="">
@@ -12,14 +30,10 @@
                 </a>
                 <div class="md:hidden block  md:relative">
                     <button id="btn_mobile_nav" class="">
-                        <i class="fa-solid fa-bars text-5xl py-3 px-4"></i>                 
+                        <i class="fa-solid fa-bars text-5xl py-3 px-4"></i>
                     </button>
                 </div>
             </div>
-        
-
-       
-
         <ul class="block justify-between md:flex">
             <li class="p-3 px-5 text-lg font-bold text-sky-800 hover:text-green-600"><a class="hover:border-b-2 hover:border-b-green-600 transition ease-out duration-300 block md:inline-block" href="/#">Home</a></li>
             <li class="p-3 px-5 text-lg font-bold text-sky-800 hover:text-green-600"><a class="hover:border-b-2 hover:border-b-green-600 block md:inline-block" href="/#about">About</a></li>
@@ -40,7 +54,7 @@
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
-                        <a class="w-full block py-4 px-4 text-sm" href="/client/Biodata?data=TITP&type=new">Apply now</a>  
+                        <a class="w-full block py-4 px-4 text-sm" href="/client/Biodata?data=TITP&type=new">Apply now</a>
                     </div>
                 </div>
             </li>
@@ -61,10 +75,10 @@
                     </div>
                     <hr>
                     <div class="hover:bg-slate-200 w-full hover:text-green-600">
-                        <a class="w-full block py-4 px-4 text-sm" href="/client/Biodata?data=SSW&type=new">Apply now</a>  
+                        <a class="w-full block py-4 px-4 text-sm" href="/client/Biodata?data=SSW&type=new">Apply now</a>
                     </div>
                 </div>
-                
+
             </li>
             <li class="group p-3 px-5 text-lg font-bold text-sky-800 md:relative">
                 <button class="group-hover:text-green-600 hidden md:inline-block">Direct <i class="fa-solid fa-angle-down"></i></button>
@@ -91,7 +105,7 @@
             <li class="p-3 px-5 text-lg font-bold text-sky-800 hover:text-green-600"><a class="hover:border-b-2 hover:border-b-green-600 block md:inline-block" href="/#inquiry">Inquiry</a></li>
         </ul>
         <div class="m-5 md:mr-2 md:relative">
-            <button id="btnLang" class="block fa-solid fa-earth-americas text-sky-800 text-xs hover:text-green-500 w-full">    
+            <button id="btnLang" class="block fa-solid fa-earth-americas text-sky-800 text-xs hover:text-green-500 w-full">
                 English <i class="fa-solid fa-angle-down"></i>
             </button>
             <div id="lang_nav" class="md:absolute md:bg-white md:shadow-xl md:rounded md:w-36 text-sky-800 mt-2 hidden">
@@ -109,11 +123,11 @@
         </ul>
         @endif
     </nav>
-    <div class="absolute right-4 top-7 hidden lg:block">
+    <div class="absolute right-4 top-7 custom-hidden hidden lg:block">
          @auth
           <div class="flex items-end justify-end">
                @auth
-               <div class=" ">
+               <div class="custom-hidden-text">
                    {{-- <a href="/admin" class="">サイトを管理する</a> --}}
                    Hello {{Auth::user()->username}}
                </div>
