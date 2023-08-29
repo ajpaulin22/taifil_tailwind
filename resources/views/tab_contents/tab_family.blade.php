@@ -295,7 +295,7 @@
                     </div>
                 </div>
                 <div class="form-group col-span-4 overstay_group" hidden>
-                    <input id="jp_overstay_count" name="overstay_howlong" autocomplete="off" type="text" maxlength="3" class="overstay form-control disabled:bg-slate-200" placeholder="How Long(days)?" required disabled>
+                    <input id="jp_overstay_count" name="overstay_howlong" autocomplete="off" type="text" maxlength="10" class="overstay form-control disabled:bg-slate-200" placeholder="How Long(days)?" required disabled>
                 </div>
                 <div class="form-group col-span-4 overstay_group" hidden>
                 </div>

@@ -20580,11 +20580,6 @@ input[type='number']::-webkit-outer-spin-button,
   --tw-ring-color: rgb(49 196 141 / var(--tw-ring-opacity));
 }
 
-  .focus\:ring-indigo-500:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(104 117 245 / var(--tw-ring-opacity));
-}
-
   .focus\:ring-indigo-600:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(88 80 236 / var(--tw-ring-opacity));
@@ -21636,20 +21631,6 @@ input[type='number']::-webkit-outer-spin-button,
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
-  @media not all and (min-width: 1536px) {
-
-  .max-2xl\:hidden {
-    display: none;
-  }
-}
-
-  @media not all and (min-width: 1280px) {
-
-  .max-xl\:hidden {
-    display: none;
-  }
-}
-
   @media (min-width: 640px) {
 
   .sm\:mx-auto {
@@ -21949,19 +21930,8 @@ input[type='number']::-webkit-outer-spin-button,
 
   @media (min-width: 1280px) {
 
-  .xl\:block {
-    display: block;
-  }
-
   .xl\:hidden {
     display: none;
-  }
-}
-
-  @media (min-width: 1536px) {
-
-  .\32xl\:block {
-    display: block;
   }
 }
 
