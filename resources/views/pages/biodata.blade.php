@@ -64,7 +64,6 @@
                 Upload ID
             </li>
         </ul>
-    
         <div class="tab-content mt-5 rounded overflow-hidden border-2 border-green-950">
             <div id="personal_content" data-tab-content class="p-5 transition-all duration-300 ease-in-out" >
 

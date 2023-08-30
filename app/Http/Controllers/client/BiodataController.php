@@ -240,13 +240,15 @@ class BiodataController extends Controller
                         Visa::query() -> where('personal_id', $id) -> delete();
                         // insert
                         foreach(request('visa') as $visa) {
-                            Visa::query() -> insert([
-                                'personal_id' => $id,
-                                'type' => $visa['type'],
-                                'applied_at' => date('Y-m-d', strtotime($visa['appliedAt'])),
-                                'is_approved' => $visa['isApproved'],
-                                'update_id' =>  auth() -> user() -> id
-                            ]);
+                            if($visa['type'] !== null && $visa['appliedAt'] !== null && $visa['isApproved'] !== null) {
+                                Visa::query() -> insert([
+                                    'personal_id' => $id,
+                                    'type' => $visa['type'],
+                                    'applied_at' => date('Y-m-d', strtotime($visa['appliedAt'])),
+                                    'is_approved' => $visa['isApproved'],
+                                    'update_id' =>  auth() -> user() -> id
+                                ]);
+                            }
                         }
                     }
                     if (isset($request->relative)) {
@@ -537,13 +539,15 @@ class BiodataController extends Controller
                         Visa::query() -> where('personal_id', $request["personalid"]) -> delete();
                         // insert
                         foreach(request('visa') as $visa) {
-                            Visa::query() -> insert([
-                                'personal_id' => $request["personalid"],
-                                'type' => $visa['type'],
-                                'applied_at' => date('Y-m-d', strtotime($visa['appliedAt'])),
-                                'is_approved' => $visa['isApproved'],
-                                'update_id' =>  auth() -> user() -> id
-                            ]);
+                            if($visa['type'] !== null && $visa['appliedAt'] !== null && $visa['isApproved'] !== null) {
+                                Visa::query() -> insert([
+                                    'personal_id' => $request["personalid"],
+                                    'type' => $visa['type'],
+                                    'applied_at' => date('Y-m-d', strtotime($visa['appliedAt'])),
+                                    'is_approved' => $visa['isApproved'],
+                                    'update_id' =>  auth() -> user() -> id
+                                ]);
+                            }
                         }
                     }
 
