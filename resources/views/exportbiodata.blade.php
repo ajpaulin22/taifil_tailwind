@@ -31,7 +31,7 @@
             <div style="float:left; width:23%; border-bottom: 1px solid black;">
                 <label>{{$data->first_name}}</label>
             </div>
-            <div style="float:left; width:18%; border-bottom: 1px solid black; margin-right:10px;">
+            <div style="float:left; width:18%; border-bottom: 1px solid black; margin-right:10px; {{$data->middle_name == null ? 'margin-top: 18.5px;' : ''}}">
                 <label>{{$data->middle_name}}</label>
             </div>
             <div style="float:left; width:11%">

@@ -163,7 +163,6 @@ class ManagementRegistrationController extends Controller
 
     public function get_operations(Request $request)
     {
-
         $data = DB::select('select DISTINCT ID, Operation from m_joboperations where IsDeleted = 0 order by Operation asc');
         return $data;
     }
