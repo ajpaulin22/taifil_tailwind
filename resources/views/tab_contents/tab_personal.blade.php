@@ -56,7 +56,7 @@
             <div class="form-group col-span-1">
                 <label for="address" class="form-label">Date of Birth<span style="color:red">*</span>:</label>
                 <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
-                    <input data-rule-validDate="true" name="birthday" id="birthday" maxlength="10" autocomplete="off" type="text" required class=" form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
+                    <input data-rule-validDate="true" name="birthday" id="birthday" maxlength="10" autocomplete="off" type="text" required class=" form-control border-2 date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
                </div>
             </div>
             <div class="form-group col-span-1">

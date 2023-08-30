@@ -3027,6 +3027,7 @@
             }
         });
 
+        let counter = 0
         $("#add-visa").on("click", () => {
             const lastChild = $("#visa-container > div.hidden-visa:last-child");
             const content = `<div class="col-span-1">
@@ -3034,7 +3035,7 @@
                        x
                     </button>
                 </div>
-                <select class="visa form-select form-group col-span-3 visa_group visa-type" required>
+                <select name="visa-type-${counter}" class="visa form-select form-group col-span-3 visa_group visa-type" required>
                     <option value="" selected value>Choose....</option>
                     <option value="Tourist Visa">Tourist Visa</option>
                     <option value="Business Visa">Business Visa</option>
@@ -3043,8 +3044,14 @@
                     <option value="Student Visa">Student Visa</option>
                     <option value="Entertainer visa">Entertainer Visa</option>
                 </select>
-                <input data-rule-validDate="true" data-rule-pastDate="true" maxlength="10" autocomplete="off" type="date" required class="form-group col-span-4 visa_group visa-date visa form-control date_picker disabled:bg-slate-200" placeholder="MM/DD/YYYY" />
-                <select class="visa form-select form-group col-span-4 visa_group visa-is-approved" required>
+
+
+        <div class="relative col-span-4" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true" data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                <input data-rule-validDate="true" data-rule-pastDate="true" name="visa-date-${counter}" maxlength="10" autocomplete="off" type="text" required class="visa-date form-control date_picker disabled:bg-slate-200" placeholder="Date Until" />
+                </div>
+
+
+                <select name="visa-is-approved-${counter}" class="visa form-select form-group col-span-4 visa_group visa-is-approved" required>
                     <option value="" selected value>Choose....</option>
                     <option value="1">Approved</option>
                     <option value="0">Denied</option>
@@ -3058,6 +3065,15 @@
             button.on("click", (e) =>
                 $(e.currentTarget).parent().parent().remove()
             );
+            tw_elements.initTE({ Datepicker, Input });
+            $(".date_picker").on("keydown", function () {
+                return false;
+            });
+
+            $(".date_picker").on("input", function () {
+                $(this).valid();
+            });
+            counter++;
         });
 
         $("#add_relatives").on("click", function (e) {
