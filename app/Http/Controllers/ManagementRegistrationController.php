@@ -246,6 +246,8 @@ class ManagementRegistrationController extends Controller
         $dataChildren = DB::select($query);
         $query = "Select * from relative_datas where isdeleted = 0 AND family_id = " . $dataFamily[0]->id;
         $dataRelative = DB::select($query);
+        $query = "Select * from visa where is_deleted = 0 AND personal_id = " . $request["IDs"];
+        $dataVisa = DB::select($query);
         if ($dataPersonal[0]->job_type != "SSW") {
             $data = [
                 'data' => $dataPersonal[0],
@@ -257,7 +259,8 @@ class ManagementRegistrationController extends Controller
                 'japanvisit' => $dataVisit,
                 'siblings' => $dataSiblings,
                 'children' => $dataChildren,
-                'relative' => $dataRelative
+                'relative' => $dataRelative,
+                'visa' => $dataVisa
             ];
         } else {
             $data = [
@@ -273,7 +276,8 @@ class ManagementRegistrationController extends Controller
                 'japanvisit' => $dataVisit,
                 'siblings' => $dataSiblings,
                 'children' => $dataChildren,
-                'relative' => $dataRelative
+                'relative' => $dataRelative,
+                'visa' => $dataVisa
             ];
         }
 

@@ -1151,25 +1151,30 @@
             <label>{{$family->applied_visa == 0 ? "No" : "Yes"}}</label>
         </div>
         <div style="clear:both"></div>
-        <div style="float:left; width:13%; margin-right:10px;">
-            <h5>Type of Visa:</h5>
-        </div>
-        <div style="float:left; width:15%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$family->applied_visa == 0 ? "N/A" : $family->type_visa}}</label>
-        </div>  
-        <div style="float:left; width:7.5%; margin-right:10px;">
-            <h5>When:</h5>
-        </div>
-        <div style="float:left; width:10.5%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$family->when_applied_visa == null ? "N/A" : date('m/d/Y', strtotime($family->when_applied_visa))}}</label>
-        </div>
-        <div style="float:left; width:10.5%; margin-right:10px;">
-            <h5>Approved:</h5>
-        </div>
-        <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
-            <label>{{$family->applied_visa == 0 ? "N/A" : ($family->approved == 0 ? "No" : "Yes")}}</label>
-        </div>
-        <div style="clear:both"></div>
+        @if($family->applied_visa == 1)
+            @for($i = 0; $i < COUNT($visa); $i++)
+                <div style="float:left; width:13%; margin-right:10px;">
+                    <h5>Type of Visa:</h5>
+                </div>
+                <div style="float:left; width:20%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{$visa[$i]->type}}</label>
+                </div>
+                <div style="float:left; width:7.5%; margin-right:10px;">
+                    <h5>When:</h5>
+                </div>
+                <div style="float:left; width:10.5%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{date('m/d/Y', strtotime($visa[$i]->applied_at))}}</label>
+                </div>
+                <div style="float:left; width:10.5%; margin-right:10px;">
+                    <h5>Approved:</h5>
+                </div>
+                <div style="float:left; width:4%; border-bottom: 1px solid black; margin-right:10px;">
+                    <label>{{$visa[$i]->is_approved == 0 ? "No" : "Yes"}}</label>
+                </div>
+                <div style="clear:both"></div>
+            @endfor
+        @endif
+        
         <h1 class="row" >Relatives and Acquaintances in Japan</h1>
         <div style="float: left; width:26%; margin-left:100px">
             <h5>Name</h5>
