@@ -33,17 +33,12 @@ class family_data extends Model
         "partner_address",
         "went_japan",
         "how_many_japan",
-        "when_japan",
-        "where_japan",
         "overstay_japan",
         "how_long_overstay",
         "fake_identity_japan",
         "fake_identity_purpose",
         "fake_identity_surrender",
         "applied_visa",
-        "type_visa",
-        "when_applied_visa",
-        "approved",
         "isdeleted",
     ];
 }

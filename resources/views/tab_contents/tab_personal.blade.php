@@ -38,8 +38,8 @@
                 <input required name="firstname" autocomplete="off" type="text" maxlength="100" class="form-control" id="firstname">
             </div>
             <div class="form-group col-span-1">
-                <label for="middlename" class="form-label">Middle Name<span style="color:red">*</span>:</label>
-                <input required name="middlename" autocomplete="off" type="text" maxlength="100" class="form-control" id="middlename">
+                <label for="middlename" class="form-label">Middle Name</label>
+                <input name="middlename" autocomplete="off" type="text" maxlength="100" class="form-control" id="middlename">
             </div>
             <div class="form-group col-span-1">
                 <label for="nickname" class="form-label">Nickname<span style="color:red">*</span>:</label>
@@ -85,12 +85,16 @@
                 <label for="personal_lastname" class="form-label">Blood Type:</label>
                 <select required name="blood_type" class="form-select">
                     <option value="" selected disabled value>Choose....</option>
+                    <option value="AB">AB</option>
                     <option value="AB+">AB+</option>
                     <option value="AB-">AB-</option>
+                    <option value="A">A</option>
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
+                    <option value="B">B</option>
                     <option value="B+">B+</option>
                     <option value="B-">B-</option>
+                    <option value="O">O</option>
                     <option value="O+">O+</option>
                     <option value="O-">O-</option>
                     <option value="O-">N/A</option>
@@ -198,7 +202,13 @@
                     <option value="Mother">Mother</option>
                     <option value="Father">Father</option>
                     <option value="Sibling">Sibling</option>
-                    <option value="Relative">Relative</option>
+                    <option value="Guardian">Guardian</option>
+                    <option value="Aunt">Aunt</option>
+                    <option value="Uncle">Uncle</option>
+                    <option value="Cousin">Cousin</option>
+                    <option value="Live-In Partner">Live-In Partner</option>
+                    <option value="Husband">Husband</option>
+                    <option value="Wife">Wife</option>
                 </select>
             </div>
             <div class="form-group col-span-2">
