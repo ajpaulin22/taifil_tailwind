@@ -4825,6 +4825,7 @@ B. Synopsis: Class Module used to process data
                     for(var i = 0; i < tableCheck.length; i++){
                         $("input[name='CheckItem'][value="+ tableCheck[i].ID +"]").prop('checked', true);
                     }
+                    
                     for(var i = 0; i < abroadCheck.length; i++){
                         $("input[name='CheckAbroad'][value="+ abroadCheck[i].ID +"]").prop('checked', true);
                     }
