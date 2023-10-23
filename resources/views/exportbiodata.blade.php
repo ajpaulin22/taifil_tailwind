@@ -697,7 +697,7 @@
                     <h5>Until:</h5>
                 </div>
                 <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-                    <label>{{date('m/d/Y', strtotime($local[$i]->until))}}</label>
+                    <label>{{$local[$i]->until == "2200-01-01 00:00:00" ? "present" : date('m/d/Y', strtotime($local[$i]->until))}}</label>
                 </div>
             </div>
             <div style="clear:both"></div>
@@ -789,7 +789,7 @@
                     <h5>Until:</h5>
                 </div>
                 <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-                    <label>{{date('m/d/Y', strtotime($abroad[$i]->until))}}</label>
+                    <label>{{date('m/d/Y', strtotime($abroad[$i]->until)) == "01/01/2200" ? "present" : date('m/d/Y', strtotime($abroad[$i]->until))}}</label>
                 </div>
             </div>
             <div style="clear:both"></div>

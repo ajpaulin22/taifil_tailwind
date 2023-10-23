@@ -22,6 +22,9 @@ Management Registration
     table.dataTable thead tr>.dtfc-fixed-left, table.dataTable thead tr>.dtfc-fixed-right{
         background-color: #144c28d4 !important;
     }
+    .select2-selection__rendered{
+        display:block!important
+    }
 </style>
 <div class="panel panel-inverse">
 	<div class="panel-heading">
@@ -33,7 +36,14 @@ Management Registration
 	</div>
 	<div class="panel-body">
 		<div class="row">
-            <div class="col-sm-2 mb-2">
+            <div class="col-sm-1 mb-2">
+                <div class="form-group" >
+                    <label>Submit Date:</label>
+                    <br>
+                    <input type="text" id="SubmissionDate" autocomplete="off" placeholder="mm/dd/yyyy" class="form-control filter date-format" style="width: 100%; text-align: center;" />
+                </div>
+            </div>
+            <div class="col-sm-1 mb-2">
                 <div class="form-group">
                     <label>Type:</label>
                     <select class="form-control filter" id="Type">
@@ -58,7 +68,6 @@ Management Registration
                     </select>
                 </div>
             </div>
-            
             <div class="col-sm-2 mb-2" >
                 <div class="form-group" >
                     <label style="margin-right:150px;">Age:</label>
@@ -90,6 +99,7 @@ Management Registration
                 <thead style='border: 1px solid black;'>
                     <tr>
                         <th rowspan="2" class='HeaderTable' style='padding-bottom:25px; '></th>
+                        <th rowspan="2" class='HeaderTable'>Date of Submission</th>
                         <th rowspan="2" class='HeaderTable'>Name</th>
                         <th rowspan="2" class='HeaderTable'>Job Categories</th>
                         <th rowspan="2" class='HeaderTable'>Job Operations</th>

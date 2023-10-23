@@ -21,6 +21,15 @@
                 </select>
             </div>
             <div class="form-group col-span-1">
+                <label for="submission_date" class="form-label">Date of Submission<span style="color:red">*</span>:</label>
+                <div class="relative" data-te-datepicker-init data-te-inline="true"
+                data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
+                <input data-rule-validDate="true" id="submission_date" name="submission_date" maxlength="10"
+                    autocomplete="off" type="text" required
+                    class="form-control date_picker disabled:bg-slate-200" placeholder="mm/dd/yyyy" />
+                </div>
+            </div>
+            <div class="form-group col-span-1">
                 <input name="PersonalInfoID" type="hidden" class="form-control" id="PersonalInfoID">
                 {{-- <label for="personal_lastname" class="form-label">Code<span style="color:red">*</span>:</label>
                 <select required name="code" class="form-select" id="jobcodes">
@@ -28,7 +37,7 @@
                     <option value="" selected disabled value>Choose....</option>
                 </select> --}}
             </div>
-            <div class="col-span-1"></div>
+            
             <div class="form-group col-span-1">
                 <label for="lastname" class="form-label">Last Name<span style="color:red">*</span>:</label>
                 <input required maxlength="100" name="lastname" autocomplete="off" type="text" class="form-control" id="lastname" >
@@ -197,7 +206,7 @@
             <div class="form-group col-span-1">
                 <label for="height" class="form-label">Relation<span style="color:red">*</span>:</label>
                 {{-- <input required name="relation" autocomplete="off" type="text" maxlength="100" class="form-control"> --}}
-                <select required name="relation" class="form-select">
+                <select required id="relation" name="relation" class="form-select">
                     <option value="" selected disabled value>Choose....</option>
                     <option value="Mother">Mother</option>
                     <option value="Father">Father</option>
@@ -209,7 +218,12 @@
                     <option value="Live-In Partner">Live-In Partner</option>
                     <option value="Husband">Husband</option>
                     <option value="Wife">Wife</option>
+                    <option value="Others">Others</option>
                 </select>
+            </div>
+            <div class="form-group col-span-1">
+                <label id="PleaseSpecify" for="Others" class="form-label" style="margin-bottom:8px;">Please specify<span id="asterisk" style="color:red">*</span>:</label>
+                <input readonly id="relationothers" name="Others" autocomplete="off" type="text" maxlength="100" class="form-control">
             </div>
             <div class="form-group col-span-2">
                 <label for="height" class="form-label">Address<span style="color:red">*</span>:</label>

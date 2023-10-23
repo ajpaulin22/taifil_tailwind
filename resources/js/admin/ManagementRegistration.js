@@ -16,6 +16,19 @@
         GetJobCategories();
         GetOperations();
 
+        $(".date-format").datepicker({
+            autoclose: true,
+            autocomplete: false,
+            todayHighlight: true,
+            format: "yyyy/mm/dd",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            changeMonth: true,
+            changeYear: true,
+            orientation: "bottom",
+            enableOnReadonly: false,
+        });
+
         $(".show").change(function(){
             var x = $(this).attr('id').split('_')[1];
             if ($(this).val() == 0){
@@ -315,7 +328,7 @@
                 $("#JobCategories").append(option);
                 $("#JobCategories").select2({
                     placeholder: 'Select a category',
-                    allowClear: true
+                    allowClear: true,
                 });
             }
         })
@@ -341,7 +354,7 @@
                 $("#Operations").append(option)
                 $("#Operations").select2({
                     placeholder: 'Select an operation',
-                    allowClear: true
+                    allowClear: true,
                 })
             }
         })
@@ -365,13 +378,14 @@
                         d["Category"] = $("#JobCategories").val(),
                         d["Operations"] = $("#Operations").val(),
                         d["AgeFrom"] = $("#AgeFrom").val(),
-                        d["AgeTo"] = $("#AgeTo").val()
+                        d["AgeTo"] = $("#AgeTo").val(),
+                        d["SubmissionDate"] = $("#SubmissionDate").val()
                     }
                 },
                 // deferRender: true,
                 pageLength: 10,
                 order: [
-                    [1, "asc"]
+                    [2, "asc"]
                 ],
                 paging: true,
                 dataSrc:"data",
@@ -383,6 +397,7 @@
                         },
                         width: "2%", orderable: false
                     },
+                    { title: 'Date of Submission', data: "submissiondate", className: "dt-center"},
                     { title: 'Name', data: "Name", width: "18%"},
                     { title: 'Category', data: "Category", width: "17%"},
                     { title: 'Operation', data: "Operation", width: "17%", className: "dt-center"},

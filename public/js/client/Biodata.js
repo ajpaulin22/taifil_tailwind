@@ -1705,6 +1705,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         $("#jobcategories")
                             .val(promise.personaldata[0].job_cat)
                             .trigger("change");
+                        $("#submission_date").val(promise.personaldata[0].submission_date);
                         $("#lastname").val(promise.personaldata[0].lastname);
                         $("#firstname").val(promise.personaldata[0].first_name);
                         $("#middlename").val(
@@ -1808,6 +1809,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                         $("select[name='relation']")
                             .val(promise.personaldata[0].person_relation)
                             .trigger("change");
+                        $("#relationothers").val(promise.personaldata[0].person_others)
                         $("input[name='person_address']").val(
                             promise.personaldata[0].person_address
                         );
@@ -2656,6 +2658,20 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
         // $("#jobcodes").on("change",function(){
         //     biodata.getCategories($(this).val());
         // })
+        $("#relation").on("change", function(){
+            if ($(this).val() == "Others"){
+                $("#relationothers").removeAttr('readonly');
+                $("#relationothers").attr('required', true);
+                $("#PleaseSpecify").html('Please specify<span id="asterisk" style="color:red">*</span>:')
+            }
+            else{
+                $("#relationothers").val('');
+                $("#relationothers").attr('readonly', true);
+                $("#relationothers").removeAttr('required');
+                $("#asterisk").remove();
+            }
+        });
+        
         $("#jobcategories").on("change", function () {
             biodata.getOperations($(this).val());
         });
@@ -3392,7 +3408,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 $(".prometric_trainee").val("");
                 $("#trainee_prometric_nav").html("");
                 $(".prometric_test").remove();
-                $("");
+                
                 if (biodata.certificate_validator) {
                     $("#certificate_form").valid();
                 }

@@ -61,6 +61,7 @@ class BiodataController extends Controller
                         // "code" => $request->personal["code"],
                         "job_cat" => $request->personal["job_cat"],
                         "operation" => $request->personal["operations"],
+                        "submission_date" => date('Y-m-d H:i:s', strtotime($request->personal["submission_date"])),
                         "last_name" => $request->personal["lastname"],
                         "first_name" => $request->personal["firstname"],
                         "middle_name" => $request->personal["middlename"],
@@ -90,6 +91,7 @@ class BiodataController extends Controller
                         "hobbies" => $request->personal["hobbies"],
                         "person_to_notify" => $request->personal["person_to_notify"],
                         "person_relation" => $request->personal["relation"],
+                        "person_others" => $request->personal["Others"],
                         "person_address" => $request->personal["person_address"],
                         "person_contact" => (int) $request->personal["person_contact"],
                         "passport_no" => $request->personal["passport"],
@@ -354,6 +356,7 @@ class BiodataController extends Controller
                             // "code" => $request->personal["code"],
                             "job_cat" => $request->personal["job_cat"],
                             "operation" => $request->personal["operations"],
+                            "submission_date" => date('Y-m-d H:i:s', strtotime($request->personal["submission_date"])),
                             "last_name" => $request->personal["lastname"],
                             "first_name" => $request->personal["firstname"],
                             "middle_name" => $request->personal["middlename"],
@@ -382,6 +385,7 @@ class BiodataController extends Controller
                             "hobbies" => $request->personal["hobbies"],
                             "person_to_notify" => $request->personal["person_to_notify"],
                             "person_relation" => $request->personal["relation"],
+                            "person_others" => $request->personal["Others"],
                             "person_address" => $request->personal["person_address"],
                             "person_contact" => (int) $request->personal["person_contact"],
                             "passport_no" => $request->personal["passport"],
@@ -786,7 +790,7 @@ class BiodataController extends Controller
             ->where("id", $personalid)
             ->where("IsDeleted", 0)
             ->select()->Get();
-
+        $personaldata[0]->submission_date = date('m/d/Y', strtotime(explode(" ", $personaldata[0]->submission_date)[0]));
         $personaldata[0]->date_birth = date('m/d/Y', strtotime(explode(" ", $personaldata[0]->date_birth)[0]));
         $personaldata[0]->issue_date = date('m/d/Y', strtotime(explode(" ", $personaldata[0]->issue_date)[0]));
         $personaldata[0]->expiry_date = date('m/d/Y', strtotime(explode(" ", $personaldata[0]->expiry_date)[0]));
