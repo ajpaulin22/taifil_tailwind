@@ -570,13 +570,13 @@
                         <h5>Certificate Holder:</h5>
                     </div>
                     <div style="float:left; width:50%; border-bottom: 1px solid black; margin-right:10px;">
-                        <label>{{$vocational[$i]->certificate}}</label>
+                        <label>{{$vocational[$i]->certificate == null ? "N/A" : $vocational[$i]->certificate}}</label>
                     </div>
                     <div style="float: left; width:12%;">
                         <h5>Valid Until:</h5>
                     </div>
                     <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-                        <label>{{ date('m/d/Y', strtotime($vocational[$i]->certificate_until))}}</label>
+                        <label>{{$vocational[$i]->certificate_until == "1970-01-01 00:00:00" ? "N/A" : date('m/d/Y', strtotime($vocational[$i]->certificate_until))}}</label>
                     </div>
                 </div>
                 <div style="clear:both"></div>
