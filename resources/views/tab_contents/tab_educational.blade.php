@@ -229,8 +229,8 @@
                 {{-- <input name="certificate_college" autocomplete="off" type="text" maxlength="100" class="form-control" placeholder="Certificate Holder" required> --}}
                 <select required name="certificate_college" class="college form-select disabled:bg-slate-200">
                     <option value="" selected disabled value>---Select Option---</option>
-                    <option value="Graduate">College Graduate</option>
-                    <option value="Under Graduate">Undergraduate</option>
+                    <option value="College Graduate">College Graduate</option>
+                    <option value="UnderGraduate">Undergraduate</option>
                 </select>
             </div>
             <div class="mt-2 md:mt-0 form-group col-span-1">
