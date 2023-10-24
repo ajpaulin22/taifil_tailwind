@@ -12,6 +12,7 @@ Management Registration
 <style>
     .form-control{
         display: inline;
+        height: 31px;
     }
     body table.dataTable tbody tr.selected td{
         font-weight: 500;

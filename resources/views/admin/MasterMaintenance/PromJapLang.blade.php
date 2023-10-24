@@ -1,7 +1,5 @@
-@push("styles"){
+@push("styles")
     <link rel="stylesheet" href="{{asset("css/admin/MasterMaintenance/PromJapLang.css")}}">
-}
-
 @section('title')
     Prometrics & Japanese Language
 @endsection
