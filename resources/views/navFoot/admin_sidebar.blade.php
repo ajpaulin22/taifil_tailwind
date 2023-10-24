@@ -37,7 +37,7 @@
                         <a href="/admin/MasterMaintenance/UserInformation">User Information</a>
                     </li>
 					<li>
-                        <a href="/admin/MasterMaintenance/PromJapLang">Prometrics & Japanese Language Cert</a>
+                        <a href="/admin/MasterMaintenance/PromJaplang">Prometrics & Japanese Language Cert</a>
                     </li>
                 </ul>
             </li>
