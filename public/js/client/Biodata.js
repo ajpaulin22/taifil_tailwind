@@ -1996,7 +1996,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                                     ).val(vocational.certificate);
                                     $(
                                         `input[name='date_until_cert_vocational_${index}']`
-                                    ).val(vocational.certificate_until);
+                                    ).val(vocational.certificate_until == "01/01/1970" ? "" : vocational.certifcate_until);
                                 }
                             );
                         } else $("#vocational_applicable").trigger("click");
@@ -2009,12 +2009,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                                 if(i === 0) {
                                     const date = new Date(promise.employmentlocaldata[i].until)
                                     if(date.getFullYear() === 2200) $('#local-is-present-date').trigger('click')
+                                    else $("input[name='date_until_local_" + i + "']").val(promise.employmentlocaldata[i].until);
                                 } else $("input[name='date_until_local_" + i + "']").val(promise.employmentlocaldata[i].until);
                                 $("input[name='name_local_" + i + "']").val( promise.employmentlocaldata[i].company_name );
                                 $("input[name='position_local_" + i + "']").val( promise.employmentlocaldata[i].position );
                                 $("input[name='address_local_" + i + "']").val( promise.employmentlocaldata[i].company_address );
                                 $("input[name='date_from_local_" + i + "']").val(promise.employmentlocaldata[i].from);
-
                             }
                         }
 
@@ -2026,6 +2026,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                                 if(i === 0) {
                                     const date = new Date(promise.employmentabroaddata[i].until)
                                     if(date.getFullYear() === 2200) $('#abroad-is-present-date').trigger('click')
+                                    else $("input[name='date_until_abroad_" + i + "']").val(promise.employmentabroaddata[i].until);
                                 } else $("input[name='date_until_abroad_" + i + "']").val(promise.employmentabroaddata[i].until);
                                 $("input[name='name_abroad_" + i + "']").val( promise.employmentabroaddata[i].company_name );
                                 $( "input[name='position_abroad_" + i + "']" ).val(promise.employmentabroaddata[i].position);

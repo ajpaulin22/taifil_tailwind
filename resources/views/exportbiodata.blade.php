@@ -596,7 +596,7 @@
                     <h5>Japanese Language:</h5>
                 </div>
                 <div style="float:left; width:73%; border-bottom: 1px solid black; margin-right:10px;">
-                    <label>{{ $educational->name_jp_lang}}</label>
+                    <label>{{ $educational->name_jp_lang == null ? "N/A" : $educational->name_jp_lang}}</label>
                 </div>
             </div>
             <div style="clear:both"></div>
@@ -605,39 +605,39 @@
                     <h5>Address:</h5>
                 </div>
                 <div style="float:left; width:70%; border-bottom: 1px solid black; margin-right:14px;">
-                    <label>{{ $educational->address_jp_lang}}</label>
+                    <label>{{ $educational->name_jp_lang == null ? "N/A" : $educational->address_jp_lang}}</label>
                 </div>
                 <div style="clear:both"></div>
                 <div style="float: left; width:6%;">
                     <h5>From:</h5>
                 </div>
                 <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:18.5px;">
-                    <label>{{ date('m/d/Y', strtotime($educational->from_jp_lang))}}</label>
+                    <label>{{ $educational->name_jp_lang == null ? "N/A" : date('m/d/Y', strtotime($educational->from_jp_lang))}}</label>
                 </div>
                 <div style="float: left; width:6%;">
                     <h5>Until:</h5>
                 </div>
                 <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-                    <label>{{ date('m/d/Y', strtotime($educational->until_jp_lang))}}</label>
+                    <label>{{ $educational->name_jp_lang == null ? "N/A" : date('m/d/Y', strtotime($educational->until_jp_lang))}}</label>
                 </div>
                 <div style="float: left; width:19%;">
                     <h5>Certificate Holder:</h5>
                 </div>
                 <div style="float:left; width:45%; border-bottom: 1px solid black; margin-right:10px;">
-                    <label>{{ $educational->certificate_jp_lang}}</label>
+                    <label>{{ $educational->name_jp_lang == null ? "N/A" : $educational->certificate_jp_lang}}</label>
                 </div>
                 <div style="clear:both"></div>
                 <div style="float: left; width:12%;">
                     <h5>Valid Until:</h5>
                 </div>
                 <div style="float:left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
-                    <label>{{ date('m/d/Y', strtotime($educational->certificate_until_jp_lang)) }}</label>
+                    <label>{{ $educational->name_jp_lang == null ? "N/A" : date('m/d/Y', strtotime($educational->certificate_until_jp_lang)) }}</label>
                 </div>
                 <div style="float: left; width:14%;">
                     <h5>No. of Hours:</h5>
                 </div>
                 <div style="float:left; width:5%; border-bottom: 1px solid black; margin-right:10px;">
-                    <label>{{ $educational->jpl_hours}}</label>
+                    <label>{{ $educational->name_jp_lang == null ? "N/A" : $educational->jpl_hours}}</label>
                 </div>
             </div>
             <div style="clear:both"></div>
