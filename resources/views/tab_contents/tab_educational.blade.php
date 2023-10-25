@@ -164,7 +164,7 @@
                     <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true"
                         data-te-format="mm/dd/yyyy" data-te-input-wrapper-init>
                         <input data-rule-validDate="true" data-rule-pastDate="true" name="date_until_cert_jpl"
-                            maxlength="10" autocomplete="off" type="text" required
+                            maxlength="10" autocomplete="off" type="text" @if($biodata != "TITP")required @endif
                             class="jpl form-control date_picker disabled:bg-slate-200" placeholder="Date Taken" />
                     </div>
                 </div>
