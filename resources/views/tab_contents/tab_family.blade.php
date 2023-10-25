@@ -284,11 +284,11 @@
                         <label for="address" class="form-label">Have you overstayed in Japan?:</label>
                     <div class="flex">
                         <div class="flex items-center mr-4">
-                            <input type="radio" value="1" id="jp_overstay_yes" name="overstay" class="japan w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required disabled>
+                            <input type="radio" value="1" id="jp_overstay_yes" name="overstay" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required>
                             <label  class="ml-2 text-sm md:text-lg text-gray-900">YES</label>
                         </div>
                         <div class="flex items-center mr-4">
-                            <input type="radio" value="0" id="jp_overstay_no" name="overstay" class="japan w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required disabled>
+                            <input type="radio" value="0" id="jp_overstay_no" name="overstay" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required>
                             <label  class="ml-2 text-sm md:text-lg text-gray-900">NO</label>
                         </div>
                     </div>
@@ -304,11 +304,11 @@
                         <label for="address" class="form-label">Did you use fake identity when you went to Japan?</label>
                         <div class="flex">
                             <div class="flex items-center mr-4">
-                                <input type="radio" value="1" name="fakeidentity" class="japan w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required disabled>
+                                <input type="radio" value="1" name="fakeidentity" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 " required>
                                 <label class="ml-2 text-sm md:text-lg text-gray-900">YES</label>
                             </div>
                             <div class="flex items-center mr-4">
-                                <input type="radio" value="0" name="fakeidentity" class="japan w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "required disabled>
+                                <input type="radio" value="0" name="fakeidentity" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "required>
                                 <label  class="ml-2 text-sm md:text-lg text-gray-900">NO</label>
                             </div>
                         </div>
