@@ -1223,8 +1223,9 @@
             biodata.getOperationsSSW($(this).val());
         });
 
-        $(".date_picker").on("keydown", function () {
-            return false;
+        $(".date_picker").on("keydown", function (e) {
+            if(e.keyCode != 8)
+                return false;
         });
 
         $(".date_picker").on("input", function () {
@@ -1654,8 +1655,9 @@
             biodata.prometric_trainee++;
             tw_elements.initTE({ Datepicker, Input });
 
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -1732,8 +1734,9 @@
             });
             biodata.prometric_trainee++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -1819,8 +1822,9 @@
             });
 
             biodata.jpl_trainee++;
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -1880,8 +1884,9 @@
                 $(this).closest(".grid-cols-7").remove();
             });
             biodata.jpl_trainee++;
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -2128,8 +2133,9 @@
             });
             biodata.vocational++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -2334,8 +2340,9 @@
             });
             biodata.local_company++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -2498,11 +2505,14 @@
             });
             biodata.abroad_company++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                console.log("test");
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
+                console.log("test");
                 $(this).valid();
             });
         });
@@ -2742,8 +2752,9 @@
             });
             biodata.sibling++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -2814,8 +2825,9 @@
             });
             biodata.children++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -2866,8 +2878,9 @@
             });
             biodata.japanvisit++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -3073,8 +3086,9 @@
                 $(e.currentTarget).parent().parent().remove()
             );
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {

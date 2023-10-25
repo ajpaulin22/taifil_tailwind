@@ -2671,8 +2671,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             biodata.getOperationsSSW($(this).val());
         });
 
-        $(".date_picker").on("keydown", function () {
-            return false;
+        $(".date_picker").on("keydown", function (e) {
+            if(e.keyCode != 8)
+                return false;
         });
 
         $(".date_picker").on("input", function () {
@@ -3102,8 +3103,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             biodata.prometric_trainee++;
             tw_elements.initTE({ Datepicker, Input });
 
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -3180,8 +3182,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             });
             biodata.prometric_trainee++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -3267,8 +3270,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             });
 
             biodata.jpl_trainee++;
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -3328,8 +3332,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 $(this).closest(".grid-cols-7").remove();
             });
             biodata.jpl_trainee++;
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -3576,8 +3581,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             });
             biodata.vocational++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -3782,8 +3788,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             });
             biodata.local_company++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -3946,11 +3953,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             });
             biodata.abroad_company++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                console.log("test");
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
+                console.log("test");
                 $(this).valid();
             });
         });
@@ -4190,8 +4200,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             });
             biodata.sibling++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -4262,8 +4273,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             });
             biodata.children++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -4314,8 +4326,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
             });
             biodata.japanvisit++;
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
@@ -4521,8 +4534,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                 $(e.currentTarget).parent().parent().remove()
             );
             tw_elements.initTE({ Datepicker, Input });
-            $(".date_picker").on("keydown", function () {
-                return false;
+            $(".date_picker").on("keydown", function (e) {
+                if(e.keyCode != 8)
+                    return false;
             });
 
             $(".date_picker").on("input", function () {
