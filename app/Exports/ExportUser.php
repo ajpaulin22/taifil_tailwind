@@ -44,6 +44,7 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
     public function headings(): array
     {
         return[
+            'Date of Submission',
             'Name',
             'Job Category',
             'Job Operation',
@@ -71,7 +72,8 @@ class ExportUser implements FromCollection, WithHeadings, ShouldAutoSize
             'H',
             'I',
             'J',
-            'K'
+            'K',
+            'L',
         ];
     }
 }

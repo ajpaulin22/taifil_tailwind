@@ -1924,8 +1924,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                                 promise.educationaldata[0].certificate_jp_lang
                             );
                             $("input[name='date_until_cert_jpl']").val(
-                                promise.educationaldata[0]
-                                    .certificate_until_jp_lang
+                                promise.educationaldata[0].certificate_until_jp_lang  == "01/01/1970" ? "" : promise.educationaldata[0].certificate_until_jp_lang
                             );
                             $('#jpl-hours').val(promise.educationaldata[0].jpl_hours)
                         } else $("#jpl_applicable_education").trigger("click");

@@ -15,13 +15,20 @@
             <img src="data:image/png;base64,{{$data->id_picture}}" alt="Italian Trulli" style="width:96px;height:96px; float:right">
         </div>
         <div>
-            <h3>Job Type: <label style="font-size: 17px; padding-top:50px;">{{ $data->job_type }}</label></h3>
+            <h3>Job Type: {{ $data->job_type }}</h3>
             <h3>Job Categories: {{$data->Category}}</h3>
             <h3>Job Operations: {{$data->Operation}} </h3>
         </div>
         <hr>
         <h1 class="row">Personal Data</h1>
         <div class="row">
+            <div style="float: left; width:18%">
+                <h5>Date of Submission:</h5>
+            </div>
+            <div style="float: left; width:8.5%; border-bottom: 1px solid black; margin-right:10px;">
+                <label>{{date('m/d/Y', strtotime($data->submission_date))}}</label>
+            </div>
+            <div style="clear: both"></div>
             <div style="float:left; width:12%;">
                 <h5>First Name: </h5>
             </div>
