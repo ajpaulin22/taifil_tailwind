@@ -418,7 +418,7 @@ class BiodataController extends Controller
                             "address_jp_lang" => isset($request->educational["add_jpl"]) ? $request->educational["add_jpl"] : null,
                             "from_jp_lang" => isset($request->educational["date_from_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_from_jpl"])) : null,
                             "until_jp_lang" => isset($request->educational["date_until_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_until_jpl"])) : null,
-                            'jpl_hours' => isset($request->educational["jpl_hours"]) ? $request->educational["jpl_hours"] : -1,
+                            'jpl_hours' => isset($request->educational["jpl_hours"]) ? $request->educational["jpl_hours"] : 0,
                             "certificate_jp_lang" => isset($request->educational["certificate_jpl"]) ? $request->educational["certificate_jpl"] : null,
                             "certificate_until_jp_lang" => isset($request->educational["date_until_cert_jpl"]) ? date('Y-m-d H:i:s', strtotime($request->educational["date_until_cert_jpl"])) : null,
                             "name_college" => $request->educational["name_college"],
