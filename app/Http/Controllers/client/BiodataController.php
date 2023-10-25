@@ -604,6 +604,7 @@ class BiodataController extends Controller
                                 "family_id" => $family_id[0]->id,
                                 "name" => $c["name"],
                                 "birthday" => date('Y-m-d H:i:s', strtotime($c['birthday'])),
+                                "address" => $c["address"]
                             ]);
                         }
                     }
