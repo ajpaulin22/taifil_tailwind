@@ -1740,23 +1740,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
                             promise.personaldata[0].height
                         );
                         const religion = promise.personaldata[0].religion;
-                        if (
-                            religion !== "Roman Catholic" ||
-                            religion !== "Islam" ||
-                            religion !== "Buddhism" ||
-                            religion !== "N/A"
-                        ) {
-                            $("select[name='religion']")
-                                .val("Others")
-                                .trigger("change");
+                        if (religion !== "RomanCatholic" && religion !== "Islam" && religion !== "Buddhism" && religion !== "N/A") {
+                            $("select[name='religion']").val("Others").trigger("change");
                             $("#religion").val(religion);
-                        } else
-                            $("select[name='religion']")
-                                .val(religion)
-                                .trigger("change");
-                        $("input[name='facebook']").val(
-                            promise.personaldata[0].facebook
-                        );
+                        } else{
+                            $("select[name='religion']").val(religion).trigger("change");
+                        }
+                        $("input[name='facebook']").val([promise.personaldata[0].facebook]);
                         $(
                             "input[name='smoking'][value='" +
                                 promise.personaldata[0].smoking +

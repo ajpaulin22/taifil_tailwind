@@ -19,7 +19,7 @@
 <option value="bangladeshi">Bangladeshi</option>
 <option value="barbadian">Barbadian</option>
 <option value="barbudans">Barbudans</option>
-<option value="batswana">Batswana</option>
+<option value="botswana">Botswana</option>
 <option value="belarusian">Belarusian</option>
 <option value="belgian">Belgian</option>
 <option value="belizean">Belizean</option>

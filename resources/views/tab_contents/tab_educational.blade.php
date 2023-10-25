@@ -158,7 +158,7 @@
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-4">
                     <input name="certificate_jpl" autocomplete="off" type="text" maxlength="100"
-                        class="jpl disabled:bg-slate-200 form-control" placeholder="Certificate Holder" required>
+                        class="jpl disabled:bg-slate-200 form-control" placeholder="Certificate Holder" @if($biodata != "TITP")required @endif>
                 </div>
                 <div class="mt-2 md:mt-0 form-group col-span-2">
                     <div class="relative" data-te-datepicker-init data-te-inline="true" data-te-disable-future="true"
