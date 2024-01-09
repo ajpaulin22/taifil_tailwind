@@ -219,7 +219,7 @@
                 <h5>Please Specify:</h5>
             </div>
             <div style="float: left; width:30%; border-bottom: 1px solid black; margin-right:10px;">
-                <label>{{$data->person_others}}</label>
+                <label>{{$data->person_others == null ? "N/A" : $data->person_others}}</label>
             </div>
             <div style="clear:both"></div>
             <div style="float: left; width:10%">

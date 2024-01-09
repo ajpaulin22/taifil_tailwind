@@ -4792,7 +4792,6 @@ B. Synopsis: Class Module used to process data
                         d["SubmissionDate"] = $("#SubmissionDate").val()
                     }
                 },
-                // deferRender: true,
                 pageLength: 10,
                 order: [
                     [2, "asc"]

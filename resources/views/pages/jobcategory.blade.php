@@ -29,7 +29,6 @@
       </li>
     </ol>
     </div>
-    
 </nav>
     <section class="md:grid grid-cols-7 gap-4 mx-2 md:mx-auto max-w-7xl my-5">
         <div class="hidden col-span-1 md:block">
@@ -49,8 +48,6 @@
           </div>
         <hr>
            @endforeach
-           
-
           </div>
         </div>
         <div class="md:grid grid-cols-3 gap-5 col-span-6">
