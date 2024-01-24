@@ -171,6 +171,7 @@ class ManagementRegistrationController extends Controller
     {
         $date = Carbon::now();
         $date->toDateTimeString();
+        // return true;
         return Excel::download(new ExportUser($request), 'Applicants_Biodata_' . $date . '.xlsx');
     }
     
